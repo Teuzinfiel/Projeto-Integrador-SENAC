@@ -59,7 +59,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(51, 51, 51);
+            panel1.BackColor = Color.FromArgb(40, 40, 50);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(button6);
             panel1.Controls.Add(label3);
@@ -94,6 +94,7 @@
             button6.TabIndex = 7;
             button6.Text = "Sair";
             button6.UseVisualStyleBackColor = false;
+            button6.Click += button6_Click;
             // 
             // label3
             // 
@@ -218,7 +219,7 @@
             // 
             // panel2
             // 
-            panel2.BackColor = Color.FromArgb(51, 51, 51);
+            panel2.BackColor = Color.FromArgb(40, 40, 50);
             panel2.Controls.Add(pictureBox2);
             panel2.Controls.Add(label2);
             panel2.Controls.Add(label1);
@@ -263,7 +264,7 @@
             // 
             // panelContainer
             // 
-            panelContainer.BackColor = Color.DimGray;
+            panelContainer.BackColor = Color.FromArgb(35, 35, 45);
             panelContainer.ForeColor = Color.White;
             panelContainer.Location = new Point(287, 87);
             panelContainer.Name = "panelContainer";
@@ -272,7 +273,7 @@
             // 
             // panel5
             // 
-            panel5.BackColor = Color.FromArgb(41, 41, 41);
+            panel5.BackColor = Color.FromArgb(30, 30, 40);
             panel5.Controls.Add(button10);
             panel5.Controls.Add(btnSair);
             panel5.Location = new Point(0, -3);

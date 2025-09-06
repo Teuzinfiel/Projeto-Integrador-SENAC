@@ -1,7 +1,9 @@
 using ProjetoIntegradorSENAC.Caixa;
 using ProjetoIntegradorSENAC.Dashboard;
+using ProjetoIntegradorSENAC.Empresa;
 using ProjetoIntegradorSENAC.Estoque;
 using ProjetoIntegradorSENAC.Log;
+using ProjetoIntegradorSENAC.Logins;
 using ProjetoIntegradorSENAC.Produto;
 using ProjetoIntegradorSENAC.Usuarios;
 
@@ -28,7 +30,7 @@ namespace ProjetoIntegradorSENAC
         }
         private void btnSair_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
 
         private void button10_Click(object sender, EventArgs e)
@@ -64,6 +66,13 @@ namespace ProjetoIntegradorSENAC
         private void btnLog_Click(object sender, EventArgs e)
         {
             AbrirFormNoPanel(new log());
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            frmEmpresa frmEmpresa = new frmEmpresa();
+            frmEmpresa.Show();
+            this.Hide();
         }
     }
 }

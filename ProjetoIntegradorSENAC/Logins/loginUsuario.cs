@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ProjetoIntegradorSENAC.Empresa;
 
 namespace ProjetoIntegradorSENAC.Logins
 {
@@ -15,6 +16,14 @@ namespace ProjetoIntegradorSENAC.Logins
         public loginUsuario()
         {
             InitializeComponent();
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            frmEmpresa frmEmpresa = new frmEmpresa();
+            frmEmpresa.Show();
+            this.Hide();     
+            
         }
     }
 }

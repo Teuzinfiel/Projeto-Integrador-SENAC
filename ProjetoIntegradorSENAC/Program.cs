@@ -1,3 +1,5 @@
+using ProjetoIntegradorSENAC.Logins;
+
 namespace ProjetoIntegradorSENAC
 {
     internal static class Program
@@ -11,7 +13,7 @@ namespace ProjetoIntegradorSENAC
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new MainPrincipal());
+            Application.Run(new loginUsuario());
         }
     }
 }

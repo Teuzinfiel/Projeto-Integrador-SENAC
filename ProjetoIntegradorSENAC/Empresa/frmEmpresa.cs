@@ -15,13 +15,17 @@ namespace ProjetoIntegradorSENAC.Empresa
         public frmEmpresa()
         {
             InitializeComponent();
-
+        }
+        
+        private void frmEmpresa_Load(object sender, EventArgs e)
+        {
             dtgEmpresas.ColumnCount = 1;
             dtgEmpresas.Columns[0].Name = "Nome da Empresa";
             dtgEmpresas.Rows.Add("SENAC - Projeto integrador");
             dtgEmpresas.Rows.Add("SENAI - Projeto integrador");
             dtgEmpresas.Rows.Add("CARONE - Projeto integrador");
             dtgEmpresas.Rows.Add("SEMPRE TEM - Projeto integrador");
+            dtgEmpresas.ClearSelection();
         }
 
         private void dtgEmpresas_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -30,5 +34,24 @@ namespace ProjetoIntegradorSENAC.Empresa
             mainPrincipal.Show();
             this.Hide();
         }
+
+        // evento de hover no data grid de empresa
+        private void dtgEmpresas_CellMouseEnter_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) // pra nao contar com cabecalho
+            {
+                dtgEmpresas.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(70, 70, 90);
+            }
+        }
+
+        private void dtgEmpresas_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                dtgEmpresas.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(40, 40, 50);
+            }
+        }
+
+
     }
 }

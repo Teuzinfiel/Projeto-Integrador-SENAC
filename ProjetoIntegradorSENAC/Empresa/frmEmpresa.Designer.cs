@@ -82,7 +82,9 @@
             // 
             // dtgEmpresas
             // 
+            dtgEmpresas.AllowUserToAddRows = false;
             dtgEmpresas.AllowUserToDeleteRows = false;
+            dtgEmpresas.AllowUserToOrderColumns = true;
             dataGridViewCellStyle1.BackColor = Color.FromArgb(35, 35, 45);
             dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(70, 70, 90);
             dtgEmpresas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
@@ -123,6 +125,8 @@
             dtgEmpresas.Size = new Size(867, 337);
             dtgEmpresas.TabIndex = 5;
             dtgEmpresas.CellClick += dtgEmpresas_CellClick;
+            dtgEmpresas.CellMouseEnter += dtgEmpresas_CellMouseEnter_1;
+            dtgEmpresas.CellMouseLeave += dtgEmpresas_CellMouseLeave;
             // 
             // label4
             // 
@@ -182,6 +186,7 @@
             Name = "frmEmpresa";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "cadastroEmpresa";
+            Load += frmEmpresa_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dtgEmpresas).EndInit();

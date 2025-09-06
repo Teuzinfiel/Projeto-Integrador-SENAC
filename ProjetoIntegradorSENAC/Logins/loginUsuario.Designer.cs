@@ -30,12 +30,12 @@
         {
             components = new System.ComponentModel.Container();
             panel1 = new Panel();
+            label3 = new Label();
+            label2 = new Label();
+            textBox2 = new TextBox();
+            textBox1 = new TextBox();
             label1 = new Label();
             btnLogin = new Button();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            label2 = new Label();
-            label3 = new Label();
             contextMenuStrip1 = new ContextMenuStrip(components);
             panel1.SuspendLayout();
             SuspendLayout();
@@ -53,6 +53,46 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(339, 432);
             panel1.TabIndex = 1;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Franklin Gothic Medium", 12F);
+            label3.ForeColor = Color.White;
+            label3.Location = new Point(48, 174);
+            label3.Name = "label3";
+            label3.Size = new Size(54, 21);
+            label3.TabIndex = 12;
+            label3.Text = "Senha";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Franklin Gothic Medium", 12F);
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(48, 108);
+            label2.Name = "label2";
+            label2.Size = new Size(62, 21);
+            label2.TabIndex = 11;
+            label2.Text = "Usuario";
+            // 
+            // textBox2
+            // 
+            textBox2.Font = new Font("Segoe UI", 14F);
+            textBox2.Location = new Point(48, 198);
+            textBox2.Name = "textBox2";
+            textBox2.PlaceholderText = "Digite sua senha";
+            textBox2.Size = new Size(242, 32);
+            textBox2.TabIndex = 10;
+            // 
+            // textBox1
+            // 
+            textBox1.Font = new Font("Segoe UI", 14F);
+            textBox1.Location = new Point(48, 132);
+            textBox1.Name = "textBox1";
+            textBox1.PlaceholderText = "Digite o nome de usuario";
+            textBox1.Size = new Size(242, 32);
+            textBox1.TabIndex = 9;
             // 
             // label1
             // 
@@ -79,46 +119,6 @@
             btnLogin.UseVisualStyleBackColor = false;
             btnLogin.Click += btnLogin_Click;
             // 
-            // textBox1
-            // 
-            textBox1.Font = new Font("Segoe UI", 14F);
-            textBox1.Location = new Point(48, 132);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "Digite o nome de usuario";
-            textBox1.Size = new Size(242, 32);
-            textBox1.TabIndex = 9;
-            // 
-            // textBox2
-            // 
-            textBox2.Font = new Font("Segoe UI", 14F);
-            textBox2.Location = new Point(48, 198);
-            textBox2.Name = "textBox2";
-            textBox2.PlaceholderText = "Digite sua senha";
-            textBox2.Size = new Size(242, 32);
-            textBox2.TabIndex = 10;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Franklin Gothic Medium", 12F);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(48, 108);
-            label2.Name = "label2";
-            label2.Size = new Size(62, 21);
-            label2.TabIndex = 11;
-            label2.Text = "Usuario";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Franklin Gothic Medium", 12F);
-            label3.ForeColor = Color.White;
-            label3.Location = new Point(48, 174);
-            label3.Name = "label3";
-            label3.Size = new Size(54, 21);
-            label3.TabIndex = 12;
-            label3.Text = "Senha";
-            // 
             // contextMenuStrip1
             // 
             contextMenuStrip1.Name = "contextMenuStrip1";
@@ -132,6 +132,7 @@
             ClientSize = new Size(392, 474);
             Controls.Add(panel1);
             Name = "loginUsuario";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "loginUsuario";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

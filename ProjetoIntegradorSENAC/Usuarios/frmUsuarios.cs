@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ProjetoIntegradorSENAC.Produto
+namespace ProjetoIntegradorSENAC.Usuarios
 {
-    public partial class cadastroProduto : Form
+    public partial class frmUsuarios : Form
     {
-        public cadastroProduto()
+        public frmUsuarios()
         {
             InitializeComponent();
         }

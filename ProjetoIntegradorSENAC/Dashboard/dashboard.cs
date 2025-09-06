@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ProjetoIntegradorSENAC.Usuarios
+namespace ProjetoIntegradorSENAC.Dashboard
 {
-    public partial class cadastroUsuario : Form
+    public partial class dashboard : Form
     {
-        public cadastroUsuario()
+        public dashboard()
         {
             InitializeComponent();
         }

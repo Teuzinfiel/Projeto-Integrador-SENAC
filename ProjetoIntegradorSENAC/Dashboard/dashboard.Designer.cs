@@ -1,6 +1,6 @@
-﻿namespace ProjetoIntegradorSENAC.Estoque
+﻿namespace ProjetoIntegradorSENAC.Dashboard
 {
-    partial class estoque
+    partial class dashboard
     {
         /// <summary>
         /// Required designer variable.
@@ -30,14 +30,14 @@
         {
             SuspendLayout();
             // 
-            // estoque
+            // dashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Red;
+            BackColor = SystemColors.Info;
             ClientSize = new Size(1326, 686);
-            Name = "estoque";
-            Text = "estoque";
+            Name = "dashboard";
+            Text = "dashboard";
             ResumeLayout(false);
         }
 

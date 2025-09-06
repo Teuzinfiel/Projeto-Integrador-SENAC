@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ProjetoIntegradorSENAC.Empresa
 {
-    public partial class cadastroEmpresa : Form
+    public partial class frmEmpresa : Form
     {
-        public cadastroEmpresa()
+        public frmEmpresa()
         {
             InitializeComponent();
         }

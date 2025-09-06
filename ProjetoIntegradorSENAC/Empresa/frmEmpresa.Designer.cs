@@ -1,6 +1,6 @@
-﻿namespace ProjetoIntegradorSENAC.Produto
+﻿namespace ProjetoIntegradorSENAC.Empresa
 {
-    partial class cadastroProduto
+    partial class frmEmpresa
     {
         /// <summary>
         /// Required designer variable.
@@ -28,10 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "cadastroProduto";
+            SuspendLayout();
+            // 
+            // frmEmpresa
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.HotTrack;
+            ClientSize = new Size(1326, 686);
+            Name = "frmEmpresa";
+            Text = "cadastroEmpresa";
+            ResumeLayout(false);
         }
 
         #endregion

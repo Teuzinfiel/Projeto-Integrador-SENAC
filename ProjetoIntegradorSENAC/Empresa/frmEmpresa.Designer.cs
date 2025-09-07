@@ -33,6 +33,7 @@
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             panel1 = new Panel();
+            btnLogOut = new Button();
             label5 = new Label();
             button1 = new Button();
             dtgEmpresas = new DataGridView();
@@ -43,7 +44,6 @@
             panel2 = new Panel();
             btnMinimizar = new Button();
             btnSair = new Button();
-            btnLogOut = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgEmpresas).BeginInit();
             panel2.SuspendLayout();
@@ -61,6 +61,20 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(975, 672);
             panel1.TabIndex = 0;
+            // 
+            // btnLogOut
+            // 
+            btnLogOut.BackColor = Color.Transparent;
+            btnLogOut.FlatStyle = FlatStyle.Popup;
+            btnLogOut.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnLogOut.ForeColor = Color.White;
+            btnLogOut.Location = new Point(60, 609);
+            btnLogOut.Name = "btnLogOut";
+            btnLogOut.Size = new Size(181, 35);
+            btnLogOut.TabIndex = 8;
+            btnLogOut.Text = "Sair";
+            btnLogOut.UseVisualStyleBackColor = false;
+            btnLogOut.Click += btnLogOut_Click;
             // 
             // label5
             // 
@@ -215,20 +229,6 @@
             btnSair.Text = "X";
             btnSair.UseVisualStyleBackColor = false;
             btnSair.Click += btnSair_Click;
-            // 
-            // btnLogOut
-            // 
-            btnLogOut.BackColor = Color.Transparent;
-            btnLogOut.FlatStyle = FlatStyle.Popup;
-            btnLogOut.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnLogOut.ForeColor = Color.White;
-            btnLogOut.Location = new Point(60, 609);
-            btnLogOut.Name = "btnLogOut";
-            btnLogOut.Size = new Size(177, 35);
-            btnLogOut.TabIndex = 8;
-            btnLogOut.Text = "Sair";
-            btnLogOut.UseVisualStyleBackColor = false;
-            btnLogOut.Click += btnLogOut_Click;
             // 
             // frmEmpresa
             // 

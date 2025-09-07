@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ProjetoIntegradorSENAC.Logins;
 
 namespace ProjetoIntegradorSENAC.Empresa
 {
@@ -16,7 +17,7 @@ namespace ProjetoIntegradorSENAC.Empresa
         {
             InitializeComponent();
         }
-        
+
         private void frmEmpresa_Load(object sender, EventArgs e)
         {
             dtgEmpresas.ColumnCount = 1;
@@ -52,6 +53,21 @@ namespace ProjetoIntegradorSENAC.Empresa
             }
         }
 
+        private void btnSair_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
 
+        private void btnMinimizar_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+            loginUsuario loginUsuario = new loginUsuario();
+            loginUsuario.Show();
+            this.Hide();
+        }
     }
 }

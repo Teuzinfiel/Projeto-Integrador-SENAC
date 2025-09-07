@@ -33,7 +33,7 @@ namespace ProjetoIntegradorSENAC
             Application.Exit();
         }
 
-        private void button10_Click(object sender, EventArgs e)
+        private void btnMinimizar_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Minimized;
         }
@@ -41,34 +41,40 @@ namespace ProjetoIntegradorSENAC
         private void btnCaixa_Click(object sender, EventArgs e)
         {
             AbrirFormNoPanel(new caixa());
+            labelCategorias.Text = "Caixa"; 
         }
 
         private void btnDashboard_Click(object sender, EventArgs e)
         {
             AbrirFormNoPanel(new dashboard());
+            labelCategorias.Text = "Dashboard";
         }
 
         private void btnProdutos_Click(object sender, EventArgs e)
         {
             AbrirFormNoPanel(new frmProduto());
+            labelCategorias.Text = "Produtos";
         }
 
         private void btnEstoque_Click(object sender, EventArgs e)
         {
             AbrirFormNoPanel(new estoque());
+            labelCategorias.Text = "Estoque";
         }
 
         private void btnFuncionario_Click(object sender, EventArgs e)
         {
             AbrirFormNoPanel(new frmUsuarios());
+            labelCategorias.Text = "Funcionários";
         }
 
         private void btnLog_Click(object sender, EventArgs e)
         {
             AbrirFormNoPanel(new log());
+            labelCategorias.Text = "Log";
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void btnLogOut_Click(object sender, EventArgs e)
         {
             frmEmpresa frmEmpresa = new frmEmpresa();
             frmEmpresa.Show();

@@ -37,7 +37,11 @@
             label1 = new Label();
             btnLogin = new Button();
             contextMenuStrip1 = new ContextMenuStrip(components);
+            panel2 = new Panel();
+            btnMinimizar = new Button();
+            btnSair = new Button();
             panel1.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -49,9 +53,9 @@
             panel1.Controls.Add(textBox1);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(btnLogin);
-            panel1.Location = new Point(25, 20);
+            panel1.Location = new Point(26, 52);
             panel1.Name = "panel1";
-            panel1.Size = new Size(339, 432);
+            panel1.Size = new Size(339, 423);
             panel1.TabIndex = 1;
             // 
             // label3
@@ -124,18 +128,58 @@
             contextMenuStrip1.Name = "contextMenuStrip1";
             contextMenuStrip1.Size = new Size(61, 4);
             // 
+            // panel2
+            // 
+            panel2.BackColor = Color.FromArgb(30, 30, 40);
+            panel2.Controls.Add(btnMinimizar);
+            panel2.Controls.Add(btnSair);
+            panel2.Location = new Point(-3, 1);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(398, 32);
+            panel2.TabIndex = 2;
+            // 
+            // btnMinimizar
+            // 
+            btnMinimizar.BackColor = Color.Transparent;
+            btnMinimizar.FlatStyle = FlatStyle.Popup;
+            btnMinimizar.Font = new Font("Segoe UI", 15F);
+            btnMinimizar.ForeColor = Color.White;
+            btnMinimizar.Location = new Point(291, 0);
+            btnMinimizar.Name = "btnMinimizar";
+            btnMinimizar.Size = new Size(54, 33);
+            btnMinimizar.TabIndex = 3;
+            btnMinimizar.Text = "-";
+            btnMinimizar.UseVisualStyleBackColor = false;
+            btnMinimizar.Click += btnMinimizar_Click;
+            // 
+            // btnSair
+            // 
+            btnSair.BackColor = Color.Transparent;
+            btnSair.FlatStyle = FlatStyle.Popup;
+            btnSair.ForeColor = Color.White;
+            btnSair.Location = new Point(341, 0);
+            btnSair.Name = "btnSair";
+            btnSair.Size = new Size(54, 33);
+            btnSair.TabIndex = 1;
+            btnSair.Text = "X";
+            btnSair.UseVisualStyleBackColor = false;
+            btnSair.Click += btnSair_Click;
+            // 
             // loginUsuario
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(30, 30, 40);
-            ClientSize = new Size(392, 474);
+            BackColor = Color.FromArgb(35, 35, 45);
+            ClientSize = new Size(392, 496);
+            Controls.Add(panel2);
             Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "loginUsuario";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "loginUsuario";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            panel2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -149,5 +193,8 @@
         private TextBox textBox2;
         private TextBox textBox1;
         private ContextMenuStrip contextMenuStrip1;
+        private Panel panel2;
+        private Button btnSair;
+        private Button btnMinimizar;
     }
 }

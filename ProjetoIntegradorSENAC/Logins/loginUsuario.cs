@@ -22,8 +22,18 @@ namespace ProjetoIntegradorSENAC.Logins
         {
             frmEmpresa frmEmpresa = new frmEmpresa();
             frmEmpresa.Show();
-            this.Hide();     
-            
+            this.Hide();
+
+        }
+
+        private void btnSair_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnMinimizar_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;   
         }
     }
 }

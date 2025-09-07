@@ -40,18 +40,24 @@
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
+            panel2 = new Panel();
+            btnMinimizar = new Button();
+            btnSair = new Button();
+            btnLogOut = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgEmpresas).BeginInit();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(40, 40, 50);
+            panel1.Controls.Add(btnLogOut);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(button1);
             panel1.Controls.Add(dtgEmpresas);
             panel1.Controls.Add(label4);
-            panel1.Location = new Point(797, 47);
+            panel1.Location = new Point(799, 67);
             panel1.Name = "panel1";
             panel1.Size = new Size(975, 672);
             panel1.TabIndex = 0;
@@ -173,16 +179,69 @@
             label3.TabIndex = 3;
             label3.Text = "Gestao";
             // 
+            // panel2
+            // 
+            panel2.BackColor = Color.FromArgb(30, 30, 40);
+            panel2.Controls.Add(btnMinimizar);
+            panel2.Controls.Add(btnSair);
+            panel2.Location = new Point(-4, 1);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(1819, 32);
+            panel2.TabIndex = 4;
+            // 
+            // btnMinimizar
+            // 
+            btnMinimizar.BackColor = Color.Transparent;
+            btnMinimizar.FlatStyle = FlatStyle.Popup;
+            btnMinimizar.Font = new Font("Segoe UI", 15F);
+            btnMinimizar.ForeColor = Color.White;
+            btnMinimizar.Location = new Point(1715, 0);
+            btnMinimizar.Name = "btnMinimizar";
+            btnMinimizar.Size = new Size(54, 33);
+            btnMinimizar.TabIndex = 3;
+            btnMinimizar.Text = "-";
+            btnMinimizar.UseVisualStyleBackColor = false;
+            btnMinimizar.Click += btnMinimizar_Click;
+            // 
+            // btnSair
+            // 
+            btnSair.BackColor = Color.Transparent;
+            btnSair.FlatStyle = FlatStyle.Popup;
+            btnSair.ForeColor = Color.White;
+            btnSair.Location = new Point(1765, 0);
+            btnSair.Name = "btnSair";
+            btnSair.Size = new Size(54, 33);
+            btnSair.TabIndex = 1;
+            btnSair.Text = "X";
+            btnSair.UseVisualStyleBackColor = false;
+            btnSair.Click += btnSair_Click;
+            // 
+            // btnLogOut
+            // 
+            btnLogOut.BackColor = Color.Transparent;
+            btnLogOut.FlatStyle = FlatStyle.Popup;
+            btnLogOut.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnLogOut.ForeColor = Color.White;
+            btnLogOut.Location = new Point(60, 609);
+            btnLogOut.Name = "btnLogOut";
+            btnLogOut.Size = new Size(177, 35);
+            btnLogOut.TabIndex = 8;
+            btnLogOut.Text = "Sair";
+            btnLogOut.UseVisualStyleBackColor = false;
+            btnLogOut.Click += btnLogOut_Click;
+            // 
             // frmEmpresa
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(30, 30, 40);
+            BackColor = Color.FromArgb(35, 35, 45);
             ClientSize = new Size(1814, 771);
+            Controls.Add(panel2);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "frmEmpresa";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "cadastroEmpresa";
@@ -190,6 +249,7 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dtgEmpresas).EndInit();
+            panel2.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -204,5 +264,9 @@
         private Button button1;
         private DataGridView dtgEmpresas;
         private Label label5;
+        private Panel panel2;
+        private Button btnMinimizar;
+        private Button btnSair;
+        private Button btnLogOut;
     }
 }

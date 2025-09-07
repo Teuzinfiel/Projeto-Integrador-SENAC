@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainPrincipal));
             panel1 = new Panel();
             label4 = new Label();
-            button6 = new Button();
+            btnLogOut = new Button();
             label3 = new Label();
             pictureBox1 = new PictureBox();
             panel4 = new Panel();
@@ -44,10 +44,10 @@
             panel2 = new Panel();
             pictureBox2 = new PictureBox();
             label2 = new Label();
-            label1 = new Label();
+            labelCategorias = new Label();
             panelContainer = new Panel();
             panel5 = new Panel();
-            button10 = new Button();
+            btnMinimizar = new Button();
             btnSair = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -61,7 +61,7 @@
             // 
             panel1.BackColor = Color.FromArgb(40, 40, 50);
             panel1.Controls.Add(label4);
-            panel1.Controls.Add(button6);
+            panel1.Controls.Add(btnLogOut);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(panel4);
@@ -82,19 +82,19 @@
             label4.TabIndex = 4;
             label4.Text = "Ajuda";
             // 
-            // button6
+            // btnLogOut
             // 
-            button6.BackColor = Color.Transparent;
-            button6.FlatStyle = FlatStyle.Popup;
-            button6.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button6.ForeColor = Color.White;
-            button6.Location = new Point(34, 732);
-            button6.Name = "button6";
-            button6.Size = new Size(107, 35);
-            button6.TabIndex = 7;
-            button6.Text = "Sair";
-            button6.UseVisualStyleBackColor = false;
-            button6.Click += button6_Click;
+            btnLogOut.BackColor = Color.Transparent;
+            btnLogOut.FlatStyle = FlatStyle.Popup;
+            btnLogOut.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnLogOut.ForeColor = Color.White;
+            btnLogOut.Location = new Point(34, 732);
+            btnLogOut.Name = "btnLogOut";
+            btnLogOut.Size = new Size(107, 35);
+            btnLogOut.TabIndex = 7;
+            btnLogOut.Text = "Sair";
+            btnLogOut.UseVisualStyleBackColor = false;
+            btnLogOut.Click += btnLogOut_Click;
             // 
             // label3
             // 
@@ -222,7 +222,7 @@
             panel2.BackColor = Color.FromArgb(40, 40, 50);
             panel2.Controls.Add(pictureBox2);
             panel2.Controls.Add(label2);
-            panel2.Controls.Add(label1);
+            panel2.Controls.Add(labelCategorias);
             panel2.Location = new Point(287, 32);
             panel2.Name = "panel2";
             panel2.Size = new Size(1345, 58);
@@ -250,17 +250,17 @@
             label2.TabIndex = 1;
             label2.Text = "Bem Vindo, Usuario";
             // 
-            // label1
+            // labelCategorias
             // 
-            label1.AutoSize = true;
-            label1.FlatStyle = FlatStyle.System;
-            label1.Font = new Font("Franklin Gothic Medium", 15F);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(316, 17);
-            label1.Name = "label1";
-            label1.Size = new Size(104, 25);
-            label1.TabIndex = 0;
-            label1.Text = "Categorias";
+            labelCategorias.AutoSize = true;
+            labelCategorias.FlatStyle = FlatStyle.System;
+            labelCategorias.Font = new Font("Franklin Gothic Medium", 15F);
+            labelCategorias.ForeColor = Color.White;
+            labelCategorias.Location = new Point(316, 17);
+            labelCategorias.Name = "labelCategorias";
+            labelCategorias.Size = new Size(104, 25);
+            labelCategorias.TabIndex = 0;
+            labelCategorias.Text = "Categorias";
             // 
             // panelContainer
             // 
@@ -274,26 +274,26 @@
             // panel5
             // 
             panel5.BackColor = Color.FromArgb(30, 30, 40);
-            panel5.Controls.Add(button10);
+            panel5.Controls.Add(btnMinimizar);
             panel5.Controls.Add(btnSair);
             panel5.Location = new Point(0, -3);
             panel5.Name = "panel5";
             panel5.Size = new Size(1632, 36);
             panel5.TabIndex = 2;
             // 
-            // button10
+            // btnMinimizar
             // 
-            button10.BackColor = Color.Transparent;
-            button10.FlatStyle = FlatStyle.Popup;
-            button10.Font = new Font("Segoe UI", 15F);
-            button10.ForeColor = Color.White;
-            button10.Location = new Point(1524, 3);
-            button10.Name = "button10";
-            button10.Size = new Size(54, 33);
-            button10.TabIndex = 2;
-            button10.Text = "-";
-            button10.UseVisualStyleBackColor = false;
-            button10.Click += button10_Click;
+            btnMinimizar.BackColor = Color.Transparent;
+            btnMinimizar.FlatStyle = FlatStyle.Popup;
+            btnMinimizar.Font = new Font("Segoe UI", 15F);
+            btnMinimizar.ForeColor = Color.White;
+            btnMinimizar.Location = new Point(1524, 3);
+            btnMinimizar.Name = "btnMinimizar";
+            btnMinimizar.Size = new Size(54, 33);
+            btnMinimizar.TabIndex = 2;
+            btnMinimizar.Text = "-";
+            btnMinimizar.UseVisualStyleBackColor = false;
+            btnMinimizar.Click += btnMinimizar_Click;
             // 
             // btnSair
             // 
@@ -339,7 +339,7 @@
         private Panel panel2;
         private Panel panelContainer;
         private Label label2;
-        private Label label1;
+        private Label labelCategorias;
         private Button btnProdutos;
         private Button btnFuncionario;
         private Label label3;
@@ -349,10 +349,10 @@
         private Button btnEstoque;
         private Label label4;
         private PictureBox pictureBox2;
-        private Button button6;
+        private Button btnLogOut;
         private Button btnLog;
         private Panel panel5;
-        private Button button10;
+        private Button btnMinimizar;
         private Button btnSair;
     }
 }

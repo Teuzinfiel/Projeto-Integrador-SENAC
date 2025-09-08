@@ -99,6 +99,7 @@
             button1.TabIndex = 6;
             button1.Text = "Adicionar Empresa +";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // dtgEmpresas
             // 
@@ -268,5 +269,6 @@
         private Button btnMinimizar;
         private Button btnSair;
         private Button btnLogOut;
+     
     }
 }

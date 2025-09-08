@@ -32,7 +32,7 @@
             panel1 = new Panel();
             label3 = new Label();
             label2 = new Label();
-            textBox2 = new TextBox();
+            txtSenha = new TextBox();
             textBox1 = new TextBox();
             label1 = new Label();
             btnLogin = new Button();
@@ -40,6 +40,7 @@
             panel2 = new Panel();
             btnMinimizar = new Button();
             btnSair = new Button();
+            label4 = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -47,9 +48,10 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(40, 40, 50);
+            panel1.Controls.Add(label4);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(label2);
-            panel1.Controls.Add(textBox2);
+            panel1.Controls.Add(txtSenha);
             panel1.Controls.Add(textBox1);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(btnLogin);
@@ -80,22 +82,23 @@
             label2.TabIndex = 11;
             label2.Text = "Usuario";
             // 
-            // textBox2
+            // txtSenha
             // 
-            textBox2.Font = new Font("Segoe UI", 14F);
-            textBox2.Location = new Point(48, 198);
-            textBox2.Name = "textBox2";
-            textBox2.PlaceholderText = "Digite sua senha";
-            textBox2.Size = new Size(242, 32);
-            textBox2.TabIndex = 10;
+            txtSenha.Font = new Font("Segoe UI", 16F);
+            txtSenha.Location = new Point(48, 198);
+            txtSenha.Name = "txtSenha";
+            txtSenha.PlaceholderText = "Digite sua senha";
+            txtSenha.Size = new Size(242, 36);
+            txtSenha.TabIndex = 10;
+            txtSenha.UseSystemPasswordChar = true;
             // 
             // textBox1
             // 
-            textBox1.Font = new Font("Segoe UI", 14F);
+            textBox1.Font = new Font("Segoe UI", 16F);
             textBox1.Location = new Point(48, 132);
             textBox1.Name = "textBox1";
             textBox1.PlaceholderText = "Digite o nome de usuario";
-            textBox1.Size = new Size(242, 32);
+            textBox1.Size = new Size(242, 36);
             textBox1.TabIndex = 9;
             // 
             // label1
@@ -165,6 +168,17 @@
             btnSair.UseVisualStyleBackColor = false;
             btnSair.Click += btnSair_Click;
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.BackColor = Color.White;
+            label4.Location = new Point(262, 213);
+            label4.Name = "label4";
+            label4.Size = new Size(23, 15);
+            label4.TabIndex = 14;
+            label4.Text = "<>";
+            label4.Click += label4_Click;
+            // 
             // loginUsuario
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -190,11 +204,12 @@
         private Button btnLogin;
         private Label label3;
         private Label label2;
-        private TextBox textBox2;
+        private TextBox txtSenha;
         private TextBox textBox1;
         private ContextMenuStrip contextMenuStrip1;
         private Panel panel2;
         private Button btnSair;
         private Button btnMinimizar;
+        private Label label4;
     }
 }

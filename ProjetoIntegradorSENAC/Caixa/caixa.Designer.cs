@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             label1 = new Label();
+         
             SuspendLayout();
             // 
             // label1
@@ -42,13 +44,14 @@
             label1.TabIndex = 0;
             label1.Text = "CAIXA";
             // 
-            // caixa
+          
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(35, 35, 45);
             ClientSize = new Size(1326, 686);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "caixa";
             Text = "caixa";
             ResumeLayout(false);
@@ -58,5 +61,6 @@
         #endregion
 
         private Label label1;
+      
     }
 }

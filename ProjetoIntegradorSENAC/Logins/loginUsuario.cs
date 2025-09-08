@@ -33,7 +33,19 @@ namespace ProjetoIntegradorSENAC.Logins
 
         private void btnMinimizar_Click(object sender, EventArgs e)
         {
-            WindowState = FormWindowState.Minimized;   
+            WindowState = FormWindowState.Minimized;
+        }
+        //bagui de mostra senha
+        private void label4_Click(object sender, EventArgs e)
+        {
+            if (txtSenha.UseSystemPasswordChar == true)
+            {
+                txtSenha.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                txtSenha.UseSystemPasswordChar = true;
+            }
         }
     }
 }

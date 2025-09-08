@@ -69,5 +69,12 @@ namespace ProjetoIntegradorSENAC.Empresa
             loginUsuario.Show();
             this.Hide();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            cadEmpresa cadEmpresa = new cadEmpresa();
+            cadEmpresa.Show();
+            this.Hide();
+        }
     }
 }

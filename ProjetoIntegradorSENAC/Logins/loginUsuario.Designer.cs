@@ -30,6 +30,7 @@
         {
             components = new System.ComponentModel.Container();
             panel1 = new Panel();
+            label4 = new Label();
             label3 = new Label();
             label2 = new Label();
             txtSenha = new TextBox();
@@ -40,7 +41,6 @@
             panel2 = new Panel();
             btnMinimizar = new Button();
             btnSair = new Button();
-            label4 = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -59,6 +59,17 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(339, 423);
             panel1.TabIndex = 1;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.BackColor = Color.White;
+            label4.Location = new Point(262, 213);
+            label4.Name = "label4";
+            label4.Size = new Size(23, 15);
+            label4.TabIndex = 14;
+            label4.Text = "<>";
+            label4.Click += label4_Click;
             // 
             // label3
             // 
@@ -118,7 +129,7 @@
             btnLogin.FlatStyle = FlatStyle.Popup;
             btnLogin.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnLogin.ForeColor = Color.White;
-            btnLogin.Location = new Point(48, 284);
+            btnLogin.Location = new Point(48, 272);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(242, 37);
             btnLogin.TabIndex = 6;
@@ -167,17 +178,6 @@
             btnSair.Text = "X";
             btnSair.UseVisualStyleBackColor = false;
             btnSair.Click += btnSair_Click;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.BackColor = Color.White;
-            label4.Location = new Point(262, 213);
-            label4.Name = "label4";
-            label4.Size = new Size(23, 15);
-            label4.TabIndex = 14;
-            label4.Text = "<>";
-            label4.Click += label4_Click;
             // 
             // loginUsuario
             // 

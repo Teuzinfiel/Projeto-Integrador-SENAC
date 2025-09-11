@@ -83,9 +83,9 @@
             label5.ForeColor = Color.White;
             label5.Location = new Point(344, 140);
             label5.Name = "label5";
-            label5.Size = new Size(331, 30);
+            label5.Size = new Size(334, 30);
             label5.TabIndex = 7;
-            label5.Text = "Selecione a empresa desejada";
+            label5.Text = "Selecione o Comercio desejado";
             // 
             // button1
             // 

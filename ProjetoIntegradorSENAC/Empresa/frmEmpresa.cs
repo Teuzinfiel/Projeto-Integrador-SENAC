@@ -21,11 +21,10 @@ namespace ProjetoIntegradorSENAC.Empresa
         private void frmEmpresa_Load(object sender, EventArgs e)
         {
             dtgEmpresas.ColumnCount = 1;
-            dtgEmpresas.Columns[0].Name = "Nome da Empresa";
-            dtgEmpresas.Rows.Add("SENAC - Projeto integrador");
-            dtgEmpresas.Rows.Add("SENAI - Projeto integrador");
-            dtgEmpresas.Rows.Add("CARONE - Projeto integrador");
-            dtgEmpresas.Rows.Add("SEMPRE TEM - Projeto integrador");
+            dtgEmpresas.Columns[0].Name = "Nome do Comercio";
+            dtgEmpresas.Rows.Add("Trailer - Praia da costa");
+            dtgEmpresas.Rows.Add("Vendas de chup chup - Vitoria");
+            dtgEmpresas.Rows.Add("Lojinha de pecas - Cariacica");
             dtgEmpresas.ClearSelection();
         }
 

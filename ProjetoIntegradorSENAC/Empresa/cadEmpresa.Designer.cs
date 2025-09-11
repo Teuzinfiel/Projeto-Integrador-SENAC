@@ -153,11 +153,11 @@
             label8.AutoSize = true;
             label8.Font = new Font("Franklin Gothic Medium", 25F);
             label8.ForeColor = SystemColors.Highlight;
-            label8.Location = new Point(477, 60);
+            label8.Location = new Point(473, 60);
             label8.Name = "label8";
-            label8.Size = new Size(145, 39);
+            label8.Size = new Size(156, 39);
             label8.TabIndex = 27;
-            label8.Text = "Empresa";
+            label8.Text = "Comercio";
             // 
             // label7
             // 
@@ -168,7 +168,7 @@
             label7.Name = "label7";
             label7.Size = new Size(439, 39);
             label7.TabIndex = 26;
-            label7.Text = "Cadastre sua                  aqui!";
+            label7.Text = "Cadastre seu                  aqui!";
             // 
             // label6
             // 

@@ -35,17 +35,19 @@ namespace ProjetoIntegradorSENAC.Logins
         {
             WindowState = FormWindowState.Minimized;
         }
-        //bagui de mostra senha
-        private void label4_Click(object sender, EventArgs e)
+
+        private void chkMostrarSenha_CheckedChanged(object sender, EventArgs e)
         {
-            if (txtSenha.UseSystemPasswordChar == true)
+            if (chkMostrarSenha.Checked)
             {
-                txtSenha.UseSystemPasswordChar = false;
+                txtSenha.UseSystemPasswordChar = false; // Mostra a senha
             }
             else
             {
-                txtSenha.UseSystemPasswordChar = true;
+                txtSenha.UseSystemPasswordChar = true;  // Esconde a senha
             }
         }
+   
+
     }
 }

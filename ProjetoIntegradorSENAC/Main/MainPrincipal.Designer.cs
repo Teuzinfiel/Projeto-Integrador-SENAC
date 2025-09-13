@@ -35,6 +35,7 @@
             label3 = new Label();
             pictureBox1 = new PictureBox();
             panel4 = new Panel();
+            button1 = new Button();
             btnProdutos = new Button();
             btnFuncionario = new Button();
             btnLog = new Button();
@@ -121,6 +122,7 @@
             // 
             // panel4
             // 
+            panel4.Controls.Add(button1);
             panel4.Controls.Add(btnProdutos);
             panel4.Controls.Add(btnFuncionario);
             panel4.Controls.Add(btnLog);
@@ -128,10 +130,26 @@
             panel4.Controls.Add(btnCaixa);
             panel4.Controls.Add(btnEstoque);
             panel4.ForeColor = SystemColors.ActiveCaptionText;
-            panel4.Location = new Point(3, 272);
+            panel4.Location = new Point(3, 251);
             panel4.Name = "panel4";
-            panel4.Size = new Size(294, 411);
+            panel4.Size = new Size(294, 444);
             panel4.TabIndex = 1;
+            // 
+            // button1
+            // 
+            button1.BackColor = SystemColors.Highlight;
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatAppearance.MouseDownBackColor = Color.FromArgb(40, 40, 55);
+            button1.FlatAppearance.MouseOverBackColor = Color.FromArgb(40, 40, 55);
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button1.ForeColor = Color.FromArgb(224, 224, 224);
+            button1.Location = new Point(22, 17);
+            button1.Name = "button1";
+            button1.Size = new Size(246, 47);
+            button1.TabIndex = 8;
+            button1.Text = "Configuracoes";
+            button1.UseVisualStyleBackColor = false;
             // 
             // btnProdutos
             // 
@@ -143,9 +161,9 @@
             btnProdutos.FlatStyle = FlatStyle.Flat;
             btnProdutos.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnProdutos.ForeColor = Color.FromArgb(224, 224, 224);
-            btnProdutos.Location = new Point(31, 165);
+            btnProdutos.Location = new Point(13, 209);
             btnProdutos.Name = "btnProdutos";
-            btnProdutos.Size = new Size(260, 47);
+            btnProdutos.Size = new Size(279, 58);
             btnProdutos.TabIndex = 2;
             btnProdutos.Text = "Produtos";
             btnProdutos.UseVisualStyleBackColor = false;
@@ -161,9 +179,9 @@
             btnFuncionario.FlatStyle = FlatStyle.Flat;
             btnFuncionario.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnFuncionario.ForeColor = Color.FromArgb(224, 224, 224);
-            btnFuncionario.Location = new Point(31, 271);
+            btnFuncionario.Location = new Point(13, 315);
             btnFuncionario.Name = "btnFuncionario";
-            btnFuncionario.Size = new Size(260, 47);
+            btnFuncionario.Size = new Size(279, 56);
             btnFuncionario.TabIndex = 3;
             btnFuncionario.Text = "Funcionario";
             btnFuncionario.UseVisualStyleBackColor = false;
@@ -179,9 +197,9 @@
             btnLog.FlatStyle = FlatStyle.Flat;
             btnLog.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnLog.ForeColor = Color.FromArgb(224, 224, 224);
-            btnLog.Location = new Point(31, 324);
+            btnLog.Location = new Point(13, 368);
             btnLog.Name = "btnLog";
-            btnLog.Size = new Size(260, 47);
+            btnLog.Size = new Size(279, 54);
             btnLog.TabIndex = 7;
             btnLog.Text = "Alteracoes";
             btnLog.UseVisualStyleBackColor = false;
@@ -197,9 +215,9 @@
             btnDashboard.FlatStyle = FlatStyle.Flat;
             btnDashboard.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnDashboard.ForeColor = Color.FromArgb(224, 224, 224);
-            btnDashboard.Location = new Point(31, 112);
+            btnDashboard.Location = new Point(12, 156);
             btnDashboard.Name = "btnDashboard";
-            btnDashboard.Size = new Size(260, 47);
+            btnDashboard.Size = new Size(279, 55);
             btnDashboard.TabIndex = 6;
             btnDashboard.Text = "Dashboard";
             btnDashboard.UseVisualStyleBackColor = false;
@@ -214,9 +232,9 @@
             btnCaixa.FlatStyle = FlatStyle.Flat;
             btnCaixa.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnCaixa.ForeColor = Color.FromArgb(224, 224, 224);
-            btnCaixa.Location = new Point(31, 59);
+            btnCaixa.Location = new Point(13, 103);
             btnCaixa.Name = "btnCaixa";
-            btnCaixa.Size = new Size(260, 47);
+            btnCaixa.Size = new Size(279, 54);
             btnCaixa.TabIndex = 5;
             btnCaixa.Text = "Caixa";
             btnCaixa.UseVisualStyleBackColor = false;
@@ -232,9 +250,9 @@
             btnEstoque.FlatStyle = FlatStyle.Flat;
             btnEstoque.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnEstoque.ForeColor = Color.FromArgb(224, 224, 224);
-            btnEstoque.Location = new Point(31, 218);
+            btnEstoque.Location = new Point(13, 262);
             btnEstoque.Name = "btnEstoque";
-            btnEstoque.Size = new Size(260, 47);
+            btnEstoque.Size = new Size(279, 54);
             btnEstoque.TabIndex = 4;
             btnEstoque.Text = "Estoque";
             btnEstoque.UseVisualStyleBackColor = false;
@@ -377,5 +395,6 @@
         private Button btnMinimizar;
         private Button btnSair;
         private Panel panelContainer;
+        private Button button1;
     }
 }

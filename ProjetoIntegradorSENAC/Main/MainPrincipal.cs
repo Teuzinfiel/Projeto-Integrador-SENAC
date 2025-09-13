@@ -1,4 +1,5 @@
 using ProjetoIntegradorSENAC.Caixa;
+using ProjetoIntegradorSENAC.Classes;
 using ProjetoIntegradorSENAC.Dashboard;
 using ProjetoIntegradorSENAC.Empresa;
 using ProjetoIntegradorSENAC.Estoque;
@@ -22,10 +23,8 @@ namespace ProjetoIntegradorSENAC
             formFilho.TopLevel = false; // faz com que o form dependa do container pai
             formFilho.FormBorderStyle = FormBorderStyle.None; // tira a borda
             formFilho.Dock = DockStyle.Fill; // preenche todo o espaço do container
-
             panelContainer.Controls.Add(formFilho);  // add o form que abriu
             panelContainer.Tag = formFilho;
-
             formFilho.Show();
         }
         private void btnSair_Click(object sender, EventArgs e)
@@ -41,37 +40,49 @@ namespace ProjetoIntegradorSENAC
         private void btnCaixa_Click(object sender, EventArgs e)
         {
             AbrirFormNoPanel(new caixa());
-            labelCategorias.Text = "Caixa"; 
+            labelCategorias.Text = "Caixa";
+            EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos);
+            btnCaixa.BackColor = Color.FromArgb(40, 40, 55);
         }
 
         private void btnDashboard_Click(object sender, EventArgs e)
         {
             AbrirFormNoPanel(new dashboard());
             labelCategorias.Text = "Dashboard";
+            EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos);
+            btnDashboard.BackColor = Color.FromArgb(40, 40, 55);
         }
 
         private void btnProdutos_Click(object sender, EventArgs e)
         {
             AbrirFormNoPanel(new frmProduto());
             labelCategorias.Text = "Produtos";
+            EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos);
+            btnProdutos.BackColor = Color.FromArgb(40, 40, 55);
         }
 
         private void btnEstoque_Click(object sender, EventArgs e)
         {
             AbrirFormNoPanel(new estoque());
             labelCategorias.Text = "Estoque";
+            EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos);
+            btnEstoque.BackColor = Color.FromArgb(40, 40, 55);
         }
 
         private void btnFuncionario_Click(object sender, EventArgs e)
         {
             AbrirFormNoPanel(new frmUsuarios());
             labelCategorias.Text = "Funcionários";
+            EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos);
+            btnFuncionario.BackColor = Color.FromArgb(40, 40, 55);
         }
 
         private void btnLog_Click(object sender, EventArgs e)
         {
             AbrirFormNoPanel(new log());
             labelCategorias.Text = "Log";
+            EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos);
+            btnLog.BackColor = Color.FromArgb(40, 40, 55);
         }
 
         private void btnLogOut_Click(object sender, EventArgs e)

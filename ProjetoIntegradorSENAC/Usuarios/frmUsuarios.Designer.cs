@@ -46,7 +46,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(35, 35, 45);
+            BackColor = Color.FromArgb(40, 40, 55);
             ClientSize = new Size(1326, 686);
             Controls.Add(label1);
             Name = "frmUsuarios";

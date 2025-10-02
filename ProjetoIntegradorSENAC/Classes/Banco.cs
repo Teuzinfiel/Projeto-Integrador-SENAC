@@ -14,7 +14,7 @@ namespace ProjetoIntegradorSENAC.Classes
         
         public static string banco = "";
         public static string senha = "";
-        public static string usuario = "";
+        public static string usuario = ""; 
         public static string servidor = "";
 
         public static string caminho = $"server={servidor};database={banco};uid={usuario};password={senha}";

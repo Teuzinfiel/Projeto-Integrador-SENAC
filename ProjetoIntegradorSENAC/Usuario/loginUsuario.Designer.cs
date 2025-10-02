@@ -30,7 +30,7 @@
         {
             components = new System.ComponentModel.Container();
             panel1 = new Panel();
-            label8 = new Label();
+            CriarConta = new Label();
             label4 = new Label();
             button1 = new Button();
             chkMostrarSenha = new CheckBox();
@@ -54,7 +54,7 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(40, 40, 50);
-            panel1.Controls.Add(label8);
+            panel1.Controls.Add(CriarConta);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(button1);
             panel1.Controls.Add(chkMostrarSenha);
@@ -69,17 +69,18 @@
             panel1.Size = new Size(432, 470);
             panel1.TabIndex = 1;
             // 
-            // label8
+            // CriarConta
             // 
-            label8.AutoSize = true;
-            label8.Cursor = Cursors.Hand;
-            label8.Font = new Font("Franklin Gothic Medium", 12F);
-            label8.ForeColor = SystemColors.Highlight;
-            label8.Location = new Point(163, 400);
-            label8.Name = "label8";
-            label8.Size = new Size(90, 21);
-            label8.TabIndex = 18;
-            label8.Text = "Criar Conta!";
+            CriarConta.AutoSize = true;
+            CriarConta.Cursor = Cursors.Hand;
+            CriarConta.Font = new Font("Franklin Gothic Medium", 12F);
+            CriarConta.ForeColor = SystemColors.Highlight;
+            CriarConta.Location = new Point(163, 400);
+            CriarConta.Name = "CriarConta";
+            CriarConta.Size = new Size(90, 21);
+            CriarConta.TabIndex = 18;
+            CriarConta.Text = "Criar Conta!";
+            CriarConta.Click += CriarConta_Click;
             // 
             // label4
             // 
@@ -313,7 +314,7 @@
         private Label label7;
         private CheckBox chkMostrarSenha;
         private Button button1;
-        private Label label8;
+        private Label CriarConta;
         private Label label4;
     }
 }

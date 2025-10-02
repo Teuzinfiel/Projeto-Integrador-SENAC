@@ -11,7 +11,7 @@ namespace ProjetoIntegradorSENAC.Classes
 {
     internal class Banco
     {
-        //8
+        
         public static string banco = "";
         public static string senha = "";
         public static string usuario = "";

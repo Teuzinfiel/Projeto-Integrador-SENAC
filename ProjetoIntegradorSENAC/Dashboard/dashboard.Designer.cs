@@ -37,7 +37,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Franklin Gothic Medium", 99.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(378, 263);
+            label1.Location = new Point(227, 249);
             label1.Name = "label1";
             label1.Size = new Size(817, 168);
             label1.TabIndex = 1;

@@ -45,8 +45,8 @@
             btnMinimizar = new Button();
             btnSair = new Button();
             label5 = new Label();
-            label6 = new Label();
             label7 = new Label();
+            label6 = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -211,7 +211,7 @@
             panel2.Controls.Add(btnSair);
             panel2.Location = new Point(-3, 1);
             panel2.Name = "panel2";
-            panel2.Size = new Size(869, 32);
+            panel2.Size = new Size(891, 32);
             panel2.TabIndex = 2;
             // 
             // btnMinimizar
@@ -220,7 +220,7 @@
             btnMinimizar.FlatStyle = FlatStyle.Popup;
             btnMinimizar.Font = new Font("Segoe UI", 15F);
             btnMinimizar.ForeColor = Color.White;
-            btnMinimizar.Location = new Point(763, -1);
+            btnMinimizar.Location = new Point(784, 0);
             btnMinimizar.Name = "btnMinimizar";
             btnMinimizar.Size = new Size(54, 33);
             btnMinimizar.TabIndex = 3;
@@ -233,7 +233,7 @@
             btnSair.BackColor = Color.Transparent;
             btnSair.FlatStyle = FlatStyle.Popup;
             btnSair.ForeColor = Color.White;
-            btnSair.Location = new Point(813, -1);
+            btnSair.Location = new Point(834, 0);
             btnSair.Name = "btnSair";
             btnSair.Size = new Size(54, 33);
             btnSair.TabIndex = 1;
@@ -247,40 +247,41 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Franklin Gothic Demi Cond", 40F);
             label5.ForeColor = SystemColors.Highlight;
-            label5.Location = new Point(628, 340);
+            label5.Location = new Point(641, 330);
             label5.Name = "label5";
             label5.Size = new Size(169, 68);
             label5.TabIndex = 6;
             label5.Text = "gestao";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Franklin Gothic Demi Cond", 40F);
-            label6.ForeColor = Color.White;
-            label6.Location = new Point(528, 204);
-            label6.Name = "label6";
-            label6.Size = new Size(304, 204);
-            label6.TabIndex = 5;
-            label6.Text = "Vamos juntos\r\nsimplificar\r\nsua ";
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Franklin Gothic Medium Cond", 16F);
             label7.ForeColor = Color.White;
-            label7.Location = new Point(528, 176);
+            label7.Location = new Point(541, 166);
             label7.Name = "label7";
             label7.Size = new Size(269, 28);
             label7.TabIndex = 4;
             label7.Text = "Conecte-se à sua produtividade";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.BackColor = Color.Transparent;
+            label6.Font = new Font("Franklin Gothic Demi Cond", 40F);
+            label6.ForeColor = Color.White;
+            label6.Location = new Point(541, 194);
+            label6.Name = "label6";
+            label6.Size = new Size(304, 204);
+            label6.TabIndex = 5;
+            label6.Text = "Vamos juntos\r\nsimplificar\r\nsua ";
             // 
             // loginUsuario
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(35, 35, 45);
-            ClientSize = new Size(867, 548);
+            ClientSize = new Size(886, 548);
             Controls.Add(label5);
             Controls.Add(label6);
             Controls.Add(label7);
@@ -311,11 +312,11 @@
         private Button btnSair;
         private Button btnMinimizar;
         private Label label5;
-        private Label label6;
         private Label label7;
         private CheckBox chkMostrarSenha;
         private Button button1;
         private Label CriarConta;
         private Label label4;
+        private Label label6;
     }
 }

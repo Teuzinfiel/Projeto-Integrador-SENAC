@@ -1,4 +1,4 @@
-﻿namespace ProjetoIntegradorSENAC.Log
+﻿namespace ProjetoIntegradorSENAC.LogInf
 {
     partial class logInf
     {
@@ -50,8 +50,8 @@
             ClientSize = new Size(1283, 736);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "log";
-            Text = "log";
+            Name = "loginf";
+            Text = "loginf";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -59,5 +59,6 @@
         #endregion
 
         private Label label1;
+
     }
 }

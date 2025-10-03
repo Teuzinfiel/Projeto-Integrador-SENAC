@@ -3,7 +3,7 @@ using ProjetoIntegradorSENAC.Classes;
 using ProjetoIntegradorSENAC.Dashboard;
 using ProjetoIntegradorSENAC.Empresa;
 using ProjetoIntegradorSENAC.Estoque;
-using ProjetoIntegradorSENAC.Log;
+using ProjetoIntegradorSENAC.LogInf;
 using ProjetoIntegradorSENAC.Logins;
 using ProjetoIntegradorSENAC.Produto;
 using ProjetoIntegradorSENAC.Usuarios;

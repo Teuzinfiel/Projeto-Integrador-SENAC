@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ProjetoIntegradorSENAC.Log
+namespace ProjetoIntegradorSENAC.LogInf
 {
-    public partial class log : Form
+    public partial class logInf : Form
     {
-        public log()
+        public logInf()
         {
             InitializeComponent();
         }

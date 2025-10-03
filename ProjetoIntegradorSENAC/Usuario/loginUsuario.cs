@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ProjetoIntegradorSENAC.Empresa;
+using ProjetoIntegradorSENAC.Usuario;
 
 namespace ProjetoIntegradorSENAC.Logins
 {
@@ -50,7 +51,18 @@ namespace ProjetoIntegradorSENAC.Logins
 
         private void CriarConta_Click(object sender, EventArgs e)
         {
+            cadUsuario cadastrar = new cadUsuario();
+            cadastrar.Show();
+            this.Hide();
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            cadUsuario cadastrar = new cadUsuario();
+            cadastrar.Show();
+            this.Hide();
         }
     }
 }

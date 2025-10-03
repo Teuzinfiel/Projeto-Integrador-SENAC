@@ -87,7 +87,7 @@
             // 
             // btnLogOut
             // 
-            btnLogOut.BackColor = SystemColors.HotTrack;
+            btnLogOut.BackColor = SystemColors.Highlight;
             btnLogOut.FlatStyle = FlatStyle.Popup;
             btnLogOut.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnLogOut.ForeColor = Color.White;
@@ -139,7 +139,7 @@
             // 
             // button1
             // 
-            button1.BackColor = SystemColors.HotTrack;
+            button1.BackColor = SystemColors.Highlight;
             button1.FlatAppearance.BorderSize = 0;
             button1.FlatAppearance.MouseDownBackColor = Color.FromArgb(40, 40, 55);
             button1.FlatAppearance.MouseOverBackColor = Color.FromArgb(40, 40, 55);
@@ -187,6 +187,7 @@
             imageList1.Images.SetKeyName(3, "estatisticas.png");
             imageList1.Images.SetKeyName(4, "adicionar-ao-carrinho.png");
             imageList1.Images.SetKeyName(5, "armazem.png");
+            imageList1.Images.SetKeyName(6, " log.png");
             // 
             // btnFuncionario
             // 
@@ -221,7 +222,7 @@
             btnLog.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnLog.ForeColor = Color.FromArgb(224, 224, 224);
             btnLog.ImageAlign = ContentAlignment.MiddleLeft;
-            btnLog.ImageIndex = 0;
+            btnLog.ImageIndex = 6;
             btnLog.ImageList = imageList1;
             btnLog.Location = new Point(32, 368);
             btnLog.Name = "btnLog";

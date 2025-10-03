@@ -47,7 +47,10 @@ namespace ProjetoIntegradorSENAC.Logins
                 txtSenha.UseSystemPasswordChar = true;  // Esconde a senha
             }
         }
-   
 
+        private void CriarConta_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

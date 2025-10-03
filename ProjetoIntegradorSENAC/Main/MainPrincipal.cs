@@ -79,7 +79,7 @@ namespace ProjetoIntegradorSENAC
 
         private void btnLog_Click(object sender, EventArgs e)
         {
-            AbrirFormNoPanel(new log());
+            AbrirFormNoPanel(new logInf());
             labelCategorias.Text = "Log";
             EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos);
             btnLog.BackColor = Color.FromArgb(40, 40, 55);

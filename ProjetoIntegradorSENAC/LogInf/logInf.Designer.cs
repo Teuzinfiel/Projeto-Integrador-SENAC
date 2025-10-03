@@ -1,6 +1,6 @@
-﻿namespace ProjetoIntegradorSENAC.Dashboard
+﻿namespace ProjetoIntegradorSENAC.Log
 {
-    partial class dashboard
+    partial class logInf
     {
         /// <summary>
         /// Required designer variable.
@@ -29,39 +29,29 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            label2 = new Label();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Franklin Gothic Medium", 99.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Franklin Gothic Medium", 99F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(227, 249);
+            label1.Location = new Point(612, 320);
             label1.Name = "label1";
-            label1.Size = new Size(817, 168);
-            label1.TabIndex = 1;
-            label1.Text = "DASHBOARD";
+            label1.Size = new Size(306, 166);
+            label1.TabIndex = 0;
+            label1.Text = "LOG";
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(208, 159);
-            label2.Name = "label2";
-            label2.Size = new Size(59, 15);
-            label2.TabIndex = 2;
-            label2.Text = "uma label";
-            // 
-            // dashboard
+            // log
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(40, 40, 55);
-            ClientSize = new Size(1326, 686);
-            Controls.Add(label2);
+            ClientSize = new Size(1283, 736);
             Controls.Add(label1);
-            Name = "dashboard";
-            Text = "dashboard";
+            FormBorderStyle = FormBorderStyle.None;
+            Name = "log";
+            Text = "log";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -69,6 +59,5 @@
         #endregion
 
         private Label label1;
-        private Label label2;
     }
 }

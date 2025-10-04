@@ -43,7 +43,7 @@ namespace ProjetoIntegradorSENAC
             AbrirFormNoPanel(new caixa());
             labelCategorias.Text = "Caixa";
             EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos);
-            btnCaixa.BackColor = Color.FromArgb(40, 40, 55);
+            btnCaixa.BackColor = Color.FromArgb(45, 45, 60);
         }
 
         private void btnDashboard_Click(object sender, EventArgs e)
@@ -51,7 +51,7 @@ namespace ProjetoIntegradorSENAC
             AbrirFormNoPanel(new dashboard());
             labelCategorias.Text = "Dashboard";
             EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos);
-            btnDashboard.BackColor = Color.FromArgb(40, 40, 55);
+            btnDashboard.BackColor = Color.FromArgb(45, 45, 60);
         }
 
         private void btnProdutos_Click(object sender, EventArgs e)
@@ -59,7 +59,7 @@ namespace ProjetoIntegradorSENAC
             AbrirFormNoPanel(new frmProduto());
             labelCategorias.Text = "Produtos";
             EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos);
-            btnProdutos.BackColor = Color.FromArgb(40, 40, 55);
+            btnProdutos.BackColor = Color.FromArgb(45, 45, 60);
         }
 
         private void btnEstoque_Click(object sender, EventArgs e)
@@ -67,7 +67,7 @@ namespace ProjetoIntegradorSENAC
             AbrirFormNoPanel(new estoque());
             labelCategorias.Text = "Estoque";
             EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos);
-            btnEstoque.BackColor = Color.FromArgb(40, 40, 55);
+            btnEstoque.BackColor = Color.FromArgb(45, 45, 60);
         }
 
         private void btnFuncionario_Click(object sender, EventArgs e)
@@ -75,7 +75,7 @@ namespace ProjetoIntegradorSENAC
             AbrirFormNoPanel(new frmUsuarios());
             labelCategorias.Text = "Funcionários";
             EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos);
-            btnFuncionario.BackColor = Color.FromArgb(40, 40, 55);
+            btnFuncionario.BackColor = Color.FromArgb(45, 45, 60);
         }
 
         private void btnLog_Click(object sender, EventArgs e)
@@ -83,7 +83,7 @@ namespace ProjetoIntegradorSENAC
             AbrirFormNoPanel(new logInf());
             labelCategorias.Text = "Log";
             EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos);
-            btnLog.BackColor = Color.FromArgb(40, 40, 55);
+            btnLog.BackColor = Color.FromArgb(45, 45, 60);
         }
 
         private void btnLogOut_Click(object sender, EventArgs e)

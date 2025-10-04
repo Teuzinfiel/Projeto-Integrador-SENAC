@@ -36,7 +36,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Franklin Gothic Medium", 99.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(378, 263);
+            label1.Location = new Point(342, 9);
             label1.Name = "label1";
             label1.Size = new Size(603, 168);
             label1.TabIndex = 1;
@@ -46,9 +46,10 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(40, 40, 55);
+            BackColor = Color.FromArgb(45, 45, 60);
             ClientSize = new Size(1326, 686);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "estoque";
             Text = "estoque";
             ResumeLayout(false);

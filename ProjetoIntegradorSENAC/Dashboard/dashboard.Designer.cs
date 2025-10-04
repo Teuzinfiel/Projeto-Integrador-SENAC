@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            label2 = new Label();
             SuspendLayout();
             // 
             // label1
@@ -37,29 +36,20 @@
             label1.AutoSize = true;
             label1.Font = new Font("Franklin Gothic Medium", 99.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(227, 249);
+            label1.Location = new Point(233, 9);
             label1.Name = "label1";
             label1.Size = new Size(817, 168);
             label1.TabIndex = 1;
             label1.Text = "DASHBOARD";
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(208, 159);
-            label2.Name = "label2";
-            label2.Size = new Size(59, 15);
-            label2.TabIndex = 2;
-            label2.Text = "uma label";
-            // 
             // dashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(40, 40, 55);
+            BackColor = Color.FromArgb(45, 45, 60);
             ClientSize = new Size(1326, 686);
-            Controls.Add(label2);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "dashboard";
             Text = "dashboard";
             ResumeLayout(false);
@@ -69,6 +59,5 @@
         #endregion
 
         private Label label1;
-        private Label label2;
     }
 }

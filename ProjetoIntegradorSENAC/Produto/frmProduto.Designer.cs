@@ -46,9 +46,10 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(40, 40, 55);
+            BackColor = Color.FromArgb(45, 45, 60);
             ClientSize = new Size(1326, 686);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "frmProduto";
             Text = "cadastroProduto";
             ResumeLayout(false);

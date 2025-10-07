@@ -36,21 +36,21 @@
             label1.AutoSize = true;
             label1.Font = new Font("Franklin Gothic Medium", 99F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(612, 320);
+            label1.Location = new Point(467, 9);
             label1.Name = "label1";
             label1.Size = new Size(306, 166);
             label1.TabIndex = 0;
             label1.Text = "LOG";
             // 
-            // log
+            // logInf
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(40, 40, 55);
+            BackColor = Color.FromArgb(45, 45, 60);
             ClientSize = new Size(1283, 736);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "loginf";
+            Name = "logInf";
             Text = "loginf";
             ResumeLayout(false);
             PerformLayout();

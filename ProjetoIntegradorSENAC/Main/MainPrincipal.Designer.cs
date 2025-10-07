@@ -87,10 +87,10 @@
             // 
             // btnLogOut
             // 
-            btnLogOut.BackColor = SystemColors.HotTrack;
+            btnLogOut.BackColor = SystemColors.Highlight;
             btnLogOut.FlatStyle = FlatStyle.Popup;
             btnLogOut.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnLogOut.ForeColor = Color.White;
+            btnLogOut.ForeColor = Color.FromArgb(224, 224, 224);
             btnLogOut.Location = new Point(34, 732);
             btnLogOut.Name = "btnLogOut";
             btnLogOut.Size = new Size(107, 35);
@@ -139,11 +139,9 @@
             // 
             // button1
             // 
-            button1.BackColor = SystemColors.HotTrack;
+            button1.BackColor = SystemColors.Highlight;
             button1.FlatAppearance.BorderSize = 0;
-            button1.FlatAppearance.MouseDownBackColor = Color.FromArgb(40, 40, 55);
-            button1.FlatAppearance.MouseOverBackColor = Color.FromArgb(40, 40, 55);
-            button1.FlatStyle = FlatStyle.Flat;
+            button1.FlatStyle = FlatStyle.Popup;
             button1.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.FromArgb(224, 224, 224);
             button1.Location = new Point(22, 17);
@@ -156,21 +154,21 @@
             // btnProdutos
             // 
             btnProdutos.BackColor = Color.Transparent;
-            btnProdutos.FlatAppearance.BorderColor = Color.FromArgb(65, 65, 80);
+            btnProdutos.FlatAppearance.BorderColor = Color.FromArgb(45, 45, 60);
             btnProdutos.FlatAppearance.BorderSize = 0;
-            btnProdutos.FlatAppearance.MouseDownBackColor = Color.FromArgb(60, 60, 75);
-            btnProdutos.FlatAppearance.MouseOverBackColor = Color.FromArgb(60, 60, 75);
+            btnProdutos.FlatAppearance.MouseDownBackColor = Color.FromArgb(45, 45, 60);
+            btnProdutos.FlatAppearance.MouseOverBackColor = Color.FromArgb(45, 45, 60);
             btnProdutos.FlatStyle = FlatStyle.Flat;
             btnProdutos.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnProdutos.ForeColor = Color.FromArgb(224, 224, 224);
             btnProdutos.ImageAlign = ContentAlignment.MiddleLeft;
-            btnProdutos.ImageIndex = 2;
+            btnProdutos.ImageIndex = 7;
             btnProdutos.ImageList = imageList1;
             btnProdutos.Location = new Point(32, 209);
             btnProdutos.Name = "btnProdutos";
             btnProdutos.Size = new Size(260, 58);
             btnProdutos.TabIndex = 2;
-            btnProdutos.Text = "     Produtos";
+            btnProdutos.Text = "Produtos";
             btnProdutos.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnProdutos.UseVisualStyleBackColor = false;
             btnProdutos.Click += btnProdutos_Click;
@@ -181,31 +179,33 @@
             imageList1.ImageStream = (ImageListStreamer)resources.GetObject("imageList1.ImageStream");
             imageList1.Tag = "  ";
             imageList1.TransparentColor = Color.Transparent;
-            imageList1.Images.SetKeyName(0, "procurar.png");
-            imageList1.Images.SetKeyName(1, "aluna.png");
-            imageList1.Images.SetKeyName(2, "remover-do-carrinho.png");
-            imageList1.Images.SetKeyName(3, "estatisticas.png");
-            imageList1.Images.SetKeyName(4, "adicionar-ao-carrinho.png");
-            imageList1.Images.SetKeyName(5, "armazem.png");
+            imageList1.Images.SetKeyName(0, " log.png");
+            imageList1.Images.SetKeyName(1, "ChatGPT Image 3 de out. de 2025, 20_09_11.png");
+            imageList1.Images.SetKeyName(2, "ChatGPT Image 3 de out. de 2025, 20_12_11.png");
+            imageList1.Images.SetKeyName(3, "ChatGPT Image 3 de out. de 2025, 20_14_35.png");
+            imageList1.Images.SetKeyName(4, "ChatGPT Image 3 de out. de 2025, 20_18_28.png");
+            imageList1.Images.SetKeyName(5, "ChatGPT Image 3 de out. de 2025, 20_20_42.png");
+            imageList1.Images.SetKeyName(6, "ChatGPT Image 3 de out. de 2025, 20_22_52.png");
+            imageList1.Images.SetKeyName(7, "ChatGPT Image 3 de out. de 2025, 20_27_40.png");
             // 
             // btnFuncionario
             // 
             btnFuncionario.BackColor = Color.Transparent;
-            btnFuncionario.FlatAppearance.BorderColor = Color.FromArgb(65, 65, 80);
+            btnFuncionario.FlatAppearance.BorderColor = Color.FromArgb(45, 45, 60);
             btnFuncionario.FlatAppearance.BorderSize = 0;
-            btnFuncionario.FlatAppearance.MouseDownBackColor = Color.FromArgb(60, 60, 75);
-            btnFuncionario.FlatAppearance.MouseOverBackColor = Color.FromArgb(60, 60, 75);
+            btnFuncionario.FlatAppearance.MouseDownBackColor = Color.FromArgb(45, 45, 60);
+            btnFuncionario.FlatAppearance.MouseOverBackColor = Color.FromArgb(45, 45, 60);
             btnFuncionario.FlatStyle = FlatStyle.Flat;
             btnFuncionario.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnFuncionario.ForeColor = Color.FromArgb(224, 224, 224);
             btnFuncionario.ImageAlign = ContentAlignment.MiddleLeft;
-            btnFuncionario.ImageIndex = 1;
+            btnFuncionario.ImageIndex = 4;
             btnFuncionario.ImageList = imageList1;
             btnFuncionario.Location = new Point(32, 315);
             btnFuncionario.Name = "btnFuncionario";
             btnFuncionario.Size = new Size(260, 56);
             btnFuncionario.TabIndex = 3;
-            btnFuncionario.Text = "    Funcionario";
+            btnFuncionario.Text = "Funcionario";
             btnFuncionario.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnFuncionario.UseVisualStyleBackColor = false;
             btnFuncionario.Click += btnFuncionario_Click;
@@ -213,10 +213,10 @@
             // btnLog
             // 
             btnLog.BackColor = Color.Transparent;
-            btnLog.FlatAppearance.BorderColor = Color.FromArgb(65, 65, 80);
+            btnLog.FlatAppearance.BorderColor = Color.FromArgb(45, 45, 60);
             btnLog.FlatAppearance.BorderSize = 0;
-            btnLog.FlatAppearance.MouseDownBackColor = Color.FromArgb(60, 60, 75);
-            btnLog.FlatAppearance.MouseOverBackColor = Color.FromArgb(60, 60, 75);
+            btnLog.FlatAppearance.MouseDownBackColor = Color.FromArgb(45, 45, 60);
+            btnLog.FlatAppearance.MouseOverBackColor = Color.FromArgb(45, 45, 60);
             btnLog.FlatStyle = FlatStyle.Flat;
             btnLog.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnLog.ForeColor = Color.FromArgb(224, 224, 224);
@@ -227,7 +227,7 @@
             btnLog.Name = "btnLog";
             btnLog.Size = new Size(260, 54);
             btnLog.TabIndex = 7;
-            btnLog.Text = "    Alteracoes";
+            btnLog.Text = "Alteracoes";
             btnLog.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnLog.UseVisualStyleBackColor = false;
             btnLog.Click += btnLog_Click;
@@ -235,21 +235,21 @@
             // btnDashboard
             // 
             btnDashboard.BackColor = Color.Transparent;
-            btnDashboard.FlatAppearance.BorderColor = Color.FromArgb(65, 65, 80);
+            btnDashboard.FlatAppearance.BorderColor = Color.FromArgb(45, 45, 60);
             btnDashboard.FlatAppearance.BorderSize = 0;
-            btnDashboard.FlatAppearance.MouseDownBackColor = Color.FromArgb(60, 60, 75);
-            btnDashboard.FlatAppearance.MouseOverBackColor = Color.FromArgb(60, 60, 75);
+            btnDashboard.FlatAppearance.MouseDownBackColor = Color.FromArgb(45, 45, 60);
+            btnDashboard.FlatAppearance.MouseOverBackColor = Color.FromArgb(45, 45, 60);
             btnDashboard.FlatStyle = FlatStyle.Flat;
             btnDashboard.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnDashboard.ForeColor = Color.FromArgb(224, 224, 224);
             btnDashboard.ImageAlign = ContentAlignment.MiddleLeft;
-            btnDashboard.ImageIndex = 3;
+            btnDashboard.ImageIndex = 1;
             btnDashboard.ImageList = imageList1;
             btnDashboard.Location = new Point(31, 156);
             btnDashboard.Name = "btnDashboard";
             btnDashboard.Size = new Size(260, 55);
             btnDashboard.TabIndex = 6;
-            btnDashboard.Text = "     Dashboard";
+            btnDashboard.Text = "Dashboard";
             btnDashboard.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnDashboard.UseVisualStyleBackColor = false;
             btnDashboard.Click += btnDashboard_Click;
@@ -257,9 +257,10 @@
             // btnCaixa
             // 
             btnCaixa.BackColor = Color.Transparent;
+            btnCaixa.FlatAppearance.BorderColor = Color.FromArgb(45, 45, 60);
             btnCaixa.FlatAppearance.BorderSize = 0;
-            btnCaixa.FlatAppearance.MouseDownBackColor = Color.FromArgb(60, 60, 75);
-            btnCaixa.FlatAppearance.MouseOverBackColor = Color.FromArgb(60, 60, 75);
+            btnCaixa.FlatAppearance.MouseDownBackColor = Color.FromArgb(45, 45, 60);
+            btnCaixa.FlatAppearance.MouseOverBackColor = Color.FromArgb(45, 45, 60);
             btnCaixa.FlatStyle = FlatStyle.Flat;
             btnCaixa.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnCaixa.ForeColor = Color.FromArgb(224, 224, 224);
@@ -270,7 +271,7 @@
             btnCaixa.Name = "btnCaixa";
             btnCaixa.Size = new Size(260, 54);
             btnCaixa.TabIndex = 5;
-            btnCaixa.Text = "      Caixa";
+            btnCaixa.Text = "Caixa";
             btnCaixa.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnCaixa.UseVisualStyleBackColor = false;
             btnCaixa.Click += btnCaixa_Click;
@@ -278,21 +279,21 @@
             // btnEstoque
             // 
             btnEstoque.BackColor = Color.Transparent;
-            btnEstoque.FlatAppearance.BorderColor = Color.FromArgb(65, 65, 80);
+            btnEstoque.FlatAppearance.BorderColor = Color.FromArgb(45, 45, 60);
             btnEstoque.FlatAppearance.BorderSize = 0;
-            btnEstoque.FlatAppearance.MouseDownBackColor = Color.FromArgb(60, 60, 75);
-            btnEstoque.FlatAppearance.MouseOverBackColor = Color.FromArgb(60, 60, 75);
+            btnEstoque.FlatAppearance.MouseDownBackColor = Color.FromArgb(45, 45, 60);
+            btnEstoque.FlatAppearance.MouseOverBackColor = Color.FromArgb(45, 45, 60);
             btnEstoque.FlatStyle = FlatStyle.Flat;
             btnEstoque.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnEstoque.ForeColor = Color.FromArgb(224, 224, 224);
             btnEstoque.ImageAlign = ContentAlignment.MiddleLeft;
-            btnEstoque.ImageIndex = 5;
+            btnEstoque.ImageIndex = 6;
             btnEstoque.ImageList = imageList1;
             btnEstoque.Location = new Point(32, 262);
             btnEstoque.Name = "btnEstoque";
             btnEstoque.Size = new Size(260, 54);
             btnEstoque.TabIndex = 4;
-            btnEstoque.Text = "    Estoque";
+            btnEstoque.Text = "Estoque";
             btnEstoque.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnEstoque.UseVisualStyleBackColor = false;
             btnEstoque.Click += btnEstoque_Click;
@@ -355,6 +356,9 @@
             // btnMinimizar
             // 
             btnMinimizar.BackColor = Color.Transparent;
+            btnMinimizar.FlatAppearance.BorderColor = Color.FromArgb(45, 45, 60);
+            btnMinimizar.FlatAppearance.MouseDownBackColor = Color.Maroon;
+            btnMinimizar.FlatAppearance.MouseOverBackColor = Color.Transparent;
             btnMinimizar.FlatStyle = FlatStyle.Popup;
             btnMinimizar.Font = new Font("Segoe UI", 15F);
             btnMinimizar.ForeColor = Color.White;
@@ -369,6 +373,9 @@
             // btnSair
             // 
             btnSair.BackColor = Color.Transparent;
+            btnSair.FlatAppearance.BorderColor = Color.FromArgb(45, 45, 60);
+            btnSair.FlatAppearance.MouseDownBackColor = Color.Maroon;
+            btnSair.FlatAppearance.MouseOverBackColor = Color.Transparent;
             btnSair.FlatStyle = FlatStyle.Popup;
             btnSair.ForeColor = Color.White;
             btnSair.Location = new Point(1575, 3);
@@ -381,7 +388,7 @@
             // 
             // panelContainer
             // 
-            panelContainer.BackColor = Color.FromArgb(60, 60, 75);
+            panelContainer.BackColor = Color.FromArgb(45, 45, 60);
             panelContainer.ForeColor = Color.White;
             panelContainer.Location = new Point(287, 87);
             panelContainer.Name = "panelContainer";

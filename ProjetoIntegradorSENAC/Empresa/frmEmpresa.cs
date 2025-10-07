@@ -75,5 +75,6 @@ namespace ProjetoIntegradorSENAC.Empresa
             cadEmpresa.Show();
             this.Hide();
         }
+
     }
 }

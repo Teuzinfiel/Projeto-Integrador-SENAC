@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ProjetoIntegradorSENAC.Classes;
 using ProjetoIntegradorSENAC.Empresa;
 using ProjetoIntegradorSENAC.Usuario;
 
@@ -21,9 +22,21 @@ namespace ProjetoIntegradorSENAC.Logins
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            frmEmpresa frmEmpresa = new frmEmpresa();
-            frmEmpresa.Show();
-            this.Hide();
+
+            string query = $"select nome, senha from usuarios where nome = '{txtNome.Text}'";
+
+            var usuario = Banco.Pesquisar(query);
+
+            string senha = usuario.Rows[0]["senha"].ToString();
+
+            if (txtSenha.Text == senha)
+            {
+
+                frmEmpresa frmEmpresa = new frmEmpresa();
+                frmEmpresa.Show();
+                this.Hide();
+            }
+            else MessageBox.Show("senha incorreta camarada");
 
         }
 
@@ -63,6 +76,14 @@ namespace ProjetoIntegradorSENAC.Logins
             cadUsuario cadastrar = new cadUsuario();
             cadastrar.Show();
             this.Hide();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            frmEmpresa frmEmpresa = new frmEmpresa();
+            frmEmpresa.Show();
+            this.Hide();
+
         }
     }
 }

@@ -37,7 +37,7 @@
             label3 = new Label();
             label2 = new Label();
             txtSenha = new TextBox();
-            textBox1 = new TextBox();
+            txtNome = new TextBox();
             label1 = new Label();
             btnLogin = new Button();
             contextMenuStrip1 = new ContextMenuStrip(components);
@@ -47,6 +47,7 @@
             label5 = new Label();
             label7 = new Label();
             label6 = new Label();
+            button3 = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -61,7 +62,7 @@
             panel1.Controls.Add(label3);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(txtSenha);
-            panel1.Controls.Add(textBox1);
+            panel1.Controls.Add(txtNome);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(btnLogin);
             panel1.Location = new Point(26, 52);
@@ -163,15 +164,15 @@
             txtSenha.TabIndex = 10;
             txtSenha.UseSystemPasswordChar = true;
             // 
-            // textBox1
+            // txtNome
             // 
-            textBox1.BackColor = Color.FromArgb(224, 224, 224);
-            textBox1.Font = new Font("Franklin Gothic Book", 16F);
-            textBox1.Location = new Point(42, 114);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "Digite o nome de usuario";
-            textBox1.Size = new Size(348, 32);
-            textBox1.TabIndex = 9;
+            txtNome.BackColor = Color.FromArgb(224, 224, 224);
+            txtNome.Font = new Font("Franklin Gothic Book", 16F);
+            txtNome.Location = new Point(42, 114);
+            txtNome.Name = "txtNome";
+            txtNome.PlaceholderText = "Digite o nome de usuario";
+            txtNome.Size = new Size(348, 32);
+            txtNome.TabIndex = 9;
             // 
             // label1
             // 
@@ -276,12 +277,28 @@
             label6.TabIndex = 5;
             label6.Text = "Vamos juntos\r\nsimplificar\r\nsua ";
             // 
+            // button3
+            // 
+            button3.BackColor = SystemColors.Highlight;
+            button3.Cursor = Cursors.Hand;
+            button3.FlatStyle = FlatStyle.Popup;
+            button3.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button3.ForeColor = Color.White;
+            button3.Location = new Point(679, 469);
+            button3.Name = "button3";
+            button3.Size = new Size(100, 37);
+            button3.TabIndex = 8;
+            button3.Text = "Entrar";
+            button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
+            // 
             // loginUsuario
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(35, 35, 45);
             ClientSize = new Size(886, 548);
+            Controls.Add(button3);
             Controls.Add(label5);
             Controls.Add(label6);
             Controls.Add(label7);
@@ -306,7 +323,7 @@
         private Label label3;
         private Label label2;
         private TextBox txtSenha;
-        private TextBox textBox1;
+        private TextBox txtNome;
         private ContextMenuStrip contextMenuStrip1;
         private Panel panel2;
         private Button btnSair;
@@ -318,5 +335,6 @@
         private Label CriarConta;
         private Label label4;
         private Label label6;
+        private Button button3;
     }
 }

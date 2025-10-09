@@ -23,16 +23,18 @@ namespace ProjetoIntegradorSENAC.Logins
         private void btnLogin_Click(object sender, EventArgs e)
         {
 
-            string query = $"select nome, senha from usuarios where nome = '{txtNome.Text}'";
+            string query = $"select id_usuario ,nome, senha from usuarios where nome = '{txtNome.Text}'";
 
             var usuario = Banco.Pesquisar(query);
 
             string senha = usuario.Rows[0]["senha"].ToString();
+            string IdUser = usuario.Rows[0]["id_usuario"].ToString() ;
 
             if (txtSenha.Text == senha)
             {
 
                 frmEmpresa frmEmpresa = new frmEmpresa();
+                frmEmpresa.idUsuario = IdUser;
                 frmEmpresa.Show();
                 this.Hide();
             }

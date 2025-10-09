@@ -13,13 +13,19 @@ namespace ProjetoIntegradorSENAC.Empresa
 {
     public partial class frmEmpresa : Form
     {
+
+        public string idUsuario = string.Empty;
+
         public frmEmpresa()
         {
             InitializeComponent();
+            
         }
 
         private void frmEmpresa_Load(object sender, EventArgs e)
         {
+            MessageBox.Show($"O usuario possui o id {idUsuario}" );
+
             dtgEmpresas.ColumnCount = 1;
             dtgEmpresas.Columns[0].Name = "Nome do Comercio";
             dtgEmpresas.Rows.Add("Trailer - Praia da costa");

@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ProjetoIntegradorSENAC.Classes;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using Newtonsoft.Json;
 
 namespace ProjetoIntegradorSENAC.Usuario
 {
@@ -18,28 +21,55 @@ namespace ProjetoIntegradorSENAC.Usuario
             InitializeComponent();
         }
 
-        private void btnCadastro_Click(object sender, EventArgs e)
+        private async void btnCadastro_Click(object sender, EventArgs e)
         {
-            bool senha = false;
-
-            if (UsSenha.Text == ConfirmarSenha.Text) senha = true;
-
-
-            if (senha && UsNome.Text != "" && UsTelefone.MaskFull && UsEmail.Text != "")
+            if (UsSenha.Text != ConfirmarSenha.Text)
             {
-                string insert = "insert into usuarios (nome, email, cpf, telefone, senha)" +
-                    $" value ('{UsNome.Text}', '{UsEmail.Text}', '{UsCpf.Text}', '{UsTelefone.Text}', '{ConfirmarSenha.Text}')";
-
-                Banco.Inserir(insert);
-
-                MessageBox.Show("Conta criada com sucesso!!");
-                Funcoes.Limpar(this);
-
+                MessageBox.Show("As senhas não correspondem");
+                return;
             }
-            else
+
+            if (UsNome.Text == "" || !UsTelefone.MaskFull || UsEmail.Text == "")
             {
-                if (!senha) MessageBox.Show("As senhas não correspondem");
-                else MessageBox.Show("Preencha todos os campos corretamente");
+                MessageBox.Show("Preencha todos os campos corretamente");
+                return;
+            }
+
+            using (var http = new HttpClient())
+            {
+                var dados = new FormUrlEncodedContent(new[]
+                {
+            new KeyValuePair<string,string>("nome", UsNome.Text),
+            new KeyValuePair<string,string>("email", UsEmail.Text),
+            new KeyValuePair<string,string>("cpf", UsCpf.Text),
+            new KeyValuePair<string,string>("telefone", UsTelefone.Text),
+            new KeyValuePair<string,string>("senha", UsSenha.Text)
+        });
+
+                try
+                {
+                    // COLOQUE AQUI O LINK DO SEU PHP NO CLOUDFLARE
+                    string url = "https://solutions-specialty-volunteer-nirvana.trycloudflare.com/testapisenac/index.php";
+
+                    var response = await http.PostAsync(url, dados);
+                    string resposta = await response.Content.ReadAsStringAsync();
+
+                    dynamic json = Newtonsoft.Json.JsonConvert.DeserializeObject(resposta);
+
+                    if (json.status == true)
+                    {
+                        MessageBox.Show("Conta criada com sucesso!");
+                        Funcoes.Limpar(this);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro: " + json.mensagem);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Falha ao conectar ao servidor:\n" + ex.Message);
+                }
             }
         }
 

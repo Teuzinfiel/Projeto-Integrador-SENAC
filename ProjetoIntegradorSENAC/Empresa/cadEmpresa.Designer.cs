@@ -32,6 +32,7 @@
             btnMinimizar = new Button();
             btnSair = new Button();
             panel1 = new Panel();
+            label13 = new Label();
             btnSalvar = new Button();
             btnVoltar = new Button();
             label8 = new Label();
@@ -55,6 +56,10 @@
             label10 = new Label();
             label11 = new Label();
             label12 = new Label();
+            label14 = new Label();
+            label15 = new Label();
+            label16 = new Label();
+            label17 = new Label();
             panel2.SuspendLayout();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
@@ -99,6 +104,11 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(40, 40, 50);
+            panel1.Controls.Add(label17);
+            panel1.Controls.Add(label16);
+            panel1.Controls.Add(label15);
+            panel1.Controls.Add(label14);
+            panel1.Controls.Add(label13);
             panel1.Controls.Add(btnSalvar);
             panel1.Controls.Add(btnVoltar);
             panel1.Controls.Add(label8);
@@ -120,6 +130,17 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(975, 672);
             panel1.TabIndex = 6;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label13.ForeColor = Color.FromArgb(192, 0, 0);
+            label13.Location = new Point(178, 147);
+            label13.Name = "label13";
+            label13.Size = new Size(16, 24);
+            label13.TabIndex = 30;
+            label13.Text = "*";
             // 
             // btnSalvar
             // 
@@ -388,6 +409,50 @@
             label12.TabIndex = 10;
             label12.Text = "Gerencie com facilidade";
             // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label14.ForeColor = Color.FromArgb(192, 0, 0);
+            label14.Location = new Point(197, 223);
+            label14.Name = "label14";
+            label14.Size = new Size(16, 24);
+            label14.TabIndex = 31;
+            label14.Text = "*";
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label15.ForeColor = Color.FromArgb(192, 0, 0);
+            label15.Location = new Point(411, 293);
+            label15.Name = "label15";
+            label15.Size = new Size(16, 24);
+            label15.TabIndex = 32;
+            label15.Text = "*";
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label16.ForeColor = Color.FromArgb(192, 0, 0);
+            label16.Location = new Point(238, 368);
+            label16.Name = "label16";
+            label16.Size = new Size(16, 24);
+            label16.TabIndex = 33;
+            label16.Text = "*";
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label17.ForeColor = Color.FromArgb(192, 0, 0);
+            label17.Location = new Point(225, 443);
+            label17.Name = "label17";
+            label17.Size = new Size(16, 24);
+            label17.TabIndex = 34;
+            label17.Text = "*";
+            // 
             // cadEmpresa
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -424,7 +489,6 @@
         private MaskedTextBox mkCPF;
         private Label label1;
         private TextBox textBox2;
-        private Label label2;
         private Panel panel3;
         private RadioButton radioButton2;
         private RadioButton radioButton1;
@@ -442,5 +506,11 @@
         private Label label12;
         private Button btnVoltar;
         private Button btnSalvar;
+        private Label label13;
+        private Label label2;
+        private Label label15;
+        private Label label14;
+        private Label label17;
+        private Label label16;
     }
 }

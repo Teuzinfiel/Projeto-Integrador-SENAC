@@ -32,13 +32,17 @@
             btnMinimizar = new Button();
             btnSair = new Button();
             panel1 = new Panel();
+            label17 = new Label();
+            label16 = new Label();
+            label15 = new Label();
+            label14 = new Label();
             label13 = new Label();
             btnSalvar = new Button();
             btnVoltar = new Button();
             label8 = new Label();
             label7 = new Label();
             label6 = new Label();
-            textBox3 = new TextBox();
+            txtEmail = new TextBox();
             label5 = new Label();
             mkTelefone = new MaskedTextBox();
             label4 = new Label();
@@ -49,17 +53,13 @@
             mkCNPJ = new MaskedTextBox();
             mkCPF = new MaskedTextBox();
             label1 = new Label();
-            textBox2 = new TextBox();
+            txtNomeFantasia = new TextBox();
             label2 = new Label();
             txtRazaoSocial = new TextBox();
             label9 = new Label();
             label10 = new Label();
             label11 = new Label();
             label12 = new Label();
-            label14 = new Label();
-            label15 = new Label();
-            label16 = new Label();
-            label17 = new Label();
             panel2.SuspendLayout();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
@@ -114,7 +114,7 @@
             panel1.Controls.Add(label8);
             panel1.Controls.Add(label7);
             panel1.Controls.Add(label6);
-            panel1.Controls.Add(textBox3);
+            panel1.Controls.Add(txtEmail);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(mkTelefone);
             panel1.Controls.Add(label4);
@@ -123,13 +123,61 @@
             panel1.Controls.Add(mkCNPJ);
             panel1.Controls.Add(mkCPF);
             panel1.Controls.Add(label1);
-            panel1.Controls.Add(textBox2);
+            panel1.Controls.Add(txtNomeFantasia);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(txtRazaoSocial);
             panel1.Location = new Point(799, 67);
             panel1.Name = "panel1";
             panel1.Size = new Size(975, 672);
             panel1.TabIndex = 6;
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label17.ForeColor = Color.FromArgb(192, 0, 0);
+            label17.Location = new Point(225, 443);
+            label17.Name = "label17";
+            label17.Size = new Size(16, 24);
+            label17.TabIndex = 34;
+            label17.Text = "*";
+            label17.Visible = false;
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label16.ForeColor = Color.FromArgb(192, 0, 0);
+            label16.Location = new Point(238, 368);
+            label16.Name = "label16";
+            label16.Size = new Size(16, 24);
+            label16.TabIndex = 33;
+            label16.Text = "*";
+            label16.Visible = false;
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label15.ForeColor = Color.FromArgb(192, 0, 0);
+            label15.Location = new Point(411, 293);
+            label15.Name = "label15";
+            label15.Size = new Size(16, 24);
+            label15.TabIndex = 32;
+            label15.Text = "*";
+            label15.Visible = false;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label14.ForeColor = Color.FromArgb(192, 0, 0);
+            label14.Location = new Point(197, 223);
+            label14.Name = "label14";
+            label14.Size = new Size(16, 24);
+            label14.TabIndex = 31;
+            label14.Text = "*";
+            label14.Visible = false;
             // 
             // label13
             // 
@@ -141,6 +189,7 @@
             label13.Size = new Size(16, 24);
             label13.TabIndex = 30;
             label13.Text = "*";
+            label13.Visible = false;
             // 
             // btnSalvar
             // 
@@ -202,16 +251,17 @@
             label6.TabIndex = 25;
             label6.Text = "Email da Empresa";
             // 
-            // textBox3
+            // txtEmail
             // 
-            textBox3.BackColor = Color.White;
-            textBox3.Font = new Font("Franklin Gothic Book", 20.25F);
-            textBox3.ForeColor = Color.FromArgb(40, 40, 50);
-            textBox3.Location = new Point(60, 471);
-            textBox3.Name = "textBox3";
-            textBox3.PlaceholderText = "  seuemail@gmail.com";
-            textBox3.Size = new Size(857, 38);
-            textBox3.TabIndex = 24;
+            txtEmail.BackColor = Color.White;
+            txtEmail.Font = new Font("Franklin Gothic Book", 20.25F);
+            txtEmail.ForeColor = Color.FromArgb(40, 40, 50);
+            txtEmail.Location = new Point(60, 471);
+            txtEmail.Name = "txtEmail";
+            txtEmail.PlaceholderText = "  seuemail@gmail.com";
+            txtEmail.Size = new Size(857, 38);
+            txtEmail.TabIndex = 24;
+            txtEmail.TextChanged += txtEmail_TextChanged;
             // 
             // label5
             // 
@@ -234,13 +284,14 @@
             mkTelefone.Name = "mkTelefone";
             mkTelefone.Size = new Size(857, 38);
             mkTelefone.TabIndex = 22;
+            mkTelefone.TextChanged += mkTelefone_TextChanged;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Franklin Gothic Medium", 15F);
             label4.ForeColor = Color.White;
-            label4.Location = new Point(359, 294);
+            label4.Location = new Point(359, 292);
             label4.Name = "label4";
             label4.Size = new Size(56, 25);
             label4.TabIndex = 21;
@@ -308,6 +359,7 @@
             mkCNPJ.Name = "mkCNPJ";
             mkCNPJ.Size = new Size(558, 38);
             mkCNPJ.TabIndex = 16;
+            mkCNPJ.TextChanged += mkCNPJ_TextChanged;
             // 
             // mkCPF
             // 
@@ -319,6 +371,7 @@
             mkCPF.Name = "mkCPF";
             mkCPF.Size = new Size(558, 38);
             mkCPF.TabIndex = 15;
+            mkCPF.TextChanged += mkCPF_TextChanged;
             // 
             // label1
             // 
@@ -331,16 +384,17 @@
             label1.TabIndex = 14;
             label1.Text = "Nome Fantasia";
             // 
-            // textBox2
+            // txtNomeFantasia
             // 
-            textBox2.BackColor = Color.White;
-            textBox2.Font = new Font("Franklin Gothic Book", 20.25F);
-            textBox2.ForeColor = Color.FromArgb(40, 40, 50);
-            textBox2.Location = new Point(60, 247);
-            textBox2.Name = "textBox2";
-            textBox2.PlaceholderText = "  Digite aqui o nome Fantasia";
-            textBox2.Size = new Size(857, 38);
-            textBox2.TabIndex = 13;
+            txtNomeFantasia.BackColor = Color.White;
+            txtNomeFantasia.Font = new Font("Franklin Gothic Book", 20.25F);
+            txtNomeFantasia.ForeColor = Color.FromArgb(40, 40, 50);
+            txtNomeFantasia.Location = new Point(60, 247);
+            txtNomeFantasia.Name = "txtNomeFantasia";
+            txtNomeFantasia.PlaceholderText = "  Digite aqui o nome Fantasia";
+            txtNomeFantasia.Size = new Size(857, 38);
+            txtNomeFantasia.TabIndex = 13;
+            txtNomeFantasia.TextChanged += txtNomeFantasia_TextChanged;
             // 
             // label2
             // 
@@ -363,6 +417,7 @@
             txtRazaoSocial.PlaceholderText = "  Digite aqui a Razao Social";
             txtRazaoSocial.Size = new Size(857, 38);
             txtRazaoSocial.TabIndex = 0;
+            txtRazaoSocial.TextChanged += txtRazaoSocial_TextChanged;
             // 
             // label9
             // 
@@ -409,50 +464,6 @@
             label12.TabIndex = 10;
             label12.Text = "Gerencie com facilidade";
             // 
-            // label14
-            // 
-            label14.AutoSize = true;
-            label14.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label14.ForeColor = Color.FromArgb(192, 0, 0);
-            label14.Location = new Point(197, 223);
-            label14.Name = "label14";
-            label14.Size = new Size(16, 24);
-            label14.TabIndex = 31;
-            label14.Text = "*";
-            // 
-            // label15
-            // 
-            label15.AutoSize = true;
-            label15.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label15.ForeColor = Color.FromArgb(192, 0, 0);
-            label15.Location = new Point(411, 293);
-            label15.Name = "label15";
-            label15.Size = new Size(16, 24);
-            label15.TabIndex = 32;
-            label15.Text = "*";
-            // 
-            // label16
-            // 
-            label16.AutoSize = true;
-            label16.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label16.ForeColor = Color.FromArgb(192, 0, 0);
-            label16.Location = new Point(238, 368);
-            label16.Name = "label16";
-            label16.Size = new Size(16, 24);
-            label16.TabIndex = 33;
-            label16.Text = "*";
-            // 
-            // label17
-            // 
-            label17.AutoSize = true;
-            label17.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label17.ForeColor = Color.FromArgb(192, 0, 0);
-            label17.Location = new Point(225, 443);
-            label17.Name = "label17";
-            label17.Size = new Size(16, 24);
-            label17.TabIndex = 34;
-            label17.Text = "*";
-            // 
             // cadEmpresa
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -488,7 +499,7 @@
         private MaskedTextBox mkCNPJ;
         private MaskedTextBox mkCPF;
         private Label label1;
-        private TextBox textBox2;
+        private TextBox txtNomeFantasia;
         private Panel panel3;
         private RadioButton radioButton2;
         private RadioButton radioButton1;
@@ -497,7 +508,7 @@
         private Label label5;
         private MaskedTextBox mkTelefone;
         private Label label6;
-        private TextBox textBox3;
+        private TextBox txtEmail;
         private Label label8;
         private Label label7;
         private Label label9;

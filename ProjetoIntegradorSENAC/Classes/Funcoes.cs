@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ProjetoIntegradorSENAC.Classes
@@ -11,6 +12,7 @@ namespace ProjetoIntegradorSENAC.Classes
     {
         public static bool isCnpj(string cnpj)
         {
+
             int[] multiplicador1 = new int[12] { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
             int[] multiplicador2 = new int[13] { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
             int soma;
@@ -191,6 +193,28 @@ namespace ProjetoIntegradorSENAC.Classes
 
             }
 
+        }
+        public static bool CampoVazio(Control c)
+        {
+            if (c is TextBox)
+                return string.IsNullOrWhiteSpace(((TextBox)c).Text);
+
+            if (c is MaskedTextBox)
+                return string.IsNullOrWhiteSpace(((MaskedTextBox)c).Text.Replace(" ", "").Replace("_", ""));
+
+            if (c is RichTextBox)
+                return string.IsNullOrWhiteSpace(((RichTextBox)c).Text);
+
+            if (c is ComboBox)
+                return ((ComboBox)c).SelectedIndex < 0 || string.IsNullOrWhiteSpace(((ComboBox)c).Text);
+
+            if (c is NumericUpDown)
+                return ((NumericUpDown)c).Value == 0;
+
+            if (c is DateTimePicker)
+                return !((DateTimePicker)c).Checked; // só funciona se ShowCheckBox = true
+
+            return false;
         }
 
         public static List<string> prencheer(DataTable consulta)

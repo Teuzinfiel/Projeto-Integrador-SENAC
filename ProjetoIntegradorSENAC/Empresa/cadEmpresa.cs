@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjetoIntegradorSENAC.Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -43,5 +44,73 @@ namespace ProjetoIntegradorSENAC.Empresa
             frmEmpresa.Show();
             this.Hide();
         }
+        bool errorFlag = false;
+        private void txtRazaoSocial_TextChanged(object sender, EventArgs e)
+        {
+            string RazaoSocial = txtRazaoSocial.Text;
+            if (Funcoes.CampoVazio(txtRazaoSocial))
+            {
+                errorFlag = true;
+                label13.Visible = true;
+                label2.ForeColor = Color.DarkRed;
+            }
+            else
+            {
+                errorFlag = false;
+                label13.Visible = false;
+                label2.ForeColor = Color.White;
+            }
+        }
+
+        private void txtNomeFantasia_TextChanged(object sender, EventArgs e)
+        {
+            string NomeFantasia = txtNomeFantasia.Text;
+            if (Funcoes.CampoVazio(txtNomeFantasia))
+            {
+                errorFlag = true;
+                label14.Visible = true;
+                label1.ForeColor = Color.DarkRed;
+            }
+            else 
+            {
+                errorFlag = false;
+                label14.Visible = false;
+                label1.ForeColor = Color.White;
+            }
+        }
+
+        private void mkCNPJ_TextChanged(object sender, EventArgs e)
+        {
+            
+            string cnpj = mkCNPJ.Text;
+            if (Funcoes.isCnpj(cnpj))
+            {
+                errorFlag = false;
+                label4.ForeColor = Color.White;
+                label15.Visible = false;
+            }
+            else
+            {
+                errorFlag = true;
+                label15.Visible = true;
+                label4.ForeColor = Color.DarkRed;
+            }
+        }
+        private void mkCPF_TextChanged(object sender, EventArgs e)
+        {
+            string cpf = mkCPF.Text;
+        }
+
+        private void mkTelefone_TextChanged(object sender, EventArgs e)
+        {
+            string Telefone = mkTelefone.Text;
+        }
+
+        private void txtEmail_TextChanged(object sender, EventArgs e)
+        {
+            string Email = txtEmail.Text;
+        }
+
+      
     }
 }

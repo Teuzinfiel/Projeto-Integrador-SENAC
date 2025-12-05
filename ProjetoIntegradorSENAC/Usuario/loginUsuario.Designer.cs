@@ -47,7 +47,7 @@
             label5 = new Label();
             label7 = new Label();
             label6 = new Label();
-            button3 = new Button();
+            testPedro = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -277,20 +277,20 @@
             label6.TabIndex = 5;
             label6.Text = "Vamos juntos\r\nsimplificar\r\nsua ";
             // 
-            // button3
+            // testPedro
             // 
-            button3.BackColor = SystemColors.Highlight;
-            button3.Cursor = Cursors.Hand;
-            button3.FlatStyle = FlatStyle.Popup;
-            button3.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button3.ForeColor = Color.White;
-            button3.Location = new Point(679, 469);
-            button3.Name = "button3";
-            button3.Size = new Size(100, 37);
-            button3.TabIndex = 8;
-            button3.Text = "Entrar";
-            button3.UseVisualStyleBackColor = false;
-            button3.Click += button3_Click;
+            testPedro.BackColor = SystemColors.Highlight;
+            testPedro.Cursor = Cursors.Hand;
+            testPedro.FlatStyle = FlatStyle.Popup;
+            testPedro.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            testPedro.ForeColor = Color.White;
+            testPedro.Location = new Point(774, 485);
+            testPedro.Name = "testPedro";
+            testPedro.Size = new Size(100, 37);
+            testPedro.TabIndex = 8;
+            testPedro.Text = "Caixa";
+            testPedro.UseVisualStyleBackColor = false;
+            testPedro.Click += button3_Click;
             // 
             // loginUsuario
             // 
@@ -298,7 +298,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(35, 35, 45);
             ClientSize = new Size(886, 548);
-            Controls.Add(button3);
+            Controls.Add(testPedro);
             Controls.Add(label5);
             Controls.Add(label6);
             Controls.Add(label7);
@@ -335,6 +335,6 @@
         private Label CriarConta;
         private Label label4;
         private Label label6;
-        private Button button3;
+        private Button testPedro;
     }
 }

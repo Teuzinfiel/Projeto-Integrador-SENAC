@@ -3,11 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Common;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace ProjetoIntegradorSENAC.Caixa
 {
@@ -20,9 +22,9 @@ namespace ProjetoIntegradorSENAC.Caixa
 
         private void caixa_Load(object sender, EventArgs e)
         {
-            string query = $"select id,nome from produtos limit 50";
+            string query = $"SELECT p.id, p.nome, e.quantidade_final AS quantidade FROM produtos p inner JOIN movimentacoes_estoque e ON p.id = e.produto_id Where e.quantidade >= 1 GROUP BY p.id limit 50;";
             var produtos = Banco.Pesquisar(query);
-            dtgProdutos.DataSource = produtos;
+            carregaProdutos(produtos);
             flpCaixa.AutoScroll = true;
             //Permite quebrar linhas
             flpCaixa.WrapContents = true;
@@ -34,32 +36,37 @@ namespace ProjetoIntegradorSENAC.Caixa
         {
             string pesquisa = txtPesquisa.Text;
 
-            dtgProdutos.DataSource = null;
-            dtgProdutos.Rows.Clear();
 
-
-            string query = $"SELECT id, nome FROM produtos WHERE nome LIKE '%{pesquisa}%' or codigo_barra like '%{pesquisa}%'";
+            string query = $"SELECT p.id, p.nome, e.quantidade_final AS quantidade FROM produtos p inner JOIN movimentacoes_estoque e ON p.id = e.produto_id Where e.quantidade >= 1 and (nome LIKE '%{pesquisa}%' or codigo_barra like '%{pesquisa}%') GROUP BY p.id ";
             var produtos = Banco.Pesquisar(query);
-            dtgProdutos.DataSource = produtos;
+            carregaProdutos(produtos);
         }
 
         private void dtgProdutos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
-            { // Pega o nome do produto (exemplo)
+            {
                 string nome = dtgProdutos.Rows[e.RowIndex].Cells["nome"].Value.ToString();
-                // Imagem padrão (pode carregar do banco) // ou null
+               
                 int id = Convert.ToInt32(dtgProdutos.Rows[e.RowIndex].Cells["id"].Value);
+                int quantDisponivel = Convert.ToInt32(dtgProdutos.Rows[e.RowIndex].Cells["quantidade"].Value);
                 bool veri = false;
 
                 if (flpCaixa.Controls.OfType<Panel>().Any())
                 {
                     foreach (Panel p in flpCaixa.Controls.OfType<Panel>())
                     {
-                        if (Convert.ToInt32(p.Tag) == id)
+                        int[] dadosPanel = (int[])p.Tag;
+                        if (dadosPanel[0] == id && dadosPanel[1] < dadosPanel[2])
                         {
-                            int quantidade = int.Parse(p.Controls["labelQuant"].Text);
-                            p.Controls["labelQuant"].Text = (quantidade + 1).ToString();
+                            dadosPanel[1] += 1;
+                            p.Controls["labelQuant"].Text = (dadosPanel[1]).ToString(); 
+                            veri = true;
+                            break;
+                        }
+                        else if (dadosPanel[0] == id && dadosPanel[1] >= dadosPanel[2])
+                        {
+                            MessageBox.Show("TA ERAADO");
                             veri = true;
                             break;
                         }
@@ -69,17 +76,17 @@ namespace ProjetoIntegradorSENAC.Caixa
                 }
                 else if (!flpCaixa.Controls.OfType<Panel>().Any())
                 {
-                    AdicionarProdutoAoPanel(nome, null, id);
+                    AdicionarProdutoAoPanel(nome, null, id, 1, quantDisponivel);
                     veri = true;
                 }
                 if (!veri)
                 {
-                    AdicionarProdutoAoPanel(nome, null, id);
+                    AdicionarProdutoAoPanel(nome, null, id, 1, quantDisponivel);
                 }
             }
         }
 
-        private void AdicionarProdutoAoPanel(string nomeProduto, Image imagem, int id)
+        private void AdicionarProdutoAoPanel(string nomeProduto, Image imagem, int id, int quant, int quantTotal)
         { // Painel do produto
             Panel p = new Panel();
             p.Width = 170;
@@ -87,7 +94,7 @@ namespace ProjetoIntegradorSENAC.Caixa
             p.BackColor = Color.FromArgb(40, 40, 60);
             p.BorderStyle = BorderStyle.FixedSingle;
             p.Margin = new Padding(10);
-            p.Tag = id;
+            p.Tag = new int[] { id, quant, quantTotal };
 
             // Nome do produto
             Label lblNome = new Label();
@@ -156,17 +163,30 @@ namespace ProjetoIntegradorSENAC.Caixa
 
             btnMais.Click += (s, e) =>
             {
-                string query = $"SELECT id, nome FROM produtos WHERE nome LIKE '%{pesquisa}%' or codigo_barra like '%{pesquisa}%'";
-                var produtos = Banco.Pesquisar(query);
-
-                int q = int.Parse(lblQtd.Text);
-                lblQtd.Text = (q + 1).ToString();
+                int[] dadosPanel = (int[])p.Tag;
+                if (dadosPanel[0] == id && dadosPanel[1] < dadosPanel[2])
+                {
+                    dadosPanel[1] += 1;
+                    p.Controls["labelQuant"].Text = (dadosPanel[1]).ToString();
+                  
+                }
+                else if (dadosPanel[0] == id && dadosPanel[1] >= dadosPanel[2])
+                {
+                    MessageBox.Show("TA ERAADO");
+     
+                }
             };
 
             btnMenos.Click += (s, e) =>
             {
-                int q = int.Parse(lblQtd.Text);
-                if (q > 1) lblQtd.Text = (q - 1).ToString();
+                int[] dadosPanel = (int[])p.Tag;
+                if (dadosPanel[0] == id && dadosPanel[1] > 0)
+                {
+                    dadosPanel[1] -= 1;
+                    p.Controls["labelQuant"].Text = (dadosPanel[1]).ToString();
+
+                }
+
             };
 
             btnCancel.Click += (s, e) =>
@@ -184,6 +204,45 @@ namespace ProjetoIntegradorSENAC.Caixa
         private void btnCompra_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void carregaProdutos(DataTable db)
+        {
+            dtgProdutos.DataSource = null;
+            dtgProdutos.Rows.Clear();
+            dtgProdutos.Columns.Clear(); 
+            dtgProdutos.AutoGenerateColumns = false;
+
+            // Coluna oculta para ID
+            dtgProdutos.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "id",
+                Name = "id",
+                Visible = false
+            });
+
+
+            // Coluna visível
+            dtgProdutos.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "nome",
+                HeaderText = "Produto",
+                Name = "nome"
+            });
+
+            dtgProdutos.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "quantidade",
+                Name = "quantidade",
+                Visible = false
+            });
+
+            dtgProdutos.DataSource = db;
+        }
+
+        private void alterarQuantidade (Panel p)
+        {
+           
         }
     }
 }

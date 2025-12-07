@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            btnProdutos = new Button();
-            btnMeses = new Button();
             btnPadrao = new Button();
             groupBox1 = new GroupBox();
             label1 = new Label();
@@ -44,6 +42,8 @@
             groupBox6 = new GroupBox();
             grafico2 = new OxyPlot.WindowsForms.PlotView();
             comboBox1 = new ComboBox();
+            button1 = new Button();
+            button2 = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -52,32 +52,19 @@
             groupBox6.SuspendLayout();
             SuspendLayout();
             // 
-            // btnProdutos
-            // 
-            btnProdutos.Location = new Point(1053, 53);
-            btnProdutos.Name = "btnProdutos";
-            btnProdutos.Size = new Size(142, 54);
-            btnProdutos.TabIndex = 0;
-            btnProdutos.Text = "Produtos";
-            btnProdutos.UseVisualStyleBackColor = true;
-            // 
-            // btnMeses
-            // 
-            btnMeses.Location = new Point(678, 53);
-            btnMeses.Name = "btnMeses";
-            btnMeses.Size = new Size(142, 54);
-            btnMeses.TabIndex = 1;
-            btnMeses.Text = "Meses";
-            btnMeses.UseVisualStyleBackColor = true;
-            // 
             // btnPadrao
             // 
+            btnPadrao.BackColor = SystemColors.Highlight;
+            btnPadrao.Cursor = Cursors.Hand;
+            btnPadrao.FlatStyle = FlatStyle.Popup;
+            btnPadrao.Font = new Font("Franklin Gothic Medium", 15F);
+            btnPadrao.ForeColor = Color.White;
             btnPadrao.Location = new Point(323, 53);
             btnPadrao.Name = "btnPadrao";
             btnPadrao.Size = new Size(142, 54);
             btnPadrao.TabIndex = 2;
             btnPadrao.Text = "Padrão";
-            btnPadrao.UseVisualStyleBackColor = true;
+            btnPadrao.UseVisualStyleBackColor = false;
             // 
             // groupBox1
             // 
@@ -93,9 +80,10 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.Font = new Font("Consolas", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.Location = new Point(80, 56);
             label1.Name = "label1";
-            label1.Size = new Size(50, 20);
+            label1.Size = new Size(56, 18);
             label1.TabIndex = 0;
             label1.Text = "label1";
             // 
@@ -113,9 +101,10 @@
             // label2
             // 
             label2.AutoSize = true;
+            label2.Font = new Font("Consolas", 9F, FontStyle.Bold);
             label2.Location = new Point(97, 56);
             label2.Name = "label2";
-            label2.Size = new Size(50, 20);
+            label2.Size = new Size(56, 18);
             label2.TabIndex = 0;
             label2.Text = "label2";
             // 
@@ -133,9 +122,10 @@
             // label3
             // 
             label3.AutoSize = true;
+            label3.Font = new Font("Consolas", 9F, FontStyle.Bold);
             label3.Location = new Point(95, 56);
             label3.Name = "label3";
-            label3.Size = new Size(50, 20);
+            label3.Size = new Size(56, 18);
             label3.TabIndex = 0;
             label3.Text = "label3";
             // 
@@ -153,9 +143,10 @@
             // label4
             // 
             label4.AutoSize = true;
+            label4.Font = new Font("Consolas", 9F, FontStyle.Bold);
             label4.Location = new Point(94, 56);
             label4.Name = "label4";
-            label4.Size = new Size(50, 20);
+            label4.Size = new Size(56, 18);
             label4.TabIndex = 0;
             label4.Text = "label4";
             // 
@@ -209,13 +200,45 @@
             // 
             // comboBox1
             // 
+            comboBox1.BackColor = Color.FromArgb(45, 45, 60);
+            comboBox1.FlatStyle = FlatStyle.Popup;
+            comboBox1.Font = new Font("Franklin Gothic Medium", 15F);
+            comboBox1.ForeColor = Color.White;
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "1 Mês", "6 Meses", "12 Meses" });
             comboBox1.Location = new Point(77, 53);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(141, 28);
+            comboBox1.Size = new Size(141, 40);
             comboBox1.TabIndex = 7;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            // 
+            // button1
+            // 
+            button1.BackColor = SystemColors.Highlight;
+            button1.Cursor = Cursors.Hand;
+            button1.FlatStyle = FlatStyle.Popup;
+            button1.Font = new Font("Franklin Gothic Medium", 15F);
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(696, 53);
+            button1.Name = "button1";
+            button1.Size = new Size(142, 54);
+            button1.TabIndex = 8;
+            button1.Text = "Meses";
+            button1.UseVisualStyleBackColor = false;
+            // 
+            // button2
+            // 
+            button2.BackColor = SystemColors.Highlight;
+            button2.Cursor = Cursors.Hand;
+            button2.FlatStyle = FlatStyle.Popup;
+            button2.Font = new Font("Franklin Gothic Medium", 15F);
+            button2.ForeColor = Color.White;
+            button2.Location = new Point(1073, 53);
+            button2.Name = "button2";
+            button2.Size = new Size(142, 54);
+            button2.TabIndex = 9;
+            button2.Text = "Produtos";
+            button2.UseVisualStyleBackColor = false;
             // 
             // dashboard
             // 
@@ -223,6 +246,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(45, 45, 60);
             ClientSize = new Size(1515, 915);
+            Controls.Add(button2);
+            Controls.Add(button1);
             Controls.Add(comboBox1);
             Controls.Add(groupBox6);
             Controls.Add(groupBox5);
@@ -231,12 +256,11 @@
             Controls.Add(groupBox4);
             Controls.Add(groupBox1);
             Controls.Add(btnPadrao);
-            Controls.Add(btnMeses);
-            Controls.Add(btnProdutos);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
             Name = "dashboard";
             Text = "dashboard";
+            Load += dashboard_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
@@ -251,9 +275,6 @@
         }
 
         #endregion
-
-        private Button btnProdutos;
-        private Button btnMeses;
         private Button btnPadrao;
         private GroupBox groupBox1;
         private GroupBox groupBox2;
@@ -268,5 +289,7 @@
         private Label label2;
         private Label label3;
         private Label label4;
+        private Button button1;
+        private Button button2;
     }
 }

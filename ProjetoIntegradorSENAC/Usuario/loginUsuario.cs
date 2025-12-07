@@ -29,7 +29,7 @@ namespace ProjetoIntegradorSENAC.Logins
             var usuario = Banco.Pesquisar(query);
 
             string senha = usuario.Rows[0]["senha"].ToString();
-            string IdUser = usuario.Rows[0]["id_usuario"].ToString() ;
+            string IdUser = usuario.Rows[0]["id_usuario"].ToString();
 
             if (txtSenha.Text == senha)
             {
@@ -85,6 +85,13 @@ namespace ProjetoIntegradorSENAC.Logins
         {
             caixa frm = new caixa();
             frm.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            MainPrincipal main = new MainPrincipal();
+            main.Show();
+            this.Hide();
         }
     }
 }

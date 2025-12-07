@@ -32,18 +32,18 @@
             btnMeses = new Button();
             btnPadrao = new Button();
             groupBox1 = new GroupBox();
+            label1 = new Label();
             groupBox2 = new GroupBox();
+            label2 = new Label();
             groupBox3 = new GroupBox();
+            label3 = new Label();
             groupBox4 = new GroupBox();
+            label4 = new Label();
             groupBox5 = new GroupBox();
             grafico1 = new OxyPlot.WindowsForms.PlotView();
             groupBox6 = new GroupBox();
             grafico2 = new OxyPlot.WindowsForms.PlotView();
             comboBox1 = new ComboBox();
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -82,6 +82,7 @@
             // groupBox1
             // 
             groupBox1.Controls.Add(label1);
+            groupBox1.ForeColor = SystemColors.Control;
             groupBox1.Location = new Point(77, 142);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(250, 125);
@@ -89,9 +90,19 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "groupBox1";
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(80, 56);
+            label1.Name = "label1";
+            label1.Size = new Size(50, 20);
+            label1.TabIndex = 0;
+            label1.Text = "label1";
+            // 
             // groupBox2
             // 
             groupBox2.Controls.Add(label2);
+            groupBox2.ForeColor = SystemColors.Control;
             groupBox2.Location = new Point(452, 142);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(250, 125);
@@ -99,9 +110,19 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "groupBox2";
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(97, 56);
+            label2.Name = "label2";
+            label2.Size = new Size(50, 20);
+            label2.TabIndex = 0;
+            label2.Text = "label2";
+            // 
             // groupBox3
             // 
             groupBox3.Controls.Add(label3);
+            groupBox3.ForeColor = SystemColors.Control;
             groupBox3.Location = new Point(820, 142);
             groupBox3.Name = "groupBox3";
             groupBox3.Size = new Size(250, 125);
@@ -109,9 +130,19 @@
             groupBox3.TabStop = false;
             groupBox3.Text = "groupBox3";
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(95, 56);
+            label3.Name = "label3";
+            label3.Size = new Size(50, 20);
+            label3.TabIndex = 0;
+            label3.Text = "label3";
+            // 
             // groupBox4
             // 
             groupBox4.Controls.Add(label4);
+            groupBox4.ForeColor = SystemColors.Control;
             groupBox4.Location = new Point(1196, 142);
             groupBox4.Name = "groupBox4";
             groupBox4.Size = new Size(250, 125);
@@ -119,10 +150,20 @@
             groupBox4.TabStop = false;
             groupBox4.Text = "groupBox4";
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(94, 56);
+            label4.Name = "label4";
+            label4.Size = new Size(50, 20);
+            label4.TabIndex = 0;
+            label4.Text = "label4";
+            // 
             // groupBox5
             // 
             groupBox5.Controls.Add(grafico1);
             groupBox5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            groupBox5.ForeColor = SystemColors.Control;
             groupBox5.Location = new Point(77, 324);
             groupBox5.Name = "groupBox5";
             groupBox5.Size = new Size(625, 440);
@@ -146,6 +187,7 @@
             // 
             groupBox6.Controls.Add(grafico2);
             groupBox6.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            groupBox6.ForeColor = SystemColors.Control;
             groupBox6.Location = new Point(820, 324);
             groupBox6.Name = "groupBox6";
             groupBox6.Size = new Size(626, 440);
@@ -173,42 +215,7 @@
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(141, 28);
             comboBox1.TabIndex = 7;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(91, 56);
-            label1.Name = "label1";
-            label1.Size = new Size(50, 20);
-            label1.TabIndex = 0;
-            label1.Text = "label1";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(91, 56);
-            label2.Name = "label2";
-            label2.Size = new Size(50, 20);
-            label2.TabIndex = 0;
-            label2.Text = "label2";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(98, 56);
-            label3.Name = "label3";
-            label3.Size = new Size(50, 20);
-            label3.TabIndex = 0;
-            label3.Text = "label3";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(113, 56);
-            label4.Name = "label4";
-            label4.Size = new Size(50, 20);
-            label4.TabIndex = 0;
-            label4.Text = "label4";
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // dashboard
             // 

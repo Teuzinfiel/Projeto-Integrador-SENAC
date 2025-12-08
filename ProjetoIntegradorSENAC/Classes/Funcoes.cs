@@ -51,83 +51,58 @@ namespace ProjetoIntegradorSENAC.Classes
 
         public static bool isCpf(string cpf)
         {
- 
-            int c = 0;
-            int j = 10;
 
-            cpf = cpf.Trim();
-            cpf = cpf.Replace(".", "").Replace("-", "").Replace("/", "").Replace(",", "");
+            cpf = cpf.Trim()
+              .Replace(".", "")
+              .Replace("-", "")
+              .Replace("/", "")
+              .Replace(",", "");
 
-            if (cpf == "00000000000")
-            {
+            // Se não tiver 11 dígitos → inválido
+            if (cpf.Length != 11)
                 return false;
-            }
 
-            int cpfD1 = int.Parse(cpf[9].ToString());
-            int cpfD2 = int.Parse(cpf[10].ToString());
+            // Se tiver letras → inválido
+            if (!cpf.All(char.IsDigit))
+                return false;
 
-            int[] val = new int[11];
-
-            while (c < 9 && j > 1)
+            // Evita CPFs repetidos (00000000000, 11111111111 etc)
+            string[] invalidos =
             {
-                val[c] = int.Parse(cpf[c].ToString()) * j;
-                c++;
-                j--;
-            }
+        "00000000000", "11111111111", "22222222222", "33333333333",
+        "44444444444", "55555555555", "66666666666", "77777777777",
+        "88888888888", "99999999999"
+    };
+
+            if (invalidos.Contains(cpf))
+                return false;
+
+            // -------- CALCULAR CPF -------- //
+
+            int[] multiplicador1 = { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+            int[] multiplicador2 = { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+
+            string tempCpf = cpf.Substring(0, 9);
+            int soma = 0;
 
             for (int i = 0; i < 9; i++)
+                soma += int.Parse(tempCpf[i].ToString()) * multiplicador1[i];
 
-            {
-                val[9] += val[i];
-            }
+            int resto = soma % 11;
+            int dig1 = resto < 2 ? 0 : 11 - resto;
 
-            if (val[9] % 11 <= 1)
-
-            {
-                val[9] = 0;
-            }
-
-            else
-
-            {
-                val[9] = 11 - val[9] % 11;
-            }
-
-            int d1 = val[9];
-
-            c = 0; j = 11;
-
-            while (c < 11 && j > 1)
-            {
-                val[c] = int.Parse(cpf[c].ToString()) * j;
-                c++;
-                j--;
-            }
+            tempCpf += dig1;
+            soma = 0;
 
             for (int i = 0; i < 10; i++)
-            {
-                val[10] += val[i];
-            }
+                soma += int.Parse(tempCpf[i].ToString()) * multiplicador2[i];
 
-            if (val[10] % 11 <= 1)
-            {
-                val[10] = 0;
-            }
-            else
-            {
-                val[10] = 11 - val[10] % 11;
-            }
+            resto = soma % 11;
+            int dig2 = resto < 2 ? 0 : 11 - resto;
 
-            int d2 = val[10];
+            string digitos = dig1.ToString() + dig2.ToString();
 
-            if (d1 == cpfD1 && d2 == cpfD2)
-
-                return true;
-
-            else
-
-                return false;
-
+            return cpf.EndsWith(digitos);
         }
 
         public static void Limpar(Control ctrl)
@@ -215,6 +190,41 @@ namespace ProjetoIntegradorSENAC.Classes
                 return !((DateTimePicker)c).Checked; // só funciona se ShowCheckBox = true
 
             return false;
+        }
+        public static bool isEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                return false;
+
+            string padrao = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            return Regex.IsMatch(email, padrao, RegexOptions.IgnoreCase);
+        }
+
+        public static bool isTelefone(string telefone)
+        {
+            if (string.IsNullOrWhiteSpace(telefone))
+                return false;
+
+            // Pega só os números
+            string digits = new string(telefone.Where(char.IsDigit).ToArray());
+
+            // Telefone deve ter 10 (fixo) ou 11 (celular) dígitos
+            if (digits.Length != 10 && digits.Length != 11)
+                return false;
+
+            // DDD (primeiros 2 dígitos)
+            int ddd = int.Parse(digits.Substring(0, 2));
+
+            // DDD no Brasil sempre 11–99
+            if (ddd < 11 || ddd > 99)
+                return false;
+
+            // Se for celular (11 dígitos), obrigatoriamente começa com 9
+            if (digits.Length == 11 && digits[2] != '9')
+                return false;
+
+            // Se passou por tudo → telefone válido
+            return true;
         }
 
         public static List<string> prencheer(DataTable consulta)

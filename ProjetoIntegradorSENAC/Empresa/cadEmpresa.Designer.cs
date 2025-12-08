@@ -32,6 +32,7 @@
             btnMinimizar = new Button();
             btnSair = new Button();
             panel1 = new Panel();
+            mkTelefone = new MaskedTextBox();
             label17 = new Label();
             label16 = new Label();
             label15 = new Label();
@@ -44,7 +45,6 @@
             label6 = new Label();
             txtEmail = new TextBox();
             label5 = new Label();
-            mkTelefone = new MaskedTextBox();
             label4 = new Label();
             label3 = new Label();
             panel3 = new Panel();
@@ -104,6 +104,7 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(40, 40, 50);
+            panel1.Controls.Add(mkTelefone);
             panel1.Controls.Add(label17);
             panel1.Controls.Add(label16);
             panel1.Controls.Add(label15);
@@ -116,7 +117,6 @@
             panel1.Controls.Add(label6);
             panel1.Controls.Add(txtEmail);
             panel1.Controls.Add(label5);
-            panel1.Controls.Add(mkTelefone);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(panel3);
@@ -130,6 +130,18 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(975, 672);
             panel1.TabIndex = 6;
+            // 
+            // mkTelefone
+            // 
+            mkTelefone.BackColor = Color.White;
+            mkTelefone.Font = new Font("Franklin Gothic Book", 20.25F);
+            mkTelefone.ForeColor = Color.FromArgb(40, 40, 50);
+            mkTelefone.Location = new Point(60, 396);
+            mkTelefone.Mask = "(00) 00000-0000";
+            mkTelefone.Name = "mkTelefone";
+            mkTelefone.Size = new Size(558, 38);
+            mkTelefone.TabIndex = 35;
+            mkTelefone.TextChanged += mkTelefone_TextChanged;
             // 
             // label17
             // 
@@ -203,6 +215,7 @@
             btnSalvar.TabIndex = 29;
             btnSalvar.Text = "Salvar";
             btnSalvar.UseVisualStyleBackColor = false;
+            btnSalvar.Click += btnSalvar_Click;
             // 
             // btnVoltar
             // 
@@ -273,18 +286,6 @@
             label5.Size = new Size(184, 25);
             label5.TabIndex = 23;
             label5.Text = "Numero de Telefone";
-            // 
-            // mkTelefone
-            // 
-            mkTelefone.BackColor = Color.White;
-            mkTelefone.Font = new Font("Franklin Gothic Book", 20.25F);
-            mkTelefone.ForeColor = Color.FromArgb(40, 40, 50);
-            mkTelefone.Location = new Point(60, 396);
-            mkTelefone.Mask = "  (99) 00000-0000";
-            mkTelefone.Name = "mkTelefone";
-            mkTelefone.Size = new Size(857, 38);
-            mkTelefone.TabIndex = 22;
-            mkTelefone.TextChanged += mkTelefone_TextChanged;
             // 
             // label4
             // 
@@ -480,6 +481,7 @@
             Name = "cadEmpresa";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "cadEmpresa";
+            Load += cadEmpresa_Load;
             panel2.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -506,7 +508,6 @@
         private Label label3;
         private Label label4;
         private Label label5;
-        private MaskedTextBox mkTelefone;
         private Label label6;
         private TextBox txtEmail;
         private Label label8;
@@ -523,5 +524,6 @@
         private Label label14;
         private Label label17;
         private Label label16;
+        private MaskedTextBox mkTelefone;
     }
 }

@@ -1,22 +1,22 @@
 ﻿using ProjetoIntegradorSENAC.Classes;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ProjetoIntegradorSENAC.Empresa
 {
     public partial class cadEmpresa : Form
     {
+        public string idUsuario;
+
         public cadEmpresa()
         {
             InitializeComponent();
+        }
+
+        private void cadEmpresa_Load(object sender, EventArgs e)
+        {
+
         }
 
         private void btnSair_Click(object sender, EventArgs e)
@@ -27,36 +27,50 @@ namespace ProjetoIntegradorSENAC.Empresa
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
             label4.Text = "CNPJ:";
+            erroCpf = false;
             mkCPF.Visible = false;
             mkCNPJ.Visible = true;
+            mkCPF.Clear();
+            mkCNPJ.Clear();
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             label4.Text = "CPF:";
+            erroCnpj = false;
             mkCNPJ.Visible = false;
             mkCPF.Visible = true;
+            mkCPF.Clear();
+            mkCNPJ.Clear();
         }
 
+        // >>>>>>>>>> CORREÇÃO DO BOTÃO VOLTAR <<<<<<<<<<
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            frmEmpresa frmEmpresa = new frmEmpresa();
-            frmEmpresa.Show();
+            frmEmpresa frm = new frmEmpresa();
+            frm.idUsuario = this.idUsuario; // <-- PASSA O ID DE VOLTA
+            frm.Show();
             this.Hide();
         }
-        bool errorFlag = false;
+
+        bool erroRazao = true;
+        bool erroFantasia = true;
+        bool erroCnpj = true;
+        bool erroCpf = true;
+        bool erroTelefone = true;
+        bool erroEmail = true;
+
         private void txtRazaoSocial_TextChanged(object sender, EventArgs e)
         {
-            string RazaoSocial = txtRazaoSocial.Text;
             if (Funcoes.CampoVazio(txtRazaoSocial))
             {
-                errorFlag = true;
+                erroRazao = true;
                 label13.Visible = true;
                 label2.ForeColor = Color.DarkRed;
             }
             else
             {
-                errorFlag = false;
+                erroRazao = false;
                 label13.Visible = false;
                 label2.ForeColor = Color.White;
             }
@@ -64,16 +78,15 @@ namespace ProjetoIntegradorSENAC.Empresa
 
         private void txtNomeFantasia_TextChanged(object sender, EventArgs e)
         {
-            string NomeFantasia = txtNomeFantasia.Text;
             if (Funcoes.CampoVazio(txtNomeFantasia))
             {
-                errorFlag = true;
+                erroFantasia = true;
                 label14.Visible = true;
                 label1.ForeColor = Color.DarkRed;
             }
-            else 
+            else
             {
-                errorFlag = false;
+                erroFantasia = false;
                 label14.Visible = false;
                 label1.ForeColor = Color.White;
             }
@@ -81,36 +94,93 @@ namespace ProjetoIntegradorSENAC.Empresa
 
         private void mkCNPJ_TextChanged(object sender, EventArgs e)
         {
-            
-            string cnpj = mkCNPJ.Text;
-            if (Funcoes.isCnpj(cnpj))
+            if (Funcoes.isCnpj(mkCNPJ.Text))
             {
-                errorFlag = false;
-                label4.ForeColor = Color.White;
+                erroCnpj = false;
                 label15.Visible = false;
+                label4.ForeColor = Color.White;
             }
             else
             {
-                errorFlag = true;
+                erroCnpj = true;
                 label15.Visible = true;
                 label4.ForeColor = Color.DarkRed;
             }
         }
+
         private void mkCPF_TextChanged(object sender, EventArgs e)
         {
-            string cpf = mkCPF.Text;
+            if (Funcoes.isCpf(mkCPF.Text))
+            {
+                erroCpf = false;
+                label15.Visible = false;
+                label4.ForeColor = Color.White;
+            }
+            else
+            {
+                erroCpf = true;
+                label15.Visible = true;
+                label4.ForeColor = Color.DarkRed;
+            }
         }
 
         private void mkTelefone_TextChanged(object sender, EventArgs e)
         {
-            string Telefone = mkTelefone.Text;
+             if (Funcoes.isTelefone(mkTelefone.Text))
+             {
+                 erroTelefone = false;
+                 label16.Visible = false;
+                 label5.ForeColor = Color.White;
+             }
+             else
+             {
+                 erroTelefone = true;
+                 label16.Visible = true;
+                 label5.ForeColor = Color.DarkRed;
+             }
+            
         }
 
         private void txtEmail_TextChanged(object sender, EventArgs e)
         {
-            string Email = txtEmail.Text;
+            if (Funcoes.isEmail(txtEmail.Text))
+            {
+                erroEmail = false;
+                label17.Visible = false;
+                label6.ForeColor = Color.White;
+            }
+            else
+            {
+                erroEmail = true;
+                label17.Visible = true;
+                label6.ForeColor = Color.DarkRed;
+            }
         }
 
-      
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+            if (erroRazao || erroFantasia || erroCnpj || erroCpf || erroTelefone || erroEmail)
+            {
+                MessageBox.Show("Preencha corretamente todos os campos!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            string telefone = mkTelefone.Text;
+            string nome = txtRazaoSocial.Text;
+            string nomeFantasia = txtNomeFantasia.Text;
+            string email = txtEmail.Text;
+            string tipoDoc = radioButton1.Checked ? "cpf" : "cnpj";
+            string doc = radioButton1.Checked ? mkCPF.Text : mkCNPJ.Text;
+
+            string insert = $@"
+        INSERT INTO comercios 
+        (dono_id, nome, nome_fantasia, email, tipo_documentacao, documentacao, telefone)
+        VALUES  ('{idUsuario}', '{nome}', '{nomeFantasia}', '{email}', '{tipoDoc}', '{doc}', '{telefone}')
+    ";
+
+            Banco.Inserir(insert);
+            MessageBox.Show("Empresa cadastrada com sucesso!");
+        }
+
+     
     }
 }

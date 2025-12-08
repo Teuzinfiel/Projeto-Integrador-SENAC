@@ -94,7 +94,7 @@
             dataGridViewCellStyle4.SelectionForeColor = Color.White;
             dtgProdutos.RowsDefaultCellStyle = dataGridViewCellStyle4;
             dtgProdutos.RowTemplate.Height = 40;
-            dtgProdutos.Size = new Size(514, 267);
+            dtgProdutos.Size = new Size(562, 267);
             dtgProdutos.TabIndex = 6;
             dtgProdutos.CellClick += dtgProdutos_CellClick;
             // 
@@ -104,7 +104,7 @@
             btnCancelar.FlatStyle = FlatStyle.Popup;
             btnCancelar.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnCancelar.ForeColor = Color.White;
-            btnCancelar.Location = new Point(341, 550);
+            btnCancelar.Location = new Point(198, 500);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(185, 35);
             btnCancelar.TabIndex = 9;
@@ -118,7 +118,7 @@
             btnCompra.FlatStyle = FlatStyle.Popup;
             btnCompra.Font = new Font("Franklin Gothic Medium", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnCompra.ForeColor = Color.White;
-            btnCompra.Location = new Point(341, 497);
+            btnCompra.Location = new Point(389, 497);
             btnCompra.Name = "btnCompra";
             btnCompra.Size = new Size(185, 38);
             btnCompra.TabIndex = 10;

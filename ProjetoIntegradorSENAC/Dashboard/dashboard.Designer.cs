@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            btnPadrao = new Button();
             groupBox1 = new GroupBox();
             label1 = new Label();
             groupBox2 = new GroupBox();
@@ -42,8 +41,9 @@
             groupBox6 = new GroupBox();
             grafico2 = new OxyPlot.WindowsForms.PlotView();
             comboBox1 = new ComboBox();
-            button1 = new Button();
-            button2 = new Button();
+            btnProduto = new Button();
+            btnPadrao = new Button();
+            btnMeses = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -51,20 +51,6 @@
             groupBox5.SuspendLayout();
             groupBox6.SuspendLayout();
             SuspendLayout();
-            // 
-            // btnPadrao
-            // 
-            btnPadrao.BackColor = SystemColors.Highlight;
-            btnPadrao.Cursor = Cursors.Hand;
-            btnPadrao.FlatStyle = FlatStyle.Popup;
-            btnPadrao.Font = new Font("Franklin Gothic Medium", 15F);
-            btnPadrao.ForeColor = Color.White;
-            btnPadrao.Location = new Point(323, 53);
-            btnPadrao.Name = "btnPadrao";
-            btnPadrao.Size = new Size(142, 54);
-            btnPadrao.TabIndex = 2;
-            btnPadrao.Text = "Padrão";
-            btnPadrao.UseVisualStyleBackColor = false;
             // 
             // groupBox1
             // 
@@ -212,33 +198,50 @@
             comboBox1.TabIndex = 7;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
-            // button1
+            // btnProduto
             // 
-            button1.BackColor = SystemColors.Highlight;
-            button1.Cursor = Cursors.Hand;
-            button1.FlatStyle = FlatStyle.Popup;
-            button1.Font = new Font("Franklin Gothic Medium", 15F);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(696, 53);
-            button1.Name = "button1";
-            button1.Size = new Size(142, 54);
-            button1.TabIndex = 8;
-            button1.Text = "Meses";
-            button1.UseVisualStyleBackColor = false;
+            btnProduto.BackColor = SystemColors.Highlight;
+            btnProduto.Cursor = Cursors.Hand;
+            btnProduto.FlatStyle = FlatStyle.Popup;
+            btnProduto.Font = new Font("Franklin Gothic Medium", 15F);
+            btnProduto.ForeColor = Color.White;
+            btnProduto.Location = new Point(1073, 53);
+            btnProduto.Name = "btnProduto";
+            btnProduto.Size = new Size(142, 54);
+            btnProduto.TabIndex = 9;
+            btnProduto.Text = "Produtos";
+            btnProduto.UseVisualStyleBackColor = false;
+            btnProduto.Click += btnProduto_Click;
             // 
-            // button2
+            // btnPadrao
             // 
-            button2.BackColor = SystemColors.Highlight;
-            button2.Cursor = Cursors.Hand;
-            button2.FlatStyle = FlatStyle.Popup;
-            button2.Font = new Font("Franklin Gothic Medium", 15F);
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(1073, 53);
-            button2.Name = "button2";
-            button2.Size = new Size(142, 54);
-            button2.TabIndex = 9;
-            button2.Text = "Produtos";
-            button2.UseVisualStyleBackColor = false;
+            btnPadrao.BackColor = SystemColors.Highlight;
+            btnPadrao.Cursor = Cursors.Hand;
+            btnPadrao.FlatStyle = FlatStyle.Popup;
+            btnPadrao.Font = new Font("Franklin Gothic Medium", 15F);
+            btnPadrao.ForeColor = Color.White;
+            btnPadrao.Location = new Point(387, 53);
+            btnPadrao.Name = "btnPadrao";
+            btnPadrao.Size = new Size(142, 54);
+            btnPadrao.TabIndex = 10;
+            btnPadrao.Text = "Padrão";
+            btnPadrao.UseVisualStyleBackColor = false;
+            btnPadrao.Click += btnPadrao_Click;
+            // 
+            // btnMeses
+            // 
+            btnMeses.BackColor = SystemColors.Highlight;
+            btnMeses.Cursor = Cursors.Hand;
+            btnMeses.FlatStyle = FlatStyle.Popup;
+            btnMeses.Font = new Font("Franklin Gothic Medium", 15F);
+            btnMeses.ForeColor = Color.White;
+            btnMeses.Location = new Point(708, 53);
+            btnMeses.Name = "btnMeses";
+            btnMeses.Size = new Size(142, 54);
+            btnMeses.TabIndex = 11;
+            btnMeses.Text = "Meses";
+            btnMeses.UseVisualStyleBackColor = false;
+            btnMeses.Click += btnMeses_Click;
             // 
             // dashboard
             // 
@@ -246,8 +249,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(45, 45, 60);
             ClientSize = new Size(1515, 915);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(btnMeses);
+            Controls.Add(btnPadrao);
+            Controls.Add(btnProduto);
             Controls.Add(comboBox1);
             Controls.Add(groupBox6);
             Controls.Add(groupBox5);
@@ -255,7 +259,6 @@
             Controls.Add(groupBox3);
             Controls.Add(groupBox4);
             Controls.Add(groupBox1);
-            Controls.Add(btnPadrao);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
             Name = "dashboard";
@@ -275,7 +278,6 @@
         }
 
         #endregion
-        private Button btnPadrao;
         private GroupBox groupBox1;
         private GroupBox groupBox2;
         private GroupBox groupBox3;
@@ -289,7 +291,8 @@
         private Label label2;
         private Label label3;
         private Label label4;
-        private Button button1;
-        private Button button2;
+        private Button btnProduto;
+        private Button btnPadrao;
+        private Button btnMeses;
     }
 }

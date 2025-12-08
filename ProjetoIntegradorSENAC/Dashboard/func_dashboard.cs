@@ -23,14 +23,14 @@ namespace ProjetoIntegradorSENAC.Dashboard
         private static string usuario = "root";
         private static string senha = "gustavo951873";
 
-        public static string strCon= $"server={server};database={database};uid={usuario};password={senha}";
+        public static string strCon = $"server={server};database={database};uid={usuario};password={senha}";
 
 
-        public static void carregarInfoPadrao(Label label1, Label label2, Label label3, 
+        public static void carregarInfoPadrao(Label label1, Label label2, Label label3,
             Label label4, string meses, GroupBox groupBox1, GroupBox groupBox2,
             GroupBox groupBox3, GroupBox groupBox4)
         {
-           
+
             DataTable tabela = ExecutarSelect("SELECT " +
             " (SELECT SUM(v.total) FROM vendas v) AS receita_total, " +
             " (SELECT SUM(iv.quantidade) FROM items_venda iv) AS quantidade_total_vendida, " +
@@ -43,13 +43,13 @@ namespace ProjetoIntegradorSENAC.Dashboard
             label1.Text = tabela.Rows[0]["receita_total"].ToString();
             label2.Text = tabela.Rows[0]["quantidade_total_vendida"].ToString();
             label3.Text = tabela.Rows[0]["produto_mais_vendido"].ToString();
-            label4.Text = tabela.Rows[0]["produto_maior_receita"].ToString(); 
+            label4.Text = tabela.Rows[0]["produto_maior_receita"].ToString();
             groupBox1.Text = "Receita Total";
             groupBox2.Text = "Quantidade Total Vendida";
             groupBox3.Text = "Produto Mais Vendido";
             groupBox4.Text = "Produto com Maior Receita";
-                        
-            
+
+
 
         }
 

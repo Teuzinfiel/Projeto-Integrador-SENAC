@@ -2,6 +2,7 @@
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
+using ProjetoIntegradorSENAC.Classes;
 using ProjetoIntegradorSENAC.Logins;
 
 namespace ProjetoIntegradorSENAC.Empresa
@@ -17,18 +18,46 @@ namespace ProjetoIntegradorSENAC.Empresa
 
         private void frmEmpresa_Load(object sender, EventArgs e)
         {
-            dtgEmpresas.ColumnCount = 1;
-            dtgEmpresas.Columns[0].Name = "Nome do Comercio";
-            dtgEmpresas.Rows.Add("Trailer - Praia da costa");
-            dtgEmpresas.Rows.Add("Vendas de chup chup - Vitoria");
-            dtgEmpresas.Rows.Add("Lojinha de pecas - Cariacica");
+            try
+            {
+                string query = $@"
+                            SELECT 
+                                comercios.id AS id_comercio,
+                                usuarios.id AS id_dono,
+                                usuarios.nome AS dono,
+                                comercios.nome AS comercio,
+                                comercios.nome_fantasia AS fantasia,
+                                comercios.telefone AS telefone
+                            FROM comercios
+                            JOIN usuarios ON usuarios.id = comercios.dono_id
+                            WHERE comercios.dono_id = '{idUsuario}'  ";
+                DataTable dt = Banco.Pesquisar(query);
+
+                dtgEmpresas.DataSource = dt;
+                dtgEmpresas.Columns["id_comercio"].Visible = false;
+                dtgEmpresas.Columns["id_dono"].Visible = false;         
+                dtgEmpresas.Columns["dono"].HeaderText = "Gerente";
+                dtgEmpresas.Columns["comercio"].HeaderText = "Comércio";
+                dtgEmpresas.Columns["fantasia"].HeaderText = "Nome Fantasia";
+                dtgEmpresas.Columns["telefone"].HeaderText = "Telefone";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao carregar empresas: " + ex.Message);
+            }
             dtgEmpresas.ClearSelection();
         }
 
         private void dtgEmpresas_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            MainPrincipal mainPrincipal = new MainPrincipal();
-            mainPrincipal.Show();
+            if (e.RowIndex < 0) return;
+
+            string idComercio = dtgEmpresas.Rows[e.RowIndex].Cells["id_comercio"].Value.ToString();
+            string idDono = dtgEmpresas.Rows[e.RowIndex].Cells["id_dono"].Value.ToString();
+            string idUsuario = dtgEmpresas.Rows[e.RowIndex].Cells["id_dono"].Value.ToString();
+
+            MainPrincipal main = new MainPrincipal(idComercio, idDono, idUsuario);
+            main.Show();
             this.Hide();
         }
 
@@ -64,10 +93,7 @@ namespace ProjetoIntegradorSENAC.Empresa
         private void button1_Click(object sender, EventArgs e)
         {
             cadEmpresa cad = new cadEmpresa();
-
-            // >>>>>>>>>> CORREÇÃO IMPORTANTE <<<<<<<<<<
             cad.idUsuario = this.idUsuario;
-
             cad.Show();
             this.Hide();
         }

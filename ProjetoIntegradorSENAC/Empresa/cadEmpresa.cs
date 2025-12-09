@@ -44,7 +44,7 @@ namespace ProjetoIntegradorSENAC.Empresa
             mkCNPJ.Clear();
         }
 
-        // >>>>>>>>>> CORREÇÃO DO BOTÃO VOLTAR <<<<<<<<<<
+  
         private void btnVoltar_Click(object sender, EventArgs e)
         {
             frmEmpresa frm = new frmEmpresa();
@@ -179,6 +179,7 @@ namespace ProjetoIntegradorSENAC.Empresa
 
             Banco.Inserir(insert);
             MessageBox.Show("Empresa cadastrada com sucesso!");
+            Funcoes.Limpar(this);
         }
 
      

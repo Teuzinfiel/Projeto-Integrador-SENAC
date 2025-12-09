@@ -24,23 +24,32 @@ namespace ProjetoIntegradorSENAC.Logins
         private void btnLogin_Click(object sender, EventArgs e)
         {
 
-            string query = $"select id,nome, senha from usuarios where nome = '{txtNome.Text}'";
+        
+            string query = $"SELECT id, nome, senha FROM usuarios WHERE nome = '{txtNome.Text}'";
+            DataTable usuario = Banco.Pesquisar(query);
 
-            var usuario = Banco.Pesquisar(query);
-
-            string senha = usuario.Rows[0]["senha"].ToString();
-            string IdUser = usuario.Rows[0]["id"].ToString();
-
-            if (txtSenha.Text == senha)
+          
+            if (usuario.Rows.Count == 0)
             {
+                MessageBox.Show("Usuário não encontrado!");
+                return;
+            }
 
+         
+            string senhaBanco = usuario.Rows[0]["senha"].ToString();
+            string idUser = usuario.Rows[0]["id"].ToString();
+
+            if (txtSenha.Text == senhaBanco)
+            {
                 frmEmpresa frmEmpresa = new frmEmpresa();
-                frmEmpresa.idUsuario = IdUser;
+                frmEmpresa.idUsuario = idUser;
                 frmEmpresa.Show();
                 this.Hide();
             }
-            else MessageBox.Show("senha incorreta camarada");
-
+            else
+            {
+                MessageBox.Show("Senha incorreta!");
+            }
         }
 
         private void btnSair_Click(object sender, EventArgs e)
@@ -81,17 +90,5 @@ namespace ProjetoIntegradorSENAC.Logins
             this.Hide();
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            caixa frm = new caixa();
-            frm.Show();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            MainPrincipal main = new MainPrincipal();
-            main.Show();
-            this.Hide();
-        }
     }
 }

@@ -150,6 +150,7 @@
             button1.TabIndex = 8;
             button1.Text = "Configuracoes";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // btnProdutos
             // 

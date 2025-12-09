@@ -13,9 +13,15 @@ namespace ProjetoIntegradorSENAC
 {
     public partial class MainPrincipal : Form
     {
-        public MainPrincipal()
+        public string idEmpresa;
+        public string idDono;
+        public string idUsuario;
+        public MainPrincipal(string idEmpresa, string idDono, string idUsuario)
         {
             InitializeComponent();
+            this.idEmpresa = idEmpresa;
+            this.idDono = idDono;
+            this.idUsuario = idUsuario;
         }
         private void AbrirFormNoPanel(Form formFilho)
         {
@@ -88,9 +94,15 @@ namespace ProjetoIntegradorSENAC
 
         private void btnLogOut_Click(object sender, EventArgs e)
         {
-            frmEmpresa frmEmpresa = new frmEmpresa();
-            frmEmpresa.Show();
+            frmEmpresa frm = new frmEmpresa();
+            frm.idUsuario = this.idUsuario;
+            frm.Show();
             this.Hide();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(idEmpresa, idDono);
         }
     }
 }

@@ -44,7 +44,7 @@ namespace ProjetoIntegradorSENAC.Logins
                 frmEmpresa frmEmpresa = new frmEmpresa();
                 frmEmpresa.idUsuario = idUser;
                 frmEmpresa.Show();
-                this.Close();
+                //this.Close();
             }
             else
             {

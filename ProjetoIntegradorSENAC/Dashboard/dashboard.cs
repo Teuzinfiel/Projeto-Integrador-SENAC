@@ -19,14 +19,25 @@ namespace ProjetoIntegradorSENAC.Dashboard
 {
     public partial class dashboard : Form
     {
-        public dashboard()
+        private int idEmpresa;
+        private Dictionary<string, object> parametros;
+        public dashboard(int idEmpresa)
         {
             InitializeComponent();
+            this.idEmpresa = idEmpresa;
+            parametros = new Dictionary<string, object>()
+        {
+            { "@idEmpresa", idEmpresa }
+        };
         }
         string meses;
         bool padraoBoo = true;
         bool mesesBoo = false;
         bool produtoBoo = false;
+        
+
+        
+
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             meses = "1";
@@ -36,19 +47,19 @@ namespace ProjetoIntegradorSENAC.Dashboard
             if (padraoBoo)
             {
                 func_dashboard.carregarInfoPadrao(label1, label2, label3, label4, meses, groupBox1,
-                groupBox2, groupBox3, groupBox4);
+                groupBox2, groupBox3, groupBox4, idEmpresa, parametros);
                 load_grafico_padrao();
             }
             else if (mesesBoo)
             {
                 load_grafico_meses();
                 func_dashboard.carregarInfoMeses(label1, label2, label3, label4, meses, groupBox1,
-                groupBox2, groupBox3, groupBox4);
+                groupBox2, groupBox3, groupBox4, idEmpresa, parametros);
             }
             else if (produtoBoo)
             {
                 func_dashboard.carregarInfoProdutos(label1, label2, label3, label4, meses, groupBox1,
-                groupBox2, groupBox3, groupBox4);
+                groupBox2, groupBox3, groupBox4, idEmpresa, parametros);
                 load_grafico_produto();
             }
 
@@ -70,7 +81,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             FROM items_venda iv 
             JOIN produtos p ON p.id = iv.produtos_id 
             GROUP BY p.id, p.nome 
-            ORDER BY total_vendido DESC LIMIT 5");
+            ORDER BY total_vendido DESC LIMIT 5" , null);
 
 
             foreach (DataRow row in tabela.Rows)
@@ -94,14 +105,18 @@ namespace ProjetoIntegradorSENAC.Dashboard
             var pieSeries = new PieSeries { StrokeThickness = 1.0, InsideLabelPosition = 0.8, AngleSpan = 360, StartAngle = 0 };
 
             DataTable tabela2 = func_dashboard.ExecutarSelect(
-            @"SELECT p.categoria, 
-            SUM(iv.quantidade) AS total_vendido 
-            FROM items_venda iv 
-            JOIN produtos p ON p.id = iv.produtos_id 
-            JOIN vendas v ON v.id = iv.vendas_id 
-            GROUP BY p.categoria 
-            ORDER BY total_vendido DESC 
-            LIMIT 5;");
+            @"SELECT 
+    p.categoria,
+    SUM(iv.quantidade) AS total_vendido
+FROM items_venda iv
+JOIN produtos p ON p.id = iv.produtos_id
+JOIN vendas v ON v.id = iv.vendas_id
+JOIN funcionarios f ON f.id = v.funcionario_id
+WHERE f.comercio_id = @idEmpresa
+GROUP BY p.categoria
+ORDER BY total_vendido DESC
+LIMIT 5;
+", parametros);
 
             foreach (DataRow row in tabela2.Rows)
             {
@@ -127,11 +142,19 @@ namespace ProjetoIntegradorSENAC.Dashboard
 
             var barSeries = new BarSeries { Title = "Vendas", FillColor = OxyColors.SkyBlue };
 
-            DataTable tabela = func_dashboard.ExecutarSelect(@"SELECT p.id, p.nome, SUM(iv.quantidade) AS total_vendido 
-            FROM items_venda iv 
-            JOIN produtos p ON p.id = iv.produtos_id 
-            GROUP BY p.id, p.nome 
-            ORDER BY total_vendido DESC LIMIT 5");
+            DataTable tabela = func_dashboard.ExecutarSelect(@"SELECT 
+    p.id,
+    p.nome,
+    SUM(iv.quantidade) AS total_vendido
+FROM items_venda iv
+JOIN produtos p ON p.id = iv.produtos_id
+JOIN vendas v ON v.id = iv.vendas_id
+JOIN funcionarios f ON f.id = v.funcionario_id
+WHERE f.comercio_id = @idEmpresa
+GROUP BY p.id, p.nome
+ORDER BY total_vendido DESC
+LIMIT 5;
+", parametros);
 
 
             foreach (DataRow row in tabela.Rows)
@@ -162,14 +185,18 @@ namespace ProjetoIntegradorSENAC.Dashboard
             DataTable tabela2 = func_dashboard.ExecutarSelect(
             @"
             SELECT 
-            p.id, 
-            p.nome AS produto, 
-            SUM(iv.preco_unitario * iv.quantidade) AS receita
-            FROM items_venda iv
-            JOIN produtos p ON p.id = iv.produtos_id
-            GROUP BY p.id
-            ORDER BY receita DESC
-            LIMIT 5");
+    p.id,
+    p.nome AS produto,
+    SUM(iv.preco_unitario * iv.quantidade) AS receita
+FROM items_venda iv
+JOIN produtos p ON p.id = iv.produtos_id
+JOIN vendas v ON v.id = iv.vendas_id
+JOIN funcionarios f ON f.id = v.funcionario_id
+WHERE f.comercio_id = @idEmpresa
+GROUP BY p.id, p.nome
+ORDER BY receita DESC
+LIMIT 5;
+", parametros);
 
             foreach (DataRow row in tabela2.Rows)
             {
@@ -201,7 +228,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             "FROM items_venda iv " +
             " JOIN produtos p ON p.id = iv.produtos_id " +
             "GROUP BY p.id, p.nome " +
-            "ORDER BY total_vendido DESC LIMIT 5");
+            "ORDER BY total_vendido DESC LIMIT 5", null);
 
 
             foreach (DataRow row in tabela.Rows)
@@ -232,7 +259,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             "JOIN vendas v ON v.id = iv.vendas_id " +
             "GROUP BY p.categoria " +
             "ORDER BY total_vendido DESC " +
-            "LIMIT 5;");
+            "LIMIT 5;", null);
 
             foreach (DataRow row in tabela2.Rows)
             {
@@ -258,7 +285,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             padraoBoo = true;
             mesesBoo = false;
             func_dashboard.carregarInfoPadrao(label1, label2, label3, label4, meses, groupBox1,
-            groupBox2, groupBox3, groupBox4);
+            groupBox2, groupBox3, groupBox4, idEmpresa, parametros);
             load_grafico_padrao();
         }
 
@@ -269,7 +296,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             mesesBoo = true;
             load_grafico_meses();
             func_dashboard.carregarInfoMeses(label1, label2, label3, label4, meses, groupBox1,
-            groupBox2, groupBox3, groupBox4);
+            groupBox2, groupBox3, groupBox4, idEmpresa, parametros);
         }
 
         private void btnProduto_Click(object sender, EventArgs e)
@@ -279,7 +306,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             mesesBoo = false;
             load_grafico_produto();
             func_dashboard.carregarInfoProdutos(label1, label2, label3, label4, meses, groupBox1,
-            groupBox2, groupBox3, groupBox4);
+            groupBox2, groupBox3, groupBox4, idEmpresa, parametros);
         }
     }
 }

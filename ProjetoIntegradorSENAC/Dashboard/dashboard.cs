@@ -42,9 +42,13 @@ namespace ProjetoIntegradorSENAC.Dashboard
             else if (mesesBoo)
             {
                 load_grafico_meses();
+                func_dashboard.carregarInfoMeses(label1, label2, label3, label4, meses, groupBox1,
+                groupBox2, groupBox3, groupBox4);
             }
             else if (produtoBoo)
             {
+                func_dashboard.carregarInfoProdutos(label1, label2, label3, label4, meses, groupBox1,
+                groupBox2, groupBox3, groupBox4);
                 load_grafico_produto();
             }
 
@@ -62,11 +66,11 @@ namespace ProjetoIntegradorSENAC.Dashboard
 
             var barSeries = new BarSeries { Title = "Vendas", FillColor = OxyColors.SkyBlue };
 
-            DataTable tabela = func_dashboard.ExecutarSelect("SELECT p.id, p.nome, SUM(iv.quantidade) AS total_vendido " +
-            "FROM items_venda iv " +
-            " JOIN produtos p ON p.id = iv.produtos_id " +
-            "GROUP BY p.id, p.nome " +
-            "ORDER BY total_vendido DESC LIMIT 5");
+            DataTable tabela = func_dashboard.ExecutarSelect(@"SELECT p.id, p.nome, SUM(iv.quantidade) AS total_vendido 
+            FROM items_venda iv 
+            JOIN produtos p ON p.id = iv.produtos_id 
+            GROUP BY p.id, p.nome 
+            ORDER BY total_vendido DESC LIMIT 5");
 
 
             foreach (DataRow row in tabela.Rows)
@@ -90,14 +94,14 @@ namespace ProjetoIntegradorSENAC.Dashboard
             var pieSeries = new PieSeries { StrokeThickness = 1.0, InsideLabelPosition = 0.8, AngleSpan = 360, StartAngle = 0 };
 
             DataTable tabela2 = func_dashboard.ExecutarSelect(
-            "SELECT p.categoria, " +
-            "SUM(iv.quantidade) AS total_vendido " +
-            "FROM items_venda iv " +
-            "JOIN produtos p ON p.id = iv.produtos_id " +
-            "JOIN vendas v ON v.id = iv.vendas_id " +
-            "GROUP BY p.categoria " +
-            "ORDER BY total_vendido DESC " +
-            "LIMIT 5;");
+            @"SELECT p.categoria, 
+            SUM(iv.quantidade) AS total_vendido 
+            FROM items_venda iv 
+            JOIN produtos p ON p.id = iv.produtos_id 
+            JOIN vendas v ON v.id = iv.vendas_id 
+            GROUP BY p.categoria 
+            ORDER BY total_vendido DESC 
+            LIMIT 5;");
 
             foreach (DataRow row in tabela2.Rows)
             {
@@ -114,7 +118,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
         }
         public void load_grafico_produto()
         {
-            PlotModel modelo = new PlotModel { Title = "Top 4 produtos mais vendidios", TextColor = OxyColors.White, PlotAreaBorderColor = OxyColors.White };
+            PlotModel modelo = new PlotModel { Title = "Top 5 produtos mais vendidios", TextColor = OxyColors.White, PlotAreaBorderColor = OxyColors.White };
 
             var categoryAxis = new CategoryAxis { Position = AxisPosition.Left, Title = "Produtos", TicklineColor = OxyColors.White, };
             var linearAxis = new LinearAxis { Position = AxisPosition.Bottom, Title = "Quantidade", TicklineColor = OxyColors.White, };
@@ -123,11 +127,11 @@ namespace ProjetoIntegradorSENAC.Dashboard
 
             var barSeries = new BarSeries { Title = "Vendas", FillColor = OxyColors.SkyBlue };
 
-            DataTable tabela = func_dashboard.ExecutarSelect("SELECT p.id, p.nome, SUM(iv.quantidade) AS total_vendido " +
-            "FROM items_venda iv " +
-            " JOIN produtos p ON p.id = iv.produtos_id " +
-            "GROUP BY p.id, p.nome " +
-            "ORDER BY total_vendido DESC LIMIT 5");
+            DataTable tabela = func_dashboard.ExecutarSelect(@"SELECT p.id, p.nome, SUM(iv.quantidade) AS total_vendido 
+            FROM items_venda iv 
+            JOIN produtos p ON p.id = iv.produtos_id 
+            GROUP BY p.id, p.nome 
+            ORDER BY total_vendido DESC LIMIT 5");
 
 
             foreach (DataRow row in tabela.Rows)
@@ -147,29 +151,38 @@ namespace ProjetoIntegradorSENAC.Dashboard
             modelo.Series.Add(barSeries);
             grafico1.Model = modelo;
 
-            PlotModel modelo2 = new PlotModel { Title = "Top 5 categorias mais vendidas", TextColor = OxyColors.White, PlotAreaBorderColor = OxyColors.White };
-            var pieSeries = new PieSeries { StrokeThickness = 1.0, InsideLabelPosition = 0.8, AngleSpan = 360, StartAngle = 0 };
+            PlotModel modelo2 = new PlotModel { Title = "Top 5 produtos com mais receita", TextColor = OxyColors.White, PlotAreaBorderColor = OxyColors.White };
+            var categoryAxis2 = new CategoryAxis { Position = AxisPosition.Left, Title = "Produtos", TicklineColor = OxyColors.White, };
+            var linearAxis2 = new LinearAxis { Position = AxisPosition.Bottom, Title = "Receita", TicklineColor = OxyColors.White, };
+            modelo2.Axes.Add(categoryAxis2);
+            modelo2.Axes.Add(linearAxis2);
+
+            var barSeries2 = new BarSeries { Title = "Receita", FillColor = OxyColors.Orange };
 
             DataTable tabela2 = func_dashboard.ExecutarSelect(
-            "SELECT p.categoria, " +
-            "SUM(iv.quantidade) AS total_vendido " +
-            "FROM items_venda iv " +
-            "JOIN produtos p ON p.id = iv.produtos_id " +
-            "JOIN vendas v ON v.id = iv.vendas_id " +
-            "GROUP BY p.categoria " +
-            "ORDER BY total_vendido DESC " +
-            "LIMIT 5;");
+            @"
+            SELECT 
+            p.id, 
+            p.nome AS produto, 
+            SUM(iv.preco_unitario * iv.quantidade) AS receita
+            FROM items_venda iv
+            JOIN produtos p ON p.id = iv.produtos_id
+            GROUP BY p.id
+            ORDER BY receita DESC
+            LIMIT 5");
 
             foreach (DataRow row in tabela2.Rows)
             {
 
-                cls_Produto produto = new cls_Produto(
-
-                    categoria: row["categoria"].ToString()
+                ItemVenda item = new ItemVenda(
+                    produtoId: Convert.ToInt32(row["id"]),
+                    nomeProduto: row["produto"].ToString()
                 );
-                pieSeries.Slices.Add(new PieSlice(produto.Categoria, Convert.ToDouble(row["total_vendido"])) { IsExploded = false });
+                categoryAxis2.Labels.Add(item.NomeProduto);
+                barSeries2.Items.Add(new BarItem { Value = Convert.ToDouble(row["receita"]) });
+                
             }
-            modelo2.Series.Add(pieSeries);
+            modelo2.Series.Add(barSeries2);
             grafico2.Model = modelo2;
 
         }
@@ -255,6 +268,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
             padraoBoo = false;
             mesesBoo = true;
             load_grafico_meses();
+            func_dashboard.carregarInfoMeses(label1, label2, label3, label4, meses, groupBox1,
+            groupBox2, groupBox3, groupBox4);
         }
 
         private void btnProduto_Click(object sender, EventArgs e)
@@ -263,6 +278,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
             padraoBoo = false;
             mesesBoo = false;
             load_grafico_produto();
+            func_dashboard.carregarInfoProdutos(label1, label2, label3, label4, meses, groupBox1,
+            groupBox2, groupBox3, groupBox4);
         }
     }
 }

@@ -27,7 +27,7 @@ namespace ProjetoIntegradorSENAC.Classes
 
         public decimal Total => Decimal.Round(PrecoUnitario * Quantidade, 2);
 
-        public ItemVenda(int produtoId, string nomeProduto, decimal precoUnitario, int quantidade = 1)
+        public ItemVenda(int produtoId, string nomeProduto, decimal precoUnitario = 1, int quantidade = 1)
         {
             if (produtoId <= 0)
                 throw new ArgumentException("produtoId inválido", nameof(produtoId));

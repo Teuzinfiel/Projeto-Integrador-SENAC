@@ -58,7 +58,7 @@
             groupBox1.ForeColor = SystemColors.Control;
             groupBox1.Location = new Point(77, 142);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(250, 125);
+            groupBox1.Size = new Size(287, 125);
             groupBox1.TabIndex = 3;
             groupBox1.TabStop = false;
             groupBox1.Text = "groupBox1";
@@ -77,9 +77,9 @@
             // 
             groupBox2.Controls.Add(label2);
             groupBox2.ForeColor = SystemColors.Control;
-            groupBox2.Location = new Point(452, 142);
+            groupBox2.Location = new Point(437, 142);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(250, 125);
+            groupBox2.Size = new Size(287, 125);
             groupBox2.TabIndex = 4;
             groupBox2.TabStop = false;
             groupBox2.Text = "groupBox2";
@@ -98,9 +98,9 @@
             // 
             groupBox3.Controls.Add(label3);
             groupBox3.ForeColor = SystemColors.Control;
-            groupBox3.Location = new Point(820, 142);
+            groupBox3.Location = new Point(799, 142);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(250, 125);
+            groupBox3.Size = new Size(287, 125);
             groupBox3.TabIndex = 4;
             groupBox3.TabStop = false;
             groupBox3.Text = "groupBox3";
@@ -119,9 +119,9 @@
             // 
             groupBox4.Controls.Add(label4);
             groupBox4.ForeColor = SystemColors.Control;
-            groupBox4.Location = new Point(1196, 142);
+            groupBox4.Location = new Point(1159, 142);
             groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(250, 125);
+            groupBox4.Size = new Size(287, 125);
             groupBox4.TabIndex = 4;
             groupBox4.TabStop = false;
             groupBox4.Text = "groupBox4";
@@ -141,19 +141,19 @@
             groupBox5.Controls.Add(grafico1);
             groupBox5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBox5.ForeColor = SystemColors.Control;
-            groupBox5.Location = new Point(77, 324);
+            groupBox5.Location = new Point(77, 298);
             groupBox5.Name = "groupBox5";
-            groupBox5.Size = new Size(625, 440);
+            groupBox5.Size = new Size(671, 466);
             groupBox5.TabIndex = 5;
             groupBox5.TabStop = false;
-            groupBox5.Text = "grafico1";
+            groupBox5.Text = "Gráfico1";
             // 
             // grafico1
             // 
             grafico1.Location = new Point(18, 26);
             grafico1.Name = "grafico1";
             grafico1.PanCursor = Cursors.Hand;
-            grafico1.Size = new Size(586, 391);
+            grafico1.Size = new Size(634, 425);
             grafico1.TabIndex = 0;
             grafico1.Text = "plotView1";
             grafico1.ZoomHorizontalCursor = Cursors.SizeWE;
@@ -165,19 +165,19 @@
             groupBox6.Controls.Add(grafico2);
             groupBox6.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBox6.ForeColor = SystemColors.Control;
-            groupBox6.Location = new Point(820, 324);
+            groupBox6.Location = new Point(775, 298);
             groupBox6.Name = "groupBox6";
-            groupBox6.Size = new Size(626, 440);
+            groupBox6.Size = new Size(671, 466);
             groupBox6.TabIndex = 6;
             groupBox6.TabStop = false;
-            groupBox6.Text = "grafico2";
+            groupBox6.Text = "Gráfico2";
             // 
             // grafico2
             // 
             grafico2.Location = new Point(19, 26);
             grafico2.Name = "grafico2";
             grafico2.PanCursor = Cursors.Hand;
-            grafico2.Size = new Size(586, 391);
+            grafico2.Size = new Size(636, 425);
             grafico2.TabIndex = 0;
             grafico2.Text = "plotView2";
             grafico2.ZoomHorizontalCursor = Cursors.SizeWE;

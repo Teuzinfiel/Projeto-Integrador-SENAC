@@ -37,14 +37,14 @@ namespace ProjetoIntegradorSENAC.Logins
 
          
             string senhaBanco = usuario.Rows[0]["senha"].ToString();
-            string idUser = usuario.Rows[0]["id"].ToString();
+            int idUser = Convert.ToInt16(usuario.Rows[0]["id"]);
 
             if (txtSenha.Text == senhaBanco)
             {
                 frmEmpresa frmEmpresa = new frmEmpresa();
                 frmEmpresa.idUsuario = idUser;
                 frmEmpresa.Show();
-                this.Hide();
+                this.Close();
             }
             else
             {

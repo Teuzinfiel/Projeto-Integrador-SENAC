@@ -49,7 +49,7 @@ namespace ProjetoIntegradorSENAC.Classes
                     {
                         DataTable dataTable = new DataTable();
 
-                        da.Fill(dataTable);
+                        da.Fill(dataTable);  
 
                         return dataTable;
                     }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ProjetoIntegradorSENAC.Classes;
+using ProjetoIntegradorSENAC.Logins;
 
 namespace ProjetoIntegradorSENAC.Usuario
 {
@@ -75,6 +76,13 @@ namespace ProjetoIntegradorSENAC.Usuario
         private void btnLimpar_Click(object sender, EventArgs e)
         {
             Funcoes.Limpar(this);
+        }
+
+        private void bntSair_Click(object sender, EventArgs e)
+        {
+            loginUsuario loginUsuario = new loginUsuario();
+            loginUsuario.Show();
+            this.Close();
         }
     }
 }

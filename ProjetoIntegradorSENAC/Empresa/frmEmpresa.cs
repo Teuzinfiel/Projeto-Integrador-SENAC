@@ -9,7 +9,7 @@ namespace ProjetoIntegradorSENAC.Empresa
 {
     public partial class frmEmpresa : Form
     {
-        public string idUsuario = string.Empty;
+        public int idUsuario;
 
         public frmEmpresa()
         {
@@ -30,7 +30,7 @@ namespace ProjetoIntegradorSENAC.Empresa
                                 comercios.telefone AS telefone
                             FROM comercios
                             JOIN usuarios ON usuarios.id = comercios.dono_id
-                            WHERE comercios.dono_id = '{idUsuario}'  ";
+                            WHERE comercios.dono_id = {idUsuario}  ";
                 DataTable dt = Banco.Pesquisar(query);
 
                 dtgEmpresas.DataSource = dt;
@@ -52,9 +52,9 @@ namespace ProjetoIntegradorSENAC.Empresa
         {
             if (e.RowIndex < 0) return;
 
-            string idComercio = dtgEmpresas.Rows[e.RowIndex].Cells["id_comercio"].Value.ToString();
-            string idDono = dtgEmpresas.Rows[e.RowIndex].Cells["id_dono"].Value.ToString();
-            string idUsuario = dtgEmpresas.Rows[e.RowIndex].Cells["id_dono"].Value.ToString();
+            int idComercio = Convert.ToInt16(dtgEmpresas.Rows[e.RowIndex].Cells["id_comercio"].Value);
+            int idDono = Convert.ToInt16(dtgEmpresas.Rows[e.RowIndex].Cells["id_dono"].Value);
+            int idUsuario = Convert.ToInt16(dtgEmpresas.Rows[e.RowIndex].Cells["id_dono"].Value);
 
             MainPrincipal main = new MainPrincipal(idComercio, idDono, idUsuario);
             main.Show();

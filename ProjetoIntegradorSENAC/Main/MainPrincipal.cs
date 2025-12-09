@@ -13,10 +13,10 @@ namespace ProjetoIntegradorSENAC
 {
     public partial class MainPrincipal : Form
     {
-        public string idEmpresa;
-        public string idDono;
-        public string idUsuario;
-        public MainPrincipal(string idEmpresa, string idDono, string idUsuario)
+        public int idEmpresa;
+        public int idDono;
+        public int idUsuario;
+        public MainPrincipal(int idEmpresa, int idDono, int idUsuario)
         {
             InitializeComponent();
             this.idEmpresa = idEmpresa;
@@ -102,7 +102,7 @@ namespace ProjetoIntegradorSENAC
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(idEmpresa, idDono);
+            MessageBox.Show(idEmpresa.ToString(), idDono.ToString());
         }
     }
 }

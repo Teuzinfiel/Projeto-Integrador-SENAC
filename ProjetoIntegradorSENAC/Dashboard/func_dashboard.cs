@@ -22,7 +22,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
         private static string server = "localhost";
         private static string database = "senac";
         private static string usuario = "root";
-        private static string senha = "gustavo951873";
+        private static string senha = "";
 
         public static string strCon = $"server={server};database={database};uid={usuario};password={senha}";
         

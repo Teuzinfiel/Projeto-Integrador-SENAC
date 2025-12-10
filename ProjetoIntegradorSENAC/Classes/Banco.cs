@@ -13,7 +13,7 @@ namespace ProjetoIntegradorSENAC.Classes
     {
         
         public static string banco = "senac";
-        public static string senha = "gustavo951873";
+        public static string senha = "";
         public static string usuario = "root"; 
         public static string servidor = "localhost";
 

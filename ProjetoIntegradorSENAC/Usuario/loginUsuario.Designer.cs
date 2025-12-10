@@ -32,7 +32,6 @@
             panel1 = new Panel();
             CriarConta = new Label();
             label4 = new Label();
-            button1 = new Button();
             chkMostrarSenha = new CheckBox();
             label3 = new Label();
             label2 = new Label();
@@ -56,7 +55,6 @@
             panel1.BackColor = Color.FromArgb(40, 40, 50);
             panel1.Controls.Add(CriarConta);
             panel1.Controls.Add(label4);
-            panel1.Controls.Add(button1);
             panel1.Controls.Add(chkMostrarSenha);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(label2);
@@ -92,25 +90,6 @@
             label4.Size = new Size(154, 21);
             label4.TabIndex = 17;
             label4.Text = "Não tem uma conta?";
-            // 
-            // button1
-            // 
-            button1.BackColor = Color.Transparent;
-            button1.Cursor = Cursors.Hand;
-            button1.FlatAppearance.BorderColor = SystemColors.Highlight;
-            button1.FlatAppearance.BorderSize = 2;
-            button1.FlatAppearance.MouseDownBackColor = Color.FromArgb(50, 50, 60);
-            button1.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 50, 60);
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.ForeColor = SystemColors.Highlight;
-            button1.Location = new Point(43, 319);
-            button1.Name = "button1";
-            button1.Size = new Size(348, 37);
-            button1.TabIndex = 16;
-            button1.Text = "Limpar";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
             // 
             // chkMostrarSenha
             // 
@@ -191,7 +170,7 @@
             btnLogin.FlatStyle = FlatStyle.Popup;
             btnLogin.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnLogin.ForeColor = Color.White;
-            btnLogin.Location = new Point(42, 267);
+            btnLogin.Location = new Point(42, 253);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(348, 37);
             btnLogin.TabIndex = 6;
@@ -315,7 +294,6 @@
         private Label label5;
         private Label label7;
         private CheckBox chkMostrarSenha;
-        private Button button1;
         private Label CriarConta;
         private Label label4;
         private Label label6;

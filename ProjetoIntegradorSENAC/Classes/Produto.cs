@@ -15,7 +15,7 @@ namespace ProjetoIntegradorSENAC.Classes
         public string Descricao { get; set; }
         public string Marca { get; set; }
         public string CodigoBarra { get; set; }
-        public string UnidadeMedida { get; set; } // gramas ou unidade
+        public string UnidadeMedida { get; set; } 
         public string Categoria { get; set; }
 
         public cls_Produto() { }

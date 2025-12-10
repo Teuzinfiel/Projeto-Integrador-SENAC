@@ -7,7 +7,7 @@ namespace ProjetoIntegradorSENAC.Empresa
 {
     public partial class cadEmpresa : Form
     {
-        public string idUsuario;
+        public int idUsuario;
 
         public cadEmpresa()
         {
@@ -174,7 +174,7 @@ namespace ProjetoIntegradorSENAC.Empresa
             string insert = $@"
         INSERT INTO comercios 
         (dono_id, nome, nome_fantasia, email, tipo_documentacao, documentacao, telefone)
-        VALUES  ('{idUsuario}', '{nome}', '{nomeFantasia}', '{email}', '{tipoDoc}', '{doc}', '{telefone}')
+        VALUES  ({idUsuario}, '{nome}', '{nomeFantasia}', '{email}', '{tipoDoc}', '{doc}', '{telefone}')
     ";
 
             Banco.Inserir(insert);

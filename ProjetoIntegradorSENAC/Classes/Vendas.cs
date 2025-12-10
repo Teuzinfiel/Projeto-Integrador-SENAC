@@ -83,5 +83,9 @@ namespace ProjetoIntegradorSENAC.Classes
 
         public bool EstaVazia() => !_itens.Any();
     }
+    
+
+
+
 }
 

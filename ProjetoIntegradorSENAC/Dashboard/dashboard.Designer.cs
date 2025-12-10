@@ -55,6 +55,7 @@
             // groupBox1
             // 
             groupBox1.Controls.Add(label1);
+            groupBox1.Font = new Font("Consolas", 9F, FontStyle.Bold);
             groupBox1.ForeColor = SystemColors.Control;
             groupBox1.Location = new Point(77, 142);
             groupBox1.Name = "groupBox1";
@@ -76,6 +77,7 @@
             // groupBox2
             // 
             groupBox2.Controls.Add(label2);
+            groupBox2.Font = new Font("Consolas", 9F, FontStyle.Bold);
             groupBox2.ForeColor = SystemColors.Control;
             groupBox2.Location = new Point(437, 142);
             groupBox2.Name = "groupBox2";
@@ -97,6 +99,7 @@
             // groupBox3
             // 
             groupBox3.Controls.Add(label3);
+            groupBox3.Font = new Font("Consolas", 9F, FontStyle.Bold);
             groupBox3.ForeColor = SystemColors.Control;
             groupBox3.Location = new Point(799, 142);
             groupBox3.Name = "groupBox3";
@@ -118,6 +121,7 @@
             // groupBox4
             // 
             groupBox4.Controls.Add(label4);
+            groupBox4.Font = new Font("Consolas", 9F, FontStyle.Bold);
             groupBox4.ForeColor = SystemColors.Control;
             groupBox4.Location = new Point(1159, 142);
             groupBox4.Name = "groupBox4";
@@ -235,7 +239,7 @@
             btnMeses.FlatStyle = FlatStyle.Popup;
             btnMeses.Font = new Font("Franklin Gothic Medium", 15F);
             btnMeses.ForeColor = Color.White;
-            btnMeses.Location = new Point(708, 53);
+            btnMeses.Location = new Point(712, 53);
             btnMeses.Name = "btnMeses";
             btnMeses.Size = new Size(142, 54);
             btnMeses.TabIndex = 11;

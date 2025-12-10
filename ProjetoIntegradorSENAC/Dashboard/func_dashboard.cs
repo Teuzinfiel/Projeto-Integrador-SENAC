@@ -29,7 +29,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
 
         public static void carregarInfoPadrao(Label label1, Label label2, Label label3,
             Label label4, string meses, GroupBox groupBox1, GroupBox groupBox2,
-            GroupBox groupBox3, GroupBox groupBox4, int idEmpresaDash, Dictionary<string, object> parametros)
+            GroupBox groupBox3, GroupBox groupBox4, int idEmpresaDash, Dictionary<string, object> parametros, Dictionary<string, string> mes)
         {
 
             DataTable tabela = ExecutarSelect(@"
@@ -87,10 +87,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
      LIMIT 1
     ) AS quantidade_produto_mais_vendido_dia;
 
-", new Dictionary<string, object>()
-{
-    { "@idEmpresa", idEmpresaDash }
-});
+", parametros, mes);
 
 
             label1.Text = tabela.Rows[0]["total_vendas_dia"].ToString() + "("+ tabela.Rows[0]["numero_vendas_dia"].ToString() +")";
@@ -107,7 +104,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
         }
         public static void carregarInfoProdutos(Label label1, Label label2, Label label3,
             Label label4, string meses, GroupBox groupBox1, GroupBox groupBox2,
-            GroupBox groupBox3, GroupBox groupBox4, int idEmpresaDash, Dictionary<string, object> parametros)
+            GroupBox groupBox3, GroupBox groupBox4, int idEmpresaDash, Dictionary<string, object> parametros, Dictionary<string, string> mes)
         {
 
             DataTable tabela = ExecutarSelect(@"
@@ -154,10 +151,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
 
 
 
-", new Dictionary<string, object>()
-{
-    { "@idEmpresa", idEmpresaDash }
-});
+", parametros, mes);
 
 
             label1.Text = tabela.Rows[0]["produto_mais_receita"].ToString();
@@ -174,7 +168,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
         }
         public static void carregarInfoMeses(Label label1, Label label2, Label label3,
             Label label4, string meses, GroupBox groupBox1, GroupBox groupBox2,
-            GroupBox groupBox3, GroupBox groupBox4, int idEmpresaDash, Dictionary<string, object> parametros)
+            GroupBox groupBox3, GroupBox groupBox4, int idEmpresaDash, Dictionary<string, object> parametros, Dictionary<string, string> mes)
         {
 
             DataTable tabela = ExecutarSelect(@"
@@ -234,11 +228,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
        AND YEAR(v.data_venda) = YEAR(CURDATE())
        AND f.comercio_id = @idEmpresa
     ) AS quantidade_produto_mais_vendido_mes;
-",
-            new Dictionary<string, object>()
-{
-    { "@idEmpresa", idEmpresaDash }
-});
+",parametros, mes);
 
 
             label1.Text = tabela.Rows[0]["receita_mes"].ToString() + "(" + tabela.Rows[0]["quantidade_mes"].ToString() + ")";
@@ -254,7 +244,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
 
         }
 
-        public static DataTable ExecutarSelect(string query, Dictionary<string, object> parametros)
+        public static DataTable ExecutarSelect(string query, Dictionary<string, object> parametros, Dictionary<string, string> meses)
         {
             using (MySqlConnection conn = new MySqlConnection(strCon))
             {
@@ -267,6 +257,13 @@ namespace ProjetoIntegradorSENAC.Dashboard
                         foreach (var p in parametros)
                         {
                             cmd.Parameters.AddWithValue(p.Key, p.Value);
+                        }
+                    }
+                    if (meses != null)
+                    {
+                        foreach (var m in meses)
+                        {
+                            cmd.Parameters.AddWithValue(m.Key, m.Value);
                         }
                     }
 

@@ -15,6 +15,22 @@ namespace ProjetoIntegradorSENAC.Produto
         public frmProduto()
         {
             InitializeComponent();
+
+        }
+
+        public int CodigoProduto()
+        {
+
+            Random random = new Random();
+            int codigo = random.Next(100000000, 999999999);
+
+
+            return codigo;
+        }
+
+        private void btnCadastro_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

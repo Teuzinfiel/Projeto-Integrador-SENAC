@@ -70,14 +70,11 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 groupBox2, groupBox3, groupBox4, idEmpresa, parametros, mes);
                 load_grafico_produto();
             }
-
-
-
         }
         public void load_grafico_padrao()
         {
+            // grafico 1
 
-            // Vetor para armazenar as vendas dos dias 1 a 31
             int[] vendasPorDia = new int[31];
 
             using (var con = new MySqlConnection(func_dashboard.strCon))
@@ -85,30 +82,34 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 con.Open();
 
                 string sql = @"
-            SELECT 
-                DAY(data_venda) AS dia,
-                COUNT(id) AS qtd
-            FROM vendas
-            WHERE 
-                MONTH(data_venda) = MONTH(CURDATE())
-                AND YEAR(data_venda) = YEAR(CURDATE())
-            GROUP BY dia
-            ORDER BY dia;
-        ";
+                SELECT 
+                DAY(v.data_venda) AS dia,
+                COUNT(v.id) AS qtd
+                FROM vendas v
+                JOIN funcionarios f ON v.funcionario_id = f.id
+                JOIN comercios c ON f.comercio_id = c.id
+                WHERE 
+                c.id = @empresaId
+                AND MONTH(v.data_venda) = MONTH(CURDATE())
+                AND YEAR(v.data_venda) = YEAR(CURDATE())
+                GROUP BY dia
+                ORDER BY dia;";
 
                 using (var cmd = new MySqlCommand(sql, con))
-                using (var dr = cmd.ExecuteReader())
                 {
-                    while (dr.Read())
+                    cmd.Parameters.AddWithValue("@empresaId", idEmpresa.ToString());
+                    using (var dr = cmd.ExecuteReader())
                     {
-                        int dia = dr.GetInt32("dia");   // Exemplo: 1, 2, 3...
-                        int qtd = dr.GetInt32("qtd");   // Quantidade de vendas do dia
-                        vendasPorDia[dia - 1] = qtd;    // Armazena no índice correto
+                        while (dr.Read())
+                        {
+                            int dia = dr.GetInt32("dia");
+                            int qtd = dr.GetInt32("qtd");
+                            vendasPorDia[dia - 1] = qtd;
+                        }
                     }
                 }
             }
 
-            // Criação do gráfico
             var modelo = new PlotModel
             {
                 Title = "Vendas por Dia do Mês",
@@ -116,7 +117,6 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 PlotAreaBorderColor = OxyColors.White
             };
 
-            // Eixo X (1 a 31)
             modelo.Axes.Add(new CategoryAxis
             {
                 Position = AxisPosition.Bottom,
@@ -126,7 +126,6 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 TicklineColor = OxyColors.White
             });
 
-            // Eixo Y
             modelo.Axes.Add(new LinearAxis
             {
                 Position = AxisPosition.Left,
@@ -135,7 +134,6 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 TicklineColor = OxyColors.White
             });
 
-            // Série do gráfico
             var serie = new LineSeries
             {
                 Title = "Vendas",
@@ -146,20 +144,14 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 MarkerFill = OxyColors.Red
             };
 
-            // Adiciona os pontos ao gráfico
             for (int i = 0; i < 31; i++)
                 serie.Points.Add(new DataPoint(i, vendasPorDia[i]));
 
             modelo.Series.Add(serie);
 
-            // Exibe no PlotView
             grafico1.Model = modelo;
 
-
-
-
-
-
+            // grafico 2
 
             PlotModel modelo2 = new PlotModel { Title = "Top 5 categorias mais vendidas", TextColor = OxyColors.White, PlotAreaBorderColor = OxyColors.White };
             var pieSeries = new PieSeries { StrokeThickness = 1.0, InsideLabelPosition = 0.8, AngleSpan = 360, StartAngle = 0 };
@@ -176,7 +168,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             GROUP BY p.categoria
             ORDER BY total_vendido DESC
             LIMIT 5;
-            ", parametros, mes);/////////////////////////
+            ", parametros, mes);
 
             foreach (DataRow row in tabela2.Rows)
             {
@@ -189,11 +181,11 @@ namespace ProjetoIntegradorSENAC.Dashboard
             }
             modelo2.Series.Add(pieSeries);
             grafico2.Model = modelo2;
-
         }
-        
+
         public void load_grafico_produto()
         {
+            // grafico 1
             PlotModel modelo = new PlotModel { Title = "Top 5 produtos mais vendidios", TextColor = OxyColors.White, PlotAreaBorderColor = OxyColors.White };
 
             var categoryAxis = new CategoryAxis { Position = AxisPosition.Left, Title = "Produtos", TicklineColor = OxyColors.White, };
@@ -215,7 +207,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             GROUP BY p.id, p.nome
             ORDER BY total_vendido DESC
             LIMIT 5;
-            ", parametros, mes);/////////////////////////
+            ", parametros, mes);
 
 
             foreach (DataRow row in tabela.Rows)
@@ -234,6 +226,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
 
             modelo.Series.Add(barSeries);
             grafico1.Model = modelo;
+
+            // grafico 2
 
             PlotModel modelo2 = new PlotModel { Title = "Top 5 produtos com mais receita", TextColor = OxyColors.White, PlotAreaBorderColor = OxyColors.White };
             var categoryAxis2 = new CategoryAxis { Position = AxisPosition.Left, Title = "Produtos", TicklineColor = OxyColors.White, };
@@ -257,7 +251,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             GROUP BY p.id, p.nome
             ORDER BY receita DESC
             LIMIT 5;
-            ", parametros, mes);//////////////////////////////////
+            ", parametros, mes);
 
             foreach (DataRow row in tabela2.Rows)
             {
@@ -268,7 +262,6 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 );
                 categoryAxis2.Labels.Add(item.NomeProduto);
                 barSeries2.Items.Add(new BarItem { Value = Convert.ToDouble(row["receita"]) });
-
             }
             modelo2.Series.Add(barSeries2);
             grafico2.Model = modelo2;
@@ -276,6 +269,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
         }
         public void load_grafico_meses()
         {
+            // grafico 1
             PlotModel modeloHorario = new PlotModel
             {
                 Title = "Vendas por horário (todos os dias)",
@@ -301,8 +295,6 @@ namespace ProjetoIntegradorSENAC.Dashboard
 
             modeloHorario.Axes.Add(categoryAxisH);
             modeloHorario.Axes.Add(linearAxisH);
-
-            // Série de linha
             var lineSeriesH = new LineSeries
             {
                 Title = "Vendas",
@@ -313,10 +305,6 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 MarkerStroke = OxyColors.White
             };
 
-            // ---------------------------------------------------------------------
-            //   CONSULTA SQL — VENDAS POR HORA
-            // ---------------------------------------------------------------------
-
             int[] vendasPorHora = new int[24];
 
             using (var con = new MySqlConnection(func_dashboard.strCon))
@@ -324,50 +312,43 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 con.Open();
 
                 string sql = @"
-        SELECT 
-            HOUR(data_venda) AS hora,
-            COUNT(*) AS total_vendas
-        FROM vendas
-        GROUP BY hora
-        ORDER BY hora;
-    ";
+                SELECT 
+                HOUR(v.data_venda) AS hora,
+                COUNT(*) AS total_vendas
+                FROM vendas v
+                JOIN funcionarios f ON v.funcionario_id = f.id
+                JOIN comercios c ON f.comercio_id = c.id
+                WHERE c.id = @empresaId   -- ⬅️ ID da empresa que você quer filtrar
+                GROUP BY hora
+                ORDER BY hora;";
 
                 using (var cmd = new MySqlCommand(sql, con))
-                using (var dr = cmd.ExecuteReader())
                 {
-                    while (dr.Read())
+                    cmd.Parameters.AddWithValue("@empresaId", idEmpresa.ToString());
+                    using (var dr = cmd.ExecuteReader())
                     {
-                        int hora = dr.GetInt32("hora");
-                        int total = dr.GetInt32("total_vendas");
-                        vendasPorHora[hora] = total;
+                        while (dr.Read())
+                        {
+                            int hora = dr.GetInt32("hora");
+                            int total = dr.GetInt32("total_vendas");
+                            vendasPorHora[hora] = total;
+                        }
                     }
                 }
             }
 
-            // ---------------------------------------------------------------------
-            //   MONTAGEM DO GRÁFICO
-            // ---------------------------------------------------------------------
-
             for (int i = 0; i < 24; i++)
             {
-                categoryAxisH.Labels.Add(i.ToString("00")); // “00”, “01”, “02”...
+                categoryAxisH.Labels.Add(i.ToString("00"));
 
-                // adiciona ponto na linha
                 lineSeriesH.Points.Add(new DataPoint(i, vendasPorHora[i]));
             }
 
             modeloHorario.Series.Add(lineSeriesH);
 
-            // Exibe no PlotView
             grafico1.Model = modeloHorario;
 
-
-
-
-            // ==============================
-            //   GRÁFICO barra – TOP 5 produtos mais vendidos
-            // ==============================
-
+            //Grafico 2
             PlotModel modelo2 = new PlotModel { Title = "Top 5 produtos mais vendidos do mês", TextColor = OxyColors.White, PlotAreaBorderColor = OxyColors.White };
 
             var categoryAxis2 = new CategoryAxis { Position = AxisPosition.Left, Title = "Produtos", TicklineColor = OxyColors.White, };
@@ -378,41 +359,36 @@ namespace ProjetoIntegradorSENAC.Dashboard
             var barSeries2 = new BarSeries { Title = "Vendas", FillColor = OxyColors.SkyBlue };
 
             DataTable tabela = func_dashboard.ExecutarSelect(@"SELECT 
-    p.id,
-    p.nome,
-    SUM(iv.quantidade) AS total_vendido
-FROM items_venda iv
-JOIN produtos p ON p.id = iv.produtos_id
-JOIN vendas v ON v.id = iv.vendas_id
-JOIN funcionarios f ON f.id = v.funcionario_id
-WHERE f.comercio_id = @idEmpresa
-  AND MONTH(v.data_venda) = MONTH(CURDATE())
-  AND YEAR(v.data_venda) = YEAR(CURDATE())
-GROUP BY p.id, p.nome
-ORDER BY total_vendido DESC
-LIMIT 5;
+            p.id,
+            p.nome,
+            SUM(iv.quantidade) AS total_vendido
+            FROM items_venda iv
+            JOIN produtos p ON p.id = iv.produtos_id
+            JOIN vendas v ON v.id = iv.vendas_id
+            JOIN funcionarios f ON f.id = v.funcionario_id
+            WHERE f.comercio_id = @idEmpresa
+            AND MONTH(v.data_venda) = MONTH(CURDATE())
+            AND YEAR(v.data_venda) = YEAR(CURDATE())
+            GROUP BY p.id, p.nome
+            ORDER BY total_vendido DESC
+            LIMIT 5;
 
-            ", parametros, mes);/////////////////////////
-
+            ", parametros, mes);
 
             foreach (DataRow row in tabela.Rows)
             {
-
                 ItemVenda item = new ItemVenda(
                     produtoId: Convert.ToInt32(row["id"]),
                     nomeProduto: row["nome"].ToString(),
                     0,
                     quantidade: Convert.ToInt32(row["total_vendido"])
                 );
-
                 categoryAxis2.Labels.Add(item.NomeProduto);
                 barSeries2.Items.Add(new BarItem { Value = item.Quantidade });
             }
-
             modelo2.Series.Add(barSeries2);
             grafico2.Model = modelo2;
         }
-
 
         private string[] GerarDiasDoMes()
         {
@@ -421,13 +397,10 @@ LIMIT 5;
                 dias[i] = (i + 1).ToString();
             return dias;
         }
-
-
         private void dashboard_Load(object sender, EventArgs e)
         {
             comboBox1.SelectedIndex = 0;
         }
-
         private void btnPadrao_Click(object sender, EventArgs e)
         {
             produtoBoo = false;
@@ -437,7 +410,6 @@ LIMIT 5;
             groupBox2, groupBox3, groupBox4, idEmpresa, parametros, mes);
             load_grafico_padrao();
         }
-
         private void btnMeses_Click(object sender, EventArgs e)
         {
             produtoBoo = false;
@@ -447,7 +419,6 @@ LIMIT 5;
             func_dashboard.carregarInfoMeses(label1, label2, label3, label4, meses, groupBox1,
             groupBox2, groupBox3, groupBox4, idEmpresa, parametros, mes);
         }
-
         private void btnProduto_Click(object sender, EventArgs e)
         {
             produtoBoo = true;

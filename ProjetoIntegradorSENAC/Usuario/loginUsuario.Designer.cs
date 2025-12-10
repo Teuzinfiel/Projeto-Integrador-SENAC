@@ -227,7 +227,7 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Microsoft Sans Serif", 40F);
             label5.ForeColor = SystemColors.Highlight;
-            label5.Location = new Point(641, 330);
+            label5.Location = new Point(646, 319);
             label5.Name = "label5";
             label5.Size = new Size(189, 63);
             label5.TabIndex = 6;

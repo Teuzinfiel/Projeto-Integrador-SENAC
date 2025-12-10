@@ -83,24 +83,29 @@ namespace ProjetoIntegradorSENAC.Dashboard
 
                 string sql = @"
                 SELECT 
-                DAY(data_venda) AS dia,
-                COUNT(id) AS qtd
-                FROM vendas
+                DAY(v.data_venda) AS dia,
+                COUNT(v.id) AS qtd
+                FROM vendas v
+                JOIN funcionarios f ON v.funcionario_id = f.id
+                JOIN comercios c ON f.comercio_id = c.id
                 WHERE 
-                MONTH(data_venda) = MONTH(CURDATE())
-                AND YEAR(data_venda) = YEAR(CURDATE())
+                c.id = @empresaId
+                AND MONTH(v.data_venda) = MONTH(CURDATE())
+                AND YEAR(v.data_venda) = YEAR(CURDATE())
                 GROUP BY dia
-                ORDER BY dia;
-                ";
+                ORDER BY dia;";
 
                 using (var cmd = new MySqlCommand(sql, con))
-                using (var dr = cmd.ExecuteReader())
                 {
-                    while (dr.Read())
+                    cmd.Parameters.AddWithValue("@empresaId", idEmpresa.ToString());
+                    using (var dr = cmd.ExecuteReader())
                     {
-                        int dia = dr.GetInt32("dia");
-                        int qtd = dr.GetInt32("qtd");
-                        vendasPorDia[dia - 1] = qtd;
+                        while (dr.Read())
+                        {
+                            int dia = dr.GetInt32("dia");
+                            int qtd = dr.GetInt32("qtd");
+                            vendasPorDia[dia - 1] = qtd;
+                        }
                     }
                 }
             }
@@ -307,22 +312,27 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 con.Open();
 
                 string sql = @"
-        SELECT 
-            HOUR(data_venda) AS hora,
-            COUNT(*) AS total_vendas
-        FROM vendas
-        GROUP BY hora
-        ORDER BY hora;
-    ";
+                SELECT 
+                HOUR(v.data_venda) AS hora,
+                COUNT(*) AS total_vendas
+                FROM vendas v
+                JOIN funcionarios f ON v.funcionario_id = f.id
+                JOIN comercios c ON f.comercio_id = c.id
+                WHERE c.id = @empresaId   -- ⬅️ ID da empresa que você quer filtrar
+                GROUP BY hora
+                ORDER BY hora;";
 
                 using (var cmd = new MySqlCommand(sql, con))
-                using (var dr = cmd.ExecuteReader())
                 {
-                    while (dr.Read())
+                    cmd.Parameters.AddWithValue("@empresaId", idEmpresa.ToString());
+                    using (var dr = cmd.ExecuteReader())
                     {
-                        int hora = dr.GetInt32("hora");
-                        int total = dr.GetInt32("total_vendas");
-                        vendasPorHora[hora] = total;
+                        while (dr.Read())
+                        {
+                            int hora = dr.GetInt32("hora");
+                            int total = dr.GetInt32("total_vendas");
+                            vendasPorHora[hora] = total;
+                        }
                     }
                 }
             }

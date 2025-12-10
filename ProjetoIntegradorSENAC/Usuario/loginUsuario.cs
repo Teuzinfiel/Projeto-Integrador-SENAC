@@ -41,10 +41,10 @@ namespace ProjetoIntegradorSENAC.Logins
 
             if (txtSenha.Text == senhaBanco)
             {
-                frmEmpresa frmEmpresa = new frmEmpresa();
+                frmEmpresa frmEmpresa = new frmEmpresa(idUser);
                 frmEmpresa.idUsuario = idUser;
                 frmEmpresa.Show();
-                //this.Close();
+     
             }
             else
             {

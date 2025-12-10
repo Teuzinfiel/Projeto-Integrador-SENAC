@@ -9,9 +9,10 @@ namespace ProjetoIntegradorSENAC.Empresa
     {
         public int idUsuario;
 
-        public cadEmpresa()
+        public cadEmpresa(int idUsuario)
         {
             InitializeComponent();
+            this.idUsuario = idUsuario;
         }
 
         private void cadEmpresa_Load(object sender, EventArgs e)
@@ -47,8 +48,7 @@ namespace ProjetoIntegradorSENAC.Empresa
   
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            frmEmpresa frm = new frmEmpresa();
-            frm.idUsuario = this.idUsuario; // <-- PASSA O ID DE VOLTA
+            frmEmpresa frm = new frmEmpresa(this.idUsuario);
             frm.Show();
             this.Hide();
         }

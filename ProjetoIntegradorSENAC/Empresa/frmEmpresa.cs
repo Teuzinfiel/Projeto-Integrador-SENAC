@@ -3,6 +3,7 @@ using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using ProjetoIntegradorSENAC.Classes;
+using ProjetoIntegradorSENAC.Configurações;
 using ProjetoIntegradorSENAC.Logins;
 
 namespace ProjetoIntegradorSENAC.Empresa
@@ -11,9 +12,10 @@ namespace ProjetoIntegradorSENAC.Empresa
     {
         public int idUsuario;
 
-        public frmEmpresa()
+        public frmEmpresa(int idUsuario)
         {
             InitializeComponent();
+            this.idUsuario = idUsuario;
         }
 
         private void frmEmpresa_Load(object sender, EventArgs e)
@@ -35,7 +37,7 @@ namespace ProjetoIntegradorSENAC.Empresa
 
                 dtgEmpresas.DataSource = dt;
                 dtgEmpresas.Columns["id_comercio"].Visible = false;
-                dtgEmpresas.Columns["id_dono"].Visible = false;         
+                dtgEmpresas.Columns["id_dono"].Visible = false;
                 dtgEmpresas.Columns["dono"].HeaderText = "Gerente";
                 dtgEmpresas.Columns["comercio"].HeaderText = "Comércio";
                 dtgEmpresas.Columns["fantasia"].HeaderText = "Nome Fantasia";
@@ -52,11 +54,10 @@ namespace ProjetoIntegradorSENAC.Empresa
         {
             if (e.RowIndex < 0) return;
 
-            int idComercio = Convert.ToInt16(dtgEmpresas.Rows[e.RowIndex].Cells["id_comercio"].Value);
-            int idDono = Convert.ToInt16(dtgEmpresas.Rows[e.RowIndex].Cells["id_dono"].Value);
-            int idUsuario = Convert.ToInt16(dtgEmpresas.Rows[e.RowIndex].Cells["id_dono"].Value);
+            int idComercio = Convert.ToInt32(dtgEmpresas.Rows[e.RowIndex].Cells["id_comercio"].Value);
+            int idDono = Convert.ToInt32(dtgEmpresas.Rows[e.RowIndex].Cells["id_dono"].Value);
 
-            MainPrincipal main = new MainPrincipal(idComercio, idDono, idUsuario);
+            MainPrincipal main = new MainPrincipal(idComercio, idDono, this.idUsuario);
             main.Show();
             this.Hide();
         }
@@ -92,11 +93,16 @@ namespace ProjetoIntegradorSENAC.Empresa
 
         private void button1_Click(object sender, EventArgs e)
         {
-            cadEmpresa cad = new cadEmpresa();
-            cad.idUsuario = this.idUsuario;
+            cadEmpresa cad = new cadEmpresa(this.idUsuario);
             cad.Show();
             this.Hide();
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            configEmpresa cfg = new configEmpresa(this.idUsuario);
+            cfg.Show();
+            this.Hide();
+        }
     }
 }

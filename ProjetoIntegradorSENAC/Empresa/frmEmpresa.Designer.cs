@@ -33,6 +33,7 @@
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             panel1 = new Panel();
+            button2 = new Button();
             btnLogOut = new Button();
             label5 = new Label();
             button1 = new Button();
@@ -52,6 +53,7 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(40, 40, 50);
+            panel1.Controls.Add(button2);
             panel1.Controls.Add(btnLogOut);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(button1);
@@ -61,6 +63,20 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(975, 672);
             panel1.TabIndex = 0;
+            // 
+            // button2
+            // 
+            button2.BackColor = SystemColors.HotTrack;
+            button2.FlatStyle = FlatStyle.Popup;
+            button2.Font = new Font("Franklin Gothic Medium", 18F);
+            button2.ForeColor = Color.White;
+            button2.Location = new Point(616, 516);
+            button2.Name = "button2";
+            button2.Size = new Size(311, 63);
+            button2.TabIndex = 9;
+            button2.Text = "Gerenciar\r\n";
+            button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
             // btnLogOut
             // 
@@ -93,9 +109,9 @@
             button1.FlatStyle = FlatStyle.Popup;
             button1.Font = new Font("Franklin Gothic Medium", 18F);
             button1.ForeColor = Color.White;
-            button1.Location = new Point(60, 505);
+            button1.Location = new Point(60, 516);
             button1.Name = "button1";
-            button1.Size = new Size(867, 63);
+            button1.Size = new Size(556, 63);
             button1.TabIndex = 6;
             button1.Text = "Adicionar Empresa +";
             button1.UseVisualStyleBackColor = false;
@@ -269,6 +285,6 @@
         private Button btnMinimizar;
         private Button btnSair;
         private Button btnLogOut;
-     
+        private Button button2;
     }
 }

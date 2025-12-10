@@ -1,5 +1,6 @@
 using ProjetoIntegradorSENAC.Caixa;
 using ProjetoIntegradorSENAC.Classes;
+using ProjetoIntegradorSENAC.Configurações;
 using ProjetoIntegradorSENAC.Dashboard;
 using ProjetoIntegradorSENAC.Empresa;
 using ProjetoIntegradorSENAC.Estoque;
@@ -94,15 +95,16 @@ namespace ProjetoIntegradorSENAC
 
         private void btnLogOut_Click(object sender, EventArgs e)
         {
-            frmEmpresa frm = new frmEmpresa();
-            frm.idUsuario = this.idUsuario;
+            frmEmpresa frm = new frmEmpresa(this.idUsuario);
             frm.Show();
             this.Hide();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(idEmpresa.ToString(), idDono.ToString());
+           // AbrirFormNoPanel(new configEmpresa(this.idEmpresa, this.idDono, this.idUsuario));
+            labelCategorias.Text = "Configurações";
+            EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos);
         }
     }
 }

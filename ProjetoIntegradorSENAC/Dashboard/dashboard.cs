@@ -74,26 +74,57 @@ namespace ProjetoIntegradorSENAC.Dashboard
         public void load_grafico_padrao()
         {
             // grafico 1
+            PlotModel modeloHorario = new PlotModel
+            {
+                Title = "Vendas por horário (todos os dias)",
+                TextColor = OxyColors.White,
+                PlotAreaBorderColor = OxyColors.White
+            };
 
-            int[] vendasPorDia = new int[31];
+            var categoryAxisH = new CategoryAxis
+            {
+                Position = AxisPosition.Bottom,
+                Title = "Horário",
+                TicklineColor = OxyColors.White,
+                TextColor = OxyColors.White
+            };
+
+            var linearAxisH = new LinearAxis
+            {
+                Position = AxisPosition.Left,
+                Title = "Quantidade de Vendas",
+                TicklineColor = OxyColors.White,
+                TextColor = OxyColors.White
+            };
+
+            modeloHorario.Axes.Add(categoryAxisH);
+            modeloHorario.Axes.Add(linearAxisH);
+            var lineSeriesH = new LineSeries
+            {
+                Title = "Vendas",
+                Color = OxyColors.SkyBlue,
+                MarkerType = MarkerType.Circle,
+                MarkerSize = 5,
+                MarkerFill = OxyColors.SkyBlue,
+                MarkerStroke = OxyColors.White
+            };
+
+            int[] vendasPorHora = new int[24];
 
             using (var con = new MySqlConnection(func_dashboard.strCon))
             {
                 con.Open();
 
                 string sql = @"
-                SELECT 
-                DAY(v.data_venda) AS dia,
-                COUNT(v.id) AS qtd
-                FROM vendas v
-                JOIN funcionarios f ON v.funcionario_id = f.id
-                JOIN comercios c ON f.comercio_id = c.id
-                WHERE 
-                c.id = @empresaId
-                AND MONTH(v.data_venda) = MONTH(CURDATE())
-                AND YEAR(v.data_venda) = YEAR(CURDATE())
-                GROUP BY dia
-                ORDER BY dia;";
+    SELECT 
+    HOUR(v.data_venda) AS hora,
+    COUNT(*) AS total_vendas
+    FROM vendas v
+    JOIN funcionarios f ON v.funcionario_id = f.id
+    JOIN comercios c ON f.comercio_id = c.id
+    WHERE c.id = @empresaId   -- ⬅️ ID da empresa que você quer filtrar
+    GROUP BY hora
+    ORDER BY hora;";
 
                 using (var cmd = new MySqlCommand(sql, con))
                 {
@@ -102,54 +133,24 @@ namespace ProjetoIntegradorSENAC.Dashboard
                     {
                         while (dr.Read())
                         {
-                            int dia = dr.GetInt32("dia");
-                            int qtd = dr.GetInt32("qtd");
-                            vendasPorDia[dia - 1] = qtd;
+                            int hora = dr.GetInt32("hora");
+                            int total = dr.GetInt32("total_vendas");
+                            vendasPorHora[hora] = total;
                         }
                     }
                 }
             }
 
-            var modelo = new PlotModel
+            for (int i = 0; i < 24; i++)
             {
-                Title = "Vendas por Dia do Mês",
-                TextColor = OxyColors.White,
-                PlotAreaBorderColor = OxyColors.White
-            };
+                categoryAxisH.Labels.Add(i.ToString("00"));
 
-            modelo.Axes.Add(new CategoryAxis
-            {
-                Position = AxisPosition.Bottom,
-                Key = "Dias",
-                ItemsSource = GerarDiasDoMes(),
-                TextColor = OxyColors.White,
-                TicklineColor = OxyColors.White
-            });
+                lineSeriesH.Points.Add(new DataPoint(i, vendasPorHora[i]));
+            }
 
-            modelo.Axes.Add(new LinearAxis
-            {
-                Position = AxisPosition.Left,
-                Title = "Quantidade de Vendas",
-                TextColor = OxyColors.White,
-                TicklineColor = OxyColors.White
-            });
+            modeloHorario.Series.Add(lineSeriesH);
 
-            var serie = new LineSeries
-            {
-                Title = "Vendas",
-                Color = OxyColors.Red,
-                MarkerType = MarkerType.Circle,
-                MarkerSize = 4,
-                MarkerStroke = OxyColors.White,
-                MarkerFill = OxyColors.Red
-            };
-
-            for (int i = 0; i < 31; i++)
-                serie.Points.Add(new DataPoint(i, vendasPorDia[i]));
-
-            modelo.Series.Add(serie);
-
-            grafico1.Model = modelo;
+            grafico1.Model = modeloHorario;
 
             // grafico 2
 
@@ -186,7 +187,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
         public void load_grafico_produto()
         {
             // grafico 1
-            PlotModel modelo = new PlotModel { Title = "Top 5 produtos mais vendidios", TextColor = OxyColors.White, PlotAreaBorderColor = OxyColors.White };
+            PlotModel modelo = new PlotModel { Title = "Top 5 produtos mais vendidos", TextColor = OxyColors.White, PlotAreaBorderColor = OxyColors.White };
 
             var categoryAxis = new CategoryAxis { Position = AxisPosition.Left, Title = "Produtos", TicklineColor = OxyColors.White, };
             var linearAxis = new LinearAxis { Position = AxisPosition.Bottom, Title = "Quantidade", TicklineColor = OxyColors.White, };
@@ -270,57 +271,26 @@ namespace ProjetoIntegradorSENAC.Dashboard
         public void load_grafico_meses()
         {
             // grafico 1
-            PlotModel modeloHorario = new PlotModel
-            {
-                Title = "Vendas por horário (todos os dias)",
-                TextColor = OxyColors.White,
-                PlotAreaBorderColor = OxyColors.White
-            };
 
-            var categoryAxisH = new CategoryAxis
-            {
-                Position = AxisPosition.Bottom,
-                Title = "Horário",
-                TicklineColor = OxyColors.White,
-                TextColor = OxyColors.White
-            };
-
-            var linearAxisH = new LinearAxis
-            {
-                Position = AxisPosition.Left,
-                Title = "Quantidade de Vendas",
-                TicklineColor = OxyColors.White,
-                TextColor = OxyColors.White
-            };
-
-            modeloHorario.Axes.Add(categoryAxisH);
-            modeloHorario.Axes.Add(linearAxisH);
-            var lineSeriesH = new LineSeries
-            {
-                Title = "Vendas",
-                Color = OxyColors.SkyBlue,
-                MarkerType = MarkerType.Circle,
-                MarkerSize = 5,
-                MarkerFill = OxyColors.SkyBlue,
-                MarkerStroke = OxyColors.White
-            };
-
-            int[] vendasPorHora = new int[24];
+            int[] vendasPorDia = new int[31];
 
             using (var con = new MySqlConnection(func_dashboard.strCon))
             {
                 con.Open();
 
                 string sql = @"
-                SELECT 
-                HOUR(v.data_venda) AS hora,
-                COUNT(*) AS total_vendas
-                FROM vendas v
-                JOIN funcionarios f ON v.funcionario_id = f.id
-                JOIN comercios c ON f.comercio_id = c.id
-                WHERE c.id = @empresaId   -- ⬅️ ID da empresa que você quer filtrar
-                GROUP BY hora
-                ORDER BY hora;";
+    SELECT 
+    DAY(v.data_venda) AS dia,
+    COUNT(v.id) AS qtd
+    FROM vendas v
+    JOIN funcionarios f ON v.funcionario_id = f.id
+    JOIN comercios c ON f.comercio_id = c.id
+    WHERE 
+    c.id = @empresaId
+    AND MONTH(v.data_venda) = MONTH(CURDATE())
+    AND YEAR(v.data_venda) = YEAR(CURDATE())
+    GROUP BY dia
+    ORDER BY dia;";
 
                 using (var cmd = new MySqlCommand(sql, con))
                 {
@@ -329,24 +299,54 @@ namespace ProjetoIntegradorSENAC.Dashboard
                     {
                         while (dr.Read())
                         {
-                            int hora = dr.GetInt32("hora");
-                            int total = dr.GetInt32("total_vendas");
-                            vendasPorHora[hora] = total;
+                            int dia = dr.GetInt32("dia");
+                            int qtd = dr.GetInt32("qtd");
+                            vendasPorDia[dia - 1] = qtd;
                         }
                     }
                 }
             }
 
-            for (int i = 0; i < 24; i++)
+            var modelo = new PlotModel
             {
-                categoryAxisH.Labels.Add(i.ToString("00"));
+                Title = "Vendas por Dia do Mês",
+                TextColor = OxyColors.White,
+                PlotAreaBorderColor = OxyColors.White
+            };
 
-                lineSeriesH.Points.Add(new DataPoint(i, vendasPorHora[i]));
-            }
+            modelo.Axes.Add(new CategoryAxis
+            {
+                Position = AxisPosition.Bottom,
+                Key = "Dias",
+                ItemsSource = GerarDiasDoMes(),
+                TextColor = OxyColors.White,
+                TicklineColor = OxyColors.White
+            });
 
-            modeloHorario.Series.Add(lineSeriesH);
+            modelo.Axes.Add(new LinearAxis
+            {
+                Position = AxisPosition.Left,
+                Title = "Quantidade de Vendas",
+                TextColor = OxyColors.White,
+                TicklineColor = OxyColors.White
+            });
 
-            grafico1.Model = modeloHorario;
+            var serie = new LineSeries
+            {
+                Title = "Vendas",
+                Color = OxyColors.Red,
+                MarkerType = MarkerType.Circle,
+                MarkerSize = 4,
+                MarkerStroke = OxyColors.White,
+                MarkerFill = OxyColors.Red
+            };
+
+            for (int i = 0; i < 31; i++)
+                serie.Points.Add(new DataPoint(i, vendasPorDia[i]));
+
+            modelo.Series.Add(serie);
+
+            grafico1.Model = modelo;
 
             //Grafico 2
             PlotModel modelo2 = new PlotModel { Title = "Top 5 produtos mais vendidos do mês", TextColor = OxyColors.White, PlotAreaBorderColor = OxyColors.White };

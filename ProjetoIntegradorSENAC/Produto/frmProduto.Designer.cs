@@ -31,16 +31,18 @@
             btnLimpar = new Button();
             btnCadastro = new Button();
             label5 = new Label();
-            UsEmail = new TextBox();
+            PrMarca = new TextBox();
             label2 = new Label();
-            UsNome = new TextBox();
+            PrNome = new TextBox();
             label1 = new Label();
             label3 = new Label();
-            textBox1 = new TextBox();
+            PrDescricao = new TextBox();
             label4 = new Label();
             label6 = new Label();
-            comboBox1 = new ComboBox();
-            comboBox2 = new ComboBox();
+            CmbCategoria = new ComboBox();
+            CmbUnidade = new ComboBox();
+            LbPreco = new Label();
+            PrPreco = new TextBox();
             SuspendLayout();
             // 
             // btnLimpar
@@ -87,15 +89,15 @@
             label5.TabIndex = 40;
             label5.Text = "Marca do produto";
             // 
-            // UsEmail
+            // PrMarca
             // 
-            UsEmail.BackColor = Color.FromArgb(224, 224, 224);
-            UsEmail.Font = new Font("Microsoft Sans Serif", 16F);
-            UsEmail.Location = new Point(285, 273);
-            UsEmail.Name = "UsEmail";
-            UsEmail.PlaceholderText = "Digite a marca do produto";
-            UsEmail.Size = new Size(348, 32);
-            UsEmail.TabIndex = 39;
+            PrMarca.BackColor = Color.FromArgb(224, 224, 224);
+            PrMarca.Font = new Font("Microsoft Sans Serif", 16F);
+            PrMarca.Location = new Point(285, 273);
+            PrMarca.Name = "PrMarca";
+            PrMarca.PlaceholderText = "Digite a marca do produto";
+            PrMarca.Size = new Size(348, 32);
+            PrMarca.TabIndex = 39;
             // 
             // label2
             // 
@@ -108,15 +110,15 @@
             label2.TabIndex = 32;
             label2.Text = "Nome do produto";
             // 
-            // UsNome
+            // PrNome
             // 
-            UsNome.BackColor = Color.FromArgb(224, 224, 224);
-            UsNome.Font = new Font("Microsoft Sans Serif", 16F);
-            UsNome.Location = new Point(285, 197);
-            UsNome.Name = "UsNome";
-            UsNome.PlaceholderText = "Digite o nome do produto";
-            UsNome.Size = new Size(348, 32);
-            UsNome.TabIndex = 31;
+            PrNome.BackColor = Color.FromArgb(224, 224, 224);
+            PrNome.Font = new Font("Microsoft Sans Serif", 16F);
+            PrNome.Location = new Point(285, 197);
+            PrNome.Name = "PrNome";
+            PrNome.PlaceholderText = "Digite o nome do produto";
+            PrNome.Size = new Size(348, 32);
+            PrNome.TabIndex = 31;
             // 
             // label1
             // 
@@ -140,16 +142,16 @@
             label3.TabIndex = 50;
             label3.Text = "Descrição";
             // 
-            // textBox1
+            // PrDescricao
             // 
-            textBox1.BackColor = Color.FromArgb(224, 224, 224);
-            textBox1.Font = new Font("Microsoft Sans Serif", 16F);
-            textBox1.Location = new Point(694, 197);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "Digite a descrição do produto";
-            textBox1.Size = new Size(348, 108);
-            textBox1.TabIndex = 49;
+            PrDescricao.BackColor = Color.FromArgb(224, 224, 224);
+            PrDescricao.Font = new Font("Microsoft Sans Serif", 16F);
+            PrDescricao.Location = new Point(694, 197);
+            PrDescricao.Multiline = true;
+            PrDescricao.Name = "PrDescricao";
+            PrDescricao.PlaceholderText = "Digite a descrição do produto";
+            PrDescricao.Size = new Size(348, 108);
+            PrDescricao.TabIndex = 49;
             // 
             // label4
             // 
@@ -173,26 +175,49 @@
             label6.TabIndex = 53;
             label6.Text = "Categoria";
             // 
-            // comboBox1
+            // CmbCategoria
             // 
-            comboBox1.BackColor = Color.FromArgb(224, 224, 224);
-            comboBox1.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(694, 351);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(348, 33);
-            comboBox1.TabIndex = 54;
+            CmbCategoria.BackColor = Color.FromArgb(224, 224, 224);
+            CmbCategoria.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            CmbCategoria.FormattingEnabled = true;
+            CmbCategoria.Location = new Point(694, 351);
+            CmbCategoria.Name = "CmbCategoria";
+            CmbCategoria.Size = new Size(348, 33);
+            CmbCategoria.TabIndex = 54;
             // 
-            // comboBox2
+            // CmbUnidade
             // 
-            comboBox2.AutoCompleteCustomSource.AddRange(new string[] { "Unidade", "Grama" });
-            comboBox2.BackColor = Color.FromArgb(224, 224, 224);
-            comboBox2.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(285, 351);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(348, 33);
-            comboBox2.TabIndex = 55;
+            CmbUnidade.AutoCompleteCustomSource.AddRange(new string[] { "Unidade", "Grama" });
+            CmbUnidade.BackColor = Color.FromArgb(224, 224, 224);
+            CmbUnidade.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            CmbUnidade.FormattingEnabled = true;
+            CmbUnidade.Items.AddRange(new object[] { "Unidade", "Grama" });
+            CmbUnidade.Location = new Point(285, 351);
+            CmbUnidade.Name = "CmbUnidade";
+            CmbUnidade.Size = new Size(348, 33);
+            CmbUnidade.TabIndex = 55;
+            CmbUnidade.SelectedIndexChanged += CmbUnidade_SelectedIndexChanged;
+            // 
+            // LbPreco
+            // 
+            LbPreco.AutoSize = true;
+            LbPreco.Font = new Font("Franklin Gothic Medium", 12F);
+            LbPreco.ForeColor = Color.FromArgb(180, 180, 190);
+            LbPreco.Location = new Point(285, 405);
+            LbPreco.Name = "LbPreco";
+            LbPreco.Size = new Size(135, 21);
+            LbPreco.TabIndex = 57;
+            LbPreco.Text = "Preço por unidade";
+            // 
+            // PrPreco
+            // 
+            PrPreco.BackColor = Color.FromArgb(224, 224, 224);
+            PrPreco.Font = new Font("Microsoft Sans Serif", 16F);
+            PrPreco.Location = new Point(285, 429);
+            PrPreco.Name = "PrPreco";
+            PrPreco.PlaceholderText = "digite o preço do produto";
+            PrPreco.Size = new Size(348, 32);
+            PrPreco.TabIndex = 56;
             // 
             // frmProduto
             // 
@@ -200,22 +225,25 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(45, 45, 60);
             ClientSize = new Size(1323, 816);
-            Controls.Add(comboBox2);
-            Controls.Add(comboBox1);
+            Controls.Add(LbPreco);
+            Controls.Add(PrPreco);
+            Controls.Add(CmbUnidade);
+            Controls.Add(CmbCategoria);
             Controls.Add(label6);
             Controls.Add(label4);
             Controls.Add(label3);
-            Controls.Add(textBox1);
+            Controls.Add(PrDescricao);
             Controls.Add(btnLimpar);
             Controls.Add(btnCadastro);
             Controls.Add(label5);
-            Controls.Add(UsEmail);
+            Controls.Add(PrMarca);
             Controls.Add(label2);
-            Controls.Add(UsNome);
+            Controls.Add(PrNome);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "frmProduto";
             Text = "cadastroProduto";
+            Load += frmProduto_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -224,15 +252,17 @@
         private Button btnLimpar;
         private Button btnCadastro;
         private Label label5;
-        private TextBox UsEmail;
+        private TextBox PrMarca;
         private Label label2;
-        private TextBox UsNome;
+        private TextBox PrNome;
         private Label label1;
         private Label label3;
-        private TextBox textBox1;
+        private TextBox PrDescricao;
         private Label label4;
         private Label label6;
-        private ComboBox comboBox1;
-        private ComboBox comboBox2;
+        private ComboBox CmbCategoria;
+        private ComboBox CmbUnidade;
+        private Label LbPreco;
+        private TextBox PrPreco;
     }
 }

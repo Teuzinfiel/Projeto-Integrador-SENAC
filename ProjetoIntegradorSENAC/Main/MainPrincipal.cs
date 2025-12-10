@@ -62,7 +62,7 @@ namespace ProjetoIntegradorSENAC
 
         private void btnProdutos_Click(object sender, EventArgs e)
         {
-            AbrirFormNoPanel(new frmProduto());
+            AbrirFormNoPanel(new frmProduto(idUsuario));
             labelCategorias.Text = "Produtos";
             EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos);
             btnProdutos.BackColor = Color.FromArgb(45, 45, 60);

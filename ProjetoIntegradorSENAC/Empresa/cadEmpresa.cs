@@ -1,4 +1,5 @@
-﻿using ProjetoIntegradorSENAC.Classes;
+﻿using Mysqlx.Crud;
+using ProjetoIntegradorSENAC.Classes;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -180,6 +181,21 @@ namespace ProjetoIntegradorSENAC.Empresa
             Banco.Inserir(insert);
             MessageBox.Show("Empresa cadastrada com sucesso!");
             Funcoes.Limpar(this);
+
+            string query = "select id from comercios where dono_id = " + idUsuario + " order by id desc limit 1" ;
+
+            var comercio = Banco.Pesquisar(query);
+
+            int idComercio = Convert.ToInt16(comercio.Rows[0]["id"]);
+
+            insert = $@"
+        INSERT INTO funcionarios
+        (usuarios_id, comercio_id, cargo)
+        VALUES  ({idUsuario}, {idComercio} , 'gerente' )";
+
+            Banco.Inserir(insert);
+
+
         }
 
      

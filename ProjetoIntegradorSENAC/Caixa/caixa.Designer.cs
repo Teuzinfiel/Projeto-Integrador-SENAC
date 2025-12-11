@@ -48,7 +48,6 @@
             label11 = new Label();
             label12 = new Label();
             textDesconto = new TextBox();
-            btnPesquisar = new Button();
             ((System.ComponentModel.ISupportInitialize)dtgProdutos).BeginInit();
             SuspendLayout();
             // 
@@ -110,7 +109,6 @@
             btnCancelar.TabIndex = 9;
             btnCancelar.Text = "Cancelar Compra";
             btnCancelar.UseVisualStyleBackColor = false;
-            btnCancelar.Click += btnCancelar_Click;
             // 
             // btnCompra
             // 
@@ -124,7 +122,6 @@
             btnCompra.TabIndex = 10;
             btnCompra.Text = "Finalizar Compra";
             btnCompra.UseVisualStyleBackColor = false;
-            btnCompra.Click += btnCompra_Click;
             // 
             // label7
             // 
@@ -167,8 +164,9 @@
             txtPesquisa.Location = new Point(12, 161);
             txtPesquisa.Name = "txtPesquisa";
             txtPesquisa.PlaceholderText = "  Digite nome ou código do Produto";
-            txtPesquisa.Size = new Size(444, 38);
+            txtPesquisa.Size = new Size(562, 38);
             txtPesquisa.TabIndex = 30;
+            txtPesquisa.TextChanged += txtPesquisa_TextChanged;
             // 
             // flpCaixa
             // 
@@ -185,9 +183,9 @@
             lbPreço.ForeColor = Color.White;
             lbPreço.Location = new Point(1175, 592);
             lbPreço.Name = "lbPreço";
-            lbPreço.Size = new Size(139, 75);
+            lbPreço.Size = new Size(63, 75);
             lbPreço.TabIndex = 32;
-            lbPreço.Text = "0,00";
+            lbPreço.Text = "0";
             // 
             // label5
             // 
@@ -264,20 +262,8 @@
             textDesconto.Name = "textDesconto";
             textDesconto.Size = new Size(74, 38);
             textDesconto.TabIndex = 40;
-            // 
-            // btnPesquisar
-            // 
-            btnPesquisar.BackColor = SystemColors.Highlight;
-            btnPesquisar.FlatStyle = FlatStyle.Popup;
-            btnPesquisar.Font = new Font("Franklin Gothic Medium", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnPesquisar.ForeColor = Color.White;
-            btnPesquisar.Location = new Point(462, 161);
-            btnPesquisar.Name = "btnPesquisar";
-            btnPesquisar.Size = new Size(112, 38);
-            btnPesquisar.TabIndex = 41;
-            btnPesquisar.Text = "Pesquisar";
-            btnPesquisar.UseVisualStyleBackColor = false;
-            btnPesquisar.Click += btnPesquisar_Click;
+            textDesconto.Text = "0";
+            textDesconto.TextChanged += textDesconto_TextChanged;
             // 
             // caixa
             // 
@@ -285,7 +271,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(45, 45, 60);
             ClientSize = new Size(1326, 686);
-            Controls.Add(btnPesquisar);
             Controls.Add(flpCaixa);
             Controls.Add(textDesconto);
             Controls.Add(label11);
@@ -328,6 +313,5 @@
         private Label label11;
         private Label label12;
         private TextBox textDesconto;
-        private Button btnPesquisar;
     }
 }

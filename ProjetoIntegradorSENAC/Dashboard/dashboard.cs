@@ -243,6 +243,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             SELECT 
             p.id,
             p.nome AS produto,
+            iv.preco_unitario AS preco,
             SUM(iv.preco_unitario * iv.quantidade) AS receita
                 FROM items_venda iv
             JOIN produtos p ON p.id = iv.produtos_id
@@ -259,7 +260,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
 
                 ItemVenda item = new ItemVenda(
                     produtoId: Convert.ToInt32(row["id"]),
-                    nomeProduto: row["produto"].ToString()
+                    nomeProduto: row["produto"].ToString(),
+                    precoUnitario: Convert.ToDecimal(row["preco"])
                 );
                 categoryAxis2.Labels.Add(item.NomeProduto);
                 barSeries2.Items.Add(new BarItem { Value = Convert.ToDouble(row["receita"]) });

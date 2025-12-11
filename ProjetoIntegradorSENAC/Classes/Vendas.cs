@@ -1,91 +1,78 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProjetoIntegradorSENAC.Classes
 {
-    internal class Venda
+    public sealed class Venda
     {
         private readonly List<ItemVenda> _itens = new List<ItemVenda>();
 
         public IReadOnlyCollection<ItemVenda> Itens => _itens.AsReadOnly();
-        public int FuncionarioId { get; set; } // permitir null se necessário
-        public string FormaPagamento { get; set; } = "dinheiro";
-        public decimal Descontos { get; private set; } = 0m; // valor absoluto do desconto
 
-        
-        public decimal TotalBruto =>
-            Decimal.Round(_itens.Sum(i => i.Total), 2);
+        public int? FuncionarioId { get; set; }
+        public string FormaPagamento { get; set; }
 
-        public decimal TotalLiquido =>
-            Decimal.Round(Math.Max(0, TotalBruto - Descontos), 2);
+        public decimal Descontos { get; private set; } = 0m;
+        public decimal TotalBruto => Decimal.Round(_itens.Sum(i => i.Total), 2);
 
-        public Venda(int funcionarioId)
+        public Venda(int? funcionarioId = null)
         {
             FuncionarioId = funcionarioId;
         }
 
-        public void AdicionarItem(ItemVenda item)
-        {
-            if (item == null)
-                throw new ArgumentNullException(nameof(item));
-
-            var existing = _itens.FirstOrDefault(i =>
-                i.ProdutoId == item.ProdutoId &&
-                i.PrecoUnitario == item.PrecoUnitario);
-
-            if (existing != null)
-            {
-                existing.Incrementar(item.Quantidade);
-            }
-            else
-            {
-                _itens.Add(item);
-            }
-        }
-
-        public void RemoverItem(int produtoId)
-        {
-            _itens.RemoveAll(i => i.ProdutoId == produtoId);
-        }
-
-        public void AtualizarQuantidade(int produtoId, int novaQuantidade)
+        // Agora só existe 1 item por produto
+        public void AdicionarOuIncrimentar(int produtoId, string nome, decimal preco)
         {
             var item = _itens.FirstOrDefault(i => i.ProdutoId == produtoId);
 
             if (item == null)
-                throw new InvalidOperationException("Item não encontrado");
-
-            if (novaQuantidade < 1)
-                throw new ArgumentOutOfRangeException(nameof(novaQuantidade));
-
-            _itens.Remove(item);
-            _itens.Add(new ItemVenda(
-                item.ProdutoId,
-                item.NomeProduto,
-                item.PrecoUnitario,
-                novaQuantidade
-            ));
+            {
+                _itens.Add(new ItemVenda(produtoId, nome, preco, 1));
+            }
+            else
+            {
+                item.Incrementar();
+            }
         }
 
-        /// <summary>
-        /// Aplica desconto absoluto (valor). Para percentuais calcule antes.
-        /// </summary>
-        public void AplicarDesconto(decimal valorDesconto)
+        public void Incrementar(int produtoId)
         {
-            if (valorDesconto < 0)
-                throw new ArgumentOutOfRangeException(nameof(valorDesconto));
+            var item = _itens.First(i => i.ProdutoId == produtoId);
 
-            Descontos = Math.Min(valorDesconto, TotalBruto);
+            item.Incrementar();
+        }
+
+        public void DecrementarOuRemover(int produtoId)
+        {
+            var item = _itens.First(i => i.ProdutoId == produtoId);
+
+            if (item.Quantidade == 1)
+                _itens.Remove(item);
+            else
+                item.Decrementar();
+        }
+
+        public void Remover(int produtoId)
+        {
+            _itens.RemoveAll(i => i.ProdutoId == produtoId);
+        }
+
+        public void AplicarDesconto(decimal desc, int idItem)
+        {
+            if (desc < 0 || desc >= 100) throw new ArgumentOutOfRangeException(nameof(desc));
+
+            Descontos = desc;
+            desc /= 100;
+            var item = _itens.First(i => i.ProdutoId == idItem);
+            decimal precoDesc = item.PrecoUnitarioOriginal - (desc * item.PrecoUnitarioOriginal);
+
+            item.AtualizarPreco(precoDesc);
+
         }
 
         public bool EstaVazia() => !_itens.Any();
     }
-    
-
-
-
 }
+
 

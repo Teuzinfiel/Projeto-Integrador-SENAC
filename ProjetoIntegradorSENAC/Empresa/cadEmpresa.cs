@@ -190,7 +190,7 @@ namespace ProjetoIntegradorSENAC.Empresa
 
             insert = $@"
         INSERT INTO funcionarios
-        (usuarios_id, comercio_id, cargo)
+        (usuario_id, comercio_id, cargo)
         VALUES  ({idUsuario}, {idComercio} , 'gerente' )";
 
             Banco.Inserir(insert);

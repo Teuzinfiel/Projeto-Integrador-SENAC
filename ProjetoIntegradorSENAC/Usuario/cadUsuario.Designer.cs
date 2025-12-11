@@ -29,54 +29,157 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            astConfirmar = new Label();
+            astSenha = new Label();
+            astTelefone = new Label();
+            astCpf = new Label();
+            astEmail = new Label();
+            astNome = new Label();
+            bntSair = new Button();
             chkMostrarSenha = new CheckBox();
             btnLimpar = new Button();
-            label7 = new Label();
+            lbCpf = new Label();
             btnCadastro = new Button();
             UsTelefone = new MaskedTextBox();
             maskedTextBox2 = new MaskedTextBox();
-            label6 = new Label();
+            lbTelefone = new Label();
             UsCpf = new MaskedTextBox();
             mkCPF = new MaskedTextBox();
-            label5 = new Label();
+            lbEmail = new Label();
             UsEmail = new TextBox();
-            label4 = new Label();
+            lbConfirmar = new Label();
             ConfirmarSenha = new TextBox();
-            label3 = new Label();
+            lbSenha = new Label();
             UsSenha = new TextBox();
-            label2 = new Label();
+            lbNome = new Label();
             UsNome = new TextBox();
             label1 = new Label();
-            bntSair = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(40, 40, 50);
+            panel1.Controls.Add(astConfirmar);
+            panel1.Controls.Add(astSenha);
+            panel1.Controls.Add(astTelefone);
+            panel1.Controls.Add(astCpf);
+            panel1.Controls.Add(astEmail);
+            panel1.Controls.Add(astNome);
             panel1.Controls.Add(bntSair);
             panel1.Controls.Add(chkMostrarSenha);
             panel1.Controls.Add(btnLimpar);
-            panel1.Controls.Add(label7);
+            panel1.Controls.Add(lbCpf);
             panel1.Controls.Add(btnCadastro);
             panel1.Controls.Add(UsTelefone);
             panel1.Controls.Add(maskedTextBox2);
-            panel1.Controls.Add(label6);
+            panel1.Controls.Add(lbTelefone);
             panel1.Controls.Add(UsCpf);
             panel1.Controls.Add(mkCPF);
-            panel1.Controls.Add(label5);
+            panel1.Controls.Add(lbEmail);
             panel1.Controls.Add(UsEmail);
-            panel1.Controls.Add(label4);
+            panel1.Controls.Add(lbConfirmar);
             panel1.Controls.Add(ConfirmarSenha);
-            panel1.Controls.Add(label3);
+            panel1.Controls.Add(lbSenha);
             panel1.Controls.Add(UsSenha);
-            panel1.Controls.Add(label2);
+            panel1.Controls.Add(lbNome);
             panel1.Controls.Add(UsNome);
             panel1.Controls.Add(label1);
             panel1.Location = new Point(114, 34);
             panel1.Name = "panel1";
             panel1.Size = new Size(819, 577);
             panel1.TabIndex = 0;
+            // 
+            // astConfirmar
+            // 
+            astConfirmar.AutoSize = true;
+            astConfirmar.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            astConfirmar.ForeColor = Color.FromArgb(192, 0, 0);
+            astConfirmar.Location = new Point(555, 204);
+            astConfirmar.Name = "astConfirmar";
+            astConfirmar.Size = new Size(16, 24);
+            astConfirmar.TabIndex = 35;
+            astConfirmar.Text = "*";
+            astConfirmar.Visible = false;
+            // 
+            // astSenha
+            // 
+            astSenha.AutoSize = true;
+            astSenha.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            astSenha.ForeColor = Color.FromArgb(192, 0, 0);
+            astSenha.Location = new Point(519, 136);
+            astSenha.Name = "astSenha";
+            astSenha.Size = new Size(16, 24);
+            astSenha.TabIndex = 34;
+            astSenha.Text = "*";
+            astSenha.Visible = false;
+            // 
+            // astTelefone
+            // 
+            astTelefone.AutoSize = true;
+            astTelefone.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            astTelefone.ForeColor = Color.FromArgb(192, 0, 0);
+            astTelefone.Location = new Point(106, 347);
+            astTelefone.Name = "astTelefone";
+            astTelefone.Size = new Size(16, 24);
+            astTelefone.TabIndex = 33;
+            astTelefone.Text = "*";
+            astTelefone.Visible = false;
+            // 
+            // astCpf
+            // 
+            astCpf.AutoSize = true;
+            astCpf.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            astCpf.ForeColor = Color.FromArgb(192, 0, 0);
+            astCpf.Location = new Point(74, 268);
+            astCpf.Name = "astCpf";
+            astCpf.Size = new Size(16, 24);
+            astCpf.TabIndex = 33;
+            astCpf.Text = "*";
+            astCpf.Visible = false;
+            // 
+            // astEmail
+            // 
+            astEmail.AutoSize = true;
+            astEmail.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            astEmail.ForeColor = Color.FromArgb(192, 0, 0);
+            astEmail.Location = new Point(74, 204);
+            astEmail.Name = "astEmail";
+            astEmail.Size = new Size(16, 24);
+            astEmail.TabIndex = 32;
+            astEmail.Text = "*";
+            astEmail.Visible = false;
+            // 
+            // astNome
+            // 
+            astNome.AutoSize = true;
+            astNome.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            astNome.ForeColor = Color.FromArgb(192, 0, 0);
+            astNome.Location = new Point(150, 128);
+            astNome.Name = "astNome";
+            astNome.Size = new Size(16, 24);
+            astNome.TabIndex = 31;
+            astNome.Text = "*";
+            astNome.Visible = false;
+            // 
+            // bntSair
+            // 
+            bntSair.BackColor = Color.Transparent;
+            bntSair.Cursor = Cursors.Hand;
+            bntSair.FlatAppearance.BorderColor = SystemColors.Highlight;
+            bntSair.FlatAppearance.BorderSize = 2;
+            bntSair.FlatAppearance.MouseDownBackColor = Color.FromArgb(50, 50, 60);
+            bntSair.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 50, 60);
+            bntSair.FlatStyle = FlatStyle.Flat;
+            bntSair.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            bntSair.ForeColor = SystemColors.Highlight;
+            bntSair.Location = new Point(687, 506);
+            bntSair.Name = "bntSair";
+            bntSair.Size = new Size(98, 37);
+            bntSair.TabIndex = 29;
+            bntSair.Text = "Sair";
+            bntSair.UseVisualStyleBackColor = false;
+            bntSair.Click += bntSair_Click;
             // 
             // chkMostrarSenha
             // 
@@ -115,17 +218,17 @@
             btnLimpar.UseVisualStyleBackColor = false;
             btnLimpar.Click += btnLimpar_Click;
             // 
-            // label7
+            // lbCpf
             // 
-            label7.AutoSize = true;
-            label7.BackColor = Color.FromArgb(40, 40, 50);
-            label7.Font = new Font("Franklin Gothic Medium", 15F);
-            label7.ForeColor = Color.FromArgb(180, 180, 190);
-            label7.Location = new Point(28, 267);
-            label7.Name = "label7";
-            label7.Size = new Size(46, 25);
-            label7.TabIndex = 27;
-            label7.Text = "CPF";
+            lbCpf.AutoSize = true;
+            lbCpf.BackColor = Color.FromArgb(40, 40, 50);
+            lbCpf.Font = new Font("Franklin Gothic Medium", 15F);
+            lbCpf.ForeColor = Color.FromArgb(180, 180, 190);
+            lbCpf.Location = new Point(28, 267);
+            lbCpf.Name = "lbCpf";
+            lbCpf.Size = new Size(46, 25);
+            lbCpf.TabIndex = 27;
+            lbCpf.Text = "CPF";
             // 
             // btnCadastro
             // 
@@ -164,17 +267,17 @@
             maskedTextBox2.Size = new Size(348, 38);
             maskedTextBox2.TabIndex = 25;
             // 
-            // label6
+            // lbTelefone
             // 
-            label6.AutoSize = true;
-            label6.BackColor = Color.FromArgb(40, 40, 50);
-            label6.Font = new Font("Franklin Gothic Medium", 15F);
-            label6.ForeColor = Color.FromArgb(180, 180, 190);
-            label6.Location = new Point(28, 346);
-            label6.Name = "label6";
-            label6.Size = new Size(84, 25);
-            label6.TabIndex = 24;
-            label6.Text = "Telefone";
+            lbTelefone.AutoSize = true;
+            lbTelefone.BackColor = Color.FromArgb(40, 40, 50);
+            lbTelefone.Font = new Font("Franklin Gothic Medium", 15F);
+            lbTelefone.ForeColor = Color.FromArgb(180, 180, 190);
+            lbTelefone.Location = new Point(28, 346);
+            lbTelefone.Name = "lbTelefone";
+            lbTelefone.Size = new Size(84, 25);
+            lbTelefone.TabIndex = 24;
+            lbTelefone.Text = "Telefone";
             // 
             // UsCpf
             // 
@@ -199,16 +302,16 @@
             mkCPF.Size = new Size(348, 38);
             mkCPF.TabIndex = 22;
             // 
-            // label5
+            // lbEmail
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Franklin Gothic Medium", 12F);
-            label5.ForeColor = Color.FromArgb(180, 180, 190);
-            label5.Location = new Point(28, 204);
-            label5.Name = "label5";
-            label5.Size = new Size(50, 21);
-            label5.TabIndex = 19;
-            label5.Text = "Email";
+            lbEmail.AutoSize = true;
+            lbEmail.Font = new Font("Franklin Gothic Medium", 12F);
+            lbEmail.ForeColor = Color.FromArgb(180, 180, 190);
+            lbEmail.Location = new Point(28, 204);
+            lbEmail.Name = "lbEmail";
+            lbEmail.Size = new Size(50, 21);
+            lbEmail.TabIndex = 19;
+            lbEmail.Text = "Email";
             // 
             // UsEmail
             // 
@@ -220,16 +323,16 @@
             UsEmail.Size = new Size(348, 32);
             UsEmail.TabIndex = 18;
             // 
-            // label4
+            // lbConfirmar
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Franklin Gothic Medium", 12F);
-            label4.ForeColor = Color.FromArgb(180, 180, 190);
-            label4.Location = new Point(437, 204);
-            label4.Name = "label4";
-            label4.Size = new Size(124, 21);
-            label4.TabIndex = 17;
-            label4.Text = "Confirmar senha";
+            lbConfirmar.AutoSize = true;
+            lbConfirmar.Font = new Font("Franklin Gothic Medium", 12F);
+            lbConfirmar.ForeColor = Color.FromArgb(180, 180, 190);
+            lbConfirmar.Location = new Point(437, 204);
+            lbConfirmar.Name = "lbConfirmar";
+            lbConfirmar.Size = new Size(124, 21);
+            lbConfirmar.TabIndex = 17;
+            lbConfirmar.Text = "Confirmar senha";
             // 
             // ConfirmarSenha
             // 
@@ -242,16 +345,16 @@
             ConfirmarSenha.TabIndex = 16;
             ConfirmarSenha.UseSystemPasswordChar = true;
             // 
-            // label3
+            // lbSenha
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Franklin Gothic Medium", 12F);
-            label3.ForeColor = Color.FromArgb(180, 180, 190);
-            label3.Location = new Point(437, 136);
-            label3.Name = "label3";
-            label3.Size = new Size(88, 21);
-            label3.TabIndex = 15;
-            label3.Text = "Criar senha";
+            lbSenha.AutoSize = true;
+            lbSenha.Font = new Font("Franklin Gothic Medium", 12F);
+            lbSenha.ForeColor = Color.FromArgb(180, 180, 190);
+            lbSenha.Location = new Point(437, 136);
+            lbSenha.Name = "lbSenha";
+            lbSenha.Size = new Size(88, 21);
+            lbSenha.TabIndex = 15;
+            lbSenha.Text = "Criar senha";
             // 
             // UsSenha
             // 
@@ -264,16 +367,16 @@
             UsSenha.TabIndex = 14;
             UsSenha.UseSystemPasswordChar = true;
             // 
-            // label2
+            // lbNome
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Franklin Gothic Medium", 12F);
-            label2.ForeColor = Color.FromArgb(180, 180, 190);
-            label2.Location = new Point(28, 128);
-            label2.Name = "label2";
-            label2.Size = new Size(126, 21);
-            label2.TabIndex = 13;
-            label2.Text = "Nome de usuário";
+            lbNome.AutoSize = true;
+            lbNome.Font = new Font("Franklin Gothic Medium", 12F);
+            lbNome.ForeColor = Color.FromArgb(180, 180, 190);
+            lbNome.Location = new Point(28, 128);
+            lbNome.Name = "lbNome";
+            lbNome.Size = new Size(126, 21);
+            lbNome.TabIndex = 13;
+            lbNome.Text = "Nome de usuário";
             // 
             // UsNome
             // 
@@ -284,6 +387,7 @@
             UsNome.PlaceholderText = "Digite o nome de usuario";
             UsNome.Size = new Size(348, 32);
             UsNome.TabIndex = 12;
+            UsNome.TextChanged += UsNome_TextChanged;
             // 
             // label1
             // 
@@ -295,25 +399,6 @@
             label1.Size = new Size(274, 37);
             label1.TabIndex = 9;
             label1.Text = "Cadastre sua conta";
-            // 
-            // bntSair
-            // 
-            bntSair.BackColor = Color.Transparent;
-            bntSair.Cursor = Cursors.Hand;
-            bntSair.FlatAppearance.BorderColor = SystemColors.Highlight;
-            bntSair.FlatAppearance.BorderSize = 2;
-            bntSair.FlatAppearance.MouseDownBackColor = Color.FromArgb(50, 50, 60);
-            bntSair.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 50, 60);
-            bntSair.FlatStyle = FlatStyle.Flat;
-            bntSair.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            bntSair.ForeColor = SystemColors.Highlight;
-            bntSair.Location = new Point(687, 506);
-            bntSair.Name = "bntSair";
-            bntSair.Size = new Size(98, 37);
-            bntSair.TabIndex = 29;
-            bntSair.Text = "Sair";
-            bntSair.UseVisualStyleBackColor = false;
-            bntSair.Click += bntSair_Click;
             // 
             // cadUsuario
             // 
@@ -334,23 +419,29 @@
 
         private Panel panel1;
         private Label label1;
-        private Label label2;
+        private Label lbNome;
         private TextBox UsNome;
-        private Label label3;
+        private Label lbSenha;
         private TextBox UsSenha;
-        private Label label5;
+        private Label lbEmail;
         private TextBox UsEmail;
-        private Label label4;
+        private Label lbConfirmar;
         private TextBox ConfirmarSenha;
-        private Label label7;
+        private Label lbCpf;
         private MaskedTextBox UsTelefone;
         private MaskedTextBox maskedTextBox2;
-        private Label label6;
+        private Label lbTelefone;
         private MaskedTextBox UsCpf;
         private MaskedTextBox mkCPF;
         private Button btnLimpar;
         private Button btnCadastro;
         private CheckBox chkMostrarSenha;
         private Button bntSair;
+        private Label astEmail;
+        private Label astNome;
+        private Label astConfirmar;
+        private Label astSenha;
+        private Label astTelefone;
+        private Label astCpf;
     }
 }

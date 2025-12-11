@@ -30,19 +30,24 @@
         {
             btnLimpar = new Button();
             btnCadastro = new Button();
-            label5 = new Label();
+            lbMarca = new Label();
             PrMarca = new TextBox();
-            label2 = new Label();
+            lbNome = new Label();
             PrNome = new TextBox();
             label1 = new Label();
-            label3 = new Label();
+            lbDescricao = new Label();
             PrDescricao = new TextBox();
-            label4 = new Label();
-            label6 = new Label();
+            lbUnidade = new Label();
+            lbCategoria = new Label();
             CmbCategoria = new ComboBox();
             CmbUnidade = new ComboBox();
-            LbPreco = new Label();
+            lbPreco = new Label();
             PrPreco = new TextBox();
+            astNome = new Label();
+            astCategoria = new Label();
+            astMarca = new Label();
+            astPreco = new Label();
+            astDesc = new Label();
             SuspendLayout();
             // 
             // btnLimpar
@@ -62,6 +67,7 @@
             btnLimpar.TabIndex = 38;
             btnLimpar.Text = "Limpar";
             btnLimpar.UseVisualStyleBackColor = false;
+            btnLimpar.Click += btnLimpar_Click;
             // 
             // btnCadastro
             // 
@@ -78,16 +84,16 @@
             btnCadastro.UseVisualStyleBackColor = false;
             btnCadastro.Click += btnCadastro_Click;
             // 
-            // label5
+            // lbMarca
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Franklin Gothic Medium", 12F);
-            label5.ForeColor = Color.FromArgb(180, 180, 190);
-            label5.Location = new Point(285, 249);
-            label5.Name = "label5";
-            label5.Size = new Size(131, 21);
-            label5.TabIndex = 40;
-            label5.Text = "Marca do produto";
+            lbMarca.AutoSize = true;
+            lbMarca.Font = new Font("Franklin Gothic Medium", 12F);
+            lbMarca.ForeColor = Color.FromArgb(180, 180, 190);
+            lbMarca.Location = new Point(285, 249);
+            lbMarca.Name = "lbMarca";
+            lbMarca.Size = new Size(131, 21);
+            lbMarca.TabIndex = 40;
+            lbMarca.Text = "Marca do produto";
             // 
             // PrMarca
             // 
@@ -98,17 +104,18 @@
             PrMarca.PlaceholderText = "Digite a marca do produto";
             PrMarca.Size = new Size(348, 32);
             PrMarca.TabIndex = 39;
+            PrMarca.TextChanged += PrMarca_TextChanged;
             // 
-            // label2
+            // lbNome
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Franklin Gothic Medium", 12F);
-            label2.ForeColor = Color.FromArgb(180, 180, 190);
-            label2.Location = new Point(285, 173);
-            label2.Name = "label2";
-            label2.Size = new Size(128, 21);
-            label2.TabIndex = 32;
-            label2.Text = "Nome do produto";
+            lbNome.AutoSize = true;
+            lbNome.Font = new Font("Franklin Gothic Medium", 12F);
+            lbNome.ForeColor = Color.FromArgb(180, 180, 190);
+            lbNome.Location = new Point(285, 173);
+            lbNome.Name = "lbNome";
+            lbNome.Size = new Size(128, 21);
+            lbNome.TabIndex = 32;
+            lbNome.Text = "Nome do produto";
             // 
             // PrNome
             // 
@@ -119,28 +126,29 @@
             PrNome.PlaceholderText = "Digite o nome do produto";
             PrNome.Size = new Size(348, 32);
             PrNome.TabIndex = 31;
+            PrNome.TextChanged += PrNome_TextChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Franklin Gothic Medium", 23F);
             label1.ForeColor = SystemColors.Highlight;
-            label1.Location = new Point(533, 98);
+            label1.Location = new Point(520, 91);
             label1.Name = "label1";
             label1.Size = new Size(288, 37);
             label1.TabIndex = 30;
             label1.Text = "Cadastre de produto";
             // 
-            // label3
+            // lbDescricao
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Franklin Gothic Medium", 12F);
-            label3.ForeColor = Color.FromArgb(180, 180, 190);
-            label3.Location = new Point(694, 173);
-            label3.Name = "label3";
-            label3.Size = new Size(75, 21);
-            label3.TabIndex = 50;
-            label3.Text = "Descrição";
+            lbDescricao.AutoSize = true;
+            lbDescricao.Font = new Font("Franklin Gothic Medium", 12F);
+            lbDescricao.ForeColor = Color.FromArgb(180, 180, 190);
+            lbDescricao.Location = new Point(694, 173);
+            lbDescricao.Name = "lbDescricao";
+            lbDescricao.Size = new Size(75, 21);
+            lbDescricao.TabIndex = 50;
+            lbDescricao.Text = "Descrição";
             // 
             // PrDescricao
             // 
@@ -152,38 +160,41 @@
             PrDescricao.PlaceholderText = "Digite a descrição do produto";
             PrDescricao.Size = new Size(348, 108);
             PrDescricao.TabIndex = 49;
+            PrDescricao.TextChanged += PrDescricao_TextChanged;
             // 
-            // label4
+            // lbUnidade
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Franklin Gothic Medium", 12F);
-            label4.ForeColor = Color.FromArgb(180, 180, 190);
-            label4.Location = new Point(285, 327);
-            label4.Name = "label4";
-            label4.Size = new Size(146, 21);
-            label4.TabIndex = 51;
-            label4.Text = "Unidade de medida";
+            lbUnidade.AutoSize = true;
+            lbUnidade.Font = new Font("Franklin Gothic Medium", 12F);
+            lbUnidade.ForeColor = Color.FromArgb(180, 180, 190);
+            lbUnidade.Location = new Point(285, 327);
+            lbUnidade.Name = "lbUnidade";
+            lbUnidade.Size = new Size(146, 21);
+            lbUnidade.TabIndex = 51;
+            lbUnidade.Text = "Unidade de medida";
             // 
-            // label6
+            // lbCategoria
             // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Franklin Gothic Medium", 12F);
-            label6.ForeColor = Color.FromArgb(180, 180, 190);
-            label6.Location = new Point(694, 327);
-            label6.Name = "label6";
-            label6.Size = new Size(75, 21);
-            label6.TabIndex = 53;
-            label6.Text = "Categoria";
+            lbCategoria.AutoSize = true;
+            lbCategoria.Font = new Font("Franklin Gothic Medium", 12F);
+            lbCategoria.ForeColor = Color.FromArgb(180, 180, 190);
+            lbCategoria.Location = new Point(694, 327);
+            lbCategoria.Name = "lbCategoria";
+            lbCategoria.Size = new Size(75, 21);
+            lbCategoria.TabIndex = 53;
+            lbCategoria.Text = "Categoria";
             // 
             // CmbCategoria
             // 
             CmbCategoria.BackColor = Color.FromArgb(224, 224, 224);
             CmbCategoria.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             CmbCategoria.FormattingEnabled = true;
+            CmbCategoria.Items.AddRange(new object[] { "Alimentos", "Eletrodomésticos", "Móveis" });
             CmbCategoria.Location = new Point(694, 351);
             CmbCategoria.Name = "CmbCategoria";
             CmbCategoria.Size = new Size(348, 33);
             CmbCategoria.TabIndex = 54;
+            CmbCategoria.SelectedIndexChanged += CmbCategoria_SelectedIndexChanged;
             // 
             // CmbUnidade
             // 
@@ -198,16 +209,16 @@
             CmbUnidade.TabIndex = 55;
             CmbUnidade.SelectedIndexChanged += CmbUnidade_SelectedIndexChanged;
             // 
-            // LbPreco
+            // lbPreco
             // 
-            LbPreco.AutoSize = true;
-            LbPreco.Font = new Font("Franklin Gothic Medium", 12F);
-            LbPreco.ForeColor = Color.FromArgb(180, 180, 190);
-            LbPreco.Location = new Point(285, 405);
-            LbPreco.Name = "LbPreco";
-            LbPreco.Size = new Size(135, 21);
-            LbPreco.TabIndex = 57;
-            LbPreco.Text = "Preço por unidade";
+            lbPreco.AutoSize = true;
+            lbPreco.Font = new Font("Franklin Gothic Medium", 12F);
+            lbPreco.ForeColor = Color.FromArgb(180, 180, 190);
+            lbPreco.Location = new Point(285, 405);
+            lbPreco.Name = "lbPreco";
+            lbPreco.Size = new Size(135, 21);
+            lbPreco.TabIndex = 57;
+            lbPreco.Text = "Preço por unidade";
             // 
             // PrPreco
             // 
@@ -218,6 +229,67 @@
             PrPreco.PlaceholderText = "digite o preço do produto";
             PrPreco.Size = new Size(348, 32);
             PrPreco.TabIndex = 56;
+            PrPreco.TextChanged += PrPreco_TextChanged;
+            // 
+            // astNome
+            // 
+            astNome.AutoSize = true;
+            astNome.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            astNome.ForeColor = Color.FromArgb(192, 0, 0);
+            astNome.Location = new Point(415, 170);
+            astNome.Name = "astNome";
+            astNome.Size = new Size(16, 24);
+            astNome.TabIndex = 58;
+            astNome.Text = "*";
+            astNome.Visible = false;
+            // 
+            // astCategoria
+            // 
+            astCategoria.AutoSize = true;
+            astCategoria.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            astCategoria.ForeColor = Color.FromArgb(192, 0, 0);
+            astCategoria.Location = new Point(766, 327);
+            astCategoria.Name = "astCategoria";
+            astCategoria.Size = new Size(16, 24);
+            astCategoria.TabIndex = 59;
+            astCategoria.Text = "*";
+            astCategoria.Visible = false;
+            // 
+            // astMarca
+            // 
+            astMarca.AutoSize = true;
+            astMarca.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            astMarca.ForeColor = Color.FromArgb(192, 0, 0);
+            astMarca.Location = new Point(415, 246);
+            astMarca.Name = "astMarca";
+            astMarca.Size = new Size(16, 24);
+            astMarca.TabIndex = 60;
+            astMarca.Text = "*";
+            astMarca.Visible = false;
+            // 
+            // astPreco
+            // 
+            astPreco.AutoSize = true;
+            astPreco.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            astPreco.ForeColor = Color.FromArgb(192, 0, 0);
+            astPreco.Location = new Point(415, 405);
+            astPreco.Name = "astPreco";
+            astPreco.Size = new Size(16, 24);
+            astPreco.TabIndex = 61;
+            astPreco.Text = "*";
+            astPreco.Visible = false;
+            // 
+            // astDesc
+            // 
+            astDesc.AutoSize = true;
+            astDesc.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            astDesc.ForeColor = Color.FromArgb(192, 0, 0);
+            astDesc.Location = new Point(766, 170);
+            astDesc.Name = "astDesc";
+            astDesc.Size = new Size(16, 24);
+            astDesc.TabIndex = 62;
+            astDesc.Text = "*";
+            astDesc.Visible = false;
             // 
             // frmProduto
             // 
@@ -225,19 +297,24 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(45, 45, 60);
             ClientSize = new Size(1323, 816);
-            Controls.Add(LbPreco);
+            Controls.Add(astDesc);
+            Controls.Add(astPreco);
+            Controls.Add(astMarca);
+            Controls.Add(astCategoria);
+            Controls.Add(astNome);
+            Controls.Add(lbPreco);
             Controls.Add(PrPreco);
             Controls.Add(CmbUnidade);
             Controls.Add(CmbCategoria);
-            Controls.Add(label6);
-            Controls.Add(label4);
-            Controls.Add(label3);
+            Controls.Add(lbCategoria);
+            Controls.Add(lbUnidade);
+            Controls.Add(lbDescricao);
             Controls.Add(PrDescricao);
             Controls.Add(btnLimpar);
             Controls.Add(btnCadastro);
-            Controls.Add(label5);
+            Controls.Add(lbMarca);
             Controls.Add(PrMarca);
-            Controls.Add(label2);
+            Controls.Add(lbNome);
             Controls.Add(PrNome);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
@@ -251,18 +328,23 @@
         #endregion
         private Button btnLimpar;
         private Button btnCadastro;
-        private Label label5;
+        private Label lbMarca;
         private TextBox PrMarca;
-        private Label label2;
+        private Label lbNome;
         private TextBox PrNome;
         private Label label1;
-        private Label label3;
+        private Label lbDescricao;
         private TextBox PrDescricao;
-        private Label label4;
-        private Label label6;
+        private Label lbUnidade;
+        private Label lbCategoria;
         private ComboBox CmbCategoria;
         private ComboBox CmbUnidade;
-        private Label LbPreco;
+        private Label lbPreco;
         private TextBox PrPreco;
+        private Label astNome;
+        private Label astCategoria;
+        private Label astMarca;
+        private Label astPreco;
+        private Label astDesc;
     }
 }

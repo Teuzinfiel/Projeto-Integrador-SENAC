@@ -14,6 +14,11 @@ namespace ProjetoIntegradorSENAC.Usuario
 {
     public partial class cadUsuario : Form
     {
+
+        bool erroNome = true;
+        bool erroEmail = true;
+        bool erroCpf = true;
+
         public cadUsuario()
         {
             InitializeComponent();
@@ -83,6 +88,11 @@ namespace ProjetoIntegradorSENAC.Usuario
             loginUsuario loginUsuario = new loginUsuario();
             loginUsuario.Show();
             this.Close();
+        }
+
+        private void UsNome_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

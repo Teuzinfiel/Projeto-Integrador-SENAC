@@ -17,6 +17,7 @@ namespace ProjetoIntegradorSENAC
         public int idEmpresa;
         public int idDono;
         public int idUsuario;
+
         public MainPrincipal(int idEmpresa, int idDono, int idUsuario)
         {
             InitializeComponent();
@@ -63,7 +64,7 @@ namespace ProjetoIntegradorSENAC
 
         private void btnProdutos_Click(object sender, EventArgs e)
         {
-            AbrirFormNoPanel(new frmProduto(idUsuario));
+            AbrirFormNoPanel(new frmProduto(idUsuario, idEmpresa));
             labelCategorias.Text = "Produtos";
             EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos);
             btnProdutos.BackColor = Color.FromArgb(45, 45, 60);

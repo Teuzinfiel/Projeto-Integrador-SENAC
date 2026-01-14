@@ -28,10 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             panel2 = new Panel();
             btnMinimizar = new Button();
             btnSair = new Button();
@@ -64,6 +63,7 @@
             label5 = new Label();
             label11 = new Label();
             panel1 = new Panel();
+            btnExcluir = new Button();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgEmpresas).BeginInit();
             panel3.SuspendLayout();
@@ -107,72 +107,60 @@
             btnSair.UseVisualStyleBackColor = false;
             btnSair.Click += btnSair_Click;
             // 
+            // dtgEmpresas
+            // 
             dtgEmpresas.AllowUserToAddRows = false;
             dtgEmpresas.AllowUserToDeleteRows = false;
-            dtgEmpresas.AllowUserToOrderColumns = false;
-            dtgEmpresas.ReadOnly = true;
-            dtgEmpresas.MultiSelect = false;
-            dtgEmpresas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(35, 35, 45);
+            dataGridViewCellStyle4.ForeColor = Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(80, 80, 110);
+            dataGridViewCellStyle4.SelectionForeColor = Color.White;
+            dtgEmpresas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dtgEmpresas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgEmpresas.BackgroundColor = Color.FromArgb(30, 30, 40);
             dtgEmpresas.BorderStyle = BorderStyle.None;
-            dtgEmpresas.GridColor = Color.FromArgb(60, 60, 80);
-
             dtgEmpresas.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dtgEmpresas.RowHeadersVisible = false;
-
-            // Alternating rows
-            DataGridViewCellStyle alt = new DataGridViewCellStyle();
-            alt.BackColor = Color.FromArgb(35, 35, 45);
-            alt.ForeColor = Color.White;
-            alt.SelectionBackColor = Color.FromArgb(80, 80, 110);
-            alt.SelectionForeColor = Color.White;
-            dtgEmpresas.AlternatingRowsDefaultCellStyle = alt;
-
-            // Default rows
-            DataGridViewCellStyle rows = new DataGridViewCellStyle();
-            rows.BackColor = Color.FromArgb(40, 40, 50);
-            rows.Font = new Font("Franklin Gothic Medium", 16F, FontStyle.Regular);
-            rows.ForeColor = Color.White;
-            rows.Padding = new Padding(5);
-            rows.SelectionBackColor = Color.FromArgb(90, 90, 120);
-            rows.SelectionForeColor = Color.White;
-            dtgEmpresas.RowsDefaultCellStyle = rows;
-
-            // Column headers
-            DataGridViewCellStyle header = new DataGridViewCellStyle();
-            header.BackColor = Color.FromArgb(50, 50, 70);
-            header.ForeColor = Color.White;
-            header.Font = new Font("Franklin Gothic Medium", 20F, FontStyle.Bold);
-            header.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            header.SelectionBackColor = Color.FromArgb(60, 60, 85);
-            header.SelectionForeColor = Color.White;
-            header.Padding = new Padding(5, 10, 5, 10);
-            header.WrapMode = DataGridViewTriState.True;
-            dtgEmpresas.ColumnHeadersDefaultCellStyle = header;
-
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(50, 50, 70);
+            dataGridViewCellStyle5.Font = new Font("Franklin Gothic Medium", 20F, FontStyle.Bold);
+            dataGridViewCellStyle5.ForeColor = Color.White;
+            dataGridViewCellStyle5.Padding = new Padding(5, 10, 5, 10);
+            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(60, 60, 85);
+            dataGridViewCellStyle5.SelectionForeColor = Color.White;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            dtgEmpresas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             dtgEmpresas.ColumnHeadersHeight = 60;
             dtgEmpresas.EnableHeadersVisualStyles = false;
-
-            dtgEmpresas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-            dtgEmpresas.RowTemplate.Height = 45;
-
+            dtgEmpresas.GridColor = Color.FromArgb(60, 60, 80);
             dtgEmpresas.Location = new Point(41, 217);
+            dtgEmpresas.MultiSelect = false;
+            dtgEmpresas.Name = "dtgEmpresas";
+            dtgEmpresas.ReadOnly = true;
+            dtgEmpresas.RowHeadersVisible = false;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(40, 40, 50);
+            dataGridViewCellStyle6.Font = new Font("Franklin Gothic Medium", 16F);
+            dataGridViewCellStyle6.ForeColor = Color.White;
+            dataGridViewCellStyle6.Padding = new Padding(5);
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(90, 90, 120);
+            dataGridViewCellStyle6.SelectionForeColor = Color.White;
+            dtgEmpresas.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dtgEmpresas.RowTemplate.Height = 45;
+            dtgEmpresas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dtgEmpresas.Size = new Size(792, 458);
-
             dtgEmpresas.TabIndex = 11;
             dtgEmpresas.CellClick += dtgEmpresas_CellClick;
+            // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Franklin Gothic Demi Cond", 30F);
             label4.ForeColor = Color.White;
-            label4.Location = new Point(770, 56);
+            label4.Location = new Point(734, 54);
             label4.Name = "label4";
-            label4.Size = new Size(323, 47);
+            label4.Size = new Size(350, 47);
             label4.TabIndex = 10;
-            label4.Text = "Bem vindo, Usuario!";
+            label4.Text = "Gerenciar Comercios!";
+            label4.Click += label4_Click;
             // 
             // mkTelefone
             // 
@@ -266,7 +254,7 @@
             btnVoltar.FlatStyle = FlatStyle.Popup;
             btnVoltar.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnVoltar.ForeColor = Color.White;
-            btnVoltar.Location = new Point(1303, 613);
+            btnVoltar.Location = new Point(30, 396);
             btnVoltar.Name = "btnVoltar";
             btnVoltar.Size = new Size(181, 35);
             btnVoltar.TabIndex = 50;
@@ -488,11 +476,27 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(30, 30, 40);
+            panel1.Controls.Add(btnExcluir);
             panel1.Controls.Add(mkCNPJ);
+            panel1.Controls.Add(btnVoltar);
             panel1.Location = new Point(860, 217);
             panel1.Name = "panel1";
             panel1.Size = new Size(910, 458);
             panel1.TabIndex = 60;
+            // 
+            // btnExcluir
+            // 
+            btnExcluir.BackColor = Color.Transparent;
+            btnExcluir.FlatStyle = FlatStyle.Popup;
+            btnExcluir.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnExcluir.ForeColor = Color.Maroon;
+            btnExcluir.Location = new Point(413, 396);
+            btnExcluir.Name = "btnExcluir";
+            btnExcluir.Size = new Size(234, 35);
+            btnExcluir.TabIndex = 52;
+            btnExcluir.Text = "Excluir";
+            btnExcluir.UseVisualStyleBackColor = false;
+            btnExcluir.Click += btnExcluir_Click;
             // 
             // configEmpresa
             // 
@@ -509,7 +513,6 @@
             Controls.Add(label14);
             Controls.Add(label13);
             Controls.Add(btnSalvar);
-            Controls.Add(btnVoltar);
             Controls.Add(label8);
             Controls.Add(label7);
             Controls.Add(label6);
@@ -529,6 +532,7 @@
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "configEmpresa";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "configEmpresa";
             Load += configEmpresa_Load;
             panel2.ResumeLayout(false);
@@ -575,5 +579,6 @@
         private Label label5;
         private Label label11;
         private Panel panel1;
+        private Button btnExcluir;
     }
 }

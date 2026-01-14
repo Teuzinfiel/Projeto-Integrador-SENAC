@@ -257,11 +257,39 @@ namespace ProjetoIntegradorSENAC.Configurações
         }
         private void btnSair_Click(object sender, EventArgs e)
         {
-                this.Close();
+            this.Close();
         }
         private void btnMinimizar_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            if (idEmpresa == 0)
+            {
+                MessageBox.Show("Selecione uma empresa para excluir.", "Erro",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            DialogResult resultado = MessageBox.Show("Você tem certeza que deseja excluir este comércio?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (resultado == DialogResult.Yes)
+            {
+                Banco.Excluir($"DELETE FROM comercios WHERE id = {idEmpresa}");
+                MessageBox.Show("Empresa excluída com sucesso!");
+                CarregarEmpresas();
+            }
+            else
+            {
+
+            }
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

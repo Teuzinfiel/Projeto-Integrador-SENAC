@@ -44,12 +44,14 @@
             btnProduto = new Button();
             btnPadrao = new Button();
             btnMeses = new Button();
+            panel1 = new Panel();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
             groupBox4.SuspendLayout();
             groupBox5.SuspendLayout();
             groupBox6.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // groupBox1
@@ -57,7 +59,7 @@
             groupBox1.Controls.Add(label1);
             groupBox1.Font = new Font("Consolas", 9F, FontStyle.Bold);
             groupBox1.ForeColor = SystemColors.Control;
-            groupBox1.Location = new Point(67, 106);
+            groupBox1.Location = new Point(34, 104);
             groupBox1.Margin = new Padding(3, 2, 3, 2);
             groupBox1.Name = "groupBox1";
             groupBox1.Padding = new Padding(3, 2, 3, 2);
@@ -81,7 +83,7 @@
             groupBox2.Controls.Add(label2);
             groupBox2.Font = new Font("Consolas", 9F, FontStyle.Bold);
             groupBox2.ForeColor = SystemColors.Control;
-            groupBox2.Location = new Point(382, 106);
+            groupBox2.Location = new Point(349, 104);
             groupBox2.Margin = new Padding(3, 2, 3, 2);
             groupBox2.Name = "groupBox2";
             groupBox2.Padding = new Padding(3, 2, 3, 2);
@@ -105,7 +107,7 @@
             groupBox3.Controls.Add(label3);
             groupBox3.Font = new Font("Consolas", 9F, FontStyle.Bold);
             groupBox3.ForeColor = SystemColors.Control;
-            groupBox3.Location = new Point(699, 106);
+            groupBox3.Location = new Point(666, 104);
             groupBox3.Margin = new Padding(3, 2, 3, 2);
             groupBox3.Name = "groupBox3";
             groupBox3.Padding = new Padding(3, 2, 3, 2);
@@ -129,7 +131,7 @@
             groupBox4.Controls.Add(label4);
             groupBox4.Font = new Font("Consolas", 9F, FontStyle.Bold);
             groupBox4.ForeColor = SystemColors.Control;
-            groupBox4.Location = new Point(1014, 106);
+            groupBox4.Location = new Point(981, 104);
             groupBox4.Margin = new Padding(3, 2, 3, 2);
             groupBox4.Name = "groupBox4";
             groupBox4.Padding = new Padding(3, 2, 3, 2);
@@ -153,7 +155,7 @@
             groupBox5.Controls.Add(grafico1);
             groupBox5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBox5.ForeColor = SystemColors.Control;
-            groupBox5.Location = new Point(67, 224);
+            groupBox5.Location = new Point(34, 222);
             groupBox5.Margin = new Padding(3, 2, 3, 2);
             groupBox5.Name = "groupBox5";
             groupBox5.Padding = new Padding(3, 2, 3, 2);
@@ -180,7 +182,7 @@
             groupBox6.Controls.Add(grafico2);
             groupBox6.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBox6.ForeColor = SystemColors.Control;
-            groupBox6.Location = new Point(678, 224);
+            groupBox6.Location = new Point(645, 222);
             groupBox6.Margin = new Padding(3, 2, 3, 2);
             groupBox6.Name = "groupBox6";
             groupBox6.Padding = new Padding(3, 2, 3, 2);
@@ -210,7 +212,7 @@
             comboBox1.ForeColor = Color.White;
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "1 Mês", "6 Meses", "12 Meses" });
-            comboBox1.Location = new Point(67, 40);
+            comboBox1.Location = new Point(34, 38);
             comboBox1.Margin = new Padding(3, 2, 3, 2);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(124, 33);
@@ -224,7 +226,7 @@
             btnProduto.FlatStyle = FlatStyle.Popup;
             btnProduto.Font = new Font("Franklin Gothic Medium", 15F);
             btnProduto.ForeColor = Color.White;
-            btnProduto.Location = new Point(939, 40);
+            btnProduto.Location = new Point(906, 38);
             btnProduto.Margin = new Padding(3, 2, 3, 2);
             btnProduto.Name = "btnProduto";
             btnProduto.Size = new Size(124, 40);
@@ -240,7 +242,7 @@
             btnPadrao.FlatStyle = FlatStyle.Popup;
             btnPadrao.Font = new Font("Franklin Gothic Medium", 15F);
             btnPadrao.ForeColor = Color.White;
-            btnPadrao.Location = new Point(339, 40);
+            btnPadrao.Location = new Point(306, 38);
             btnPadrao.Margin = new Padding(3, 2, 3, 2);
             btnPadrao.Name = "btnPadrao";
             btnPadrao.Size = new Size(124, 40);
@@ -256,7 +258,7 @@
             btnMeses.FlatStyle = FlatStyle.Popup;
             btnMeses.Font = new Font("Franklin Gothic Medium", 15F);
             btnMeses.ForeColor = Color.White;
-            btnMeses.Location = new Point(623, 40);
+            btnMeses.Location = new Point(590, 38);
             btnMeses.Margin = new Padding(3, 2, 3, 2);
             btnMeses.Name = "btnMeses";
             btnMeses.Size = new Size(124, 40);
@@ -265,22 +267,31 @@
             btnMeses.UseVisualStyleBackColor = false;
             btnMeses.Click += btnMeses_Click;
             // 
+            // panel1
+            // 
+            panel1.BackColor = Color.FromArgb(30, 30, 40);
+            panel1.Controls.Add(btnMeses);
+            panel1.Controls.Add(btnPadrao);
+            panel1.Controls.Add(btnProduto);
+            panel1.Controls.Add(comboBox1);
+            panel1.Controls.Add(groupBox6);
+            panel1.Controls.Add(groupBox5);
+            panel1.Controls.Add(groupBox2);
+            panel1.Controls.Add(groupBox3);
+            panel1.Controls.Add(groupBox4);
+            panel1.Controls.Add(groupBox1);
+            panel1.Location = new Point(25, 39);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1267, 606);
+            panel1.TabIndex = 12;
+            // 
             // dashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(45, 45, 60);
             ClientSize = new Size(1326, 686);
-            Controls.Add(btnMeses);
-            Controls.Add(btnPadrao);
-            Controls.Add(btnProduto);
-            Controls.Add(comboBox1);
-            Controls.Add(groupBox6);
-            Controls.Add(groupBox5);
-            Controls.Add(groupBox2);
-            Controls.Add(groupBox3);
-            Controls.Add(groupBox4);
-            Controls.Add(groupBox1);
+            Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "dashboard";
             Text = "dashboard";
@@ -295,6 +306,7 @@
             groupBox4.PerformLayout();
             groupBox5.ResumeLayout(false);
             groupBox6.ResumeLayout(false);
+            panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -315,5 +327,6 @@
         private Button btnProduto;
         private Button btnPadrao;
         private Button btnMeses;
+        private Panel panel1;
     }
 }

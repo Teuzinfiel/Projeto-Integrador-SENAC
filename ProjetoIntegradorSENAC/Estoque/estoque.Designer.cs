@@ -63,7 +63,7 @@
             dtgProdutos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgProdutos.EnableHeadersVisualStyles = false;
             dtgProdutos.GridColor = Color.FromArgb(60, 60, 80);
-            dtgProdutos.Location = new Point(12, 103);
+            dtgProdutos.Location = new Point(12, 90);
             dtgProdutos.MultiSelect = false;
             dtgProdutos.Name = "dtgProdutos";
             dtgProdutos.ReadOnly = true;
@@ -91,7 +91,7 @@
             btnPesquisar.FlatStyle = FlatStyle.Popup;
             btnPesquisar.Font = new Font("Franklin Gothic Medium", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnPesquisar.ForeColor = Color.White;
-            btnPesquisar.Location = new Point(594, 59);
+            btnPesquisar.Location = new Point(1044, 46);
             btnPesquisar.Name = "btnPesquisar";
             btnPesquisar.Size = new Size(132, 38);
             btnPesquisar.TabIndex = 46;
@@ -104,10 +104,10 @@
             txtPesquisa.BackColor = Color.White;
             txtPesquisa.Font = new Font("Franklin Gothic Book", 20.25F);
             txtPesquisa.ForeColor = Color.FromArgb(40, 40, 50);
-            txtPesquisa.Location = new Point(81, 59);
+            txtPesquisa.Location = new Point(81, 46);
             txtPesquisa.Name = "txtPesquisa";
             txtPesquisa.PlaceholderText = "  Digite nome ou código do Produto";
-            txtPesquisa.Size = new Size(507, 38);
+            txtPesquisa.Size = new Size(957, 38);
             txtPesquisa.TabIndex = 45;
             txtPesquisa.TextChanged += txtPesquisa_TextChanged;
             // 
@@ -117,7 +117,7 @@
             button1.FlatStyle = FlatStyle.Popup;
             button1.Font = new Font("Franklin Gothic Medium", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.White;
-            button1.Location = new Point(732, 59);
+            button1.Location = new Point(1182, 46);
             button1.Name = "button1";
             button1.Size = new Size(132, 38);
             button1.TabIndex = 47;
@@ -130,7 +130,7 @@
             button2.FlatStyle = FlatStyle.Popup;
             button2.Font = new Font("Franklin Gothic Medium", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button2.ForeColor = Color.White;
-            button2.Location = new Point(12, 59);
+            button2.Location = new Point(12, 46);
             button2.Name = "button2";
             button2.Size = new Size(63, 38);
             button2.TabIndex = 48;

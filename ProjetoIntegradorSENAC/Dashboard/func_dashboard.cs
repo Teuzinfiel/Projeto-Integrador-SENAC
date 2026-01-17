@@ -4,6 +4,7 @@ using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
 using OxyPlot.WindowsForms;
+using ProjetoIntegradorSENAC.Classes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,15 +20,10 @@ namespace ProjetoIntegradorSENAC.Dashboard
 {
     internal class func_dashboard
     {
-        private static string server = "localhost";
-        private static string database = "senac";
-        private static string usuario = "root";
-        private static string senha = "";
-
-        public static string strCon = $"server={server};database={database};uid={usuario};password={senha}";
+     
         
 
-        public static void carregarInfoPadrao(Label label1, Label label2, Label label3,
+        public static void carregarInfoProdutos(Label label1, Label label2, Label label3,
             Label label4, string meses, GroupBox groupBox1, GroupBox groupBox2,
             GroupBox groupBox3, GroupBox groupBox4, int idEmpresaDash, Dictionary<string, object> parametros, Dictionary<string, string> mes)
         {
@@ -98,7 +94,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             groupBox3.Text = "Produto mais vendido do dia";
             groupBox4.Text = "Quantidade de produto vendido no dia";
         }
-        public static void carregarInfoProdutos(Label label1, Label label2, Label label3,
+        public static void carregarInfoComparacao(Label label1, Label label2, Label label3,
             Label label4, string meses, GroupBox groupBox1, GroupBox groupBox2,
             GroupBox groupBox3, GroupBox groupBox4, int idEmpresaDash, Dictionary<string, object> parametros, Dictionary<string, string> mes)
         {
@@ -146,16 +142,16 @@ namespace ProjetoIntegradorSENAC.Dashboard
             LIMIT 1) AS produto_mais_vendido;
             ", parametros, mes);
 
-            label1.Text = tabela.Rows[0]["produto_mais_receita"].ToString();
+            label1.Text = tabela.Rows[0]["produto_mais_receita"].ToString();// trocar
             label2.Text = tabela.Rows[0]["produto_menos_receita"].ToString();
             label3.Text = tabela.Rows[0]["ticket_medio_por_produto"].ToString();
             label4.Text = tabela.Rows[0]["produto_mais_vendido"].ToString();
-            groupBox1.Text = "Produto com mais receita";
+            groupBox1.Text = "Produto com mais receita"; // trocar
             groupBox2.Text = "Produto com menos receita";
             groupBox3.Text = "Ticket medio por produto";
             groupBox4.Text = "Produto mais vendido";
         }
-        public static void carregarInfoMeses(Label label1, Label label2, Label label3,
+        public static void carregarInfoVendas(Label label1, Label label2, Label label3,
             Label label4, string meses, GroupBox groupBox1, GroupBox groupBox2,
             GroupBox groupBox3, GroupBox groupBox4, int idEmpresaDash, Dictionary<string, object> parametros, Dictionary<string, string> mes)
         {
@@ -235,7 +231,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
 
         public static DataTable ExecutarSelect(string query, Dictionary<string, object> parametros, Dictionary<string, string> meses)
         {
-            using (MySqlConnection conn = new MySqlConnection(strCon))
+            using (MySqlConnection conn = new MySqlConnection(Banco.caminho))
             {
                 conn.Open();
 

@@ -39,9 +39,9 @@ namespace ProjetoIntegradorSENAC.Dashboard
             };
         }
         string meses;
-        bool padraoBoo = true;
-        bool mesesBoo = false;
-        bool produtoBoo = false;
+        bool produtosBoo = true;
+        bool vendasBoo = false;
+        bool comparacaoBoo = false;
 
 
 
@@ -49,29 +49,29 @@ namespace ProjetoIntegradorSENAC.Dashboard
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             meses = "1";
-            if (comboBox1.SelectedIndex == 1) meses = "6";
-            else if (comboBox1.SelectedIndex == 2) meses = "12";
-
-            if (padraoBoo)
+            if (comboPeriodo_dash.SelectedIndex == 0) meses = "6";
+            else if (comboPeriodo_dash.SelectedIndex == 1) meses = "12";
+            else if (comboPeriodo_dash.SelectedIndex == 2)
+                if (produtosBoo)
             {
-                func_dashboard.carregarInfoPadrao(label1, label2, label3, label4, meses, groupBox1,
-                groupBox2, groupBox3, groupBox4, idEmpresa, parametros, mes);
-                load_grafico_padrao();
+                func_dashboard.carregarInfoProdutos(label1, label2, label3, label4, meses, Info1_dash,
+                Info2_dash, Info3_dash, Info4_dash, idEmpresa, parametros, mes);
+                load_grafico_produtos();
             }
-            else if (mesesBoo)
+            else if (vendasBoo)
             {
-                load_grafico_meses();
-                func_dashboard.carregarInfoMeses(label1, label2, label3, label4, meses, groupBox1,
-                groupBox2, groupBox3, groupBox4, idEmpresa, parametros, mes);
+                load_grafico_vendas();
+                func_dashboard.carregarInfoVendas(label1, label2, label3, label4, meses, Info1_dash,
+                Info2_dash, Info3_dash, Info4_dash, idEmpresa, parametros, mes);
             }
-            else if (produtoBoo)
+            else if (comparacaoBoo)
             {
-                func_dashboard.carregarInfoProdutos(label1, label2, label3, label4, meses, groupBox1,
-                groupBox2, groupBox3, groupBox4, idEmpresa, parametros, mes);
-                load_grafico_produto();
+                func_dashboard.carregarInfoComparacao(label1, label2, label3, label4, meses, Info1_dash,
+                Info2_dash, Info3_dash, Info4_dash, idEmpresa, parametros, mes);
+                load_grafico_comparacao();
             }
         }
-        public void load_grafico_padrao()
+        public void load_grafico_produtos()
         {
             // grafico 1
             PlotModel modeloHorario = new PlotModel
@@ -111,7 +111,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
 
             int[] vendasPorHora = new int[24];
 
-            using (var con = new MySqlConnection(func_dashboard.strCon))
+            using (var con = new MySqlConnection(Banco.caminho))
             {
                 con.Open();
 
@@ -184,7 +184,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             grafico2.Model = modelo2;
         }
 
-        public void load_grafico_produto()
+        public void load_grafico_comparacao()
         {
             // grafico 1
             PlotModel modelo = new PlotModel { Title = "Top 5 produtos mais vendidos", TextColor = OxyColors.White, PlotAreaBorderColor = OxyColors.White };
@@ -270,13 +270,13 @@ namespace ProjetoIntegradorSENAC.Dashboard
             grafico2.Model = modelo2;
 
         }
-        public void load_grafico_meses()
+        public void load_grafico_vendas()
         {
             // grafico 1
 
             int[] vendasPorDia = new int[31];
 
-            using (var con = new MySqlConnection(func_dashboard.strCon))
+            using (var con = new MySqlConnection(Banco.caminho))
             {
                 con.Open();
 
@@ -401,34 +401,34 @@ namespace ProjetoIntegradorSENAC.Dashboard
         }
         private void dashboard_Load(object sender, EventArgs e)
         {
-            comboBox1.SelectedIndex = 0;
+            comboPeriodo_dash.SelectedIndex = 0;
         }
         private void btnPadrao_Click(object sender, EventArgs e)
         {
-            produtoBoo = false;
-            padraoBoo = true;
-            mesesBoo = false;
-            func_dashboard.carregarInfoPadrao(label1, label2, label3, label4, meses, groupBox1,
-            groupBox2, groupBox3, groupBox4, idEmpresa, parametros, mes);
-            load_grafico_padrao();
+            comparacaoBoo = false;
+            produtosBoo = true;
+            vendasBoo = false;
+            func_dashboard.carregarInfoProdutos(label1, label2, label3, label4, meses, Info1_dash,
+            Info2_dash, Info3_dash, Info4_dash, idEmpresa, parametros, mes);
+            load_grafico_produtos();
         }
         private void btnMeses_Click(object sender, EventArgs e)
         {
-            produtoBoo = false;
-            padraoBoo = false;
-            mesesBoo = true;
-            load_grafico_meses();
-            func_dashboard.carregarInfoMeses(label1, label2, label3, label4, meses, groupBox1,
-            groupBox2, groupBox3, groupBox4, idEmpresa, parametros, mes);
+            comparacaoBoo = false;
+            produtosBoo = false;
+            vendasBoo = true;
+            load_grafico_vendas();
+            func_dashboard.carregarInfoVendas(label1, label2, label3, label4, meses, Info1_dash,
+            Info2_dash, Info3_dash, Info4_dash, idEmpresa, parametros, mes);
         }
         private void btnProduto_Click(object sender, EventArgs e)
         {
-            produtoBoo = true;
-            padraoBoo = false;
-            mesesBoo = false;
-            load_grafico_produto();
-            func_dashboard.carregarInfoProdutos(label1, label2, label3, label4, meses, groupBox1,
-            groupBox2, groupBox3, groupBox4, idEmpresa, parametros, mes);
+            comparacaoBoo = true;
+            produtosBoo = false;
+            vendasBoo = false;
+            load_grafico_comparacao();
+            func_dashboard.carregarInfoComparacao(label1, label2, label3, label4, meses, Info1_dash,
+            Info2_dash, Info3_dash, Info4_dash, idEmpresa, parametros, mes);
         }
     }
 }

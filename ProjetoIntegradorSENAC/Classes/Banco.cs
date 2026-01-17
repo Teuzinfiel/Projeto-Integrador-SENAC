@@ -11,10 +11,10 @@ namespace ProjetoIntegradorSENAC.Classes
 {
     internal class Banco
     {
-        
+
         public static string banco = "senac";
-        public static string senha = "gustavo951873";
-        public static string usuario = "root"; 
+        public static string senha = "";
+        public static string usuario = "root";
         public static string servidor = "localhost";
 
         public static string caminho = $"server={servidor};database={banco};uid={usuario};password={senha}";
@@ -28,7 +28,7 @@ namespace ProjetoIntegradorSENAC.Classes
                 using (MySqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = insert;
-        
+
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -45,15 +45,29 @@ namespace ProjetoIntegradorSENAC.Classes
                 {
                     cmd.CommandText = query;
 
-                    using(MySqlDataAdapter da = new MySqlDataAdapter(cmd))
+                    using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
                     {
                         DataTable dataTable = new DataTable();
 
-                        da.Fill(dataTable);  
+                        da.Fill(dataTable);
 
                         return dataTable;
                     }
 
+                }
+            }
+        }
+        public static void Excluir(string delete)
+        {
+            using (MySqlConnection conn = new MySqlConnection(caminho))
+            {
+                conn.Open();
+
+                using (MySqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = delete;
+
+                    cmd.ExecuteNonQuery();
                 }
             }
         }

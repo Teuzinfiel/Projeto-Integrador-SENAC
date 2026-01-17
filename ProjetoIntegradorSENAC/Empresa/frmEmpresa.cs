@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using ProjetoIntegradorSENAC.Classes;
 using ProjetoIntegradorSENAC.Configurações;
@@ -29,7 +30,7 @@ namespace ProjetoIntegradorSENAC.Empresa
                                 usuarios.nome AS dono,
                                 comercios.nome AS comercio,
                                 comercios.nome_fantasia AS fantasia,
-                                comercios.telefone AS telefone
+                                comercios.documentacao
                             FROM comercios
                             JOIN usuarios ON usuarios.id = comercios.dono_id
                             WHERE comercios.dono_id = {idUsuario}  ";
@@ -41,13 +42,25 @@ namespace ProjetoIntegradorSENAC.Empresa
                 dtgEmpresas.Columns["dono"].HeaderText = "Gerente";
                 dtgEmpresas.Columns["comercio"].HeaderText = "Comércio";
                 dtgEmpresas.Columns["fantasia"].HeaderText = "Nome Fantasia";
-                dtgEmpresas.Columns["telefone"].HeaderText = "Telefone";
+                dtgEmpresas.Columns["documentacao"].HeaderText = "Documentacao";
             }
+              
             catch (Exception ex)
             {
                 MessageBox.Show("Erro ao carregar empresas: " + ex.Message);
             }
             dtgEmpresas.ClearSelection();
+
+            string nomeUsuario = "";
+
+            string queryUser = $"SELECT nome FROM usuarios WHERE id = {idUsuario}";
+            DataTable dtUser = Banco.Pesquisar(queryUser);
+            if (dtUser.Rows.Count > 0)
+            {
+                nomeUsuario = dtUser.Rows[0]["nome"].ToString();
+                label4.Text = ($"Bem - vindo, { nomeUsuario}");
+            }
+
         }
 
         private void dtgEmpresas_CellClick(object sender, DataGridViewCellEventArgs e)

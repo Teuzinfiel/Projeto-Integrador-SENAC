@@ -44,7 +44,7 @@ namespace ProjetoIntegradorSENAC.Logins
                 frmEmpresa frmEmpresa = new frmEmpresa(idUser);
                 frmEmpresa.idUsuario = idUser;
                 frmEmpresa.Show();
-     
+                this.Hide();
             }
             else
             {
@@ -82,7 +82,7 @@ namespace ProjetoIntegradorSENAC.Logins
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnLogin_Click1(object sender, EventArgs e)
         {
 
             cadUsuario cadastrar = new cadUsuario();

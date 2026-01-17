@@ -29,16 +29,17 @@ namespace ProjetoIntegradorSENAC.Dashboard
             InitializeComponent();
             this.idEmpresa = idEmpresa;
             parametros = new Dictionary<string, object>()
-        {
-            { "@idEmpresa", idEmpresa }
+            {
+                { "@idEmpresa", idEmpresa }
             };
 
             mes = new Dictionary<string, string>()
-        {
-            { "@mes", meses }
+            {
+                { "@dia", dia }
             };
         }
-        string meses;
+        string dia;
+        bool hojeBoo = false;
         bool produtosBoo = true;
         bool vendasBoo = false;
         bool comparacaoBoo = false;
@@ -48,25 +49,53 @@ namespace ProjetoIntegradorSENAC.Dashboard
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            meses = "1";
-            if (comboPeriodo_dash.SelectedIndex == 0) meses = "6";
-            else if (comboPeriodo_dash.SelectedIndex == 1) meses = "12";
-            else if (comboPeriodo_dash.SelectedIndex == 2)
-                if (produtosBoo)
+
+            if (comboPeriodo_dash.SelectedIndex == 0)
             {
-                func_dashboard.carregarInfoProdutos(label1, label2, label3, label4, meses, Info1_dash,
+                dia = "1";
+                hojeBoo = true;
+            }
+            else if (comboPeriodo_dash.SelectedIndex == 1)
+            {
+                dia = "7";
+                hojeBoo = false;
+            }
+            else if (comboPeriodo_dash.SelectedIndex == 2)
+            {
+                dia = "30";
+                hojeBoo = false;
+            }
+            else if (comboPeriodo_dash.SelectedIndex == 3)
+            {
+                dia = "90";
+                hojeBoo = false;
+            }
+            else if (comboPeriodo_dash.SelectedIndex == 4)
+            {
+                dia = "180";
+                hojeBoo = false;
+            }
+            else if (comboPeriodo_dash.SelectedIndex == 5) 
+            {
+                dia = "365";
+                hojeBoo = false;
+            }
+
+            if (produtosBoo)
+            {
+                func_dashboard.carregarInfoProdutos(label1, label2, label3, label4, dia, Info1_dash,
                 Info2_dash, Info3_dash, Info4_dash, idEmpresa, parametros, mes);
                 load_grafico_produtos();
             }
             else if (vendasBoo)
             {
                 load_grafico_vendas();
-                func_dashboard.carregarInfoVendas(label1, label2, label3, label4, meses, Info1_dash,
+                func_dashboard.carregarInfoVendas(label1, label2, label3, label4, dia, Info1_dash,
                 Info2_dash, Info3_dash, Info4_dash, idEmpresa, parametros, mes);
             }
             else if (comparacaoBoo)
             {
-                func_dashboard.carregarInfoComparacao(label1, label2, label3, label4, meses, Info1_dash,
+                func_dashboard.carregarInfoComparacao(label1, label2, label3, label4, dia, Info1_dash,
                 Info2_dash, Info3_dash, Info4_dash, idEmpresa, parametros, mes);
                 load_grafico_comparacao();
             }
@@ -408,7 +437,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             comparacaoBoo = false;
             produtosBoo = true;
             vendasBoo = false;
-            func_dashboard.carregarInfoProdutos(label1, label2, label3, label4, meses, Info1_dash,
+            func_dashboard.carregarInfoProdutos(label1, label2, label3, label4, dia, Info1_dash,
             Info2_dash, Info3_dash, Info4_dash, idEmpresa, parametros, mes);
             load_grafico_produtos();
         }
@@ -418,7 +447,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             produtosBoo = false;
             vendasBoo = true;
             load_grafico_vendas();
-            func_dashboard.carregarInfoVendas(label1, label2, label3, label4, meses, Info1_dash,
+            func_dashboard.carregarInfoVendas(label1, label2, label3, label4, dia, Info1_dash,
             Info2_dash, Info3_dash, Info4_dash, idEmpresa, parametros, mes);
         }
         private void btnProduto_Click(object sender, EventArgs e)
@@ -427,7 +456,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             produtosBoo = false;
             vendasBoo = false;
             load_grafico_comparacao();
-            func_dashboard.carregarInfoComparacao(label1, label2, label3, label4, meses, Info1_dash,
+            func_dashboard.carregarInfoComparacao(label1, label2, label3, label4, dia, Info1_dash,
             Info2_dash, Info3_dash, Info4_dash, idEmpresa, parametros, mes);
         }
     }

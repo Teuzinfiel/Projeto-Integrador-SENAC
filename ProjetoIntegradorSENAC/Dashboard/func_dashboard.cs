@@ -24,79 +24,24 @@ namespace ProjetoIntegradorSENAC.Dashboard
         
 
         public static void carregarInfoProdutos(Label label1, Label label2, Label label3,
-            Label label4, string meses, GroupBox groupBox1, GroupBox groupBox2,
-            GroupBox groupBox3, GroupBox groupBox4, int idEmpresaDash, Dictionary<string, object> parametros, Dictionary<string, string> mes)
+            Label label4, string meses, GroupBox Info1_dash, GroupBox Info2_dash,
+            GroupBox Info3_dash, GroupBox Info4_dash, int idEmpresaDash, Dictionary<string, object> parametros, Dictionary<string, string> mes)
         {
 
-            DataTable tabela = ExecutarSelect(@"
-            SELECT
-            -- Número de vendas do dia
-            (SELECT COUNT(*) 
-            FROM vendas v
-            JOIN funcionarios f ON f.id = v.funcionario_id
-            WHERE DATE(v.data_venda) = CURDATE()
-            AND f.comercio_id = @idEmpresa
-            ) AS numero_vendas_dia,
+            DataTable tabela = ExecutarSelect("", parametros, mes);
 
-            -- Total vendido no dia (R$)
-            (SELECT ROUND(SUM(v.total), 2)
-            FROM vendas v
-            JOIN funcionarios f ON f.id = v.funcionario_id
-            WHERE DATE(v.data_venda) = CURDATE()
-            AND f.comercio_id = @idEmpresa
-            ) AS total_vendas_dia,
-
-            -- Ticket médio do dia
-            (SELECT 
-            CASE 
-            WHEN COUNT(*) = 0 THEN 0
-            ELSE ROUND(SUM(v.total) / COUNT(*), 2)
-            END
-            FROM vendas v
-            JOIN funcionarios f ON f.id = v.funcionario_id
-            WHERE DATE(v.data_venda) = CURDATE()
-            AND f.comercio_id = @idEmpresa
-            ) AS ticket_medio_dia,
-
-            -- Produto mais vendido do dia (nome)
-            (SELECT p.nome
-            FROM items_venda iv
-            JOIN vendas v ON v.id = iv.vendas_id
-            JOIN funcionarios f ON f.id = v.funcionario_id
-            JOIN produtos p ON p.id = iv.produtos_id
-            WHERE DATE(v.data_venda) = CURDATE()
-            AND f.comercio_id = @idEmpresa
-            GROUP BY p.id
-            ORDER BY SUM(iv.quantidade) DESC
-            LIMIT 1
-            ) AS produto_mais_vendido_dia,
-
-            -- Quantidade vendida do produto mais vendido do dia
-            (SELECT SUM(iv.quantidade)
-            FROM items_venda iv
-            JOIN vendas v ON v.id = iv.vendas_id
-            JOIN funcionarios f ON f.id = v.funcionario_id
-            WHERE DATE(v.data_venda) = CURDATE()
-            AND f.comercio_id = @idEmpresa
-            GROUP BY iv.produtos_id
-            ORDER BY SUM(iv.quantidade) DESC
-            LIMIT 1
-            ) AS quantidade_produto_mais_vendido_dia;
-
-", parametros, mes);
-
-            label1.Text = tabela.Rows[0]["total_vendas_dia"].ToString() + "("+ tabela.Rows[0]["numero_vendas_dia"].ToString() +")";
-            label2.Text = tabela.Rows[0]["ticket_medio_dia"].ToString();
-            label3.Text = tabela.Rows[0]["produto_mais_vendido_dia"].ToString();
-            label4.Text = tabela.Rows[0]["quantidade_produto_mais_vendido_dia"].ToString();
-            groupBox1.Text = "Vendas do dia (receita e quantidade)";
-            groupBox2.Text = "Ticket medio do dia";
-            groupBox3.Text = "Produto mais vendido do dia";
-            groupBox4.Text = "Quantidade de produto vendido no dia";
+            label1.Text = tabela.Rows[0][""].ToString();
+            label2.Text = tabela.Rows[0][""].ToString();
+            label3.Text = tabela.Rows[0][""].ToString();
+            label4.Text = tabela.Rows[0][""].ToString();
+            Info1_dash.Text = "";
+            Info2_dash.Text = "";
+            Info3_dash.Text = "";
+            Info4_dash.Text = "";
         }
         public static void carregarInfoComparacao(Label label1, Label label2, Label label3,
-            Label label4, string meses, GroupBox groupBox1, GroupBox groupBox2,
-            GroupBox groupBox3, GroupBox groupBox4, int idEmpresaDash, Dictionary<string, object> parametros, Dictionary<string, string> mes)
+            Label label4, string meses, GroupBox Info1_dash, GroupBox Info2_dash,
+            GroupBox Info3_dash, GroupBox Info4_dash, int idEmpresaDash, Dictionary<string, object> parametros, Dictionary<string, string> mes)
         {
 
             DataTable tabela = ExecutarSelect(@"
@@ -119,16 +64,15 @@ namespace ProjetoIntegradorSENAC.Dashboard
             JOIN funcionarios f ON f.id = v.funcionario_id
             WHERE f.comercio_id = @idEmpresa) AS ticket_medio_por_produto,
 
-            -- Produto que gerou MAIS receita
-            (SELECT p.nome
+            -- Quantidade de produtos vendidos
+            (SELECT 
+            SUM(iv.quantidade) AS total_produtos_vendidos
             FROM items_venda iv
-            JOIN vendas v ON v.id = iv.vendas_id
+            JOIN vendas v       ON v.id = iv.vendas_id
             JOIN funcionarios f ON f.id = v.funcionario_id
-            JOIN produtos p ON p.id = iv.produtos_id
             WHERE f.comercio_id = @idEmpresa
-            GROUP BY p.id
-            ORDER BY SUM(iv.preco_unitario * iv.quantidade) DESC
-            LIMIT 1) AS produto_mais_receita,
+            AND v.data_venda >= DATE_SUB(CURDATE(), INTERVAL @dia DAY);
+            ) AS quantidade_produtos_vendidos,
 
             -- Produto mais vendido (em quantidade)
             (SELECT p.nome
@@ -142,88 +86,32 @@ namespace ProjetoIntegradorSENAC.Dashboard
             LIMIT 1) AS produto_mais_vendido;
             ", parametros, mes);
 
-            label1.Text = tabela.Rows[0]["produto_mais_receita"].ToString();// trocar
+            label1.Text = tabela.Rows[0]["quantidade_produtos_vendidos"].ToString();
             label2.Text = tabela.Rows[0]["produto_menos_receita"].ToString();
             label3.Text = tabela.Rows[0]["ticket_medio_por_produto"].ToString();
             label4.Text = tabela.Rows[0]["produto_mais_vendido"].ToString();
-            groupBox1.Text = "Produto com mais receita"; // trocar
-            groupBox2.Text = "Produto com menos receita";
-            groupBox3.Text = "Ticket medio por produto";
-            groupBox4.Text = "Produto mais vendido";
+            Info1_dash.Text = "Quantidade de produtos vendidos"; 
+            Info2_dash.Text = "Produto com menos receita";
+            Info3_dash.Text = "Ticket medio por produto";
+            Info4_dash.Text = "Produto mais vendido";
         }
         public static void carregarInfoVendas(Label label1, Label label2, Label label3,
-            Label label4, string meses, GroupBox groupBox1, GroupBox groupBox2,
-            GroupBox groupBox3, GroupBox groupBox4, int idEmpresaDash, Dictionary<string, object> parametros, Dictionary<string, string> mes)
+            Label label4, string meses, GroupBox Info1_dash, GroupBox Info2_dash,
+            GroupBox Info3_dash, GroupBox Info4_dash, int idEmpresaDash, Dictionary<string, object> parametros, Dictionary<string, string> mes)
         {
 
-            DataTable tabela = ExecutarSelect(@"
-            SELECT 
-            -- Categoria mais vendida no mês (por quantidade)
-            (SELECT p.categoria
-            FROM items_venda iv
-            JOIN vendas v ON v.id = iv.vendas_id
-            JOIN funcionarios f ON f.id = v.funcionario_id
-            JOIN produtos p ON p.id = iv.produtos_id
-            WHERE MONTH(v.data_venda) = MONTH(CURDATE())
-            AND YEAR(v.data_venda) = YEAR(CURDATE())
-            AND f.comercio_id = @idEmpresa
-            GROUP BY p.categoria
-            ORDER BY SUM(iv.quantidade) DESC
-            LIMIT 1
-            ) AS categoria_mais_vendida_mes,
-
-            -- Receita total do mês
-            (SELECT ROUND(SUM(v.total), 2)
-            FROM vendas v
-            JOIN funcionarios f ON f.id = v.funcionario_id
-            WHERE MONTH(v.data_venda) = MONTH(CURDATE())
-            AND YEAR(v.data_venda) = YEAR(CURDATE())
-            AND f.comercio_id = @idEmpresa
-            ) AS receita_mes,
-
-            -- Quantidade total de vendas no mês
-            (SELECT COUNT(*)
-             FROM vendas v
-            JOIN funcionarios f ON f.id = v.funcionario_id
-            WHERE MONTH(v.data_venda) = MONTH(CURDATE())
-            AND YEAR(v.data_venda) = YEAR(CURDATE())
-            AND f.comercio_id = @idEmpresa
-            ) AS quantidade_mes,
-
-            -- Produto mais vendido do mês
-            (SELECT p.nome
-            FROM items_venda iv
-            JOIN vendas v ON v.id = iv.vendas_id
-            JOIN funcionarios f ON f.id = v.funcionario_id
-            JOIN produtos p ON p.id = iv.produtos_id
-            WHERE MONTH(v.data_venda) = MONTH(CURDATE())
-            AND YEAR(v.data_venda) = YEAR(CURDATE())
-            AND f.comercio_id = @idEmpresa
-            GROUP BY p.id
-            ORDER BY SUM(iv.quantidade) DESC
-            LIMIT 1
-            ) AS produto_mais_vendido_mes,
-
-            -- Quantidade do produto mais vendido do mês
-            (SELECT SUM(iv.quantidade)
-            FROM items_venda iv
-            JOIN vendas v ON v.id = iv.vendas_id
-            JOIN funcionarios f ON f.id = v.funcionario_id
-            WHERE MONTH(v.data_venda) = MONTH(CURDATE())
-            AND YEAR(v.data_venda) = YEAR(CURDATE())
-            AND f.comercio_id = @idEmpresa
-            ) AS quantidade_produto_mais_vendido_mes;
-            ",parametros, mes);
+            DataTable tabela = ExecutarSelect(""
+           ,parametros, mes);
 
 
-            label1.Text = tabela.Rows[0]["receita_mes"].ToString() + "(" + tabela.Rows[0]["quantidade_mes"].ToString() + ")";
-            label2.Text = tabela.Rows[0]["categoria_mais_vendida_mes"].ToString();
-            label3.Text = tabela.Rows[0]["produto_mais_vendido_mes"].ToString();
-            label4.Text = tabela.Rows[0]["quantidade_produto_mais_vendido_mes"].ToString();
-            groupBox1.Text = "Vendas do mês(receita e quantidade)";
-            groupBox2.Text = "Categoria mais vendida do mês";
-            groupBox3.Text = "Produto mais vendido do mês";
-            groupBox4.Text = "Quantidade de produtos vendido no mês";
+            label1.Text = tabela.Rows[0][""].ToString();
+            label2.Text = tabela.Rows[0][""].ToString();
+            label3.Text = tabela.Rows[0][""].ToString();
+            label4.Text = tabela.Rows[0][""].ToString();
+            Info1_dash.Text = "";
+            Info2_dash.Text = "";
+            Info3_dash.Text = "";
+            Info4_dash.Text = "";
 
 
 

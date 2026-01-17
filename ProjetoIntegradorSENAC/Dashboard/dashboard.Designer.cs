@@ -195,7 +195,7 @@
             comboPeriodo_dash.Font = new Font("Franklin Gothic Medium", 15F);
             comboPeriodo_dash.ForeColor = Color.White;
             comboPeriodo_dash.FormattingEnabled = true;
-            comboPeriodo_dash.Items.AddRange(new object[] { "1 Mês", "6 Meses", "12 Meses" });
+            comboPeriodo_dash.Items.AddRange(new object[] { "Hoje", "1 Semana", "1 Mês", "3 Meses", "6 Meses", "12 Meses" });
             comboPeriodo_dash.Location = new Point(77, 53);
             comboPeriodo_dash.Name = "comboPeriodo_dash";
             comboPeriodo_dash.Size = new Size(141, 40);

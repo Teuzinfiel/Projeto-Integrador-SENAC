@@ -22,24 +22,20 @@ namespace ProjetoIntegradorSENAC.Dashboard
     public partial class dashboard : Form
     {
         private int idEmpresa;
-        private Dictionary<string, object> parametros;
+        private Dictionary<string, object> param_idEmpresa;
         private Dictionary<string, string> mes;
         public dashboard(int idEmpresa)
         {
             InitializeComponent();
             this.idEmpresa = idEmpresa;
-            parametros = new Dictionary<string, object>()
+            param_idEmpresa = new Dictionary<string, object>()
             {
                 { "@idEmpresa", idEmpresa }
             };
 
-            mes = new Dictionary<string, string>()
-            {
-                { "@dia", dia }
-            };
+
         }
-        string dia;
-        bool hojeBoo = false;
+        string periodo;
         bool produtosBoo = true;
         bool vendasBoo = false;
         bool comparacaoBoo = false;
@@ -49,54 +45,23 @@ namespace ProjetoIntegradorSENAC.Dashboard
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-            if (comboPeriodo_dash.SelectedIndex == 0)
-            {
-                dia = "1";
-                hojeBoo = true;
-            }
-            else if (comboPeriodo_dash.SelectedIndex == 1)
-            {
-                dia = "7";
-                hojeBoo = false;
-            }
-            else if (comboPeriodo_dash.SelectedIndex == 2)
-            {
-                dia = "30";
-                hojeBoo = false;
-            }
-            else if (comboPeriodo_dash.SelectedIndex == 3)
-            {
-                dia = "90";
-                hojeBoo = false;
-            }
-            else if (comboPeriodo_dash.SelectedIndex == 4)
-            {
-                dia = "180";
-                hojeBoo = false;
-            }
-            else if (comboPeriodo_dash.SelectedIndex == 5) 
-            {
-                dia = "365";
-                hojeBoo = false;
-            }
-
+            periodo = func_dashboard.carregarPeriodo(comboPeriodo_dash);
             if (produtosBoo)
             {
-                func_dashboard.carregarInfoProdutos(label1, label2, label3, label4, dia, Info1_dash,
-                Info2_dash, Info3_dash, Info4_dash, idEmpresa, parametros, mes);
+                func_dashboard.carregarInfoProdutos(label1, label2, label3, label4, Info1_dash,
+                Info2_dash, Info3_dash, Info4_dash, param_idEmpresa, periodo);
                 load_grafico_produtos();
             }
             else if (vendasBoo)
             {
                 load_grafico_vendas();
-                func_dashboard.carregarInfoVendas(label1, label2, label3, label4, dia, Info1_dash,
-                Info2_dash, Info3_dash, Info4_dash, idEmpresa, parametros, mes);
+                func_dashboard.carregarInfoVendas(label1, label2, label3, label4, Info1_dash,
+                Info2_dash, Info3_dash, Info4_dash, param_idEmpresa, periodo);
             }
             else if (comparacaoBoo)
             {
-                func_dashboard.carregarInfoComparacao(label1, label2, label3, label4, dia, Info1_dash,
-                Info2_dash, Info3_dash, Info4_dash, idEmpresa, parametros, mes);
+                func_dashboard.carregarInfoComparacao(label1, label2, label3, label4, Info1_dash,
+                Info2_dash, Info3_dash, Info4_dash, param_idEmpresa, periodo);
                 load_grafico_comparacao();
             }
         }
@@ -198,7 +163,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             GROUP BY p.categoria
             ORDER BY total_vendido DESC
             LIMIT 5;
-            ", parametros, mes);
+            ", param_idEmpresa);
 
             foreach (DataRow row in tabela2.Rows)
             {
@@ -237,7 +202,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             GROUP BY p.id, p.nome
             ORDER BY total_vendido DESC
             LIMIT 5;
-            ", parametros, mes);
+            ", param_idEmpresa);
 
 
             foreach (DataRow row in tabela.Rows)
@@ -282,7 +247,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             GROUP BY p.id, p.nome
             ORDER BY receita DESC
             LIMIT 5;
-            ", parametros, mes);
+            ", param_idEmpresa);
 
             foreach (DataRow row in tabela2.Rows)
             {
@@ -404,7 +369,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             ORDER BY total_vendido DESC
             LIMIT 5;
 
-            ", parametros, mes);
+            ", param_idEmpresa);
 
             foreach (DataRow row in tabela.Rows)
             {
@@ -432,33 +397,35 @@ namespace ProjetoIntegradorSENAC.Dashboard
         {
             comboPeriodo_dash.SelectedIndex = 0;
         }
-        private void btnPadrao_Click(object sender, EventArgs e)
+        private void btnProdutos_Click(object sender, EventArgs e)
         {
             comparacaoBoo = false;
             produtosBoo = true;
             vendasBoo = false;
-            func_dashboard.carregarInfoProdutos(label1, label2, label3, label4, dia, Info1_dash,
-            Info2_dash, Info3_dash, Info4_dash, idEmpresa, parametros, mes);
-            load_grafico_produtos();
+            func_dashboard.carregarInfoProdutos(label1, label2, label3, label4, Info1_dash,
+            Info2_dash, Info3_dash, Info4_dash, param_idEmpresa, periodo);
+            //load_grafico_produtos();
         }
-        private void btnMeses_Click(object sender, EventArgs e)
+        private void btnVendas_Click(object sender, EventArgs e)
         {
             comparacaoBoo = false;
             produtosBoo = false;
             vendasBoo = true;
             load_grafico_vendas();
-            func_dashboard.carregarInfoVendas(label1, label2, label3, label4, dia, Info1_dash,
-            Info2_dash, Info3_dash, Info4_dash, idEmpresa, parametros, mes);
+            func_dashboard.carregarInfoVendas(label1, label2, label3, label4, Info1_dash,
+            Info2_dash, Info3_dash, Info4_dash, param_idEmpresa, periodo);
         }
-        private void btnProduto_Click(object sender, EventArgs e)
+        private void btnComparacao_Click(object sender, EventArgs e)
         {
             comparacaoBoo = true;
             produtosBoo = false;
             vendasBoo = false;
             load_grafico_comparacao();
-            func_dashboard.carregarInfoComparacao(label1, label2, label3, label4, dia, Info1_dash,
-            Info2_dash, Info3_dash, Info4_dash, idEmpresa, parametros, mes);
+            func_dashboard.carregarInfoComparacao(label1, label2, label3, label4, Info1_dash,
+            Info2_dash, Info3_dash, Info4_dash, param_idEmpresa, periodo);
         }
+
+        
     }
 }
 

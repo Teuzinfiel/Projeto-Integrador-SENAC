@@ -23,12 +23,12 @@ namespace ProjetoIntegradorSENAC.Dashboard
      
         
 
-        public static void carregarInfoProdutos(Label label1, Label label2, Label label3,
-            Label label4, string meses, GroupBox Info1_dash, GroupBox Info2_dash,
-            GroupBox Info3_dash, GroupBox Info4_dash, int idEmpresaDash, Dictionary<string, object> parametros, Dictionary<string, string> mes)
+        public static void carregarInfoComparacao(Label label1, Label label2, Label label3,
+            Label label4, GroupBox Info1_dash, GroupBox Info2_dash,
+            GroupBox Info3_dash, GroupBox Info4_dash, Dictionary<string, object> parametros, string periodo)
         {
 
-            DataTable tabela = ExecutarSelect("", parametros, mes);
+            DataTable tabela = ExecutarSelect("", parametros);
 
             label1.Text = tabela.Rows[0][""].ToString();
             label2.Text = tabela.Rows[0][""].ToString();
@@ -39,9 +39,9 @@ namespace ProjetoIntegradorSENAC.Dashboard
             Info3_dash.Text = "";
             Info4_dash.Text = "";
         }
-        public static void carregarInfoComparacao(Label label1, Label label2, Label label3,
-            Label label4, string meses, GroupBox Info1_dash, GroupBox Info2_dash,
-            GroupBox Info3_dash, GroupBox Info4_dash, int idEmpresaDash, Dictionary<string, object> parametros, Dictionary<string, string> mes)
+        public static void carregarInfoProdutos(Label label1, Label label2, Label label3,
+            Label label4, GroupBox Info1_dash, GroupBox Info2_dash,
+            GroupBox Info3_dash, GroupBox Info4_dash, Dictionary<string, object> parametros, string periodo)
         {
 
             DataTable tabela = ExecutarSelect(@"
@@ -68,11 +68,10 @@ namespace ProjetoIntegradorSENAC.Dashboard
             (SELECT 
             SUM(iv.quantidade) AS total_produtos_vendidos
             FROM items_venda iv
-            JOIN vendas v       ON v.id = iv.vendas_id
+            JOIN vendas v ON v.id = iv.vendas_id
             JOIN funcionarios f ON f.id = v.funcionario_id
             WHERE f.comercio_id = @idEmpresa
-            AND v.data_venda >= DATE_SUB(CURDATE(), INTERVAL @dia DAY);
-            ) AS quantidade_produtos_vendidos,
+            " + periodo + @" ) AS quantidade_produtos_vendidos,
 
             -- Produto mais vendido (em quantidade)
             (SELECT p.nome
@@ -84,25 +83,24 @@ namespace ProjetoIntegradorSENAC.Dashboard
             GROUP BY p.id
             ORDER BY SUM(iv.quantidade) DESC
             LIMIT 1) AS produto_mais_vendido;
-            ", parametros, mes);
+            ", parametros);
 
             label1.Text = tabela.Rows[0]["quantidade_produtos_vendidos"].ToString();
-            label2.Text = tabela.Rows[0]["produto_menos_receita"].ToString();
-            label3.Text = tabela.Rows[0]["ticket_medio_por_produto"].ToString();
-            label4.Text = tabela.Rows[0]["produto_mais_vendido"].ToString();
+            label2.Text = tabela.Rows[0]["produto_menos_receita"].ToString();//////
+            label3.Text = tabela.Rows[0]["ticket_medio_por_produto"].ToString();////////
+            label4.Text = tabela.Rows[0]["produto_mais_vendido"].ToString();//////////
             Info1_dash.Text = "Quantidade de produtos vendidos"; 
             Info2_dash.Text = "Produto com menos receita";
             Info3_dash.Text = "Ticket medio por produto";
             Info4_dash.Text = "Produto mais vendido";
         }
         public static void carregarInfoVendas(Label label1, Label label2, Label label3,
-            Label label4, string meses, GroupBox Info1_dash, GroupBox Info2_dash,
-            GroupBox Info3_dash, GroupBox Info4_dash, int idEmpresaDash, Dictionary<string, object> parametros, Dictionary<string, string> mes)
+            Label label4, GroupBox Info1_dash, GroupBox Info2_dash,
+            GroupBox Info3_dash, GroupBox Info4_dash, Dictionary<string, object> parametros, string periodo)
         {
 
             DataTable tabela = ExecutarSelect(""
-           ,parametros, mes);
-
+           ,parametros);
 
             label1.Text = tabela.Rows[0][""].ToString();
             label2.Text = tabela.Rows[0][""].ToString();
@@ -112,34 +110,50 @@ namespace ProjetoIntegradorSENAC.Dashboard
             Info2_dash.Text = "";
             Info3_dash.Text = "";
             Info4_dash.Text = "";
-
-
-
         }
-
-        public static DataTable ExecutarSelect(string query, Dictionary<string, object> parametros, Dictionary<string, string> meses)
+        public static string carregarPeriodo(ComboBox comboPeriodo_dash)
+        {
+            if (comboPeriodo_dash.SelectedIndex == 0)
+            {
+                return " AND DATE(v.data_venda) = CURDATE() ";
+            }
+            else if (comboPeriodo_dash.SelectedIndex == 1)
+            {
+                return " AND v.data_venda >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) ";
+            }
+            else if (comboPeriodo_dash.SelectedIndex == 2)
+            { 
+                return " AND v.data_venda >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH) ";
+            }
+            else if (comboPeriodo_dash.SelectedIndex == 3)
+            {
+                return " AND v.data_venda >= DATE_SUB(CURDATE(), INTERVAL 3 MONTH) ";
+            }
+            else if (comboPeriodo_dash.SelectedIndex == 4)
+            {
+                return " AND v.data_venda >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH) ";
+            }
+            else if (comboPeriodo_dash.SelectedIndex == 5)
+            {
+                return " AND v.data_venda >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR) ";
+            }
+            return "";
+        }
+        public static DataTable ExecutarSelect(string query, Dictionary<string, object> IdEmpresa)
         {
             using (MySqlConnection conn = new MySqlConnection(Banco.caminho))
             {
                 conn.Open();
-
                 using (MySqlCommand cmd = new MySqlCommand(query, conn))
                 {
-                    if (parametros != null)
+                    if (IdEmpresa != null)
                     {
-                        foreach (var p in parametros)
+                        foreach (var p in IdEmpresa)
                         {
                             cmd.Parameters.AddWithValue(p.Key, p.Value);
                         }
                     }
-                    if (meses != null)
-                    {
-                        foreach (var m in meses)
-                        {
-                            cmd.Parameters.AddWithValue(m.Key, m.Value);
-                        }
-                    }
-
+                    
                     using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
                     {
                         DataTable tabela = new DataTable();

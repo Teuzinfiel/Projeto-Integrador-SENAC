@@ -41,9 +41,9 @@
             grafico2_dash = new GroupBox();
             grafico2 = new OxyPlot.WindowsForms.PlotView();
             comboPeriodo_dash = new ComboBox();
-            btnProduto = new Button();
-            btnMeses = new Button();
-            button1 = new Button();
+            btnProdutos = new Button();
+            btnVendas = new Button();
+            btnComparacao = new Button();
             Info1_dash.SuspendLayout();
             Info2_dash.SuspendLayout();
             Info3_dash.SuspendLayout();
@@ -202,49 +202,50 @@
             comboPeriodo_dash.TabIndex = 7;
             comboPeriodo_dash.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
-            // btnProduto
+            // btnProdutos
             // 
-            btnProduto.BackColor = SystemColors.Highlight;
-            btnProduto.Cursor = Cursors.Hand;
-            btnProduto.FlatStyle = FlatStyle.Popup;
-            btnProduto.Font = new Font("Franklin Gothic Medium", 15F);
-            btnProduto.ForeColor = Color.White;
-            btnProduto.Location = new Point(845, 53);
-            btnProduto.Name = "btnProduto";
-            btnProduto.Size = new Size(142, 53);
-            btnProduto.TabIndex = 9;
-            btnProduto.Text = "Produtos";
-            btnProduto.UseVisualStyleBackColor = false;
-            btnProduto.Click += btnProduto_Click;
+            btnProdutos.BackColor = SystemColors.Highlight;
+            btnProdutos.Cursor = Cursors.Hand;
+            btnProdutos.FlatStyle = FlatStyle.Popup;
+            btnProdutos.Font = new Font("Franklin Gothic Medium", 15F);
+            btnProdutos.ForeColor = Color.White;
+            btnProdutos.Location = new Point(808, 53);
+            btnProdutos.Name = "btnProdutos";
+            btnProdutos.Size = new Size(142, 53);
+            btnProdutos.TabIndex = 9;
+            btnProdutos.Text = "Produtos";
+            btnProdutos.UseVisualStyleBackColor = false;
+            btnProdutos.Click += btnProdutos_Click;
             // 
-            // btnMeses
+            // btnVendas
             // 
-            btnMeses.BackColor = SystemColors.Highlight;
-            btnMeses.Cursor = Cursors.Hand;
-            btnMeses.FlatStyle = FlatStyle.Popup;
-            btnMeses.Font = new Font("Franklin Gothic Medium", 15F);
-            btnMeses.ForeColor = Color.White;
-            btnMeses.Location = new Point(490, 46);
-            btnMeses.Name = "btnMeses";
-            btnMeses.Size = new Size(142, 53);
-            btnMeses.TabIndex = 11;
-            btnMeses.Text = "Vendas";
-            btnMeses.UseVisualStyleBackColor = false;
-            btnMeses.Click += btnMeses_Click;
+            btnVendas.BackColor = SystemColors.Highlight;
+            btnVendas.Cursor = Cursors.Hand;
+            btnVendas.FlatStyle = FlatStyle.Popup;
+            btnVendas.Font = new Font("Franklin Gothic Medium", 15F);
+            btnVendas.ForeColor = Color.White;
+            btnVendas.Location = new Point(490, 46);
+            btnVendas.Name = "btnVendas";
+            btnVendas.Size = new Size(142, 53);
+            btnVendas.TabIndex = 11;
+            btnVendas.Text = "Vendas";
+            btnVendas.UseVisualStyleBackColor = false;
+            btnVendas.Click += btnVendas_Click;
             // 
-            // button1
+            // btnComparacao
             // 
-            button1.BackColor = SystemColors.Highlight;
-            button1.Cursor = Cursors.Hand;
-            button1.FlatStyle = FlatStyle.Popup;
-            button1.Font = new Font("Franklin Gothic Medium", 15F);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(1124, 53);
-            button1.Name = "button1";
-            button1.Size = new Size(159, 53);
-            button1.TabIndex = 12;
-            button1.Text = "Comparação";
-            button1.UseVisualStyleBackColor = false;
+            btnComparacao.BackColor = SystemColors.Highlight;
+            btnComparacao.Cursor = Cursors.Hand;
+            btnComparacao.FlatStyle = FlatStyle.Popup;
+            btnComparacao.Font = new Font("Franklin Gothic Medium", 15F);
+            btnComparacao.ForeColor = Color.White;
+            btnComparacao.Location = new Point(1124, 53);
+            btnComparacao.Name = "btnComparacao";
+            btnComparacao.Size = new Size(159, 53);
+            btnComparacao.TabIndex = 12;
+            btnComparacao.Text = "Comparação";
+            btnComparacao.UseVisualStyleBackColor = false;
+            btnComparacao.Click += btnComparacao_Click;
             // 
             // dashboard
             // 
@@ -252,9 +253,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(45, 45, 60);
             ClientSize = new Size(1515, 915);
-            Controls.Add(button1);
-            Controls.Add(btnMeses);
-            Controls.Add(btnProduto);
+            Controls.Add(btnComparacao);
+            Controls.Add(btnVendas);
+            Controls.Add(btnProdutos);
             Controls.Add(comboPeriodo_dash);
             Controls.Add(grafico2_dash);
             Controls.Add(grafico1_dash);
@@ -294,8 +295,8 @@
         private Label label2;
         private Label label3;
         private Label label4;
-        private Button btnProduto;
-        private Button btnMeses;
-        private Button button1;
+        private Button btnProdutos;
+        private Button btnVendas;
+        private Button btnComparacao;
     }
 }

@@ -90,7 +90,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Consolas", 9F, FontStyle.Bold);
-            label2.Location = new Point(97, 56);
+            label2.Location = new Point(53, 56);
             label2.Name = "label2";
             label2.Size = new Size(56, 18);
             label2.TabIndex = 0;
@@ -198,7 +198,7 @@
             comboPeriodo_dash.Items.AddRange(new object[] { "Hoje", "1 Semana", "1 Mês", "3 Meses", "6 Meses", "12 Meses" });
             comboPeriodo_dash.Location = new Point(77, 53);
             comboPeriodo_dash.Name = "comboPeriodo_dash";
-            comboPeriodo_dash.Size = new Size(141, 40);
+            comboPeriodo_dash.Size = new Size(339, 40);
             comboPeriodo_dash.TabIndex = 7;
             comboPeriodo_dash.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
@@ -209,7 +209,7 @@
             btnProdutos.FlatStyle = FlatStyle.Popup;
             btnProdutos.Font = new Font("Franklin Gothic Medium", 15F);
             btnProdutos.ForeColor = Color.White;
-            btnProdutos.Location = new Point(808, 53);
+            btnProdutos.Location = new Point(906, 53);
             btnProdutos.Name = "btnProdutos";
             btnProdutos.Size = new Size(142, 53);
             btnProdutos.TabIndex = 9;
@@ -224,7 +224,7 @@
             btnVendas.FlatStyle = FlatStyle.Popup;
             btnVendas.Font = new Font("Franklin Gothic Medium", 15F);
             btnVendas.ForeColor = Color.White;
-            btnVendas.Location = new Point(490, 46);
+            btnVendas.Location = new Point(569, 53);
             btnVendas.Name = "btnVendas";
             btnVendas.Size = new Size(142, 53);
             btnVendas.TabIndex = 11;
@@ -239,7 +239,7 @@
             btnComparacao.FlatStyle = FlatStyle.Popup;
             btnComparacao.Font = new Font("Franklin Gothic Medium", 15F);
             btnComparacao.ForeColor = Color.White;
-            btnComparacao.Location = new Point(1124, 53);
+            btnComparacao.Location = new Point(1260, 53);
             btnComparacao.Name = "btnComparacao";
             btnComparacao.Size = new Size(159, 53);
             btnComparacao.TabIndex = 12;

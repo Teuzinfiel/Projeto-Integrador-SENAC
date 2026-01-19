@@ -60,9 +60,9 @@ namespace ProjetoIntegradorSENAC.Dashboard
             }
             else if (comparacaoBoo)
             {
-                func_dashboard.carregarInfoComparacao(label1, label2, label3, label4, Info1_dash,
-                Info2_dash, Info3_dash, Info4_dash, param_idEmpresa, periodo);
-                load_grafico_comparacao();
+                //func_dashboard.carregarInfoComparacao(label1, label2, label3, label4, Info1_dash,
+                //Info2_dash, Info3_dash, Info4_dash, param_idEmpresa, periodo);
+                //load_grafico_comparacao();
             }
         }
         public void load_grafico_produtos()
@@ -405,24 +405,27 @@ namespace ProjetoIntegradorSENAC.Dashboard
             func_dashboard.carregarInfoProdutos(label1, label2, label3, label4, Info1_dash,
             Info2_dash, Info3_dash, Info4_dash, param_idEmpresa, periodo);
             //load_grafico_produtos();
+            func_dashboard.carregarCombo(comboPeriodo_dash, comparacaoBoo, produtosBoo, vendasBoo);
         }
         private void btnVendas_Click(object sender, EventArgs e)
         {
             comparacaoBoo = false;
             produtosBoo = false;
             vendasBoo = true;
-            load_grafico_vendas();
+            //load_grafico_vendas();
             func_dashboard.carregarInfoVendas(label1, label2, label3, label4, Info1_dash,
             Info2_dash, Info3_dash, Info4_dash, param_idEmpresa, periodo);
+            func_dashboard.carregarCombo(comboPeriodo_dash, comparacaoBoo, produtosBoo, vendasBoo);
         }
         private void btnComparacao_Click(object sender, EventArgs e)
         {
             comparacaoBoo = true;
             produtosBoo = false;
             vendasBoo = false;
-            load_grafico_comparacao();
+            //load_grafico_comparacao();
             func_dashboard.carregarInfoComparacao(label1, label2, label3, label4, Info1_dash,
             Info2_dash, Info3_dash, Info4_dash, param_idEmpresa, periodo);
+            func_dashboard.carregarCombo(comboPeriodo_dash, comparacaoBoo, produtosBoo, vendasBoo);
         }
 
         

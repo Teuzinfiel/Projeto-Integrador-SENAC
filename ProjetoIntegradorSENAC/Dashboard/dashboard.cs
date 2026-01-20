@@ -60,8 +60,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
             }
             else if (comparacaoBoo)
             {
-                //func_dashboard.carregarInfoComparacao(label1, label2, label3, label4, Info1_dash,
-                //Info2_dash, Info3_dash, Info4_dash, param_idEmpresa, periodo);
+                func_dashboard.carregarInfoComparacao(label1, label2, label3, label4, Info1_dash,
+                Info2_dash, Info3_dash, Info4_dash, param_idEmpresa, periodo, comboPeriodo_dash);
                 //load_grafico_comparacao();
             }
         }
@@ -424,7 +424,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             vendasBoo = false;
             //load_grafico_comparacao();
             func_dashboard.carregarInfoComparacao(label1, label2, label3, label4, Info1_dash,
-            Info2_dash, Info3_dash, Info4_dash, param_idEmpresa, periodo);
+            Info2_dash, Info3_dash, Info4_dash, param_idEmpresa, periodo, comboPeriodo_dash);
             func_dashboard.carregarCombo(comboPeriodo_dash, comparacaoBoo, produtosBoo, vendasBoo);
         }
 

@@ -29,26 +29,97 @@ namespace ProjetoIntegradorSENAC.Dashboard
         {
             var periodos = carregarPeriodoComparacao(comboPeriodo_dash);
             DataTable tabela = ExecutarSelect(@"
+                SELECT
+   (SELECT CONCAT(
+        'Atual: ',
+        SUM(CASE WHEN " + periodos.mesProximo + @" THEN 1 ELSE 0 END),
+        ', Passado: ',
+        SUM(CASE WHEN " + periodos.mesLonge + @" THEN 1 ELSE 0 END)
+    )
+    FROM vendas v
+    JOIN funcionarios f ON f.id = v.funcionario_id
+    WHERE f.comercio_id = @idEmpresa
+    ) AS quantidade_vendas,
 
-                -- Quantidade de vendas
+    (SELECT CONCAT(
+        'Atual: ',
+        IFNULL(SUM(CASE WHEN " + periodos.mesProximo + @" THEN iv.quantidade ELSE 0 END), 0),
+        ', Passado: ',
+        IFNULL(SUM(CASE WHEN " + periodos.mesLonge + @" THEN iv.quantidade ELSE 0 END), 0)
+    )
+    FROM items_venda iv
+    JOIN vendas v ON v.id = iv.vendas_id
+    JOIN funcionarios f ON f.id = v.funcionario_id
+    WHERE f.comercio_id = @idEmpresa
+    ) AS quantidade_itens_vendidos,
 
-                -- Quantidade de itens vendidos
-                -- Produto lider 
-                -- Ticket medio
+    (SELECT CONCAT(
+        p.nome, ' (R$ ', FORMAT(SUM(iv.quantidade * iv.preco_unitario), 2), ')'
+    )
+    FROM items_venda iv
+    JOIN vendas v ON v.id = iv.vendas_id
+    JOIN funcionarios f ON f.id = v.funcionario_id
+    JOIN produtos p ON p.id = iv.produtos_id
+    WHERE f.comercio_id = @idEmpresa
+    AND " + periodos.mesProximo + @"
+    GROUP BY p.id, p.nome
+    ORDER BY SUM(iv.quantidade * iv.preco_unitario) DESC
+    LIMIT 1
+    ) AS produto_lider_atual,
 
+    (SELECT CONCAT(
+        p.nome, ' (R$ ', FORMAT(SUM(iv.quantidade * iv.preco_unitario), 2), ')'
+    )
+    FROM items_venda iv
+    JOIN vendas v ON v.id = iv.vendas_id
+    JOIN funcionarios f ON f.id = v.funcionario_id
+    JOIN produtos p ON p.id = iv.produtos_id
+    WHERE f.comercio_id = @idEmpresa
+    AND " + periodos.mesLonge + @"
+    GROUP BY p.id, p.nome
+    ORDER BY SUM(iv.quantidade * iv.preco_unitario) DESC
+    LIMIT 1
+    ) AS produto_lider_passado,
 
+    (SELECT CONCAT(
+        'R$ ',
+        FORMAT(
+            IFNULL(SUM(iv.quantidade * iv.preco_unitario) /
+                   NULLIF(COUNT(DISTINCT v.id), 0), 0),
+            2
+        )
+    )
+    FROM items_venda iv
+    JOIN vendas v ON v.id = iv.vendas_id
+    JOIN funcionarios f ON f.id = v.funcionario_id
+    WHERE f.comercio_id = @idEmpresa
+    AND " + periodos.mesProximo + @"
+    ) AS ticket_medio_atual,
 
+    (SELECT CONCAT(
+        'R$ ',
+        FORMAT(
+            IFNULL(SUM(iv.quantidade * iv.preco_unitario) /
+                   NULLIF(COUNT(DISTINCT v.id), 0), 0),
+            2
+        )
+    )
+    FROM items_venda iv
+    JOIN vendas v ON v.id = iv.vendas_id
+    JOIN funcionarios f ON f.id = v.funcionario_id
+    WHERE f.comercio_id = @idEmpresa
+    AND " + periodos.mesLonge + @"
+    ) AS ticket_medio_passado
+FROM DUAL; ", parametros);
 
-", parametros);
-
-            label1.Text = tabela.Rows[0][""].ToString();
-            label2.Text = tabela.Rows[0][""].ToString();
-            label3.Text = tabela.Rows[0][""].ToString();
-            label4.Text = tabela.Rows[0][""].ToString();
-            Info1_dash.Text = "";
-            Info2_dash.Text = "";
-            Info3_dash.Text = "";
-            Info4_dash.Text = "";
+            label1.Text = tabela.Rows[0]["quantidade_vendas"].ToString();
+            label2.Text = tabela.Rows[0]["quantidade_itens_vendidos"].ToString();
+            label3.Text = tabela.Rows[0]["produto_lider_atual"].ToString() + " X " + tabela.Rows[0]["produto_lider_passado"].ToString();
+            label4.Text = tabela.Rows[0]["ticket_medio_atual"].ToString() +" X " + tabela.Rows[0]["ticket_medio_passado"].ToString();
+            Info1_dash.Text = "Quantidade de vendas";
+            Info2_dash.Text = "Quantidade de itens vendidos";
+            Info3_dash.Text = "Produto lider";
+            Info4_dash.Text = "Ticket medio";
         }
         public static void carregarInfoProdutos(Label label1, Label label2, Label label3,
             Label label4, GroupBox Info1_dash, GroupBox Info2_dash,
@@ -85,7 +156,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             " + periodo + @" ) AS quantidade_produtos_vendidos,
 
             -- Produto mais vendido (em quantidade)
-            (SELECT  CONCAT(p.nome,' (',SUM(iv.quantidade), ', R$',ROUND(SUM(iv.preco_unitario * iv.quantidade), 2),')')
+            (SELECT  CONCAT(p.nome,' (', SUM(iv.quantidade), ', R$',ROUND( SUM(iv.preco_unitario * iv.quantidade), 2),')')
             FROM items_venda iv
             JOIN vendas v ON v.id = iv.vendas_id
             JOIN funcionarios f ON f.id = v.funcionario_id
@@ -110,11 +181,11 @@ namespace ProjetoIntegradorSENAC.Dashboard
             GroupBox Info3_dash, GroupBox Info4_dash, Dictionary<string, object> parametros, string periodo)
         {
 
-            DataTable tabela = ExecutarSelect(
-                @"SELECT
+            DataTable tabela = ExecutarSelect(@"
+                SELECT(
                 -- Total de vendas
 
-                (SELECT
+                SELECT
                 CONCAT(ROUND(SUM(v.total), 2), ',' , COUNT(DISTINCT v.id))
                 FROM comercios c
                 JOIN funcionarios f ON f.comercio_id = c.id
@@ -193,26 +264,26 @@ namespace ProjetoIntegradorSENAC.Dashboard
             }
             return "";
         }
-        public static (string mesPassado, string mesRetrasado) carregarPeriodoComparacao(ComboBox comboPeriodo_dash)
-        {
+            public static (string mesProximo, string mesLonge) carregarPeriodoComparacao(ComboBox comboPeriodo_dash)
+            {
             if (comboPeriodo_dash.SelectedIndex == 0)
             {
-                string mesProximo = @"
-                v.data_venda >= DATE_FORMAT(CURDATE(), '%Y-%m-01')";
-
-                string mesLonge = @"v.data_venda >= DATE_SUB(DATE_FORMAT(CURDATE(), '%Y-%m-01'), INTERVAL 1 MONTH)
-             AND v.data_venda <  DATE_FORMAT(CURDATE(), '%Y-%m-01')";
+                return (
+                    " v.data_venda >= DATE_FORMAT(CURDATE(), '%Y-%m-01') ",
+                    @" v.data_venda >= DATE_SUB(DATE_FORMAT(CURDATE(), '%Y-%m-01'), INTERVAL 1 MONTH)
+              AND v.data_venda <  DATE_FORMAT(CURDATE(), '%Y-%m-01') "
+                );
             }
             else if (comboPeriodo_dash.SelectedIndex == 1)
             {
-                string mesProximo = @"
-                v.data_venda >= DATE_SUB(DATE_FORMAT(CURDATE(), '%Y-%m-01'), INTERVAL 1 MONTH)
-                AND v.data_venda <  DATE_FORMAT(CURDATE(), '%Y-%m-01')";
-
-                string mesLonge = @"v.data_venda >= DATE_SUB(DATE_FORMAT(CURDATE(), '%Y-%m-01'), INTERVAL 2 MONTH)
-                AND v.data_venda <  DATE_SUB(DATE_FORMAT(CURDATE(), '%Y-%m-01'), INTERVAL 1 MONTH)";
+                return (
+                    @" v.data_venda >= DATE_SUB(DATE_FORMAT(CURDATE(), '%Y-%m-01'), INTERVAL 1 MONTH)
+              AND v.data_venda <  DATE_FORMAT(CURDATE(), '%Y-%m-01') ",
+                    @" v.data_venda >= DATE_SUB(DATE_FORMAT(CURDATE(), '%Y-%m-01'), INTERVAL 2 MONTH)
+              AND v.data_venda <  DATE_SUB(DATE_FORMAT(CURDATE(), '%Y-%m-01'), INTERVAL 1 MONTH) "
+                );
             }
-           return ("", "");
+            return ("1=0", "1=0"); // fallback seguro
         }
         public static void carregarCombo(ComboBox comboPeriodo_dash, bool comparacaoBoo, bool produtosBoo, bool vendasBoo)
         {
@@ -236,9 +307,6 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 
             }
         }
-
-
-        
         public static DataTable ExecutarSelect(string query, Dictionary<string, object> IdEmpresa)
         {
             using (MySqlConnection conn = new MySqlConnection(Banco.caminho))
@@ -253,7 +321,6 @@ namespace ProjetoIntegradorSENAC.Dashboard
                             cmd.Parameters.AddWithValue(p.Key, p.Value);
                         }
                     }
-                    
                     using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
                     {
                         DataTable tabela = new DataTable();

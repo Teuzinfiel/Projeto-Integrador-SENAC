@@ -50,7 +50,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             {
                 func_dashboard.carregarInfoProdutos(label1, label2, label3, label4, Info1_dash,
                 Info2_dash, Info3_dash, Info4_dash, param_idEmpresa, periodo);
-                load_grafico_produtos();
+                func_dashboard.load_grafico_produtos( grafico1,grafico2, param_idEmpresa, periodo);
             }
             else if (vendasBoo)
             {
@@ -65,118 +65,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 //load_grafico_comparacao();
             }
         }
-        public void load_grafico_produtos()
-        {
-            // grafico 1
-            PlotModel modeloHorario = new PlotModel
-            {
-                Title = "Vendas por horário (todos os dias)",
-                TextColor = OxyColors.White,
-                PlotAreaBorderColor = OxyColors.White
-            };
-
-            var categoryAxisH = new CategoryAxis
-            {
-                Position = AxisPosition.Bottom,
-                Title = "Horário",
-                TicklineColor = OxyColors.White,
-                TextColor = OxyColors.White
-            };
-
-            var linearAxisH = new LinearAxis
-            {
-                Position = AxisPosition.Left,
-                Title = "Quantidade de Vendas",
-                TicklineColor = OxyColors.White,
-                TextColor = OxyColors.White
-            };
-
-            modeloHorario.Axes.Add(categoryAxisH);
-            modeloHorario.Axes.Add(linearAxisH);
-            var lineSeriesH = new LineSeries
-            {
-                Title = "Vendas",
-                Color = OxyColors.SkyBlue,
-                MarkerType = MarkerType.Circle,
-                MarkerSize = 5,
-                MarkerFill = OxyColors.SkyBlue,
-                MarkerStroke = OxyColors.White
-            };
-
-            int[] vendasPorHora = new int[24];
-
-            using (var con = new MySqlConnection(Banco.caminho))
-            {
-                con.Open();
-
-                string sql = @"
-    SELECT 
-    HOUR(v.data_venda) AS hora,
-    COUNT(*) AS total_vendas
-    FROM vendas v
-    JOIN funcionarios f ON v.funcionario_id = f.id
-    JOIN comercios c ON f.comercio_id = c.id
-    WHERE c.id = @empresaId   -- ⬅️ ID da empresa que você quer filtrar
-    GROUP BY hora
-    ORDER BY hora;";
-
-                using (var cmd = new MySqlCommand(sql, con))
-                {
-                    cmd.Parameters.AddWithValue("@empresaId", idEmpresa.ToString());
-                    using (var dr = cmd.ExecuteReader())
-                    {
-                        while (dr.Read())
-                        {
-                            int hora = dr.GetInt32("hora");
-                            int total = dr.GetInt32("total_vendas");
-                            vendasPorHora[hora] = total;
-                        }
-                    }
-                }
-            }
-
-            for (int i = 0; i < 24; i++)
-            {
-                categoryAxisH.Labels.Add(i.ToString("00"));
-
-                lineSeriesH.Points.Add(new DataPoint(i, vendasPorHora[i]));
-            }
-
-            modeloHorario.Series.Add(lineSeriesH);
-
-            grafico1.Model = modeloHorario;
-
-            // grafico 2
-
-            PlotModel modelo2 = new PlotModel { Title = "Top 5 categorias mais vendidas", TextColor = OxyColors.White, PlotAreaBorderColor = OxyColors.White };
-            var pieSeries = new PieSeries { StrokeThickness = 1.0, InsideLabelPosition = 0.8, AngleSpan = 360, StartAngle = 0 };
-
-            DataTable tabela2 = func_dashboard.ExecutarSelect(
-            @"SELECT 
-            p.categoria,
-            SUM(iv.quantidade) AS total_vendido
-            FROM items_venda iv
-            JOIN produtos p ON p.id = iv.produtos_id
-            JOIN vendas v ON v.id = iv.vendas_id
-            JOIN funcionarios f ON f.id = v.funcionario_id
-            WHERE f.comercio_id = @idEmpresa
-            GROUP BY p.categoria
-            ORDER BY total_vendido DESC
-            LIMIT 5;
-            ", param_idEmpresa);
-
-            foreach (DataRow row in tabela2.Rows)
-            {
-
-                cls_Produto produto = new cls_Produto(
-
-                    categoria: row["categoria"].ToString()
-                );
-                pieSeries.Slices.Add(new PieSlice(produto.Categoria, Convert.ToDouble(row["total_vendido"])) { IsExploded = false });
-            }
-            modelo2.Series.Add(pieSeries);
-            grafico2.Model = modelo2;
-        }
+        
 
         public void load_grafico_comparacao()
         {
@@ -404,7 +293,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             vendasBoo = false;
             func_dashboard.carregarInfoProdutos(label1, label2, label3, label4, Info1_dash,
             Info2_dash, Info3_dash, Info4_dash, param_idEmpresa, periodo);
-            //load_grafico_produtos();
+            func_dashboard.load_grafico_produtos(grafico1,grafico2, param_idEmpresa, periodo);
             func_dashboard.carregarCombo(comboPeriodo_dash, comparacaoBoo, produtosBoo, vendasBoo);
         }
         private void btnVendas_Click(object sender, EventArgs e)

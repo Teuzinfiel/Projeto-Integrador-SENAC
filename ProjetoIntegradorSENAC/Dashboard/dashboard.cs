@@ -22,13 +22,12 @@ namespace ProjetoIntegradorSENAC.Dashboard
     public partial class dashboard : Form
     {
         private int idEmpresa;
-        private Dictionary<string, object> param_idEmpresa;
-        private Dictionary<string, string> mes;
+        private Dictionary<string, int> param_idEmpresa;
         public dashboard(int idEmpresa)
         {
             InitializeComponent();
             this.idEmpresa = idEmpresa;
-            param_idEmpresa = new Dictionary<string, object>()
+            param_idEmpresa = new Dictionary<string, int>()
             {
                 { "@idEmpresa", idEmpresa }
             };
@@ -36,10 +35,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
 
         }
         string periodo;
-        bool produtosBoo = true, vendasBoo = false, comparacaoBoo = false, recarregarCombo = false;
-
-
-
+        bool produtosBoo = true, vendasBoo = false, comparacaoBoo = false, resetComparacao;
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -69,47 +65,48 @@ namespace ProjetoIntegradorSENAC.Dashboard
         }
         private void btnProdutos_Click(object sender, EventArgs e)
         {
-            if (comparacaoBoo == true)
+            if (produtosBoo)
             {
-                recarregarCombo = true;
+                return;
             }
+            bool mudoucomp = resetComparacao;
             comparacaoBoo = false;
             produtosBoo = true;
             vendasBoo = false;
             func_dashboard.carregarInfoProdutos(label1, label2, label3, label4, Info1_dash,
             Info2_dash, Info3_dash, Info4_dash, param_idEmpresa, periodo);
             func_dashboard.load_grafico_produtos(grafico1,grafico2, param_idEmpresa, periodo);
-            func_dashboard.carregarCombo(comboPeriodo_dash, comparacaoBoo, produtosBoo, vendasBoo, recarregarCombo);
+            func_dashboard.carregarCombo(comboPeriodo_dash, comparacaoBoo, produtosBoo, vendasBoo, mudoucomp);
+            resetComparacao = false;
         }
         private void btnVendas_Click(object sender, EventArgs e)
         {
-            if (comparacaoBoo == true)
+            if (vendasBoo) 
             {
-                recarregarCombo = true;
+                return; 
             }
+            bool mudoucomp = resetComparacao;
             comparacaoBoo = false;
             produtosBoo = false;
             vendasBoo = true;
             func_dashboard.load_grafico_vendas(grafico1, grafico2, param_idEmpresa, periodo);
             func_dashboard.carregarInfoVendas(label1, label2, label3, label4, Info1_dash,
             Info2_dash, Info3_dash, Info4_dash, param_idEmpresa, periodo);
-            func_dashboard.carregarCombo(comboPeriodo_dash, comparacaoBoo, produtosBoo, vendasBoo, recarregarCombo);
-
+            func_dashboard.carregarCombo(comboPeriodo_dash, comparacaoBoo, produtosBoo, vendasBoo, mudoucomp);
+            resetComparacao = false;
         }
         private void btnComparacao_Click(object sender, EventArgs e)
         {
-            if (produtosBoo == true|| vendasBoo == true)
-            {
-                recarregarCombo = true;
-            }
+            if (comparacaoBoo == true) return;
+
             comparacaoBoo = true;
             produtosBoo = false;
             vendasBoo = false;
             func_dashboard.load_grafico_comparacao(grafico1, grafico2, param_idEmpresa, periodo, comboPeriodo_dash);
             func_dashboard.carregarInfoComparacao(label1, label2, label3, label4, Info1_dash,
             Info2_dash, Info3_dash, Info4_dash, param_idEmpresa, periodo, comboPeriodo_dash);
-            func_dashboard.carregarCombo(comboPeriodo_dash, comparacaoBoo, produtosBoo, vendasBoo, recarregarCombo);
-
+            func_dashboard.carregarCombo(comboPeriodo_dash, comparacaoBoo, produtosBoo, vendasBoo, true);
+            resetComparacao = true;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using Mysqlx.Crud;
+using Mysqlx.Session;
 using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
@@ -26,7 +27,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
 
         public static void carregarInfoComparacao(Label label1, Label label2, Label label3,
             Label label4, GroupBox Info1_dash, GroupBox Info2_dash,
-            GroupBox Info3_dash, GroupBox Info4_dash, Dictionary<string, object> parametros, string periodo, ComboBox comboPeriodo_dash)
+            GroupBox Info3_dash, GroupBox Info4_dash, Dictionary<string, int> parametros, string periodo, ComboBox comboPeriodo_dash)
         {
             var periodos = carregarPeriodoComparacao(comboPeriodo_dash);
             DataTable tabela = ExecutarSelect(@"
@@ -34,7 +35,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 (SELECT CONCAT(
                     'R$:',
                     SUM(CASE WHEN " + periodos.mesProximo + @" THEN v.total ELSE 0 END),
-                    ' | Passado - R$:',
+                    ' | R$:',
                     SUM(CASE WHEN " + periodos.mesLonge + @" THEN v.total ELSE 0 END)
                 )
                 FROM vendas v
@@ -117,20 +118,20 @@ namespace ProjetoIntegradorSENAC.Dashboard
             label2.Text = tabela.Rows[0]["quantidade_itens_vendidos"].ToString();
             label3.Text = tabela.Rows[0]["produto_lider_atual"].ToString() + " X " + tabela.Rows[0]["produto_lider_passado"].ToString();
             label4.Text = tabela.Rows[0]["ticket_medio_atual"].ToString() +" X " + tabela.Rows[0]["ticket_medio_passado"].ToString();
-            Info1_dash.Text = "Quantidade de vendas";
+            Info1_dash.Text = "Receita das vendas";
             Info2_dash.Text = "Quantidade de itens vendidos";
             Info3_dash.Text = "Produto lider";
             Info4_dash.Text = "Ticket medio";
         }
         public static void carregarInfoProdutos(Label label1, Label label2, Label label3,
             Label label4, GroupBox Info1_dash, GroupBox Info2_dash,
-            GroupBox Info3_dash, GroupBox Info4_dash, Dictionary<string, object> parametros, string periodo)
+            GroupBox Info3_dash, GroupBox Info4_dash, Dictionary<string, int> parametros, string periodo)
         {
 
             DataTable tabela = ExecutarSelect(@"
            SELECT
             -- Produto que gerou MENOS receita
-            (SELECT CONCAT(p.nome,' (',SUM(iv.quantidade), ', R$',ROUND(SUM(iv.preco_unitario * iv.quantidade), 2),')')
+            (SELECT CONCAT(p.nome,' (Qtd:', SUM(iv.quantidade), ', R$',ROUND(SUM(iv.preco_unitario * iv.quantidade), 2),')')
             FROM items_venda iv
             JOIN vendas v ON v.id = iv.vendas_id
             JOIN funcionarios f ON f.id = v.funcionario_id
@@ -141,15 +142,14 @@ namespace ProjetoIntegradorSENAC.Dashboard
             LIMIT 1) AS produto_menos_vendido,
 
             -- Ticket médio por produto
-            (SELECT ROUND(AVG(iv.preco_unitario * iv.quantidade), 2)
+            (SELECT CONCAT('R$:', ROUND(AVG(iv.preco_unitario * iv.quantidade), 2))
             FROM items_venda iv
             JOIN vendas v ON v.id = iv.vendas_id
             JOIN funcionarios f ON f.id = v.funcionario_id
             WHERE f.comercio_id = @idEmpresa " + periodo + @" ) AS ticket_medio_por_produto,
 
             -- Quantidade de produtos vendidos
-            (SELECT 
-            SUM(iv.quantidade) AS total_produtos_vendidos
+            (SELECT CONCAT('Qtd:', SUM(iv.quantidade) ) AS total_produtos_vendidos
             FROM items_venda iv
             JOIN vendas v ON v.id = iv.vendas_id
             JOIN funcionarios f ON f.id = v.funcionario_id
@@ -157,7 +157,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             " + periodo + @" ) AS quantidade_produtos_vendidos,
 
             -- Produto mais vendido (em quantidade)
-            (SELECT  CONCAT(p.nome,' (', SUM(iv.quantidade), ', R$',ROUND( SUM(iv.preco_unitario * iv.quantidade), 2),')')
+            (SELECT CONCAT(p.nome,' (Qtd:', SUM(iv.quantidade), ', R$:',ROUND( SUM(iv.preco_unitario * iv.quantidade), 2),')')
             FROM items_venda iv
             JOIN vendas v ON v.id = iv.vendas_id
             JOIN funcionarios f ON f.id = v.funcionario_id
@@ -179,7 +179,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
         }
         public static void carregarInfoVendas(Label label1, Label label2, Label label3,
             Label label4, GroupBox Info1_dash, GroupBox Info2_dash,
-            GroupBox Info3_dash, GroupBox Info4_dash, Dictionary<string, object> parametros, string periodo)
+            GroupBox Info3_dash, GroupBox Info4_dash, Dictionary<string, int> parametros, string periodo)
         {
 
             DataTable tabela = ExecutarSelect(@"
@@ -187,7 +187,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 -- Total de vendas
 
                 SELECT
-                CONCAT(ROUND(SUM(v.total), 2), ',' , COUNT(DISTINCT v.id))
+                CONCAT('R$:', ROUND(SUM(v.total), 2), ', ' , 'Qtd:',COUNT(DISTINCT v.id))
                 FROM comercios c
                 JOIN funcionarios f ON f.comercio_id = c.id
                 JOIN vendas v       ON v.funcionario_id = f.id
@@ -197,7 +197,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 -- categoria lider
 
                 (SELECT
-                CONCAT(IFNULL(p.categoria,'Sem categoria'),' (',IFNULL(ROUND(SUM(iv.quantidade * iv.preco_unitario),2),0),',', IFNULL(SUM(iv.quantidade),0),')')
+                CONCAT(IFNULL(p.categoria,'Sem categoria'),' (R$:',IFNULL(ROUND(SUM(iv.quantidade * iv.preco_unitario),2),0),', Qtd:', IFNULL(SUM(iv.quantidade),0),')')
                 FROM comercios c
                 JOIN funcionarios f ON f.comercio_id = c.id
                 JOIN vendas v       ON v.funcionario_id = f.id
@@ -274,12 +274,27 @@ namespace ProjetoIntegradorSENAC.Dashboard
                     @" v.data_venda >= DATE_SUB(DATE_FORMAT(CURDATE(), '%Y-%m-01'), INTERVAL 1 MONTH)
                     AND v.data_venda <  DATE_FORMAT(CURDATE(), '%Y-%m-01') ",
                     @" v.data_venda >= DATE_SUB(DATE_FORMAT(CURDATE(), '%Y-%m-01'), INTERVAL 2 MONTH)
-                    AND v.data_venda <  DATE_SUB(DATE_FORMAT(CURDATE(), '%Y-%m-01'), INTERVAL 1 MONTH) "
-                );
+                    AND v.data_venda <  DATE_SUB(DATE_FORMAT(CURDATE(), '%Y-%m-01'), INTERVAL 1 MONTH) ");
+            }
+            else if (comboPeriodo_dash.SelectedIndex == 2)
+            {
+                return (
+                    @" v.data_venda >= DATE_FORMAT(CURDATE(), '%Y-01-01')",
+                    @"v.data_venda >= DATE_SUB(DATE_FORMAT(CURDATE(), '%Y-01-01'), INTERVAL 1 YEAR)
+                    AND v.data_venda < DATE_FORMAT(CURDATE(), '%Y-01-01')
+ ");
+            }
+            else if (comboPeriodo_dash.SelectedIndex == 3)
+            {
+                return (
+                    @" v.data_venda >= DATE_SUB(DATE_FORMAT(CURDATE(), '%Y-01-01'), INTERVAL 1 YEAR)
+                    AND v.data_venda <  DATE_FORMAT(CURDATE(), '%Y-01-01')",
+                    @" v.data_venda >= DATE_SUB(DATE_FORMAT(CURDATE(), '%Y-01-01'), INTERVAL 2 YEAR)
+                    AND v.data_venda <  DATE_SUB(DATE_FORMAT(CURDATE(), '%Y-01-01'), INTERVAL 1 YEAR)");
             }
             return ("1=0", "1=0"); 
         }
-        public static void carregarCombo(ComboBox comboPeriodo_dash, bool comparacaoBoo, bool produtosBoo, bool vendasBoo, bool recarregarCombo)
+        public static void carregarCombo(ComboBox comboPeriodo_dash, bool comparacaoBoo, bool produtosBoo, bool vendasBoo, bool resetar)
         {
             if (produtosBoo == true || vendasBoo == true)
             {
@@ -290,7 +305,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 comboPeriodo_dash.Items.Add("3 Meses");
                 comboPeriodo_dash.Items.Add("6 Meses");
                 comboPeriodo_dash.Items.Add("12 Meses");
-                if (recarregarCombo)
+                if (resetar && comboPeriodo_dash.Items.Count > 0)
                 {
                     comboPeriodo_dash.SelectedIndex = 0;
                 }
@@ -300,127 +315,130 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 comboPeriodo_dash.Items.Clear();
                 comboPeriodo_dash.Items.Add("Mês Atual X Mês Passado");
                 comboPeriodo_dash.Items.Add("Mês Passado X Mês Retrasado");
-                if (recarregarCombo)
+                comboPeriodo_dash.Items.Add("Ano Atual X Ano Passado");
+                comboPeriodo_dash.Items.Add("Ano Passado X Ano Retrasado");
+                comboPeriodo_dash.SelectedIndex = 0;
+                if (resetar && comboPeriodo_dash.Items.Count > 0)
                 {
                     comboPeriodo_dash.SelectedIndex = 0;
                 }
             }
         }
-        public static void load_grafico_produtos( PlotView grafico1, PlotView grafico2, Dictionary<string, object> parametros, string periodo)
+        public static void load_grafico_produtos( PlotView grafico1, PlotView grafico2, Dictionary<string, int> parametros, string periodo)
         {
-        // -------------------- grafico 1, PRODUTOS ---------------
-        PlotModel modeloTopVenda = new PlotModel
-        {
-            Title = "Top 5 produtos mais vendidos",
-            TextColor = OxyColors.White,
-            PlotAreaBorderColor = OxyColors.White
-        };
-        var categoryAxis1 = new CategoryAxis
-        {
-            Position = AxisPosition.Left,
-            Title = "Produtos",
-            TicklineColor = OxyColors.White,
-            TextColor = OxyColors.White
-        };
-        var linearAxis1 = new LinearAxis
-        {
-            Position = AxisPosition.Bottom,
-            Title = "Quantidade vendida",
-            TicklineColor = OxyColors.White,
-            TextColor = OxyColors.White,
-            MinimumPadding = 0,
-            AbsoluteMinimum = 0
-        };
-        var barSeries1 = new BarSeries
-        {
-            Title = "Vendas",
-            FillColor = OxyColors.RoyalBlue,
-            LabelPlacement = LabelPlacement.Inside,
-            LabelFormatString = "Qnt: {0}"
-        };
-        DataTable tabela1 = func_dashboard.ExecutarSelect(@"SELECT 
-        p.id,
-        p.nome,
-        SUM(iv.quantidade) AS total_vendido
-        FROM items_venda iv
-        JOIN produtos p ON p.id = iv.produtos_id
-        JOIN vendas v ON v.id = iv.vendas_id
-        JOIN funcionarios f ON f.id = v.funcionario_id
-        WHERE f.comercio_id = @idEmpresa "+ periodo +@" 
-        GROUP BY p.id, p.nome
-        ORDER BY total_vendido DESC
-        LIMIT 5;
-        ", parametros);
-        foreach (DataRow row in tabela1.Rows)
-        {
-            categoryAxis1.Labels.Add(row["nome"].ToString());
-            barSeries1.Items.Add(new BarItem { Value = Convert.ToInt32(row["total_vendido"]) } );
-        }
+            // -------------------- grafico 1, PRODUTOS ---------------
+            PlotModel modeloTopVenda = new PlotModel
+            {
+                Title = "Top 5 produtos mais vendidos",
+                TextColor = OxyColors.White,
+                PlotAreaBorderColor = OxyColors.White
+            };
+            var categoryAxis1 = new CategoryAxis
+            {
+                Position = AxisPosition.Left,
+                Title = "Produtos",
+                TicklineColor = OxyColors.White,
+                TextColor = OxyColors.White
+            };
+            var linearAxis1 = new LinearAxis
+            {
+                Position = AxisPosition.Bottom,
+                Title = "Quantidade vendida",
+                TicklineColor = OxyColors.White,
+                TextColor = OxyColors.White,
+                MinimumPadding = 0,
+                AbsoluteMinimum = 0
+            };
+            var barSeries1 = new BarSeries
+            {
+                Title = "Vendas",
+                FillColor = OxyColors.RoyalBlue,
+                LabelPlacement = LabelPlacement.Inside,
+                LabelFormatString = "Qnt: {0}"
+            };
+            DataTable tabela1 = func_dashboard.ExecutarSelect(@"SELECT 
+            p.id,
+            p.nome,
+            SUM(iv.quantidade) AS total_vendido
+            FROM items_venda iv
+            JOIN produtos p ON p.id = iv.produtos_id
+            JOIN vendas v ON v.id = iv.vendas_id
+            JOIN funcionarios f ON f.id = v.funcionario_id
+            WHERE f.comercio_id = @idEmpresa "+ periodo +@" 
+            GROUP BY p.id, p.nome
+            ORDER BY total_vendido DESC
+            LIMIT 5;
+            ", parametros);
+            foreach (DataRow row in tabela1.Rows)
+            {
+                categoryAxis1.Labels.Add(row["nome"].ToString());
+                barSeries1.Items.Add(new BarItem { Value = Convert.ToInt32(row["total_vendido"]) } );
+            }
 
-        modeloTopVenda.Axes.Add(categoryAxis1);
-        modeloTopVenda.Axes.Add(linearAxis1);
-        modeloTopVenda.Series.Add(barSeries1);
+            modeloTopVenda.Axes.Add(categoryAxis1);
+            modeloTopVenda.Axes.Add(linearAxis1);
+            modeloTopVenda.Series.Add(barSeries1);
 
-        grafico1.Model = modeloTopVenda;
-        //----------- grafico 2  PRODUTOS --------------
+            grafico1.Model = modeloTopVenda;
+            //----------- grafico 2  PRODUTOS --------------
 
-        PlotModel modeloTopReceita = new PlotModel
-        {
-            Title = "Top 5 produtos com mais receita",
-            TextColor = OxyColors.White,
-            PlotAreaBorderColor = OxyColors.White
-        };
-        var categoryAxis2 = new CategoryAxis
-        {
-            Position = AxisPosition.Left,
-            Title = "Produtos",
-            TicklineColor = OxyColors.White,
-            TextColor = OxyColors.White
-        };
-        var linearAxis2 = new LinearAxis
-        {
-            Position = AxisPosition.Bottom,
-            Title = "Receita total",
-            TicklineColor = OxyColors.White,
-            TextColor = OxyColors.White,
-            MinimumPadding = 0,
-            AbsoluteMinimum = 0
-        };
-        var barSeries2 = new BarSeries
-        {
-            Title = "receita",
-            FillColor = OxyColors.RoyalBlue,
-            LabelPlacement = LabelPlacement.Inside,
-            LabelFormatString = "R$: {0}"
-        };
-        DataTable tabela2 = func_dashboard.ExecutarSelect(@"
-        SELECT
-            p.id AS produto_id,
-            p.nome AS produto,
-            SUM(iv.quantidade * iv.preco_unitario) AS receita_total
-        FROM items_venda iv
-        JOIN produtos p       ON p.id = iv.produtos_id
-        JOIN vendas v         ON v.id = iv.vendas_id
-        JOIN funcionarios f   ON f.id = v.funcionario_id
-        WHERE f.comercio_id = @idEmpresa "+ periodo + @"
-        GROUP BY p.id, p.nome
-        ORDER BY receita_total DESC
-        LIMIT 5;
+            PlotModel modeloTopReceita = new PlotModel
+            {
+                Title = "Top 5 produtos com mais receita",
+                TextColor = OxyColors.White,
+                PlotAreaBorderColor = OxyColors.White
+            };
+            var categoryAxis2 = new CategoryAxis
+            {
+                Position = AxisPosition.Left,
+                Title = "Produtos",
+                TicklineColor = OxyColors.White,
+                TextColor = OxyColors.White
+            };
+            var linearAxis2 = new LinearAxis
+            {
+                Position = AxisPosition.Bottom,
+                Title = "Receita total",
+                TicklineColor = OxyColors.White,
+                TextColor = OxyColors.White,
+                MinimumPadding = 0,
+                AbsoluteMinimum = 0
+            };
+            var barSeries2 = new BarSeries
+            {
+                Title = "receita",
+                FillColor = OxyColors.RoyalBlue,
+                LabelPlacement = LabelPlacement.Inside,
+                LabelFormatString = "R$: {0:0.00}"
+            };
+            DataTable tabela2 = func_dashboard.ExecutarSelect(@"
+            SELECT
+                p.id AS produto_id,
+                p.nome AS produto,
+                SUM(iv.quantidade * iv.preco_unitario) AS receita_total
+            FROM items_venda iv
+            JOIN produtos p       ON p.id = iv.produtos_id
+            JOIN vendas v         ON v.id = iv.vendas_id
+            JOIN funcionarios f   ON f.id = v.funcionario_id
+            WHERE f.comercio_id = @idEmpresa "+ periodo + @"
+            GROUP BY p.id, p.nome
+            ORDER BY receita_total DESC
+            LIMIT 5;
 
-        ", parametros);
-        foreach (DataRow row in tabela2.Rows)
-        {
-            categoryAxis2.Labels.Add(row["produto"].ToString());
-            barSeries2.Items.Add(new BarItem { Value = Convert.ToInt32(row["receita_total"]) });       
-        }                                                                                              
+            ", parametros);
+            foreach (DataRow row in tabela2.Rows)
+            {
+                categoryAxis2.Labels.Add(row["produto"].ToString());
+                barSeries2.Items.Add(new BarItem { Value = Convert.ToDouble(row["receita_total"]) });
+            }
+
+            modeloTopReceita.Axes.Add(categoryAxis2);                                                      
+            modeloTopReceita.Axes.Add(linearAxis2);                                                        
+            modeloTopReceita.Series.Add(barSeries2);                                                       
                                                                                                        
-        modeloTopReceita.Axes.Add(categoryAxis2);                                                      
-        modeloTopReceita.Axes.Add(linearAxis2);                                                        
-        modeloTopReceita.Series.Add(barSeries2);                                                       
-                                                                                                   
-        grafico2.Model = modeloTopReceita;                                                             
-    }
-        public static void load_grafico_vendas(PlotView grafico1, PlotView grafico2, Dictionary<string, object> parametros, string periodo)
+            grafico2.Model = modeloTopReceita;                                                             
+        }
+        public static void load_grafico_vendas(PlotView grafico1, PlotView grafico2, Dictionary<string, int> parametros, string periodo)
         {
             // ---------------- grafico 1, VENDAS -------------------
             PlotModel modeloLinha = new PlotModel
@@ -433,8 +451,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
             {
                 Position = AxisPosition.Bottom,
                 Title = "Hora do dia",
-                Minimum = 6,
-                Maximum = 20,
+                Minimum = 1,
+                Maximum = 24,
                 MajorStep = 1,
                 MinorStep = 1,
                 TextColor = OxyColors.White,
@@ -464,8 +482,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 COUNT(v.id) AS total_vendas
             FROM vendas v
             JOIN funcionarios f ON f.id = v.funcionario_id
-            WHERE f.comercio_id = @idEmpresa
-              AND HOUR(v.data_venda) BETWEEN 6 AND 20 "+ periodo +@"
+            WHERE f.comercio_id = @idEmpresa "+ periodo +@"
             GROUP BY HOUR(v.data_venda)
             ORDER BY hora;
             ", parametros);
@@ -478,7 +495,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 vendasPorHora[hora] = total;
             }
 
-            for (int h = 6; h <= 20; h++)
+            for (int h = 1; h <= 24; h++)
             {
                 int total = vendasPorHora.ContainsKey(h) ? vendasPorHora[h] : 0;
                 linhaVendas.Points.Add(new DataPoint(h, total));
@@ -547,13 +564,13 @@ namespace ProjetoIntegradorSENAC.Dashboard
 
             grafico2.Model = modeloCategorias;
         }
-        public static void load_grafico_comparacao(PlotView grafico1, PlotView grafico2, Dictionary<string, object> parametros, string periodo, ComboBox comboPeriodo_dash)
+        public static void load_grafico_comparacao(PlotView grafico1, PlotView grafico2, Dictionary<string, int> parametros, string periodo, ComboBox comboPeriodo_dash)
         {
             var periodos = carregarPeriodoComparacao(comboPeriodo_dash);
             // --------------- grafico 1, COMPARACAO -----------------
             PlotModel modeloComparativo = new PlotModel
             {
-                Title = "Quantidade de vendas - Mês atual x Mês passado",
+                Title = "Quantidade vendas(Atual x Passado)",
                 TextColor = OxyColors.White,
                 PlotAreaBorderColor = OxyColors.White
             };
@@ -583,7 +600,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             };
             DataTable tabela = func_dashboard.ExecutarSelect(@"
                 SELECT
-                'Mês Atual' AS periodo,
+                'Atual' AS periodo,
                 COUNT(v.id) AS total_vendas
             FROM vendas v
             JOIN funcionarios f ON f.id = v.funcionario_id
@@ -593,7 +610,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             UNION ALL
             
             SELECT
-                'Mês Passado' AS periodo,
+                'Passado' AS periodo,
                 COUNT(v.id) AS total_vendas
             FROM vendas v
             JOIN funcionarios f ON f.id = v.funcionario_id
@@ -615,7 +632,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
 
 
             // -------------------- grafico 2, COMPARACAO -------------------
-
+            int diasMesAtual = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
             PlotModel modeloDiario = new PlotModel
             {
                 Title = "Comparação de vendas por dia do mês",
@@ -627,7 +644,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 Position = AxisPosition.Bottom,
                 Title = "Dia do mês",
                 Minimum = 1,
-                Maximum = 31,
+                Maximum = diasMesAtual,
                 MajorStep = 1,
                 MinorStep = 1,
                 TextColor = OxyColors.White,
@@ -641,17 +658,17 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 TextColor = OxyColors.White,
                 TicklineColor = OxyColors.White
             };
-            var linhaMesAtual = new LineSeries
+            var linhaAtual = new LineSeries
             {
-                Title = "Mês Atual",
+                Title = "Atual",
                 Color = OxyColors.SkyBlue,
                 StrokeThickness = 2,
                 MarkerType = MarkerType.Circle
             };
 
-            var linhaMesPassado = new LineSeries
+            var linhaPassado = new LineSeries
             {
-                Title = "Mês Passado",
+                Title = "Passado",
                 Color = OxyColors.Orange,
                 StrokeThickness = 2,
                 MarkerType = MarkerType.Square
@@ -682,8 +699,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
             ORDER BY dia, periodo;
             ", parametros);
 
-            Dictionary<int, int> mesAtual = new();
-            Dictionary<int, int> mesPassado = new();
+            Dictionary<int, int> Atual = new();
+            Dictionary<int, int> Passado = new();
 
             foreach (DataRow row in table.Rows)
             {
@@ -691,28 +708,28 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 int total = Convert.ToInt32(row["total_vendas"]);
                 string tempo = row["periodo"].ToString();
 
-                if (periodo == "Mês Atual")
-                    mesAtual[dia] = total;
+                if (tempo == "Mês Atual")
+                    Atual[dia] = total;
                 else
-                    mesPassado[dia] = total;
+                    Passado[dia] = total;
             }
 
             
             for (int d = 1; d <= 31; d++)
             {
-                linhaMesAtual.Points.Add(new DataPoint(d, mesAtual.ContainsKey(d) ? mesAtual[d] : 0));
-                linhaMesPassado.Points.Add(new DataPoint(d, mesPassado.ContainsKey(d) ? mesPassado[d] : 0));
+                linhaAtual.Points.Add(new DataPoint(d, Atual.ContainsKey(d) ? Atual[d] : 0));
+                linhaPassado.Points.Add(new DataPoint(d, Passado.ContainsKey(d) ? Passado[d] : 0));
             }
             modeloDiario.Axes.Add(eixoDias);
             modeloDiario.Axes.Add(eixoQuantidade);
-            modeloDiario.Series.Add(linhaMesAtual);
-            modeloDiario.Series.Add(linhaMesPassado);
+            modeloDiario.Series.Add(linhaAtual);
+            modeloDiario.Series.Add(linhaPassado);
 
             grafico2.Model = modeloDiario;
 
 
         }
-        public static DataTable ExecutarSelect(string query, Dictionary<string, object> IdEmpresa)         
+        public static DataTable ExecutarSelect(string query, Dictionary<string, int> IdEmpresa)         
     {                                                                                                  
         using (MySqlConnection conn = new MySqlConnection(Banco.caminho))                              
         {                                                                                              

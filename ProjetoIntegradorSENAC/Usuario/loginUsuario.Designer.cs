@@ -36,7 +36,7 @@
             label3 = new Label();
             label2 = new Label();
             txtSenha = new TextBox();
-            txtNome = new TextBox();
+            txtEmail = new TextBox();
             label1 = new Label();
             btnLogin = new Button();
             contextMenuStrip1 = new ContextMenuStrip(components);
@@ -59,7 +59,7 @@
             panel1.Controls.Add(label3);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(txtSenha);
-            panel1.Controls.Add(txtNome);
+            panel1.Controls.Add(txtEmail);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(btnLogin);
             panel1.Location = new Point(26, 52);
@@ -127,9 +127,9 @@
             label2.ForeColor = Color.FromArgb(180, 180, 190);
             label2.Location = new Point(42, 90);
             label2.Name = "label2";
-            label2.Size = new Size(62, 21);
+            label2.Size = new Size(50, 21);
             label2.TabIndex = 11;
-            label2.Text = "Usuario";
+            label2.Text = "Email";
             // 
             // txtSenha
             // 
@@ -142,15 +142,15 @@
             txtSenha.TabIndex = 10;
             txtSenha.UseSystemPasswordChar = true;
             // 
-            // txtNome
+            // txtEmail
             // 
-            txtNome.BackColor = Color.FromArgb(224, 224, 224);
-            txtNome.Font = new Font("Microsoft Sans Serif", 16F);
-            txtNome.Location = new Point(42, 114);
-            txtNome.Name = "txtNome";
-            txtNome.PlaceholderText = "Digite o nome de usuario";
-            txtNome.Size = new Size(348, 32);
-            txtNome.TabIndex = 9;
+            txtEmail.BackColor = Color.FromArgb(224, 224, 224);
+            txtEmail.Font = new Font("Microsoft Sans Serif", 16F);
+            txtEmail.Location = new Point(42, 114);
+            txtEmail.Name = "txtEmail";
+            txtEmail.PlaceholderText = "Digite o email de usuario";
+            txtEmail.Size = new Size(348, 32);
+            txtEmail.TabIndex = 9;
             // 
             // label1
             // 
@@ -183,6 +183,7 @@
             contextMenuStrip1.ImageScalingSize = new Size(20, 20);
             contextMenuStrip1.Name = "contextMenuStrip1";
             contextMenuStrip1.Size = new Size(61, 4);
+            contextMenuStrip1.Opening += contextMenuStrip1_Opening;
             // 
             // panel2
             // 
@@ -286,7 +287,7 @@
         private Label label3;
         private Label label2;
         private TextBox txtSenha;
-        private TextBox txtNome;
+        private TextBox txtEmail;
         private ContextMenuStrip contextMenuStrip1;
         private Panel panel2;
         private Button btnSair;

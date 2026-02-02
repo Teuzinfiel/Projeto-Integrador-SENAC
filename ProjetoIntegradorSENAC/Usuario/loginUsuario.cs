@@ -24,27 +24,61 @@ namespace ProjetoIntegradorSENAC.Logins
         private void btnLogin_Click(object sender, EventArgs e)
         {
 
-        
-            string query = $"SELECT id, nome, senha FROM usuarios WHERE nome = '{txtNome.Text}'";
+
+            string query = $"SELECT id, email, senha FROM usuarios WHERE email = '{txtEmail.Text}'";
             DataTable usuario = Banco.Pesquisar(query);
 
-          
+
             if (usuario.Rows.Count == 0)
             {
                 MessageBox.Show("Usuário não encontrado!");
                 return;
             }
 
-         
+
             string senhaBanco = usuario.Rows[0]["senha"].ToString();
-            int idUser = Convert.ToInt16(usuario.Rows[0]["id"]);
+            int usuarioId = Convert.ToInt16(usuario.Rows[0]["id"]);
 
             if (txtSenha.Text == senhaBanco)
             {
-                frmEmpresa frmEmpresa = new frmEmpresa(idUser);
-                frmEmpresa.idUsuario = idUser;
-                frmEmpresa.Show();
-                this.Hide();
+
+                query = "Select from funcionarios where usuario_id = " + usuarioId;
+
+
+                try
+                {
+                    DataTable funcionario = Banco.Pesquisar(query);
+                    string cargo = funcionario.Rows[0]["cargo"].ToString();
+                    if (cargo != "gerente")
+                    {
+
+                        int comercioID = Convert.ToInt16(funcionario.Rows[0]["comercio_id"]);
+                        query = "Select dono_id from comercios where id = " + comercioID;
+                        var comercio = Banco.Pesquisar(query);
+
+                        int donoID = Convert.ToInt16(comercio.Rows[0]["dono_id"]);
+
+                        MainPrincipal mainPrincipal = new MainPrincipal(comercioID, donoID, usuarioId);
+                        mainPrincipal.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        frmEmpresa frmEmpresa = new frmEmpresa(usuarioId);
+                        frmEmpresa.idUsuario = usuarioId;
+                        frmEmpresa.Show();
+                        this.Hide();
+                    }
+
+                }
+                catch(Exception)
+                {
+                    frmEmpresa frmEmpresa = new frmEmpresa(usuarioId);
+                    frmEmpresa.idUsuario = usuarioId;
+                    frmEmpresa.Show();
+                    this.Hide();
+                }
+          
             }
             else
             {
@@ -90,5 +124,9 @@ namespace ProjetoIntegradorSENAC.Logins
             this.Hide();
         }
 
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
     }
 }

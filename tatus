@@ -1,0 +1,92 @@
+* [33m57c37ca[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m Login, e cadastro de usuario, e cadastro de funcionarios, sistema de identificação de cargo completo, dando acesso direto a main para usuarios que sao funcionarios.
+[31m|[m * [33m1000ab9[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m caso o usuário logado não seja um gerente, ele será rediricionado para o main da empresa dele ao invés da aba de seleção de empresas
+[31m|[m[31m/[m  
+* [33mcfff5a8[m uma melhorada no dashboard
+* [33m9a5b60a[m dashboard completo
+* [33m2bba73e[m grafico do dashboard de produto feito
+* [33m3f5daf5[m informacoes do dashboard de comparacao
+* [33m69511ed[m informacoes do dash de vendas refeito
+* [33m52452ff[m informacoes do dashboard de produtos quase pronto
+* [33mcb1ff9f[m reorganizando info do dash
+*   [33mcbcd302[m resolvendo conflitos de merge
+[33m|[m[34m\[m  
+[33m|[m * [33mbd49410[m Exclui empresas. Nome do usuario na lbl  bem vindo, ajeitei o design do produtos
+* [34m|[m [33md2918f2[m reorganizando o dashboard
+[34m|[m[34m/[m  
+* [33m327f8d0[m cadastro de produto quase completooooo
+* [33m0782d1d[m Caixa Finalizado
+*   [33me1fca94[m Merge branch 'master' of https://github.com/Teuzinfiel/Projeto-Integrador-SENAC
+[35m|[m[36m\[m  
+[35m|[m *   [33m01ca06b[m Merge branch 'master' of https://github.com/Teuzinfiel/Projeto-Integrador-SENAC
+[35m|[m [1;31m|[m[1;32m\[m  
+[35m|[m [1;31m|[m * [33md6f3c93[m alterrei os grafico de posição e consertando erro de portugues
+[35m|[m * [1;32m|[m [33m9188477[m Gerenciamento de empresa concluido!
+* [1;32m|[m [1;32m|[m [33m9cef08f[m form de produtos atualizado, e inserção de dados na tabela de funcioários agora funciona
+[1;32m|[m [1;32m|[m[1;32m/[m  
+[1;32m|[m[1;32m/[m[1;32m|[m   
+* [1;32m|[m   [33m4402b17[m Merge branch 'master' of https://github.com/Teuzinfiel/Projeto-Integrador-SENAC
+[1;33m|[m[1;34m\[m [1;32m\[m  
+[1;33m|[m * [1;32m|[m [33me18ccd9[m grafico melhor e codigo melhor
+[1;33m|[m * [1;32m|[m [33mb693c8c[m organizando codigo
+[1;33m|[m [1;32m|[m[1;32m/[m  
+[1;33m|[m *   [33m787a5f6[m Merge branch 'master' of https://github.com/Teuzinfiel/Projeto-Integrador-SENAC
+[1;33m|[m [1;35m|[m[1;36m\[m  
+[1;33m|[m * [1;36m|[m [33m3602460[m Config empresa
+* [1;36m|[m [1;36m|[m [33m8717ae3[m form do cadastro de produto
+[1;36m|[m [1;36m|[m[1;36m/[m  
+[1;36m|[m[1;36m/[m[1;36m|[m   
+* [1;36m|[m [33md92061c[m todos os grafico ok e informacoes ok
+* [1;36m|[m [33m329254f[m informações do dashboard so carregam de uma empresa
+* [1;36m|[m [33m1275619[m Botao de sair no form de cadastro de usuários
+[1;36m|[m[1;36m/[m  
+* [33m5a87d27[m Cadastro de empresa passando o id pra MainPrincipal, E tambem quando sai da empresa volta pra frmEmpresa com o idDono, Futuramente vai ter q por condição que se o usuario for funcionario qnd deslogar tem q ir direto pro login e nao pro frmEmpresa
+* [33mca5c493[m todas as informacoes do dashboard estao feitas
+* [33m06932c9[m Cadastro de empresa concluido!
+* [33m9bcd731[m objeto no dashboard
+* [33m8fe8b4c[m classes de entidades nao finalizadas
+* [33m669ee01[m Estoque com pendencias
+*   [33mf923e56[m Merge branch 'master' of https://github.com/Teuzinfiel/Projeto-Integrador-SENAC
+[31m|[m[32m\[m  
+[31m|[m * [33m01f66df[m adicionei informações no grafico 2
+[31m|[m * [33m3df666d[m coloquei o label e o grafico1 para pegar informações do banco tambem criei funcoes e um .cs
+[31m|[m * [33mdca79de[m caixa, nao finalizado -1
+[31m|[m * [33md4e469b[m func, caixa nao finalizado
+[31m|[m * [33m6ae84e4[m layout do dashboard
+* [32m|[m [33mfa5da19[m teste
+[32m|[m[32m/[m  
+* [33mac8baab[m Verificacao Empresa
+* [33mba5683e[m nada d+
+* [33mc5bed97[m trivialidades
+*   [33m1b4fb0a[m Merge branch 'master' of https://github.com/Teuzinfiel/Projeto-Integrador-SENAC
+[33m|[m[34m\[m  
+[33m|[m * [33me276dd5[m Icones formatados e cor de fundo
+[33m|[m * [33mf0a916c[m mudando icones
+* [34m|[m [33mfcd20e5[m Funcionalidade de login
+[34m|[m[34m/[m  
+*   [33ma9b29e5[m Merge branch 'master' of https://github.com/Teuzinfiel/Projeto-Integrador-SENAC
+[35m|[m[36m\[m  
+[35m|[m * [33m5a76031[m nada
+[35m|[m *   [33me9ca391[m Merge branch 'master' of https://github.com/Teuzinfiel/Projeto-Integrador-SENAC
+[35m|[m [1;31m|[m[1;32m\[m  
+[35m|[m * [1;32m|[m [33m372c036[m Icones
+* [1;32m|[m [1;32m|[m [33m9ebe0be[m Cadastro de usuário praticamente finalizado(Só falta ajeitar algumas excessões bestas)
+[1;32m|[m [1;32m|[m[1;32m/[m  
+[1;32m|[m[1;32m/[m[1;32m|[m   
+* [1;32m|[m [33me954ead[m Iniciando o cadastro
+* [1;32m|[m [33m0a6c4fb[m Arquivos de log (não tava salvando antes porque o git.ignore do nosso projeto está configurado pra ignorar o nome "log", então mudei o nome da pasta e arquivos para "logInf")
+* [1;32m|[m [33m3c483bf[m Funções e form de log
+[1;32m|[m[1;32m/[m  
+* [33mbb20e97[m Estilizei o Loing, Adicionei configuracoes na main, e o checkbox mostrar senha
+* [33m3a224fb[m Botoes estilizado apos click
+* [33ma60e452[m teste
+* [33mc404ad4[m trocando empresas pra comercio kkkkk
+* [33m2132d3b[m Form Cadastro de empresa, e visualidor de senha
+* [33m5bcee70[m uma label
+* [33m98afa93[m .
+* [33m7f4381e[m Panel de sair e minimizar do login e empresas
+* [33ma501b08[m hover no dtgEmpresa apenas kkkk
+* [33m0f5ff7f[m Pag de login. Pag de empresas. e seguindo o fluxo. Fiz pra gente poder testar as paradas sem depender doq nao ta feito ainda
+* [33m103b97c[m Abrir forms no panel e botao de sair e minimizar
+* [33m5e7695d[m Primeira atualizacao
+* [33mfd5f451[m Adicionar arquivos de projeto.
+* [33me7a0857[m Adicione .gitattributes e .gitignore.

@@ -13,7 +13,7 @@ namespace ProjetoIntegradorSENAC.Classes
     {
 
         public static string banco = "senac";
-        public static string senha = "gustavo951873";
+        public static string senha = "12345";
         public static string usuario = "root"; 
         public static string servidor = "localhost";
 
@@ -28,7 +28,6 @@ namespace ProjetoIntegradorSENAC.Classes
                 using (MySqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = insert;
-
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -49,7 +48,7 @@ namespace ProjetoIntegradorSENAC.Classes
                     {
                         DataTable dataTable = new DataTable();
 
-                        da.Fill(dataTable);
+                            da.Fill(dataTable);
 
                         return dataTable;
                     }
@@ -71,5 +70,12 @@ namespace ProjetoIntegradorSENAC.Classes
                 }
             }
         }
+        public static MySqlConnection AbrirConexao()
+        {
+            MySqlConnection conn = new MySqlConnection(caminho);
+            conn.Open();
+            return conn;
+        }
+
     }
 }

@@ -13,10 +13,11 @@ namespace ProjetoIntegradorSENAC.Caixa
     {
         private Venda _vendaAtual = new Venda();
         private Dictionary<int, Panel> _painelPorProduto = new Dictionary<int, Panel>();
-
-        public caixa()
+        int idEmpresa;
+        public caixa(int idEmpresa)
         {
             InitializeComponent();
+            this.idEmpresa = idEmpresa;
         }
 
         private void caixa_Load(object sender, EventArgs e)

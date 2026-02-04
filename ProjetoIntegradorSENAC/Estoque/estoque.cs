@@ -13,9 +13,11 @@ namespace ProjetoIntegradorSENAC.Estoque
 {
     public partial class estoque : Form
     {
-        public estoque()
+        int idEmpresa;
+        public estoque(int idEmpresa)
         {
             InitializeComponent();
+            this.idEmpresa = idEmpresa;
         }
 
         private void estoque_Load_1(object sender, EventArgs e)

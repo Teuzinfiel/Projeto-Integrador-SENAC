@@ -33,6 +33,7 @@ namespace ProjetoIntegradorSENAC.Usuario
 
             if (senha && UsNome.Text != "" && UsTelefone.MaskFull && UsEmail.Text != "")
             {
+
                 string insert = "insert into usuarios (nome, email, cpf, telefone, senha)" +
                     $" value ('{UsNome.Text}', '{UsEmail.Text}', '{UsCpf.Text}', '{UsTelefone.Text}', '{ConfirmarSenha.Text}')";
 
@@ -40,7 +41,9 @@ namespace ProjetoIntegradorSENAC.Usuario
 
                 MessageBox.Show("Conta criada com sucesso!!");
                 Funcoes.Limpar(this);
-
+                loginUsuario loginUsuario = new loginUsuario();
+                loginUsuario.Show();
+                this.Close();
             }
             else
             {
@@ -92,6 +95,18 @@ namespace ProjetoIntegradorSENAC.Usuario
 
         private void UsNome_TextChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void UsCpf_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+
+
+
+
+
+
 
         }
     }

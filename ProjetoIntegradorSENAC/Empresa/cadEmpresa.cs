@@ -1,8 +1,10 @@
-﻿using Mysqlx.Crud;
+﻿using MySql.Data.MySqlClient;
+using Mysqlx.Crud;
 using ProjetoIntegradorSENAC.Classes;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace ProjetoIntegradorSENAC.Empresa
 {
@@ -165,6 +167,7 @@ namespace ProjetoIntegradorSENAC.Empresa
                 MessageBox.Show("Preencha corretamente todos os campos!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
             string telefone = mkTelefone.Text;
             string nome = txtRazaoSocial.Text;
             string nomeFantasia = txtNomeFantasia.Text;
@@ -172,30 +175,39 @@ namespace ProjetoIntegradorSENAC.Empresa
             string tipoDoc = radioButton1.Checked ? "cpf" : "cnpj";
             string doc = radioButton1.Checked ? mkCPF.Text : mkCNPJ.Text;
 
-            string insert = $@"
-        INSERT INTO comercios 
-        (dono_id, nome, nome_fantasia, email, tipo_documentacao, documentacao, telefone)
-        VALUES  ({idUsuario}, '{nome}', '{nomeFantasia}', '{email}', '{tipoDoc}', '{doc}', '{telefone}')
-    ";
+            using (var conn = Banco.AbrirConexao())
+            {
+                //  cria empresa
+                string insertEmpresa = $@"
+                INSERT INTO comercios 
+                (dono_id, nome, nome_fantasia, email, tipo_documentacao, documentacao, telefone)
+                VALUES  ({idUsuario}, '{nome}', '{nomeFantasia}', '{email}', '{tipoDoc}', '{doc}', '{telefone}')
+                ";
 
-            Banco.Inserir(insert);
+                using (var cmd1 = new MySqlCommand(insertEmpresa, conn))
+                    cmd1.ExecuteNonQuery();
+
+                //  pega id da empresa
+                int idEmpresa;
+
+                using (var cmd2 = new MySqlCommand("SELECT LAST_INSERT_ID()", conn))
+                    idEmpresa = Convert.ToInt32(cmd2.ExecuteScalar());
+
+                //  cadastra dono como funcionario
+                string insertFuncionario = $@"
+                INSERT INTO funcionarios (usuarios_id, comercio_id, cargo)
+                VALUES ({idUsuario}, {idEmpresa}, 'dono')
+                ";
+
+                using (var cmd3 = new MySqlCommand(insertFuncionario, conn))
+                    cmd3.ExecuteNonQuery();
+            }
+
             MessageBox.Show("Empresa cadastrada com sucesso!");
             Funcoes.Limpar(this);
-
-            string query = "select id from comercios where dono_id = " + idUsuario + " order by id desc limit 1" ;
-
-            var comercio = Banco.Pesquisar(query);
-
-            int idComercio = Convert.ToInt16(comercio.Rows[0]["id"]);
-
-            insert = $@"
-        INSERT INTO funcionarios
-        (usuario_id, comercio_id, cargo)
-        VALUES  ({idUsuario}, {idComercio} , 'gerente' )";
-
-            Banco.Inserir(insert);
-
-
+            frmEmpresa frm = new frmEmpresa(this.idUsuario);
+            frm.Show();
+            this.Hide();
         }
 
      

@@ -62,6 +62,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
         private void dashboard_Load(object sender, EventArgs e)
         {
             comboPeriodo_dash.SelectedIndex = 0;
+            periodo = func_dashboard.carregarPeriodo(comboPeriodo_dash);
         }
         private void btnProdutos_Click(object sender, EventArgs e)
         {

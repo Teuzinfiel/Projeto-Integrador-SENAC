@@ -70,7 +70,12 @@ namespace ProjetoIntegradorSENAC.Empresa
             int idComercio = Convert.ToInt32(dtgEmpresas.Rows[e.RowIndex].Cells["id_comercio"].Value);
             int idDono = Convert.ToInt32(dtgEmpresas.Rows[e.RowIndex].Cells["id_dono"].Value);
 
-            MainPrincipal main = new MainPrincipal(idComercio, idDono, this.idUsuario);
+            string nomeEmpresa =
+             dtgEmpresas.Rows[e.RowIndex].Cells["fantasia"].Value.ToString();
+
+            MainPrincipal main =
+                new MainPrincipal(idComercio, idDono, this.idUsuario, nomeEmpresa);
+
             main.Show();
             this.Hide();
         }

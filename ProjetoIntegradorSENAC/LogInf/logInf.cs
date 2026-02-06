@@ -12,9 +12,11 @@ namespace ProjetoIntegradorSENAC.LogInf
 {
     public partial class logInf : Form
     {
-        public logInf()
+        int idEmpresa;
+        public logInf(int idEmpresa)
         {
             InitializeComponent();
+            this.idEmpresa = idEmpresa;
         }
     }
 }

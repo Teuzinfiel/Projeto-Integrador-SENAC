@@ -17,13 +17,15 @@ namespace ProjetoIntegradorSENAC
         public int idEmpresa;
         public int idDono;
         public int idUsuario;
-
-        public MainPrincipal(int idEmpresa, int idDono, int idUsuario)
+        public string nomeEmpresa;
+        public MainPrincipal(int idEmpresa, int idDono, int idUsuario, string nomeEmpresa)
         {
             InitializeComponent();
             this.idEmpresa = idEmpresa;
             this.idDono = idDono;
             this.idUsuario = idUsuario;
+            nomeEmpresa = nomeEmpresa;
+            label3.Text = nomeEmpresa;
         }
         private void AbrirFormNoPanel(Form formFilho)
         {
@@ -48,7 +50,7 @@ namespace ProjetoIntegradorSENAC
 
         private void btnCaixa_Click(object sender, EventArgs e)
         {
-            AbrirFormNoPanel(new caixa());
+            AbrirFormNoPanel(new caixa(this.idEmpresa));
             labelCategorias.Text = "Caixa";
             EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos);
             btnCaixa.BackColor = Color.FromArgb(45, 45, 60);
@@ -72,7 +74,8 @@ namespace ProjetoIntegradorSENAC
 
         private void btnEstoque_Click(object sender, EventArgs e)
         {
-            AbrirFormNoPanel(new estoque());
+            AbrirFormNoPanel(new estoque(this.idEmpresa));
+
             labelCategorias.Text = "Estoque";
             EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos);
             btnEstoque.BackColor = Color.FromArgb(45, 45, 60);
@@ -80,7 +83,8 @@ namespace ProjetoIntegradorSENAC
 
         private void btnFuncionario_Click(object sender, EventArgs e)
         {
-            AbrirFormNoPanel(new frmUsuarios());
+            AbrirFormNoPanel(new frmFuncionarios(this.idEmpresa));
+
             labelCategorias.Text = "Funcionários";
             EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos);
             btnFuncionario.BackColor = Color.FromArgb(45, 45, 60);
@@ -88,7 +92,7 @@ namespace ProjetoIntegradorSENAC
 
         private void btnLog_Click(object sender, EventArgs e)
         {
-            AbrirFormNoPanel(new logInf());
+            AbrirFormNoPanel(new logInf(this.idEmpresa));
             labelCategorias.Text = "Log";
             EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos);
             btnLog.BackColor = Color.FromArgb(45, 45, 60);

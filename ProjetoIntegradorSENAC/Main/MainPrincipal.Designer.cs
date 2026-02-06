@@ -105,7 +105,7 @@
             label3.FlatStyle = FlatStyle.System;
             label3.Font = new Font("Franklin Gothic Book", 15F);
             label3.ForeColor = Color.FromArgb(180, 180, 190);
-            label3.Location = new Point(83, 207);
+            label3.Location = new Point(65, 207);
             label3.Name = "label3";
             label3.Size = new Size(141, 25);
             label3.TabIndex = 3;
@@ -117,7 +117,7 @@
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(65, 63);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(159, 141);
+            pictureBox1.Size = new Size(141, 126);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;

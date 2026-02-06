@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dashboard));
             Info1_dash = new GroupBox();
             label1 = new Label();
             Info2_dash = new GroupBox();
@@ -39,6 +40,10 @@
             grafico1_dash = new GroupBox();
             grafico1 = new OxyPlot.WindowsForms.PlotView();
             grafico2_dash = new GroupBox();
+            imgProximo = new PictureBox();
+            imgLonge = new PictureBox();
+            lblLonge = new Label();
+            lblProximo = new Label();
             grafico2 = new OxyPlot.WindowsForms.PlotView();
             comboPeriodo_dash = new ComboBox();
             btnProdutos = new Button();
@@ -50,16 +55,19 @@
             Info4_dash.SuspendLayout();
             grafico1_dash.SuspendLayout();
             grafico2_dash.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)imgProximo).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)imgLonge).BeginInit();
             SuspendLayout();
             // 
             // Info1_dash
             // 
+            Info1_dash.BackgroundImageLayout = ImageLayout.None;
             Info1_dash.Controls.Add(label1);
             Info1_dash.Font = new Font("Consolas", 9F, FontStyle.Bold);
             Info1_dash.ForeColor = SystemColors.Control;
-            Info1_dash.Location = new Point(77, 141);
+            Info1_dash.Location = new Point(36, 141);
             Info1_dash.Name = "Info1_dash";
-            Info1_dash.Size = new Size(287, 125);
+            Info1_dash.Size = new Size(350, 125);
             Info1_dash.TabIndex = 3;
             Info1_dash.TabStop = false;
             Info1_dash.Text = "groupBox1";
@@ -79,9 +87,9 @@
             Info2_dash.Controls.Add(label2);
             Info2_dash.Font = new Font("Consolas", 9F, FontStyle.Bold);
             Info2_dash.ForeColor = SystemColors.Control;
-            Info2_dash.Location = new Point(437, 141);
+            Info2_dash.Location = new Point(401, 141);
             Info2_dash.Name = "Info2_dash";
-            Info2_dash.Size = new Size(287, 125);
+            Info2_dash.Size = new Size(350, 125);
             Info2_dash.TabIndex = 4;
             Info2_dash.TabStop = false;
             Info2_dash.Text = "groupBox2";
@@ -101,9 +109,9 @@
             Info3_dash.Controls.Add(label3);
             Info3_dash.Font = new Font("Consolas", 9F, FontStyle.Bold);
             Info3_dash.ForeColor = SystemColors.Control;
-            Info3_dash.Location = new Point(799, 141);
+            Info3_dash.Location = new Point(760, 141);
             Info3_dash.Name = "Info3_dash";
-            Info3_dash.Size = new Size(287, 125);
+            Info3_dash.Size = new Size(350, 125);
             Info3_dash.TabIndex = 4;
             Info3_dash.TabStop = false;
             Info3_dash.Text = "groupBox3";
@@ -123,9 +131,9 @@
             Info4_dash.Controls.Add(label4);
             Info4_dash.Font = new Font("Consolas", 9F, FontStyle.Bold);
             Info4_dash.ForeColor = SystemColors.Control;
-            Info4_dash.Location = new Point(1159, 141);
+            Info4_dash.Location = new Point(1124, 141);
             Info4_dash.Name = "Info4_dash";
-            Info4_dash.Size = new Size(287, 125);
+            Info4_dash.Size = new Size(350, 125);
             Info4_dash.TabIndex = 4;
             Info4_dash.TabStop = false;
             Info4_dash.Text = "groupBox4";
@@ -145,19 +153,19 @@
             grafico1_dash.Controls.Add(grafico1);
             grafico1_dash.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             grafico1_dash.ForeColor = SystemColors.Control;
-            grafico1_dash.Location = new Point(77, 299);
+            grafico1_dash.Location = new Point(36, 299);
             grafico1_dash.Name = "grafico1_dash";
-            grafico1_dash.Size = new Size(671, 467);
+            grafico1_dash.Size = new Size(715, 480);
             grafico1_dash.TabIndex = 5;
             grafico1_dash.TabStop = false;
             grafico1_dash.Text = "Gráfico1";
             // 
             // grafico1
             // 
-            grafico1.Location = new Point(18, 27);
+            grafico1.Location = new Point(1, 27);
             grafico1.Name = "grafico1";
             grafico1.PanCursor = Cursors.Hand;
-            grafico1.Size = new Size(634, 425);
+            grafico1.Size = new Size(713, 435);
             grafico1.TabIndex = 0;
             grafico1.Text = "plotView1";
             grafico1.ZoomHorizontalCursor = Cursors.SizeWE;
@@ -166,22 +174,64 @@
             // 
             // grafico2_dash
             // 
+            grafico2_dash.Controls.Add(imgProximo);
+            grafico2_dash.Controls.Add(imgLonge);
+            grafico2_dash.Controls.Add(lblLonge);
+            grafico2_dash.Controls.Add(lblProximo);
             grafico2_dash.Controls.Add(grafico2);
             grafico2_dash.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             grafico2_dash.ForeColor = SystemColors.Control;
-            grafico2_dash.Location = new Point(775, 299);
+            grafico2_dash.Location = new Point(759, 299);
             grafico2_dash.Name = "grafico2_dash";
-            grafico2_dash.Size = new Size(671, 467);
+            grafico2_dash.Size = new Size(715, 480);
             grafico2_dash.TabIndex = 6;
             grafico2_dash.TabStop = false;
             grafico2_dash.Text = "Gráfico2";
             // 
+            // imgProximo
+            // 
+            imgProximo.Image = (Image)resources.GetObject("imgProximo.Image");
+            imgProximo.Location = new Point(6, 444);
+            imgProximo.Name = "imgProximo";
+            imgProximo.Size = new Size(26, 18);
+            imgProximo.SizeMode = PictureBoxSizeMode.CenterImage;
+            imgProximo.TabIndex = 4;
+            imgProximo.TabStop = false;
+            // 
+            // imgLonge
+            // 
+            imgLonge.Image = (Image)resources.GetObject("imgLonge.Image");
+            imgLonge.Location = new Point(165, 444);
+            imgLonge.Name = "imgLonge";
+            imgLonge.Size = new Size(26, 18);
+            imgLonge.TabIndex = 3;
+            imgLonge.TabStop = false;
+            // 
+            // lblLonge
+            // 
+            lblLonge.AutoSize = true;
+            lblLonge.Location = new Point(197, 444);
+            lblLonge.Name = "lblLonge";
+            lblLonge.Size = new Size(69, 20);
+            lblLonge.TabIndex = 2;
+            lblLonge.Text = "lblLonge";
+            // 
+            // lblProximo
+            // 
+            lblProximo.AutoSize = true;
+            lblProximo.ImageAlign = ContentAlignment.MiddleLeft;
+            lblProximo.Location = new Point(38, 442);
+            lblProximo.Name = "lblProximo";
+            lblProximo.Size = new Size(85, 20);
+            lblProximo.TabIndex = 1;
+            lblProximo.Text = "lblProximo";
+            // 
             // grafico2
             // 
-            grafico2.Location = new Point(19, 27);
+            grafico2.Location = new Point(1, 27);
             grafico2.Name = "grafico2";
             grafico2.PanCursor = Cursors.Hand;
-            grafico2.Size = new Size(635, 425);
+            grafico2.Size = new Size(713, 435);
             grafico2.TabIndex = 0;
             grafico2.Text = "plotView2";
             grafico2.ZoomHorizontalCursor = Cursors.SizeWE;
@@ -196,7 +246,7 @@
             comboPeriodo_dash.ForeColor = Color.White;
             comboPeriodo_dash.FormattingEnabled = true;
             comboPeriodo_dash.Items.AddRange(new object[] { "Hoje", "1 Semana", "1 Mês", "3 Meses", "6 Meses", "12 Meses" });
-            comboPeriodo_dash.Location = new Point(77, 53);
+            comboPeriodo_dash.Location = new Point(36, 53);
             comboPeriodo_dash.Name = "comboPeriodo_dash";
             comboPeriodo_dash.Size = new Size(339, 40);
             comboPeriodo_dash.TabIndex = 7;
@@ -209,7 +259,7 @@
             btnProdutos.FlatStyle = FlatStyle.Popup;
             btnProdutos.Font = new Font("Franklin Gothic Medium", 15F);
             btnProdutos.ForeColor = Color.White;
-            btnProdutos.Location = new Point(906, 53);
+            btnProdutos.Location = new Point(1025, 53);
             btnProdutos.Name = "btnProdutos";
             btnProdutos.Size = new Size(142, 53);
             btnProdutos.TabIndex = 9;
@@ -224,7 +274,7 @@
             btnVendas.FlatStyle = FlatStyle.Popup;
             btnVendas.Font = new Font("Franklin Gothic Medium", 15F);
             btnVendas.ForeColor = Color.White;
-            btnVendas.Location = new Point(569, 53);
+            btnVendas.Location = new Point(817, 53);
             btnVendas.Name = "btnVendas";
             btnVendas.Size = new Size(142, 53);
             btnVendas.TabIndex = 11;
@@ -239,7 +289,7 @@
             btnComparacao.FlatStyle = FlatStyle.Popup;
             btnComparacao.Font = new Font("Franklin Gothic Medium", 15F);
             btnComparacao.ForeColor = Color.White;
-            btnComparacao.Location = new Point(1260, 53);
+            btnComparacao.Location = new Point(1259, 53);
             btnComparacao.Name = "btnComparacao";
             btnComparacao.Size = new Size(159, 53);
             btnComparacao.TabIndex = 12;
@@ -278,6 +328,9 @@
             Info4_dash.PerformLayout();
             grafico1_dash.ResumeLayout(false);
             grafico2_dash.ResumeLayout(false);
+            grafico2_dash.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)imgProximo).EndInit();
+            ((System.ComponentModel.ISupportInitialize)imgLonge).EndInit();
             ResumeLayout(false);
         }
 
@@ -298,5 +351,9 @@
         private Button btnProdutos;
         private Button btnVendas;
         private Button btnComparacao;
+        private Label lblProximo;
+        private PictureBox imgProximo;
+        private PictureBox imgLonge;
+        private Label lblLonge;
     }
 }

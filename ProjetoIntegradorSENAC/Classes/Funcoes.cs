@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Security.Cryptography;
 
 namespace ProjetoIntegradorSENAC.Classes
 {
@@ -200,6 +201,15 @@ namespace ProjetoIntegradorSENAC.Classes
             return Regex.IsMatch(email, padrao, RegexOptions.IgnoreCase);
         }
 
+        public static bool isSenha(string senha)
+        {
+            if (string.IsNullOrWhiteSpace(senha))
+                return false;
+
+            Regex formatoSenha = new Regex("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$");
+            return formatoSenha.IsMatch(senha);
+        }
+
         public static bool isTelefone(string telefone)
         {
             if (string.IsNullOrWhiteSpace(telefone))
@@ -237,6 +247,20 @@ namespace ProjetoIntegradorSENAC.Classes
             }
 
             return lista;
+        }
+
+        public static string CriptoSenha(string senha)
+        {
+            using (var sha256 = SHA256.Create())
+            {
+                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(senha));
+                StringBuilder builder = new StringBuilder();
+                foreach (byte b in bytes)
+                {
+                    builder.Append(b.ToString("x2"));
+                }
+                return builder.ToString();
+            }
         }
     }
 }

@@ -183,7 +183,7 @@
             contextMenuStrip1.ImageScalingSize = new Size(20, 20);
             contextMenuStrip1.Name = "contextMenuStrip1";
             contextMenuStrip1.Size = new Size(61, 4);
-            contextMenuStrip1.Opening += contextMenuStrip1_Opening;
+
             // 
             // panel2
             // 

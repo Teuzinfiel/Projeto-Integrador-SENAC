@@ -51,7 +51,7 @@ namespace ProjetoIntegradorSENAC.Logins
             string queryUser = $@"
             SELECT id, nome, senha 
             FROM usuarios 
-            WHERE nome = '{txtNome.Text}'";
+            WHERE nome = '{txtEmail.Text}'";
 
             DataTable user = Banco.Pesquisar(queryUser);
 
@@ -65,7 +65,7 @@ namespace ProjetoIntegradorSENAC.Logins
             int idUser = Convert.ToInt32(user.Rows[0]["id"]);
 
             //  Confere senha
-            if (txtSenha.Text != passwordBD)
+            if (Funcoes.CriptoSenha(txtSenha.Text) != passwordBD)
             {
                 MessageBox.Show("Senha incorreta!");
                 return;

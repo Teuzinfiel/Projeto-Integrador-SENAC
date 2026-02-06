@@ -55,7 +55,7 @@
             UsNome = new TextBox();
             label1 = new Label();
             btnMinimizar = new Button();
-            btnSair = new Button();
+            btnFechar = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -257,6 +257,7 @@
             UsTelefone.Name = "UsTelefone";
             UsTelefone.Size = new Size(348, 38);
             UsTelefone.TabIndex = 26;
+            UsTelefone.TextChanged += UsTelefone_TextChanged;
             // 
             // maskedTextBox2
             // 
@@ -291,7 +292,6 @@
             UsCpf.Name = "UsCpf";
             UsCpf.Size = new Size(348, 38);
             UsCpf.TabIndex = 23;
-            UsCpf.MaskInputRejected += UsCpf_MaskInputRejected;
             UsCpf.TextChanged += UsCpf_TextChanged;
             // 
             // mkCPF
@@ -325,6 +325,7 @@
             UsEmail.PlaceholderText = "Digite o seu email";
             UsEmail.Size = new Size(348, 32);
             UsEmail.TabIndex = 18;
+            UsEmail.TextChanged += UsEmail_TextChanged;
             // 
             // lbConfirmar
             // 
@@ -347,6 +348,7 @@
             ConfirmarSenha.Size = new Size(348, 32);
             ConfirmarSenha.TabIndex = 16;
             ConfirmarSenha.UseSystemPasswordChar = true;
+            ConfirmarSenha.TextChanged += ConfirmarSenha_TextChanged;
             // 
             // lbSenha
             // 
@@ -369,6 +371,7 @@
             UsSenha.Size = new Size(348, 32);
             UsSenha.TabIndex = 14;
             UsSenha.UseSystemPasswordChar = true;
+            UsSenha.TextChanged += UsSenha_TextChanged;
             // 
             // lbNome
             // 
@@ -417,18 +420,20 @@
             btnMinimizar.TabIndex = 5;
             btnMinimizar.Text = "-";
             btnMinimizar.UseVisualStyleBackColor = true;
+            btnMinimizar.Click += btnMinimizar_Click;
             // 
-            // btnSair
+            // btnFechar
             // 
-            btnSair.BackColor = Color.Transparent;
-            btnSair.FlatStyle = FlatStyle.Popup;
-            btnSair.ForeColor = Color.White;
-            btnSair.Location = new Point(879, 2);
-            btnSair.Name = "btnSair";
-            btnSair.Size = new Size(54, 33);
-            btnSair.TabIndex = 4;
-            btnSair.Text = "X";
-            btnSair.UseVisualStyleBackColor = false;
+            btnFechar.BackColor = Color.Transparent;
+            btnFechar.FlatStyle = FlatStyle.Popup;
+            btnFechar.ForeColor = Color.White;
+            btnFechar.Location = new Point(879, 2);
+            btnFechar.Name = "btnFechar";
+            btnFechar.Size = new Size(54, 33);
+            btnFechar.TabIndex = 4;
+            btnFechar.Text = "X";
+            btnFechar.UseVisualStyleBackColor = false;
+            btnFechar.Click += btnFechar_Click;
             // 
             // cadUsuario
             // 
@@ -437,7 +442,7 @@
             BackColor = Color.FromArgb(35, 35, 45);
             ClientSize = new Size(1107, 800);
             Controls.Add(btnMinimizar);
-            Controls.Add(btnSair);
+            Controls.Add(btnFechar);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "cadUsuario";
@@ -476,6 +481,6 @@
         private Label astTelefone;
         private Label astCpf;
         private Button btnMinimizar;
-        private Button btnSair;
+        private Button btnFechar;
     }
 }

@@ -175,7 +175,7 @@
             chkMostrarSenha.TabIndex = 28;
             chkMostrarSenha.Text = "Mostrar Senha";
             chkMostrarSenha.UseVisualStyleBackColor = true;
-            chkMostrarSenha.CheckedChanged += this.chkMostrarSenha_CheckedChanged;
+            chkMostrarSenha.CheckedChanged += chkMostrarSenha_CheckedChanged;
             // 
             // lbCpf
             // 
@@ -214,6 +214,7 @@
             UsTelefone.Name = "UsTelefone";
             UsTelefone.Size = new Size(348, 32);
             UsTelefone.TabIndex = 26;
+            UsTelefone.TextChanged += UsTelefone_TextChanged;
             // 
             // maskedTextBox2
             // 
@@ -248,6 +249,7 @@
             UsCpf.Name = "UsCpf";
             UsCpf.Size = new Size(348, 32);
             UsCpf.TabIndex = 23;
+            UsCpf.TextChanged += UsCpf_TextChanged;
             // 
             // mkCPF
             // 
@@ -280,6 +282,7 @@
             UsEmail.PlaceholderText = "Digite o seu email";
             UsEmail.Size = new Size(348, 32);
             UsEmail.TabIndex = 18;
+            UsEmail.TextChanged += UsEmail_TextChanged;
             // 
             // lbConfirmar
             // 
@@ -302,6 +305,7 @@
             ConfirmarSenha.Size = new Size(348, 32);
             ConfirmarSenha.TabIndex = 16;
             ConfirmarSenha.UseSystemPasswordChar = true;
+            ConfirmarSenha.TextChanged += ConfirmarSenha_TextChanged;
             // 
             // lbSenha
             // 
@@ -324,6 +328,7 @@
             UsSenha.Size = new Size(348, 32);
             UsSenha.TabIndex = 14;
             UsSenha.UseSystemPasswordChar = true;
+            UsSenha.TextChanged += UsSenha_TextChanged;
             // 
             // lbNome
             // 
@@ -345,6 +350,7 @@
             UsNome.PlaceholderText = "Digite o nome de usuario";
             UsNome.Size = new Size(348, 32);
             UsNome.TabIndex = 12;
+            UsNome.TextChanged += UsNome_TextChanged;
             // 
             // label1
             // 

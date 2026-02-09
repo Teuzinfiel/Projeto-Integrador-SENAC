@@ -15,6 +15,13 @@ namespace ProjetoIntegradorSENAC.Usuarios
     public partial class frmFuncionarios : Form
     {
         int idEmpresa;
+
+        bool erroNome = true;
+        bool erroEmail = true;
+        bool erroCpf = true;
+        bool erroTelefone = true;
+        bool[] erroSenha = { true, true };
+
         public frmFuncionarios(int idEmpresa)
         {
             InitializeComponent();
@@ -28,20 +35,22 @@ namespace ProjetoIntegradorSENAC.Usuarios
 
         private void btnCadastro_Click(object sender, EventArgs e)
         {
-            bool senha = false;
+            bool senhaVal = false;
 
-            if (UsSenha.Text == ConfirmarSenha.Text) senha = true;
+            if (UsSenha.Text == ConfirmarSenha.Text) senhaVal = true;
 
 
-            if (senha && UsNome.Text != "" && UsTelefone.MaskFull && UsEmail.Text != "")
+            if (senhaVal && !erroNome && !erroCpf && !erroEmail && !erroTelefone && !erroSenha[0] && !erroSenha[1])
             {
 
                 using (var conn = Banco.AbrirConexao())
                 {
                     // 1 - cria usuario
+                    string senha = Funcoes.CriptoSenha(ConfirmarSenha.Text);
+
                     string insertUsuario =
                     "INSERT INTO usuarios (nome, email, cpf, telefone, senha) " +
-                    $"VALUES ('{UsNome.Text}', '{UsEmail.Text}', '{UsCpf.Text}', '{UsTelefone.Text}', '{ConfirmarSenha.Text}')";
+                    $"VALUES ('{UsNome.Text}', '{UsEmail.Text}', '{UsCpf.Text}', '{UsTelefone.Text}', '{senha}')";
 
                     using (var cmd1 = new MySqlCommand(insertUsuario, conn))
                         cmd1.ExecuteNonQuery();
@@ -67,7 +76,7 @@ namespace ProjetoIntegradorSENAC.Usuarios
             }
             else
             {
-                if (!senha) MessageBox.Show("As senhas não correspondem");
+                if (!senhaVal) MessageBox.Show("As senhas não correspondem");
                 else MessageBox.Show("Preencha todos os campos corretamente");
             }
         }
@@ -85,6 +94,105 @@ namespace ProjetoIntegradorSENAC.Usuarios
                 UsSenha.UseSystemPasswordChar = true;
             }
 
+        }
+
+        private void UsNome_TextChanged(object sender, EventArgs e)
+        {
+            if (Funcoes.CampoVazio(UsNome))
+            {
+                erroNome = true;
+                astNome.Visible = true;
+                lbNome.ForeColor = Color.DarkRed;
+            }
+            else
+            {
+                erroNome = false;
+                astNome.Visible = false;
+                lbNome.ForeColor = Color.White;
+            }
+        }
+
+        private void UsEmail_TextChanged(object sender, EventArgs e)
+        {
+            if (Funcoes.isEmail(UsEmail.Text))
+            {
+                erroEmail = false;
+                astEmail.Visible = false;
+                lbEmail.ForeColor = Color.White;
+            }
+            else
+            {
+                erroEmail = true;
+                astEmail.Visible = true;
+                lbEmail.ForeColor = Color.DarkRed;
+            }
+        }
+
+        private void UsTelefone_TextChanged(object sender, EventArgs e)
+        {
+            if (Funcoes.isTelefone(UsTelefone.Text))
+            {
+                erroTelefone = false;
+                astTelefone.Visible = false;
+                lbTelefone.ForeColor = Color.White;
+            }
+            else
+            {
+                erroTelefone = true;
+                astTelefone.Visible = true;
+                lbTelefone.ForeColor = Color.DarkRed;
+            }
+        }
+
+        private void UsCpf_TextChanged(object sender, EventArgs e)
+        {
+
+            if (Funcoes.isCpf(UsCpf.Text))
+            {
+                erroCpf = false;
+                astCpf.Visible = false;
+                lbCpf.ForeColor = Color.White;
+            }
+            else
+            {
+                erroCpf = true;
+                astCpf.Visible = true;
+                lbCpf.ForeColor = Color.DarkRed;
+            }
+
+        }
+
+        private void UsSenha_TextChanged(object sender, EventArgs e)
+        {
+
+            if (Funcoes.isSenha(UsSenha.Text))
+            {
+                erroSenha[0] = false;
+                astSenha.Visible = false;
+                lbSenha.ForeColor = Color.White;
+            }
+            else
+            {
+                erroSenha[0] = true;
+                astSenha.Visible = true;
+                lbSenha.ForeColor = Color.DarkRed;
+            }
+        }
+
+        private void ConfirmarSenha_TextChanged(object sender, EventArgs e)
+        {
+            if (Funcoes.isSenha(UsSenha.Text))
+            {
+                erroSenha[1] = false;
+                astConfirmar.Visible = false;
+                lbConfirmar.ForeColor = Color.White;
+            }
+            else
+            {
+                erroSenha[1] = true;
+                astConfirmar.Visible = true;
+                lbConfirmar.ForeColor = Color.DarkRed;
+            }
         }
     }
 }

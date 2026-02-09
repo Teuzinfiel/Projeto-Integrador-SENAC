@@ -54,6 +54,8 @@
             lbNome = new Label();
             UsNome = new TextBox();
             label1 = new Label();
+            btnMinimizar = new Button();
+            btnFechar = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -85,9 +87,9 @@
             panel1.Controls.Add(lbNome);
             panel1.Controls.Add(UsNome);
             panel1.Controls.Add(label1);
-            panel1.Location = new Point(114, 34);
+            panel1.Location = new Point(114, 33);
             panel1.Name = "panel1";
-            panel1.Size = new Size(819, 577);
+            panel1.Size = new Size(819, 578);
             panel1.TabIndex = 0;
             // 
             // astConfirmar
@@ -255,6 +257,7 @@
             UsTelefone.Name = "UsTelefone";
             UsTelefone.Size = new Size(348, 38);
             UsTelefone.TabIndex = 26;
+            UsTelefone.TextChanged += UsTelefone_TextChanged;
             // 
             // maskedTextBox2
             // 
@@ -289,7 +292,6 @@
             UsCpf.Name = "UsCpf";
             UsCpf.Size = new Size(348, 38);
             UsCpf.TabIndex = 23;
-            UsCpf.MaskInputRejected += UsCpf_MaskInputRejected;
             UsCpf.TextChanged += UsCpf_TextChanged;
             // 
             // mkCPF
@@ -323,6 +325,7 @@
             UsEmail.PlaceholderText = "Digite o seu email";
             UsEmail.Size = new Size(348, 32);
             UsEmail.TabIndex = 18;
+            UsEmail.TextChanged += UsEmail_TextChanged;
             // 
             // lbConfirmar
             // 
@@ -345,6 +348,7 @@
             ConfirmarSenha.Size = new Size(348, 32);
             ConfirmarSenha.TabIndex = 16;
             ConfirmarSenha.UseSystemPasswordChar = true;
+            ConfirmarSenha.TextChanged += ConfirmarSenha_TextChanged;
             // 
             // lbSenha
             // 
@@ -367,6 +371,7 @@
             UsSenha.Size = new Size(348, 32);
             UsSenha.TabIndex = 14;
             UsSenha.UseSystemPasswordChar = true;
+            UsSenha.TextChanged += UsSenha_TextChanged;
             // 
             // lbNome
             // 
@@ -401,12 +406,43 @@
             label1.TabIndex = 9;
             label1.Text = "Cadastre sua conta";
             // 
+            // btnMinimizar
+            // 
+            btnMinimizar.Anchor = AnchorStyles.None;
+            btnMinimizar.BackColor = Color.Transparent;
+            btnMinimizar.FlatStyle = FlatStyle.Popup;
+            btnMinimizar.Font = new Font("Segoe UI", 15F);
+            btnMinimizar.ForeColor = Color.White;
+            btnMinimizar.Location = new Point(829, 2);
+            btnMinimizar.Name = "btnMinimizar";
+            btnMinimizar.RightToLeft = RightToLeft.No;
+            btnMinimizar.Size = new Size(54, 33);
+            btnMinimizar.TabIndex = 5;
+            btnMinimizar.Text = "-";
+            btnMinimizar.UseVisualStyleBackColor = true;
+            btnMinimizar.Click += btnMinimizar_Click;
+            // 
+            // btnFechar
+            // 
+            btnFechar.BackColor = Color.Transparent;
+            btnFechar.FlatStyle = FlatStyle.Popup;
+            btnFechar.ForeColor = Color.White;
+            btnFechar.Location = new Point(879, 2);
+            btnFechar.Name = "btnFechar";
+            btnFechar.Size = new Size(54, 33);
+            btnFechar.TabIndex = 4;
+            btnFechar.Text = "X";
+            btnFechar.UseVisualStyleBackColor = false;
+            btnFechar.Click += btnFechar_Click;
+            // 
             // cadUsuario
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(35, 35, 45);
             ClientSize = new Size(1107, 800);
+            Controls.Add(btnMinimizar);
+            Controls.Add(btnFechar);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "cadUsuario";
@@ -444,5 +480,7 @@
         private Label astSenha;
         private Label astTelefone;
         private Label astCpf;
+        private Button btnMinimizar;
+        private Button btnFechar;
     }
 }

@@ -18,8 +18,6 @@ namespace ProjetoIntegradorSENAC.Classes
         public string UnidadeMedida { get; set; } 
         public string Categoria { get; set; }
 
-        public cls_Produto() { }
-
         public cls_Produto(int id = 0, int? funcionarioId = 0, string nome ="", string descricao = "", string marca = "",
                        string codigoBarra = "", string unidadeMedida = "", string categoria = "")
         {

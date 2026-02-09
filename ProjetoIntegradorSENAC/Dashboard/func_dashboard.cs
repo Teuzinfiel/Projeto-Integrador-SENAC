@@ -28,18 +28,17 @@ namespace ProjetoIntegradorSENAC.Dashboard
 
         public static void carregarInfoComparacao(Label label1, Label label2, Label label3,
             Label label4, GroupBox Info1_dash, GroupBox Info2_dash,
-            GroupBox Info3_dash, GroupBox Info4_dash, Dictionary<string, int> parametros, string periodo, ComboBox comboPeriodo_dash)
+            GroupBox Info3_dash, GroupBox Info4_dash, Dictionary<string, object> parametros, string periodoInicial, string periodoFim)
         {
-            var periodos = carregarPeriodoComparacao(comboPeriodo_dash);
             DataTable tabela = ExecutarSelect(@"
                 SELECT
                 -- receita de vendas
 
                 (SELECT CONCAT(
                     'R$:',
-                    SUM(CASE WHEN " + periodos.mesProximo + @" THEN v.total ELSE 0 END),
+                    SUM(CASE WHEN " + periodoInicial + @" THEN v.total ELSE 0 END),
                     ' | R$:',
-                    SUM(CASE WHEN " + periodos.mesLonge + @" THEN v.total ELSE 0 END)
+                    SUM(CASE WHEN " + periodoFim + @" THEN v.total ELSE 0 END)
                 )
                 FROM vendas v
                 JOIN funcionarios f ON f.id = v.funcionario_id
@@ -50,9 +49,9 @@ namespace ProjetoIntegradorSENAC.Dashboard
 
                 (SELECT CONCAT(
                     'Qtd:',
-                    IFNULL(SUM(CASE WHEN " + periodos.mesProximo + @" THEN iv.quantidade ELSE 0 END), 0),
+                    IFNULL(SUM(CASE WHEN " + periodoInicial + @" THEN iv.quantidade ELSE 0 END), 0),
                     ' | Qtd:',
-                    IFNULL(SUM(CASE WHEN " + periodos.mesLonge + @" THEN iv.quantidade ELSE 0 END), 0)
+                    IFNULL(SUM(CASE WHEN " + periodoFim + @" THEN iv.quantidade ELSE 0 END), 0)
                 )
                 FROM items_venda iv
                 JOIN vendas v ON v.id = iv.vendas_id
@@ -68,7 +67,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 JOIN funcionarios f ON f.id = v.funcionario_id
                 JOIN produtos p ON p.id = iv.produtos_id
                 WHERE f.comercio_id = @idEmpresa
-                AND " + periodos.mesProximo + @"
+                AND " + periodoInicial + @"
                 GROUP BY p.id, p.nome
                 ORDER BY SUM(iv.quantidade * iv.preco_unitario) DESC
                 LIMIT 1
@@ -82,7 +81,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 JOIN funcionarios f ON f.id = v.funcionario_id
                 JOIN produtos p ON p.id = iv.produtos_id
                 WHERE f.comercio_id = @idEmpresa
-                AND " + periodos.mesLonge + @"
+                AND " + periodoFim + @"
                 GROUP BY p.id, p.nome
                 ORDER BY SUM(iv.quantidade * iv.preco_unitario) DESC
                 LIMIT 1
@@ -100,7 +99,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 JOIN vendas v ON v.id = iv.vendas_id
                 JOIN funcionarios f ON f.id = v.funcionario_id
                 WHERE f.comercio_id = @idEmpresa
-                AND " + periodos.mesProximo + @"
+                AND " + periodoInicial + @"
                 ),'R$:0,00') AS ticket_medio_atual,
              
                 IFNULL((SELECT CONCAT(
@@ -115,7 +114,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 JOIN vendas v ON v.id = iv.vendas_id
                 JOIN funcionarios f ON f.id = v.funcionario_id
                 WHERE f.comercio_id = @idEmpresa
-                AND " + periodos.mesLonge + @"
+                AND " + periodoFim + @"
                 ),'R$:0,00') AS ticket_medio_passado
                 FROM DUAL; ", parametros);
 
@@ -130,11 +129,11 @@ namespace ProjetoIntegradorSENAC.Dashboard
         }
         public static void carregarInfoProdutos(Label label1, Label label2, Label label3,
             Label label4, GroupBox Info1_dash, GroupBox Info2_dash,
-            GroupBox Info3_dash, GroupBox Info4_dash, Dictionary<string, int> parametros, string periodo)
+            GroupBox Info3_dash, GroupBox Info4_dash, Dictionary<string, object> parametros, string periodo)
         {
 
             DataTable tabela = ExecutarSelect(@"
-           SELECT
+            SELECT
             -- Produto que gerou MENOS receita
             IFNULL((SELECT CONCAT(p.nome,' (Qtd:', SUM(iv.quantidade), ', R$',ROUND(SUM(iv.preco_unitario * iv.quantidade), 2),')')
             FROM items_venda iv
@@ -184,7 +183,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
         }
         public static void carregarInfoVendas(Label label1, Label label2, Label label3,
             Label label4, GroupBox Info1_dash, GroupBox Info2_dash,
-            GroupBox Info3_dash, GroupBox Info4_dash, Dictionary<string, int> parametros, string periodo)
+            GroupBox Info3_dash, GroupBox Info4_dash, Dictionary<string, object> parametros, string periodo)
         {
 
             DataTable tabela = ExecutarSelect(@"
@@ -212,7 +211,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
                     )                                                                    
                     FROM comercios c                                                     
                     JOIN funcionarios f ON f.comercio_id = c.id                          
-                    JOIN vendas v       ON v.funcionario_id = f.usuarios_id              
+                    JOIN vendas v       ON v.funcionario_id = f.id              
                     JOIN items_venda iv ON iv.vendas_id = v.id                           
                     JOIN produtos p     ON p.id = iv.produtos_id                         
                     WHERE c.id = @idEmpresa " + periodo + @"                             
@@ -251,29 +250,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
             Info3_dash.Text = "Ticket medio de vendas";
             Info4_dash.Text = "Media de produtos vendidos por pedido";
         }
-        public static string carregarPeriodo(ComboBox comboPeriodo_dash)
-        {
-            if (comboPeriodo_dash.SelectedIndex == 0)
-                return " AND DATE(v.data_venda) = CURDATE() ";
-            
-            else if (comboPeriodo_dash.SelectedIndex == 1)
-                return " AND v.data_venda >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) ";
-            
-            else if (comboPeriodo_dash.SelectedIndex == 2)
-                return " AND v.data_venda >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH) ";
-            
-            else if (comboPeriodo_dash.SelectedIndex == 3)
-                return " AND v.data_venda >= DATE_SUB(CURDATE(), INTERVAL 3 MONTH) ";
-            
-            else if (comboPeriodo_dash.SelectedIndex == 4)
-                return " AND v.data_venda >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH) ";
-            
-            else if (comboPeriodo_dash.SelectedIndex == 5)
-                return " AND v.data_venda >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR) ";
-            
-            return "";
-        }
-        public static (string mesProximo, string mesLonge) carregarPeriodoComparacao(ComboBox comboPeriodo_dash)
+        
+        public static (string inicio, string fim) carregarPeriodoComparacao(ComboBox comboPeriodo_dash)
         {
             if (comboPeriodo_dash.SelectedIndex == 0)
             {
@@ -308,37 +286,24 @@ namespace ProjetoIntegradorSENAC.Dashboard
             }
             return ("1=0", "1=0"); 
         }
-        public static void carregarCombo(ComboBox comboPeriodo_dash, bool comparacaoBoo, bool produtosBoo, bool vendasBoo, bool resetar)
+        public static string carregarPeriodoIntervalo(MaskedTextBox maskedInicio,MaskedTextBox maskedFim,Dictionary<string, object> parametros)
         {
-            if (produtosBoo == true || vendasBoo == true)
-            {
-                comboPeriodo_dash.Items.Clear();
-                comboPeriodo_dash.Items.Add("Hoje");
-                comboPeriodo_dash.Items.Add("1 Semana");
-                comboPeriodo_dash.Items.Add("1 Mês");
-                comboPeriodo_dash.Items.Add("3 Meses");
-                comboPeriodo_dash.Items.Add("6 Meses");
-                comboPeriodo_dash.Items.Add("12 Meses");
-                if (resetar && comboPeriodo_dash.Items.Count > 0)
-                {
-                    comboPeriodo_dash.SelectedIndex = 0;
-                }
-            }
-            else if (comparacaoBoo == true)
-            {
-                comboPeriodo_dash.Items.Clear();
-                comboPeriodo_dash.Items.Add("Mês Atual X Mês Passado");
-                comboPeriodo_dash.Items.Add("Mês Passado X Mês Retrasado");
-                comboPeriodo_dash.Items.Add("Ano Atual X Ano Passado");
-                comboPeriodo_dash.Items.Add("Ano Passado X Ano Retrasado");
-                comboPeriodo_dash.SelectedIndex = 0;
-                if (resetar && comboPeriodo_dash.Items.Count > 0)
-                {
-                    comboPeriodo_dash.SelectedIndex = 0;
-                }
-            }
+            if (!DateTime.TryParse(maskedInicio.Text, out DateTime dataInicio))
+                return "";
+
+            if (!DateTime.TryParse(maskedFim.Text, out DateTime dataFim))
+                return "";
+
+            if (dataFim < dataInicio)
+                throw new Exception("Data final não pode ser menor que a inicial.");
+
+            parametros["@dataInicio"] = dataInicio;
+            parametros["@dataFim"] = dataFim.AddDays(1);
+
+            return " AND v.data_venda >= @dataInicio AND v.data_venda < @dataFim ";
         }
-        public static void load_grafico_produtos( PlotView grafico1, PlotView grafico2, Dictionary<string, int> parametros, string periodo)
+
+        public static void load_grafico_produtos( PlotView grafico1, PlotView grafico2, Dictionary<string, object> parametros, string periodo)
         {
             // -------------------- grafico 1, PRODUTOS ---------------
             PlotModel modeloTopVenda = new PlotModel
@@ -489,7 +454,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
 
             grafico2.Model = modeloTopReceita;                                                             
         }
-        public static void load_grafico_vendas(PlotView grafico1, PlotView grafico2, Dictionary<string, int> parametros, string periodo)
+        public static void load_grafico_vendas(PlotView grafico1, PlotView grafico2, Dictionary<string, object> parametros, string periodo)
         {
             // ---------------- grafico 1, VENDAS -------------------
             PlotModel modeloLinha = new PlotModel
@@ -552,7 +517,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 vendasPorHora[hora] = total;
             }
 
-            for (int h = 1; h <= 24; h++)
+            for (int h = 1; h < 24; h++)
             {
                 int total = vendasPorHora.ContainsKey(h) ? vendasPorHora[h] : 0;
                 linhaVendas.Points.Add(new DataPoint(h, total));
@@ -651,11 +616,9 @@ namespace ProjetoIntegradorSENAC.Dashboard
 
             grafico2.Model = modeloCategorias;
         }
-        public static void load_grafico_comparacao(PlotView grafico1, PlotView grafico2, Dictionary<string, int> parametros, string periodo, ComboBox comboPeriodo_dash, Label lblproximo, Label lbllonge)
+        public static void load_grafico_comparacao(PlotView grafico1, PlotView grafico2, Dictionary<string, object> parametros, string periodoAtual, string periodoPassado, Label lblproximo, Label lbllonge)
         {
-            var periodos = carregarPeriodoComparacao(comboPeriodo_dash);
             // --------------- grafico 1, COMPARACAO -----------------
-            string[] nomePeriodo = comboPeriodo_dash.SelectedItem.ToString().Split('X');
             
 
             PlotModel modeloComparativo = new PlotModel
@@ -701,7 +664,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             FROM vendas v
             JOIN funcionarios f ON f.id = v.funcionario_id
             WHERE f.comercio_id = @idEmpresa
-              AND "+ periodos.mesProximo+@"
+              AND "+ periodoAtual+@"
             
             UNION ALL
             
@@ -711,7 +674,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             FROM vendas v
             JOIN funcionarios f ON f.id = v.funcionario_id
             WHERE f.comercio_id = @idEmpresa
-              AND "+ periodos.mesLonge+@"
+              AND "+ periodoPassado+@"
             
             ", parametros);
 
@@ -727,7 +690,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             {
                 modeloComparativo.Annotations.Add(new TextAnnotation
                 {
-                    Text = nomePeriodo[0],
+                    Text = "Sem venda",
                     TextPosition = new DataPoint(3.50, -0.10),
                     FontSize = 22,
                     TextColor = OxyColors.White
@@ -737,7 +700,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             {
                 modeloComparativo.Annotations.Add(new TextAnnotation
                 {
-                    Text = nomePeriodo[1],
+                    Text = "Sem venda",
                     TextPosition = new DataPoint(3.5, 0.85),
                     FontSize = 22,
                     TextColor = OxyColors.White
@@ -807,7 +770,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             FROM vendas v
             JOIN funcionarios f ON f.id = v.funcionario_id
             WHERE f.comercio_id = @idEmpresa
-              AND "+ periodos.mesProximo+ @"
+              AND "+ periodoAtual+ @"
             GROUP BY DAY(v.data_venda)
 
             UNION ALL
@@ -819,7 +782,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             FROM vendas v
             JOIN funcionarios f ON f.id = v.funcionario_id
             WHERE f.comercio_id = @idEmpresa
-              AND "+ periodos.mesLonge+@"
+              AND "+ periodoPassado+@"
             GROUP BY DAY(v.data_venda)
             ORDER BY dia, periodo;
             ", parametros);
@@ -853,8 +816,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
             bool temVendaAtual = linhaAtual.Points.Any(p => p.Y > 0);
             bool temVendaPassado = linhaPassado.Points.Any(p => p.Y > 0);
 
-            lblproximo.Text = temVendaAtual ? nomePeriodo[0].Trim() : "Sem venda";
-            lbllonge.Text = temVendaPassado ? nomePeriodo[1].Trim() : "Sem venda";
+            lblproximo.Text = temVendaAtual ? "Data Inicio" : "Sem venda";
+            lbllonge.Text = temVendaPassado ? "Data Fim" : "Sem venda";
 
             modeloDiario.Axes.Add(eixoDias);
             modeloDiario.Axes.Add(eixoQuantidade);
@@ -862,7 +825,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
             modeloDiario.Series.Add(linhaPassado);
             grafico2.Model = modeloDiario;
         }
-        public static DataTable ExecutarSelect(string query, Dictionary<string, int> Parametros)         
+        
+        public static DataTable ExecutarSelect(string query, Dictionary<string, object> Parametros)         
     {                                                                                                  
         using (MySqlConnection conn = new MySqlConnection(Banco.caminho))                              
         {                                                                                              

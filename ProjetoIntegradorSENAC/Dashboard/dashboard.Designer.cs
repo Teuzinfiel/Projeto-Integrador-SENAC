@@ -48,9 +48,11 @@
             btnProdutos = new Button();
             btnVendas = new Button();
             btnComparacao = new Button();
-            maskedTextBox1 = new MaskedTextBox();
-            maskedTextBox2 = new MaskedTextBox();
+            maskedInicio = new MaskedTextBox();
+            maskedFim = new MaskedTextBox();
             btnBuscar = new Button();
+            label5 = new Label();
+            label6 = new Label();
             Info1_dash.SuspendLayout();
             Info2_dash.SuspendLayout();
             Info3_dash.SuspendLayout();
@@ -304,19 +306,25 @@
             btnComparacao.UseVisualStyleBackColor = false;
             btnComparacao.Click += btnComparacao_Click;
             // 
-            // maskedTextBox1
+            // maskedInicio
             // 
-            maskedTextBox1.Location = new Point(32, 36);
-            maskedTextBox1.Name = "maskedTextBox1";
-            maskedTextBox1.Size = new Size(373, 23);
-            maskedTextBox1.TabIndex = 13;
+            maskedInicio.Font = new Font("Microsoft Sans Serif", 20.25F);
+            maskedInicio.Location = new Point(121, 12);
+            maskedInicio.Mask = "00/00/0000";
+            maskedInicio.Name = "maskedInicio";
+            maskedInicio.Size = new Size(373, 38);
+            maskedInicio.TabIndex = 13;
+            maskedInicio.ValidatingType = typeof(DateTime);
             // 
-            // maskedTextBox2
+            // maskedFim
             // 
-            maskedTextBox2.Location = new Point(32, 65);
-            maskedTextBox2.Name = "maskedTextBox2";
-            maskedTextBox2.Size = new Size(373, 23);
-            maskedTextBox2.TabIndex = 14;
+            maskedFim.Font = new Font("Microsoft Sans Serif", 20.25F);
+            maskedFim.Location = new Point(121, 60);
+            maskedFim.Mask = "00/00/0000";
+            maskedFim.Name = "maskedFim";
+            maskedFim.Size = new Size(373, 38);
+            maskedFim.TabIndex = 14;
+            maskedFim.ValidatingType = typeof(DateTime);
             // 
             // btnBuscar
             // 
@@ -324,12 +332,33 @@
             btnBuscar.FlatStyle = FlatStyle.Popup;
             btnBuscar.Font = new Font("Franklin Gothic Medium", 15F);
             btnBuscar.ForeColor = Color.White;
-            btnBuscar.Location = new Point(445, 40);
+            btnBuscar.Location = new Point(524, 40);
             btnBuscar.Name = "btnBuscar";
             btnBuscar.Size = new Size(124, 40);
             btnBuscar.TabIndex = 15;
             btnBuscar.Text = "Buscar";
             btnBuscar.UseVisualStyleBackColor = false;
+            btnBuscar.Click += btnBuscar_Click;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.ForeColor = Color.White;
+            label5.Location = new Point(53, 40);
+            label5.Name = "label5";
+            label5.Size = new Size(39, 15);
+            label5.TabIndex = 16;
+            label5.Text = "Inicio:";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.ForeColor = Color.White;
+            label6.Location = new Point(62, 77);
+            label6.Name = "label6";
+            label6.Size = new Size(30, 15);
+            label6.TabIndex = 17;
+            label6.Text = "Fim:";
             // 
             // dashboard
             // 
@@ -337,9 +366,11 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(45, 45, 60);
             ClientSize = new Size(1326, 686);
+            Controls.Add(label6);
+            Controls.Add(label5);
             Controls.Add(btnBuscar);
-            Controls.Add(maskedTextBox2);
-            Controls.Add(maskedTextBox1);
+            Controls.Add(maskedFim);
+            Controls.Add(maskedInicio);
             Controls.Add(btnComparacao);
             Controls.Add(btnVendas);
             Controls.Add(btnProdutos);
@@ -390,8 +421,10 @@
         private PictureBox imgProximo;
         private PictureBox imgLonge;
         private Label lblLonge;
-        private MaskedTextBox maskedTextBox1;
-        private MaskedTextBox maskedTextBox2;
+        private MaskedTextBox maskedInicio;
+        private MaskedTextBox maskedFim;
         private Button btnBuscar;
+        private Label label5;
+        private Label label6;
     }
 }

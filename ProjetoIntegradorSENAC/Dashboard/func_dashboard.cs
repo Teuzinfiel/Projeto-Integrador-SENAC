@@ -12,6 +12,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -23,8 +25,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
 {
     internal class func_dashboard
     {
-     
-        
+
+
 
         public static void carregarInfoComparacao(Label label1, Label label2, Label label3,
             Label label4, GroupBox Info1_dash, GroupBox Info2_dash,
@@ -121,7 +123,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             label1.Text = tabela.Rows[0]["receita_vendas"].ToString();
             label2.Text = tabela.Rows[0]["quantidade_itens_vendidos"].ToString();
             label3.Text = tabela.Rows[0]["produto_lider_atual"].ToString() + " | " + tabela.Rows[0]["produto_lider_passado"].ToString();
-            label4.Text = tabela.Rows[0]["ticket_medio_atual"].ToString() +" | " + tabela.Rows[0]["ticket_medio_passado"].ToString();
+            label4.Text = tabela.Rows[0]["ticket_medio_atual"].ToString() + " | " + tabela.Rows[0]["ticket_medio_passado"].ToString();
             Info1_dash.Text = "Receita das vendas";
             Info2_dash.Text = "Quantidade de itens vendidos";
             Info3_dash.Text = "Produto lider";
@@ -129,10 +131,10 @@ namespace ProjetoIntegradorSENAC.Dashboard
         }
         public static void carregarInfoProdutos(Label label1, Label label2, Label label3,
             Label label4, GroupBox Info1_dash, GroupBox Info2_dash,
-            GroupBox Info3_dash, GroupBox Info4_dash, Dictionary<string, object> parametros, string periodo)
+            GroupBox Info3_dash, GroupBox Info4_dash, Dictionary<string, object> parametros)
         {
 
-            DataTable tabela = ExecutarSelect(@"
+            string query = @"
             SELECT
             -- Produto que gerou MENOS receita
             IFNULL((SELECT CONCAT(p.nome,' (Qtd:', SUM(iv.quantidade), ', R$',ROUND(SUM(iv.preco_unitario * iv.quantidade), 2),')')
@@ -140,17 +142,19 @@ namespace ProjetoIntegradorSENAC.Dashboard
             JOIN vendas v ON v.id = iv.vendas_id
             JOIN funcionarios f ON f.id = v.funcionario_id
             JOIN produtos p ON p.id = iv.produtos_id
-            WHERE f.comercio_id = @idEmpresa " + periodo + @"
+            WHERE f.comercio_id = @idEmpresa AND DATE(v.data_venda) BETWEEN @dataInicio AND @dataFim
             GROUP BY p.id
             ORDER BY SUM(iv.preco_unitario * iv.quantidade) ASC
             LIMIT 1), 'Sem vendas (Qtd:0, R$:0,00)') AS produto_menos_vendido,
 
             -- Ticket médio por produto
-            IFNULL((SELECT CONCAT('R$:', ROUND(AVG(iv.preco_unitario * iv.quantidade), 2))
+            IFNULL((
+            SELECT CONCAT('R$:', ROUND(SUM(iv.quantidade * iv.preco_unitario) / NULLIF(SUM(iv.quantidade), 0), 2))
             FROM items_venda iv
             JOIN vendas v ON v.id = iv.vendas_id
             JOIN funcionarios f ON f.id = v.funcionario_id
-            WHERE f.comercio_id = @idEmpresa " + periodo + @" ),'R$:0,00') AS ticket_medio_por_produto,
+            WHERE f.comercio_id = @idEmpresa AND DATE(v.data_venda) BETWEEN @dataInicio AND @dataFim
+            ), 'R$:0,00') AS ticket_medio_por_produto,
 
             -- Quantidade de produtos vendidos
             IFNULL((SELECT CONCAT('Qtd:', SUM(iv.quantidade) ) AS total_produtos_vendidos
@@ -158,7 +162,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
             JOIN vendas v ON v.id = iv.vendas_id
             JOIN funcionarios f ON f.id = v.funcionario_id
             WHERE f.comercio_id = @idEmpresa
-            " + periodo + @" ),'Qtd:0') AS quantidade_produtos_vendidos,
+            AND DATE(v.data_venda) BETWEEN @dataInicio AND @dataFim
+            ),'Qtd:0') AS quantidade_produtos_vendidos,
 
             -- Produto mais vendido (em quantidade)
             IFNULL((SELECT CONCAT(p.nome,' (Qtd:', SUM(iv.quantidade), ', R$:',ROUND( SUM(iv.preco_unitario * iv.quantidade), 2),')')
@@ -166,91 +171,116 @@ namespace ProjetoIntegradorSENAC.Dashboard
             JOIN vendas v ON v.id = iv.vendas_id
             JOIN funcionarios f ON f.id = v.funcionario_id
             JOIN produtos p ON p.id = iv.produtos_id
-            WHERE f.comercio_id = @idEmpresa " + periodo + @"
+            WHERE f.comercio_id = @idEmpresa AND DATE(v.data_venda) BETWEEN @dataInicio AND @dataFim
             GROUP BY p.id
             ORDER BY SUM(iv.quantidade) DESC
             LIMIT 1), 'Sem venda(Qtd:0, R$:0,00)') AS produto_mais_vendido;
-            ", parametros);
+            ";
+            try
+            {
+                DataTable tabela = ExecutarSelect(query, parametros);
 
-            label1.Text = tabela.Rows[0]["quantidade_produtos_vendidos"].ToString();
-            label2.Text = tabela.Rows[0]["produto_menos_vendido"].ToString();
-            label3.Text = tabela.Rows[0]["ticket_medio_por_produto"].ToString();
-            label4.Text = tabela.Rows[0]["produto_mais_vendido"].ToString() ;
-            Info1_dash.Text = "Quantidade de produtos vendidos"; 
-            Info2_dash.Text = "Produto menos vendido (Quantidade, Receita)";
-            Info3_dash.Text = "Ticket medio por produto";
-            Info4_dash.Text = "Produto mais vendido (Quantidade, Receita)";
+                if (tabela.Rows.Count > 0)
+                {
+                    label1.Text = tabela.Rows[0]["quantidade_produtos_vendidos"].ToString();
+                    label2.Text = tabela.Rows[0]["produto_menos_vendido"].ToString();
+                    label3.Text = tabela.Rows[0]["ticket_medio_por_produto"].ToString();
+                    label4.Text = tabela.Rows[0]["produto_mais_vendido"].ToString();
+                }
+                Info1_dash.Text = "Quantidade de produtos vendidos";
+                Info2_dash.Text = "Produto menos vendido (Quantidade, Receita)";
+                Info3_dash.Text = "Ticket medio por produto";
+                Info4_dash.Text = "Produto mais vendido (Quantidade, Receita)";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro em carregarInfoProdutos: {ex.Message}");
+            }
         }
         public static void carregarInfoVendas(Label label1, Label label2, Label label3,
-            Label label4, GroupBox Info1_dash, GroupBox Info2_dash,
-            GroupBox Info3_dash, GroupBox Info4_dash, Dictionary<string, object> parametros, string periodo)
+    Label label4, GroupBox Info1_dash, GroupBox Info2_dash,
+    GroupBox Info3_dash, GroupBox Info4_dash, Dictionary<string, object> parametros)
         {
+            string query = @"
+    SELECT
+        -- Total de vendas
+        IFNULL((
+            SELECT CONCAT('R$:', ROUND(SUM(v.total), 2), ', Qtd:', COUNT(DISTINCT v.id))
+            FROM vendas v
+            JOIN funcionarios f ON f.id = v.funcionario_id
+            WHERE f.comercio_id = @idEmpresa  
+            AND DATE(v.data_venda) BETWEEN @dataInicio AND @dataFim
+        ), 'R$:0,00, Qtd:0') AS total_vendas,
+        
+        -- Categoria líder (em receita e quantidade)
+        IFNULL((
+            SELECT CONCAT(
+                p.categoria, 
+                ' (R$:', ROUND(SUM(iv.quantidade * iv.preco_unitario), 2), 
+                ', Qtd:', SUM(iv.quantidade), ')'
+            )
+            FROM items_venda iv
+            JOIN vendas v ON v.id = iv.vendas_id
+            JOIN funcionarios f ON f.id = v.funcionario_id
+            JOIN produtos p ON p.id = iv.produtos_id
+            WHERE f.comercio_id = @idEmpresa  
+            AND DATE(v.data_venda) BETWEEN @dataInicio AND @dataFim
+            GROUP BY p.categoria
+            ORDER BY SUM(iv.quantidade * iv.preco_unitario) DESC
+            LIMIT 1
+        ), 'Sem vendas (R$:0,00, Qtd:0)') AS categoria_lider,
+        
+        -- Ticket médio de vendas
+        IFNULL((
+            SELECT CONCAT('R$:', ROUND(SUM(iv.quantidade * iv.preco_unitario) / NULLIF(COUNT(DISTINCT v.id), 0), 2))
+            FROM items_venda iv
+            JOIN vendas v ON v.id = iv.vendas_id
+            JOIN funcionarios f ON f.id = v.funcionario_id
+            WHERE f.comercio_id = @idEmpresa  
+            AND DATE(v.data_venda) BETWEEN @dataInicio AND @dataFim
+        ), 'R$:0,00') AS ticket_medio_vendas,
+        
+        -- Itens por venda
+        IFNULL((
+            SELECT CONCAT('Qtd:', ROUND(SUM(iv.quantidade) / COUNT(DISTINCT v.id), 2))
+            FROM items_venda iv
+            JOIN vendas v ON v.id = iv.vendas_id
+            JOIN funcionarios f ON f.id = v.funcionario_id
+            WHERE f.comercio_id = @idEmpresa  
+            AND DATE(v.data_venda) BETWEEN @dataInicio AND @dataFim
+        ), 'Qtd:0') AS media_produtos_por_venda";
 
-            DataTable tabela = ExecutarSelect(@"
-                SELECT
-                -- Total de vendas
+            try
+            {
+                DataTable tabela = ExecutarSelect(query, parametros);
 
-                IFNULL((SELECT
-                CONCAT('R$:', ROUND(SUM(v.total), 2), ', ' , 'Qtd:',COUNT(DISTINCT v.id))
-                FROM comercios c
-                JOIN funcionarios f ON f.comercio_id = c.id
-                JOIN vendas v       ON v.funcionario_id = f.id
-                WHERE c.id = @idEmpresa " + periodo + @" ),'R$:0,00 , Qtd: 0' ) AS total_vendas,
-                -- categoria lider
+                if (tabela.Rows.Count > 0)
+                {
+                    label1.Text = tabela.Rows[0]["total_vendas"].ToString();
+                    label2.Text = tabela.Rows[0]["categoria_lider"].ToString();
+                    label3.Text = tabela.Rows[0]["ticket_medio_vendas"].ToString();
+                    label4.Text = tabela.Rows[0]["media_produtos_por_venda"].ToString();
+                }
+                else
+                {
+                    label1.Text = "R$:0,00, Qtd:0";
+                    label2.Text = "Sem vendas (R$:0,00, Qtd:0)";
+                    label3.Text = "R$:0,00";
+                    label4.Text = "Qtd:0";
+                }
 
-                IFNULL(
-                (
-                    SELECT
-                    CONCAT(                                                              
-                        p.categoria,                                     
-                        ' (R$: ',                                                        
-                        ROUND(SUM(iv.quantidade * iv.preco_unitario),2),       
-                        ', Qtd: ',                                                       
-                        SUM(iv.quantidade),                                   
-                        ')'                                                              
-                    )                                                                    
-                    FROM comercios c                                                     
-                    JOIN funcionarios f ON f.comercio_id = c.id                          
-                    JOIN vendas v       ON v.funcionario_id = f.id              
-                    JOIN items_venda iv ON iv.vendas_id = v.id                           
-                    JOIN produtos p     ON p.id = iv.produtos_id                         
-                    WHERE c.id = @idEmpresa " + periodo + @"                             
-                    GROUP BY p.categoria                                                 
-                    ORDER BY                                                             
-                        SUM(iv.quantidade) DESC,
-                        SUM(iv.quantidade * iv.preco_unitario) DESC,
-                        p.categoria
-                    LIMIT 1
-                ),'Sem vendas (R$: 0, Qtd: 0)') AS categoria_lider,
-
-                -- ticket medio de vendas
-                IFNULL((SELECT
-                CONCAT('R$: ',FORMAT(SUM(iv.quantidade * iv.preco_unitario) / NULLIF(COUNT(DISTINCT v.id), 0),2))
-                FROM comercios c
-                JOIN funcionarios f ON f.comercio_id = c.id
-                JOIN vendas v       ON v.funcionario_id = f.id
-                JOIN items_venda iv ON iv.vendas_id = v.id
-                WHERE c.id = @idEmpresa " + periodo + @"),'R$:0,00') AS ticket_medio_vendas,
-
-                -- itens por venda
-                IFNULL((SELECT CONCAT('Qtd: ', FORMAT(SUM(iv.quantidade) / COUNT(DISTINCT v.id),2))
-                FROM comercios c
-                JOIN funcionarios f ON f.comercio_id = c.id
-                JOIN vendas v       ON v.funcionario_id = f.id
-                JOIN items_venda iv ON iv.vendas_id = v.id
-                WHERE c.id = @idEmpresa " + periodo + @" ),'Qtd:0') AS media_produtos_por_venda ;"
-                , parametros);
-
-            label1.Text = tabela.Rows[0]["total_vendas"].ToString();
-            label2.Text = tabela.Rows[0]["categoria_lider"].ToString();
-            label3.Text = tabela.Rows[0]["ticket_medio_vendas"].ToString();
-            label4.Text = tabela.Rows[0]["media_produtos_por_venda"].ToString();
-            Info1_dash.Text = "Total de vendas(Receita, Quantidade)";
-            Info2_dash.Text = "Categoria lider(Receita, Quantidade)";
-            Info3_dash.Text = "Ticket medio de vendas";
-            Info4_dash.Text = "Media de produtos vendidos por pedido";
+                Info1_dash.Text = "Total de vendas (Receita, Quantidade)";
+                Info2_dash.Text = "Categoria líder (Receita, Quantidade)";
+                Info3_dash.Text = "Ticket médio de vendas";
+                Info4_dash.Text = "Média de produtos vendidos por pedido";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro em carregarInfoVendas: {ex.Message}");
+            }
         }
         
+
         public static (string inicio, string fim) carregarPeriodoComparacao(ComboBox comboPeriodo_dash)
         {
             if (comboPeriodo_dash.SelectedIndex == 0)
@@ -284,26 +314,30 @@ namespace ProjetoIntegradorSENAC.Dashboard
                     @" v.data_venda >= DATE_SUB(DATE_FORMAT(CURDATE(), '%Y-01-01'), INTERVAL 2 YEAR)
                     AND v.data_venda <  DATE_SUB(DATE_FORMAT(CURDATE(), '%Y-01-01'), INTERVAL 1 YEAR)");
             }
-            return ("1=0", "1=0"); 
+            return ("1=0", "1=0");
         }
-        public static string carregarPeriodoIntervalo(MaskedTextBox maskedInicio,MaskedTextBox maskedFim,Dictionary<string, object> parametros)
+        public static bool AtualizarPeriodo(MaskedTextBox maskedInicio, MaskedTextBox maskedFim, Dictionary<string, object> param_idEmpresa)
         {
-            if (!DateTime.TryParse(maskedInicio.Text, out DateTime dataInicio))
-                return "";
+            if (!DateTime.TryParseExact(maskedInicio.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime inicio))
+                return false;
 
-            if (!DateTime.TryParse(maskedFim.Text, out DateTime dataFim))
-                return "";
+            if (!DateTime.TryParseExact(maskedFim.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime fim))
+                return false;
 
-            if (dataFim < dataInicio)
-                throw new Exception("Data final não pode ser menor que a inicial.");
+            if (inicio > fim)
+                return false;
 
-            parametros["@dataInicio"] = dataInicio;
-            parametros["@dataFim"] = dataFim.AddDays(1);
+            param_idEmpresa.Remove("@dataInicio");
+            param_idEmpresa.Remove("@dataFim");
 
-            return " AND v.data_venda >= @dataInicio AND v.data_venda < @dataFim ";
+            param_idEmpresa["@dataInicio"] = inicio.ToString("yyyy-MM-dd");
+            param_idEmpresa["@dataFim"] = fim.ToString("yyyy-MM-dd");
+
+            return true;
         }
 
-        public static void load_grafico_produtos( PlotView grafico1, PlotView grafico2, Dictionary<string, object> parametros, string periodo)
+
+        public static void load_grafico_produtos(PlotView grafico1, PlotView grafico2, Dictionary<string, object> parametros)
         {
             // -------------------- grafico 1, PRODUTOS ---------------
             PlotModel modeloTopVenda = new PlotModel
@@ -349,7 +383,10 @@ namespace ProjetoIntegradorSENAC.Dashboard
             JOIN produtos p ON p.id = iv.produtos_id
             JOIN vendas v ON v.id = iv.vendas_id
             JOIN funcionarios f ON f.id = v.funcionario_id
-            WHERE f.comercio_id = @idEmpresa "+ periodo +@" 
+            WHERE f.comercio_id = @idEmpresa
+            AND v.data_venda >= @dataInicio
+            AND v.data_venda < DATE_ADD(@dataFim, INTERVAL 1 DAY)
+
             GROUP BY p.id, p.nome
             ORDER BY total_vendido DESC
             LIMIT 5;
@@ -357,13 +394,13 @@ namespace ProjetoIntegradorSENAC.Dashboard
             foreach (DataRow row in tabela1.Rows)
             {
                 categoryAxis1.Labels.Add(row["nome"].ToString());
-                barSeries1.Items.Add(new BarItem { Value = Convert.ToInt32(row["total_vendido"]) } );
+                barSeries1.Items.Add(new BarItem { Value = Convert.ToInt32(row["total_vendido"]) });
             }
 
             modeloTopVenda.Axes.Add(categoryAxis1);
             modeloTopVenda.Axes.Add(linearAxis1);
             modeloTopVenda.Series.Add(barSeries1);
-            if (!barSeries1.Items.Any()) 
+            if (!barSeries1.Items.Any())
             {
                 modeloTopVenda.Annotations.Add(new TextAnnotation
                 {
@@ -424,7 +461,10 @@ namespace ProjetoIntegradorSENAC.Dashboard
             JOIN produtos p       ON p.id = iv.produtos_id
             JOIN vendas v         ON v.id = iv.vendas_id
             JOIN funcionarios f   ON f.id = v.funcionario_id
-            WHERE f.comercio_id = @idEmpresa "+ periodo + @"
+            WHERE f.comercio_id = @idEmpresa
+            AND v.data_venda >= @dataInicio
+            AND v.data_venda < DATE_ADD(@dataFim, INTERVAL 1 DAY)
+
             GROUP BY p.id, p.nome
             ORDER BY receita_total DESC
             LIMIT 5;
@@ -436,8 +476,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 barSeries2.Items.Add(new BarItem { Value = Convert.ToDouble(row["receita_total"]) });
             }
 
-            modeloTopReceita.Axes.Add(categoryAxis2);                                                      
-            modeloTopReceita.Axes.Add(linearAxis2);                                                        
+            modeloTopReceita.Axes.Add(categoryAxis2);
+            modeloTopReceita.Axes.Add(linearAxis2);
             modeloTopReceita.Series.Add(barSeries2);
             if (!barSeries2.Items.Any())
             {
@@ -452,9 +492,9 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 });
             }
 
-            grafico2.Model = modeloTopReceita;                                                             
+            grafico2.Model = modeloTopReceita;
         }
-        public static void load_grafico_vendas(PlotView grafico1, PlotView grafico2, Dictionary<string, object> parametros, string periodo)
+        public static void load_grafico_vendas(PlotView grafico1, PlotView grafico2, Dictionary<string, object> parametros)
         {
             // ---------------- grafico 1, VENDAS -------------------
             PlotModel modeloLinha = new PlotModel
@@ -504,7 +544,10 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 COUNT(v.id) AS total_vendas
             FROM vendas v
             JOIN funcionarios f ON f.id = v.funcionario_id
-            WHERE f.comercio_id = @idEmpresa "+ periodo +@"
+            WHERE f.comercio_id = @idEmpresa
+            AND v.data_venda >= @dataInicio
+            AND v.data_venda < DATE_ADD(@dataFim, INTERVAL 1 DAY)
+
             GROUP BY HOUR(v.data_venda)
             ORDER BY hora;
             ", parametros);
@@ -517,7 +560,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 vendasPorHora[hora] = total;
             }
 
-            for (int h = 1; h < 24; h++)
+            for (int h = 1; h <= 23; h++)
             {
                 int total = vendasPorHora.ContainsKey(h) ? vendasPorHora[h] : 0;
                 linhaVendas.Points.Add(new DataPoint(h, total));
@@ -525,7 +568,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             modeloLinha.Axes.Add(eixoX);
             modeloLinha.Axes.Add(eixoY);
             modeloLinha.Series.Add(linhaVendas);
-            if (!linhaVendas.Points.Any(p=> p.Y >0))
+            if (!linhaVendas.Points.Any(p => p.Y > 0))
             {
                 modeloLinha.Annotations.Add(new TextAnnotation
                 {
@@ -585,7 +628,9 @@ namespace ProjetoIntegradorSENAC.Dashboard
             JOIN vendas v       ON v.id = iv.vendas_id
             JOIN funcionarios f ON f.id = v.funcionario_id
             WHERE f.comercio_id = @idEmpresa
-              AND p.categoria IS NOT NULL "+ periodo +@"
+            AND v.data_venda >= @dataInicio
+            AND v.data_venda < DATE_ADD(@dataFim, INTERVAL 1 DAY)
+
             GROUP BY p.categoria
             ORDER BY total_vendido DESC;
             ", parametros);
@@ -619,7 +664,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
         public static void load_grafico_comparacao(PlotView grafico1, PlotView grafico2, Dictionary<string, object> parametros, string periodoAtual, string periodoPassado, Label lblproximo, Label lbllonge)
         {
             // --------------- grafico 1, COMPARACAO -----------------
-            
+
 
             PlotModel modeloComparativo = new PlotModel
             {
@@ -664,7 +709,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             FROM vendas v
             JOIN funcionarios f ON f.id = v.funcionario_id
             WHERE f.comercio_id = @idEmpresa
-              AND "+ periodoAtual+@"
+              AND " + periodoAtual + @"
             
             UNION ALL
             
@@ -674,14 +719,14 @@ namespace ProjetoIntegradorSENAC.Dashboard
             FROM vendas v
             JOIN funcionarios f ON f.id = v.funcionario_id
             WHERE f.comercio_id = @idEmpresa
-              AND "+ periodoPassado+@"
+              AND " + periodoPassado + @"
             
             ", parametros);
 
             foreach (DataRow row in tabela.Rows)
             {
                 eixoY.Labels.Add(row["periodo"].ToString());
-                barraSeries.Items.Add(new BarItem{ Value = Convert.ToDouble(row["total_vendas"])});
+                barraSeries.Items.Add(new BarItem { Value = Convert.ToDouble(row["total_vendas"]) });
             }
 
             bool atualSemVenda = barraSeries.Items[0].Value == 0;
@@ -770,7 +815,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             FROM vendas v
             JOIN funcionarios f ON f.id = v.funcionario_id
             WHERE f.comercio_id = @idEmpresa
-              AND "+ periodoAtual+ @"
+              AND " + periodoAtual + @"
             GROUP BY DAY(v.data_venda)
 
             UNION ALL
@@ -782,7 +827,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             FROM vendas v
             JOIN funcionarios f ON f.id = v.funcionario_id
             WHERE f.comercio_id = @idEmpresa
-              AND "+ periodoPassado+@"
+              AND " + periodoPassado + @"
             GROUP BY DAY(v.data_venda)
             ORDER BY dia, periodo;
             ", parametros);
@@ -825,29 +870,39 @@ namespace ProjetoIntegradorSENAC.Dashboard
             modeloDiario.Series.Add(linhaPassado);
             grafico2.Model = modeloDiario;
         }
-        
-        public static DataTable ExecutarSelect(string query, Dictionary<string, object> Parametros)         
-    {                                                                                                  
-        using (MySqlConnection conn = new MySqlConnection(Banco.caminho))                              
-        {                                                                                              
-            conn.Open();                                                                               
-            using (MySqlCommand cmd = new MySqlCommand(query, conn))                                   
-            {
-                if (Parametros != null)
+        public static DataTable ExecutarSelect(string query, Dictionary<string, object> Parametros)
+        {
+            // try
+             //{
+                using (MySqlConnection conn = new MySqlConnection(Banco.caminho))
                 {
-                    foreach (var p in Parametros)
+                    conn.Open();
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue(p.Key, p.Value);
+                        if (Parametros != null)
+                        {
+                            foreach (var p in Parametros)
+                            {
+                                cmd.Parameters.AddWithValue(p.Key, p.Value);
+                            }
+                        }
+
+                        using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
+                        {
+                            DataTable tabela = new DataTable();
+                            da.Fill(tabela);
+                            return tabela;
+                        }
                     }
                 }
-                using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
-                    {
-                        DataTable tabela = new DataTable();
-                        da.Fill(tabela);
-                        return tabela;
-                    }
-                }
-            }
+           /* }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao executar consulta: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return new DataTable();
+            }*/
         }
     }
 }
+

@@ -31,23 +31,17 @@ namespace ProjetoIntegradorSENAC.Dashboard
             {
                 { "@idEmpresa", idEmpresa }
             };
-
-
         }
-        string periodo;
         string periodoAtual, periodoPassado;
-        bool produtosBoo = true, vendasBoo = false, comparacaoBoo = false;
+        bool produtosBoo, vendasBoo, comparacaoBoo;
 
         private void btnProdutos_Click(object sender, EventArgs e)
         {
-            if (produtosBoo || !AtualizarPeriodo())
+            if (produtosBoo)
             {
                 return;
             }
-
-            comparacaoBoo = false;
-            produtosBoo = true;
-            vendasBoo = false;
+            AtivarProdutos();
 
             if (!maskedInicio.MaskFull || !maskedFim.MaskFull ||
                 !DateTime.TryParse(maskedInicio.Text, out _) ||
@@ -60,13 +54,11 @@ namespace ProjetoIntegradorSENAC.Dashboard
         }
         private void btnVendas_Click(object sender, EventArgs e)
         {
-            if (vendasBoo || !AtualizarPeriodo())
+            if (vendasBoo)
             {
                 return;
             }
-            comparacaoBoo = false;
-            produtosBoo = false;
-            vendasBoo = true;
+            AtivarVendas();
             if (!maskedInicio.MaskFull || !maskedFim.MaskFull ||
                 !DateTime.TryParse(maskedInicio.Text, out _) ||
                 !DateTime.TryParse(maskedFim.Text, out _))
@@ -75,16 +67,16 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 return;
             }
             carregarPag();
+            
         }
         private void btnComparacao_Click(object sender, EventArgs e)
         {
-            if (comparacaoBoo || !AtualizarPeriodo())
+            if (comparacaoBoo)
             {
                 return;
             }
-            comparacaoBoo = true;
-            produtosBoo = false;
-            vendasBoo = false;
+            AtivarComparacao();
+
             if (!maskedInicio.MaskFull || !maskedFim.MaskFull ||
                 !DateTime.TryParse(maskedInicio.Text, out _) ||
                 !DateTime.TryParse(maskedFim.Text, out _))
@@ -93,11 +85,10 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 return;
             }
             carregarPag();
+            
         }
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            periodo = func_dashboard.carregarPeriodoIntervalo(maskedInicio, maskedFim, param_idEmpresa);
-            if (!AtualizarPeriodo()) return;
             if (!maskedInicio.MaskFull || !maskedFim.MaskFull ||
                 !DateTime.TryParse(maskedInicio.Text, out _) ||
                 !DateTime.TryParse(maskedFim.Text, out _))
@@ -112,33 +103,18 @@ namespace ProjetoIntegradorSENAC.Dashboard
 
             maskedInicio.Text = DateTime.Now.ToString("dd/MM/yyyy");
             maskedFim.Text = DateTime.Now.ToString("dd/MM/yyyy");
-            if (!AtualizarPeriodo()) return;
-
-            comparacaoBoo = false;
-            produtosBoo = false;
-            vendasBoo = true;
-            if (!maskedInicio.MaskFull || !maskedFim.MaskFull ||
-                !DateTime.TryParse(maskedInicio.Text, out _) ||
-                !DateTime.TryParse(maskedFim.Text, out _))
-            {
-                MessageBox.Show("Data incompleta ou vazia.");
-                return;
-            }
+            AtivarVendas();
             carregarPag();
         }
-        private bool AtualizarPeriodo()
-        {
-            periodo = func_dashboard.carregarPeriodoIntervalo(maskedInicio, maskedFim, param_idEmpresa);
-
-            if (string.IsNullOrWhiteSpace(periodo))
-            {
-                MessageBox.Show("Data inválida ou incompleta.");
-                return false;
-            }
-            return true;
-        }
+        
         private void carregarPag()
         {
+            if (!func_dashboard.AtualizarPeriodo(maskedInicio, maskedFim, param_idEmpresa))
+            {
+                MessageBox.Show("Data inválida");
+                return;
+            }
+            
             periodoAtual = maskedInicio.Text;
             periodoPassado = maskedFim.Text;
             if (comparacaoBoo)
@@ -149,17 +125,38 @@ namespace ProjetoIntegradorSENAC.Dashboard
             }
             else if (produtosBoo)
             {
-                func_dashboard.load_grafico_produtos(grafico1, grafico2, param_idEmpresa, periodo);
+                func_dashboard.load_grafico_produtos(grafico1, grafico2, param_idEmpresa);
                 func_dashboard.carregarInfoProdutos(label1, label2, label3, label4,
-                Info1_dash, Info2_dash, Info3_dash, Info4_dash, param_idEmpresa, periodo);
+                Info1_dash, Info2_dash, Info3_dash, Info4_dash, param_idEmpresa);
             }
             else if (vendasBoo)
             {
-                func_dashboard.load_grafico_vendas(grafico1, grafico2, param_idEmpresa, periodo);
+                func_dashboard.load_grafico_vendas(grafico1, grafico2, param_idEmpresa);
                 func_dashboard.carregarInfoVendas(label1, label2, label3, label4, Info1_dash,
-                Info2_dash, Info3_dash, Info4_dash, param_idEmpresa, periodo);
+                Info2_dash, Info3_dash, Info4_dash, param_idEmpresa);
             }
         }
+        private void AtivarVendas()
+        {
+            produtosBoo = false;
+            vendasBoo = true;
+            comparacaoBoo = false;
+        }
+
+        private void AtivarProdutos()
+        {
+            produtosBoo = true;
+            vendasBoo = false;
+            comparacaoBoo = false;
+        }
+
+        private void AtivarComparacao()
+        {
+            produtosBoo = false;
+            vendasBoo = false;
+            comparacaoBoo = true;
+        }
+
     }
 }
 

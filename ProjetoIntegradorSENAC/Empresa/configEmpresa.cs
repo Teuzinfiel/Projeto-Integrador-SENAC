@@ -138,6 +138,7 @@ namespace ProjetoIntegradorSENAC.Configurações
 
         private void mkCNPJ_TextChanged(object sender, EventArgs e)
         {
+            erroCnpj = true;
             if (Funcoes.isCnpj(mkCNPJ.Text))
             {
                 erroCnpj = false;
@@ -153,6 +154,7 @@ namespace ProjetoIntegradorSENAC.Configurações
         }
         private void mkCPF_TextChanged(object sender, EventArgs e)
         {
+            erroCpf = true;
             if (Funcoes.isCpf(mkCPF.Text))
             {
                 erroCpf = false;
@@ -200,8 +202,7 @@ namespace ProjetoIntegradorSENAC.Configurações
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            label2.Text = "CNPJ:";
-            erroCpf = false;
+            label2.Text = "CNPJ:";           
             mkCPF.Visible = false;
             mkCNPJ.Visible = true;
             mkCPF.Clear();
@@ -216,6 +217,7 @@ namespace ProjetoIntegradorSENAC.Configurações
             mkCPF.Visible = true;
             mkCPF.Clear();
             mkCNPJ.Clear();
+           
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)

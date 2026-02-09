@@ -105,11 +105,12 @@
             label3.FlatStyle = FlatStyle.System;
             label3.Font = new Font("Franklin Gothic Book", 15F);
             label3.ForeColor = Color.FromArgb(180, 180, 190);
-            label3.Location = new Point(65, 207);
+            label3.Location = new Point(65, 204);
             label3.Name = "label3";
             label3.Size = new Size(141, 25);
             label3.TabIndex = 3;
             label3.Text = "Nome Empresa";
+            label3.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // pictureBox1
             // 

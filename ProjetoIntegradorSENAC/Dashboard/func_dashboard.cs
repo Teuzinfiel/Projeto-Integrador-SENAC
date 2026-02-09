@@ -862,16 +862,16 @@ namespace ProjetoIntegradorSENAC.Dashboard
             modeloDiario.Series.Add(linhaPassado);
             grafico2.Model = modeloDiario;
         }
-        public static DataTable ExecutarSelect(string query, Dictionary<string, int> IdEmpresa)         
+        public static DataTable ExecutarSelect(string query, Dictionary<string, int> Parametros)         
     {                                                                                                  
         using (MySqlConnection conn = new MySqlConnection(Banco.caminho))                              
         {                                                                                              
             conn.Open();                                                                               
             using (MySqlCommand cmd = new MySqlCommand(query, conn))                                   
             {
-                if (IdEmpresa != null)
+                if (Parametros != null)
                 {
-                    foreach (var p in IdEmpresa)
+                    foreach (var p in Parametros)
                     {
                         cmd.Parameters.AddWithValue(p.Key, p.Value);
                     }

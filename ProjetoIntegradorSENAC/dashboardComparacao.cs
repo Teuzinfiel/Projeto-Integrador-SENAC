@@ -28,9 +28,9 @@ namespace ProjetoIntegradorSENAC
         private void dashboardComparacao_Load(object sender, EventArgs e)
         {
 
-            /* func_dashboard.carregarInfoComparacao(lbDash1, lbDash2, lbDash3, lbDash4, Info1_dash,
+             func_dashboard.carregarInfoComparacao(lbDash1, lbDash2, lbDash3, lbDash4, Info1_dash,
              Info2_dash, Info3_dash, Info4_dash, param_idEmpresa);
-             func_dashboard.load_grafico_comparacao(grafico1, grafico2, param_idEmpresa, lblProximo, lblLonge);*/
+             func_dashboard.load_grafico_comparacao(grafico1, grafico2, param_idEmpresa, lblProximo, lblLonge);
 
         }
 

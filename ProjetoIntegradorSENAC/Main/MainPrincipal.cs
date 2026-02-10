@@ -52,14 +52,14 @@ namespace ProjetoIntegradorSENAC
         {
             AbrirFormNoPanel(new caixa(this.idEmpresa));
             labelCategorias.Text = "Caixa";
-            EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos);
+            EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos, btnMovimentacao);
             btnCaixa.BackColor = Color.FromArgb(45, 45, 60);
         }
         private void btnDashboard_Click(object sender, EventArgs e)
         {
             AbrirFormNoPanel(new dashboard(this, this.idEmpresa));
             labelCategorias.Text = "Dashboard";
-            EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos);
+            EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos, btnMovimentacao);
             btnDashboard.BackColor = Color.FromArgb(45, 45, 60);
         }
 
@@ -67,7 +67,7 @@ namespace ProjetoIntegradorSENAC
         {
             AbrirFormNoPanel(new frmProduto(idUsuario, idEmpresa));
             labelCategorias.Text = "Produtos";
-            EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos);
+            EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos, btnMovimentacao);
             btnProdutos.BackColor = Color.FromArgb(45, 45, 60);
         }
 
@@ -76,7 +76,7 @@ namespace ProjetoIntegradorSENAC
             AbrirFormNoPanel(new estoque(this.idEmpresa));
 
             labelCategorias.Text = "Estoque";
-            EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos);
+            EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos, btnMovimentacao);
             btnEstoque.BackColor = Color.FromArgb(45, 45, 60);
         }
 
@@ -85,7 +85,7 @@ namespace ProjetoIntegradorSENAC
             AbrirFormNoPanel(new frmFuncionarios(this.idEmpresa));
 
             labelCategorias.Text = "Funcionários";
-            EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos);
+            EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos, btnMovimentacao);
             btnFuncionario.BackColor = Color.FromArgb(45, 45, 60);
         }
 
@@ -93,7 +93,7 @@ namespace ProjetoIntegradorSENAC
         {
             AbrirFormNoPanel(new logInf(this.idEmpresa));
             labelCategorias.Text = "Log";
-            EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos);
+            EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos, btnMovimentacao);
             btnLog.BackColor = Color.FromArgb(45, 45, 60);
         }
 
@@ -106,9 +106,17 @@ namespace ProjetoIntegradorSENAC
 
         private void button1_Click(object sender, EventArgs e)
         {
-           // AbrirFormNoPanel(new configEmpresa(this.idEmpresa, this.idDono, this.idUsuario));
+            // AbrirFormNoPanel(new configEmpresa(this.idEmpresa, this.idDono, this.idUsuario));
             labelCategorias.Text = "Configurações";
-            EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos);
+            EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos, btnMovimentacao);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            AbrirFormNoPanel(new MovimentacaoProdutos(this.idEmpresa));
+            labelCategorias.Text = "Movimentações";
+            EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos, btnMovimentacao);
+            btnMovimentacao.BackColor = Color.FromArgb(45, 45, 60);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjetoIntegradorSENAC.Empresa;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,12 @@ namespace ProjetoIntegradorSENAC.Estoque
 {
     public partial class MovimentacaoProdutos : Form
     {
-        public MovimentacaoProdutos()
+        int idEmpresa;
+        public MovimentacaoProdutos(int idEmpresa)
         {
             InitializeComponent();
+            this.idEmpresa = idEmpresa;
+       
         }
 
         private void MovimentacaoProdutos_Load(object sender, EventArgs e)

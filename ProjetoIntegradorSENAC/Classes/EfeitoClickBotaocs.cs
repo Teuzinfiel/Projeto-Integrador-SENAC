@@ -8,7 +8,7 @@ namespace ProjetoIntegradorSENAC.Classes
 {
     internal class EfeitoClickBotaocs
     {
-        public static void ResetarBotoes(Button btnCaixa, Button btnDashboard, Button btnEstoque, Button btnFuncionario, Button btnLog,Button btnProduto)
+        public static void ResetarBotoes(Button btnCaixa, Button btnDashboard, Button btnEstoque, Button btnFuncionario, Button btnLog,Button btnProduto,Button btnMovimentacao)
         {
             btnCaixa.BackColor = Color.Transparent;
             btnDashboard.BackColor = Color.Transparent;
@@ -16,6 +16,8 @@ namespace ProjetoIntegradorSENAC.Classes
             btnFuncionario.BackColor = Color.Transparent;
             btnLog.BackColor = Color.Transparent;
             btnProduto.BackColor = Color.Transparent;
+            btnMovimentacao.BackColor = Color.Transparent;
+
         }
     }
 }

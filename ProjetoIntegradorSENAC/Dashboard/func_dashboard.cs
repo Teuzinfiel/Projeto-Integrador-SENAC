@@ -25,12 +25,9 @@ namespace ProjetoIntegradorSENAC.Dashboard
 {
     internal class func_dashboard
     {
-
-
-
         public static void carregarInfoComparacao(Label label1, Label label2, Label label3,
             Label label4, GroupBox Info1_dash, GroupBox Info2_dash,
-            GroupBox Info3_dash, GroupBox Info4_dash, Dictionary<string, object> parametros, string periodoInicial, string periodoFim)
+            GroupBox Info3_dash, GroupBox Info4_dash, Dictionary<string, object> parametros)
         {
             DataTable tabela = ExecutarSelect(@"
                 SELECT
@@ -38,9 +35,9 @@ namespace ProjetoIntegradorSENAC.Dashboard
 
                 (SELECT CONCAT(
                     'R$:',
-                    SUM(CASE WHEN " + periodoInicial + @" THEN v.total ELSE 0 END),
+                    SUM(CASE WHEN   THEN v.total ELSE 0 END),
                     ' | R$:',
-                    SUM(CASE WHEN " + periodoFim + @" THEN v.total ELSE 0 END)
+                    SUM(CASE WHEN  THEN v.total ELSE 0 END)
                 )
                 FROM vendas v
                 JOIN funcionarios f ON f.id = v.funcionario_id
@@ -51,9 +48,9 @@ namespace ProjetoIntegradorSENAC.Dashboard
 
                 (SELECT CONCAT(
                     'Qtd:',
-                    IFNULL(SUM(CASE WHEN " + periodoInicial + @" THEN iv.quantidade ELSE 0 END), 0),
+                    IFNULL(SUM(CASE WHEN  THEN iv.quantidade ELSE 0 END), 0),
                     ' | Qtd:',
-                    IFNULL(SUM(CASE WHEN " + periodoFim + @" THEN iv.quantidade ELSE 0 END), 0)
+                    IFNULL(SUM(CASE WHEN  THEN iv.quantidade ELSE 0 END), 0)
                 )
                 FROM items_venda iv
                 JOIN vendas v ON v.id = iv.vendas_id
@@ -69,7 +66,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 JOIN funcionarios f ON f.id = v.funcionario_id
                 JOIN produtos p ON p.id = iv.produtos_id
                 WHERE f.comercio_id = @idEmpresa
-                AND " + periodoInicial + @"
+                AND 
                 GROUP BY p.id, p.nome
                 ORDER BY SUM(iv.quantidade * iv.preco_unitario) DESC
                 LIMIT 1
@@ -83,7 +80,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 JOIN funcionarios f ON f.id = v.funcionario_id
                 JOIN produtos p ON p.id = iv.produtos_id
                 WHERE f.comercio_id = @idEmpresa
-                AND " + periodoFim + @"
+                AND 
                 GROUP BY p.id, p.nome
                 ORDER BY SUM(iv.quantidade * iv.preco_unitario) DESC
                 LIMIT 1
@@ -101,7 +98,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 JOIN vendas v ON v.id = iv.vendas_id
                 JOIN funcionarios f ON f.id = v.funcionario_id
                 WHERE f.comercio_id = @idEmpresa
-                AND " + periodoInicial + @"
+                AND 
                 ),'R$:0,00') AS ticket_medio_atual,
              
                 IFNULL((SELECT CONCAT(
@@ -116,7 +113,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 JOIN vendas v ON v.id = iv.vendas_id
                 JOIN funcionarios f ON f.id = v.funcionario_id
                 WHERE f.comercio_id = @idEmpresa
-                AND " + periodoFim + @"
+                AND 
                 ),'R$:0,00') AS ticket_medio_passado
                 FROM DUAL; ", parametros);
 
@@ -202,53 +199,53 @@ namespace ProjetoIntegradorSENAC.Dashboard
     GroupBox Info3_dash, GroupBox Info4_dash, Dictionary<string, object> parametros)
         {
             string query = @"
-    SELECT
-        -- Total de vendas
-        IFNULL((
-            SELECT CONCAT('R$:', ROUND(SUM(v.total), 2), ', Qtd:', COUNT(DISTINCT v.id))
-            FROM vendas v
-            JOIN funcionarios f ON f.id = v.funcionario_id
-            WHERE f.comercio_id = @idEmpresa  
-            AND DATE(v.data_venda) BETWEEN @dataInicio AND @dataFim
-        ), 'R$:0,00, Qtd:0') AS total_vendas,
-        
-        -- Categoria líder (em receita e quantidade)
-        IFNULL((
-            SELECT CONCAT(
-                p.categoria, 
-                ' (R$:', ROUND(SUM(iv.quantidade * iv.preco_unitario), 2), 
-                ', Qtd:', SUM(iv.quantidade), ')'
-            )
-            FROM items_venda iv
-            JOIN vendas v ON v.id = iv.vendas_id
-            JOIN funcionarios f ON f.id = v.funcionario_id
-            JOIN produtos p ON p.id = iv.produtos_id
-            WHERE f.comercio_id = @idEmpresa  
-            AND DATE(v.data_venda) BETWEEN @dataInicio AND @dataFim
-            GROUP BY p.categoria
-            ORDER BY SUM(iv.quantidade * iv.preco_unitario) DESC
-            LIMIT 1
-        ), 'Sem vendas (R$:0,00, Qtd:0)') AS categoria_lider,
-        
-        -- Ticket médio de vendas
-        IFNULL((
-            SELECT CONCAT('R$:', ROUND(SUM(iv.quantidade * iv.preco_unitario) / NULLIF(COUNT(DISTINCT v.id), 0), 2))
-            FROM items_venda iv
-            JOIN vendas v ON v.id = iv.vendas_id
-            JOIN funcionarios f ON f.id = v.funcionario_id
-            WHERE f.comercio_id = @idEmpresa  
-            AND DATE(v.data_venda) BETWEEN @dataInicio AND @dataFim
-        ), 'R$:0,00') AS ticket_medio_vendas,
-        
-        -- Itens por venda
-        IFNULL((
-            SELECT CONCAT('Qtd:', ROUND(SUM(iv.quantidade) / COUNT(DISTINCT v.id), 2))
-            FROM items_venda iv
-            JOIN vendas v ON v.id = iv.vendas_id
-            JOIN funcionarios f ON f.id = v.funcionario_id
-            WHERE f.comercio_id = @idEmpresa  
-            AND DATE(v.data_venda) BETWEEN @dataInicio AND @dataFim
-        ), 'Qtd:0') AS media_produtos_por_venda";
+            SELECT
+            -- Total de vendas
+            IFNULL((
+                SELECT CONCAT('R$:', ROUND(SUM(v.total), 2), ', Qtd:', COUNT(DISTINCT v.id))
+                FROM vendas v
+                JOIN funcionarios f ON f.id = v.funcionario_id
+                WHERE f.comercio_id = @idEmpresa  
+                AND DATE(v.data_venda) BETWEEN @dataInicio AND @dataFim
+            ), 'R$:0,00, Qtd:0') AS total_vendas,
+            
+            -- Categoria líder (em receita e quantidade)
+            IFNULL((
+                SELECT CONCAT(
+                    p.categoria, 
+                    ' (R$:', ROUND(SUM(iv.quantidade * iv.preco_unitario), 2), 
+                    ', Qtd:', SUM(iv.quantidade), ')'
+                )
+                FROM items_venda iv
+                JOIN vendas v ON v.id = iv.vendas_id
+                JOIN funcionarios f ON f.id = v.funcionario_id
+                JOIN produtos p ON p.id = iv.produtos_id
+                WHERE f.comercio_id = @idEmpresa  
+                AND DATE(v.data_venda) BETWEEN @dataInicio AND @dataFim
+                GROUP BY p.categoria
+                ORDER BY SUM(iv.quantidade * iv.preco_unitario) DESC
+                LIMIT 1
+            ), 'Sem vendas (R$:0,00, Qtd:0)') AS categoria_lider,
+            
+            -- Ticket médio de vendas
+            IFNULL((
+                SELECT CONCAT('R$:', ROUND(SUM(iv.quantidade * iv.preco_unitario) / NULLIF(COUNT(DISTINCT v.id), 0), 2))
+                FROM items_venda iv
+                JOIN vendas v ON v.id = iv.vendas_id
+                JOIN funcionarios f ON f.id = v.funcionario_id
+                WHERE f.comercio_id = @idEmpresa  
+                AND DATE(v.data_venda) BETWEEN @dataInicio AND @dataFim
+            ), 'R$:0,00') AS ticket_medio_vendas,
+            
+            -- Itens por venda
+            IFNULL((
+                SELECT CONCAT('Qtd:', ROUND(SUM(iv.quantidade) / COUNT(DISTINCT v.id), 2))
+                FROM items_venda iv
+                JOIN vendas v ON v.id = iv.vendas_id
+                JOIN funcionarios f ON f.id = v.funcionario_id
+                WHERE f.comercio_id = @idEmpresa  
+                AND DATE(v.data_venda) BETWEEN @dataInicio AND @dataFim
+            ), 'Qtd:0') AS media_produtos_por_venda";
 
             try
             {
@@ -279,43 +276,6 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 MessageBox.Show($"Erro em carregarInfoVendas: {ex.Message}");
             }
         }
-        
-
-        public static (string inicio, string fim) carregarPeriodoComparacao(ComboBox comboPeriodo_dash)
-        {
-            if (comboPeriodo_dash.SelectedIndex == 0)
-            {
-                return (
-                    " v.data_venda >= DATE_FORMAT(CURDATE(), '%Y-%m-01') ",
-                    @" v.data_venda >= DATE_SUB(DATE_FORMAT(CURDATE(), '%Y-%m-01'), INTERVAL 1 MONTH)
-                    AND v.data_venda <  DATE_FORMAT(CURDATE(), '%Y-%m-01') ");
-            }
-            else if (comboPeriodo_dash.SelectedIndex == 1)
-            {
-                return (
-                    @" v.data_venda >= DATE_SUB(DATE_FORMAT(CURDATE(), '%Y-%m-01'), INTERVAL 1 MONTH)
-                    AND v.data_venda <  DATE_FORMAT(CURDATE(), '%Y-%m-01') ",
-                    @" v.data_venda >= DATE_SUB(DATE_FORMAT(CURDATE(), '%Y-%m-01'), INTERVAL 2 MONTH)
-                    AND v.data_venda <  DATE_SUB(DATE_FORMAT(CURDATE(), '%Y-%m-01'), INTERVAL 1 MONTH) ");
-            }
-            else if (comboPeriodo_dash.SelectedIndex == 2)
-            {
-                return (
-                    @" v.data_venda >= DATE_FORMAT(CURDATE(), '%Y-01-01')",
-                    @"v.data_venda >= DATE_SUB(DATE_FORMAT(CURDATE(), '%Y-01-01'), INTERVAL 1 YEAR)
-                    AND v.data_venda < DATE_FORMAT(CURDATE(), '%Y-01-01')
- ");
-            }
-            else if (comboPeriodo_dash.SelectedIndex == 3)
-            {
-                return (
-                    @" v.data_venda >= DATE_SUB(DATE_FORMAT(CURDATE(), '%Y-01-01'), INTERVAL 1 YEAR)
-                    AND v.data_venda <  DATE_FORMAT(CURDATE(), '%Y-01-01')",
-                    @" v.data_venda >= DATE_SUB(DATE_FORMAT(CURDATE(), '%Y-01-01'), INTERVAL 2 YEAR)
-                    AND v.data_venda <  DATE_SUB(DATE_FORMAT(CURDATE(), '%Y-01-01'), INTERVAL 1 YEAR)");
-            }
-            return ("1=0", "1=0");
-        }
         public static bool AtualizarPeriodo(MaskedTextBox maskedInicio, MaskedTextBox maskedFim, Dictionary<string, object> param_idEmpresa)
         {
             if (!DateTime.TryParseExact(maskedInicio.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime inicio))
@@ -335,8 +295,6 @@ namespace ProjetoIntegradorSENAC.Dashboard
 
             return true;
         }
-
-
         public static void load_grafico_produtos(PlotView grafico1, PlotView grafico2, Dictionary<string, object> parametros)
         {
             // -------------------- grafico 1, PRODUTOS ---------------
@@ -661,7 +619,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
 
             grafico2.Model = modeloCategorias;
         }
-        public static void load_grafico_comparacao(PlotView grafico1, PlotView grafico2, Dictionary<string, object> parametros, string periodoAtual, string periodoPassado, Label lblproximo, Label lbllonge)
+        public static void load_grafico_comparacao(PlotView grafico1, PlotView grafico2, Dictionary<string, object> parametros, Label lblproximo, Label lbllonge)
         {
             // --------------- grafico 1, COMPARACAO -----------------
 
@@ -709,7 +667,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             FROM vendas v
             JOIN funcionarios f ON f.id = v.funcionario_id
             WHERE f.comercio_id = @idEmpresa
-              AND " + periodoAtual + @"
+              AND
             
             UNION ALL
             
@@ -719,7 +677,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             FROM vendas v
             JOIN funcionarios f ON f.id = v.funcionario_id
             WHERE f.comercio_id = @idEmpresa
-              AND " + periodoPassado + @"
+              AND
             
             ", parametros);
 
@@ -815,7 +773,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             FROM vendas v
             JOIN funcionarios f ON f.id = v.funcionario_id
             WHERE f.comercio_id = @idEmpresa
-              AND " + periodoAtual + @"
+              AND
             GROUP BY DAY(v.data_venda)
 
             UNION ALL
@@ -827,7 +785,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             FROM vendas v
             JOIN funcionarios f ON f.id = v.funcionario_id
             WHERE f.comercio_id = @idEmpresa
-              AND " + periodoPassado + @"
+              AND
             GROUP BY DAY(v.data_venda)
             ORDER BY dia, periodo;
             ", parametros);
@@ -872,12 +830,11 @@ namespace ProjetoIntegradorSENAC.Dashboard
         }
         public static DataTable ExecutarSelect(string query, Dictionary<string, object> Parametros)
         {
-            // try
-             //{
+            try
+            {
                 using (MySqlConnection conn = new MySqlConnection(Banco.caminho))
                 {
                     conn.Open();
-
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
                         if (Parametros != null)
@@ -896,12 +853,12 @@ namespace ProjetoIntegradorSENAC.Dashboard
                         }
                     }
                 }
-           /* }
+            }
             catch (Exception ex)
             {
                 MessageBox.Show($"Erro ao executar consulta: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return new DataTable();
-            }*/
+            }
         }
     }
 }

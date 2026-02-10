@@ -40,7 +40,7 @@ namespace ProjetoIntegradorSENAC.Logins
 
             - ENFIM, FAZENDO ISSO, APLICA AS MESMAS COISA NO CADASTRO DE FUNCIONARIOS, LA EU FIZ QUE CADA CADASTRO FEITO POR LA, O USUARIO SEJA RELACIONADO 
             COMO FUNCIONARIO, POREM EU N FIZ NENHUM TIPO DE VALIDAÇÃO E ETC ENTAO FAZ LA TBM, SEM DAR CONFLITO COM O CADASTRO QUE TA LA, QUANDO VC 
-            TERMINAR EU VOU MELHORAR O DESIGN LA ENT TA DE BOA, 
+            TERMINAR EU VOU MELHORAR O DESIGN LA ENT TA DE BOA,  VAI TOMAR NO CU MATHEUS!!!
 
 
 
@@ -49,9 +49,9 @@ namespace ProjetoIntegradorSENAC.Logins
         {
             //  Busca usuário
             string queryUser = $@"
-            SELECT id, nome, senha 
+            SELECT id, senha 
             FROM usuarios 
-            WHERE nome = '{txtEmail.Text}'";
+            WHERE email = '{txtEmail.Text}'";
 
             DataTable user = Banco.Pesquisar(queryUser);
 

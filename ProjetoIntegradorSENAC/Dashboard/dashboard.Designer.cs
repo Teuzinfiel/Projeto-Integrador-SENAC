@@ -28,22 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dashboard));
             Info1_dash = new GroupBox();
-            label1 = new Label();
+            lbDash1 = new Label();
             Info2_dash = new GroupBox();
-            label2 = new Label();
+            lbDash2 = new Label();
             Info3_dash = new GroupBox();
-            label3 = new Label();
+            lbDash3 = new Label();
             Info4_dash = new GroupBox();
-            label4 = new Label();
+            lbDash4 = new Label();
             grafico1_dash = new GroupBox();
             grafico1 = new OxyPlot.WindowsForms.PlotView();
             grafico2_dash = new GroupBox();
-            imgProximo = new PictureBox();
-            imgLonge = new PictureBox();
-            lblLonge = new Label();
-            lblProximo = new Label();
             grafico2 = new OxyPlot.WindowsForms.PlotView();
             btnProdutos = new Button();
             btnVendas = new Button();
@@ -51,22 +46,20 @@
             maskedInicio = new MaskedTextBox();
             maskedFim = new MaskedTextBox();
             btnBuscar = new Button();
-            label5 = new Label();
-            label6 = new Label();
+            lbTempo1 = new Label();
+            lbTempo2 = new Label();
             Info1_dash.SuspendLayout();
             Info2_dash.SuspendLayout();
             Info3_dash.SuspendLayout();
             Info4_dash.SuspendLayout();
             grafico1_dash.SuspendLayout();
             grafico2_dash.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)imgProximo).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)imgLonge).BeginInit();
             SuspendLayout();
             // 
             // Info1_dash
             // 
             Info1_dash.BackgroundImageLayout = ImageLayout.None;
-            Info1_dash.Controls.Add(label1);
+            Info1_dash.Controls.Add(lbDash1);
             Info1_dash.Font = new Font("Consolas", 9F, FontStyle.Bold);
             Info1_dash.ForeColor = SystemColors.Control;
             Info1_dash.Location = new Point(32, 106);
@@ -78,19 +71,19 @@
             Info1_dash.TabStop = false;
             Info1_dash.Text = "groupBox1";
             // 
-            // label1
+            // lbDash1
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Consolas", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(5, 42);
-            label1.Name = "label1";
-            label1.Size = new Size(49, 14);
-            label1.TabIndex = 0;
-            label1.Text = "label1";
+            lbDash1.AutoSize = true;
+            lbDash1.Font = new Font("Consolas", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbDash1.Location = new Point(5, 42);
+            lbDash1.Name = "lbDash1";
+            lbDash1.Size = new Size(56, 14);
+            lbDash1.TabIndex = 0;
+            lbDash1.Text = "lbDash1";
             // 
             // Info2_dash
             // 
-            Info2_dash.Controls.Add(label2);
+            Info2_dash.Controls.Add(lbDash2);
             Info2_dash.Font = new Font("Consolas", 9F, FontStyle.Bold);
             Info2_dash.ForeColor = SystemColors.Control;
             Info2_dash.Location = new Point(351, 106);
@@ -102,19 +95,19 @@
             Info2_dash.TabStop = false;
             Info2_dash.Text = "groupBox2";
             // 
-            // label2
+            // lbDash2
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Consolas", 9F, FontStyle.Bold);
-            label2.Location = new Point(5, 42);
-            label2.Name = "label2";
-            label2.Size = new Size(49, 14);
-            label2.TabIndex = 0;
-            label2.Text = "label2";
+            lbDash2.AutoSize = true;
+            lbDash2.Font = new Font("Consolas", 9F, FontStyle.Bold);
+            lbDash2.Location = new Point(5, 42);
+            lbDash2.Name = "lbDash2";
+            lbDash2.Size = new Size(56, 14);
+            lbDash2.TabIndex = 0;
+            lbDash2.Text = "lbDash2";
             // 
             // Info3_dash
             // 
-            Info3_dash.Controls.Add(label3);
+            Info3_dash.Controls.Add(lbDash3);
             Info3_dash.Font = new Font("Consolas", 9F, FontStyle.Bold);
             Info3_dash.ForeColor = SystemColors.Control;
             Info3_dash.Location = new Point(665, 106);
@@ -126,19 +119,19 @@
             Info3_dash.TabStop = false;
             Info3_dash.Text = "groupBox3";
             // 
-            // label3
+            // lbDash3
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Consolas", 9F, FontStyle.Bold);
-            label3.Location = new Point(5, 42);
-            label3.Name = "label3";
-            label3.Size = new Size(49, 14);
-            label3.TabIndex = 0;
-            label3.Text = "label3";
+            lbDash3.AutoSize = true;
+            lbDash3.Font = new Font("Consolas", 9F, FontStyle.Bold);
+            lbDash3.Location = new Point(5, 42);
+            lbDash3.Name = "lbDash3";
+            lbDash3.Size = new Size(56, 14);
+            lbDash3.TabIndex = 0;
+            lbDash3.Text = "lbDash3";
             // 
             // Info4_dash
             // 
-            Info4_dash.Controls.Add(label4);
+            Info4_dash.Controls.Add(lbDash4);
             Info4_dash.Font = new Font("Consolas", 9F, FontStyle.Bold);
             Info4_dash.ForeColor = SystemColors.Control;
             Info4_dash.Location = new Point(984, 106);
@@ -150,15 +143,15 @@
             Info4_dash.TabStop = false;
             Info4_dash.Text = "groupBox4";
             // 
-            // label4
+            // lbDash4
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Consolas", 9F, FontStyle.Bold);
-            label4.Location = new Point(5, 42);
-            label4.Name = "label4";
-            label4.Size = new Size(49, 14);
-            label4.TabIndex = 0;
-            label4.Text = "label4";
+            lbDash4.AutoSize = true;
+            lbDash4.Font = new Font("Consolas", 9F, FontStyle.Bold);
+            lbDash4.Location = new Point(5, 42);
+            lbDash4.Name = "lbDash4";
+            lbDash4.Size = new Size(56, 14);
+            lbDash4.TabIndex = 0;
+            lbDash4.Text = "lbDash4";
             // 
             // grafico1_dash
             // 
@@ -189,10 +182,6 @@
             // 
             // grafico2_dash
             // 
-            grafico2_dash.Controls.Add(imgProximo);
-            grafico2_dash.Controls.Add(imgLonge);
-            grafico2_dash.Controls.Add(lblLonge);
-            grafico2_dash.Controls.Add(lblProximo);
             grafico2_dash.Controls.Add(grafico2);
             grafico2_dash.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             grafico2_dash.ForeColor = SystemColors.Control;
@@ -204,46 +193,6 @@
             grafico2_dash.TabIndex = 6;
             grafico2_dash.TabStop = false;
             grafico2_dash.Text = "Gráfico2";
-            // 
-            // imgProximo
-            // 
-            imgProximo.Image = (Image)resources.GetObject("imgProximo.Image");
-            imgProximo.Location = new Point(5, 333);
-            imgProximo.Margin = new Padding(3, 2, 3, 2);
-            imgProximo.Name = "imgProximo";
-            imgProximo.Size = new Size(23, 14);
-            imgProximo.SizeMode = PictureBoxSizeMode.CenterImage;
-            imgProximo.TabIndex = 4;
-            imgProximo.TabStop = false;
-            // 
-            // imgLonge
-            // 
-            imgLonge.Image = (Image)resources.GetObject("imgLonge.Image");
-            imgLonge.Location = new Point(144, 333);
-            imgLonge.Margin = new Padding(3, 2, 3, 2);
-            imgLonge.Name = "imgLonge";
-            imgLonge.Size = new Size(23, 14);
-            imgLonge.TabIndex = 3;
-            imgLonge.TabStop = false;
-            // 
-            // lblLonge
-            // 
-            lblLonge.AutoSize = true;
-            lblLonge.Location = new Point(172, 333);
-            lblLonge.Name = "lblLonge";
-            lblLonge.Size = new Size(54, 15);
-            lblLonge.TabIndex = 2;
-            lblLonge.Text = "lblLonge";
-            // 
-            // lblProximo
-            // 
-            lblProximo.AutoSize = true;
-            lblProximo.ImageAlign = ContentAlignment.MiddleLeft;
-            lblProximo.Location = new Point(33, 332);
-            lblProximo.Name = "lblProximo";
-            lblProximo.Size = new Size(67, 15);
-            lblProximo.TabIndex = 1;
-            lblProximo.Text = "lblProximo";
             // 
             // grafico2
             // 
@@ -340,25 +289,27 @@
             btnBuscar.UseVisualStyleBackColor = false;
             btnBuscar.Click += btnBuscar_Click;
             // 
-            // label5
+            // lbTempo1
             // 
-            label5.AutoSize = true;
-            label5.ForeColor = Color.White;
-            label5.Location = new Point(53, 40);
-            label5.Name = "label5";
-            label5.Size = new Size(39, 15);
-            label5.TabIndex = 16;
-            label5.Text = "Inicio:";
+            lbTempo1.AutoSize = true;
+            lbTempo1.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbTempo1.ForeColor = Color.White;
+            lbTempo1.Location = new Point(37, 20);
+            lbTempo1.Name = "lbTempo1";
+            lbTempo1.Size = new Size(68, 30);
+            lbTempo1.TabIndex = 16;
+            lbTempo1.Text = "Inicio:";
             // 
-            // label6
+            // lbTempo2
             // 
-            label6.AutoSize = true;
-            label6.ForeColor = Color.White;
-            label6.Location = new Point(62, 77);
-            label6.Name = "label6";
-            label6.Size = new Size(30, 15);
-            label6.TabIndex = 17;
-            label6.Text = "Fim:";
+            lbTempo2.AutoSize = true;
+            lbTempo2.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbTempo2.ForeColor = Color.White;
+            lbTempo2.Location = new Point(54, 68);
+            lbTempo2.Name = "lbTempo2";
+            lbTempo2.Size = new Size(51, 30);
+            lbTempo2.TabIndex = 17;
+            lbTempo2.Text = "Fim:";
             // 
             // dashboard
             // 
@@ -366,8 +317,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(45, 45, 60);
             ClientSize = new Size(1326, 686);
-            Controls.Add(label6);
-            Controls.Add(label5);
+            Controls.Add(lbTempo2);
+            Controls.Add(lbTempo1);
             Controls.Add(btnBuscar);
             Controls.Add(maskedFim);
             Controls.Add(maskedInicio);
@@ -394,9 +345,6 @@
             Info4_dash.PerformLayout();
             grafico1_dash.ResumeLayout(false);
             grafico2_dash.ResumeLayout(false);
-            grafico2_dash.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)imgProximo).EndInit();
-            ((System.ComponentModel.ISupportInitialize)imgLonge).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -410,21 +358,17 @@
         private GroupBox grafico2_dash;
         private OxyPlot.WindowsForms.PlotView grafico1;
         private OxyPlot.WindowsForms.PlotView grafico2;
-        private Label label1;
-        private Label label2;
-        private Label label3;
-        private Label label4;
+        private Label lbDash1;
+        private Label lbDash2;
+        private Label lbDash3;
+        private Label lbDash4;
         private Button btnProdutos;
         private Button btnVendas;
         private Button btnComparacao;
-        private Label lblProximo;
-        private PictureBox imgProximo;
-        private PictureBox imgLonge;
-        private Label lblLonge;
         private MaskedTextBox maskedInicio;
         private MaskedTextBox maskedFim;
         private Button btnBuscar;
-        private Label label5;
-        private Label label6;
+        private Label lbTempo1;
+        private Label lbTempo2;
     }
 }

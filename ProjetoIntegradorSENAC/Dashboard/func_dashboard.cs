@@ -19,6 +19,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace ProjetoIntegradorSENAC.Dashboard
@@ -31,92 +32,110 @@ namespace ProjetoIntegradorSENAC.Dashboard
         {
             DataTable tabela = ExecutarSelect(@"
                 SELECT
-                -- receita de vendas
-
-                (SELECT CONCAT(
-                    'R$:',
-                    SUM(CASE WHEN   THEN v.total ELSE 0 END),
-                    ' | R$:',
-                    SUM(CASE WHEN  THEN v.total ELSE 0 END)
+            -- ================== RECEITA ==================
+            (SELECT CONCAT(
+                'R$: ',
+                SUM(CASE 
+                    WHEN v.data_venda BETWEEN @dataInicio1Periodo AND @dataFim1Periodo 
+                    THEN v.total ELSE 0 END),
+                ' | R$: ',
+                SUM(CASE 
+                    WHEN v.data_venda BETWEEN @dataInicio2Periodo AND @dataFim2Periodo
+                    THEN v.total ELSE 0 END)
+            )
+            FROM vendas v
+            JOIN funcionarios f ON f.id = v.funcionario_id
+            WHERE f.comercio_id = @idEmpresa
+            ) AS receita_vendas,
+            
+            -- ================== QUANTIDADE ITENS ==================
+            (SELECT CONCAT(
+                'Qtd: ',
+                IFNULL(SUM(CASE 
+                    WHEN v.data_venda BETWEEN @dataInicio1Periodo AND @dataFim1Periodo
+                    THEN iv.quantidade ELSE 0 END), 0),
+                ' | Qtd: ',
+                IFNULL(SUM(CASE 
+                    WHEN v.data_venda BETWEEN @dataInicio2Periodo AND @dataFim2Periodo
+                    THEN iv.quantidade ELSE 0 END), 0)
+            )
+            FROM items_venda iv
+            JOIN vendas v ON v.id = iv.vendas_id
+            JOIN funcionarios f ON f.id = v.funcionario_id
+            WHERE f.comercio_id = @idEmpresa
+            ) AS quantidade_itens_vendidos,
+            
+            -- ================== PRODUTO LÍDER ATUAL ==================
+            IFNULL((
+            SELECT CONCAT(
+                p.nome, ' (R$ ', FORMAT(SUM(iv.quantidade * iv.preco_unitario), 2), ')'
+            )
+            FROM items_venda iv
+            JOIN vendas v ON v.id = iv.vendas_id
+            JOIN funcionarios f ON f.id = v.funcionario_id
+            JOIN produtos p ON p.id = iv.produtos_id
+            WHERE f.comercio_id = @idEmpresa
+            AND v.data_venda BETWEEN @dataInicio1Periodo AND @dataFim1Periodo
+            GROUP BY p.id, p.nome
+            ORDER BY SUM(iv.quantidade * iv.preco_unitario) DESC
+            LIMIT 1
+            ),'Sem venda') AS produto_lider_atual,
+            
+            -- ================== PRODUTO LÍDER PASSADO ==================
+            IFNULL((
+            SELECT CONCAT(
+                p.nome, ' (R$ ', FORMAT(SUM(iv.quantidade * iv.preco_unitario), 2), ')'
+            )
+            FROM items_venda iv
+            JOIN vendas v ON v.id = iv.vendas_id
+            JOIN funcionarios f ON f.id = v.funcionario_id
+            JOIN produtos p ON p.id = iv.produtos_id
+            WHERE f.comercio_id = @idEmpresa
+            AND v.data_venda BETWEEN @dataInicio2Periodo AND @dataFim2Periodo
+            GROUP BY p.id, p.nome
+            ORDER BY SUM(iv.quantidade * iv.preco_unitario) DESC
+            LIMIT 1
+            ),'Sem venda') AS produto_lider_passado,
+            
+            -- ================== TICKET MÉDIO ATUAL ==================
+            IFNULL((
+            SELECT CONCAT(
+                'R$ ',
+                FORMAT(
+                    SUM(iv.quantidade * iv.preco_unitario) /
+                    NULLIF(COUNT(DISTINCT v.id), 0),
+                    2
                 )
-                FROM vendas v
-                JOIN funcionarios f ON f.id = v.funcionario_id
-                WHERE f.comercio_id = @idEmpresa
-                ) AS receita_vendas,
-
-                -- quantidade de itens vendidos
-
-                (SELECT CONCAT(
-                    'Qtd:',
-                    IFNULL(SUM(CASE WHEN  THEN iv.quantidade ELSE 0 END), 0),
-                    ' | Qtd:',
-                    IFNULL(SUM(CASE WHEN  THEN iv.quantidade ELSE 0 END), 0)
+            )
+            FROM items_venda iv
+            JOIN vendas v ON v.id = iv.vendas_id
+            JOIN funcionarios f ON f.id = v.funcionario_id
+            WHERE f.comercio_id = @idEmpresa
+            AND v.data_venda BETWEEN @dataInicio1Periodo AND @dataFim1Periodo
+            ),'R$ 0,00') AS ticket_medio_atual,
+            
+            -- ================== TICKET MÉDIO PASSADO ==================
+            IFNULL((
+            SELECT CONCAT(
+                'R$ ',
+                FORMAT(
+                    SUM(iv.quantidade * iv.preco_unitario) /
+                    NULLIF(COUNT(DISTINCT v.id), 0),
+                    2
                 )
-                FROM items_venda iv
-                JOIN vendas v ON v.id = iv.vendas_id
-                JOIN funcionarios f ON f.id = v.funcionario_id
-                WHERE f.comercio_id = @idEmpresa
-                ) AS quantidade_itens_vendidos,
-             
-                IFNULL((SELECT CONCAT(
-                    p.nome, ' (R$ ', FORMAT(SUM(iv.quantidade * iv.preco_unitario), 2), ')'
-                )
-                FROM items_venda iv
-                JOIN vendas v ON v.id = iv.vendas_id
-                JOIN funcionarios f ON f.id = v.funcionario_id
-                JOIN produtos p ON p.id = iv.produtos_id
-                WHERE f.comercio_id = @idEmpresa
-                AND 
-                GROUP BY p.id, p.nome
-                ORDER BY SUM(iv.quantidade * iv.preco_unitario) DESC
-                LIMIT 1
-                ),'Sem venda') AS produto_lider_atual,
-             
-                IFNULL((SELECT CONCAT(
-                    p.nome, ' (R$ ', FORMAT(SUM(iv.quantidade * iv.preco_unitario), 2), ')'
-                )
-                FROM items_venda iv
-                JOIN vendas v ON v.id = iv.vendas_id
-                JOIN funcionarios f ON f.id = v.funcionario_id
-                JOIN produtos p ON p.id = iv.produtos_id
-                WHERE f.comercio_id = @idEmpresa
-                AND 
-                GROUP BY p.id, p.nome
-                ORDER BY SUM(iv.quantidade * iv.preco_unitario) DESC
-                LIMIT 1
-                ),'Sem venda') AS produto_lider_passado,
-             
-                IFNULL((SELECT CONCAT(
-                    'R$ ',
-                    FORMAT(
-                        SUM(iv.quantidade * iv.preco_unitario) /
-                               NULLIF(COUNT(DISTINCT v.id), 0),
-                        2
-                    )
-                )
-                FROM items_venda iv
-                JOIN vendas v ON v.id = iv.vendas_id
-                JOIN funcionarios f ON f.id = v.funcionario_id
-                WHERE f.comercio_id = @idEmpresa
-                AND 
-                ),'R$:0,00') AS ticket_medio_atual,
-             
-                IFNULL((SELECT CONCAT(
-                    'R$ ',
-                    FORMAT(
-                        IFNULL(SUM(iv.quantidade * iv.preco_unitario) /
-                               NULLIF(COUNT(DISTINCT v.id), 0), 0),
-                        2
-                    )
-                )
-                FROM items_venda iv
-                JOIN vendas v ON v.id = iv.vendas_id
-                JOIN funcionarios f ON f.id = v.funcionario_id
-                WHERE f.comercio_id = @idEmpresa
-                AND 
-                ),'R$:0,00') AS ticket_medio_passado
-                FROM DUAL; ", parametros);
-
+            )
+            FROM items_venda iv
+            JOIN vendas v ON v.id = iv.vendas_id
+            JOIN funcionarios f ON f.id = v.funcionario_id
+            WHERE f.comercio_id = @idEmpresa
+            AND v.data_venda BETWEEN @dataInicio2Periodo AND @dataFim2Periodo
+            ),'R$ 0,00') AS ticket_medio_passado
+            FROM DUAL;", parametros);
+            if (tabela.Rows.Count == 0)
+            {
+                MessageBox.Show("Nenhum dado encontrado para os períodos selecionados.");
+                return;
+            }
             label1.Text = tabela.Rows[0]["receita_vendas"].ToString();
             label2.Text = tabela.Rows[0]["quantidade_itens_vendidos"].ToString();
             label3.Text = tabela.Rows[0]["produto_lider_atual"].ToString() + " | " + tabela.Rows[0]["produto_lider_passado"].ToString();
@@ -195,8 +214,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
             }
         }
         public static void carregarInfoVendas(Label label1, Label label2, Label label3,
-    Label label4, GroupBox Info1_dash, GroupBox Info2_dash,
-    GroupBox Info3_dash, GroupBox Info4_dash, Dictionary<string, object> parametros)
+            Label label4, GroupBox Info1_dash, GroupBox Info2_dash,
+            GroupBox Info3_dash, GroupBox Info4_dash, Dictionary<string, object> parametros)
         {
             string query = @"
             SELECT
@@ -278,6 +297,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
         }
         public static bool AtualizarPeriodo(MaskedTextBox maskedInicio, MaskedTextBox maskedFim, Dictionary<string, object> param_idEmpresa)
         {
+
             if (!DateTime.TryParseExact(maskedInicio.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime inicio))
                 return false;
 
@@ -295,9 +315,59 @@ namespace ProjetoIntegradorSENAC.Dashboard
 
             return true;
         }
+        public static bool AtualizarPeriodoComparacao( MaskedTextBox masked1PeriodoInicio,MaskedTextBox masked1PeriodoFim,MaskedTextBox masked2PeriodoInicio, MaskedTextBox masked2PeriodoFim,Dictionary<string, object> param_idEmpresa)
+        {
+            if (!DateTime.TryParseExact(masked1PeriodoInicio.Text, "dd/MM/yyyy",
+                CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime inicio1Periodo))
+                return false;
+
+            if (!DateTime.TryParseExact(masked1PeriodoFim.Text, "dd/MM/yyyy",
+                CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime fim1Periodo))
+                return false;
+
+            if (!DateTime.TryParseExact(masked2PeriodoInicio.Text, "dd/MM/yyyy",
+                CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime inicio2Periodo))
+                return false;
+
+            if (!DateTime.TryParseExact(masked2PeriodoFim.Text, "dd/MM/yyyy",
+                CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime fim2Periodo))
+                return false;
+
+            inicio1Periodo = inicio1Periodo.Date;
+            fim1Periodo = fim1Periodo.Date.AddDays(1).AddSeconds(-1); 
+
+            inicio2Periodo = inicio2Periodo.Date;
+            fim2Periodo = fim2Periodo.Date.AddDays(1).AddSeconds(-1);
+
+
+            if (inicio1Periodo > fim1Periodo)
+                return false;
+
+            if (inicio2Periodo > fim2Periodo)
+                return false;
+
+
+            param_idEmpresa.Remove("@dataInicio1Periodo");
+            param_idEmpresa.Remove("@dataFim1Periodo");
+            param_idEmpresa.Remove("@dataInicio2Periodo");
+            param_idEmpresa.Remove("@dataFim2Periodo");
+
+
+            param_idEmpresa["@dataInicio1Periodo"] = inicio1Periodo;
+            param_idEmpresa["@dataFim1Periodo"] = fim1Periodo;
+
+            param_idEmpresa["@dataInicio2Periodo"] = inicio2Periodo;
+            param_idEmpresa["@dataFim2Periodo"] = fim2Periodo;
+
+            return true;
+        }
+
         public static void load_grafico_produtos(PlotView grafico1, PlotView grafico2, Dictionary<string, object> parametros)
         {
             // -------------------- grafico 1, PRODUTOS ---------------
+            var controller = new PlotController();
+            controller.UnbindAll();
+
             PlotModel modeloTopVenda = new PlotModel
             {
                 Title = "Top 5 produtos mais vendidos",
@@ -370,9 +440,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
                     TextColor = OxyColors.White
                 });
             }
-
-
             grafico1.Model = modeloTopVenda;
+            grafico1.Controller = controller;
             //----------- grafico 2  PRODUTOS --------------
 
             PlotModel modeloTopReceita = new PlotModel
@@ -449,12 +518,14 @@ namespace ProjetoIntegradorSENAC.Dashboard
                     TextColor = OxyColors.White
                 });
             }
-
             grafico2.Model = modeloTopReceita;
+            grafico2.Controller = controller;
         }
         public static void load_grafico_vendas(PlotView grafico1, PlotView grafico2, Dictionary<string, object> parametros)
         {
             // ---------------- grafico 1, VENDAS -------------------
+            var controller = new PlotController();
+            controller.UnbindAll();
             PlotModel modeloLinha = new PlotModel
             {
                 Title = "Quantidade de vendas por horário",
@@ -484,6 +555,9 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 TitleFontSize = 14,
                 TitleFontWeight = FontWeights.Bold,
                 Minimum = 0,
+                MinorStep = 1,
+                MajorStep = 1,
+                StringFormat = "0",
                 TextColor = OxyColors.White,
                 TicklineColor = OxyColors.White
             };
@@ -539,6 +613,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 });
             }
             grafico1.Model = modeloLinha;
+            grafico1.Controller = controller;
 
             // ---------------------  Grafico 2, VENDAS -------------------
 
@@ -616,17 +691,18 @@ namespace ProjetoIntegradorSENAC.Dashboard
                     TextColor = OxyColors.White
                 });
             }
-
             grafico2.Model = modeloCategorias;
+            grafico2.Controller = controller;
         }
         public static void load_grafico_comparacao(PlotView grafico1, PlotView grafico2, Dictionary<string, object> parametros, Label lblproximo, Label lbllonge)
         {
             // --------------- grafico 1, COMPARACAO -----------------
-
+            var controller = new PlotController();
+            controller.UnbindAll();
 
             PlotModel modeloComparativo = new PlotModel
             {
-                Title = "Quantidade vendas(Atual x Passado)",
+                Title = "Quantidade vendas",
                 TitleFontSize = 20,
                 TitleFontWeight = FontWeights.Bold,
                 TextColor = OxyColors.White,
@@ -662,23 +738,22 @@ namespace ProjetoIntegradorSENAC.Dashboard
             };
             DataTable tabela = func_dashboard.ExecutarSelect(@"
                 SELECT
-                'Atual' AS periodo,
+                '2ºPeríodo' AS periodo,
                 COUNT(v.id) AS total_vendas
-            FROM vendas v
-            JOIN funcionarios f ON f.id = v.funcionario_id
-            WHERE f.comercio_id = @idEmpresa
-              AND
-            
-            UNION ALL
-            
-            SELECT
-                'Passado' AS periodo,
+                FROM vendas v
+                JOIN funcionarios f ON f.id = v.funcionario_id
+                WHERE f.comercio_id = @idEmpresa
+                AND v.data_venda BETWEEN @dataInicio2Periodo AND @dataFim2Periodo
+                
+                UNION ALL
+
+                SELECT
+                '1ºPeríodo' AS periodo,
                 COUNT(v.id) AS total_vendas
-            FROM vendas v
-            JOIN funcionarios f ON f.id = v.funcionario_id
-            WHERE f.comercio_id = @idEmpresa
-              AND
-            
+                FROM vendas v
+                JOIN funcionarios f ON f.id = v.funcionario_id
+                WHERE f.comercio_id = @idEmpresa
+                AND v.data_venda BETWEEN @dataInicio1Periodo AND @dataFim1Periodo;
             ", parametros);
 
             foreach (DataRow row in tabela.Rows)
@@ -715,6 +790,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
             modeloComparativo.Series.Add(barraSeries);
 
             grafico1.Model = modeloComparativo;
+            grafico1.Controller = controller;
+
 
             // -------------------- grafico 2, COMPARACAO -------------------
 
@@ -734,9 +811,9 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 TitleFontSize = 14,
                 TitleFontWeight = FontWeights.Bold,
                 Minimum = 1,
-                Maximum = 31,
-                MajorStep = 1,
                 MinorStep = 1,
+                MajorStep = 1,
+                Maximum = 31,
                 TextColor = OxyColors.White,
                 TicklineColor = OxyColors.White
             };
@@ -747,12 +824,15 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 TitleFontSize = 14,
                 TitleFontWeight = FontWeights.Bold,
                 Minimum = 0,
+                MinorStep = 1,
+                MajorStep = 1,
+                StringFormat = "0",
                 TextColor = OxyColors.White,
                 TicklineColor = OxyColors.White
             };
             var linhaAtual = new LineSeries
             {
-                Title = "Atual",
+                Title = "1ºPeríodo",
                 Color = OxyColors.SkyBlue,
                 StrokeThickness = 2,
                 MarkerType = MarkerType.Circle
@@ -760,34 +840,36 @@ namespace ProjetoIntegradorSENAC.Dashboard
 
             var linhaPassado = new LineSeries
             {
-                Title = "Passado",
+                Title = "2ºPeríodo",
                 Color = OxyColors.Orange,
                 StrokeThickness = 2,
                 MarkerType = MarkerType.Square
             };
             DataTable table = func_dashboard.ExecutarSelect(@"
             SELECT
-                DAY(v.data_venda) AS dia,
-                'Mês Atual' AS periodo,
-                COUNT(v.id) AS total_vendas
+            DAY(v.data_venda) AS dia,
+            'Mês Atual' AS periodo,
+            COUNT(v.id) AS total_vendas
             FROM vendas v
             JOIN funcionarios f ON f.id = v.funcionario_id
             WHERE f.comercio_id = @idEmpresa
-              AND
+            AND v.data_venda BETWEEN @dataInicio1Periodo AND @dataFim1Periodo
             GROUP BY DAY(v.data_venda)
-
+            
             UNION ALL
-
+            
             SELECT
-                DAY(v.data_venda) AS dia,
-                'Mês Passado' AS periodo,
-                COUNT(v.id) AS total_vendas
+            DAY(v.data_venda) AS dia,
+            'Mês Passado' AS periodo,
+            COUNT(v.id) AS total_vendas
             FROM vendas v
             JOIN funcionarios f ON f.id = v.funcionario_id
             WHERE f.comercio_id = @idEmpresa
-              AND
+            AND v.data_venda BETWEEN @dataInicio2Periodo AND @dataFim2Periodo
             GROUP BY DAY(v.data_venda)
+            
             ORDER BY dia, periodo;
+
             ", parametros);
 
             Dictionary<int, int> Atual = new();
@@ -819,14 +901,16 @@ namespace ProjetoIntegradorSENAC.Dashboard
             bool temVendaAtual = linhaAtual.Points.Any(p => p.Y > 0);
             bool temVendaPassado = linhaPassado.Points.Any(p => p.Y > 0);
 
-            lblproximo.Text = temVendaAtual ? "Data Inicio" : "Sem venda";
-            lbllonge.Text = temVendaPassado ? "Data Fim" : "Sem venda";
+            lblproximo.Text = temVendaAtual ? "1ºPeríodo" : "Sem venda";
+            lbllonge.Text = temVendaPassado ? "2ºPeríodo" : "Sem venda";
 
             modeloDiario.Axes.Add(eixoDias);
             modeloDiario.Axes.Add(eixoQuantidade);
             modeloDiario.Series.Add(linhaAtual);
             modeloDiario.Series.Add(linhaPassado);
             grafico2.Model = modeloDiario;
+            grafico2.Controller = controller;
+
         }
         public static DataTable ExecutarSelect(string query, Dictionary<string, object> Parametros)
         {
@@ -844,7 +928,6 @@ namespace ProjetoIntegradorSENAC.Dashboard
                                 cmd.Parameters.AddWithValue(p.Key, p.Value);
                             }
                         }
-
                         using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
                         {
                             DataTable tabela = new DataTable();

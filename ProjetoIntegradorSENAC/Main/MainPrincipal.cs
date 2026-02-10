@@ -27,7 +27,7 @@ namespace ProjetoIntegradorSENAC
             nomeEmpresa = nomeEmpresa;
             label3.Text = nomeEmpresa;
         }
-        private void AbrirFormNoPanel(Form formFilho)
+        public void AbrirFormNoPanel(Form formFilho)
         {
             // tira qualquer container que tiver aberto se outro for clicado
             panelContainer.Controls.Clear();
@@ -55,10 +55,9 @@ namespace ProjetoIntegradorSENAC
             EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos);
             btnCaixa.BackColor = Color.FromArgb(45, 45, 60);
         }
-
         private void btnDashboard_Click(object sender, EventArgs e)
         {
-            AbrirFormNoPanel(new dashboard(this.idEmpresa));
+            AbrirFormNoPanel(new dashboard(this, this.idEmpresa));
             labelCategorias.Text = "Dashboard";
             EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos);
             btnDashboard.BackColor = Color.FromArgb(45, 45, 60);

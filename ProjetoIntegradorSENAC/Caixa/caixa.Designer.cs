@@ -109,6 +109,7 @@
             btnCancelar.TabIndex = 9;
             btnCancelar.Text = "Cancelar Compra";
             btnCancelar.UseVisualStyleBackColor = false;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // btnCompra
             // 
@@ -122,6 +123,7 @@
             btnCompra.TabIndex = 10;
             btnCompra.Text = "Finalizar Compra";
             btnCompra.UseVisualStyleBackColor = false;
+            btnCompra.Click += btnCompra_Click;
             // 
             // label7
             // 

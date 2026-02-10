@@ -22,17 +22,23 @@ namespace ProjetoIntegradorSENAC.Caixa
 
         private void caixa_Load(object sender, EventArgs e)
         {
-            string query = @"SELECT p.id AS produto_id,
-                            p.nome AS Produto,
-                            p.preco AS Preco,
-                            COALESCE((SELECT quantidade_final
-                            FROM movimentacoes_estoque m
-                            WHERE m.produto_id = p.id
-                            ORDER BY m.id DESC
-                            LIMIT 1), 0) AS estoque
-                            FROM produtos p
-                            ORDER BY p.nome ASC
-                            limit 50"; ;
+            string query = $@"
+            SELECT 
+                 p.id AS produto_id,
+                  p.nome AS Produto,
+                  p.preco AS Preco,
+            COALESCE((
+                 SELECT quantidade_final
+                  FROM movimentacoes_estoque m
+                   WHERE m.produto_id = p.id
+               ORDER BY m.id DESC
+                  LIMIT 1
+               ), 0) AS estoque
+            FROM produtos p
+            WHERE p.comercio_id = {idEmpresa}
+            ORDER BY p.nome ASC
+            LIMIT 50;
+            ";
 
             carregarProdutos(Banco.Pesquisar(query));
             dtgProdutos.AllowUserToResizeRows = false;
@@ -62,18 +68,27 @@ namespace ProjetoIntegradorSENAC.Caixa
             string pesquisa = (txtPesquisa.Text ?? "").Trim();
 
 
-            string query = $@"SELECT p.id AS produto_id,
-                            p.nome AS Produto,
-                            p.preco AS Preco,
-                            p.codigo_barra AS produto_codigo,
-                            COALESCE((SELECT quantidade_final
-                            FROM movimentacoes_estoque m
-                            WHERE m.produto_id = p.id
-                            ORDER BY m.id DESC
-                            LIMIT 1), 0) AS estoque 
-                            FROM produtos p where p.nome Like '%{pesquisa}%' Or p.codigo_barra LIKE '%{pesquisa}%'
-                            ORDER BY p.nome ASC
-                            limit 50;";
+            string query = $@"
+            SELECT 
+                 p.id AS produto_id,
+                 p.nome AS Produto,
+                 p.preco AS Preco,
+                 p.codigo_barra AS produto_codigo,
+             COALESCE((
+             SELECT quantidade_final
+             FROM movimentacoes_estoque m
+             WHERE m.produto_id = p.id
+             ORDER BY m.id DESC
+             LIMIT 1
+             ), 0) AS estoque
+            FROM produtos p
+            WHERE p.comercio_id = {idEmpresa}
+             AND (p.nome LIKE '%{pesquisa}%' 
+             OR p.codigo_barra LIKE '%{pesquisa}%')
+            ORDER BY p.nome ASC
+            LIMIT 50;
+            ";
+
 
 
             carregarProdutos(Banco.Pesquisar(query));
@@ -92,41 +107,45 @@ namespace ProjetoIntegradorSENAC.Caixa
             decimal preco = row.Cells["Preco"]?.Value != DBNull.Value
                 ? Convert.ToDecimal(row.Cells["Preco"].Value)
                 : 0m;
+
             int estoque = Convert.ToInt32(row.Cells["estoque"].Value);
 
+            // 🔍 Verifica se já existe no carrinho
+            var itemExistente = _vendaAtual.Itens.FirstOrDefault(i => i.ProdutoId == idProduto);
+
+            int quantidadeAtual = itemExistente?.Quantidade ?? 0;
+
+            // 🚫 Bloqueia antes de adicionar
+            if (quantidadeAtual >= estoque)
+            {
+                MessageBox.Show("Estoque insuficiente");
+                return;
+            }
+
+            // ✅ Agora sim pode adicionar
             _vendaAtual.AdicionarOuIncrimentar(idProduto, nome, preco);
-            var item = _vendaAtual.Itens.FirstOrDefault(i => i.ProdutoId == idProduto);
-            decimal desconto = 0m;
+
+            var item = _vendaAtual.Itens.First(i => i.ProdutoId == idProduto);
+
+            decimal desconto = 0;
             decimal.TryParse(textDesconto.Text, out desconto);
+            _vendaAtual.AplicarDesconto(desconto, idProduto);
 
             if (_painelPorProduto.TryGetValue(idProduto, out var painel))
             {
-
-
-                if (estoque <= item.Quantidade)
-                {
-                    AtualizarPainel(painel, item);
-                    lbPreço.Text = _vendaAtual.TotalBruto.ToString();
-                    MessageBox.Show("Estoque insuficiente");
-                }
-                else
-                {
-                    _vendaAtual.AplicarDesconto(desconto, idProduto);
-                    AtualizarPainel(painel, item);
-                    lbPreço.Text = _vendaAtual.TotalBruto.ToString();
-                }
-
+                AtualizarPainel(painel, item);
             }
             else
             {
-                _vendaAtual.AplicarDesconto(desconto, idProduto);
                 Panel novoP = CriarPainelProduto(null, item, estoque);
                 flpCaixa.Controls.Add(novoP);
                 _painelPorProduto[idProduto] = novoP;
-                lbPreço.Text = _vendaAtual.TotalBruto.ToString();
                 lbItens.Text = _vendaAtual.Itens.Count.ToString();
             }
+
+            lbPreço.Text = _vendaAtual.TotalBruto.ToString();
         }
+
 
         private Panel CriarPainelProduto(Image imagem, ItemVenda item, int estoque)
         { // Painel do produto
@@ -321,6 +340,115 @@ namespace ProjetoIntegradorSENAC.Caixa
             }
         }
 
-  
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            if (_vendaAtual.EstaVazia()) return;
+
+            var resp = MessageBox.Show(
+                "Deseja cancelar a venda?",
+                "Cancelar",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (resp == DialogResult.Yes)
+                LimparVenda();
+
+        }
+
+        private void btnCompra_Click(object sender, EventArgs e)
+        {
+            if (_vendaAtual.EstaVazia())
+            {
+                MessageBox.Show("Não há itens na venda.");
+                return;
+            }
+
+            using (var frm = new FrmPagamento())
+            {
+                if (frm.ShowDialog(this) == DialogResult.OK)
+                {
+                    try
+                    {
+                        _vendaAtual.FormaPagamento = frm.FormaPagamentoSelecionada;
+
+                        int vendaId = SalvarVenda();
+                        SalvarItensVenda(vendaId);
+
+                        MessageBox.Show("Venda finalizada com sucesso!");
+                        LimparVenda();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erro ao salvar venda:\n" + ex.Message);
+                    }
+                }
+            }
+
+        }
+
+        private void LimparVenda()
+        {
+            _vendaAtual = new Venda();
+            _painelPorProduto.Clear();
+
+            flpCaixa.Controls.Clear();
+
+            lbPreço.Text = "0,00";
+            lbItens.Text = "0";
+            textDesconto.Text = "0";
+        }
+        private int SalvarVenda()
+        {
+            using (MySqlConnection conn = Banco.AbrirConexao())
+            {
+                string sql = @"
+            INSERT INTO vendas
+            (funcionario_id, comercio_id, total, forma_pagamento, descontos)
+            VALUES
+            (@funcionario, @comercio, @total, @forma, @descontos);
+            SELECT LAST_INSERT_ID();
+        ";
+
+                using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@funcionario", _vendaAtual.FuncionarioId);
+                    cmd.Parameters.AddWithValue("@comercio", idEmpresa);
+                    cmd.Parameters.AddWithValue("@total", _vendaAtual.TotalBruto);
+                    cmd.Parameters.AddWithValue("@forma", _vendaAtual.FormaPagamento);
+                    cmd.Parameters.AddWithValue("@descontos", _vendaAtual.Descontos);
+
+                    return Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+        }
+
+        private void SalvarItensVenda(int vendaId)
+        {
+            using (MySqlConnection conn = Banco.AbrirConexao())
+            {
+                string sql = @"
+            INSERT INTO items_venda
+            (produtos_id, quantidade, preco_unitario, vendas_id)
+            VALUES
+            (@produto, @quantidade, @preco, @venda);
+        ";
+
+                foreach (var item in _vendaAtual.Itens)
+                {
+                    using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@produto", item.ProdutoId);
+                        cmd.Parameters.AddWithValue("@quantidade", item.Quantidade);
+                        cmd.Parameters.AddWithValue("@preco", item.PrecoUnitario);
+                        cmd.Parameters.AddWithValue("@venda", vendaId);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+        }
+
+
     }
 }

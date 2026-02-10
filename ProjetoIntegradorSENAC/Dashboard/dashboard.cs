@@ -21,105 +21,95 @@ namespace ProjetoIntegradorSENAC.Dashboard
 {
     public partial class dashboard : Form
     {
-        private int idEmpresa;
-        private Dictionary<string, int> param_idEmpresa;
-        public dashboard(int idEmpresa)
+        private MainPrincipal _main; // referência ao form pai
+        public int idEmpresa;
+        private Dictionary<string, object> param_idEmpresa;
+        public dashboard(MainPrincipal main, int idEmpresa)
         {
             InitializeComponent();
+            _main = main;
             this.idEmpresa = idEmpresa;
-            param_idEmpresa = new Dictionary<string, int>()
+            param_idEmpresa = new Dictionary<string, object>()
             {
                 { "@idEmpresa", idEmpresa }
             };
-
-
         }
-        string periodo;
-        bool produtosBoo = true, vendasBoo = false, comparacaoBoo = false, resetComparacao;
+        bool produtosBoo, vendasBoo;
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            periodo = func_dashboard.carregarPeriodo(comboPeriodo_dash);
-            if (produtosBoo)
-            {
-                lblLonge.Visible = false;
-                lblProximo.Visible = false;
-                imgLonge.Visible = false;
-                imgProximo.Visible = false;
-                func_dashboard.carregarInfoProdutos(label1, label2, label3, label4, Info1_dash,
-                Info2_dash, Info3_dash, Info4_dash, param_idEmpresa, periodo);
-                func_dashboard.load_grafico_produtos( grafico1,grafico2, param_idEmpresa, periodo);
-            }
-            else if (vendasBoo)
-            {
-                lblLonge.Visible = false;
-                lblProximo.Visible = false;
-                imgLonge.Visible = false;
-                imgProximo.Visible = false;
-                func_dashboard.load_grafico_vendas(grafico1, grafico2, param_idEmpresa, periodo);
-                func_dashboard.carregarInfoVendas(label1, label2, label3, label4, Info1_dash,
-                Info2_dash, Info3_dash, Info4_dash, param_idEmpresa, periodo);
-            }
-            else if (comparacaoBoo)
-            {
-                lblLonge.Visible = true;
-                lblProximo.Visible = true;
-                imgLonge.Visible = true;
-                imgProximo.Visible = true;
-                func_dashboard.carregarInfoComparacao(label1, label2, label3, label4, Info1_dash,
-                Info2_dash, Info3_dash, Info4_dash, param_idEmpresa, periodo, comboPeriodo_dash);
-                func_dashboard.load_grafico_comparacao(grafico1, grafico2, param_idEmpresa, periodo, comboPeriodo_dash,lblProximo, lblLonge);
-            }
-        }
-        private void dashboard_Load(object sender, EventArgs e)
-        {
-            comboPeriodo_dash.SelectedIndex = 0;
-            periodo = func_dashboard.carregarPeriodo(comboPeriodo_dash);
-        }
         private void btnProdutos_Click(object sender, EventArgs e)
         {
             if (produtosBoo)
             {
                 return;
             }
-            bool mudoucomp = resetComparacao;
-            comparacaoBoo = false;
-            produtosBoo = true;
-            vendasBoo = false;
-            func_dashboard.carregarInfoProdutos(label1, label2, label3, label4, Info1_dash,
-            Info2_dash, Info3_dash, Info4_dash, param_idEmpresa, periodo);
-            func_dashboard.load_grafico_produtos(grafico1,grafico2, param_idEmpresa, periodo);
-            func_dashboard.carregarCombo(comboPeriodo_dash, comparacaoBoo, produtosBoo, vendasBoo, mudoucomp);
-            resetComparacao = false;
+            AtivarProdutos();
+            carregarPag();
         }
         private void btnVendas_Click(object sender, EventArgs e)
         {
-            if (vendasBoo) 
+            if (vendasBoo)
             {
-                return; 
+                return;
             }
-            bool mudoucomp = resetComparacao;
-            comparacaoBoo = false;
+            AtivarVendas();
+            carregarPag();
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+
+            carregarPag();
+        }
+        private void dashboard_Load(object sender, EventArgs e)
+        {
+            maskedInicio.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            maskedFim.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            AtivarVendas();
+            carregarPag();
+        }
+
+        private void carregarPag()
+        {
+            if (!maskedInicio.MaskFull || !maskedFim.MaskFull ||
+                !DateTime.TryParse(maskedInicio.Text, out _) ||
+                !DateTime.TryParse(maskedFim.Text, out _))
+            {
+                MessageBox.Show("Data incompleta ou vazia.");
+                return;
+            }
+            if (!func_dashboard.AtualizarPeriodo(maskedInicio, maskedFim, param_idEmpresa))
+            {
+                MessageBox.Show("Data inválida");
+                return;
+            }
+            
+            if (produtosBoo)
+            {
+                func_dashboard.load_grafico_produtos(grafico1, grafico2, param_idEmpresa);
+                func_dashboard.carregarInfoProdutos(lbDash1, lbDash2, lbDash3, lbDash4,
+                Info1_dash, Info2_dash, Info3_dash, Info4_dash, param_idEmpresa);
+            }
+            else if (vendasBoo)
+            {
+                func_dashboard.load_grafico_vendas(grafico1, grafico2, param_idEmpresa);
+                func_dashboard.carregarInfoVendas(lbDash1, lbDash2, lbDash3, lbDash4, Info1_dash,
+                Info2_dash, Info3_dash, Info4_dash, param_idEmpresa);
+            }
+        }
+        private void AtivarVendas()
+        {
             produtosBoo = false;
             vendasBoo = true;
-            func_dashboard.load_grafico_vendas(grafico1, grafico2, param_idEmpresa, periodo);
-            func_dashboard.carregarInfoVendas(label1, label2, label3, label4, Info1_dash,
-            Info2_dash, Info3_dash, Info4_dash, param_idEmpresa, periodo);
-            func_dashboard.carregarCombo(comboPeriodo_dash, comparacaoBoo, produtosBoo, vendasBoo, mudoucomp);
-            resetComparacao = false;
         }
+        private void AtivarProdutos()
+        {
+            produtosBoo = true;
+            vendasBoo = false;
+        }
+
         private void btnComparacao_Click(object sender, EventArgs e)
         {
-            if (comparacaoBoo == true) return;
-
-            comparacaoBoo = true;
-            produtosBoo = false;
-            vendasBoo = false;
-            func_dashboard.carregarCombo(comboPeriodo_dash, comparacaoBoo, produtosBoo, vendasBoo, true);
-            resetComparacao = true;
-            func_dashboard.carregarInfoComparacao(label1, label2, label3, label4, Info1_dash,
-            Info2_dash, Info3_dash, Info4_dash, param_idEmpresa, periodo, comboPeriodo_dash);
-            func_dashboard.load_grafico_comparacao(grafico1, grafico2, param_idEmpresa, periodo, comboPeriodo_dash, lblProximo, lblLonge);
+            _main.AbrirFormNoPanel(new dashboardComparacao(this.idEmpresa));
         }
     }
 }

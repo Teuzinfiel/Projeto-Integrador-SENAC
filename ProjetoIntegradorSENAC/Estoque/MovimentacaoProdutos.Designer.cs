@@ -39,7 +39,7 @@
             btnPesquisar.FlatStyle = FlatStyle.Popup;
             btnPesquisar.Font = new Font("Franklin Gothic Medium", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnPesquisar.ForeColor = Color.White;
-            btnPesquisar.Location = new Point(763, 12);
+            btnPesquisar.Location = new Point(755, 25);
             btnPesquisar.Name = "btnPesquisar";
             btnPesquisar.Size = new Size(112, 38);
             btnPesquisar.TabIndex = 46;
@@ -51,28 +51,31 @@
             txtPesquisa.BackColor = Color.White;
             txtPesquisa.Font = new Font("Franklin Gothic Book", 20.25F);
             txtPesquisa.ForeColor = Color.FromArgb(40, 40, 50);
-            txtPesquisa.Location = new Point(214, 12);
+            txtPesquisa.Location = new Point(51, 25);
             txtPesquisa.Name = "txtPesquisa";
             txtPesquisa.PlaceholderText = "  Digite nome ou código do Produto";
-            txtPesquisa.Size = new Size(535, 38);
+            txtPesquisa.Size = new Size(698, 38);
             txtPesquisa.TabIndex = 45;
             // 
             // flowLayoutPanel1
             // 
-            flowLayoutPanel1.Location = new Point(214, 56);
+            flowLayoutPanel1.Location = new Point(51, 78);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(661, 571);
+            flowLayoutPanel1.Size = new Size(1229, 571);
             flowLayoutPanel1.TabIndex = 44;
             // 
             // MovimentacaoProdutos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1118, 682);
+            BackColor = Color.FromArgb(45, 45, 60);
+            ClientSize = new Size(1326, 686);
             Controls.Add(btnPesquisar);
             Controls.Add(txtPesquisa);
             Controls.Add(flowLayoutPanel1);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "MovimentacaoProdutos";
+            StartPosition = FormStartPosition.WindowsDefaultBounds;
             Text = "MovimentacaoProdutos";
             Load += MovimentacaoProdutos_Load;
             ResumeLayout(false);

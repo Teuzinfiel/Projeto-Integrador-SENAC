@@ -36,9 +36,10 @@
             label3 = new Label();
             pictureBox1 = new PictureBox();
             panel4 = new Panel();
+            btnMovimentacao = new Button();
+            imageList1 = new ImageList(components);
             button1 = new Button();
             btnProdutos = new Button();
-            imageList1 = new ImageList(components);
             btnFuncionario = new Button();
             btnLog = new Button();
             btnDashboard = new Button();
@@ -79,7 +80,7 @@
             label4.FlatStyle = FlatStyle.System;
             label4.Font = new Font("Franklin Gothic Medium", 15F);
             label4.ForeColor = Color.FromArgb(224, 224, 224);
-            label4.Location = new Point(186, 737);
+            label4.Location = new Point(187, 734);
             label4.Name = "label4";
             label4.Size = new Size(62, 25);
             label4.TabIndex = 4;
@@ -91,7 +92,7 @@
             btnLogOut.FlatStyle = FlatStyle.Popup;
             btnLogOut.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnLogOut.ForeColor = Color.FromArgb(224, 224, 224);
-            btnLogOut.Location = new Point(34, 732);
+            btnLogOut.Location = new Point(35, 729);
             btnLogOut.Name = "btnLogOut";
             btnLogOut.Size = new Size(107, 35);
             btnLogOut.TabIndex = 7;
@@ -105,7 +106,7 @@
             label3.FlatStyle = FlatStyle.System;
             label3.Font = new Font("Franklin Gothic Book", 15F);
             label3.ForeColor = Color.FromArgb(180, 180, 190);
-            label3.Location = new Point(65, 204);
+            label3.Location = new Point(65, 197);
             label3.Name = "label3";
             label3.Size = new Size(141, 25);
             label3.TabIndex = 3;
@@ -116,7 +117,7 @@
             // 
             pictureBox1.BorderStyle = BorderStyle.FixedSingle;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(65, 63);
+            pictureBox1.Location = new Point(65, 55);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(141, 126);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -125,6 +126,7 @@
             // 
             // panel4
             // 
+            panel4.Controls.Add(btnMovimentacao);
             panel4.Controls.Add(button1);
             panel4.Controls.Add(btnProdutos);
             panel4.Controls.Add(btnFuncionario);
@@ -133,10 +135,47 @@
             panel4.Controls.Add(btnCaixa);
             panel4.Controls.Add(btnEstoque);
             panel4.ForeColor = SystemColors.ActiveCaptionText;
-            panel4.Location = new Point(3, 251);
+            panel4.Location = new Point(3, 234);
             panel4.Name = "panel4";
-            panel4.Size = new Size(294, 444);
+            panel4.Size = new Size(294, 488);
             panel4.TabIndex = 1;
+            // 
+            // btnMovimentacao
+            // 
+            btnMovimentacao.BackColor = Color.Transparent;
+            btnMovimentacao.FlatAppearance.BorderColor = Color.FromArgb(45, 45, 60);
+            btnMovimentacao.FlatAppearance.BorderSize = 0;
+            btnMovimentacao.FlatAppearance.MouseDownBackColor = Color.FromArgb(45, 45, 60);
+            btnMovimentacao.FlatAppearance.MouseOverBackColor = Color.FromArgb(45, 45, 60);
+            btnMovimentacao.FlatStyle = FlatStyle.Flat;
+            btnMovimentacao.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnMovimentacao.ForeColor = Color.FromArgb(224, 224, 224);
+            btnMovimentacao.ImageAlign = ContentAlignment.MiddleLeft;
+            btnMovimentacao.ImageIndex = 4;
+            btnMovimentacao.ImageList = imageList1;
+            btnMovimentacao.Location = new Point(28, 346);
+            btnMovimentacao.Name = "btnMovimentacao";
+            btnMovimentacao.Size = new Size(260, 56);
+            btnMovimentacao.TabIndex = 9;
+            btnMovimentacao.Text = "Movimentações";
+            btnMovimentacao.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnMovimentacao.UseVisualStyleBackColor = false;
+            btnMovimentacao.Click += button2_Click;
+            // 
+            // imageList1
+            // 
+            imageList1.ColorDepth = ColorDepth.Depth32Bit;
+            imageList1.ImageStream = (ImageListStreamer)resources.GetObject("imageList1.ImageStream");
+            imageList1.Tag = "  ";
+            imageList1.TransparentColor = Color.Transparent;
+            imageList1.Images.SetKeyName(0, " log.png");
+            imageList1.Images.SetKeyName(1, "ChatGPT Image 3 de out. de 2025, 20_09_11.png");
+            imageList1.Images.SetKeyName(2, "ChatGPT Image 3 de out. de 2025, 20_12_11.png");
+            imageList1.Images.SetKeyName(3, "ChatGPT Image 3 de out. de 2025, 20_14_35.png");
+            imageList1.Images.SetKeyName(4, "ChatGPT Image 3 de out. de 2025, 20_18_28.png");
+            imageList1.Images.SetKeyName(5, "ChatGPT Image 3 de out. de 2025, 20_20_42.png");
+            imageList1.Images.SetKeyName(6, "ChatGPT Image 3 de out. de 2025, 20_22_52.png");
+            imageList1.Images.SetKeyName(7, "ChatGPT Image 3 de out. de 2025, 20_27_40.png");
             // 
             // button1
             // 
@@ -145,7 +184,7 @@
             button1.FlatStyle = FlatStyle.Popup;
             button1.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.FromArgb(224, 224, 224);
-            button1.Location = new Point(22, 17);
+            button1.Location = new Point(27, 3);
             button1.Name = "button1";
             button1.Size = new Size(246, 47);
             button1.TabIndex = 8;
@@ -166,7 +205,7 @@
             btnProdutos.ImageAlign = ContentAlignment.MiddleLeft;
             btnProdutos.ImageIndex = 7;
             btnProdutos.ImageList = imageList1;
-            btnProdutos.Location = new Point(32, 209);
+            btnProdutos.Location = new Point(28, 169);
             btnProdutos.Name = "btnProdutos";
             btnProdutos.Size = new Size(260, 58);
             btnProdutos.TabIndex = 2;
@@ -174,21 +213,6 @@
             btnProdutos.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnProdutos.UseVisualStyleBackColor = false;
             btnProdutos.Click += btnProdutos_Click;
-            // 
-            // imageList1
-            // 
-            imageList1.ColorDepth = ColorDepth.Depth32Bit;
-            imageList1.ImageStream = (ImageListStreamer)resources.GetObject("imageList1.ImageStream");
-            imageList1.Tag = "  ";
-            imageList1.TransparentColor = Color.Transparent;
-            imageList1.Images.SetKeyName(0, " log.png");
-            imageList1.Images.SetKeyName(1, "ChatGPT Image 3 de out. de 2025, 20_09_11.png");
-            imageList1.Images.SetKeyName(2, "ChatGPT Image 3 de out. de 2025, 20_12_11.png");
-            imageList1.Images.SetKeyName(3, "ChatGPT Image 3 de out. de 2025, 20_14_35.png");
-            imageList1.Images.SetKeyName(4, "ChatGPT Image 3 de out. de 2025, 20_18_28.png");
-            imageList1.Images.SetKeyName(5, "ChatGPT Image 3 de out. de 2025, 20_20_42.png");
-            imageList1.Images.SetKeyName(6, "ChatGPT Image 3 de out. de 2025, 20_22_52.png");
-            imageList1.Images.SetKeyName(7, "ChatGPT Image 3 de out. de 2025, 20_27_40.png");
             // 
             // btnFuncionario
             // 
@@ -203,7 +227,7 @@
             btnFuncionario.ImageAlign = ContentAlignment.MiddleLeft;
             btnFuncionario.ImageIndex = 4;
             btnFuncionario.ImageList = imageList1;
-            btnFuncionario.Location = new Point(32, 315);
+            btnFuncionario.Location = new Point(28, 284);
             btnFuncionario.Name = "btnFuncionario";
             btnFuncionario.Size = new Size(260, 56);
             btnFuncionario.TabIndex = 3;
@@ -225,7 +249,7 @@
             btnLog.ImageAlign = ContentAlignment.MiddleLeft;
             btnLog.ImageIndex = 0;
             btnLog.ImageList = imageList1;
-            btnLog.Location = new Point(32, 368);
+            btnLog.Location = new Point(28, 408);
             btnLog.Name = "btnLog";
             btnLog.Size = new Size(260, 54);
             btnLog.TabIndex = 7;
@@ -247,7 +271,7 @@
             btnDashboard.ImageAlign = ContentAlignment.MiddleLeft;
             btnDashboard.ImageIndex = 1;
             btnDashboard.ImageList = imageList1;
-            btnDashboard.Location = new Point(31, 156);
+            btnDashboard.Location = new Point(27, 116);
             btnDashboard.Name = "btnDashboard";
             btnDashboard.Size = new Size(260, 55);
             btnDashboard.TabIndex = 6;
@@ -269,7 +293,7 @@
             btnCaixa.ImageAlign = ContentAlignment.MiddleLeft;
             btnCaixa.ImageIndex = 2;
             btnCaixa.ImageList = imageList1;
-            btnCaixa.Location = new Point(31, 103);
+            btnCaixa.Location = new Point(27, 63);
             btnCaixa.Name = "btnCaixa";
             btnCaixa.Size = new Size(260, 54);
             btnCaixa.TabIndex = 5;
@@ -291,7 +315,7 @@
             btnEstoque.ImageAlign = ContentAlignment.MiddleLeft;
             btnEstoque.ImageIndex = 6;
             btnEstoque.ImageList = imageList1;
-            btnEstoque.Location = new Point(32, 262);
+            btnEstoque.Location = new Point(28, 233);
             btnEstoque.Name = "btnEstoque";
             btnEstoque.Size = new Size(260, 54);
             btnEstoque.TabIndex = 4;
@@ -445,5 +469,6 @@
         private Panel panelContainer;
         private Button button1;
         private ImageList imageList1;
+        private Button btnMovimentacao;
     }
 }

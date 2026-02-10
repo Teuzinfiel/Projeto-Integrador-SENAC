@@ -1,0 +1,237 @@
+drop database senac;
+create database senac;
+use senac;
+
+-- ============================================
+-- TABELA USUÁRIOS
+-- ============================================
+DROP TABLE IF EXISTS usuarios;
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL,
+    senha VARCHAR(100),
+    telefone VARCHAR(15),
+    email VARCHAR(50),
+    cpf VARCHAR(15)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ============================================
+-- TABELA COMERCIOS
+-- ============================================
+DROP TABLE IF EXISTS comercios;
+CREATE TABLE comercios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    dono_id INT NOT NULL,
+    nome VARCHAR(50),
+    nome_fantasia VARCHAR(50),
+    email VARCHAR(50),
+     tipo_documentacao  enum ('cpf', 'cnpj'),
+    documentacao varchar (20),
+    telefone VARCHAR(15),
+    CONSTRAINT fk_usuarios_comercios
+        FOREIGN KEY (dono_id) REFERENCES usuarios(id)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ============================================
+-- TABELA FUNCIONÁRIOS
+-- ============================================
+DROP TABLE IF EXISTS funcionarios;
+
+CREATE TABLE funcionarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuarios_id INT,
+    comercio_id INT,
+    cargo VARCHAR(30) NOT NULL,
+    
+	CONSTRAINT fk_comercio_func
+        FOREIGN KEY (comercio_id) REFERENCES comercios(id)
+        ON DELETE SET NULL
+        ON UPDATE CASCADE,
+        
+	CONSTRAINT fk_usuario_id
+        FOREIGN KEY (usuarios_id) REFERENCES usuarios(id)
+        ON DELETE SET NULL
+        ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ============================================
+-- TABELA PRODUTOS
+-- ============================================
+DROP TABLE IF EXISTS produtos;
+CREATE TABLE produtos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    comercio_id INT,
+    nome VARCHAR(50) NOT NULL,
+    descricao TINYTEXT DEFAULT NULL,
+    status VARCHAR(250),
+    marca VARCHAR(100) DEFAULT NULL,
+    codigo_barra VARCHAR(64) DEFAULT NULL,
+    unidade_medida ENUM('gramas','unidade') NOT NULL,
+	categoria varchar(50),
+    preco decimal (8,2) NOT NULL,
+    CONSTRAINT fk_comercio_produtos
+        FOREIGN KEY (comercio_id) REFERENCES comercios(id)
+        ON DELETE SET NULL
+        ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ============================================
+-- TABELA MOVIMENTAÇÕES DE ESTOQUE
+-- ============================================
+DROP TABLE IF EXISTS movimentacoes_estoque;
+CREATE TABLE movimentacoes_estoque (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    produto_id INT NOT NULL,
+    funcionario_id INT NULL,
+    comercio_id INT,
+    tipo ENUM('entrada','saida') NOT NULL,
+    quantidade INT NOT NULL,
+    quantidade_final INT NOT NULL,
+    data_movimentacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_produto_mov
+        FOREIGN KEY (produto_id) REFERENCES produtos(id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+
+    CONSTRAINT fk_funcionario_mov
+        FOREIGN KEY (funcionario_id) REFERENCES funcionarios(id)
+        ON DELETE SET NULL
+        ON UPDATE CASCADE,
+        
+	CONSTRAINT fk_comercio_mov
+        FOREIGN KEY (comercio_id) REFERENCES comercios(id)
+        ON DELETE SET NULL
+        ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ============================================
+-- TRIGGER DO ESTOQUE
+-- ============================================
+DELIMITER $$
+
+CREATE TRIGGER trg_movimentacoes_calculo
+BEFORE INSERT ON movimentacoes_estoque
+FOR EACH ROW
+BEGIN
+    DECLARE ultimo_saldo INT;
+
+    SELECT quantidade_final
+    INTO ultimo_saldo
+    FROM movimentacoes_estoque
+    WHERE produto_id = NEW.produto_id
+    ORDER BY id DESC
+    LIMIT 1;
+
+
+
+
+    IF ultimo_saldo IS NULL THEN
+        SET ultimo_saldo = 0;
+    END IF;
+
+    IF NEW.tipo = 'saida' THEN
+        SET NEW.quantidade = NEW.quantidade * -1;
+    END IF;
+
+    SET NEW.quantidade_final = ultimo_saldo + NEW.quantidade;
+END$$
+
+DELIMITER ;
+
+-- ============================================
+-- TABELA VENDAS
+-- ============================================
+DROP TABLE IF EXISTS vendas;
+CREATE TABLE vendas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    funcionario_id INT,
+    comercio_id INT,
+    data_venda TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    total DECIMAL(12,2) DEFAULT 0.00,
+    forma_pagamento VARCHAR(50),
+    descontos DECIMAL(12,2) DEFAULT NULL,
+
+    CONSTRAINT fk_funcionario_vendas
+        FOREIGN KEY (funcionario_id) REFERENCES funcionarios(id)
+        ON DELETE SET NULL
+        ON UPDATE CASCADE,
+        
+		CONSTRAINT fk_comercio_vendas
+        FOREIGN KEY (comercio_id) REFERENCES comercios(id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ============================================
+-- TABELA ITEMS DE VENDA
+-- ============================================
+DROP TABLE IF EXISTS items_venda;
+CREATE TABLE items_venda (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    produtos_id INT NOT NULL,
+    quantidade INT DEFAULT 1,
+    preco_unitario decimal(12,2),
+    vendas_id INT NOT NULL,
+
+    CONSTRAINT fk_produtos_items_venda
+        FOREIGN KEY (produtos_id) REFERENCES produtos(id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+
+    CONSTRAINT fk_vendas_items_venda
+        FOREIGN KEY (vendas_id) REFERENCES vendas(id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+DELIMITER $$
+
+CREATE TRIGGER trg_saida_estoque_pos_venda
+AFTER INSERT ON items_venda
+FOR EACH ROW
+BEGIN
+    INSERT INTO movimentacoes_estoque (
+        produto_id,
+        funcionario_id,
+        tipo,
+        quantidade
+    )
+    VALUES (
+        NEW.produtos_id,
+        (SELECT funcionario_id FROM vendas WHERE id = NEW.vendas_id LIMIT 1),
+        'saida',
+        NEW.quantidade
+    );
+END$$
+
+DELIMITER ;
+
+CREATE TABLE categorias (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    comercio_id INT NOT NULL,
+    nome VARCHAR(100) NOT NULL,
+
+    FOREIGN KEY (comercio_id) REFERENCES comercios(id)
+);
+
+
+ INSERT INTO movimentacoes_estoque (
+    produto_id,
+    funcionario_id,
+    comercio_id,
+    tipo,
+    quantidade
+) VALUES (
+    1,          -- id do produto
+    NULL,       -- funcionario (pode ser NULL se for ajuste/manual)
+    1,          -- id da empresa
+    'entrada',  -- tipo de movimentação
+    100         -- quantidade que entrou
+);
+
+
+
+

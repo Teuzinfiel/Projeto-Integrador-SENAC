@@ -410,19 +410,21 @@ namespace ProjetoIntegradorSENAC.Caixa
             {
                 string sql = @"
             INSERT INTO vendas
-            (funcionario_id, comercio_id, total, forma_pagamento, descontos)
+            (funcionario_id, comercio_id, total, forma_pagamento, descontos, codigo_consumidor)
             VALUES
-            (@funcionario, @comercio, @total, @forma, @descontos);
+            (@funcionario, @comercio, @total, @forma, @descontos, @codigo_consumidor);
             SELECT LAST_INSERT_ID();
         ";
 
                 using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                 {
+                    string codigo = Guid.NewGuid().ToString("N");
                     cmd.Parameters.AddWithValue("@funcionario", idFunc);
                     cmd.Parameters.AddWithValue("@comercio", idEmpresa);
                     cmd.Parameters.AddWithValue("@total", _vendaAtual.TotalBruto);
                     cmd.Parameters.AddWithValue("@forma", _vendaAtual.FormaPagamento);
                     cmd.Parameters.AddWithValue("@descontos", _vendaAtual.Descontos);
+                    cmd.Parameters.AddWithValue("@codigo_consumidor", codigo);
 
                     return Convert.ToInt32(cmd.ExecuteScalar());
                 }
@@ -482,7 +484,126 @@ namespace ProjetoIntegradorSENAC.Caixa
             }
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            using (Devolucoes frm = new Devolucoes())
+            {
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    ExcluirVendaPorCodigo(frm.CodigoDigitado);
+                }
+            }
+        }
 
+        private void ExcluirVendaPorCodigo(string codigo)
+        {
+            using (MySqlConnection conn = Banco.AbrirConexao())
+            using (MySqlTransaction trans = conn.BeginTransaction())
+            {
+                try
+                {
+                    // 🔎 Buscar venda
+                    string sqlVenda = @"
+                SELECT id, funcionario_id
+                FROM vendas
+                WHERE codigo_consumidor = @codigo
+                LIMIT 1;
+            ";
+
+                    int vendaId;
+                    int funcionarioId;
+
+                    using (MySqlCommand cmd = new MySqlCommand(sqlVenda, conn, trans))
+                    {
+                        cmd.Parameters.AddWithValue("@codigo", codigo);
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            if (!reader.Read())
+                                throw new Exception("Venda não encontrada.");
+
+                            vendaId = reader.GetInt32("id");
+                            funcionarioId = reader.IsDBNull(reader.GetOrdinal("funcionario_id"))
+                                ? 0
+                                : reader.GetInt32("funcionario_id");
+                        }
+                    }
+
+                    // 🔎 Buscar itens da venda
+                    var itens = new List<(int produtoId, int quantidade)>();
+
+                    string sqlItens = @"
+                SELECT produtos_id, quantidade
+                FROM items_venda
+                WHERE vendas_id = @venda;
+            ";
+
+                    using (MySqlCommand cmd = new MySqlCommand(sqlItens, conn, trans))
+                    {
+                        cmd.Parameters.AddWithValue("@venda", vendaId);
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                itens.Add((
+                                    reader.GetInt32("produtos_id"),
+                                    reader.GetInt32("quantidade")
+                                ));
+                            }
+                        }
+                    }
+
+                    // 🔁 Devolver estoque
+                    foreach (var item in itens)
+                    {
+                        string sqlMov = @"
+                    INSERT INTO movimentacoes_estoque
+                    (produto_id, funcionario_id, comercio_id, tipo, quantidade)
+                    VALUES
+                    (@produto, @funcionario, @comercio, 'entrada', @quantidade);
+                ";
+
+                        using (MySqlCommand cmd = new MySqlCommand(sqlMov, conn, trans))
+                        {
+                            cmd.Parameters.AddWithValue("@produto", item.produtoId);
+                            cmd.Parameters.AddWithValue("@funcionario", funcionarioId);
+                            cmd.Parameters.AddWithValue("@comercio", idEmpresa);
+                            cmd.Parameters.AddWithValue("@quantidade", item.quantidade);
+
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    // ❌ Excluir itens
+                    using (MySqlCommand cmd = new MySqlCommand(
+                        "DELETE FROM items_venda WHERE vendas_id = @venda",
+                        conn, trans))
+                    {
+                        cmd.Parameters.AddWithValue("@venda", vendaId);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    // ❌ Excluir venda
+                    using (MySqlCommand cmd = new MySqlCommand(
+                        "DELETE FROM vendas WHERE id = @venda",
+                        conn, trans))
+                    {
+                        cmd.Parameters.AddWithValue("@venda", vendaId);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    trans.Commit();
+
+                    MessageBox.Show("Venda excluída e estoque devolvido com sucesso!");
+                }
+                catch (Exception ex)
+                {
+                    trans.Rollback();
+                    MessageBox.Show("Erro ao excluir venda:\n" + ex.Message);
+                }
+            }
+        }
 
     }
 }

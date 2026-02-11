@@ -50,7 +50,7 @@ namespace ProjetoIntegradorSENAC
 
         private void btnCaixa_Click(object sender, EventArgs e)
         {
-            AbrirFormNoPanel(new caixa(this.idEmpresa));
+            AbrirFormNoPanel(new caixa(this.idEmpresa, this.idUsuario));
             labelCategorias.Text = "Caixa";
             EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos, btnMovimentacao);
             btnCaixa.BackColor = Color.FromArgb(45, 45, 60);

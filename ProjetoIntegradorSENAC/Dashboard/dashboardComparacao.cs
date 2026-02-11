@@ -33,11 +33,11 @@ namespace ProjetoIntegradorSENAC
 
         private void dashboardComparacao_Load(object sender, EventArgs e)
         {
-            maskedFim2Periodo.Text = DateTime.Now.AddMonths(-1).ToString("dd/MM/yyyy");
+            maskedInicio1Periodo.Text = DateTime.Now.AddMonths(-1).ToString("dd/MM/yyyy");
             maskedFim1Periodo.Text = DateTime.Now.ToString("dd/MM/yyyy");
             maskedInicio2Periodo.Text = DateTime.Now.AddMonths(-2).ToString("dd/MM/yyyy");
-            maskedInicio1Periodo.Text = DateTime.Now.AddMonths(-1).ToString("dd/MM/yyyy");
-            func_dashboard.AtualizarPeriodoComparacao(maskedFim2Periodo, maskedFim1Periodo, maskedInicio2Periodo, maskedInicio1Periodo, param_idEmpresa);
+            maskedFim2Periodo.Text = DateTime.Now.AddMonths(-1).ToString("dd/MM/yyyy");
+            func_dashboard.AtualizarPeriodoComparacao(maskedInicio1Periodo, maskedFim1Periodo, maskedInicio2Periodo, maskedFim2Periodo, param_idEmpresa);
             func_dashboard.carregarInfoComparacao(lbDash1, lbDash2, lbDash3, lbDash4, Info1_dash,
             Info2_dash, Info3_dash, Info4_dash, param_idEmpresa);
             func_dashboard.load_grafico_comparacao(grafico1, grafico2, param_idEmpresa, lblProximo, lblLonge);
@@ -58,7 +58,7 @@ namespace ProjetoIntegradorSENAC
         }
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            func_dashboard.AtualizarPeriodoComparacao(maskedFim2Periodo, maskedFim1Periodo, maskedInicio2Periodo, maskedInicio1Periodo, param_idEmpresa);
+            func_dashboard.AtualizarPeriodoComparacao(maskedInicio1Periodo, maskedFim1Periodo, maskedInicio2Periodo, maskedFim2Periodo, param_idEmpresa);
             func_dashboard.carregarInfoComparacao(lbDash1, lbDash2, lbDash3, lbDash4, Info1_dash,
             Info2_dash, Info3_dash, Info4_dash, param_idEmpresa);
             func_dashboard.load_grafico_comparacao(grafico1, grafico2, param_idEmpresa, lblProximo, lblLonge);

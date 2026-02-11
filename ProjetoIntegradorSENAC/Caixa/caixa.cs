@@ -1,11 +1,12 @@
-﻿using ProjetoIntegradorSENAC.Classes;
+﻿using MySql.Data.MySqlClient;
+using ProjetoIntegradorSENAC.Classes;
+using ProjetoIntegradorSENAC.Usuario;
 using System;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
-using System.Globalization;
 
 namespace ProjetoIntegradorSENAC.Caixa
 {
@@ -14,10 +15,15 @@ namespace ProjetoIntegradorSENAC.Caixa
         private Venda _vendaAtual = new Venda();
         private Dictionary<int, Panel> _painelPorProduto = new Dictionary<int, Panel>();
         int idEmpresa;
-        public caixa(int idEmpresa)
+        int idUser;
+        int idFunc;
+        public caixa(int idEmpresa, int idUsuario)
         {
             InitializeComponent();
             this.idEmpresa = idEmpresa;
+            this.idUser = idUsuario;
+
+            BuscarFuncionario();
         }
 
         private void caixa_Load(object sender, EventArgs e)
@@ -412,7 +418,7 @@ namespace ProjetoIntegradorSENAC.Caixa
 
                 using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("@funcionario", _vendaAtual.FuncionarioId);
+                    cmd.Parameters.AddWithValue("@funcionario", idFunc);
                     cmd.Parameters.AddWithValue("@comercio", idEmpresa);
                     cmd.Parameters.AddWithValue("@total", _vendaAtual.TotalBruto);
                     cmd.Parameters.AddWithValue("@forma", _vendaAtual.FormaPagamento);
@@ -448,6 +454,34 @@ namespace ProjetoIntegradorSENAC.Caixa
                 }
             }
         }
+
+        private void BuscarFuncionario()
+        {
+            using (MySqlConnection conn = Banco.AbrirConexao())
+            {
+                string sql = @"
+            SELECT id 
+            FROM funcionarios 
+            WHERE usuarios_id = @usuario 
+            AND comercio_id = @comercio
+            LIMIT 1;
+        ";
+
+                using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@usuario", idUser);
+                    cmd.Parameters.AddWithValue("@comercio", idEmpresa);
+
+                    object result = cmd.ExecuteScalar();
+
+                    if (result != null)
+                        idFunc = Convert.ToInt32(result);
+                    else
+                        MessageBox.Show("Funcionário não encontrado para este usuário.");
+                }
+            }
+        }
+
 
 
     }

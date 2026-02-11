@@ -18,9 +18,9 @@ namespace ProjetoIntegradorSENAC
         private int idEmpresa;
         private Dictionary<string, object> param_idEmpresa;
         private bool produtosBoo = false;
-        private bool vendasBoo = true; 
+        private bool vendasBoo = true;
 
-        public dashboardComparacao(MainPrincipal main,int idEmpresa)
+        public dashboardComparacao(MainPrincipal main, int idEmpresa)
         {
             InitializeComponent();
             this.idEmpresa = idEmpresa;

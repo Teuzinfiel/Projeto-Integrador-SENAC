@@ -346,13 +346,6 @@ namespace ProjetoIntegradorSENAC.Dashboard
             if (inicio2Periodo > fim2Periodo)
                 return false;
 
-
-            param_idEmpresa.Remove("@dataInicio1Periodo");
-            param_idEmpresa.Remove("@dataFim1Periodo");
-            param_idEmpresa.Remove("@dataInicio2Periodo");
-            param_idEmpresa.Remove("@dataFim2Periodo");
-
-
             param_idEmpresa["@dataInicio1Periodo"] = inicio1Periodo;
             param_idEmpresa["@dataFim1Periodo"] = fim1Periodo;
 
@@ -737,9 +730,9 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 LabelFormatString = "{0}"
             };
             DataTable tabela = func_dashboard.ExecutarSelect(@"
-                SELECT
-                '2ºPeríodo' AS periodo,
-                COUNT(v.id) AS total_vendas
+               
+                SELECT '2ºPeríodo' AS periodo,
+                IFNULL(COUNT(v.id),0) AS total_vendas
                 FROM vendas v
                 JOIN funcionarios f ON f.id = v.funcionario_id
                 WHERE f.comercio_id = @idEmpresa
@@ -747,9 +740,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 
                 UNION ALL
 
-                SELECT
-                '1ºPeríodo' AS periodo,
-                COUNT(v.id) AS total_vendas
+                SELECT '1ºPeríodo' AS periodo,
+                IFNULL(COUNT(v.id),0) AS total_vendas
                 FROM vendas v
                 JOIN funcionarios f ON f.id = v.funcionario_id
                 WHERE f.comercio_id = @idEmpresa
@@ -762,14 +754,15 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 barraSeries.Items.Add(new BarItem { Value = Convert.ToDouble(row["total_vendas"]) });
             }
 
-            bool atualSemVenda = barraSeries.Items[0].Value == 0;
-            bool longeSemVenda = barraSeries.Items[1].Value == 0;
+            bool atualSemVenda = barraSeries.Items[1].Value == 0;
+            bool longeSemVenda = barraSeries.Items[0].Value == 0;
+
             if (atualSemVenda)
             {
                 modeloComparativo.Annotations.Add(new TextAnnotation
                 {
                     Text = "Sem venda",
-                    TextPosition = new DataPoint(3.50, -0.10),
+                    TextPosition = new DataPoint(3.5, 0.85),
                     FontSize = 22,
                     TextColor = OxyColors.White
                 });
@@ -779,7 +772,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 modeloComparativo.Annotations.Add(new TextAnnotation
                 {
                     Text = "Sem venda",
-                    TextPosition = new DataPoint(3.5, 0.85),
+                    TextPosition = new DataPoint(3.5, -0.10),
                     FontSize = 22,
                     TextColor = OxyColors.White
                 });
@@ -849,7 +842,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             SELECT
             DAY(v.data_venda) AS dia,
             'Mês Atual' AS periodo,
-            COUNT(v.id) AS total_vendas
+            IFNULL(COUNT(v.id),0) AS total_vendas
             FROM vendas v
             JOIN funcionarios f ON f.id = v.funcionario_id
             WHERE f.comercio_id = @idEmpresa
@@ -861,7 +854,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             SELECT
             DAY(v.data_venda) AS dia,
             'Mês Passado' AS periodo,
-            COUNT(v.id) AS total_vendas
+            IFNULL(COUNT(v.id),0) AS total_vendas
             FROM vendas v
             JOIN funcionarios f ON f.id = v.funcionario_id
             WHERE f.comercio_id = @idEmpresa

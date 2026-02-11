@@ -10,8 +10,12 @@ namespace ProjetoIntegradorSENAC.Produto
 {
     public partial class frmProduto : Form
     {
+        
+        
         public int idUsuario;
         public int idComercio;
+
+        // Flags para erros
 
         private bool erroNome = true;
         private bool erroDescricao = true;
@@ -20,6 +24,7 @@ namespace ProjetoIntegradorSENAC.Produto
         private bool erroCategoria = true;
         private bool erroUnidade = true;
 
+        // Construtor
         public frmProduto(int idUsuario, int idComercio)
         {
             InitializeComponent();
@@ -28,6 +33,8 @@ namespace ProjetoIntegradorSENAC.Produto
             this.idComercio = idComercio;
         }
 
+
+        // Evento de carregamento do formulário, Carrega produtos e cadegorias, no datagrid e no comboBox, atraves das funcoes
         private void frmProduto_Load(object sender, EventArgs e)
         {
             CmbUnidade.SelectedIndex = -1;
@@ -40,61 +47,36 @@ namespace ProjetoIntegradorSENAC.Produto
         }
 
 
-
+        //Botao de cadastro de produtos
         private void btnCadastro_Click(object sender, EventArgs e)
         {
             if (!CamposValidos())
             {
-                MessageBox.Show(
-                    "Preencha corretamente todos os campos obrigatórios!",
-                    "Erro",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-
+                MessageBox.Show( "Preencha corretamente todos os campos obrigatórios!",   "Erro",MessageBoxButtons.OK,  MessageBoxIcon.Error);
                 return;
             }
 
-            string codigoBarra = string.IsNullOrWhiteSpace(PrCodigoBarra.Text)
-            ? GerarCodigoBarra()
-            : PrCodigoBarra.Text;
+            string codigoBarra = string.IsNullOrWhiteSpace(PrCodigoBarra.Text)   ? GerarCodigoBarra() : PrCodigoBarra.Text;
 
-            string unidade = CmbUnidade.SelectedItem.ToString() == "Grama"
-                ? "gramas"
-                : "unidade";
+            string unidade = CmbUnidade.SelectedItem.ToString() == "Grama"   ? "gramas"  : "unidade";
 
             string preco = PrPreco.Text.Replace(",", ".");
 
-            string insert = $@"
-                INSERT INTO produtos
-                (comercio_id, nome, descricao, status, marca,
-                 codigo_barra, unidade_medida, categoria, preco)
-                VALUES
-                ({idComercio},
-                 '{PrNome.Text}',
-                 '{PrDescricao.Text}',
-                 'ativo',
-                 '{PrMarca.Text}',
-                 '{codigoBarra}',
-                 '{unidade}',
-                 '{CmbCategoria.Text}',
-                 {preco})";
+            string insert = $@" INSERT INTO produtos (comercio_id, nome, descricao, status, marca,  codigo_barra, unidade_medida, categoria, preco)
+            VALUES  ({idComercio},'{PrNome.Text}','{PrDescricao.Text}',  'ativo', '{PrMarca.Text}',  '{codigoBarra}', '{unidade}','{CmbCategoria.Text}',{preco})";
 
+
+            // Insere no banco se estiver com dados corretos, atualiza o data grid e os cbox de categorias, limpa os campos e reseta as flags de erro
             try
             {
                 Banco.Inserir(insert);
-
                 MessageBox.Show("Produto cadastrado com sucesso!");
-
                 Funcoes.Limpar(this);
                 CarregarProdutos();
                 CarregarCategoriasCb();
                 CarregarCategorias();
-                if (dtgProdutos.Columns["ID"] != null)
-                    dtgProdutos.Columns["ID"].Visible = false;
-
-
+                if (dtgProdutos.Columns["ID"] != null) dtgProdutos.Columns["ID"].Visible = false;
                 CmbUnidade.SelectedIndex = -1;
-
                 erroNome = true;
                 erroDescricao = true;
                 erroMarca = true;
@@ -108,7 +90,7 @@ namespace ProjetoIntegradorSENAC.Produto
             }
         }
 
-
+        // Verificações de campos obrigatórios
         private void PrNome_TextChanged(object sender, EventArgs e)
         {
             erroNome = Funcoes.CampoVazio(PrNome);
@@ -150,10 +132,8 @@ namespace ProjetoIntegradorSENAC.Produto
         private void CmbUnidade_SelectedIndexChanged(object sender, EventArgs e)
         {
             erroUnidade = Funcoes.CampoVazio(CmbUnidade);
-
             astUnidade.Visible = erroUnidade;
             lbUnidade.ForeColor = erroUnidade ? Color.DarkRed : Color.White;
-
             if (!erroUnidade)
             {
                 if (CmbUnidade.SelectedItem.ToString() == "Grama")
@@ -170,6 +150,8 @@ namespace ProjetoIntegradorSENAC.Produto
 
         }
 
+
+        //funcao que valida os campos obrigatórios e os asterescos
         private bool CamposValidos()
         {
             erroNome = Funcoes.CampoVazio(PrNome);
@@ -205,26 +187,14 @@ namespace ProjetoIntegradorSENAC.Produto
                    !erroUnidade;
         }
 
-        // data grid de produtos
+        //funcao que carrega os produtos no datagrid
 
         private void CarregarProdutos()
         {
             try
             {
-                string query = $@"
-            SELECT 
-                id,
-                nome AS Produto,
-                marca AS Marca,
-                descricao AS Descricao,
-                codigo_barra AS CodigoBarra,
-                unidade_medida AS Medida,
-                categoria AS Categoria,
-                preco AS Preco,
-                status AS Status
-            FROM produtos
-            WHERE comercio_id = {idComercio}";
-
+                string query = $@" SELECT   id,nome AS Produto, marca AS Marca, descricao AS Descricao, codigo_barra AS CodigoBarra, unidade_medida AS Medida,
+                categoria AS Categoria,  preco AS Preco,status AS Status  FROM produtos WHERE comercio_id = {idComercio}";
                 DataTable dt = Banco.Pesquisar(query);
 
                 dtgProdutos.DataSource = dt;
@@ -238,34 +208,30 @@ namespace ProjetoIntegradorSENAC.Produto
             }
         }
 
-        //carrega no grid
+        //funcao que carrega as categorias no datagrid
+
         private void CarregarCategorias()
         {
-            string sql = $@"
-        SELECT id, nome
-        FROM categorias
-        WHERE comercio_id = {idComercio}
-        ORDER BY nome";
-
+            string sql = $@" SELECT id, nome FROM categorias WHERE comercio_id = {idComercio} ORDER BY nome";
             dtgCategoria.DataSource = Banco.Pesquisar(sql);
-
             dtgCategoria.Columns["id"].Visible = false;
         }
-        //carrega no combo box
+
+
+
+        //Funcao que carrega as categorias no comboBox
+
+
         private void CarregarCategoriasCb()
         {
-            string sql = $@"
-        SELECT nome
-        FROM categorias
-        WHERE comercio_id = {idComercio}
-        ORDER BY nome";
-
+            string sql = $@"  SELECT nome  FROM categorias WHERE comercio_id = {idComercio}  ORDER BY nome";
             DataTable dt = Banco.Pesquisar(sql);
-
             CmbCategoria.DataSource = dt;
             CmbCategoria.DisplayMember = "nome";
             CmbCategoria.SelectedIndex = -1;
         }
+
+        // Funcao que limpa os campos de categoria
         private void LimparCategoria()
         {
             txtCategoria.Clear();
@@ -275,8 +241,9 @@ namespace ProjetoIntegradorSENAC.Produto
         }
 
 
-
         private int idCategoriaSelecionada = 0;
+
+        // Botao de cadastro e atualizacao de categorias
 
         private void btnCadCategoria_Click(object sender, EventArgs e)
         {
@@ -285,7 +252,6 @@ namespace ProjetoIntegradorSENAC.Produto
                 MessageBox.Show("Informe o nome da categoria.");
                 return;
             }
-
             string nome = txtCategoria.Text.Trim();
 
             try
@@ -293,28 +259,18 @@ namespace ProjetoIntegradorSENAC.Produto
                 if (idCategoriaSelecionada == 0)
                 {
                     // CADASTRAR
-                    string insert = $@"
-                INSERT INTO categorias (comercio_id, nome)
-                VALUES ({idComercio}, '{nome}')";
-
+                    string insert = $@"  INSERT INTO categorias (comercio_id, nome)  VALUES ({idComercio}, '{nome}')";
                     Banco.Inserir(insert);
-
                     MessageBox.Show("Categoria cadastrada!");
                 }
                 else
                 {
                     // ATUALIZAR
-                    string update = $@"
-                UPDATE categorias
-                   SET nome = '{nome}'
-                 WHERE id = {idCategoriaSelecionada}
-                   AND comercio_id = {idComercio}";
-
+                    string update = $@"  UPDATE categorias SET nome = '{nome}'  WHERE id = {idCategoriaSelecionada}  AND comercio_id = {idComercio}";
                     Banco.Inserir(update);
-
                     MessageBox.Show("Categoria atualizada!");
                 }
-
+                // Atualiza produtos associados à categoria atualizada
                 LimparCategoria();
                 CarregarCategorias();
                 CarregarCategoriasCbAtt();
@@ -327,6 +283,7 @@ namespace ProjetoIntegradorSENAC.Produto
             }
         }
 
+        // Botao de exclusao de categorias
         private void btnExcluirCat_Click(object sender, EventArgs e)
         {
             if (idCategoriaSelecionada == 0)
@@ -335,31 +292,17 @@ namespace ProjetoIntegradorSENAC.Produto
                 return;
             }
 
-            if (MessageBox.Show(
-                "Ao excluir esta categoria, os produtos ficarão como 'Categoria excluída'.\nDeseja continuar?",
-                "Confirmação",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning) == DialogResult.No)
-                return;
+            if (MessageBox.Show(  "Ao excluir esta categoria, os produtos ficarão como 'Categoria excluída'.\nDeseja continuar?",   "Confirmação",
+                MessageBoxButtons.YesNo,  MessageBoxIcon.Warning) == DialogResult.No) return;
 
             try
             {
-                // 1️⃣ Atualiza produtos
-                string updateProdutos = $@"
-            UPDATE produtos
-            SET categoria = 'Categoria excluída'
-            WHERE categoria = '{txtCategoria.Text}'
-              AND comercio_id = {idComercio};
-        ";
-
+                //  Atualiza produtos
+                string updateProdutos = $@" UPDATE produtos SET categoria = 'Categoria excluída'  WHERE categoria = '{txtCategoria.Text}' AND comercio_id = {idComercio}; ";
                 Banco.Inserir(updateProdutos);
 
-                // 2️⃣ Exclui categoria
-                string delete = $@"
-            DELETE FROM categorias
-            WHERE id = {idCategoriaSelecionada}
-              AND comercio_id = {idComercio};
-        ";
+                //  Exclui categoria
+                string delete = $@" DELETE FROM categorias WHERE id = {idCategoriaSelecionada}  AND comercio_id = {idComercio}; ";
 
                 Banco.Excluir(delete);
 
@@ -376,6 +319,8 @@ namespace ProjetoIntegradorSENAC.Produto
                 MessageBox.Show("Erro:\n" + ex.Message);
             }
         }
+
+        // Evento de clique na celula do datagrid de categorias
 
         private void dtgCategoria_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -395,6 +340,7 @@ namespace ProjetoIntegradorSENAC.Produto
 
         private int idProdutoSelecionado = 0;
 
+        // Evento de clique na celula do datagrid de produtos
         private void dtgProdutos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
@@ -415,7 +361,7 @@ namespace ProjetoIntegradorSENAC.Produto
 
             string status = row.Cells["Status"].Value.ToString().ToLower();
 
-            // UX: alterna botões
+            //  alterna botões
             btnDesativarProd.Visible = status == "ativo";
             btnAtivarProd.Visible = status == "desativo";
 
@@ -423,6 +369,7 @@ namespace ProjetoIntegradorSENAC.Produto
             btnAttProd.Visible = true;
         }
 
+        // Botao de atualizacao de produtos
         private void btnAttProd_Click(object sender, EventArgs e)
         {
             if (idProdutoSelecionado == 0)
@@ -431,10 +378,8 @@ namespace ProjetoIntegradorSENAC.Produto
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(txtNomeProd.Text) ||
-                string.IsNullOrWhiteSpace(txtPrecoProd.Text) ||
-                cmbMedida.SelectedIndex == -1 ||
-                cmbCatAtt.SelectedIndex == -1)
+            if (string.IsNullOrWhiteSpace(txtNomeProd.Text) ||  string.IsNullOrWhiteSpace(txtPrecoProd.Text) ||
+                cmbMedida.SelectedIndex == -1 || cmbCatAtt.SelectedIndex == -1)
             {
                 MessageBox.Show("Preencha os campos obrigatórios.");
                 return;
@@ -442,23 +387,13 @@ namespace ProjetoIntegradorSENAC.Produto
 
             string unidade = cmbMedida.Text == "Grama" ? "gramas" : "unidade";
 
-            string sql = $@"
-                        UPDATE produtos
-                        SET
-                            nome = '{txtNomeProd.Text}',
-                            marca = '{txtMarcaProd.Text}',
-                            descricao = '{PrDescricaoAtt.Text}',
-                            unidade_medida = '{unidade}',
-                            preco = {txtPrecoProd.Text.Replace(",", ".")},
-                            codigo_barra = '{txtCodBarra.Text}',
-                            categoria = '{cmbCatAtt.Text}'
-                        WHERE id = {idProdutoSelecionado};
-                    ";
+            string sql = $@" UPDATE produtos    SET  nome = '{txtNomeProd.Text}',  marca = '{txtMarcaProd.Text}',  descricao = '{PrDescricaoAtt.Text}',unidade_medida = '{unidade}', 
+                preco = {txtPrecoProd.Text.Replace(",", ".")}, codigo_barra = '{txtCodBarra.Text}',categoria = '{cmbCatAtt.Text}'
+                WHERE id = {idProdutoSelecionado}; ";
 
             try
             {
                 Banco.Inserir(sql);
-
                 MessageBox.Show("Produto atualizado!");
                 LimparEdicaoProduto();
                 CarregarProdutos();
@@ -480,18 +415,9 @@ namespace ProjetoIntegradorSENAC.Produto
                 return;
             }
 
-            if (MessageBox.Show(
-                "Deseja desativar este produto?",
-                "Confirmação",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning) == DialogResult.No)
-                return;
+            if (MessageBox.Show(  "Deseja desativar este produto?",  "Confirmação",  MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return;
 
-            string sql = $@"
-        UPDATE produtos
-        SET status = 'desativo'
-        WHERE id = {idProdutoSelecionado};
-    ";
+            string sql = $@"  UPDATE produtos SET status = 'desativo' WHERE id = {idProdutoSelecionado}; ";
 
             try
             {
@@ -507,7 +433,7 @@ namespace ProjetoIntegradorSENAC.Produto
                 MessageBox.Show("Erro:\n" + ex.Message);
             }
         }
-
+        // Botao de exclusao de produtos
         private void btnExcluirProd_Click(object sender, EventArgs e)
         {
             if (idProdutoSelecionado == 0)
@@ -516,12 +442,7 @@ namespace ProjetoIntegradorSENAC.Produto
                 return;
             }
 
-            if (MessageBox.Show(
-                "Excluir este produto definitivamente?",
-                "Confirmação",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Error) == DialogResult.No)
-                return;
+            if (MessageBox.Show(  "Excluir este produto definitivamente?",  "Confirmação",  MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.No)  return;
 
             string sql = $"DELETE FROM produtos WHERE id = {idProdutoSelecionado}";
 
@@ -545,7 +466,7 @@ namespace ProjetoIntegradorSENAC.Produto
             }
         }
 
-
+        // Carrega categorias no comboBox de edição de produtos
         private void CarregarCategoriasCbAtt()
         {
                string sql = $@"
@@ -561,6 +482,8 @@ namespace ProjetoIntegradorSENAC.Produto
                     cmbCatAtt.SelectedIndex = -1;
         }
 
+        // Reseta botões de edição de produtos
+
         private void ResetarBotoesProduto()
         {
             btnAtivarProd.Visible = false;
@@ -568,7 +491,7 @@ namespace ProjetoIntegradorSENAC.Produto
             btnExcluirProd.Visible = false;
             btnAttProd.Visible = false;
         }
-
+        // Limpa campos de edição de produtos
         private void LimparEdicaoProduto()
         {
             txtNomeProd.Clear();
@@ -583,6 +506,7 @@ namespace ProjetoIntegradorSENAC.Produto
             idProdutoSelecionado = 0;
         }
 
+        // Botao de ativacao de produtos
         private void btnAtivarProd_Click(object sender, EventArgs e)
         {
             if (idProdutoSelecionado == 0)
@@ -591,23 +515,12 @@ namespace ProjetoIntegradorSENAC.Produto
                 return;
             }
 
-            if (MessageBox.Show(
-                "Deseja ativar este produto novamente?",
-                "Confirmação",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question) == DialogResult.No)
-                return;
-
-            string sql = $@"
-        UPDATE produtos
-        SET status = 'ativo'
-        WHERE id = {idProdutoSelecionado};
-    ";
+            if (MessageBox.Show( "Deseja ativar este produto novamente?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)  return;
+            string sql = $@" UPDATE produtos SET status = 'ativo' WHERE id = {idProdutoSelecionado};";
 
             try
             {
                 Banco.Inserir(sql);
-
                 MessageBox.Show("Produto ativado!");
                 ResetarBotoesProduto();
                 LimparEdicaoProduto();

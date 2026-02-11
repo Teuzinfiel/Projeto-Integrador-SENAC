@@ -22,19 +22,21 @@ namespace ProjetoIntegradorSENAC.Dashboard
     public partial class dashboard : Form
     {
         private MainPrincipal _main; // referência ao form pai
-        public int idEmpresa;
+        private int idEmpresa;
         private Dictionary<string, object> param_idEmpresa;
-        public dashboard(MainPrincipal main, int idEmpresa)
+        private bool abrirVendas = false;
+        public dashboard(MainPrincipal main, int idEmpresa, bool abrirVendas)
         {
             InitializeComponent();
             _main = main;
             this.idEmpresa = idEmpresa;
+            this.abrirVendas = abrirVendas;
             param_idEmpresa = new Dictionary<string, object>()
             {
                 { "@idEmpresa", idEmpresa }
             };
         }
-        bool produtosBoo, vendasBoo;
+        bool produtosBoo = false, vendasBoo = false ;
 
         private void btnProdutos_Click(object sender, EventArgs e)
         {
@@ -62,9 +64,16 @@ namespace ProjetoIntegradorSENAC.Dashboard
         }
         private void dashboard_Load(object sender, EventArgs e)
         {
+            if (abrirVendas == true)
+            {
+                vendasBoo = true;
+            }
+            else
+            { 
+                produtosBoo = true;
+            }
             maskedInicio.Text = DateTime.Now.ToString("dd/MM/yyyy");
             maskedFim.Text = DateTime.Now.ToString("dd/MM/yyyy");
-            AtivarVendas();
             carregarPag();
         }
 
@@ -79,10 +88,9 @@ namespace ProjetoIntegradorSENAC.Dashboard
             }
             if (!func_dashboard.AtualizarPeriodo(maskedInicio, maskedFim, param_idEmpresa))
             {
-                MessageBox.Show("Data inválida");
+                MessageBox.Show("Erro ao atualizar o período. Verifique as datas e tente novamente.");
                 return;
             }
-            
             if (produtosBoo)
             {
                 func_dashboard.load_grafico_produtos(grafico1, grafico2, param_idEmpresa);
@@ -95,13 +103,14 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 func_dashboard.carregarInfoVendas(lbDash1, lbDash2, lbDash3, lbDash4, Info1_dash,
                 Info2_dash, Info3_dash, Info4_dash, param_idEmpresa);
             }
+            
         }
-        private void AtivarVendas()
+        public void AtivarVendas()
         {
             produtosBoo = false;
             vendasBoo = true;
         }
-        private void AtivarProdutos()
+        public void AtivarProdutos()
         {
             produtosBoo = true;
             vendasBoo = false;
@@ -109,7 +118,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
 
         private void btnComparacao_Click(object sender, EventArgs e)
         {
-            _main.AbrirFormNoPanel(new dashboardComparacao(this.idEmpresa));
+            _main.AbrirFormNoPanel(new dashboardComparacao(_main, idEmpresa));
         }
     }
 }

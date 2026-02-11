@@ -57,7 +57,7 @@ namespace ProjetoIntegradorSENAC
         }
         private void btnDashboard_Click(object sender, EventArgs e)
         {
-            AbrirFormNoPanel(new dashboard(this, this.idEmpresa));
+            AbrirFormNoPanel(new dashboard(this, this.idEmpresa,false));
             labelCategorias.Text = "Dashboard";
             EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos, btnMovimentacao);
             btnDashboard.BackColor = Color.FromArgb(45, 45, 60);

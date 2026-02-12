@@ -17,6 +17,7 @@ namespace ProjetoIntegradorSENAC.Caixa
         int idEmpresa;
         int idUser;
         int idFunc;
+        private string _codigoConsumidor;
         public caixa(int idEmpresa, int idUsuario)
         {
             InitializeComponent();
@@ -418,13 +419,13 @@ namespace ProjetoIntegradorSENAC.Caixa
 
                 using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                 {
-                    string codigo = Guid.NewGuid().ToString("N");
+                    this._codigoConsumidor = Guid.NewGuid().ToString("N");
                     cmd.Parameters.AddWithValue("@funcionario", idFunc);
                     cmd.Parameters.AddWithValue("@comercio", idEmpresa);
                     cmd.Parameters.AddWithValue("@total", _vendaAtual.TotalBruto);
                     cmd.Parameters.AddWithValue("@forma", _vendaAtual.FormaPagamento);
                     cmd.Parameters.AddWithValue("@descontos", _vendaAtual.Descontos);
-                    cmd.Parameters.AddWithValue("@codigo_consumidor", codigo);
+                    cmd.Parameters.AddWithValue("@codigo_consumidor", this._codigoConsumidor);
 
                     return Convert.ToInt32(cmd.ExecuteScalar());
                 }
@@ -494,6 +495,9 @@ namespace ProjetoIntegradorSENAC.Caixa
                 }
             }
         }
+
+
+       
 
         private void ExcluirVendaPorCodigo(string codigo)
         {

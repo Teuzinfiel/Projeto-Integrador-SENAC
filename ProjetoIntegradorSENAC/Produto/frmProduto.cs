@@ -10,8 +10,8 @@ namespace ProjetoIntegradorSENAC.Produto
 {
     public partial class frmProduto : Form
     {
-        
-        
+
+
         public int idUsuario;
         public int idComercio;
 
@@ -52,13 +52,13 @@ namespace ProjetoIntegradorSENAC.Produto
         {
             if (!CamposValidos())
             {
-                MessageBox.Show( "Preencha corretamente todos os campos obrigatórios!",   "Erro",MessageBoxButtons.OK,  MessageBoxIcon.Error);
+                MessageBox.Show("Preencha corretamente todos os campos obrigatórios!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            string codigoBarra = string.IsNullOrWhiteSpace(PrCodigoBarra.Text)   ? GerarCodigoBarra() : PrCodigoBarra.Text;
+            string codigoBarra = string.IsNullOrWhiteSpace(PrCodigoBarra.Text) ? GerarCodigoBarra() : PrCodigoBarra.Text;
 
-            string unidade = CmbUnidade.SelectedItem.ToString() == "Grama"   ? "gramas"  : "unidade";
+            string unidade = CmbUnidade.SelectedItem.ToString() == "Grama" ? "gramas" : "unidade";
 
             string preco = PrPreco.Text.Replace(",", ".");
 
@@ -275,7 +275,7 @@ namespace ProjetoIntegradorSENAC.Produto
                 CarregarCategorias();
                 CarregarCategoriasCbAtt();
                 CarregarCategoriasCb();
-        
+
             }
             catch (Exception ex)
             {
@@ -292,8 +292,8 @@ namespace ProjetoIntegradorSENAC.Produto
                 return;
             }
 
-            if (MessageBox.Show(  "Ao excluir esta categoria, os produtos ficarão como 'Categoria excluída'.\nDeseja continuar?",   "Confirmação",
-                MessageBoxButtons.YesNo,  MessageBoxIcon.Warning) == DialogResult.No) return;
+            if (MessageBox.Show("Ao excluir esta categoria, os produtos ficarão como 'Categoria excluída'.\nDeseja continuar?", "Confirmação",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return;
 
             try
             {
@@ -378,7 +378,7 @@ namespace ProjetoIntegradorSENAC.Produto
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(txtNomeProd.Text) ||  string.IsNullOrWhiteSpace(txtPrecoProd.Text) ||
+            if (string.IsNullOrWhiteSpace(txtNomeProd.Text) || string.IsNullOrWhiteSpace(txtPrecoProd.Text) ||
                 cmbMedida.SelectedIndex == -1 || cmbCatAtt.SelectedIndex == -1)
             {
                 MessageBox.Show("Preencha os campos obrigatórios.");
@@ -415,7 +415,7 @@ namespace ProjetoIntegradorSENAC.Produto
                 return;
             }
 
-            if (MessageBox.Show(  "Deseja desativar este produto?",  "Confirmação",  MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return;
+            if (MessageBox.Show("Deseja desativar este produto?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return;
 
             string sql = $@"  UPDATE produtos SET status = 'desativo' WHERE id = {idProdutoSelecionado}; ";
 
@@ -442,7 +442,7 @@ namespace ProjetoIntegradorSENAC.Produto
                 return;
             }
 
-            if (MessageBox.Show(  "Excluir este produto definitivamente?",  "Confirmação",  MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.No)  return;
+            if (MessageBox.Show("Excluir este produto definitivamente?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.No) return;
 
             string sql = $"DELETE FROM produtos WHERE id = {idProdutoSelecionado}";
 
@@ -469,17 +469,17 @@ namespace ProjetoIntegradorSENAC.Produto
         // Carrega categorias no comboBox de edição de produtos
         private void CarregarCategoriasCbAtt()
         {
-               string sql = $@"
+            string sql = $@"
                 SELECT nome
                 FROM categorias
                 WHERE comercio_id = {idComercio}
                 ORDER BY nome";
 
-                    DataTable dt = Banco.Pesquisar(sql);
+            DataTable dt = Banco.Pesquisar(sql);
 
-                    cmbCatAtt.DataSource = dt;
-                    cmbCatAtt.DisplayMember = "nome";
-                    cmbCatAtt.SelectedIndex = -1;
+            cmbCatAtt.DataSource = dt;
+            cmbCatAtt.DisplayMember = "nome";
+            cmbCatAtt.SelectedIndex = -1;
         }
 
         // Reseta botões de edição de produtos
@@ -515,7 +515,7 @@ namespace ProjetoIntegradorSENAC.Produto
                 return;
             }
 
-            if (MessageBox.Show( "Deseja ativar este produto novamente?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)  return;
+            if (MessageBox.Show("Deseja ativar este produto novamente?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) return;
             string sql = $@" UPDATE produtos SET status = 'ativo' WHERE id = {idProdutoSelecionado};";
 
             try

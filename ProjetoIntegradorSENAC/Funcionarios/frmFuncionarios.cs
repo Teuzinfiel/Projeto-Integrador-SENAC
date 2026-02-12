@@ -28,6 +28,17 @@ namespace ProjetoIntegradorSENAC.Usuarios
             this.idEmpresa = idEmpresa;
         }
 
+        private void CarregarFucionarios()
+        {
+            string query = $@"SELECT u.id, u.senha, u.nome, u.email, u.cpf, u.telefone
+                              FROM funcionarios f
+                              JOIN usuarios u ON f.usuarios_id = u.id
+                              WHERE f.comercio_id = {idEmpresa} and f.cargo != 'dono'";
+
+            DataTable dtFuncionarios = Banco.Pesquisar(query);
+            dtgFuncionarios.DataSource = dtFuncionarios;
+        }
+
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
@@ -193,6 +204,28 @@ namespace ProjetoIntegradorSENAC.Usuarios
                 astConfirmar.Visible = true;
                 lbConfirmar.ForeColor = Color.DarkRed;
             }
+        }
+
+        private void dtgFuncionarios_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (e.RowIndex < 0) return;
+
+            DataGridViewRow row = dtgFuncionarios.Rows[e.RowIndex];
+
+
+
+           
+        }
+
+        private void dtgFuncionarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void frmFuncionarios_Load(object sender, EventArgs e)
+        {
+            CarregarFucionarios();
         }
     }
 }

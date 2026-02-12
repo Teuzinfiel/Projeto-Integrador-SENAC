@@ -1,4 +1,4 @@
-drop database senac;
+drop database if exists senac;
 create database senac;
 use senac;
 

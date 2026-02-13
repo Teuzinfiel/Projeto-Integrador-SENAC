@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             panel1 = new Panel();
             astConfirmar = new Label();
             astSenha = new Label();
@@ -60,32 +60,32 @@
             label16 = new Label();
             label14 = new Label();
             btnExcluir = new Button();
-            button1 = new Button();
+            BtnEditar = new Button();
             label8 = new Label();
             label9 = new Label();
             label10 = new Label();
             label11 = new Label();
-            maskedTextBox1 = new MaskedTextBox();
+            EdTelefone = new MaskedTextBox();
             maskedTextBox3 = new MaskedTextBox();
             label12 = new Label();
-            maskedTextBox4 = new MaskedTextBox();
+            EdCpf = new MaskedTextBox();
             maskedTextBox5 = new MaskedTextBox();
             label13 = new Label();
-            textBox4 = new TextBox();
+            EdEmail = new TextBox();
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
             checkBox1 = new CheckBox();
             label5 = new Label();
-            textBox1 = new TextBox();
+            EdSenha = new TextBox();
             label6 = new Label();
-            textBox2 = new TextBox();
+            EdRedefinir = new TextBox();
             label7 = new Label();
-            textBox3 = new TextBox();
-            dtgEmpresas = new DataGridView();
+            EdNome = new TextBox();
+            dtgFuncionarios = new DataGridView();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dtgEmpresas).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dtgFuncionarios).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -402,29 +402,29 @@
             panel2.Controls.Add(label16);
             panel2.Controls.Add(label14);
             panel2.Controls.Add(btnExcluir);
-            panel2.Controls.Add(button1);
+            panel2.Controls.Add(BtnEditar);
             panel2.Controls.Add(label8);
             panel2.Controls.Add(label9);
             panel2.Controls.Add(label10);
             panel2.Controls.Add(label11);
-            panel2.Controls.Add(maskedTextBox1);
+            panel2.Controls.Add(EdTelefone);
             panel2.Controls.Add(maskedTextBox3);
             panel2.Controls.Add(label12);
-            panel2.Controls.Add(maskedTextBox4);
+            panel2.Controls.Add(EdCpf);
             panel2.Controls.Add(maskedTextBox5);
             panel2.Controls.Add(label13);
-            panel2.Controls.Add(textBox4);
+            panel2.Controls.Add(EdEmail);
             panel2.Controls.Add(label2);
             panel2.Controls.Add(label3);
             panel2.Controls.Add(label4);
             panel2.Controls.Add(checkBox1);
             panel2.Controls.Add(label5);
-            panel2.Controls.Add(textBox1);
+            panel2.Controls.Add(EdSenha);
             panel2.Controls.Add(label6);
-            panel2.Controls.Add(textBox2);
+            panel2.Controls.Add(EdRedefinir);
             panel2.Controls.Add(label7);
-            panel2.Controls.Add(textBox3);
-            panel2.Controls.Add(dtgEmpresas);
+            panel2.Controls.Add(EdNome);
+            panel2.Controls.Add(dtgFuncionarios);
             panel2.Location = new Point(612, 12);
             panel2.Name = "panel2";
             panel2.Size = new Size(702, 681);
@@ -465,19 +465,19 @@
             btnExcluir.Text = "Excluir";
             btnExcluir.UseVisualStyleBackColor = false;
             // 
-            // button1
+            // BtnEditar
             // 
-            button1.BackColor = SystemColors.Highlight;
-            button1.Cursor = Cursors.Hand;
-            button1.FlatStyle = FlatStyle.Popup;
-            button1.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(378, 601);
-            button1.Name = "button1";
-            button1.Size = new Size(309, 41);
-            button1.TabIndex = 57;
-            button1.Text = "Atualizar Conta";
-            button1.UseVisualStyleBackColor = false;
+            BtnEditar.BackColor = SystemColors.Highlight;
+            BtnEditar.Cursor = Cursors.Hand;
+            BtnEditar.FlatStyle = FlatStyle.Popup;
+            BtnEditar.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            BtnEditar.ForeColor = Color.White;
+            BtnEditar.Location = new Point(378, 601);
+            BtnEditar.Name = "BtnEditar";
+            BtnEditar.Size = new Size(309, 41);
+            BtnEditar.TabIndex = 57;
+            BtnEditar.Text = "Atualizar Conta";
+            BtnEditar.UseVisualStyleBackColor = false;
             // 
             // label8
             // 
@@ -527,17 +527,17 @@
             label11.TabIndex = 53;
             label11.Text = "CPF";
             // 
-            // maskedTextBox1
+            // EdTelefone
             // 
-            maskedTextBox1.BackColor = Color.FromArgb(224, 224, 224);
-            maskedTextBox1.Font = new Font("Microsoft Sans Serif", 16F);
-            maskedTextBox1.ForeColor = SystemColors.WindowText;
-            maskedTextBox1.Location = new Point(369, 418);
-            maskedTextBox1.Mask = "(00)00000-9999";
-            maskedTextBox1.Name = "maskedTextBox1";
-            maskedTextBox1.ReadOnly = true;
-            maskedTextBox1.Size = new Size(318, 32);
-            maskedTextBox1.TabIndex = 52;
+            EdTelefone.BackColor = Color.FromArgb(224, 224, 224);
+            EdTelefone.Font = new Font("Microsoft Sans Serif", 16F);
+            EdTelefone.ForeColor = SystemColors.WindowText;
+            EdTelefone.Location = new Point(369, 418);
+            EdTelefone.Mask = "(00)00000-9999";
+            EdTelefone.Name = "EdTelefone";
+            EdTelefone.ReadOnly = true;
+            EdTelefone.Size = new Size(318, 32);
+            EdTelefone.TabIndex = 52;
             // 
             // maskedTextBox3
             // 
@@ -562,17 +562,17 @@
             label12.TabIndex = 50;
             label12.Text = "Telefone";
             // 
-            // maskedTextBox4
+            // EdCpf
             // 
-            maskedTextBox4.BackColor = Color.FromArgb(224, 224, 224);
-            maskedTextBox4.Font = new Font("Microsoft Sans Serif", 16F);
-            maskedTextBox4.ForeColor = SystemColors.WindowText;
-            maskedTextBox4.Location = new Point(369, 477);
-            maskedTextBox4.Mask = " 000.000.000-00";
-            maskedTextBox4.Name = "maskedTextBox4";
-            maskedTextBox4.ReadOnly = true;
-            maskedTextBox4.Size = new Size(318, 32);
-            maskedTextBox4.TabIndex = 49;
+            EdCpf.BackColor = Color.FromArgb(224, 224, 224);
+            EdCpf.Font = new Font("Microsoft Sans Serif", 16F);
+            EdCpf.ForeColor = SystemColors.WindowText;
+            EdCpf.Location = new Point(369, 477);
+            EdCpf.Mask = " 000.000.000-00";
+            EdCpf.Name = "EdCpf";
+            EdCpf.ReadOnly = true;
+            EdCpf.Size = new Size(318, 32);
+            EdCpf.TabIndex = 49;
             // 
             // maskedTextBox5
             // 
@@ -596,16 +596,16 @@
             label13.TabIndex = 47;
             label13.Text = "Email";
             // 
-            // textBox4
+            // EdEmail
             // 
-            textBox4.BackColor = Color.FromArgb(224, 224, 224);
-            textBox4.Font = new Font("Microsoft Sans Serif", 16F);
-            textBox4.Location = new Point(369, 538);
-            textBox4.Name = "textBox4";
-            textBox4.PlaceholderText = "Digite o seu email";
-            textBox4.ReadOnly = true;
-            textBox4.Size = new Size(318, 32);
-            textBox4.TabIndex = 46;
+            EdEmail.BackColor = Color.FromArgb(224, 224, 224);
+            EdEmail.Font = new Font("Microsoft Sans Serif", 16F);
+            EdEmail.Location = new Point(369, 538);
+            EdEmail.Name = "EdEmail";
+            EdEmail.PlaceholderText = "Digite o seu email";
+            EdEmail.ReadOnly = true;
+            EdEmail.Size = new Size(318, 32);
+            EdEmail.TabIndex = 46;
             // 
             // label2
             // 
@@ -671,17 +671,17 @@
             label5.TabIndex = 41;
             label5.Text = "Senha atual";
             // 
-            // textBox1
+            // EdSenha
             // 
-            textBox1.BackColor = Color.FromArgb(224, 224, 224);
-            textBox1.Font = new Font("Microsoft Sans Serif", 16F);
-            textBox1.Location = new Point(17, 538);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "Confirme sua senha atual";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(326, 32);
-            textBox1.TabIndex = 40;
-            textBox1.UseSystemPasswordChar = true;
+            EdSenha.BackColor = Color.FromArgb(224, 224, 224);
+            EdSenha.Font = new Font("Microsoft Sans Serif", 16F);
+            EdSenha.Location = new Point(17, 538);
+            EdSenha.Name = "EdSenha";
+            EdSenha.PlaceholderText = "Confirme sua senha atual";
+            EdSenha.ReadOnly = true;
+            EdSenha.Size = new Size(326, 32);
+            EdSenha.TabIndex = 40;
+            EdSenha.UseSystemPasswordChar = true;
             // 
             // label6
             // 
@@ -694,17 +694,17 @@
             label6.TabIndex = 39;
             label6.Text = "Redefinir senha";
             // 
-            // textBox2
+            // EdRedefinir
             // 
-            textBox2.BackColor = Color.FromArgb(224, 224, 224);
-            textBox2.Font = new Font("Microsoft Sans Serif", 16F);
-            textBox2.Location = new Point(17, 479);
-            textBox2.Name = "textBox2";
-            textBox2.PlaceholderText = "Digite sua nova senha";
-            textBox2.ReadOnly = true;
-            textBox2.Size = new Size(326, 32);
-            textBox2.TabIndex = 38;
-            textBox2.UseSystemPasswordChar = true;
+            EdRedefinir.BackColor = Color.FromArgb(224, 224, 224);
+            EdRedefinir.Font = new Font("Microsoft Sans Serif", 16F);
+            EdRedefinir.Location = new Point(17, 479);
+            EdRedefinir.Name = "EdRedefinir";
+            EdRedefinir.PlaceholderText = "Digite sua nova senha";
+            EdRedefinir.ReadOnly = true;
+            EdRedefinir.Size = new Size(326, 32);
+            EdRedefinir.TabIndex = 38;
+            EdRedefinir.UseSystemPasswordChar = true;
             // 
             // label7
             // 
@@ -717,61 +717,63 @@
             label7.TabIndex = 37;
             label7.Text = "Nome de usuário";
             // 
-            // textBox3
+            // EdNome
             // 
-            textBox3.BackColor = Color.FromArgb(224, 224, 224);
-            textBox3.Font = new Font("Microsoft Sans Serif", 16F);
-            textBox3.Location = new Point(17, 420);
-            textBox3.Name = "textBox3";
-            textBox3.PlaceholderText = "Digite o nome de usuario";
-            textBox3.ReadOnly = true;
-            textBox3.Size = new Size(326, 32);
-            textBox3.TabIndex = 36;
+            EdNome.BackColor = Color.FromArgb(224, 224, 224);
+            EdNome.Font = new Font("Microsoft Sans Serif", 16F);
+            EdNome.Location = new Point(17, 420);
+            EdNome.Name = "EdNome";
+            EdNome.PlaceholderText = "Digite o nome de usuario";
+            EdNome.ReadOnly = true;
+            EdNome.Size = new Size(326, 32);
+            EdNome.TabIndex = 36;
             // 
-            // dtgEmpresas
+            // dtgFuncionarios
             // 
-            dtgEmpresas.AllowUserToAddRows = false;
-            dtgEmpresas.AllowUserToDeleteRows = false;
-            dtgEmpresas.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(35, 35, 45);
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dtgEmpresas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dtgEmpresas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dtgEmpresas.BackgroundColor = Color.FromArgb(30, 35, 45);
-            dtgEmpresas.BorderStyle = BorderStyle.None;
-            dtgEmpresas.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(50, 50, 70);
-            dataGridViewCellStyle2.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dtgEmpresas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            dtgEmpresas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgEmpresas.EnableHeadersVisualStyles = false;
-            dtgEmpresas.GridColor = Color.FromArgb(60, 60, 80);
-            dtgEmpresas.Location = new Point(17, 101);
-            dtgEmpresas.MultiSelect = false;
-            dtgEmpresas.Name = "dtgEmpresas";
-            dtgEmpresas.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(40, 40, 50);
-            dataGridViewCellStyle3.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dataGridViewCellStyle3.SelectionForeColor = Color.White;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dtgEmpresas.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(40, 40, 50);
-            dataGridViewCellStyle4.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dataGridViewCellStyle4.SelectionForeColor = Color.White;
-            dtgEmpresas.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            dtgEmpresas.RowTemplate.Height = 40;
-            dtgEmpresas.Size = new Size(670, 265);
-            dtgEmpresas.TabIndex = 6;
+            dtgFuncionarios.AllowUserToAddRows = false;
+            dtgFuncionarios.AllowUserToDeleteRows = false;
+            dtgFuncionarios.AllowUserToOrderColumns = true;
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(35, 35, 45);
+            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dtgFuncionarios.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dtgFuncionarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dtgFuncionarios.BackgroundColor = Color.FromArgb(30, 35, 45);
+            dtgFuncionarios.BorderStyle = BorderStyle.None;
+            dtgFuncionarios.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(50, 50, 70);
+            dataGridViewCellStyle6.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle6.ForeColor = Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dtgFuncionarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dtgFuncionarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgFuncionarios.EnableHeadersVisualStyles = false;
+            dtgFuncionarios.GridColor = Color.FromArgb(60, 60, 80);
+            dtgFuncionarios.Location = new Point(17, 101);
+            dtgFuncionarios.MultiSelect = false;
+            dtgFuncionarios.Name = "dtgFuncionarios";
+            dtgFuncionarios.ReadOnly = true;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = Color.FromArgb(40, 40, 50);
+            dataGridViewCellStyle7.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle7.ForeColor = Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle7.SelectionForeColor = Color.White;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            dtgFuncionarios.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle8.BackColor = Color.FromArgb(40, 40, 50);
+            dataGridViewCellStyle8.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle8.ForeColor = Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle8.SelectionForeColor = Color.White;
+            dtgFuncionarios.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dtgFuncionarios.RowTemplate.Height = 40;
+            dtgFuncionarios.Size = new Size(670, 265);
+            dtgFuncionarios.TabIndex = 6;
+            dtgFuncionarios.CellClick += dtgFuncionarios_CellClick;
+            dtgFuncionarios.CellContentClick += dtgFuncionarios_CellContentClick;
             // 
             // frmFuncionarios
             // 
@@ -784,11 +786,12 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "frmFuncionarios";
             Text = "cadastroUsuario";
+            Load += frmFuncionarios_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dtgEmpresas).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dtgFuncionarios).EndInit();
             ResumeLayout(false);
         }
 
@@ -819,29 +822,29 @@
         private TextBox UsNome;
         private Label label1;
         private Panel panel2;
-        private Button button1;
+        private Button BtnEditar;
         private Label label8;
         private Label label9;
         private Label label10;
         private Label label11;
-        private MaskedTextBox maskedTextBox1;
+        private MaskedTextBox EdTelefone;
         private MaskedTextBox maskedTextBox3;
         private Label label12;
-        private MaskedTextBox maskedTextBox4;
+        private MaskedTextBox EdCpf;
         private MaskedTextBox maskedTextBox5;
         private Label label13;
-        private TextBox textBox4;
+        private TextBox EdEmail;
         private Label label2;
         private Label label3;
         private Label label4;
         private CheckBox checkBox1;
         private Label label5;
-        private TextBox textBox1;
+        private TextBox EdSenha;
         private Label label6;
-        private TextBox textBox2;
+        private TextBox EdRedefinir;
         private Label label7;
-        private TextBox textBox3;
-        private DataGridView dtgEmpresas;
+        private TextBox EdNome;
+        private DataGridView dtgFuncionarios;
         private Label label14;
         private Button btnExcluir;
         private Label label16;

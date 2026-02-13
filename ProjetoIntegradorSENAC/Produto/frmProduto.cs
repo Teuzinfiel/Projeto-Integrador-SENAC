@@ -10,8 +10,8 @@ namespace ProjetoIntegradorSENAC.Produto
 {
     public partial class frmProduto : Form
     {
-        
-        
+
+
         public int idUsuario;
         public int idComercio;
 
@@ -345,7 +345,7 @@ namespace ProjetoIntegradorSENAC.Produto
                 CarregarCategorias();
                 CarregarCategoriasCbAtt();
                 CarregarCategoriasCb();
-        
+
             }
             catch (Exception ex)
             {
@@ -362,8 +362,8 @@ namespace ProjetoIntegradorSENAC.Produto
                 return;
             }
 
-            if (MessageBox.Show(  "Ao excluir esta categoria, os produtos ficarão como 'Categoria excluída'.\nDeseja continuar?",   "Confirmação",
-                MessageBoxButtons.YesNo,  MessageBoxIcon.Warning) == DialogResult.No) return;
+            if (MessageBox.Show("Ao excluir esta categoria, os produtos ficarão como 'Categoria excluída'.\nDeseja continuar?", "Confirmação",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return;
 
             try
             {
@@ -451,7 +451,7 @@ namespace ProjetoIntegradorSENAC.Produto
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(txtNomeProd.Text) ||  string.IsNullOrWhiteSpace(txtPrecoProd.Text) ||
+            if (string.IsNullOrWhiteSpace(txtNomeProd.Text) || string.IsNullOrWhiteSpace(txtPrecoProd.Text) ||
                 cmbMedida.SelectedIndex == -1 || cmbCatAtt.SelectedIndex == -1)
             {
                 MessageBox.Show("Preencha os campos obrigatórios.");
@@ -496,7 +496,7 @@ WHERE id = {idProdutoSelecionado};";
                 return;
             }
 
-            if (MessageBox.Show(  "Deseja desativar este produto?",  "Confirmação",  MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return;
+            if (MessageBox.Show("Deseja desativar este produto?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return;
 
             string sql = $@"  UPDATE produtos SET status = 'desativo' WHERE id = {idProdutoSelecionado}; ";
 
@@ -596,7 +596,7 @@ WHERE id = {idProdutoSelecionado};";
             WHERE comercio_id = {idComercio}
             ORDER BY nome";
 
-                    DataTable dt = Banco.Pesquisar(sql);
+            DataTable dt = Banco.Pesquisar(sql);
 
                     cmbCatAtt.DataSource = dt;
                     cmbCatAtt.DisplayMember = "nome";
@@ -637,7 +637,7 @@ WHERE id = {idProdutoSelecionado};";
                 return;
             }
 
-            if (MessageBox.Show( "Deseja ativar este produto novamente?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)  return;
+            if (MessageBox.Show("Deseja ativar este produto novamente?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) return;
             string sql = $@" UPDATE produtos SET status = 'ativo' WHERE id = {idProdutoSelecionado};";
 
             try

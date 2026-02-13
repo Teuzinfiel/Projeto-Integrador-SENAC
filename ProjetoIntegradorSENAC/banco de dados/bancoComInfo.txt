@@ -1,0 +1,369 @@
+
+DROP DATABASE IF EXISTS senac;
+CREATE DATABASE senac CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+
+USE senac;
+
+-- ============================================
+-- TABELA USUÁRIOS
+-- ============================================
+DROP TABLE IF EXISTS usuarios;
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL,
+    senha VARCHAR(100),
+    telefone VARCHAR(15),
+    email VARCHAR(50),
+    cpf VARCHAR(15)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ============================================
+-- TABELA COMERCIOS
+-- ============================================
+DROP TABLE IF EXISTS comercios;
+CREATE TABLE comercios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    dono_id INT NOT NULL,
+    nome VARCHAR(50),
+    nome_fantasia VARCHAR(50),
+    email VARCHAR(50),
+     tipo_documentacao  enum ('cpf', 'cnpj'),
+    documentacao varchar (20),
+    telefone VARCHAR(15),
+    CONSTRAINT fk_usuarios_comercios
+        FOREIGN KEY (dono_id) REFERENCES usuarios(id)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ============================================
+-- TABELA FUNCIONÁRIOS
+-- ============================================
+DROP TABLE IF EXISTS funcionarios;
+
+CREATE TABLE funcionarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuarios_id INT,
+    comercio_id INT,
+    cargo VARCHAR(30) NOT NULL,
+    
+	CONSTRAINT fk_comercio_func
+        FOREIGN KEY (comercio_id) REFERENCES comercios(id)
+        ON DELETE SET NULL
+        ON UPDATE CASCADE,
+        
+	CONSTRAINT fk_usuario_id
+        FOREIGN KEY (usuarios_id) REFERENCES usuarios(id)
+        ON DELETE SET NULL
+        ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ============================================
+-- TABELA PRODUTOS
+-- ============================================
+DROP TABLE IF EXISTS produtos;
+CREATE TABLE produtos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    comercio_id INT,
+    nome VARCHAR(50) NOT NULL,
+    descricao TINYTEXT DEFAULT NULL,
+    status VARCHAR(250),
+    marca VARCHAR(100) DEFAULT NULL,
+    codigo_barra VARCHAR(64) DEFAULT NULL,
+    unidade_medida ENUM('gramas','unidade') NOT NULL,
+	categoria varchar(50),
+    preco decimal (8,2) NOT NULL,
+    CONSTRAINT fk_comercio_produtos
+        FOREIGN KEY (comercio_id) REFERENCES comercios(id)
+        ON DELETE SET NULL
+        ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ============================================
+-- TABELA MOVIMENTAÇÕES DE ESTOQUE
+-- ============================================
+DROP TABLE IF EXISTS movimentacoes_estoque;
+CREATE TABLE movimentacoes_estoque (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    produto_id INT NOT NULL,
+    funcionario_id INT NULL,
+    comercio_id INT,
+    tipo ENUM('entrada','saida') NOT NULL,
+    quantidade INT NOT NULL,
+    quantidade_final INT NOT NULL,
+    data_movimentacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_produto_mov
+        FOREIGN KEY (produto_id) REFERENCES produtos(id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+
+    CONSTRAINT fk_funcionario_mov
+        FOREIGN KEY (funcionario_id) REFERENCES funcionarios(id)
+        ON DELETE SET NULL
+        ON UPDATE CASCADE,
+        
+	CONSTRAINT fk_comercio_mov
+        FOREIGN KEY (comercio_id) REFERENCES comercios(id)
+        ON DELETE SET NULL
+        ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ============================================
+-- TRIGGER DO ESTOQUE
+-- ============================================
+DELIMITER $$
+
+CREATE TRIGGER trg_movimentacoes_calculo
+BEFORE INSERT ON movimentacoes_estoque
+FOR EACH ROW
+BEGIN
+    DECLARE ultimo_saldo INT;
+
+    SELECT quantidade_final
+    INTO ultimo_saldo
+    FROM movimentacoes_estoque
+    WHERE produto_id = NEW.produto_id
+    ORDER BY id DESC
+    LIMIT 1;
+
+
+
+
+    IF ultimo_saldo IS NULL THEN
+        SET ultimo_saldo = 0;
+    END IF;
+
+    IF NEW.tipo = 'saida' THEN
+        SET NEW.quantidade = NEW.quantidade * -1;
+    END IF;
+
+    SET NEW.quantidade_final = ultimo_saldo + NEW.quantidade;
+END$$
+
+DELIMITER ;
+
+-- ============================================
+-- TABELA VENDAS
+-- ============================================
+DROP TABLE IF EXISTS vendas;
+CREATE TABLE vendas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    funcionario_id INT,
+    comercio_id INT,
+    data_venda TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    total DECIMAL(12,2) DEFAULT 0.00,
+    forma_pagamento VARCHAR(50),
+    descontos DECIMAL(12,2) DEFAULT NULL,
+
+    CONSTRAINT fk_funcionario_vendas
+        FOREIGN KEY (funcionario_id) REFERENCES funcionarios(id)
+        ON DELETE SET NULL
+        ON UPDATE CASCADE,
+        
+		CONSTRAINT fk_comercio_vendas
+        FOREIGN KEY (comercio_id) REFERENCES comercios(id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ============================================
+-- TABELA ITEMS DE VENDA
+-- ============================================
+DROP TABLE IF EXISTS items_venda;
+CREATE TABLE items_venda (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    produtos_id INT NOT NULL,
+    quantidade INT DEFAULT 1,
+    preco_unitario decimal(12,2),
+    vendas_id INT NOT NULL,
+
+    CONSTRAINT fk_produtos_items_venda
+        FOREIGN KEY (produtos_id) REFERENCES produtos(id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+
+    CONSTRAINT fk_vendas_items_venda
+        FOREIGN KEY (vendas_id) REFERENCES vendas(id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+DELIMITER $$
+
+CREATE TRIGGER trg_saida_estoque_pos_venda
+AFTER INSERT ON items_venda
+FOR EACH ROW
+BEGIN
+    INSERT INTO movimentacoes_estoque (
+        produto_id,
+        funcionario_id,
+        tipo,
+        quantidade
+    )
+    VALUES (
+        NEW.produtos_id,
+        (SELECT funcionario_id FROM vendas WHERE id = NEW.vendas_id LIMIT 1),
+        'saida',
+        NEW.quantidade
+    );
+END$$
+
+DELIMITER ;
+
+
+
+INSERT INTO usuarios (nome, senha, telefone, email, cpf) VALUES
+('a', 'ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb', '27999999999', 'a', '222.222.222-22'),
+('Maria Souza', '123456', '11999990002', 'maria@loja2.com', '222.222.222-22'),
+
+('Carlos Mendes', '123456', '11999990003', 'carlos@loja1.com', '333.333.333-33'),
+('Ana Lima', '123456', '11999990004', 'ana@loja2.com', '444.444.444-44');
+
+INSERT INTO comercios (dono_id, nome, nome_fantasia, email, tipo_documentacao, documentacao, telefone) VALUES
+(1, 'a', 'a', 'contato@emporiosouza.com', 'cnpj', '22.222.222/0001-22', '11988880002'),
+(2, 'Empório Souza LTDA', 'Empório Souza', 'contato@emporiosouza.com', 'cnpj', '22.222.222/0001-22', '11988880002');
+
+INSERT INTO funcionarios (usuarios_id, comercio_id, cargo) VALUES
+(1, 1, 'dono'),
+(2, 2, 'dono');
+
+-- ============================================
+-- CORREÇÃO DOS PRODUTOS COM PREÇOS
+-- ======================
+
+-- Inserir produtos com preços corretos
+INSERT INTO produtos (comercio_id, nome, descricao, status, marca, codigo_barra, unidade_medida, categoria, preco) VALUES
+(1, 'Arroz 5kg', 'Arroz branco tipo 1', 'Disponível', 'Tio João', '789000000001', 'gramas', 'Alimentos', 25.90),
+(1, 'Feijão 1kg', 'Feijão carioca', 'Disponível', 'Camil', '789000000002', 'gramas', 'Alimentos', 9.50),
+(1, 'Açúcar 1kg', 'Açúcar refinado', 'Disponível', 'União', '789000000003', 'gramas', 'Alimentos', 4.80),
+(1, 'Óleo 900ml', 'Óleo de soja', 'Disponível', 'Liza', '789000000004', 'unidade', 'Alimentos', 8.20),
+(1, 'Café 500g', 'Café torrado e moído', 'Disponível', 'Pilão', '789000000005', 'gramas', 'Alimentos', 15.90),
+
+(2, 'Detergente', 'Detergente neutro', 'Disponível', 'Ypê', '789000000006', 'unidade', 'Limpeza', 3.50),
+(2, 'Sabão em pó', 'Sabão em pó 1kg', 'Disponível', 'Omo', '789000000007', 'gramas', 'Limpeza', 16.80),
+(2, 'Papel Higiênico', 'Pacote c/ 4 rolos', 'Disponível', 'Neve', '789000000008', 'unidade', 'Higiene', 12.90),
+(2, 'Shampoo', 'Shampoo 350ml', 'Disponível', 'Pantene', '789000000009', 'unidade', 'Higiene', 24.50),
+(2, 'Creme Dental', 'Creme dental 90g', 'Disponível', 'Colgate', '789000000010', 'gramas', 'Higiene', 6.90);
+
+-- ============================================
+-- INSERTS PARA VENDAS (mantendo as 20 vendas originais)
+-- ============================================
+-- Limpar vendas existentes primeiro
+
+INSERT INTO vendas (funcionario_id, comercio_id, data_venda, total, forma_pagamento, descontos)
+VALUES
+-- Vendas para funcionário 1 (Supermercado Silva)
+(1, 1, '2026-02-01 09:10:00', 120.00, 'Pix', 0),
+(1, 1, '2026-02-02 11:20:00', 210.00, 'Dinheiro', 0),
+(1, 1, '2026-02-03 09:45:00', 150.00, 'Cartão', 10.00),
+(1, 1, '2026-02-04 15:10:00', 300.00, 'Cartão', 20.00),
+(1, 1, '2026-02-05 10:00:00', 55.00, 'Pix', 0),
+
+-- Vendas para funcionário 2 (Padaria Pão Quente)
+(2, 2, '2026-02-01 10:05:00', 85.50, 'Cartão', 5.00),
+(2, 2, '2026-02-02 14:30:00', 65.00, 'Pix', 0),
+(2, 2, '2026-02-03 11:00:00', 95.00, 'Pix', 0),
+(2, 2, '2026-02-04 16:40:00', 78.00, 'Dinheiro', 0),
+(2, 2, '2026-02-05 11:50:00', 180.00, 'Cartão', 15.00),
+
+-- Vendas para funcionário 3 (Mercado Oliveira)
+(2, 2, '2026-01-06 09:30:00', 90.00, 'Pix', 0),
+(2, 2, '2026-01-07 10:15:00', 60.00, 'Dinheiro', 0),
+(2, 2, '2026-01-08 09:00:00', 170.00, 'Cartão', 0),
+(2, 2, '2026-01-09 11:10:00', 220.00, 'Pix', 10.00),
+(2, 2, '2026-01-10 09:50:00', 95.00, 'Pix', 0),
+
+-- Vendas para funcionário 4 (Loja Ana Cosméticos)
+(1, 1, '2026-02-06 14:00:00', 240.00, 'Cartão', 20.00),
+(1, 1, '2026-02-07 15:25:00', 130.00, 'Pix', 5.00),
+(1, 1, '2026-02-10 20:40:00', 80.00, 'Dinheiro', 0),
+(1, 1, '2026-02-09 16:00:00', 140.00, 'Cartão', 0),
+(1, 1, '2026-02-10 14:20:00', 260.00, 'Cartão', 25.00);
+
+-- ============================================
+-- INSERTS PARA ITEMS_VENDA COM PREÇOS UNITÁRIOS CORRETOS
+-- ============================================
+-- Limpar items_venda existentes
+
+-- Inserir items de venda com preços unitários correspondentes aos produtos
+INSERT INTO items_venda (produtos_id, quantidade, preco_unitario, vendas_id) VALUES
+-- Venda 1 (funcionário 1)
+(1, 2, 25.90, 1),  -- 2 Arroz a 25.90 cada
+(2, 3, 9.50, 1),   -- 3 Feijão a 9.50 cada
+
+-- Venda 2 (funcionário 1)
+(3, 4, 4.80, 2),   -- 4 Açúcar a 4.80 cada
+(4, 2, 8.20, 2),   -- 2 Óleo a 8.20 cada
+
+-- Venda 3 (funcionário 1)
+(5, 3, 15.90, 3),  -- 3 Café a 15.90 cada
+(1, 1, 25.90, 3),  -- 1 Arroz a 25.90
+
+-- Venda 4 (funcionário 1)
+(2, 5, 9.50, 4),   -- 5 Feijão a 9.50 cada
+(3, 2, 4.80, 4),   -- 2 Açúcar a 4.80 cada
+
+-- Venda 5 (funcionário 1)
+(4, 3, 8.20, 5),   -- 3 Óleo a 8.20 cada
+(5, 1, 15.90, 5),  -- 1 Café a 15.90
+
+-- Venda 6 (funcionário 2)
+(6, 5, 3.50, 6),   -- 5 Detergente a 3.50 cada
+(7, 2, 16.80, 6),  -- 2 Sabão em pó a 16.80 cada
+
+-- Venda 7 (funcionário 2)
+(8, 3, 12.90, 7),  -- 3 Papel Higiênico a 12.90 cada
+(9, 1, 24.50, 7),  -- 1 Shampoo a 24.50
+
+-- Venda 8 (funcionário 2)
+(10, 4, 6.90, 8),  -- 4 Creme Dental a 6.90 cada
+(6, 2, 3.50, 8),   -- 2 Detergente a 3.50 cada
+
+-- Venda 9 (funcionário 2)
+(7, 3, 16.80, 9),  -- 3 Sabão em pó a 16.80 cada
+(8, 1, 12.90, 9),  -- 1 Papel Higiênico a 12.90
+
+-- Venda 10 (funcionário 2)
+(9, 2, 24.50, 10), -- 2 Shampoo a 24.50 cada
+(10, 3, 6.90, 10), -- 3 Creme Dental a 6.90 cada
+
+-- Venda 11 (funcionário 3)
+(1, 1, 25.90, 11), -- 1 Arroz a 25.90
+(2, 2, 9.50, 11),  -- 2 Feijão a 9.50 cada
+
+-- Venda 12 (funcionário 3)
+(3, 5, 4.80, 12),  -- 5 Açúcar a 4.80 cada
+(4, 1, 8.20, 12),  -- 1 Óleo a 8.20
+
+-- Venda 13 (funcionário 3)
+(5, 2, 15.90, 13), -- 2 Café a 15.90 cada
+(1, 1, 25.90, 13), -- 1 Arroz a 25.90
+
+-- Venda 14 (funcionário 3)
+(2, 3, 9.50, 14),  -- 3 Feijão a 9.50 cada
+(3, 2, 4.80, 14),  -- 2 Açúcar a 4.80 cada
+
+-- Venda 15 (funcionário 3)
+(4, 4, 8.20, 15),  -- 4 Óleo a 8.20 cada
+(5, 2, 15.90, 15), -- 2 Café a 15.90 cada
+
+-- Venda 16 (funcionário 4)
+(6, 6, 3.50, 16),  -- 6 Detergente a 3.50 cada
+(7, 1, 16.80, 16), -- 1 Sabão em pó a 16.80
+
+-- Venda 17 (funcionário 4)
+(8, 4, 12.90, 17), -- 4 Papel Higiênico a 12.90 cada
+(9, 2, 24.50, 17), -- 2 Shampoo a 24.50 cada
+
+-- Venda 18 (funcionário 4)
+(10, 5, 6.90, 18), -- 5 Creme Dental a 6.90 cada
+(6, 3, 3.50, 18),  -- 3 Detergente a 3.50 cada
+
+-- Venda 19 (funcionário 4)
+(7, 2, 16.80, 19), -- 2 Sabão em pó a 16.80 cada
+(8, 1, 12.90, 19), -- 1 Papel Higiênico a 12.90
+
+-- Venda 20 (funcionário 4)
+(9, 3, 24.50, 20), -- 3 Shampoo a 24.50 cada
+(10, 4, 6.90, 20); -- 4 Creme Dental a 6.90 cada

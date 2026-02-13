@@ -10,6 +10,7 @@ namespace ProjetoIntegradorSENAC.Caixa
         public FrmPagamento()
         {
             InitializeComponent();
+            
         }
 
         private void Selecionar(string forma)
@@ -19,28 +20,27 @@ namespace ProjetoIntegradorSENAC.Caixa
             Close();
         }
 
-
-        private void btnDinheiro_Click_1(object sender, EventArgs e)
-        {
-            this.Selecionar("Dinheiro");
-        }
-
-        private void btnCredito_Click_1(object sender, EventArgs e)
-        {
-             this.Selecionar("Credito");
-        }
-
-        private void btnDebito_Click_1(object sender, EventArgs e)
-        {
-             this.Selecionar("Débito");
-        }
-
-        private void btnPix_Click_1(object sender, EventArgs e)
+        private void panel4_Click(object sender, EventArgs e)
         {
             this.Selecionar("Pix");
         }
 
-        private void btnCancelar_Click_1(object sender, EventArgs e)
+        private void panel3_Click(object sender, EventArgs e)
+        {
+            this.Selecionar("Dinheiro");
+        }
+
+        private void panel2_Click(object sender, EventArgs e)
+        {
+            this.Selecionar("Credito");
+        }
+
+        private void panel5_Click(object sender, EventArgs e)
+        {
+            this.Selecionar("Débito");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();

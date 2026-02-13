@@ -1,4 +1,4 @@
-drop database senac;
+drop database if exists senac;
 create database senac;
 use senac;
 
@@ -91,6 +91,7 @@ CREATE TABLE vendas (
     total DECIMAL(12,2) DEFAULT 0.00,
     forma_pagamento VARCHAR(50),
     descontos DECIMAL(12,2) DEFAULT NULL,
+    codigo_consumidor VARCHAR(50) NULL,
 
     CONSTRAINT fk_funcionario_vendas
         FOREIGN KEY (funcionario_id) REFERENCES funcionarios(id)

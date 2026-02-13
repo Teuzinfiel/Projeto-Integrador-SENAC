@@ -154,7 +154,11 @@ namespace ProjetoIntegradorSENAC.Logins
 
         }
 
-    
-
+        private void recuperarConta_Click(object sender, EventArgs e)
+        {
+            recuperarEmail email = new recuperarEmail();
+            email.Show();
+            this.Hide();
+        }
     }
 }

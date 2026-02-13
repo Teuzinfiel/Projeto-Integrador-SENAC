@@ -46,6 +46,8 @@
             label5 = new Label();
             label7 = new Label();
             label6 = new Label();
+            label8 = new Label();
+            recuperarConta = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -53,6 +55,8 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(40, 40, 50);
+            panel1.Controls.Add(recuperarConta);
+            panel1.Controls.Add(label8);
             panel1.Controls.Add(CriarConta);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(chkMostrarSenha);
@@ -73,7 +77,7 @@
             CriarConta.Cursor = Cursors.Hand;
             CriarConta.Font = new Font("Franklin Gothic Medium", 12F);
             CriarConta.ForeColor = SystemColors.Highlight;
-            CriarConta.Location = new Point(163, 400);
+            CriarConta.Location = new Point(73, 372);
             CriarConta.Name = "CriarConta";
             CriarConta.Size = new Size(90, 21);
             CriarConta.TabIndex = 18;
@@ -85,7 +89,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Franklin Gothic Medium", 12F);
             label4.ForeColor = Color.FromArgb(180, 180, 190);
-            label4.Location = new Point(132, 376);
+            label4.Location = new Point(42, 348);
             label4.Name = "label4";
             label4.Size = new Size(154, 21);
             label4.TabIndex = 17;
@@ -183,7 +187,6 @@
             contextMenuStrip1.ImageScalingSize = new Size(20, 20);
             contextMenuStrip1.Name = "contextMenuStrip1";
             contextMenuStrip1.Size = new Size(61, 4);
-
             // 
             // panel2
             // 
@@ -264,6 +267,30 @@
             label6.TextAlign = ContentAlignment.MiddleLeft;
             label6.UseMnemonic = false;
             // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Franklin Gothic Medium", 12F);
+            label8.ForeColor = Color.FromArgb(180, 180, 190);
+            label8.Location = new Point(256, 348);
+            label8.Name = "label8";
+            label8.Size = new Size(143, 21);
+            label8.TabIndex = 19;
+            label8.Text = "Esqueceu a senha?";
+            // 
+            // recuperarConta
+            // 
+            recuperarConta.AutoSize = true;
+            recuperarConta.Cursor = Cursors.Hand;
+            recuperarConta.Font = new Font("Franklin Gothic Medium", 12F);
+            recuperarConta.ForeColor = SystemColors.Highlight;
+            recuperarConta.Location = new Point(260, 372);
+            recuperarConta.Name = "recuperarConta";
+            recuperarConta.Size = new Size(132, 21);
+            recuperarConta.TabIndex = 20;
+            recuperarConta.Text = "Recuperar Senha!";
+            recuperarConta.Click += recuperarConta_Click;
+            // 
             // loginUsuario
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -305,5 +332,7 @@
         private Label CriarConta;
         private Label label4;
         private Label label6;
+        private Label recuperarConta;
+        private Label label8;
     }
 }

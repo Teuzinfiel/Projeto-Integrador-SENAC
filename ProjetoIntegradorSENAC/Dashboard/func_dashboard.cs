@@ -936,6 +936,26 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 return new DataTable();
             }
         }
+        public static void Update(string insert, Dictionary<string,string> parametros)
+        {
+            using (MySqlConnection conn = new MySqlConnection(Banco.caminho))
+            {
+                conn.Open();
+                
+                using (MySqlCommand cmd = conn.CreateCommand())
+                {
+                    if (parametros != null)
+                    {
+                        foreach (var p in parametros)
+                        {
+                            cmd.Parameters.AddWithValue(p.Key, p.Value);
+                        }
+                    }
+                    cmd.CommandText = insert;
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
 

@@ -1,4 +1,5 @@
 ﻿using ProjetoIntegradorSENAC.Logins;
+using ProjetoIntegradorSENAC.personalizado;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,11 +15,14 @@ namespace ProjetoIntegradorSENAC
     public partial class codigo : Form
     {
         private int validacaoCodigo = 0;
-        public codigo(int codigo)
+        private string Email = "";
+        public codigo(int codigo, string email)
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
+            this.ActiveControl = txtCodigo;
             this.validacaoCodigo = codigo;
+            this.Email = email;
         }
         private void btnSair_Click(object sender, EventArgs e)
         {
@@ -30,13 +34,6 @@ namespace ProjetoIntegradorSENAC
             WindowState = FormWindowState.Minimized;
         }
 
-        private void bntSair_Click(object sender, EventArgs e)
-        {
-            loginUsuario usuario = new loginUsuario();
-            usuario.Show();
-            this.Hide();
-        }
-
         private void codigo_Load(object sender, EventArgs e)
         {
             panel1.Focus();
@@ -44,21 +41,30 @@ namespace ProjetoIntegradorSENAC
 
         private void btnVerificarCodigo_Click(object sender, EventArgs e)
         {
-            if (validacaoCodigo == 0)
+            if (string.IsNullOrWhiteSpace(txtCodigo.Text))
             {
-                MessageBox.Show("insira o codigo primeiro");
-                return; 
+                caixaMensagem mensagem = new caixaMensagem("insira o codigo primeiro", "Falha ❌");
+                mensagem.Show();
+                return;
             }
-            if (Convert.ToInt32(txtCodigo) == validacaoCodigo)
+            if (Convert.ToInt32(txtCodigo.Text) == validacaoCodigo)
             {
-                MessageBox.Show("certinho");
-
+                mudarSenha mudar = new mudarSenha(validacaoCodigo, Email);
+                mudar.Show();
+                this.Hide();
             }
             else
             {
-                MessageBox.Show("codigo errado");
-            
+                caixaMensagem mensagem = new caixaMensagem("codigo errado", "Falha ❌");
+                mensagem.Show();
             }
+        }
+
+        private void btnVoltarParaLogin_Click(object sender, EventArgs e)
+        {
+            loginUsuario usuario = new loginUsuario();
+            usuario.Show();
+            this.Hide();
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using ProjetoIntegradorSENAC.Logins;
+﻿using ProjetoIntegradorSENAC.Classes;
+using ProjetoIntegradorSENAC.Logins;
+using ProjetoIntegradorSENAC.personalizado;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,7 +33,7 @@ namespace ProjetoIntegradorSENAC
             WindowState = FormWindowState.Minimized;
         }
 
-        private void bntSair_Click(object sender, EventArgs e)
+        private void bntVoltar_Click(object sender, EventArgs e)
         {
             loginUsuario usuario = new loginUsuario();
             usuario.Show();
@@ -45,9 +47,18 @@ namespace ProjetoIntegradorSENAC
 
         private void btnCadastro_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            if (Funcoes.isEmail(txtEmail.Text) == false || string.IsNullOrWhiteSpace(txtEmail.Text))
             {
-                MessageBox.Show("Informe um email válido.");
+                caixaMensagem mensagem = new caixaMensagem("Email invalido", "Falha ❌");
+                mensagem.Show();
+                return;
+            }
+            string verificarEmail = $"SELECT * FROM usuarios WHERE email = '{txtEmail.Text}' ";
+            var data = Banco.Pesquisar(verificarEmail);
+            if (data.Rows.Count <= 0)
+            {
+                caixaMensagem mensagem = new caixaMensagem("Esse e-mail não está cadastrado", "Falha ❌");
+                mensagem.Show();
                 return;
             }
             try
@@ -74,10 +85,9 @@ namespace ProjetoIntegradorSENAC
                         smtp.Send(email);
                     }
                 }
-                codigo codigo = new codigo(codigoVal);
+                codigo codigo = new codigo(codigoVal,txtEmail.Text);
                 codigo.Show();
                 this.Hide();
-                
             }
             catch (Exception ex)
             {

@@ -30,7 +30,7 @@
         {
             panel1 = new Panel();
             btnEnviar = new Button();
-            bntSair = new Button();
+            bntVoltar = new Button();
             txtEmail = new TextBox();
             label2 = new Label();
             label1 = new Label();
@@ -44,13 +44,14 @@
             // 
             panel1.BackColor = Color.FromArgb(40, 40, 50);
             panel1.Controls.Add(btnEnviar);
-            panel1.Controls.Add(bntSair);
+            panel1.Controls.Add(bntVoltar);
             panel1.Controls.Add(txtEmail);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label1);
-            panel1.Location = new Point(12, 49);
+            panel1.Location = new Point(13, 68);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(427, 479);
+            panel1.Size = new Size(490, 639);
             panel1.TabIndex = 0;
             panel1.TabStop = true;
             // 
@@ -61,52 +62,55 @@
             btnEnviar.FlatStyle = FlatStyle.Popup;
             btnEnviar.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnEnviar.ForeColor = Color.White;
-            btnEnviar.Location = new Point(38, 231);
+            btnEnviar.Location = new Point(43, 308);
+            btnEnviar.Margin = new Padding(3, 4, 3, 4);
             btnEnviar.Name = "btnEnviar";
-            btnEnviar.Size = new Size(190, 37);
-            btnEnviar.TabIndex = 31;
+            btnEnviar.Size = new Size(397, 49);
+            btnEnviar.TabIndex = 2;
             btnEnviar.Text = "Enviar código";
             btnEnviar.UseVisualStyleBackColor = false;
             btnEnviar.Click += btnCadastro_Click;
             // 
-            // bntSair
+            // bntVoltar
             // 
-            bntSair.BackColor = Color.Transparent;
-            bntSair.Cursor = Cursors.Hand;
-            bntSair.FlatAppearance.BorderColor = SystemColors.Highlight;
-            bntSair.FlatAppearance.BorderSize = 2;
-            bntSair.FlatAppearance.MouseDownBackColor = Color.FromArgb(50, 50, 60);
-            bntSair.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 50, 60);
-            bntSair.FlatStyle = FlatStyle.Flat;
-            bntSair.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            bntSair.ForeColor = SystemColors.Highlight;
-            bntSair.Location = new Point(38, 416);
-            bntSair.Name = "bntSair";
-            bntSair.Size = new Size(190, 37);
-            bntSair.TabIndex = 30;
-            bntSair.Text = "Voltar para o login";
-            bntSair.UseVisualStyleBackColor = false;
-            bntSair.Click += bntSair_Click;
+            bntVoltar.BackColor = Color.Transparent;
+            bntVoltar.Cursor = Cursors.Hand;
+            bntVoltar.FlatAppearance.BorderColor = SystemColors.Highlight;
+            bntVoltar.FlatAppearance.BorderSize = 2;
+            bntVoltar.FlatAppearance.MouseDownBackColor = Color.FromArgb(50, 50, 60);
+            bntVoltar.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 50, 60);
+            bntVoltar.FlatStyle = FlatStyle.Flat;
+            bntVoltar.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            bntVoltar.ForeColor = SystemColors.Highlight;
+            bntVoltar.Location = new Point(43, 544);
+            bntVoltar.Margin = new Padding(3, 4, 3, 4);
+            bntVoltar.Name = "bntVoltar";
+            bntVoltar.Size = new Size(223, 49);
+            bntVoltar.TabIndex = 30;
+            bntVoltar.Text = "Voltar para o login";
+            bntVoltar.UseVisualStyleBackColor = false;
+            bntVoltar.Click += bntVoltar_Click;
             // 
             // txtEmail
             // 
             txtEmail.BackColor = Color.FromArgb(224, 224, 224);
             txtEmail.Font = new Font("Microsoft Sans Serif", 16F);
             txtEmail.HideSelection = false;
-            txtEmail.Location = new Point(38, 174);
+            txtEmail.Location = new Point(43, 232);
+            txtEmail.Margin = new Padding(3, 4, 3, 4);
             txtEmail.Name = "txtEmail";
             txtEmail.PlaceholderText = "Digite o seu e-mail";
-            txtEmail.Size = new Size(348, 32);
-            txtEmail.TabIndex = 13;
+            txtEmail.Size = new Size(397, 38);
+            txtEmail.TabIndex = 1;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Franklin Gothic Medium", 12F);
             label2.ForeColor = Color.FromArgb(180, 180, 190);
-            label2.Location = new Point(50, 80);
+            label2.Location = new Point(44, 107);
             label2.Name = "label2";
-            label2.Size = new Size(319, 42);
+            label2.Size = new Size(400, 50);
             label2.TabIndex = 1;
             label2.Text = "Digite seu e-mail e enviaremos um código de \r\n      verificação para redefinir sua senha.";
             // 
@@ -115,9 +119,9 @@
             label1.AutoSize = true;
             label1.Font = new Font("Franklin Gothic Medium", 23F);
             label1.ForeColor = SystemColors.Highlight;
-            label1.Location = new Point(55, 14);
+            label1.Location = new Point(54, 19);
             label1.Name = "label1";
-            label1.Size = new Size(306, 37);
+            label1.Size = new Size(381, 45);
             label1.TabIndex = 0;
             label1.Text = "Esqueceu sua senha?";
             // 
@@ -125,8 +129,9 @@
             // 
             panel2.BackColor = Color.FromArgb(30, 30, 40);
             panel2.Location = new Point(0, 0);
+            panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(344, 33);
+            panel2.Size = new Size(393, 44);
             panel2.TabIndex = 3;
             // 
             // btnMinimizar
@@ -135,9 +140,10 @@
             btnMinimizar.FlatStyle = FlatStyle.Popup;
             btnMinimizar.Font = new Font("Segoe UI", 15F);
             btnMinimizar.ForeColor = Color.White;
-            btnMinimizar.Location = new Point(344, 0);
+            btnMinimizar.Location = new Point(393, 0);
+            btnMinimizar.Margin = new Padding(3, 4, 3, 4);
             btnMinimizar.Name = "btnMinimizar";
-            btnMinimizar.Size = new Size(54, 33);
+            btnMinimizar.Size = new Size(62, 44);
             btnMinimizar.TabIndex = 3;
             btnMinimizar.Text = "-";
             btnMinimizar.UseVisualStyleBackColor = false;
@@ -148,9 +154,10 @@
             btnSair.BackColor = Color.Transparent;
             btnSair.FlatStyle = FlatStyle.Popup;
             btnSair.ForeColor = Color.White;
-            btnSair.Location = new Point(397, 0);
+            btnSair.Location = new Point(454, 0);
+            btnSair.Margin = new Padding(3, 4, 3, 4);
             btnSair.Name = "btnSair";
-            btnSair.Size = new Size(54, 33);
+            btnSair.Size = new Size(62, 44);
             btnSair.TabIndex = 1;
             btnSair.Text = "X";
             btnSair.UseVisualStyleBackColor = false;
@@ -158,15 +165,16 @@
             // 
             // recuperarEmail
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(35, 35, 45);
-            ClientSize = new Size(451, 540);
+            ClientSize = new Size(516, 720);
             Controls.Add(btnMinimizar);
             Controls.Add(panel1);
             Controls.Add(btnSair);
             Controls.Add(panel2);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "recuperarEmail";
             Text = "Form1";
             Load += recuperarEmail_Load;
@@ -184,7 +192,7 @@
         private Label label1;
         private Label label2;
         private TextBox txtEmail;
-        private Button bntSair;
+        private Button bntVoltar;
         private Button btnEnviar;
     }
 }

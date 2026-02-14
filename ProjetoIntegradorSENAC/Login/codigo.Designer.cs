@@ -35,8 +35,9 @@
             btnVoltarParaLogin = new Button();
             txtCodigo = new MaskedTextBox();
             btnVerificarCodigo = new Button();
-            label3 = new Label();
+            lbCodigo6Digitos = new Label();
             label4 = new Label();
+            lbEmail = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -80,10 +81,11 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(40, 40, 50);
+            panel1.Controls.Add(lbEmail);
             panel1.Controls.Add(btnVoltarParaLogin);
             panel1.Controls.Add(txtCodigo);
             panel1.Controls.Add(btnVerificarCodigo);
-            panel1.Controls.Add(label3);
+            panel1.Controls.Add(lbCodigo6Digitos);
             panel1.Controls.Add(label4);
             panel1.Location = new Point(13, 68);
             panel1.Margin = new Padding(3, 4, 3, 4);
@@ -135,16 +137,16 @@
             btnVerificarCodigo.UseVisualStyleBackColor = false;
             btnVerificarCodigo.Click += btnVerificarCodigo_Click;
             // 
-            // label3
+            // lbCodigo6Digitos
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Franklin Gothic Medium", 12F);
-            label3.ForeColor = Color.FromArgb(180, 180, 190);
-            label3.Location = new Point(76, 97);
-            label3.Name = "label3";
-            label3.Size = new Size(346, 75);
-            label3.TabIndex = 1;
-            label3.Text = "Enviamos um código de 6 dígitos para \r\nseuemail@email.com\r\nDigite o código abaixo para continuar.";
+            lbCodigo6Digitos.AutoSize = true;
+            lbCodigo6Digitos.Font = new Font("Franklin Gothic Medium", 12F);
+            lbCodigo6Digitos.ForeColor = Color.FromArgb(180, 180, 190);
+            lbCodigo6Digitos.Location = new Point(76, 97);
+            lbCodigo6Digitos.Name = "lbCodigo6Digitos";
+            lbCodigo6Digitos.Size = new Size(341, 75);
+            lbCodigo6Digitos.TabIndex = 1;
+            lbCodigo6Digitos.Text = "Enviamos um código de 6 dígitos para\r\n\r\nDigite o código abaixo para continuar.";
             // 
             // label4
             // 
@@ -156,6 +158,17 @@
             label4.Size = new Size(351, 45);
             label4.TabIndex = 0;
             label4.Text = "Verifique seu e-mail";
+            // 
+            // lbEmail
+            // 
+            lbEmail.AutoSize = true;
+            lbEmail.Font = new Font("Franklin Gothic Medium", 12F);
+            lbEmail.ForeColor = Color.FromArgb(180, 180, 190);
+            lbEmail.Location = new Point(76, 122);
+            lbEmail.Name = "lbEmail";
+            lbEmail.Size = new Size(194, 25);
+            lbEmail.TabIndex = 34;
+            lbEmail.Text = "seuemail@email.com";
             // 
             // codigo
             // 
@@ -184,9 +197,10 @@
         private Panel panel2;
         private Panel panel1;
         private Button btnVerificarCodigo;
-        private Label label3;
+        private Label lbCodigo6Digitos;
         private Label label4;
         private MaskedTextBox txtCodigo;
         private Button btnVoltarParaLogin;
+        private Label lbEmail;
     }
 }

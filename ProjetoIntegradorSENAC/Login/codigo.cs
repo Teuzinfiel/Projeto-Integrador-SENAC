@@ -37,6 +37,7 @@ namespace ProjetoIntegradorSENAC
         private void codigo_Load(object sender, EventArgs e)
         {
             panel1.Focus();
+            lbEmail.Text = Email;
         }
 
         private void btnVerificarCodigo_Click(object sender, EventArgs e)

@@ -130,6 +130,7 @@
             txtConfirmarSenha.PlaceholderText = "Confirmar senha";
             txtConfirmarSenha.Size = new Size(397, 38);
             txtConfirmarSenha.TabIndex = 2;
+            txtConfirmarSenha.UseSystemPasswordChar = true;
             txtConfirmarSenha.TextChanged += txtConfirmarSenha_TextChanged;
             // 
             // btnEnviar
@@ -159,6 +160,7 @@
             txtNovaSenha.PlaceholderText = "Nova senha";
             txtNovaSenha.Size = new Size(397, 38);
             txtNovaSenha.TabIndex = 1;
+            txtNovaSenha.UseSystemPasswordChar = true;
             txtNovaSenha.TextChanged += txtNovaSenha_TextChanged;
             // 
             // label2

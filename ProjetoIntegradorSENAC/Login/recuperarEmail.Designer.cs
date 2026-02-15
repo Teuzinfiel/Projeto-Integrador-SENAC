@@ -28,21 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             panel1 = new Panel();
+            picLoading = new PictureBox();
+            lblCarregando = new Label();
             btnEnviar = new Button();
             bntVoltar = new Button();
             txtEmail = new TextBox();
             label2 = new Label();
             label1 = new Label();
-            panel2 = new Panel();
+            panelTop = new Panel();
             btnMinimizar = new Button();
             btnSair = new Button();
+            timerLoading = new System.Windows.Forms.Timer(components);
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picLoading).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(40, 40, 50);
+            panel1.Controls.Add(picLoading);
+            panel1.Controls.Add(lblCarregando);
             panel1.Controls.Add(btnEnviar);
             panel1.Controls.Add(bntVoltar);
             panel1.Controls.Add(txtEmail);
@@ -54,6 +61,29 @@
             panel1.Size = new Size(490, 639);
             panel1.TabIndex = 0;
             panel1.TabStop = true;
+            // 
+            // picLoading
+            // 
+            picLoading.Image = Properties.Resources.spinner;
+            picLoading.Location = new Point(276, 487);
+            picLoading.Name = "picLoading";
+            picLoading.Size = new Size(42, 41);
+            picLoading.SizeMode = PictureBoxSizeMode.StretchImage;
+            picLoading.TabIndex = 32;
+            picLoading.TabStop = false;
+            picLoading.Visible = false;
+            // 
+            // lblCarregando
+            // 
+            lblCarregando.AutoSize = true;
+            lblCarregando.Font = new Font("Franklin Gothic Medium", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblCarregando.ForeColor = Color.FromArgb(180, 180, 190);
+            lblCarregando.Location = new Point(158, 496);
+            lblCarregando.Name = "lblCarregando";
+            lblCarregando.Size = new Size(112, 23);
+            lblCarregando.TabIndex = 31;
+            lblCarregando.Text = "Carregando...";
+            lblCarregando.Visible = false;
             // 
             // btnEnviar
             // 
@@ -125,14 +155,14 @@
             label1.TabIndex = 0;
             label1.Text = "Esqueceu sua senha?";
             // 
-            // panel2
+            // panelTop
             // 
-            panel2.BackColor = Color.FromArgb(30, 30, 40);
-            panel2.Location = new Point(0, 0);
-            panel2.Margin = new Padding(3, 4, 3, 4);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(393, 44);
-            panel2.TabIndex = 3;
+            panelTop.BackColor = Color.FromArgb(30, 30, 40);
+            panelTop.Location = new Point(0, 0);
+            panelTop.Margin = new Padding(3, 4, 3, 4);
+            panelTop.Name = "panelTop";
+            panelTop.Size = new Size(393, 44);
+            panelTop.TabIndex = 3;
             // 
             // btnMinimizar
             // 
@@ -163,6 +193,10 @@
             btnSair.UseVisualStyleBackColor = false;
             btnSair.Click += btnSair_Click;
             // 
+            // timerLoading
+            // 
+            timerLoading.Tick += timerLoading_Tick;
+            // 
             // recuperarEmail
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -172,7 +206,7 @@
             Controls.Add(btnMinimizar);
             Controls.Add(panel1);
             Controls.Add(btnSair);
-            Controls.Add(panel2);
+            Controls.Add(panelTop);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
             Name = "recuperarEmail";
@@ -180,6 +214,7 @@
             Load += recuperarEmail_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picLoading).EndInit();
             ResumeLayout(false);
         }
 
@@ -187,12 +222,15 @@
 
         private Panel panel1;
         private Button btnMinimizar;
-        private Panel panel2;
+        private Panel panelTop;
         private Button btnSair;
         private Label label1;
         private Label label2;
         private TextBox txtEmail;
         private Button bntVoltar;
         private Button btnEnviar;
+        private Label lblCarregando;
+        private PictureBox picLoading;
+        private System.Windows.Forms.Timer timerLoading;
     }
 }

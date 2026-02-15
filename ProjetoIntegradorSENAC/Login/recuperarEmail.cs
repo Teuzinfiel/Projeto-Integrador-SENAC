@@ -23,6 +23,8 @@ namespace ProjetoIntegradorSENAC
             this.StartPosition = FormStartPosition.CenterScreen;
         }
         int codigoVal = 0;
+        float angulo = 0;
+
         private void btnSair_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -43,28 +45,112 @@ namespace ProjetoIntegradorSENAC
         private void recuperarEmail_Load(object sender, EventArgs e)
         {
             panel1.Focus();
+            Funcoes.AtivarMovimentoPanel(this, panelTop);
         }
 
-        private void btnCadastro_Click(object sender, EventArgs e)
+        private async void btnCadastro_Click(object sender, EventArgs e)
         {
-            if (Funcoes.isEmail(txtEmail.Text) == false || string.IsNullOrWhiteSpace(txtEmail.Text))
+            if (!Funcoes.isEmail(txtEmail.Text) ||
+                string.IsNullOrWhiteSpace(txtEmail.Text))
             {
-                caixaMensagem mensagem = new caixaMensagem("Email invalido", "Falha ❌");
+                caixaMensagem mensagem =
+                    new caixaMensagem("Email inválido", "Falha ❌");
+
                 mensagem.Show();
                 return;
             }
-            string verificarEmail = $"SELECT * FROM usuarios WHERE email = '{txtEmail.Text}' ";
+
+            string verificarEmail =
+                $"SELECT * FROM usuarios WHERE email = '{txtEmail.Text}' ";
+
             var data = Banco.Pesquisar(verificarEmail);
+
             if (data.Rows.Count <= 0)
             {
-                caixaMensagem mensagem = new caixaMensagem("Esse e-mail não está cadastrado", "Falha ❌");
+                caixaMensagem mensagem =
+                    new caixaMensagem("Esse e-mail não está cadastrado", "Falha ❌");
+
                 mensagem.Show();
                 return;
             }
+
             try
             {
+                MostrarLoading(); 
+
                 Random random = new Random();
                 codigoVal = random.Next(100000, 999999);
+
+                await EnviarEmailAsync(txtEmail.Text, codigoVal);
+
+                EsconderLoading(); 
+
+                codigo codigo = new codigo(codigoVal, txtEmail.Text);
+                codigo.Show();
+
+                this.Hide();
+            }
+            catch (Exception ex)
+            {
+                EsconderLoading();
+
+                MessageBox.Show("Erro: " + ex.Message);
+            }
+        }
+
+        private void GirarImagem()
+        {
+            angulo += 10f;
+
+            if (angulo >= 360)
+                angulo = 0;
+
+            Bitmap bmp = new Bitmap(Properties.Resources.spinner);
+
+            Bitmap bmpRotacionado = new Bitmap(bmp.Width, bmp.Height);
+
+            using (Graphics g = Graphics.FromImage(bmpRotacionado))
+            {
+                g.TranslateTransform(bmp.Width / 2, bmp.Height / 2);
+                g.RotateTransform(angulo);
+                g.TranslateTransform(-bmp.Width / 2, -bmp.Height / 2);
+
+                g.DrawImage(bmp, new Point(0, 0));
+            }
+
+            picLoading.Image = bmpRotacionado;
+        }
+
+        private void timerLoading_Tick(object sender, EventArgs e)
+        {
+            GirarImagem();
+        }
+        private void MostrarLoading()
+        {
+            lblCarregando.Visible = true;
+            picLoading.Visible = true;
+            timerLoading.Start();
+        }
+
+        private void EsconderLoading()
+        {
+            timerLoading.Stop();
+            lblCarregando.Visible = false;
+            picLoading.Visible = false;
+        }
+        private async Task EnviarEmailAsync(string destino, int codigo)
+        {
+            await Task.Run(() =>
+            {
+                string corpoEmail = $@"
+                <html>
+                <body>
+                    <h2>Recuperação de Senha</h2>
+                    <p>Seu código é:</p>
+                    <h1>{codigo}</h1>
+                </body>
+                </html>";
+
                 using (SmtpClient smtp = new SmtpClient())
                 {
                     using (MailMessage email = new MailMessage())
@@ -72,28 +158,29 @@ namespace ProjetoIntegradorSENAC
                         smtp.Host = "smtp.gmail.com";
                         smtp.Port = 587;
                         smtp.EnableSsl = true;
-                        smtp.UseDefaultCredentials = false;
-                        smtp.Credentials = new System.Net.NetworkCredential("gustavorb1341@gmail.com", "ttznihendehmibjp");
 
-                        email.From = new MailAddress("gustavorb1341@gmail.com");
-                        email.To.Add(txtEmail.Text);
+                        smtp.Credentials =
+                            new System.Net.NetworkCredential(
+                                "gustavorb1341@gmail.com",
+                                "ttznihendehmibjp"
+                            );
 
-                        email.Subject = "codigo de validação";
-                        email.IsBodyHtml = false;
-                        email.Body = codigoVal.ToString();
+                        email.From =
+                            new MailAddress("gustavorb1341@gmail.com");
+
+                        email.To.Add(destino);
+
+                        email.Subject = "Código de Validação";
+
+                        email.Body = corpoEmail;
+                        email.IsBodyHtml = true;
 
                         smtp.Send(email);
                     }
                 }
-                codigo codigo = new codigo(codigoVal,txtEmail.Text);
-                codigo.Show();
-                this.Hide();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro: " + ex.Message);
-
-            }
+            });
         }
+
+
     }
 }

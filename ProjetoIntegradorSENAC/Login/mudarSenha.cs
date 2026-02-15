@@ -96,7 +96,7 @@ namespace ProjetoIntegradorSENAC
                 func_dashboard.Update(query, parametros);
                 loginUsuario usuario = new loginUsuario();
                 usuario.Show();
-                
+
 
                 caixaMensagem mensagem = new caixaMensagem("Senha alterada com sucesso", "Sucesso ✔");
                 mensagem.Show();
@@ -109,6 +109,11 @@ namespace ProjetoIntegradorSENAC
             loginUsuario usuario = new loginUsuario();
             usuario.Show();
             this.Hide();
+        }
+
+        private void mudarSenha_Load(object sender, EventArgs e)
+        {
+            Funcoes.AtivarMovimentoPanel(this, panelTop);
         }
     }
 }

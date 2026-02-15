@@ -30,14 +30,14 @@
         {
             btnMinimizar = new Button();
             btnSair = new Button();
-            panel2 = new Panel();
+            panelTop = new Panel();
             panel1 = new Panel();
+            lbEmail = new Label();
             btnVoltarParaLogin = new Button();
             txtCodigo = new MaskedTextBox();
             btnVerificarCodigo = new Button();
             lbCodigo6Digitos = new Label();
             label4 = new Label();
-            lbEmail = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -69,14 +69,14 @@
             btnSair.UseVisualStyleBackColor = false;
             btnSair.Click += btnSair_Click;
             // 
-            // panel2
+            // panelTop
             // 
-            panel2.BackColor = Color.FromArgb(30, 30, 40);
-            panel2.Location = new Point(0, 0);
-            panel2.Margin = new Padding(3, 4, 3, 4);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(393, 44);
-            panel2.TabIndex = 6;
+            panelTop.BackColor = Color.FromArgb(30, 30, 40);
+            panelTop.Location = new Point(0, 0);
+            panelTop.Margin = new Padding(3, 4, 3, 4);
+            panelTop.Name = "panelTop";
+            panelTop.Size = new Size(393, 44);
+            panelTop.TabIndex = 6;
             // 
             // panel1
             // 
@@ -93,6 +93,17 @@
             panel1.Size = new Size(490, 639);
             panel1.TabIndex = 34;
             panel1.TabStop = true;
+            // 
+            // lbEmail
+            // 
+            lbEmail.AutoSize = true;
+            lbEmail.Font = new Font("Franklin Gothic Medium", 12F);
+            lbEmail.ForeColor = Color.FromArgb(180, 180, 190);
+            lbEmail.Location = new Point(76, 122);
+            lbEmail.Name = "lbEmail";
+            lbEmail.Size = new Size(194, 25);
+            lbEmail.TabIndex = 34;
+            lbEmail.Text = "seuemail@email.com";
             // 
             // btnVoltarParaLogin
             // 
@@ -159,17 +170,6 @@
             label4.TabIndex = 0;
             label4.Text = "Verifique seu e-mail";
             // 
-            // lbEmail
-            // 
-            lbEmail.AutoSize = true;
-            lbEmail.Font = new Font("Franklin Gothic Medium", 12F);
-            lbEmail.ForeColor = Color.FromArgb(180, 180, 190);
-            lbEmail.Location = new Point(76, 122);
-            lbEmail.Name = "lbEmail";
-            lbEmail.Size = new Size(194, 25);
-            lbEmail.TabIndex = 34;
-            lbEmail.Text = "seuemail@email.com";
-            // 
             // codigo
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -179,7 +179,7 @@
             Controls.Add(panel1);
             Controls.Add(btnMinimizar);
             Controls.Add(btnSair);
-            Controls.Add(panel2);
+            Controls.Add(panelTop);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
             Name = "codigo";
@@ -194,7 +194,7 @@
 
         private Button btnMinimizar;
         private Button btnSair;
-        private Panel panel2;
+        private Panel panelTop;
         private Panel panel1;
         private Button btnVerificarCodigo;
         private Label lbCodigo6Digitos;

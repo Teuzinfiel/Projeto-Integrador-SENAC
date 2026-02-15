@@ -40,7 +40,7 @@
             label1 = new Label();
             btnMinimizar = new Button();
             btnSair = new Button();
-            panel2 = new Panel();
+            panelTop = new Panel();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -214,14 +214,14 @@
             btnSair.UseVisualStyleBackColor = false;
             btnSair.Click += btnSair_Click;
             // 
-            // panel2
+            // panelTop
             // 
-            panel2.BackColor = Color.FromArgb(30, 30, 40);
-            panel2.Location = new Point(0, 0);
-            panel2.Margin = new Padding(3, 4, 3, 4);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(393, 44);
-            panel2.TabIndex = 34;
+            panelTop.BackColor = Color.FromArgb(30, 30, 40);
+            panelTop.Location = new Point(0, 0);
+            panelTop.Margin = new Padding(3, 4, 3, 4);
+            panelTop.Name = "panelTop";
+            panelTop.Size = new Size(393, 44);
+            panelTop.TabIndex = 34;
             // 
             // mudarSenha
             // 
@@ -232,10 +232,11 @@
             Controls.Add(btnMinimizar);
             Controls.Add(btnSair);
             Controls.Add(panel1);
-            Controls.Add(panel2);
+            Controls.Add(panelTop);
             FormBorderStyle = FormBorderStyle.None;
             Name = "mudarSenha";
             Text = "mudarSenha";
+            Load += mudarSenha_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
@@ -250,7 +251,7 @@
         private Label label1;
         private Button btnMinimizar;
         private Button btnSair;
-        private Panel panel2;
+        private Panel panelTop;
         private TextBox txtConfirmarSenha;
         private Label lbNovaSenha;
         private Label lbConfirmarSenha;

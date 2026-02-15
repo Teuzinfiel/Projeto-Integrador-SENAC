@@ -1,4 +1,5 @@
-﻿using ProjetoIntegradorSENAC.Logins;
+﻿using ProjetoIntegradorSENAC.Classes;
+using ProjetoIntegradorSENAC.Logins;
 using ProjetoIntegradorSENAC.personalizado;
 using System;
 using System.Collections.Generic;
@@ -38,6 +39,7 @@ namespace ProjetoIntegradorSENAC
         {
             panel1.Focus();
             lbEmail.Text = Email;
+            Funcoes.AtivarMovimentoPanel(this, panelTop);
         }
 
         private void btnVerificarCodigo_Click(object sender, EventArgs e)

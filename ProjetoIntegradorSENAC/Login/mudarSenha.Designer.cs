@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            picSenha = new PictureBox();
             btnVoltarParaLogin = new Button();
             chkMostrarSenha = new CheckBox();
             lbConfirmarSenha = new Label();
@@ -42,11 +43,13 @@
             btnSair = new Button();
             panelTop = new Panel();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picSenha).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(40, 40, 50);
+            panel1.Controls.Add(picSenha);
             panel1.Controls.Add(btnVoltarParaLogin);
             panel1.Controls.Add(chkMostrarSenha);
             panel1.Controls.Add(lbConfirmarSenha);
@@ -62,6 +65,18 @@
             panel1.Size = new Size(492, 639);
             panel1.TabIndex = 1;
             panel1.TabStop = true;
+            // 
+            // picSenha
+            // 
+            picSenha.Image = Properties.Resources.pontoInterrogacao;
+            picSenha.Location = new Point(446, 189);
+            picSenha.Name = "picSenha";
+            picSenha.Size = new Size(40, 38);
+            picSenha.SizeMode = PictureBoxSizeMode.StretchImage;
+            picSenha.TabIndex = 36;
+            picSenha.TabStop = false;
+            picSenha.MouseLeave += picSenha_MouseLeave;
+            picSenha.MouseHover += pictureBox1_MouseHover;
             // 
             // btnVoltarParaLogin
             // 
@@ -239,6 +254,7 @@
             Load += mudarSenha_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picSenha).EndInit();
             ResumeLayout(false);
         }
 
@@ -257,5 +273,6 @@
         private Label lbConfirmarSenha;
         private CheckBox chkMostrarSenha;
         private Button btnVoltarParaLogin;
+        private PictureBox picSenha;
     }
 }

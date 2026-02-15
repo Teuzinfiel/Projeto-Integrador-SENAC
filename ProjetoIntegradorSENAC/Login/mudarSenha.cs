@@ -30,6 +30,7 @@ namespace ProjetoIntegradorSENAC
             this.StartPosition = FormStartPosition.CenterScreen;
         }
         bool novaSenhaboo = false, confirmarSenhaboo = false;
+        caixaInformacao info;
         private void btnSair_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -114,6 +115,32 @@ namespace ProjetoIntegradorSENAC
         private void mudarSenha_Load(object sender, EventArgs e)
         {
             Funcoes.AtivarMovimentoPanel(this, panelTop);
+        }
+
+        private void pictureBox1_MouseHover(object sender, EventArgs e)
+        {
+            if (info == null || info.IsDisposed)
+            {
+                Point pos = Cursor.Position;
+
+                info = new caixaInformacao();
+
+                info.StartPosition = FormStartPosition.Manual;
+                info.FormBorderStyle = FormBorderStyle.None;
+                info.ShowInTaskbar = false;
+
+                info.Location = new Point(pos.X + 10, pos.Y + 10);
+
+                info.Show();
+            }
+        }
+
+        private void picSenha_MouseLeave(object sender, EventArgs e)
+        {
+            if (info != null && !info.IsDisposed)
+            {
+                info.Close();
+            }
         }
     }
 }

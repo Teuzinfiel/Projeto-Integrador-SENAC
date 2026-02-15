@@ -144,10 +144,58 @@ namespace ProjetoIntegradorSENAC
             {
                 string corpoEmail = $@"
                 <html>
+                <head>
+                    <style>
+                        body {{
+                            font-family: Arial, sans-serif;
+                            background-color: #f4f4f4;
+                            padding: 20px;
+                        }}
+                        .container {{
+                            background-color: #ffffff;
+                            max-width: 500px;
+                            margin: auto;
+                            padding: 20px;
+                            border-radius: 10px;
+                            text-align: center;
+                            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+                        }}
+                        h2 {{
+                            color: #333;
+                        }}
+                        .codigo {{
+                            font-size: 28px;
+                            font-weight: bold;
+                            color: #2e86de;
+                            margin: 20px 0;
+                        }}
+                        p {{
+                            color: #555;
+                        }}
+                        .rodape {{
+                            font-size: 12px;
+                            color: #888;
+                            margin-top: 20px;
+                        }}
+                    </style>
+                </head>
+                
                 <body>
-                    <h2>Recuperação de Senha</h2>
-                    <p>Seu código é:</p>
-                    <h1>{codigo}</h1>
+                    <div class='container'>
+                        <h2>Recuperação de Senha</h2>
+                
+                        <p>Olá!</p>
+                
+                        <p>Use o código abaixo para validar sua conta:</p>
+                
+                        <div class='codigo'>{codigoVal}</div>
+                
+                        <p>Se você não solicitou este código, ignore este e-mail.</p>
+                
+                        <div class='rodape'>
+                            © {DateTime.Now.Year} - Projeto Integrador SENAC
+                        </div>
+                    </div>
                 </body>
                 </html>";
 
@@ -180,7 +228,5 @@ namespace ProjetoIntegradorSENAC
                 }
             });
         }
-
-
     }
 }

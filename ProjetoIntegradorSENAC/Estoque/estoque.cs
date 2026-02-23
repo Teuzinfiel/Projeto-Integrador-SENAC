@@ -13,53 +13,100 @@ namespace ProjetoIntegradorSENAC.Estoque
 {
     public partial class estoque : Form
     {
-        int idEmpresa;
-        public estoque(int idEmpresa)
+        private MainPrincipal _main;
+        private int idEmpresa;
+
+        public estoque(MainPrincipal main, int idEmpresa)
         {
             InitializeComponent();
+            _main = main;
             this.idEmpresa = idEmpresa;
+            dtgProdutos.DefaultCellStyle.SelectionBackColor = dtgProdutos.DefaultCellStyle.BackColor;
+            dtgProdutos.DefaultCellStyle.SelectionForeColor = dtgProdutos.DefaultCellStyle.ForeColor;
+            dtgProdutos.RowsDefaultCellStyle.SelectionBackColor = dtgProdutos.RowsDefaultCellStyle.BackColor;
+            dtgProdutos.RowsDefaultCellStyle.SelectionForeColor = dtgProdutos.RowsDefaultCellStyle.ForeColor;
+            dtgProdutos.AlternatingRowsDefaultCellStyle.SelectionBackColor =
+            dtgProdutos.AlternatingRowsDefaultCellStyle.BackColor;
+            dtgProdutos.TabStop = false;
+            dtgProdutos.ClearSelection();
         }
+        private int _produtoId;
+
+        private void CarregarProdutos()
+        {
+            string sql = @"
+        SELECT 
+            p.id,
+            p.codigo_barra,
+            p.nome,
+            p.status,
+            IFNULL(e.quantidade_atual,0) AS quantidade
+        FROM produtos p
+        LEFT JOIN estoque e ON e.produto_id = p.id
+        WHERE p.comercio_id = " + idEmpresa;
+
+            DataTable dt = Banco.Pesquisar(sql);
+            dtgProdutos.Columns["Situacao"].DefaultCellStyle.BackColor = Color.Empty;
+            dtgProdutos.Columns["Situacao"].DefaultCellStyle.ForeColor = Color.Empty;
+            dt.Columns.Add("Situacao");
+
+            foreach (DataRow row in dt.Rows)
+            {
+                decimal qtd = Convert.ToDecimal(row["quantidade"]);
+                row["Situacao"] = ObterSituacao(qtd);
+            }
+
+            dtgProdutos.DataSource = dt;
+       
+            // Ajustar nomes das colunas
+            dtgProdutos.Columns["codigo_barra"].HeaderText = "Código de Barras";
+            dtgProdutos.Columns["quantidade"].HeaderText = "Quantidade";
+
+            // ESCONDER ID
+            dtgProdutos.Columns["id"].Visible = false;
+            dtgProdutos.ClearSelection();
+    
+
+        }
+
+        private string ObterSituacao(decimal quantidade)
+        {
+            if (quantidade == 0)
+                return "Sem Estoque";
+
+            if (quantidade <= 12)
+                return "Estoque Baixo";
+
+            if (quantidade <= 25)
+                return "Atenção";
+
+            return "Normal";
+        }
+
 
         private void estoque_Load_1(object sender, EventArgs e)
         {
-            string query = $"SELECT \r\n    p.id AS produto_id,\r\n    p.nome AS nome_produto,\r\n    p.marca,\r\n    p.codigo_barra,\r\n    p.unidade_medida,\r\n    p.categoria,\r\n\r\n    m.quantidade AS quantidade_movimentada,\r\n    m.quantidade_final,\r\n    m.tipo,\r\n    m.data_movimentacao,\r\n\tf.id,\r\n    u.nome AS funcionario_responsavel\r\n\r\nFROM movimentacoes_estoque m\r\nLEFT JOIN produtos p\r\n    ON p.id = m.produto_id\r\nLEFT JOIN funcionarios f\r\n    ON f.id = m.funcionario_id\r\nLEFT JOIN usuarios u\r\n    ON u.id = f.usuarios_id\r\n\r\nORDER BY m.data_movimentacao DESC limit 50;";
-            var produtos = Banco.Pesquisar(query);
-            dtgProdutos.DataSource = produtos;
-            // Impedir que o grid autoajuste de forma bagunçada
-            dtgProdutos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            dtgProdutos.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
-            dtgProdutos.AllowUserToResizeRows = false;
 
-            // Opção: ajusta automaticamente largura mínima
-            dtgProdutos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-
-            // Esconder colunas que não precisam aparecer no grid
-            if (dtgProdutos.Columns.Contains("produto_id"))
-                dtgProdutos.Columns["produto_id"].Visible = false;
-
-            if (dtgProdutos.Columns.Contains("id"))   // id do funcionario
-                dtgProdutos.Columns["id"].Visible = false;
-
-            // Alterar textos das colunas para ficar mais bonitinho
-            dtgProdutos.Columns["nome_produto"].HeaderText = "Produto";
-            dtgProdutos.Columns["marca"].HeaderText = "Marca";
-            dtgProdutos.Columns["codigo_barra"].HeaderText = "Código";
-            dtgProdutos.Columns["unidade_medida"].HeaderText = "Unidade";
-            dtgProdutos.Columns["categoria"].HeaderText = "Categoria";
-            dtgProdutos.Columns["quantidade_movimentada"].HeaderText = "Movimentado";
-            dtgProdutos.Columns["quantidade_final"].HeaderText = "Saldo";
-            dtgProdutos.Columns["tipo"].HeaderText = "Tipo";
-            dtgProdutos.Columns["data_movimentacao"].HeaderText = "Data";
-            dtgProdutos.Columns["funcionario_responsavel"].HeaderText = "Funcionário";
-
+            CarregarProdutos();
             // Travar edição pelo usuário
             dtgProdutos.ReadOnly = true;
-
             // Ajustar layout geral
             dtgProdutos.RowHeadersVisible = false; // tira aquela primeira coluna cinza
             dtgProdutos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dtgProdutos.MultiSelect = false;
-
+            dtgProdutos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dtgProdutos.RowTemplate.Height = 32;
+            dtgProdutos.EnableHeadersVisualStyles = false;
+            dtgProdutos.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(30, 30, 45);
+            dtgProdutos.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dtgProdutos.BackgroundColor = Color.FromArgb(20, 20, 35);
+            dtgProdutos.BorderStyle = BorderStyle.None;
+            comboBox1.Items.Add("Todas");
+            comboBox1.Items.Add("Normal");
+            comboBox1.Items.Add("Atenção");
+            comboBox1.Items.Add("Estoque Baixo");
+            comboBox1.Items.Add("Sem Estoque");
+            comboBox1.SelectedIndex = 0;
         }
 
         private void txtPesquisa_TextChanged(object sender, EventArgs e)
@@ -72,7 +119,77 @@ namespace ProjetoIntegradorSENAC.Estoque
 
         }
 
-     
+        private void dtgProdutos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                int idProduto = Convert.ToInt32(dtgProdutos.Rows[e.RowIndex].Cells["id"].Value);
+
+                _main.AbrirFormNoPanel(new frmControleEstoque(_main, idProduto));
+
+
+                CarregarProdutos(); // Atualiza quando voltar
+            }
+        }
+
+        private void dtgProdutos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dtgProdutos.Columns[e.ColumnIndex].Name == "Situacao")
+            {
+                string situacao = e.Value?.ToString();
+
+                if (situacao == "Normal")
+                {
+                    e.CellStyle.BackColor = Color.FromArgb(0, 120, 215); // Azul moderno
+                    e.CellStyle.ForeColor = Color.White;
+                }
+                else if (situacao == "Atenção")
+                {
+                    e.CellStyle.BackColor = Color.FromArgb(255, 140, 0); // Laranja forte
+                    e.CellStyle.ForeColor = Color.White;
+                }
+                else if (situacao == "Estoque Baixo")
+                {
+                    e.CellStyle.BackColor = Color.FromArgb(200, 0, 0); // Vermelho
+                    e.CellStyle.ForeColor = Color.White;
+                }
+                else if (situacao == "Sem Estoque")
+                {
+                    e.CellStyle.BackColor = Color.FromArgb(120, 0, 0); // Vermelho escuro
+                    e.CellStyle.ForeColor = Color.White;
+                }
+            }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)dtgProdutos.DataSource;
+
+
+            if (comboBox1.Text == "Todas")
+            {
+                dt.DefaultView.RowFilter = "";
+            }
+            else
+            {
+                dt.DefaultView.RowFilter = $"Situacao = '{comboBox1.Text}'";
+            }
+        }
+
+        private bool ordemAsc = true;
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)dtgProdutos.DataSource;
+
+            if (ordemAsc)
+                dt.DefaultView.Sort = "nome ASC";
+            else
+                dt.DefaultView.Sort = "nome DESC";
+
+            ordemAsc = !ordemAsc;
+        }
+
+
     }
 }
 

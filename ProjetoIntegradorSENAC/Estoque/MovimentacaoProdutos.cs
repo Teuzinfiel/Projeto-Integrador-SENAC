@@ -13,14 +13,14 @@ namespace ProjetoIntegradorSENAC.Estoque
 {
     public partial class MovimentacaoProdutos : Form
     {
-        int idEmpresa;
+        private int _idEmpresa;
+        private int _produtoId;
+
         public MovimentacaoProdutos(int idEmpresa)
         {
             InitializeComponent();
-            this.idEmpresa = idEmpresa;
-       
+            _idEmpresa = idEmpresa;
         }
-
         private void MovimentacaoProdutos_Load(object sender, EventArgs e)
         {
             flowLayoutPanel1.AutoScroll = true;

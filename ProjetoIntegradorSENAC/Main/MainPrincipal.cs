@@ -27,6 +27,23 @@ namespace ProjetoIntegradorSENAC
             nomeEmpresa = nomeEmpresa;
             label3.Text = nomeEmpresa;
         }
+
+        public void DestacarMovimentacoes()
+        {
+            EfeitoClickBotaocs.ResetarBotoes(
+                btnCaixa,
+                btnDashboard,
+                btnEstoque,
+                btnFuncionario,
+                btnLog,
+                btnProdutos,
+                btnMovimentacao
+            );
+
+            btnMovimentacao.BackColor = Color.FromArgb(45, 45, 60);
+            labelCategorias.Text = "Movimentações";
+        }
+
         public void AbrirFormNoPanel(Form formFilho)
         {
             // tira qualquer container que tiver aberto se outro for clicado
@@ -73,8 +90,7 @@ namespace ProjetoIntegradorSENAC
 
         private void btnEstoque_Click(object sender, EventArgs e)
         {
-            AbrirFormNoPanel(new estoque(this.idEmpresa));
-
+            AbrirFormNoPanel(new estoque(this, this.idEmpresa));
             labelCategorias.Text = "Estoque";
             EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos, btnMovimentacao);
             btnEstoque.BackColor = Color.FromArgb(45, 45, 60);

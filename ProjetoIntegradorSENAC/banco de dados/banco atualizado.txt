@@ -77,69 +77,7 @@ CREATE TABLE produtos (
         ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- ============================================
--- TABELA MOVIMENTAÇÕES DE ESTOQUE
--- ============================================
-DROP TABLE IF EXISTS movimentacoes_estoque;
-CREATE TABLE movimentacoes_estoque (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    produto_id INT NOT NULL,
-    funcionario_id INT NULL,
-    comercio_id INT,
-    tipo ENUM('entrada','saida') NOT NULL,
-    quantidade INT NOT NULL,
-    quantidade_final INT NOT NULL,
-    data_movimentacao DATETIME DEFAULT CURRENT_TIMESTAMP,
 
-    CONSTRAINT fk_produto_mov
-        FOREIGN KEY (produto_id) REFERENCES produtos(id)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE,
-
-    CONSTRAINT fk_funcionario_mov
-        FOREIGN KEY (funcionario_id) REFERENCES funcionarios(id)
-        ON DELETE SET NULL
-        ON UPDATE CASCADE,
-        
-	CONSTRAINT fk_comercio_mov
-        FOREIGN KEY (comercio_id) REFERENCES comercios(id)
-        ON DELETE SET NULL
-        ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ============================================
--- TRIGGER DO ESTOQUE
--- ============================================
-DELIMITER $$
-
-CREATE TRIGGER trg_movimentacoes_calculo
-BEFORE INSERT ON movimentacoes_estoque
-FOR EACH ROW
-BEGIN
-    DECLARE ultimo_saldo INT;
-
-    SELECT quantidade_final
-    INTO ultimo_saldo
-    FROM movimentacoes_estoque
-    WHERE produto_id = NEW.produto_id
-    ORDER BY id DESC
-    LIMIT 1;
-
-
-
-
-    IF ultimo_saldo IS NULL THEN
-        SET ultimo_saldo = 0;
-    END IF;
-
-    IF NEW.tipo = 'saida' THEN
-        SET NEW.quantidade = NEW.quantidade * -1;
-    END IF;
-
-    SET NEW.quantidade_final = ultimo_saldo + NEW.quantidade;
-END$$
-
-DELIMITER ;
 
 -- ============================================
 -- TABELA VENDAS
@@ -188,27 +126,7 @@ CREATE TABLE items_venda (
         ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-DELIMITER $$
 
-CREATE TRIGGER trg_saida_estoque_pos_venda
-AFTER INSERT ON items_venda
-FOR EACH ROW
-BEGIN
-    INSERT INTO movimentacoes_estoque (
-        produto_id,
-        funcionario_id,
-        tipo,
-        quantidade
-    )
-    VALUES (
-        NEW.produtos_id,
-        (SELECT funcionario_id FROM vendas WHERE id = NEW.vendas_id LIMIT 1),
-        'saida',
-        NEW.quantidade
-    );
-END$$
-
-DELIMITER ;
 
 CREATE TABLE categorias (
     id INT AUTO_INCREMENT PRIMARY KEY,

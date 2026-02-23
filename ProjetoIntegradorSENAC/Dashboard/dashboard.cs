@@ -95,13 +95,13 @@ namespace ProjetoIntegradorSENAC.Dashboard
             {
                 func_dashboard.load_grafico_produtos(grafico1, grafico2, param_idEmpresa);
                 func_dashboard.carregarInfoProdutos(lbDash1, lbDash2, lbDash3, lbDash4,
-                Info1_dash, Info2_dash, Info3_dash, Info4_dash, param_idEmpresa);
+                Info1_dash, Info2_dash, Info3_dash, Info4_dash, param_idEmpresa, lbTituloDash);
             }
             else if (vendasBoo)
             {
                 func_dashboard.load_grafico_vendas(grafico1, grafico2, param_idEmpresa);
                 func_dashboard.carregarInfoVendas(lbDash1, lbDash2, lbDash3, lbDash4, Info1_dash,
-                Info2_dash, Info3_dash, Info4_dash, param_idEmpresa);
+                Info2_dash, Info3_dash, Info4_dash, param_idEmpresa, lbTituloDash);
             }
             
         }

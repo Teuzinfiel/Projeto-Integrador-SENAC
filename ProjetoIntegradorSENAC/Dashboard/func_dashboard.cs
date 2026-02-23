@@ -28,8 +28,9 @@ namespace ProjetoIntegradorSENAC.Dashboard
     {
         public static void carregarInfoComparacao(Label label1, Label label2, Label label3,
             Label label4, GroupBox Info1_dash, GroupBox Info2_dash,
-            GroupBox Info3_dash, GroupBox Info4_dash, Dictionary<string, object> parametros)
+            GroupBox Info3_dash, GroupBox Info4_dash, Dictionary<string, object> parametros, Label titulo)
         {
+            titulo.Text = "Comparação";
             DataTable tabela = ExecutarSelect(@"
                 SELECT
             -- ================== RECEITA ==================
@@ -147,9 +148,9 @@ namespace ProjetoIntegradorSENAC.Dashboard
         }
         public static void carregarInfoProdutos(Label label1, Label label2, Label label3,
             Label label4, GroupBox Info1_dash, GroupBox Info2_dash,
-            GroupBox Info3_dash, GroupBox Info4_dash, Dictionary<string, object> parametros)
+            GroupBox Info3_dash, GroupBox Info4_dash, Dictionary<string, object> parametros, Label titulo)
         {
-
+            titulo.Text = "Produtos";
             string query = @"
             SELECT
             -- Produto que gerou MENOS receita
@@ -215,8 +216,9 @@ namespace ProjetoIntegradorSENAC.Dashboard
         }
         public static void carregarInfoVendas(Label label1, Label label2, Label label3,
             Label label4, GroupBox Info1_dash, GroupBox Info2_dash,
-            GroupBox Info3_dash, GroupBox Info4_dash, Dictionary<string, object> parametros)
+            GroupBox Info3_dash, GroupBox Info4_dash, Dictionary<string, object> parametros, Label titulo)
         {
+            titulo.Text = "Vendas";
             string query = @"
             SELECT
             -- Total de vendas

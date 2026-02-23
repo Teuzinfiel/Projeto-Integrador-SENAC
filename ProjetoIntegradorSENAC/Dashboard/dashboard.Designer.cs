@@ -49,6 +49,7 @@
             lbTempo1 = new Label();
             lbTempo2 = new Label();
             panel1 = new Panel();
+            lbTituloDash = new Label();
             Info1_dash.SuspendLayout();
             Info2_dash.SuspendLayout();
             Info3_dash.SuspendLayout();
@@ -64,11 +65,9 @@
             Info1_dash.Controls.Add(lbDash1);
             Info1_dash.Font = new Font("Consolas", 9F, FontStyle.Bold);
             Info1_dash.ForeColor = SystemColors.Control;
-            Info1_dash.Location = new Point(14, 112);
-            Info1_dash.Margin = new Padding(3, 2, 3, 2);
+            Info1_dash.Location = new Point(16, 243);
             Info1_dash.Name = "Info1_dash";
-            Info1_dash.Padding = new Padding(3, 2, 3, 2);
-            Info1_dash.Size = new Size(313, 94);
+            Info1_dash.Size = new Size(358, 125);
             Info1_dash.TabIndex = 3;
             Info1_dash.TabStop = false;
             Info1_dash.Text = "groupBox1";
@@ -77,9 +76,9 @@
             // 
             lbDash1.AutoSize = true;
             lbDash1.Font = new Font("Consolas", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbDash1.Location = new Point(5, 42);
+            lbDash1.Location = new Point(6, 56);
             lbDash1.Name = "lbDash1";
-            lbDash1.Size = new Size(56, 14);
+            lbDash1.Size = new Size(64, 18);
             lbDash1.TabIndex = 0;
             lbDash1.Text = "lbDash1";
             // 
@@ -88,11 +87,9 @@
             Info2_dash.Controls.Add(lbDash2);
             Info2_dash.Font = new Font("Consolas", 9F, FontStyle.Bold);
             Info2_dash.ForeColor = SystemColors.Control;
-            Info2_dash.Location = new Point(341, 112);
-            Info2_dash.Margin = new Padding(3, 2, 3, 2);
+            Info2_dash.Location = new Point(390, 243);
             Info2_dash.Name = "Info2_dash";
-            Info2_dash.Padding = new Padding(3, 2, 3, 2);
-            Info2_dash.Size = new Size(313, 94);
+            Info2_dash.Size = new Size(358, 125);
             Info2_dash.TabIndex = 4;
             Info2_dash.TabStop = false;
             Info2_dash.Text = "groupBox2";
@@ -101,9 +98,9 @@
             // 
             lbDash2.AutoSize = true;
             lbDash2.Font = new Font("Consolas", 9F, FontStyle.Bold);
-            lbDash2.Location = new Point(5, 42);
+            lbDash2.Location = new Point(6, 56);
             lbDash2.Name = "lbDash2";
-            lbDash2.Size = new Size(56, 14);
+            lbDash2.Size = new Size(64, 18);
             lbDash2.TabIndex = 0;
             lbDash2.Text = "lbDash2";
             // 
@@ -112,11 +109,9 @@
             Info3_dash.Controls.Add(lbDash3);
             Info3_dash.Font = new Font("Consolas", 9F, FontStyle.Bold);
             Info3_dash.ForeColor = SystemColors.Control;
-            Info3_dash.Location = new Point(665, 112);
-            Info3_dash.Margin = new Padding(3, 2, 3, 2);
+            Info3_dash.Location = new Point(760, 243);
             Info3_dash.Name = "Info3_dash";
-            Info3_dash.Padding = new Padding(3, 2, 3, 2);
-            Info3_dash.Size = new Size(313, 94);
+            Info3_dash.Size = new Size(358, 125);
             Info3_dash.TabIndex = 4;
             Info3_dash.TabStop = false;
             Info3_dash.Text = "groupBox3";
@@ -125,9 +120,9 @@
             // 
             lbDash3.AutoSize = true;
             lbDash3.Font = new Font("Consolas", 9F, FontStyle.Bold);
-            lbDash3.Location = new Point(5, 42);
+            lbDash3.Location = new Point(6, 56);
             lbDash3.Name = "lbDash3";
-            lbDash3.Size = new Size(56, 14);
+            lbDash3.Size = new Size(64, 18);
             lbDash3.TabIndex = 0;
             lbDash3.Text = "lbDash3";
             // 
@@ -136,11 +131,9 @@
             Info4_dash.Controls.Add(lbDash4);
             Info4_dash.Font = new Font("Consolas", 9F, FontStyle.Bold);
             Info4_dash.ForeColor = SystemColors.Control;
-            Info4_dash.Location = new Point(992, 112);
-            Info4_dash.Margin = new Padding(3, 2, 3, 2);
+            Info4_dash.Location = new Point(1134, 243);
             Info4_dash.Name = "Info4_dash";
-            Info4_dash.Padding = new Padding(3, 2, 3, 2);
-            Info4_dash.Size = new Size(313, 94);
+            Info4_dash.Size = new Size(358, 125);
             Info4_dash.TabIndex = 4;
             Info4_dash.TabStop = false;
             Info4_dash.Text = "groupBox4";
@@ -149,9 +142,9 @@
             // 
             lbDash4.AutoSize = true;
             lbDash4.Font = new Font("Consolas", 9F, FontStyle.Bold);
-            lbDash4.Location = new Point(5, 42);
+            lbDash4.Location = new Point(6, 56);
             lbDash4.Name = "lbDash4";
-            lbDash4.Size = new Size(56, 14);
+            lbDash4.Size = new Size(64, 18);
             lbDash4.TabIndex = 0;
             lbDash4.Text = "lbDash4";
             // 
@@ -160,22 +153,19 @@
             grafico1_dash.Controls.Add(grafico1);
             grafico1_dash.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             grafico1_dash.ForeColor = SystemColors.Control;
-            grafico1_dash.Location = new Point(14, 230);
-            grafico1_dash.Margin = new Padding(3, 2, 3, 2);
+            grafico1_dash.Location = new Point(16, 401);
             grafico1_dash.Name = "grafico1_dash";
-            grafico1_dash.Padding = new Padding(3, 2, 3, 2);
-            grafico1_dash.Size = new Size(640, 360);
+            grafico1_dash.Size = new Size(731, 480);
             grafico1_dash.TabIndex = 5;
             grafico1_dash.TabStop = false;
             grafico1_dash.Text = "Gráfico1";
             // 
             // grafico1
             // 
-            grafico1.Location = new Point(1, 20);
-            grafico1.Margin = new Padding(3, 2, 3, 2);
+            grafico1.Location = new Point(1, 27);
             grafico1.Name = "grafico1";
             grafico1.PanCursor = Cursors.Hand;
-            grafico1.Size = new Size(624, 326);
+            grafico1.Size = new Size(713, 435);
             grafico1.TabIndex = 0;
             grafico1.Text = "plotView1";
             grafico1.ZoomHorizontalCursor = Cursors.SizeWE;
@@ -187,22 +177,19 @@
             grafico2_dash.Controls.Add(grafico2);
             grafico2_dash.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             grafico2_dash.ForeColor = SystemColors.Control;
-            grafico2_dash.Location = new Point(665, 230);
-            grafico2_dash.Margin = new Padding(3, 2, 3, 2);
+            grafico2_dash.Location = new Point(760, 401);
             grafico2_dash.Name = "grafico2_dash";
-            grafico2_dash.Padding = new Padding(3, 2, 3, 2);
-            grafico2_dash.Size = new Size(640, 360);
+            grafico2_dash.Size = new Size(731, 480);
             grafico2_dash.TabIndex = 6;
             grafico2_dash.TabStop = false;
             grafico2_dash.Text = "Gráfico2";
             // 
             // grafico2
             // 
-            grafico2.Location = new Point(1, 20);
-            grafico2.Margin = new Padding(3, 2, 3, 2);
+            grafico2.Location = new Point(1, 27);
             grafico2.Name = "grafico2";
             grafico2.PanCursor = Cursors.Hand;
-            grafico2.Size = new Size(624, 326);
+            grafico2.Size = new Size(713, 435);
             grafico2.TabIndex = 0;
             grafico2.Text = "plotView2";
             grafico2.ZoomHorizontalCursor = Cursors.SizeWE;
@@ -216,10 +203,9 @@
             btnProdutos.FlatStyle = FlatStyle.Popup;
             btnProdutos.Font = new Font("Franklin Gothic Medium", 15F);
             btnProdutos.ForeColor = Color.White;
-            btnProdutos.Location = new Point(1005, 46);
-            btnProdutos.Margin = new Padding(3, 2, 3, 2);
+            btnProdutos.Location = new Point(1149, 155);
             btnProdutos.Name = "btnProdutos";
-            btnProdutos.Size = new Size(135, 40);
+            btnProdutos.Size = new Size(154, 53);
             btnProdutos.TabIndex = 9;
             btnProdutos.Text = "Produtos";
             btnProdutos.UseVisualStyleBackColor = false;
@@ -232,10 +218,9 @@
             btnVendas.FlatStyle = FlatStyle.Popup;
             btnVendas.Font = new Font("Franklin Gothic Medium", 15F);
             btnVendas.ForeColor = Color.White;
-            btnVendas.Location = new Point(841, 46);
-            btnVendas.Margin = new Padding(3, 2, 3, 2);
+            btnVendas.Location = new Point(961, 155);
             btnVendas.Name = "btnVendas";
-            btnVendas.Size = new Size(135, 40);
+            btnVendas.Size = new Size(154, 53);
             btnVendas.TabIndex = 11;
             btnVendas.Text = "Vendas";
             btnVendas.UseVisualStyleBackColor = false;
@@ -248,10 +233,9 @@
             btnComparacao.FlatStyle = FlatStyle.Popup;
             btnComparacao.Font = new Font("Franklin Gothic Medium", 15F);
             btnComparacao.ForeColor = Color.White;
-            btnComparacao.Location = new Point(1167, 46);
-            btnComparacao.Margin = new Padding(3, 2, 3, 2);
+            btnComparacao.Location = new Point(1334, 155);
             btnComparacao.Name = "btnComparacao";
-            btnComparacao.Size = new Size(135, 40);
+            btnComparacao.Size = new Size(154, 53);
             btnComparacao.TabIndex = 12;
             btnComparacao.Text = "Comparação";
             btnComparacao.UseVisualStyleBackColor = false;
@@ -260,20 +244,22 @@
             // maskedInicio
             // 
             maskedInicio.Font = new Font("Microsoft Sans Serif", 20.25F);
-            maskedInicio.Location = new Point(103, 18);
+            maskedInicio.Location = new Point(118, 118);
+            maskedInicio.Margin = new Padding(3, 4, 3, 4);
             maskedInicio.Mask = "00/00/0000";
             maskedInicio.Name = "maskedInicio";
-            maskedInicio.Size = new Size(373, 38);
+            maskedInicio.Size = new Size(426, 46);
             maskedInicio.TabIndex = 13;
             maskedInicio.ValidatingType = typeof(DateTime);
             // 
             // maskedFim
             // 
             maskedFim.Font = new Font("Microsoft Sans Serif", 20.25F);
-            maskedFim.Location = new Point(103, 66);
+            maskedFim.Location = new Point(118, 182);
+            maskedFim.Margin = new Padding(3, 4, 3, 4);
             maskedFim.Mask = "00/00/0000";
             maskedFim.Name = "maskedFim";
-            maskedFim.Size = new Size(373, 38);
+            maskedFim.Size = new Size(426, 46);
             maskedFim.TabIndex = 14;
             maskedFim.ValidatingType = typeof(DateTime);
             // 
@@ -283,9 +269,10 @@
             btnBuscar.FlatStyle = FlatStyle.Popup;
             btnBuscar.Font = new Font("Franklin Gothic Medium", 15F);
             btnBuscar.ForeColor = Color.White;
-            btnBuscar.Location = new Point(506, 46);
+            btnBuscar.Location = new Point(578, 155);
+            btnBuscar.Margin = new Padding(3, 4, 3, 4);
             btnBuscar.Name = "btnBuscar";
-            btnBuscar.Size = new Size(124, 40);
+            btnBuscar.Size = new Size(142, 53);
             btnBuscar.TabIndex = 15;
             btnBuscar.Text = "Buscar";
             btnBuscar.UseVisualStyleBackColor = false;
@@ -296,9 +283,9 @@
             lbTempo1.AutoSize = true;
             lbTempo1.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lbTempo1.ForeColor = Color.White;
-            lbTempo1.Location = new Point(19, 26);
+            lbTempo1.Location = new Point(22, 129);
             lbTempo1.Name = "lbTempo1";
-            lbTempo1.Size = new Size(68, 30);
+            lbTempo1.Size = new Size(87, 37);
             lbTempo1.TabIndex = 16;
             lbTempo1.Text = "Inicio:";
             // 
@@ -307,15 +294,16 @@
             lbTempo2.AutoSize = true;
             lbTempo2.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lbTempo2.ForeColor = Color.White;
-            lbTempo2.Location = new Point(36, 74);
+            lbTempo2.Location = new Point(41, 193);
             lbTempo2.Name = "lbTempo2";
-            lbTempo2.Size = new Size(51, 30);
+            lbTempo2.Size = new Size(66, 37);
             lbTempo2.TabIndex = 17;
             lbTempo2.Text = "Fim:";
             // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(30, 30, 45);
+            panel1.Controls.Add(lbTituloDash);
             panel1.Controls.Add(lbTempo1);
             panel1.Controls.Add(lbTempo2);
             panel1.Controls.Add(Info1_dash);
@@ -330,19 +318,32 @@
             panel1.Controls.Add(grafico2_dash);
             panel1.Controls.Add(btnVendas);
             panel1.Controls.Add(btnProdutos);
-            panel1.Location = new Point(12, 24);
+            panel1.Location = new Point(14, 13);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1318, 628);
+            panel1.Size = new Size(1508, 941);
             panel1.TabIndex = 18;
+            // 
+            // lbTituloDash
+            // 
+            lbTituloDash.AutoSize = true;
+            lbTituloDash.Font = new Font("Franklin Gothic Medium", 23F);
+            lbTituloDash.ForeColor = SystemColors.Highlight;
+            lbTituloDash.Location = new Point(683, 32);
+            lbTituloDash.Name = "lbTituloDash";
+            lbTituloDash.Size = new Size(381, 45);
+            lbTituloDash.TabIndex = 37;
+            lbTituloDash.Text = "Esqueceu sua senha?";
             // 
             // dashboard
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(45, 45, 60);
-            ClientSize = new Size(1342, 725);
+            ClientSize = new Size(1534, 967);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "dashboard";
             Text = "dashboard";
             Load += dashboard_Load;
@@ -383,5 +384,6 @@
         private Label lbTempo1;
         private Label lbTempo2;
         private Panel panel1;
+        private Label lbTituloDash;
     }
 }

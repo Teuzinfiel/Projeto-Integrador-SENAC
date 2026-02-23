@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            picSenha = new PictureBox();
             astConfirmar = new Label();
             astSenha = new Label();
             astTelefone = new Label();
@@ -57,11 +58,13 @@
             btnMinimizar = new Button();
             btnFechar = new Button();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picSenha).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(40, 40, 50);
+            panel1.Controls.Add(picSenha);
             panel1.Controls.Add(astConfirmar);
             panel1.Controls.Add(astSenha);
             panel1.Controls.Add(astTelefone);
@@ -92,12 +95,25 @@
             panel1.Size = new Size(819, 578);
             panel1.TabIndex = 0;
             // 
+            // picSenha
+            // 
+            picSenha.Image = Properties.Resources.pontoInterrogacao;
+            picSenha.Location = new Point(781, 156);
+            picSenha.Margin = new Padding(3, 2, 3, 2);
+            picSenha.Name = "picSenha";
+            picSenha.Size = new Size(35, 28);
+            picSenha.SizeMode = PictureBoxSizeMode.StretchImage;
+            picSenha.TabIndex = 37;
+            picSenha.TabStop = false;
+            picSenha.MouseLeave += picSenha_MouseLeave;
+            picSenha.MouseHover += picSenha_MouseHover;
+            // 
             // astConfirmar
             // 
             astConfirmar.AutoSize = true;
             astConfirmar.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             astConfirmar.ForeColor = Color.FromArgb(192, 0, 0);
-            astConfirmar.Location = new Point(555, 204);
+            astConfirmar.Location = new Point(545, 200);
             astConfirmar.Name = "astConfirmar";
             astConfirmar.Size = new Size(16, 24);
             astConfirmar.TabIndex = 35;
@@ -109,7 +125,7 @@
             astSenha.AutoSize = true;
             astSenha.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             astSenha.ForeColor = Color.FromArgb(192, 0, 0);
-            astSenha.Location = new Point(519, 136);
+            astSenha.Location = new Point(509, 132);
             astSenha.Name = "astSenha";
             astSenha.Size = new Size(16, 24);
             astSenha.TabIndex = 34;
@@ -175,7 +191,7 @@
             bntSair.FlatStyle = FlatStyle.Flat;
             bntSair.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             bntSair.ForeColor = SystemColors.Highlight;
-            bntSair.Location = new Point(687, 506);
+            bntSair.Location = new Point(677, 506);
             bntSair.Name = "bntSair";
             bntSair.Size = new Size(98, 37);
             bntSair.TabIndex = 29;
@@ -193,7 +209,7 @@
             chkMostrarSenha.FlatAppearance.MouseOverBackColor = Color.FromArgb(30, 30, 40);
             chkMostrarSenha.Font = new Font("Segoe UI", 13F);
             chkMostrarSenha.ForeColor = Color.FromArgb(180, 180, 190);
-            chkMostrarSenha.Location = new Point(639, 266);
+            chkMostrarSenha.Location = new Point(612, 266);
             chkMostrarSenha.Name = "chkMostrarSenha";
             chkMostrarSenha.Size = new Size(146, 29);
             chkMostrarSenha.TabIndex = 28;
@@ -332,7 +348,7 @@
             lbConfirmar.AutoSize = true;
             lbConfirmar.Font = new Font("Franklin Gothic Medium", 12F);
             lbConfirmar.ForeColor = Color.FromArgb(180, 180, 190);
-            lbConfirmar.Location = new Point(437, 204);
+            lbConfirmar.Location = new Point(427, 200);
             lbConfirmar.Name = "lbConfirmar";
             lbConfirmar.Size = new Size(124, 21);
             lbConfirmar.TabIndex = 17;
@@ -342,7 +358,7 @@
             // 
             ConfirmarSenha.BackColor = Color.FromArgb(224, 224, 224);
             ConfirmarSenha.Font = new Font("Microsoft Sans Serif", 16F);
-            ConfirmarSenha.Location = new Point(437, 228);
+            ConfirmarSenha.Location = new Point(427, 224);
             ConfirmarSenha.Name = "ConfirmarSenha";
             ConfirmarSenha.PlaceholderText = "Confirme sua senha";
             ConfirmarSenha.Size = new Size(348, 32);
@@ -355,7 +371,7 @@
             lbSenha.AutoSize = true;
             lbSenha.Font = new Font("Franklin Gothic Medium", 12F);
             lbSenha.ForeColor = Color.FromArgb(180, 180, 190);
-            lbSenha.Location = new Point(437, 136);
+            lbSenha.Location = new Point(427, 132);
             lbSenha.Name = "lbSenha";
             lbSenha.Size = new Size(88, 21);
             lbSenha.TabIndex = 15;
@@ -365,7 +381,7 @@
             // 
             UsSenha.BackColor = Color.FromArgb(224, 224, 224);
             UsSenha.Font = new Font("Microsoft Sans Serif", 16F);
-            UsSenha.Location = new Point(437, 160);
+            UsSenha.Location = new Point(427, 156);
             UsSenha.Name = "UsSenha";
             UsSenha.PlaceholderText = "Digite sua senha";
             UsSenha.Size = new Size(348, 32);
@@ -449,6 +465,7 @@
             Text = "cadUsuario";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picSenha).EndInit();
             ResumeLayout(false);
         }
 
@@ -482,5 +499,6 @@
         private Label astCpf;
         private Button btnMinimizar;
         private Button btnFechar;
+        private PictureBox picSenha;
     }
 }

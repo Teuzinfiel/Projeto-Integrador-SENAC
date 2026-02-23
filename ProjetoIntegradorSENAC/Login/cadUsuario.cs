@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ProjetoIntegradorSENAC.Classes;
+using ProjetoIntegradorSENAC.Logins;
+using ProjetoIntegradorSENAC.personalizado;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,8 +10,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ProjetoIntegradorSENAC.Classes;
-using ProjetoIntegradorSENAC.Logins;
 
 namespace ProjetoIntegradorSENAC.Usuario
 {
@@ -20,6 +21,8 @@ namespace ProjetoIntegradorSENAC.Usuario
         bool erroCpf = true;
         bool erroTelefone = true;
         bool[] erroSenha = { true, true };
+
+        caixaInformacao? info;
 
         public cadUsuario()
         {
@@ -193,5 +196,30 @@ namespace ProjetoIntegradorSENAC.Usuario
             }
         }
 
+        private void picSenha_MouseHover(object sender, EventArgs e)
+        {
+            if (info == null || info.IsDisposed)
+            {
+                Point pos = Cursor.Position;
+
+                info = new caixaInformacao();
+
+                info.StartPosition = FormStartPosition.Manual;
+                info.FormBorderStyle = FormBorderStyle.None;
+                info.ShowInTaskbar = false;
+
+                info.Location = new Point(pos.X + 10, pos.Y + 10);
+
+                info.Show();
+            }
+        }
+
+        private void picSenha_MouseLeave(object sender, EventArgs e)
+        {
+            if (info != null && !info.IsDisposed)
+            {
+                info.Close();
+            }
+        }
     }
 }

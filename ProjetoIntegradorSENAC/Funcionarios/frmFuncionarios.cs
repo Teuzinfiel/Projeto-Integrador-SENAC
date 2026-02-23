@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using ProjetoIntegradorSENAC.Classes;
+using ProjetoIntegradorSENAC.personalizado;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,12 +16,23 @@ namespace ProjetoIntegradorSENAC.Usuarios
     public partial class frmFuncionarios : Form
     {
         int idEmpresa;
+        int idFuncionário;
 
         bool erroNome = true;
         bool erroEmail = true;
         bool erroCpf = true;
         bool erroTelefone = true;
         bool[] erroSenha = { true, true };
+
+        bool erroNomeEd = true;
+        bool erroEmailEd = true;
+        bool erroCpfEd = true;
+        bool erroTelefoneEd = true;
+        bool[] erroSenhaEd = { true, true };
+
+
+
+        caixaInformacao info;
 
         public frmFuncionarios(int idEmpresa)
         {
@@ -36,6 +48,7 @@ namespace ProjetoIntegradorSENAC.Usuarios
                               WHERE f.comercio_id = {idEmpresa} and f.cargo != 'dono'";
 
             DataTable dtFuncionarios = Banco.Pesquisar(query);
+            dtgFuncionarios.DataSource = null;
             dtgFuncionarios.DataSource = dtFuncionarios;
         }
 
@@ -82,6 +95,8 @@ namespace ProjetoIntegradorSENAC.Usuarios
                     }
                     MessageBox.Show("Conta criada com sucesso!!");
                     Funcoes.Limpar(this);
+
+                    CarregarFucionarios();
                 }
 
             }
@@ -215,7 +230,7 @@ namespace ProjetoIntegradorSENAC.Usuarios
 
 
 
-           
+
         }
 
         private void dtgFuncionarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -226,6 +241,92 @@ namespace ProjetoIntegradorSENAC.Usuarios
         private void frmFuncionarios_Load(object sender, EventArgs e)
         {
             CarregarFucionarios();
+        }
+
+        private void BtnEditar_Click(object sender, EventArgs e)
+        {
+            string update = $@"UPDATE usuarios u
+                            JOIN funcionarios f ON u.id = f.usuarios_id
+                            SET u.nome = '{UsNome.Text}', u.email = '{UsEmail.Text}', u.cpf = '{UsCpf.Text}', u.telefone = '{UsTelefone.Text}'
+                            WHERE f.comercio_id = {idEmpresa} ";
+        }
+
+        private void picSenha_MouseHover(object sender, EventArgs e)
+        {
+            if (info == null || info.IsDisposed)
+            {
+                Point pos = Cursor.Position;
+
+                info = new caixaInformacao();
+
+                info.StartPosition = FormStartPosition.Manual;
+                info.FormBorderStyle = FormBorderStyle.None;
+                info.ShowInTaskbar = false;
+
+                info.Location = new Point(pos.X + 10, pos.Y + 10);
+
+                info.Show();
+            }
+        }
+
+        private void picSenha_MouseLeave(object sender, EventArgs e)
+        {
+            if (info != null && !info.IsDisposed)
+            {
+                info.Close();
+            }
+        }
+
+        private void EdNome_TextChanged(object sender, EventArgs e)
+        {
+            if (Funcoes.CampoVazio(UsNome))
+            {
+                erroNomeEd = true;
+                astNomeEd.Visible = true;
+                lbNomeEd.ForeColor = Color.DarkRed;
+            }
+            else
+            {
+                erroNomeEd = false;
+                astNomeEd.Visible = false;
+                lbNomeEd.ForeColor = Color.White;
+            }
+        }
+
+        private void EdRedefinir_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EdSenha_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EdEmail_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EdTelefone_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EdCpf_TextChanged(object sender, EventArgs e)
+        {
+            if (Funcoes.isCpf(UsCpf.Text))
+            {
+                erroCpfEd = false;
+                astCpfEd.Visible = false;
+                lbCpfEd.ForeColor = Color.White;
+            }
+            else
+            {
+                erroCpfEd = true;
+                astCpfEd.Visible = true;
+                lbCpfEd.ForeColor = Color.DarkRed;
+            }
         }
     }
 }

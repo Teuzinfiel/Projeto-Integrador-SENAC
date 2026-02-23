@@ -262,5 +262,47 @@ namespace ProjetoIntegradorSENAC.Classes
                 return builder.ToString();
             }
         }
+        private static bool movendo = false;
+        private static Point posicaoInicial;
+
+        public static void AtivarMovimentoPanel(Form form, Control area)
+        {
+            area.MouseDown += MouseDown;
+            area.MouseMove += (s, e) => MouseMove(form, e);
+            area.MouseUp += MouseUp;
+
+            foreach (Control c in area.Controls)
+            {
+                c.MouseDown += MouseDown;
+                c.MouseMove += (s, e) => MouseMove(form, e);
+                c.MouseUp += MouseUp;
+            }
+        }
+
+        private static void MouseDown(object s, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                movendo = true;
+                posicaoInicial = e.Location;
+            }
+        }
+
+        private static void MouseMove(Form form, MouseEventArgs e)
+        {
+            if (movendo)
+            {
+                form.Left += e.X - posicaoInicial.X;
+                form.Top += e.Y - posicaoInicial.Y;
+            }
+        }
+
+        private static void MouseUp(object s, MouseEventArgs e)
+        {
+            movendo = false;
+        }
+
+
+
     }
 }

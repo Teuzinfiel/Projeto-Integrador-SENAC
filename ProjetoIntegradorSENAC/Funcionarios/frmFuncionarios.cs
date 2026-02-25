@@ -16,7 +16,8 @@ namespace ProjetoIntegradorSENAC.Usuarios
     public partial class frmFuncionarios : Form
     {
         int idEmpresa;
-        int idFuncionário;
+        int idFuncionario;
+        string senhaAntiga;
 
         bool erroNome = true;
         bool erroEmail = true;
@@ -50,6 +51,36 @@ namespace ProjetoIntegradorSENAC.Usuarios
             DataTable dtFuncionarios = Banco.Pesquisar(query);
             dtgFuncionarios.DataSource = null;
             dtgFuncionarios.DataSource = dtFuncionarios;
+
+            dtgFuncionarios.Columns["id"].Visible = false;
+            dtgFuncionarios.Columns["senha"].Visible = false;
+
+            astNome.Visible = false;
+            lbNome.ForeColor = Color.White;
+            astEmail.Visible = false;
+            lbEmail.ForeColor = Color.White;
+            astEmail.Visible = false;
+            lbEmail.ForeColor = Color.White;
+            astCpf.Visible = false;
+            lbCpf.ForeColor = Color.White;
+            astSenha.Visible = false;
+            lbSenha.ForeColor = Color.White;
+            astConfirmar.Visible = false;
+            lbConfirmar.ForeColor = Color.White;
+            astNomeEd.Visible = false;
+            lbNomeEd.ForeColor = Color.White;
+            astSenhaEd.Visible = false;
+            lbSenhaEd.ForeColor = Color.White;
+            astSenhaEd.Visible = false;
+            lbSenhaEd.ForeColor = Color.White;
+            astEmailEd.Visible = false;
+            lbEmailEd.ForeColor = Color.White;
+            astTelefoneEd.Visible = false;
+            lbTelefoneEd.ForeColor = Color.White;
+            astCpfEd.Visible = false;
+            lbCpfEd.ForeColor = Color.White;
+
+
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -135,6 +166,7 @@ namespace ProjetoIntegradorSENAC.Usuarios
                 erroNome = false;
                 astNome.Visible = false;
                 lbNome.ForeColor = Color.White;
+
             }
         }
 
@@ -228,8 +260,12 @@ namespace ProjetoIntegradorSENAC.Usuarios
 
             DataGridViewRow row = dtgFuncionarios.Rows[e.RowIndex];
 
-
-
+            idFuncionario = Convert.ToInt32(row.Cells["id"].Value);
+            senhaAntiga = row.Cells["senha"].Value.ToString();
+            EdNome.Text = row.Cells["nome"].Value.ToString();
+            EdEmail.Text = row.Cells["email"].Value.ToString();
+            EdCpf.Text = row.Cells["cpf"].Value.ToString();
+            EdTelefone.Text = row.Cells["telefone"].Value.ToString();
 
         }
 
@@ -245,10 +281,31 @@ namespace ProjetoIntegradorSENAC.Usuarios
 
         private void BtnEditar_Click(object sender, EventArgs e)
         {
-            string update = $@"UPDATE usuarios u
+            if (Funcoes.CriptoSenha(EdSenha.Text) != Funcoes.CriptoSenha(senhaAntiga))
+            {
+                caixaMensagem erro = new caixaMensagem("A senha atual não correponde", "Tente novamente");
+                erro.Show();
+                return;
+            }
+
+            if (!erroNomeEd && !erroCpfEd && !erroEmailEd && !erroTelefoneEd && !erroSenhaEd[0] && !erroSenhaEd[1])
+            {
+
+                string senha = Funcoes.CriptoSenha(EdRedefinir.Text);
+
+                string update = $@"UPDATE usuarios u
                             JOIN funcionarios f ON u.id = f.usuarios_id
-                            SET u.nome = '{UsNome.Text}', u.email = '{UsEmail.Text}', u.cpf = '{UsCpf.Text}', u.telefone = '{UsTelefone.Text}'
-                            WHERE f.comercio_id = {idEmpresa} ";
+                            SET u.nome = '{EdNome.Text}', u.email = '{EdEmail.Text}', u.cpf = '{EdCpf.Text}', 
+                            u.telefone = '{EdTelefone.Text}', u.senha = '{senha}' 
+                            WHERE u.id = {idFuncionario}";
+
+                Banco.Inserir(update);
+
+                caixaMensagem parabens = new caixaMensagem("Os dados do funcionário foram atualizados com êxito!", "Sucesso!");
+                parabens.Show();
+
+                CarregarFucionarios();
+            }
         }
 
         private void picSenha_MouseHover(object sender, EventArgs e)
@@ -279,7 +336,7 @@ namespace ProjetoIntegradorSENAC.Usuarios
 
         private void EdNome_TextChanged(object sender, EventArgs e)
         {
-            if (Funcoes.CampoVazio(UsNome))
+            if (Funcoes.CampoVazio(EdNome))
             {
                 erroNomeEd = true;
                 astNomeEd.Visible = true;
@@ -293,29 +350,74 @@ namespace ProjetoIntegradorSENAC.Usuarios
             }
         }
 
+
         private void EdRedefinir_TextChanged(object sender, EventArgs e)
         {
-
+            if (Funcoes.isSenha(EdRedefinir.Text))
+            {
+                erroSenhaEd[1] = false;
+                astRedefinir.Visible = false;
+                lbRedefinir.ForeColor = Color.White;
+            }
+            else
+            {
+                erroSenhaEd[1] = true;
+                astRedefinir.Visible = true;
+                lbRedefinir.ForeColor = Color.DarkRed;
+            }
         }
 
         private void EdSenha_TextChanged(object sender, EventArgs e)
         {
-
+            if (Funcoes.isSenha(EdSenha.Text))
+            {
+                erroSenhaEd[0] = false;
+                astSenhaEd.Visible = false;
+                lbSenhaEd.ForeColor = Color.White;
+            }
+            else
+            {
+                erroSenhaEd[0] = true;
+                astSenhaEd.Visible = true;
+                lbSenhaEd.ForeColor = Color.DarkRed;
+            }
         }
 
         private void EdEmail_TextChanged(object sender, EventArgs e)
         {
-
+            if (Funcoes.isEmail(EdEmail.Text))
+            {
+                erroEmailEd = false;
+                astEmailEd.Visible = false;
+                lbEmailEd.ForeColor = Color.White;
+            }
+            else
+            {
+                erroEmailEd = true;
+                astEmailEd.Visible = true;
+                lbEmailEd.ForeColor = Color.DarkRed;
+            }
         }
 
         private void EdTelefone_TextChanged(object sender, EventArgs e)
         {
-
+            if (Funcoes.isTelefone(EdTelefone.Text))
+            {
+                erroTelefoneEd = false;
+                astTelefoneEd.Visible = false;
+                lbTelefoneEd.ForeColor = Color.White;
+            }
+            else
+            {
+                erroTelefoneEd = true;
+                astTelefoneEd.Visible = true;
+                lbTelefoneEd.ForeColor = Color.DarkRed;
+            }
         }
 
         private void EdCpf_TextChanged(object sender, EventArgs e)
         {
-            if (Funcoes.isCpf(UsCpf.Text))
+            if (Funcoes.isCpf(EdCpf.Text))
             {
                 erroCpfEd = false;
                 astCpfEd.Visible = false;
@@ -327,6 +429,35 @@ namespace ProjetoIntegradorSENAC.Usuarios
                 astCpfEd.Visible = true;
                 lbCpfEd.ForeColor = Color.DarkRed;
             }
+        }
+
+        private void EdMostrar_CheckedChanged(object sender, EventArgs e)
+        {
+            if (EdMostrar.Checked)
+            {
+                EdRedefinir.UseSystemPasswordChar = false; // Mostra a senha
+                EdSenha.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                EdRedefinir.UseSystemPasswordChar = true;  // Esconde a senha
+                EdSenha.UseSystemPasswordChar = true;
+            }
+
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            string excluir = $@"DELETE u FROM usuarios u
+                         JOIN funcionarios f ON u.id = f.usuarios_id
+                         WHERE u.id = {idFuncionario}";
+
+            Banco.Excluir(excluir);
+
+            caixaMensagem deletou = new caixaMensagem("Funcionário excluído com êxito!", "Sucesso!");
+            deletou.Show();
+
+            CarregarFucionarios();
         }
     }
 }

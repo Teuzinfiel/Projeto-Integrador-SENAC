@@ -36,7 +36,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 { "@idEmpresa", idEmpresa }
             };
         }
-        bool produtosBoo = false, vendasBoo = false ;
+        bool produtosBoo = false, vendasBoo = false;
 
         private void btnProdutos_Click(object sender, EventArgs e)
         {
@@ -69,7 +69,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 vendasBoo = true;
             }
             else
-            { 
+            {
                 produtosBoo = true;
             }
             maskedInicio.Text = DateTime.Now.ToString("dd/MM/yyyy");
@@ -103,7 +103,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 func_dashboard.carregarInfoVendas(lbDash1, lbDash2, lbDash3, lbDash4, Info1_dash,
                 Info2_dash, Info3_dash, Info4_dash, param_idEmpresa, lbTituloDash);
             }
-            
+
         }
         public void AtivarVendas()
         {

@@ -69,9 +69,10 @@
             panel1.Controls.Add(label3);
             panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(panel4);
-            panel1.Location = new Point(-3, 32);
+            panel1.Location = new Point(-3, 43);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(291, 780);
+            panel1.Size = new Size(333, 1040);
             panel1.TabIndex = 0;
             // 
             // label4
@@ -80,9 +81,9 @@
             label4.FlatStyle = FlatStyle.System;
             label4.Font = new Font("Franklin Gothic Medium", 15F);
             label4.ForeColor = Color.FromArgb(224, 224, 224);
-            label4.Location = new Point(187, 734);
+            label4.Location = new Point(214, 979);
             label4.Name = "label4";
-            label4.Size = new Size(62, 25);
+            label4.Size = new Size(75, 32);
             label4.TabIndex = 4;
             label4.Text = "Ajuda";
             // 
@@ -92,9 +93,10 @@
             btnLogOut.FlatStyle = FlatStyle.Popup;
             btnLogOut.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnLogOut.ForeColor = Color.FromArgb(224, 224, 224);
-            btnLogOut.Location = new Point(35, 729);
+            btnLogOut.Location = new Point(40, 972);
+            btnLogOut.Margin = new Padding(3, 4, 3, 4);
             btnLogOut.Name = "btnLogOut";
-            btnLogOut.Size = new Size(107, 35);
+            btnLogOut.Size = new Size(122, 47);
             btnLogOut.TabIndex = 7;
             btnLogOut.Text = "Sair";
             btnLogOut.UseVisualStyleBackColor = false;
@@ -104,11 +106,11 @@
             // 
             label3.AutoSize = true;
             label3.FlatStyle = FlatStyle.System;
-            label3.Font = new Font("Franklin Gothic Book", 15F);
+            label3.Font = new Font("Microsoft Sans Serif", 15F);
             label3.ForeColor = Color.FromArgb(180, 180, 190);
-            label3.Location = new Point(65, 197);
+            label3.Location = new Point(74, 263);
             label3.Name = "label3";
-            label3.Size = new Size(141, 25);
+            label3.Size = new Size(190, 29);
             label3.TabIndex = 3;
             label3.Text = "Nome Empresa";
             label3.TextAlign = ContentAlignment.MiddleCenter;
@@ -117,9 +119,10 @@
             // 
             pictureBox1.BorderStyle = BorderStyle.FixedSingle;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(65, 55);
+            pictureBox1.Location = new Point(74, 73);
+            pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(141, 126);
+            pictureBox1.Size = new Size(161, 167);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
@@ -135,9 +138,10 @@
             panel4.Controls.Add(btnCaixa);
             panel4.Controls.Add(btnEstoque);
             panel4.ForeColor = SystemColors.ActiveCaptionText;
-            panel4.Location = new Point(3, 234);
+            panel4.Location = new Point(3, 312);
+            panel4.Margin = new Padding(3, 4, 3, 4);
             panel4.Name = "panel4";
-            panel4.Size = new Size(294, 488);
+            panel4.Size = new Size(336, 651);
             panel4.TabIndex = 1;
             // 
             // btnMovimentacao
@@ -153,9 +157,10 @@
             btnMovimentacao.ImageAlign = ContentAlignment.MiddleLeft;
             btnMovimentacao.ImageIndex = 4;
             btnMovimentacao.ImageList = imageList1;
-            btnMovimentacao.Location = new Point(28, 346);
+            btnMovimentacao.Location = new Point(32, 461);
+            btnMovimentacao.Margin = new Padding(3, 4, 3, 4);
             btnMovimentacao.Name = "btnMovimentacao";
-            btnMovimentacao.Size = new Size(260, 56);
+            btnMovimentacao.Size = new Size(297, 75);
             btnMovimentacao.TabIndex = 9;
             btnMovimentacao.Text = "Movimentações";
             btnMovimentacao.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -184,9 +189,10 @@
             button1.FlatStyle = FlatStyle.Popup;
             button1.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.FromArgb(224, 224, 224);
-            button1.Location = new Point(27, 3);
+            button1.Location = new Point(31, 4);
+            button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
-            button1.Size = new Size(246, 47);
+            button1.Size = new Size(281, 63);
             button1.TabIndex = 8;
             button1.Text = "Configuracoes";
             button1.UseVisualStyleBackColor = false;
@@ -205,9 +211,10 @@
             btnProdutos.ImageAlign = ContentAlignment.MiddleLeft;
             btnProdutos.ImageIndex = 7;
             btnProdutos.ImageList = imageList1;
-            btnProdutos.Location = new Point(28, 169);
+            btnProdutos.Location = new Point(32, 225);
+            btnProdutos.Margin = new Padding(3, 4, 3, 4);
             btnProdutos.Name = "btnProdutos";
-            btnProdutos.Size = new Size(260, 58);
+            btnProdutos.Size = new Size(297, 77);
             btnProdutos.TabIndex = 2;
             btnProdutos.Text = "Produtos";
             btnProdutos.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -227,9 +234,10 @@
             btnFuncionario.ImageAlign = ContentAlignment.MiddleLeft;
             btnFuncionario.ImageIndex = 4;
             btnFuncionario.ImageList = imageList1;
-            btnFuncionario.Location = new Point(28, 284);
+            btnFuncionario.Location = new Point(32, 379);
+            btnFuncionario.Margin = new Padding(3, 4, 3, 4);
             btnFuncionario.Name = "btnFuncionario";
-            btnFuncionario.Size = new Size(260, 56);
+            btnFuncionario.Size = new Size(297, 75);
             btnFuncionario.TabIndex = 3;
             btnFuncionario.Text = "Funcionario";
             btnFuncionario.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -249,9 +257,10 @@
             btnLog.ImageAlign = ContentAlignment.MiddleLeft;
             btnLog.ImageIndex = 0;
             btnLog.ImageList = imageList1;
-            btnLog.Location = new Point(28, 408);
+            btnLog.Location = new Point(32, 544);
+            btnLog.Margin = new Padding(3, 4, 3, 4);
             btnLog.Name = "btnLog";
-            btnLog.Size = new Size(260, 54);
+            btnLog.Size = new Size(297, 72);
             btnLog.TabIndex = 7;
             btnLog.Text = "Alteracoes";
             btnLog.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -271,9 +280,10 @@
             btnDashboard.ImageAlign = ContentAlignment.MiddleLeft;
             btnDashboard.ImageIndex = 1;
             btnDashboard.ImageList = imageList1;
-            btnDashboard.Location = new Point(27, 116);
+            btnDashboard.Location = new Point(31, 155);
+            btnDashboard.Margin = new Padding(3, 4, 3, 4);
             btnDashboard.Name = "btnDashboard";
-            btnDashboard.Size = new Size(260, 55);
+            btnDashboard.Size = new Size(297, 73);
             btnDashboard.TabIndex = 6;
             btnDashboard.Text = "Dashboard";
             btnDashboard.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -293,9 +303,10 @@
             btnCaixa.ImageAlign = ContentAlignment.MiddleLeft;
             btnCaixa.ImageIndex = 2;
             btnCaixa.ImageList = imageList1;
-            btnCaixa.Location = new Point(27, 63);
+            btnCaixa.Location = new Point(31, 84);
+            btnCaixa.Margin = new Padding(3, 4, 3, 4);
             btnCaixa.Name = "btnCaixa";
-            btnCaixa.Size = new Size(260, 54);
+            btnCaixa.Size = new Size(297, 72);
             btnCaixa.TabIndex = 5;
             btnCaixa.Text = "Caixa";
             btnCaixa.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -315,9 +326,10 @@
             btnEstoque.ImageAlign = ContentAlignment.MiddleLeft;
             btnEstoque.ImageIndex = 6;
             btnEstoque.ImageList = imageList1;
-            btnEstoque.Location = new Point(28, 233);
+            btnEstoque.Location = new Point(32, 311);
+            btnEstoque.Margin = new Padding(3, 4, 3, 4);
             btnEstoque.Name = "btnEstoque";
-            btnEstoque.Size = new Size(260, 54);
+            btnEstoque.Size = new Size(297, 72);
             btnEstoque.TabIndex = 4;
             btnEstoque.Text = "Estoque";
             btnEstoque.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -330,18 +342,20 @@
             panel2.Controls.Add(pictureBox2);
             panel2.Controls.Add(label2);
             panel2.Controls.Add(labelCategorias);
-            panel2.Location = new Point(287, 32);
+            panel2.Location = new Point(328, 43);
+            panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1345, 58);
+            panel2.Size = new Size(1537, 77);
             panel2.TabIndex = 1;
             // 
             // pictureBox2
             // 
             pictureBox2.BorderStyle = BorderStyle.FixedSingle;
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(1258, 7);
+            pictureBox2.Location = new Point(1438, 9);
+            pictureBox2.Margin = new Padding(3, 4, 3, 4);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(45, 42);
+            pictureBox2.Size = new Size(51, 55);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 3;
             pictureBox2.TabStop = false;
@@ -351,9 +365,9 @@
             label2.AutoSize = true;
             label2.Font = new Font("Franklin Gothic Medium", 15F);
             label2.ForeColor = Color.FromArgb(180, 180, 190);
-            label2.Location = new Point(1071, 17);
+            label2.Location = new Point(1224, 23);
             label2.Name = "label2";
-            label2.Size = new Size(181, 25);
+            label2.Size = new Size(222, 32);
             label2.TabIndex = 1;
             label2.Text = "Bem Vindo, Usuario";
             // 
@@ -363,9 +377,9 @@
             labelCategorias.FlatStyle = FlatStyle.System;
             labelCategorias.Font = new Font("Franklin Gothic Medium", 15F);
             labelCategorias.ForeColor = Color.FromArgb(180, 180, 190);
-            labelCategorias.Location = new Point(316, 17);
+            labelCategorias.Location = new Point(361, 23);
             labelCategorias.Name = "labelCategorias";
-            labelCategorias.Size = new Size(104, 25);
+            labelCategorias.Size = new Size(128, 32);
             labelCategorias.TabIndex = 0;
             labelCategorias.Text = "Categorias";
             // 
@@ -374,9 +388,10 @@
             panel5.BackColor = Color.FromArgb(27, 27, 37);
             panel5.Controls.Add(btnMinimizar);
             panel5.Controls.Add(btnSair);
-            panel5.Location = new Point(0, -3);
+            panel5.Location = new Point(0, -4);
+            panel5.Margin = new Padding(3, 4, 3, 4);
             panel5.Name = "panel5";
-            panel5.Size = new Size(1632, 36);
+            panel5.Size = new Size(1865, 48);
             panel5.TabIndex = 2;
             // 
             // btnMinimizar
@@ -388,9 +403,10 @@
             btnMinimizar.FlatStyle = FlatStyle.Popup;
             btnMinimizar.Font = new Font("Segoe UI", 15F);
             btnMinimizar.ForeColor = Color.White;
-            btnMinimizar.Location = new Point(1524, 3);
+            btnMinimizar.Location = new Point(1742, 4);
+            btnMinimizar.Margin = new Padding(3, 4, 3, 4);
             btnMinimizar.Name = "btnMinimizar";
-            btnMinimizar.Size = new Size(54, 33);
+            btnMinimizar.Size = new Size(62, 44);
             btnMinimizar.TabIndex = 2;
             btnMinimizar.Text = "-";
             btnMinimizar.UseVisualStyleBackColor = false;
@@ -404,9 +420,10 @@
             btnSair.FlatAppearance.MouseOverBackColor = Color.Transparent;
             btnSair.FlatStyle = FlatStyle.Popup;
             btnSair.ForeColor = Color.White;
-            btnSair.Location = new Point(1575, 3);
+            btnSair.Location = new Point(1803, 4);
+            btnSair.Margin = new Padding(3, 4, 3, 4);
             btnSair.Name = "btnSair";
-            btnSair.Size = new Size(54, 33);
+            btnSair.Size = new Size(62, 44);
             btnSair.TabIndex = 0;
             btnSair.Text = "X";
             btnSair.UseVisualStyleBackColor = false;
@@ -416,21 +433,23 @@
             // 
             panelContainer.BackColor = Color.FromArgb(45, 45, 60);
             panelContainer.ForeColor = Color.White;
-            panelContainer.Location = new Point(287, 87);
+            panelContainer.Location = new Point(328, 116);
+            panelContainer.Margin = new Padding(3, 4, 3, 4);
             panelContainer.Name = "panelContainer";
-            panelContainer.Size = new Size(1342, 725);
+            panelContainer.Size = new Size(1537, 967);
             panelContainer.TabIndex = 2;
             // 
             // MainPrincipal
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1624, 811);
+            ClientSize = new Size(1865, 1081);
             Controls.Add(panel5);
             Controls.Add(panelContainer);
             Controls.Add(panel2);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "MainPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";

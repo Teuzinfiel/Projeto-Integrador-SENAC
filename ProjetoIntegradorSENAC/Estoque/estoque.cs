@@ -32,42 +32,45 @@ namespace ProjetoIntegradorSENAC.Estoque
         }
         private int _produtoId;
 
+   
         private void CarregarProdutos()
         {
-            string sql = @"
-        SELECT 
-            p.id,
-            p.codigo_barra,
-            p.nome,
-            p.status,
-            IFNULL(e.quantidade_atual,0) AS quantidade
-        FROM produtos p
-        LEFT JOIN estoque e ON e.produto_id = p.id
-        WHERE p.comercio_id = " + idEmpresa;
+                    string sql = @"
+            SELECT 
+                p.id,
+                p.codigo_barra,
+                p.nome,
+                p.status,
+                IFNULL(e.quantidade_atual,0) AS quantidade
+            FROM produtos p
+            LEFT JOIN estoque e ON e.produto_id = p.id
+            WHERE p.comercio_id = " + idEmpresa;
 
-            DataTable dt = Banco.Pesquisar(sql);
-            dtgProdutos.Columns["Situacao"].DefaultCellStyle.BackColor = Color.Empty;
-            dtgProdutos.Columns["Situacao"].DefaultCellStyle.ForeColor = Color.Empty;
-            dt.Columns.Add("Situacao");
+                    DataTable dt = Banco.Pesquisar(sql);
 
-            foreach (DataRow row in dt.Rows)
-            {
-                decimal qtd = Convert.ToDecimal(row["quantidade"]);
-                row["Situacao"] = ObterSituacao(qtd);
-            }
+                    dt.Columns.Add("Situacao");
 
-            dtgProdutos.DataSource = dt;
-       
-            // Ajustar nomes das colunas
-            dtgProdutos.Columns["codigo_barra"].HeaderText = "Código de Barras";
-            dtgProdutos.Columns["quantidade"].HeaderText = "Quantidade";
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        decimal qtd = Convert.ToDecimal(row["quantidade"]);
+                        row["Situacao"] = ObterSituacao(qtd);
+                    }
 
-            // ESCONDER ID
-            dtgProdutos.Columns["id"].Visible = false;
-            dtgProdutos.ClearSelection();
-    
+                    dtgProdutos.DataSource = dt;
 
+
+                    dtgProdutos.Columns["Situacao"].DefaultCellStyle.BackColor = Color.Empty;
+                    dtgProdutos.Columns["Situacao"].DefaultCellStyle.ForeColor = Color.Empty;
+
+                    dtgProdutos.Columns["codigo_barra"].HeaderText = "Código de Barras";
+                    dtgProdutos.Columns["quantidade"].HeaderText = "Quantidade";
+                    dtgProdutos.Columns["id"].Visible = false;
+
+                    dtgProdutos.ClearSelection();
         }
+
+
+      
 
         private string ObterSituacao(decimal quantidade)
         {

@@ -1,0 +1,160 @@
+DROP DATABASE IF EXISTS senac;
+CREATE DATABASE senac;
+USE senac;
+
+-- ============================================
+-- USUARIOS
+-- ============================================
+DROP TABLE IF EXISTS usuarios;
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL,
+    senha VARCHAR(100),
+    telefone VARCHAR(15),
+    email VARCHAR(50),
+    cpf VARCHAR(15)
+) ENGINE=InnoDB;
+
+-- ============================================
+-- COMERCIOS
+-- ============================================
+DROP TABLE IF EXISTS comercios;
+CREATE TABLE comercios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    dono_id INT NOT NULL,
+    nome VARCHAR(50),
+    nome_fantasia VARCHAR(50),
+    email VARCHAR(50),
+    tipo_documentacao ENUM('cpf','cnpj'),
+    documentacao VARCHAR(20),
+    telefone VARCHAR(15),
+
+    FOREIGN KEY (dono_id) REFERENCES usuarios(id)
+        ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- ============================================
+-- FUNCIONARIOS
+-- ============================================
+DROP TABLE IF EXISTS funcionarios;
+CREATE TABLE funcionarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuarios_id INT,
+    comercio_id INT,
+    cargo VARCHAR(30),
+
+    FOREIGN KEY (usuarios_id) REFERENCES usuarios(id),
+
+    FOREIGN KEY (comercio_id) REFERENCES comercios(id)
+        ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- ============================================
+-- CATEGORIAS
+-- ============================================
+DROP TABLE IF EXISTS categorias;
+CREATE TABLE categorias (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    comercio_id INT NOT NULL,
+    nome VARCHAR(100) NOT NULL,
+
+    FOREIGN KEY (comercio_id) REFERENCES comercios(id)
+        ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- ============================================
+-- PRODUTOS
+-- ============================================
+DROP TABLE IF EXISTS produtos;
+CREATE TABLE produtos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    comercio_id INT,
+    nome VARCHAR(50) NOT NULL,
+    descricao TEXT,
+    status VARCHAR(20) DEFAULT 'ativo',
+    marca VARCHAR(100),
+    codigo_barra VARCHAR(64),
+    unidade_medida VARCHAR(20) NOT NULL,
+    categoria_id INT NULL,
+    preco DECIMAL(10,2) NOT NULL,
+
+    FOREIGN KEY (comercio_id) REFERENCES comercios(id)
+        ON DELETE CASCADE,
+
+    FOREIGN KEY (categoria_id) REFERENCES categorias(id)
+) ENGINE=InnoDB;
+
+-- ============================================
+-- ESTOQUE
+-- ============================================
+DROP TABLE IF EXISTS estoque;
+CREATE TABLE estoque (
+    produto_id INT PRIMARY KEY,
+    quantidade_atual DECIMAL(10,2) DEFAULT 0,
+
+    FOREIGN KEY (produto_id) REFERENCES produtos(id)
+        ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- ============================================
+-- MOVIMENTAÇÕES
+-- ============================================
+DROP TABLE IF EXISTS movimentacoes_estoque;
+CREATE TABLE movimentacoes_estoque (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    produto_id INT NOT NULL,
+    funcionario_id INT NULL,
+    comercio_id INT NOT NULL,
+    tipo VARCHAR(20),
+    quantidade DECIMAL(10,2),
+    quantidade_final DECIMAL(10,2),
+    motivo VARCHAR(100),
+    observacao TEXT,
+    data TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (produto_id) REFERENCES produtos(id)
+        ON DELETE CASCADE,
+
+    FOREIGN KEY (funcionario_id) REFERENCES funcionarios(id),
+
+    FOREIGN KEY (comercio_id) REFERENCES comercios(id)
+        ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- ============================================
+-- VENDAS
+-- ============================================
+DROP TABLE IF EXISTS vendas;
+CREATE TABLE vendas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    funcionario_id INT,
+    comercio_id INT,
+    data_venda TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    total DECIMAL(12,2) DEFAULT 0,
+    forma_pagamento VARCHAR(50),
+    descontos DECIMAL(12,2),
+    codigo_consumidor VARCHAR(50),
+
+    FOREIGN KEY (funcionario_id) REFERENCES funcionarios(id),
+
+    FOREIGN KEY (comercio_id) REFERENCES comercios(id)
+        ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- ============================================
+-- ITENS DA VENDA
+-- ============================================
+DROP TABLE IF EXISTS items_venda;
+CREATE TABLE items_venda (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    produtos_id INT NOT NULL,
+    quantidade DECIMAL(10,2),
+    preco_unitario DECIMAL(10,2),
+    vendas_id INT NOT NULL,
+
+    FOREIGN KEY (produtos_id) REFERENCES produtos(id)
+        ON DELETE CASCADE,
+
+    FOREIGN KEY (vendas_id) REFERENCES vendas(id)
+        ON DELETE CASCADE
+) ENGINE=InnoDB;

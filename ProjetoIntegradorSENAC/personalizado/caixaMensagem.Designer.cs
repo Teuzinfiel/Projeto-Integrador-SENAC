@@ -28,64 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
-            btnMinimizar = new Button();
-            btnSair = new Button();
             panel2 = new Panel();
+            lbTitulo = new Label();
             lbMensagem = new Label();
             btnOk = new Button();
             panel1 = new Panel();
-            lbTitulo = new Label();
+            btnSair = new Button();
             panel2.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
-            // 
-            // btnMinimizar
-            // 
-            btnMinimizar.BackColor = Color.Transparent;
-            btnMinimizar.FlatStyle = FlatStyle.Popup;
-            btnMinimizar.Font = new Font("Segoe UI", 15F);
-            btnMinimizar.ForeColor = Color.White;
-            btnMinimizar.Location = new Point(290, 0);
-            btnMinimizar.Margin = new Padding(3, 4, 3, 4);
-            btnMinimizar.Name = "btnMinimizar";
-            btnMinimizar.Size = new Size(62, 44);
-            btnMinimizar.TabIndex = 36;
-            btnMinimizar.Text = "-";
-            btnMinimizar.UseVisualStyleBackColor = false;
-            btnMinimizar.Click += btnMinimizar_Click;
-            // 
-            // btnSair
-            // 
-            btnSair.BackColor = Color.Transparent;
-            btnSair.FlatStyle = FlatStyle.Popup;
-            btnSair.ForeColor = Color.White;
-            btnSair.Location = new Point(351, 0);
-            btnSair.Margin = new Padding(3, 4, 3, 4);
-            btnSair.Name = "btnSair";
-            btnSair.Size = new Size(62, 44);
-            btnSair.TabIndex = 35;
-            btnSair.Text = "X";
-            btnSair.UseVisualStyleBackColor = false;
-            btnSair.Click += btnSair_Click;
             // 
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(30, 30, 40);
             panel2.Controls.Add(lbTitulo);
             panel2.Location = new Point(0, 0);
-            panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(290, 44);
+            panel2.Size = new Size(301, 33);
             panel2.TabIndex = 37;
+            // 
+            // lbTitulo
+            // 
+            lbTitulo.AutoSize = true;
+            lbTitulo.Font = new Font("Franklin Gothic Medium", 10.8F);
+            lbTitulo.ForeColor = Color.FromArgb(180, 180, 190);
+            lbTitulo.Location = new Point(10, 8);
+            lbTitulo.Name = "lbTitulo";
+            lbTitulo.Size = new Size(50, 20);
+            lbTitulo.TabIndex = 0;
+            lbTitulo.Text = "label1";
             // 
             // lbMensagem
             // 
             lbMensagem.AutoSize = true;
             lbMensagem.Font = new Font("Franklin Gothic Medium", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lbMensagem.ForeColor = Color.FromArgb(180, 180, 190);
-            lbMensagem.Location = new Point(26, 38);
+            lbMensagem.Location = new Point(23, 28);
             lbMensagem.Name = "lbMensagem";
-            lbMensagem.Size = new Size(58, 23);
+            lbMensagem.Size = new Size(50, 20);
             lbMensagem.TabIndex = 38;
             lbMensagem.Text = "label1";
             // 
@@ -99,9 +79,10 @@
             btnOk.FlatStyle = FlatStyle.Flat;
             btnOk.Font = new Font("Franklin Gothic Medium", 15F);
             btnOk.ForeColor = SystemColors.Highlight;
-            btnOk.Location = new Point(278, 90);
+            btnOk.Location = new Point(243, 68);
+            btnOk.Margin = new Padding(3, 2, 3, 2);
             btnOk.Name = "btnOk";
-            btnOk.Size = new Size(94, 44);
+            btnOk.Size = new Size(82, 33);
             btnOk.TabIndex = 39;
             btnOk.Text = "Ok";
             btnOk.UseVisualStyleBackColor = false;
@@ -112,33 +93,36 @@
             panel1.BackColor = Color.FromArgb(40, 40, 50);
             panel1.Controls.Add(lbMensagem);
             panel1.Controls.Add(btnOk);
-            panel1.Location = new Point(12, 61);
+            panel1.Location = new Point(10, 46);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(389, 146);
+            panel1.Size = new Size(340, 110);
             panel1.TabIndex = 40;
             // 
-            // lbTitulo
+            // btnSair
             // 
-            lbTitulo.AutoSize = true;
-            lbTitulo.Font = new Font("Franklin Gothic Medium", 10.8F);
-            lbTitulo.ForeColor = Color.FromArgb(180, 180, 190);
-            lbTitulo.Location = new Point(12, 11);
-            lbTitulo.Name = "lbTitulo";
-            lbTitulo.Size = new Size(58, 23);
-            lbTitulo.TabIndex = 0;
-            lbTitulo.Text = "label1";
+            btnSair.BackColor = Color.Transparent;
+            btnSair.FlatStyle = FlatStyle.Popup;
+            btnSair.ForeColor = Color.White;
+            btnSair.Location = new Point(307, 0);
+            btnSair.Name = "btnSair";
+            btnSair.Size = new Size(54, 33);
+            btnSair.TabIndex = 35;
+            btnSair.Text = "X";
+            btnSair.UseVisualStyleBackColor = false;
+            btnSair.Click += btnSair_Click;
             // 
             // caixaMensagem
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(35, 35, 45);
-            ClientSize = new Size(413, 219);
+            ClientSize = new Size(361, 164);
             Controls.Add(panel1);
-            Controls.Add(btnMinimizar);
             Controls.Add(btnSair);
             Controls.Add(panel2);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "caixaMensagem";
             Text = "caixaMensagem";
             Load += caixaMensagem_Load;
@@ -150,13 +134,11 @@
         }
 
         #endregion
-
-        private Button btnMinimizar;
-        private Button btnSair;
         private Panel panel2;
         private Label lbMensagem;
         private Button btnOk;
         private Panel panel1;
         private Label lbTitulo;
+        private Button btnSair;
     }
 }

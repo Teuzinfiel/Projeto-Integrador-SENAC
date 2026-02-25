@@ -448,16 +448,23 @@ namespace ProjetoIntegradorSENAC.Usuarios
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            string excluir = $@"DELETE u FROM usuarios u
+            var opcao = new caixaDecisao("Tem certeza que deseja excluir este funcionário?", "Confirmação");
+            opcao.ShowDialog();
+
+            if (opcao.decisao)
+            {
+
+                string excluir = $@"DELETE u FROM usuarios u
                          JOIN funcionarios f ON u.id = f.usuarios_id
                          WHERE u.id = {idFuncionario}";
 
-            Banco.Excluir(excluir);
+                Banco.Excluir(excluir);
 
-            caixaMensagem deletou = new caixaMensagem("Funcionário excluído com êxito!", "Sucesso!");
-            deletou.Show();
+                caixaMensagem deletou = new caixaMensagem("Funcionário excluído com êxito!", "Sucesso!");
+                deletou.Show();
 
-            CarregarFucionarios();
+                CarregarFucionarios();
+            }
         }
     }
 }

@@ -28,15 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle17 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle18 = new DataGridViewCellStyle();
             btnCadastro = new Button();
             lbMarca = new Label();
             PrMarca = new TextBox();
@@ -54,7 +54,7 @@
             astCategoria = new Label();
             astMarca = new Label();
             astPreco = new Label();
-            astDesc = new Label();
+            astDescAtt = new Label();
             panel1 = new Panel();
             label23 = new Label();
             astCod = new Label();
@@ -71,32 +71,33 @@
             astDescricao = new Label();
             PrDescricao = new TextBox();
             label14 = new Label();
-            label21 = new Label();
-            astCat = new Label();
+            lbBarrasAtt = new Label();
+            astCatAtt = new Label();
             cmbCatAtt = new ComboBox();
-            label11 = new Label();
-            label12 = new Label();
+            lbCatAtt = new Label();
+            lbDescAtt = new Label();
             panel2 = new Panel();
             btnAtivarProd = new Button();
-            label22 = new Label();
+            astBarrasAtt = new Label();
             btnDesativarProd = new Button();
             txtCodBarra = new TextBox();
             label16 = new Label();
             btnExcluirProd = new Button();
             btnAttProd = new Button();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            label5 = new Label();
+            astPrecoAtt = new Label();
+            astmarcaAtt = new Label();
+            astNomeAtt = new Label();
+            lbPrecoAtt = new Label();
             txtPrecoProd = new TextBox();
             cmbMedida = new ComboBox();
-            label6 = new Label();
-            label7 = new Label();
+            lbMedidaAtt = new Label();
+            lbMarcaAtt = new Label();
             txtMarcaProd = new TextBox();
-            label8 = new Label();
+            lbNomeAtt = new Label();
             txtNomeProd = new TextBox();
             label1 = new Label();
             dtgProdutos = new DataGridView();
+            astMedidaAtt = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgCategoria).BeginInit();
             panel2.SuspendLayout();
@@ -301,17 +302,17 @@
             astPreco.Text = "*";
             astPreco.Visible = false;
             // 
-            // astDesc
+            // astDescAtt
             // 
-            astDesc.AutoSize = true;
-            astDesc.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            astDesc.ForeColor = Color.FromArgb(192, 0, 0);
-            astDesc.Location = new Point(426, 350);
-            astDesc.Name = "astDesc";
-            astDesc.Size = new Size(16, 24);
-            astDesc.TabIndex = 62;
-            astDesc.Text = "*";
-            astDesc.Visible = false;
+            astDescAtt.AutoSize = true;
+            astDescAtt.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            astDescAtt.ForeColor = Color.FromArgb(192, 0, 0);
+            astDescAtt.Location = new Point(426, 350);
+            astDescAtt.Name = "astDescAtt";
+            astDescAtt.Size = new Size(16, 24);
+            astDescAtt.TabIndex = 62;
+            astDescAtt.Text = "*";
+            astDescAtt.Visible = false;
             // 
             // panel1
             // 
@@ -463,52 +464,52 @@
             dtgCategoria.AllowUserToAddRows = false;
             dtgCategoria.AllowUserToDeleteRows = false;
             dtgCategoria.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(35, 35, 45);
-            dataGridViewCellStyle1.Font = new Font("Franklin Gothic Medium Cond", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dtgCategoria.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.BackColor = Color.FromArgb(35, 35, 45);
+            dataGridViewCellStyle10.Font = new Font("Franklin Gothic Medium Cond", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle10.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dtgCategoria.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
             dtgCategoria.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgCategoria.BackgroundColor = Color.FromArgb(30, 35, 45);
             dtgCategoria.BorderStyle = BorderStyle.None;
             dtgCategoria.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(50, 50, 70);
-            dataGridViewCellStyle2.Font = new Font("Franklin Gothic Medium", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dtgCategoria.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = Color.FromArgb(50, 50, 70);
+            dataGridViewCellStyle11.Font = new Font("Franklin Gothic Medium", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle11.ForeColor = Color.White;
+            dataGridViewCellStyle11.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.True;
+            dtgCategoria.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             dtgCategoria.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(40, 40, 50);
-            dataGridViewCellStyle3.Font = new Font("Franklin Gothic Medium", 11F);
-            dataGridViewCellStyle3.ForeColor = Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dataGridViewCellStyle3.SelectionForeColor = Color.White;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dtgCategoria.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = Color.FromArgb(40, 40, 50);
+            dataGridViewCellStyle12.Font = new Font("Franklin Gothic Medium", 11F);
+            dataGridViewCellStyle12.ForeColor = Color.White;
+            dataGridViewCellStyle12.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle12.SelectionForeColor = Color.White;
+            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.False;
+            dtgCategoria.DefaultCellStyle = dataGridViewCellStyle12;
             dtgCategoria.EnableHeadersVisualStyles = false;
             dtgCategoria.GridColor = Color.FromArgb(60, 60, 80);
             dtgCategoria.Location = new Point(14, 425);
             dtgCategoria.MultiSelect = false;
             dtgCategoria.Name = "dtgCategoria";
             dtgCategoria.ReadOnly = true;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(40, 40, 50);
-            dataGridViewCellStyle4.Font = new Font("Franklin Gothic Medium", 11F);
-            dataGridViewCellStyle4.ForeColor = Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dataGridViewCellStyle4.SelectionForeColor = Color.White;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dtgCategoria.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = Color.FromArgb(40, 40, 50);
+            dataGridViewCellStyle13.Font = new Font("Franklin Gothic Medium", 11F);
+            dataGridViewCellStyle13.ForeColor = Color.White;
+            dataGridViewCellStyle13.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle13.SelectionForeColor = Color.White;
+            dataGridViewCellStyle13.WrapMode = DataGridViewTriState.True;
+            dtgCategoria.RowHeadersDefaultCellStyle = dataGridViewCellStyle13;
             dtgCategoria.RowHeadersVisible = false;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(40, 40, 50);
-            dataGridViewCellStyle5.Font = new Font("Franklin Gothic Medium", 11F);
-            dataGridViewCellStyle5.ForeColor = Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dataGridViewCellStyle5.SelectionForeColor = Color.White;
-            dtgCategoria.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle14.BackColor = Color.FromArgb(40, 40, 50);
+            dataGridViewCellStyle14.Font = new Font("Franklin Gothic Medium", 11F);
+            dataGridViewCellStyle14.ForeColor = Color.White;
+            dataGridViewCellStyle14.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle14.SelectionForeColor = Color.White;
+            dtgCategoria.RowsDefaultCellStyle = dataGridViewCellStyle14;
             dtgCategoria.RowTemplate.Height = 26;
             dtgCategoria.ScrollBars = ScrollBars.Vertical;
             dtgCategoria.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -573,28 +574,28 @@
             label14.TabIndex = 63;
             label14.Text = "Cadastre um Produto!";
             // 
-            // label21
+            // lbBarrasAtt
             // 
-            label21.AutoSize = true;
-            label21.Font = new Font("Franklin Gothic Medium", 12F);
-            label21.ForeColor = Color.FromArgb(180, 180, 190);
-            label21.Location = new Point(345, 484);
-            label21.Name = "label21";
-            label21.Size = new Size(126, 21);
-            label21.TabIndex = 80;
-            label21.Text = "Codigo de Barras";
+            lbBarrasAtt.AutoSize = true;
+            lbBarrasAtt.Font = new Font("Franklin Gothic Medium", 12F);
+            lbBarrasAtt.ForeColor = Color.FromArgb(180, 180, 190);
+            lbBarrasAtt.Location = new Point(345, 484);
+            lbBarrasAtt.Name = "lbBarrasAtt";
+            lbBarrasAtt.Size = new Size(126, 21);
+            lbBarrasAtt.TabIndex = 80;
+            lbBarrasAtt.Text = "Codigo de Barras";
             // 
-            // astCat
+            // astCatAtt
             // 
-            astCat.AutoSize = true;
-            astCat.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            astCat.ForeColor = Color.FromArgb(192, 0, 0);
-            astCat.Location = new Point(416, 543);
-            astCat.Name = "astCat";
-            astCat.Size = new Size(16, 24);
-            astCat.TabIndex = 68;
-            astCat.Text = "*";
-            astCat.Visible = false;
+            astCatAtt.AutoSize = true;
+            astCatAtt.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            astCatAtt.ForeColor = Color.FromArgb(192, 0, 0);
+            astCatAtt.Location = new Point(416, 543);
+            astCatAtt.Name = "astCatAtt";
+            astCatAtt.Size = new Size(16, 24);
+            astCatAtt.TabIndex = 68;
+            astCatAtt.Text = "*";
+            astCatAtt.Visible = false;
             // 
             // cmbCatAtt
             // 
@@ -606,54 +607,55 @@
             cmbCatAtt.Size = new Size(345, 33);
             cmbCatAtt.TabIndex = 67;
             // 
-            // label11
+            // lbCatAtt
             // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Franklin Gothic Medium", 12F);
-            label11.ForeColor = Color.FromArgb(180, 180, 190);
-            label11.Location = new Point(345, 546);
-            label11.Name = "label11";
-            label11.Size = new Size(75, 21);
-            label11.TabIndex = 66;
-            label11.Text = "Categoria";
+            lbCatAtt.AutoSize = true;
+            lbCatAtt.Font = new Font("Franklin Gothic Medium", 12F);
+            lbCatAtt.ForeColor = Color.FromArgb(180, 180, 190);
+            lbCatAtt.Location = new Point(345, 546);
+            lbCatAtt.Name = "lbCatAtt";
+            lbCatAtt.Size = new Size(75, 21);
+            lbCatAtt.TabIndex = 66;
+            lbCatAtt.Text = "Categoria";
             // 
-            // label12
+            // lbDescAtt
             // 
-            label12.AutoSize = true;
-            label12.Font = new Font("Franklin Gothic Medium", 12F);
-            label12.ForeColor = Color.FromArgb(180, 180, 190);
-            label12.Location = new Point(345, 353);
-            label12.Name = "label12";
-            label12.Size = new Size(75, 21);
-            label12.TabIndex = 65;
-            label12.Text = "Descrição";
+            lbDescAtt.AutoSize = true;
+            lbDescAtt.Font = new Font("Franklin Gothic Medium", 12F);
+            lbDescAtt.ForeColor = Color.FromArgb(180, 180, 190);
+            lbDescAtt.Location = new Point(345, 353);
+            lbDescAtt.Name = "lbDescAtt";
+            lbDescAtt.Size = new Size(75, 21);
+            lbDescAtt.TabIndex = 65;
+            lbDescAtt.Text = "Descrição";
             // 
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(30, 30, 45);
+            panel2.Controls.Add(astMedidaAtt);
             panel2.Controls.Add(btnAtivarProd);
-            panel2.Controls.Add(label22);
+            panel2.Controls.Add(astBarrasAtt);
             panel2.Controls.Add(btnDesativarProd);
             panel2.Controls.Add(txtCodBarra);
-            panel2.Controls.Add(label21);
+            panel2.Controls.Add(lbBarrasAtt);
             panel2.Controls.Add(label16);
             panel2.Controls.Add(btnExcluirProd);
             panel2.Controls.Add(btnAttProd);
-            panel2.Controls.Add(label2);
-            panel2.Controls.Add(astDesc);
-            panel2.Controls.Add(label3);
-            panel2.Controls.Add(label4);
-            panel2.Controls.Add(label5);
-            panel2.Controls.Add(astCat);
-            panel2.Controls.Add(label11);
+            panel2.Controls.Add(astPrecoAtt);
+            panel2.Controls.Add(astDescAtt);
+            panel2.Controls.Add(astmarcaAtt);
+            panel2.Controls.Add(astNomeAtt);
+            panel2.Controls.Add(lbPrecoAtt);
+            panel2.Controls.Add(astCatAtt);
+            panel2.Controls.Add(lbCatAtt);
             panel2.Controls.Add(cmbCatAtt);
             panel2.Controls.Add(txtPrecoProd);
             panel2.Controls.Add(cmbMedida);
-            panel2.Controls.Add(label6);
-            panel2.Controls.Add(label12);
-            panel2.Controls.Add(label7);
+            panel2.Controls.Add(lbMedidaAtt);
+            panel2.Controls.Add(lbDescAtt);
+            panel2.Controls.Add(lbMarcaAtt);
             panel2.Controls.Add(txtMarcaProd);
-            panel2.Controls.Add(label8);
+            panel2.Controls.Add(lbNomeAtt);
             panel2.Controls.Add(txtNomeProd);
             panel2.Controls.Add(label1);
             panel2.Controls.Add(dtgProdutos);
@@ -677,17 +679,17 @@
             btnAtivarProd.UseVisualStyleBackColor = false;
             btnAtivarProd.Click += btnAtivarProd_Click;
             // 
-            // label22
+            // astBarrasAtt
             // 
-            label22.AutoSize = true;
-            label22.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label22.ForeColor = Color.FromArgb(192, 0, 0);
-            label22.Location = new Point(477, 475);
-            label22.Name = "label22";
-            label22.Size = new Size(16, 24);
-            label22.TabIndex = 85;
-            label22.Text = "*";
-            label22.Visible = false;
+            astBarrasAtt.AutoSize = true;
+            astBarrasAtt.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            astBarrasAtt.ForeColor = Color.FromArgb(192, 0, 0);
+            astBarrasAtt.Location = new Point(477, 475);
+            astBarrasAtt.Name = "astBarrasAtt";
+            astBarrasAtt.Size = new Size(16, 24);
+            astBarrasAtt.TabIndex = 85;
+            astBarrasAtt.Text = "*";
+            astBarrasAtt.Visible = false;
             // 
             // btnDesativarProd
             // 
@@ -753,52 +755,53 @@
             btnAttProd.UseVisualStyleBackColor = false;
             btnAttProd.Click += btnAttProd_Click;
             // 
-            // label2
+            // astPrecoAtt
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.FromArgb(192, 0, 0);
-            label2.Location = new Point(150, 549);
-            label2.Name = "label2";
-            label2.Size = new Size(16, 24);
-            label2.TabIndex = 72;
-            label2.Text = "*";
-            label2.Visible = false;
+            astPrecoAtt.AutoSize = true;
+            astPrecoAtt.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            astPrecoAtt.ForeColor = Color.FromArgb(192, 0, 0);
+            astPrecoAtt.Location = new Point(150, 549);
+            astPrecoAtt.Name = "astPrecoAtt";
+            astPrecoAtt.Size = new Size(16, 24);
+            astPrecoAtt.TabIndex = 72;
+            astPrecoAtt.Text = "*";
+            astPrecoAtt.Visible = false;
             // 
-            // label3
+            // astmarcaAtt
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.FromArgb(192, 0, 0);
-            label3.Location = new Point(150, 413);
-            label3.Name = "label3";
-            label3.Size = new Size(16, 24);
-            label3.TabIndex = 71;
-            label3.Text = "*";
-            label3.Visible = false;
+            astmarcaAtt.AutoSize = true;
+            astmarcaAtt.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            astmarcaAtt.ForeColor = Color.FromArgb(192, 0, 0);
+            astmarcaAtt.Location = new Point(150, 413);
+            astmarcaAtt.Name = "astmarcaAtt";
+            astmarcaAtt.Size = new Size(16, 24);
+            astmarcaAtt.TabIndex = 71;
+            astmarcaAtt.Text = "*";
+            astmarcaAtt.Visible = false;
             // 
-            // label4
+            // astNomeAtt
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.FromArgb(192, 0, 0);
-            label4.Location = new Point(150, 350);
-            label4.Name = "label4";
-            label4.Size = new Size(16, 24);
-            label4.TabIndex = 70;
-            label4.Text = "*";
-            label4.Visible = false;
+            astNomeAtt.AutoSize = true;
+            astNomeAtt.FlatStyle = FlatStyle.System;
+            astNomeAtt.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            astNomeAtt.ForeColor = Color.FromArgb(192, 0, 0);
+            astNomeAtt.Location = new Point(150, 350);
+            astNomeAtt.Name = "astNomeAtt";
+            astNomeAtt.Size = new Size(16, 24);
+            astNomeAtt.TabIndex = 70;
+            astNomeAtt.Text = "*";
+            astNomeAtt.Visible = false;
             // 
-            // label5
+            // lbPrecoAtt
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Franklin Gothic Medium", 12F);
-            label5.ForeColor = Color.FromArgb(180, 180, 190);
-            label5.Location = new Point(20, 549);
-            label5.Name = "label5";
-            label5.Size = new Size(135, 21);
-            label5.TabIndex = 69;
-            label5.Text = "Preço por unidade";
+            lbPrecoAtt.AutoSize = true;
+            lbPrecoAtt.Font = new Font("Franklin Gothic Medium", 12F);
+            lbPrecoAtt.ForeColor = Color.FromArgb(180, 180, 190);
+            lbPrecoAtt.Location = new Point(20, 549);
+            lbPrecoAtt.Name = "lbPrecoAtt";
+            lbPrecoAtt.Size = new Size(135, 21);
+            lbPrecoAtt.TabIndex = 69;
+            lbPrecoAtt.Text = "Preço por unidade";
             // 
             // txtPrecoProd
             // 
@@ -822,27 +825,27 @@
             cmbMedida.Size = new Size(307, 33);
             cmbMedida.TabIndex = 67;
             // 
-            // label6
+            // lbMedidaAtt
             // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Franklin Gothic Medium", 12F);
-            label6.ForeColor = Color.FromArgb(180, 180, 190);
-            label6.Location = new Point(20, 484);
-            label6.Name = "label6";
-            label6.Size = new Size(146, 21);
-            label6.TabIndex = 66;
-            label6.Text = "Unidade de medida";
+            lbMedidaAtt.AutoSize = true;
+            lbMedidaAtt.Font = new Font("Franklin Gothic Medium", 12F);
+            lbMedidaAtt.ForeColor = Color.FromArgb(180, 180, 190);
+            lbMedidaAtt.Location = new Point(20, 484);
+            lbMedidaAtt.Name = "lbMedidaAtt";
+            lbMedidaAtt.Size = new Size(146, 21);
+            lbMedidaAtt.TabIndex = 66;
+            lbMedidaAtt.Text = "Unidade de medida";
             // 
-            // label7
+            // lbMarcaAtt
             // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Franklin Gothic Medium", 12F);
-            label7.ForeColor = Color.FromArgb(180, 180, 190);
-            label7.Location = new Point(20, 416);
-            label7.Name = "label7";
-            label7.Size = new Size(131, 21);
-            label7.TabIndex = 65;
-            label7.Text = "Marca do produto";
+            lbMarcaAtt.AutoSize = true;
+            lbMarcaAtt.Font = new Font("Franklin Gothic Medium", 12F);
+            lbMarcaAtt.ForeColor = Color.FromArgb(180, 180, 190);
+            lbMarcaAtt.Location = new Point(20, 416);
+            lbMarcaAtt.Name = "lbMarcaAtt";
+            lbMarcaAtt.Size = new Size(131, 21);
+            lbMarcaAtt.TabIndex = 65;
+            lbMarcaAtt.Text = "Marca do produto";
             // 
             // txtMarcaProd
             // 
@@ -854,16 +857,16 @@
             txtMarcaProd.Size = new Size(307, 32);
             txtMarcaProd.TabIndex = 64;
             // 
-            // label8
+            // lbNomeAtt
             // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Franklin Gothic Medium", 12F);
-            label8.ForeColor = Color.FromArgb(180, 180, 190);
-            label8.Location = new Point(20, 353);
-            label8.Name = "label8";
-            label8.Size = new Size(128, 21);
-            label8.TabIndex = 63;
-            label8.Text = "Nome do produto";
+            lbNomeAtt.AutoSize = true;
+            lbNomeAtt.Font = new Font("Franklin Gothic Medium", 12F);
+            lbNomeAtt.ForeColor = Color.FromArgb(180, 180, 190);
+            lbNomeAtt.Location = new Point(20, 353);
+            lbNomeAtt.Name = "lbNomeAtt";
+            lbNomeAtt.Size = new Size(128, 21);
+            lbNomeAtt.TabIndex = 63;
+            lbNomeAtt.Text = "Nome do produto";
             // 
             // txtNomeProd
             // 
@@ -891,21 +894,21 @@
             dtgProdutos.AllowUserToAddRows = false;
             dtgProdutos.AllowUserToDeleteRows = false;
             dtgProdutos.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle6.BackColor = Color.FromArgb(35, 35, 45);
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dtgProdutos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle15.BackColor = Color.FromArgb(35, 35, 45);
+            dataGridViewCellStyle15.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dtgProdutos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle15;
             dtgProdutos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgProdutos.BackgroundColor = Color.FromArgb(30, 35, 45);
             dtgProdutos.BorderStyle = BorderStyle.None;
             dtgProdutos.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = Color.FromArgb(50, 50, 70);
-            dataGridViewCellStyle7.Font = new Font("Franklin Gothic Medium", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle7.ForeColor = Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            dtgProdutos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = Color.FromArgb(50, 50, 70);
+            dataGridViewCellStyle16.Font = new Font("Franklin Gothic Medium", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle16.ForeColor = Color.White;
+            dataGridViewCellStyle16.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle16.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = DataGridViewTriState.True;
+            dtgProdutos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
             dtgProdutos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgProdutos.EnableHeadersVisualStyles = false;
             dtgProdutos.GridColor = Color.FromArgb(60, 60, 80);
@@ -913,26 +916,38 @@
             dtgProdutos.MultiSelect = false;
             dtgProdutos.Name = "dtgProdutos";
             dtgProdutos.ReadOnly = true;
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = Color.FromArgb(40, 40, 50);
-            dataGridViewCellStyle8.Font = new Font("Franklin Gothic Medium", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle8.ForeColor = Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dataGridViewCellStyle8.SelectionForeColor = Color.White;
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
-            dtgProdutos.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle17.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = Color.FromArgb(40, 40, 50);
+            dataGridViewCellStyle17.Font = new Font("Franklin Gothic Medium", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle17.ForeColor = Color.White;
+            dataGridViewCellStyle17.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle17.SelectionForeColor = Color.White;
+            dataGridViewCellStyle17.WrapMode = DataGridViewTriState.True;
+            dtgProdutos.RowHeadersDefaultCellStyle = dataGridViewCellStyle17;
             dtgProdutos.RowHeadersVisible = false;
-            dataGridViewCellStyle9.BackColor = Color.FromArgb(40, 40, 50);
-            dataGridViewCellStyle9.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle9.ForeColor = Color.White;
-            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dataGridViewCellStyle9.SelectionForeColor = Color.White;
-            dtgProdutos.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle18.BackColor = Color.FromArgb(40, 40, 50);
+            dataGridViewCellStyle18.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle18.ForeColor = Color.White;
+            dataGridViewCellStyle18.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle18.SelectionForeColor = Color.White;
+            dtgProdutos.RowsDefaultCellStyle = dataGridViewCellStyle18;
             dtgProdutos.RowTemplate.Height = 26;
             dtgProdutos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dtgProdutos.Size = new Size(670, 265);
             dtgProdutos.TabIndex = 7;
             dtgProdutos.CellClick += dtgProdutos_CellClick;
+            // 
+            // astMedidaAtt
+            // 
+            astMedidaAtt.AutoSize = true;
+            astMedidaAtt.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            astMedidaAtt.ForeColor = Color.FromArgb(192, 0, 0);
+            astMedidaAtt.Location = new Point(163, 481);
+            astMedidaAtt.Name = "astMedidaAtt";
+            astMedidaAtt.Size = new Size(16, 24);
+            astMedidaAtt.TabIndex = 88;
+            astMedidaAtt.Text = "*";
+            astMedidaAtt.Visible = false;
             // 
             // frmProduto
             // 
@@ -973,28 +988,28 @@
         private Label astCategoria;
         private Label astMarca;
         private Label astPreco;
-        private Label astDesc;
+        private Label astDescAtt;
         private Panel panel1;
         private Panel panel2;
         private DataGridView dtgProdutos;
         private Label label14;
-        private Label label2;
-        private Label label3;
-        private Label label4;
-        private Label label5;
+        private Label astPrecoAtt;
+        private Label astmarcaAtt;
+        private Label astNomeAtt;
+        private Label lbPrecoAtt;
         private TextBox txtPrecoProd;
         private ComboBox cmbMedida;
-        private Label label6;
-        private Label label7;
+        private Label lbMedidaAtt;
+        private Label lbMarcaAtt;
         private TextBox txtMarcaProd;
-        private Label label8;
+        private Label lbNomeAtt;
         private TextBox txtNomeProd;
         private Label label1;
         private Label astDescricao;
-        private Label astCat;
+        private Label astCatAtt;
         private ComboBox cmbCatAtt;
-        private Label label11;
-        private Label label12;
+        private Label lbCatAtt;
+        private Label lbDescAtt;
         private TextBox PrDescricao;
         private Button btnAttProd;
         private Button btnExcluirProd;
@@ -1009,12 +1024,13 @@
         private Label label16;
         private Label label19;
         private Label astCod;
-        private Label label21;
+        private Label lbBarrasAtt;
         private TextBox PrCodigoBarra;
         private Button btnDesativarProd;
-        private Label label22;
+        private Label astBarrasAtt;
         private Label label23;
         private TextBox txtCodBarra;
         private Button btnAtivarProd;
+        private Label astMedidaAtt;
     }
 }

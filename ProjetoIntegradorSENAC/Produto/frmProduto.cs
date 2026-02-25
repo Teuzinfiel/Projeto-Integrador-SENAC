@@ -24,6 +24,10 @@ namespace ProjetoIntegradorSENAC.Produto
         private bool erroCategoria = true;
         private bool erroUnidade = true;
 
+
+        private bool limpandoFormulario = false;
+        private bool validarCampos = false;
+
         // Construtor
         public frmProduto(int idUsuario, int idComercio)
         {
@@ -50,6 +54,7 @@ namespace ProjetoIntegradorSENAC.Produto
         //Botao de cadastro de produtos
         private void btnCadastro_Click(object sender, EventArgs e)
         {
+            validarCampos = true;
             if (!CamposValidos())
             {
                 MessageBox.Show(
@@ -64,9 +69,7 @@ namespace ProjetoIntegradorSENAC.Produto
                 ? GerarCodigoBarra()
                 : PrCodigoBarra.Text;
 
-            string unidade = CmbUnidade.SelectedItem.ToString() == "Grama"
-                ? "gramas"
-                : "unidade";
+            string unidade = CmbUnidade.SelectedItem.ToString();
 
             string preco = PrPreco.Text.Replace(",", ".");
 
@@ -116,7 +119,26 @@ namespace ProjetoIntegradorSENAC.Produto
 
                 MessageBox.Show("Produto cadastrado com sucesso!");
 
+                limpandoFormulario = true;
+
                 Funcoes.Limpar(this);
+
+                limpandoFormulario = false;
+                validarCampos = false;
+                // Reset visual
+                astNome.Visible = false;
+                astDescAtt.Visible = false;
+                astMarca.Visible = false;
+                astPreco.Visible = false;
+                astCategoria.Visible = false;
+                astUnidade.Visible = false;
+
+                lbNome.ForeColor = Color.White;
+                lbDescricao.ForeColor = Color.White;
+                lbMarca.ForeColor = Color.White;
+                lbPreco.ForeColor = Color.White;
+                lbCategoria.ForeColor = Color.White;
+                lbUnidade.ForeColor = Color.White;
                 CarregarProdutos();
                 CarregarCategoriasCb();
                 CarregarCategorias();
@@ -126,12 +148,7 @@ namespace ProjetoIntegradorSENAC.Produto
 
                 CmbUnidade.SelectedIndex = -1;
 
-                erroNome = true;
-                erroDescricao = true;
-                erroMarca = true;
-                erroPreco = true;
-                erroCategoria = true;
-                erroUnidade = true;
+           
             }
             catch (Exception ex)
             {
@@ -143,6 +160,7 @@ namespace ProjetoIntegradorSENAC.Produto
         // Verificações de campos obrigatórios
         private void PrNome_TextChanged(object sender, EventArgs e)
         {
+            if (limpandoFormulario || !validarCampos) return;
             erroNome = Funcoes.CampoVazio(PrNome);
             astNome.Visible = erroNome;
             lbNome.ForeColor = erroNome ? Color.DarkRed : Color.White;
@@ -150,13 +168,15 @@ namespace ProjetoIntegradorSENAC.Produto
 
         private void PrDescricao_TextChanged(object sender, EventArgs e)
         {
+            if (limpandoFormulario || !validarCampos) return;
             erroDescricao = Funcoes.CampoVazio(PrDescricao);
-            astDesc.Visible = erroDescricao;
+            astDescAtt.Visible = erroDescricao;
             lbDescricao.ForeColor = erroDescricao ? Color.DarkRed : Color.White;
         }
 
         private void PrMarca_TextChanged(object sender, EventArgs e)
         {
+            if (limpandoFormulario || !validarCampos) return;
             erroMarca = Funcoes.CampoVazio(PrMarca);
 
             astMarca.Visible = erroMarca;
@@ -165,6 +185,7 @@ namespace ProjetoIntegradorSENAC.Produto
 
         private void PrPreco_TextChanged(object sender, EventArgs e)
         {
+            if (limpandoFormulario || !validarCampos) return;
             erroPreco = Funcoes.CampoVazio(PrPreco);
 
             astPreco.Visible = erroPreco;
@@ -173,6 +194,7 @@ namespace ProjetoIntegradorSENAC.Produto
 
         private void CmbCategoria_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (limpandoFormulario || !validarCampos) return;
             erroCategoria = Funcoes.CampoVazio(CmbCategoria);
 
             astCategoria.Visible = erroCategoria;
@@ -181,9 +203,11 @@ namespace ProjetoIntegradorSENAC.Produto
 
         private void CmbUnidade_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (limpandoFormulario || !validarCampos) return;
             erroUnidade = Funcoes.CampoVazio(CmbUnidade);
             astUnidade.Visible = erroUnidade;
             lbUnidade.ForeColor = erroUnidade ? Color.DarkRed : Color.White;
+
             if (!erroUnidade)
             {
                 if (CmbUnidade.SelectedItem.ToString() == "Grama")
@@ -214,7 +238,7 @@ namespace ProjetoIntegradorSENAC.Produto
             astNome.Visible = erroNome;
             lbNome.ForeColor = erroNome ? Color.DarkRed : Color.White;
 
-            astDesc.Visible = erroDescricao;
+            astDescAtt.Visible = erroDescricao;
             lbDescricao.ForeColor = erroDescricao ? Color.DarkRed : Color.White;
 
             astMarca.Visible = erroMarca;
@@ -418,6 +442,8 @@ namespace ProjetoIntegradorSENAC.Produto
         {
             if (e.RowIndex < 0) return;
 
+            limpandoFormulario = true;
+
             DataGridViewRow row = dtgProdutos.Rows[e.RowIndex];
 
             idProdutoSelecionado = Convert.ToInt32(row.Cells["id"].Value);
@@ -434,15 +460,34 @@ namespace ProjetoIntegradorSENAC.Produto
 
             string status = row.Cells["Status"].Value.ToString().ToLower();
 
-            //  alterna botões
             btnDesativarProd.Visible = status == "ativo";
             btnAtivarProd.Visible = status == "desativo";
 
             btnExcluirProd.Visible = true;
             btnAttProd.Visible = true;
-        }
 
+            limpandoFormulario = false;
+
+            descricaoOriginal = PrDescricaoAtt.Text;
+            categoriaOriginal = cmbCatAtt.Text;
+            precoOriginal = decimal.Parse(txtPrecoProd.Text);
+            unidadeOriginal = cmbMedida.SelectedItem?.ToString();
+            nomeOriginal = txtNomeProd.Text;
+            marcaOriginal = txtMarcaProd.Text;
+            codBarraOriginal = txtCodBarra.Text;
+
+        }
+        string descricaoOriginal;
+        string categoriaOriginal;
+        decimal precoOriginal;
+        string nomeOriginal;
+        string marcaOriginal;
+        string codBarraOriginal;
+        string unidadeOriginal;
         // Botao de atualizacao de produtos
+
+
+
         private void btnAttProd_Click(object sender, EventArgs e)
         {
             if (idProdutoSelecionado == 0)
@@ -451,26 +496,82 @@ namespace ProjetoIntegradorSENAC.Produto
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(txtNomeProd.Text) || string.IsNullOrWhiteSpace(txtPrecoProd.Text) ||
-                cmbMedida.SelectedIndex == -1 || cmbCatAtt.SelectedIndex == -1)
+            // Atualiza os erros e asteriscos dos campos antes de continuar
+            bool camposValidos = true;
+
+            erroNome = string.IsNullOrWhiteSpace(txtNomeProd.Text);
+            erroMarca = string.IsNullOrWhiteSpace(txtMarcaProd.Text);
+            erroDescricao = string.IsNullOrWhiteSpace(PrDescricaoAtt.Text);
+            erroPreco = string.IsNullOrWhiteSpace(txtPrecoProd.Text);
+            erroCategoria = cmbCatAtt.SelectedIndex == -1;
+            erroUnidade = cmbMedida.SelectedIndex == -1;
+            bool erroCodBarra = string.IsNullOrWhiteSpace(txtCodBarra.Text) || !txtCodBarra.Text.All(char.IsDigit);
+
+            // Atualiza visibilidade dos asteriscos
+            astNomeAtt.Visible = erroNome;
+            astmarcaAtt.Visible = erroMarca;
+            astDescricao.Visible = erroDescricao;
+            astPrecoAtt.Visible = erroPreco;
+            astCatAtt.Visible = erroCategoria;
+            astMedidaAtt.Visible = erroUnidade;
+            astBarrasAtt.Visible = erroCodBarra;
+
+            // Atualiza cor dos labels
+            lbNomeAtt.ForeColor = erroNome ? Color.DarkRed : Color.White;
+            lbMarcaAtt.ForeColor = erroMarca ? Color.DarkRed : Color.White;
+            lbDescAtt.ForeColor = erroDescricao ? Color.DarkRed : Color.White;
+            lbPrecoAtt.ForeColor = erroPreco ? Color.DarkRed : Color.White;
+            lbCatAtt.ForeColor = erroCategoria ? Color.DarkRed : Color.White;
+            lbMedidaAtt.ForeColor = erroUnidade ? Color.DarkRed : Color.White;
+            lbBarrasAtt.ForeColor = erroCodBarra ? Color.DarkRed : Color.White;
+
+            // Se algum campo estiver inválido, não continua
+            camposValidos = !(erroNome || erroMarca || erroDescricao || erroPreco || erroCategoria || erroUnidade || erroCodBarra);
+
+            if (!camposValidos)
             {
-                MessageBox.Show("Preencha os campos obrigatórios.");
+                MessageBox.Show(
+                    "Preencha corretamente todos os campos obrigatórios.",
+                    "Erro",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
                 return;
             }
 
-            string unidade = cmbMedida.Text == "Grama" ? "gramas" : "unidade";
+            // Verifica se nenhuma alteração foi feita
+            if (
+                txtNomeProd.Text == nomeOriginal &&
+                txtMarcaProd.Text == marcaOriginal &&
+                PrDescricaoAtt.Text == descricaoOriginal &&
+                txtCodBarra.Text == codBarraOriginal &&
+                decimal.Parse(txtPrecoProd.Text) == precoOriginal &&
+                cmbCatAtt.Text == categoriaOriginal &&
+                cmbMedida.SelectedItem?.ToString() == unidadeOriginal
+            )
+            {
+                MessageBox.Show(
+                    "Nenhuma alteração foi feita.",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+                return;
+            }
+
+            string unidade = cmbMedida.SelectedItem.ToString();
 
             string sql = $@"
-UPDATE produtos
-SET  
-nome = '{txtNomeProd.Text}',
-marca = '{txtMarcaProd.Text}',
-descricao = '{PrDescricaoAtt.Text}',
-unidade_medida = '{unidade}',
-preco = {txtPrecoProd.Text.Replace(",", ".")},
-codigo_barra = '{txtCodBarra.Text}',
-categoria_id = {cmbCatAtt.SelectedValue}
-WHERE id = {idProdutoSelecionado};";
+    UPDATE produtos
+    SET  
+        nome = '{txtNomeProd.Text}',
+        marca = '{txtMarcaProd.Text}',
+        descricao = '{PrDescricaoAtt.Text}',
+        unidade_medida = '{unidade}',
+        preco = {txtPrecoProd.Text.Replace(",", ".")},
+        codigo_barra = '{txtCodBarra.Text}',
+        categoria_id = {cmbCatAtt.SelectedValue}
+    WHERE id = {idProdutoSelecionado};";
 
             try
             {
@@ -616,6 +717,8 @@ WHERE id = {idProdutoSelecionado};";
         // Limpa campos de edição de produtos
         private void LimparEdicaoProduto()
         {
+            limpandoFormulario = true;
+
             txtNomeProd.Clear();
             txtMarcaProd.Clear();
             txtPrecoProd.Clear();
@@ -626,6 +729,8 @@ WHERE id = {idProdutoSelecionado};";
             cmbCatAtt.SelectedIndex = -1;
 
             idProdutoSelecionado = 0;
+
+            limpandoFormulario = false;
         }
 
         // Botao de ativacao de produtos

@@ -21,14 +21,12 @@ namespace ProjetoIntegradorSENAC.Estoque
             InitializeComponent();
             _main = main;
             this.idEmpresa = idEmpresa;
-            dtgProdutos.DefaultCellStyle.SelectionBackColor = dtgProdutos.DefaultCellStyle.BackColor;
-            dtgProdutos.DefaultCellStyle.SelectionForeColor = dtgProdutos.DefaultCellStyle.ForeColor;
-            dtgProdutos.RowsDefaultCellStyle.SelectionBackColor = dtgProdutos.RowsDefaultCellStyle.BackColor;
-            dtgProdutos.RowsDefaultCellStyle.SelectionForeColor = dtgProdutos.RowsDefaultCellStyle.ForeColor;
+     
             dtgProdutos.AlternatingRowsDefaultCellStyle.SelectionBackColor =
             dtgProdutos.AlternatingRowsDefaultCellStyle.BackColor;
             dtgProdutos.TabStop = false;
-            dtgProdutos.ClearSelection();
+            dtgProdutos.CurrentCell = null;
+       
         }
         private int _produtoId;
 
@@ -66,7 +64,8 @@ namespace ProjetoIntegradorSENAC.Estoque
                     dtgProdutos.Columns["quantidade"].HeaderText = "Quantidade";
                     dtgProdutos.Columns["id"].Visible = false;
 
-                    dtgProdutos.ClearSelection();
+            dtgProdutos.ClearSelection();
+            Application.DoEvents();
         }
 
 
@@ -89,12 +88,9 @@ namespace ProjetoIntegradorSENAC.Estoque
 
         private void estoque_Load_1(object sender, EventArgs e)
         {
-
             CarregarProdutos();
-            // Travar edição pelo usuário
             dtgProdutos.ReadOnly = true;
-            // Ajustar layout geral
-            dtgProdutos.RowHeadersVisible = false; // tira aquela primeira coluna cinza
+            dtgProdutos.RowHeadersVisible = false; 
             dtgProdutos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dtgProdutos.MultiSelect = false;
             dtgProdutos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -110,16 +106,34 @@ namespace ProjetoIntegradorSENAC.Estoque
             comboBox1.Items.Add("Estoque Baixo");
             comboBox1.Items.Add("Sem Estoque");
             comboBox1.SelectedIndex = 0;
+            dtgProdutos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+       
+
         }
 
         private void txtPesquisa_TextChanged(object sender, EventArgs e)
         {
-
+            btnPesquisar_Click(sender, e);
         }
 
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
+            if (dtgProdutos.DataSource == null)
+                return;
 
+            DataTable dt = (DataTable)dtgProdutos.DataSource;
+
+            string texto = txtPesquisa.Text.Trim().Replace("'", "''");
+
+            if (string.IsNullOrEmpty(texto))
+            {
+                dt.DefaultView.RowFilter = "";
+            }
+            else
+            {
+                dt.DefaultView.RowFilter =
+                    $"nome LIKE '%{texto}%' OR codigo_barra LIKE '%{texto}%'";
+            }
         }
 
         private void dtgProdutos_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -143,25 +157,30 @@ namespace ProjetoIntegradorSENAC.Estoque
 
                 if (situacao == "Normal")
                 {
-                    e.CellStyle.BackColor = Color.FromArgb(0, 120, 215); // Azul moderno
+                    e.CellStyle.BackColor = Color.FromArgb(0, 120, 215);
                     e.CellStyle.ForeColor = Color.White;
                 }
                 else if (situacao == "Atenção")
                 {
-                    e.CellStyle.BackColor = Color.FromArgb(255, 140, 0); // Laranja forte
+                    e.CellStyle.BackColor = Color.FromArgb(255, 140, 0);
                     e.CellStyle.ForeColor = Color.White;
                 }
                 else if (situacao == "Estoque Baixo")
                 {
-                    e.CellStyle.BackColor = Color.FromArgb(200, 0, 0); // Vermelho
+                    e.CellStyle.BackColor = Color.FromArgb(200, 0, 0);
                     e.CellStyle.ForeColor = Color.White;
                 }
                 else if (situacao == "Sem Estoque")
                 {
-                    e.CellStyle.BackColor = Color.FromArgb(120, 0, 0); // Vermelho escuro
+                    e.CellStyle.BackColor = Color.FromArgb(120, 0, 0);
                     e.CellStyle.ForeColor = Color.White;
                 }
+
+           
+                e.CellStyle.SelectionBackColor = e.CellStyle.BackColor;
+                e.CellStyle.SelectionForeColor = e.CellStyle.ForeColor;
             }
+    
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

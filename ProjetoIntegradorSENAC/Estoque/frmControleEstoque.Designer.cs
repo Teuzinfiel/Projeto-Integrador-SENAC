@@ -28,34 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             dtgProdutos = new DataGridView();
-            panel1 = new Panel();
             label11 = new Label();
-            panel12 = new Panel();
-            label5 = new Label();
-            panel11 = new Panel();
-            label4 = new Label();
-            panel9 = new Panel();
-            label2 = new Label();
-            panel7 = new Panel();
-            TxtSaldoPd = new TextBox();
-            panel5 = new Panel();
-            txtStatusPd = new TextBox();
-            panel6 = new Panel();
-            txtUnidadePd = new TextBox();
-            panel10 = new Panel();
-            label3 = new Label();
-            panel4 = new Panel();
-            txtCatPd = new TextBox();
-            panel3 = new Panel();
-            txtNomePd = new TextBox();
-            panel8 = new Panel();
-            label6 = new Label();
-            label1 = new Label();
             panel2 = new Panel();
             panel14 = new Panel();
             btnEnviarSaida = new Button();
@@ -88,18 +66,37 @@
             btnPesquisar = new Button();
             label12 = new Label();
             panel16 = new Panel();
+            panel19 = new Panel();
+            panel20 = new Panel();
+            panel3 = new Panel();
+            txtNomePd = new TextBox();
+            panel8 = new Panel();
+            label6 = new Label();
+            label1 = new Label();
+            panel4 = new Panel();
+            txtCatPd = new TextBox();
+            panel6 = new Panel();
+            txtUnidadePd = new TextBox();
+            panel10 = new Panel();
+            label3 = new Label();
+            panel5 = new Panel();
+            panel12 = new Panel();
+            label5 = new Label();
+            txtStatusPd = new TextBox();
+            panel7 = new Panel();
+            TxtSaldoPd = new TextBox();
+            panel9 = new Panel();
+            label2 = new Label();
+            panel11 = new Panel();
+            label4 = new Label();
+            panel1 = new Panel();
+            astQtdEntrada = new Label();
+            astTpEntrada = new Label();
+            astDescEntrada = new Label();
+            astQtdSaida = new Label();
+            astTpSaida = new Label();
+            astDescSaida = new Label();
             ((System.ComponentModel.ISupportInitialize)dtgProdutos).BeginInit();
-            panel1.SuspendLayout();
-            panel12.SuspendLayout();
-            panel11.SuspendLayout();
-            panel9.SuspendLayout();
-            panel7.SuspendLayout();
-            panel5.SuspendLayout();
-            panel6.SuspendLayout();
-            panel10.SuspendLayout();
-            panel4.SuspendLayout();
-            panel3.SuspendLayout();
-            panel8.SuspendLayout();
             panel2.SuspendLayout();
             panel14.SuspendLayout();
             panel18.SuspendLayout();
@@ -107,6 +104,18 @@
             panel17.SuspendLayout();
             panel15.SuspendLayout();
             panel16.SuspendLayout();
+            panel19.SuspendLayout();
+            panel3.SuspendLayout();
+            panel8.SuspendLayout();
+            panel4.SuspendLayout();
+            panel6.SuspendLayout();
+            panel10.SuspendLayout();
+            panel5.SuspendLayout();
+            panel12.SuspendLayout();
+            panel7.SuspendLayout();
+            panel9.SuspendLayout();
+            panel11.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // dtgProdutos
@@ -114,62 +123,45 @@
             dtgProdutos.AllowUserToAddRows = false;
             dtgProdutos.AllowUserToDeleteRows = false;
             dtgProdutos.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(35, 35, 45);
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dtgProdutos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(35, 35, 45);
+            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dtgProdutos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             dtgProdutos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgProdutos.BackgroundColor = Color.FromArgb(30, 30, 40);
             dtgProdutos.BorderStyle = BorderStyle.None;
             dtgProdutos.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(50, 50, 70);
-            dataGridViewCellStyle2.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dtgProdutos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(50, 50, 70);
+            dataGridViewCellStyle6.Font = new Font("Franklin Gothic Medium", 13F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle6.ForeColor = Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dtgProdutos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dtgProdutos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgProdutos.EnableHeadersVisualStyles = false;
             dtgProdutos.GridColor = Color.FromArgb(60, 60, 80);
-            dtgProdutos.Location = new Point(34, 194);
+            dtgProdutos.Location = new Point(494, 77);
             dtgProdutos.MultiSelect = false;
             dtgProdutos.Name = "dtgProdutos";
             dtgProdutos.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(40, 40, 50);
-            dataGridViewCellStyle3.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dataGridViewCellStyle3.SelectionForeColor = Color.White;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dtgProdutos.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(40, 40, 50);
-            dataGridViewCellStyle4.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dataGridViewCellStyle4.SelectionForeColor = Color.White;
-            dtgProdutos.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            dtgProdutos.RowTemplate.Height = 40;
-            dtgProdutos.Size = new Size(434, 398);
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = Color.FromArgb(40, 40, 50);
+            dataGridViewCellStyle7.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle7.ForeColor = Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle7.SelectionForeColor = Color.White;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            dtgProdutos.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle8.BackColor = Color.FromArgb(40, 40, 50);
+            dataGridViewCellStyle8.Font = new Font("Franklin Gothic Medium", 13F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle8.ForeColor = Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle8.SelectionForeColor = Color.White;
+            dtgProdutos.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dtgProdutos.RowTemplate.Height = 20;
+            dtgProdutos.Size = new Size(814, 236);
             dtgProdutos.TabIndex = 45;
-            // 
-            // panel1
-            // 
-            panel1.BackColor = Color.FromArgb(30, 30, 40);
-            panel1.Controls.Add(label11);
-            panel1.Controls.Add(panel12);
-            panel1.Controls.Add(panel11);
-            panel1.Controls.Add(panel9);
-            panel1.Controls.Add(panel7);
-            panel1.Controls.Add(panel5);
-            panel1.Controls.Add(panel6);
-            panel1.Controls.Add(panel4);
-            panel1.Controls.Add(panel3);
-            panel1.Location = new Point(494, 29);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(814, 273);
-            panel1.TabIndex = 46;
             // 
             // label11
             // 
@@ -177,242 +169,12 @@
             label11.BackColor = Color.Transparent;
             label11.Font = new Font("Franklin Gothic Demi", 18F);
             label11.ForeColor = Color.White;
-            label11.Location = new Point(230, 15);
+            label11.Location = new Point(84, 21);
             label11.Name = "label11";
-            label11.Size = new Size(395, 30);
+            label11.Size = new Size(263, 60);
             label11.TabIndex = 4;
-            label11.Text = "Informações do produto selecionado";
+            label11.Text = "Informações do produto\r\n selecionado";
             label11.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // panel12
-            // 
-            panel12.BackColor = Color.FromArgb(35, 35, 50);
-            panel12.Controls.Add(label5);
-            panel12.Location = new Point(39, 217);
-            panel12.Name = "panel12";
-            panel12.Size = new Size(157, 37);
-            panel12.TabIndex = 3;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.BackColor = Color.Transparent;
-            label5.Font = new Font("Franklin Gothic Demi", 18F);
-            label5.ForeColor = Color.White;
-            label5.Location = new Point(6, 3);
-            label5.Name = "label5";
-            label5.Size = new Size(86, 30);
-            label5.TabIndex = 1;
-            label5.Text = "Status:";
-            // 
-            // panel11
-            // 
-            panel11.BackColor = Color.FromArgb(35, 35, 50);
-            panel11.Controls.Add(label4);
-            panel11.Location = new Point(39, 177);
-            panel11.Name = "panel11";
-            panel11.Size = new Size(157, 37);
-            panel11.TabIndex = 3;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.BackColor = Color.Transparent;
-            label4.Font = new Font("Franklin Gothic Demi", 18F);
-            label4.ForeColor = Color.White;
-            label4.Location = new Point(6, 7);
-            label4.Name = "label4";
-            label4.Size = new Size(78, 30);
-            label4.TabIndex = 1;
-            label4.Text = "Saldo:";
-            // 
-            // panel9
-            // 
-            panel9.BackColor = Color.FromArgb(35, 35, 50);
-            panel9.Controls.Add(label2);
-            panel9.Location = new Point(39, 91);
-            panel9.Name = "panel9";
-            panel9.Size = new Size(157, 37);
-            panel9.TabIndex = 2;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.BackColor = Color.Transparent;
-            label2.Font = new Font("Franklin Gothic Demi", 18F);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(3, 7);
-            label2.Name = "label2";
-            label2.Size = new Size(121, 30);
-            label2.TabIndex = 1;
-            label2.Text = "Categoria:";
-            // 
-            // panel7
-            // 
-            panel7.BackColor = Color.FromArgb(45, 45, 60);
-            panel7.Controls.Add(TxtSaldoPd);
-            panel7.Location = new Point(39, 177);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(732, 37);
-            panel7.TabIndex = 1;
-            // 
-            // TxtSaldoPd
-            // 
-            TxtSaldoPd.BackColor = Color.FromArgb(45, 45, 60);
-            TxtSaldoPd.BorderStyle = BorderStyle.None;
-            TxtSaldoPd.Font = new Font("Franklin Gothic Demi", 18F);
-            TxtSaldoPd.ForeColor = Color.White;
-            TxtSaldoPd.Location = new Point(163, 6);
-            TxtSaldoPd.Name = "TxtSaldoPd";
-            TxtSaldoPd.ReadOnly = true;
-            TxtSaldoPd.Size = new Size(569, 28);
-            TxtSaldoPd.TabIndex = 5;
-            TxtSaldoPd.TextAlign = HorizontalAlignment.Center;
-            // 
-            // panel5
-            // 
-            panel5.BackColor = Color.FromArgb(45, 45, 60);
-            panel5.Controls.Add(txtStatusPd);
-            panel5.Location = new Point(39, 220);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(732, 37);
-            panel5.TabIndex = 1;
-            // 
-            // txtStatusPd
-            // 
-            txtStatusPd.BackColor = Color.FromArgb(45, 45, 60);
-            txtStatusPd.BorderStyle = BorderStyle.None;
-            txtStatusPd.Font = new Font("Franklin Gothic Demi", 18F);
-            txtStatusPd.ForeColor = Color.White;
-            txtStatusPd.Location = new Point(163, 3);
-            txtStatusPd.Name = "txtStatusPd";
-            txtStatusPd.ReadOnly = true;
-            txtStatusPd.Size = new Size(566, 28);
-            txtStatusPd.TabIndex = 6;
-            txtStatusPd.TextAlign = HorizontalAlignment.Center;
-            // 
-            // panel6
-            // 
-            panel6.BackColor = Color.FromArgb(45, 45, 60);
-            panel6.Controls.Add(txtUnidadePd);
-            panel6.Controls.Add(panel10);
-            panel6.Location = new Point(39, 134);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(732, 37);
-            panel6.TabIndex = 1;
-            // 
-            // txtUnidadePd
-            // 
-            txtUnidadePd.BackColor = Color.FromArgb(45, 45, 60);
-            txtUnidadePd.BorderStyle = BorderStyle.None;
-            txtUnidadePd.Font = new Font("Franklin Gothic Demi", 18F);
-            txtUnidadePd.ForeColor = Color.White;
-            txtUnidadePd.Location = new Point(163, 6);
-            txtUnidadePd.Name = "txtUnidadePd";
-            txtUnidadePd.ReadOnly = true;
-            txtUnidadePd.Size = new Size(566, 28);
-            txtUnidadePd.TabIndex = 4;
-            txtUnidadePd.TextAlign = HorizontalAlignment.Center;
-            // 
-            // panel10
-            // 
-            panel10.BackColor = Color.FromArgb(35, 35, 50);
-            panel10.Controls.Add(label3);
-            panel10.Location = new Point(0, 0);
-            panel10.Name = "panel10";
-            panel10.Size = new Size(157, 37);
-            panel10.TabIndex = 3;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.BackColor = Color.Transparent;
-            label3.Font = new Font("Franklin Gothic Demi", 18F);
-            label3.ForeColor = Color.White;
-            label3.Location = new Point(3, 7);
-            label3.Name = "label3";
-            label3.Size = new Size(106, 30);
-            label3.TabIndex = 1;
-            label3.Text = "Unidade:";
-            // 
-            // panel4
-            // 
-            panel4.BackColor = Color.FromArgb(45, 45, 60);
-            panel4.Controls.Add(txtCatPd);
-            panel4.Location = new Point(39, 91);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(732, 37);
-            panel4.TabIndex = 1;
-            // 
-            // txtCatPd
-            // 
-            txtCatPd.BackColor = Color.FromArgb(45, 45, 60);
-            txtCatPd.BorderStyle = BorderStyle.None;
-            txtCatPd.Font = new Font("Franklin Gothic Demi", 18F);
-            txtCatPd.ForeColor = Color.White;
-            txtCatPd.Location = new Point(163, 6);
-            txtCatPd.Name = "txtCatPd";
-            txtCatPd.ReadOnly = true;
-            txtCatPd.Size = new Size(569, 28);
-            txtCatPd.TabIndex = 3;
-            txtCatPd.TextAlign = HorizontalAlignment.Center;
-            // 
-            // panel3
-            // 
-            panel3.BackColor = Color.FromArgb(45, 45, 60);
-            panel3.Controls.Add(txtNomePd);
-            panel3.Controls.Add(panel8);
-            panel3.Controls.Add(label1);
-            panel3.Location = new Point(39, 48);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(732, 37);
-            panel3.TabIndex = 0;
-            // 
-            // txtNomePd
-            // 
-            txtNomePd.BackColor = Color.FromArgb(45, 45, 60);
-            txtNomePd.BorderStyle = BorderStyle.None;
-            txtNomePd.Font = new Font("Franklin Gothic Demi", 18F);
-            txtNomePd.ForeColor = Color.White;
-            txtNomePd.Location = new Point(163, 3);
-            txtNomePd.Name = "txtNomePd";
-            txtNomePd.ReadOnly = true;
-            txtNomePd.Size = new Size(566, 28);
-            txtNomePd.TabIndex = 2;
-            txtNomePd.TextAlign = HorizontalAlignment.Center;
-            // 
-            // panel8
-            // 
-            panel8.BackColor = Color.FromArgb(35, 35, 50);
-            panel8.Controls.Add(label6);
-            panel8.Location = new Point(0, 0);
-            panel8.Name = "panel8";
-            panel8.Size = new Size(157, 37);
-            panel8.TabIndex = 1;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.BackColor = Color.Transparent;
-            label6.Font = new Font("Franklin Gothic Demi", 18F);
-            label6.ForeColor = Color.White;
-            label6.Location = new Point(3, 7);
-            label6.Name = "label6";
-            label6.Size = new Size(81, 30);
-            label6.TabIndex = 0;
-            label6.Text = "Nome:";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.FromArgb(45, 45, 60);
-            label1.Font = new Font("Franklin Gothic Demi", 18F);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(24, 7);
-            label1.Name = "label1";
-            label1.Size = new Size(81, 30);
-            label1.TabIndex = 0;
-            label1.Text = "Nome:";
             // 
             // panel2
             // 
@@ -427,6 +189,9 @@
             // panel14
             // 
             panel14.BackColor = Color.FromArgb(40, 40, 50);
+            panel14.Controls.Add(astDescSaida);
+            panel14.Controls.Add(astTpSaida);
+            panel14.Controls.Add(astQtdSaida);
             panel14.Controls.Add(btnEnviarSaida);
             panel14.Controls.Add(label18);
             panel14.Controls.Add(txtDescSaida);
@@ -589,6 +354,9 @@
             // panel13
             // 
             panel13.BackColor = Color.FromArgb(40, 40, 50);
+            panel13.Controls.Add(astDescEntrada);
+            panel13.Controls.Add(astTpEntrada);
+            panel13.Controls.Add(astQtdEntrada);
             panel13.Controls.Add(btnEnviarEntrada);
             panel13.Controls.Add(label15);
             panel13.Controls.Add(txtDescEntrada);
@@ -792,7 +560,7 @@
             label12.BackColor = Color.Transparent;
             label12.Font = new Font("Franklin Gothic Demi", 15F);
             label12.ForeColor = Color.White;
-            label12.Location = new Point(41, 134);
+            label12.Location = new Point(211, 11);
             label12.Name = "label12";
             label12.Size = new Size(363, 25);
             label12.TabIndex = 5;
@@ -802,11 +570,353 @@
             // panel16
             // 
             panel16.BackColor = Color.FromArgb(30, 30, 40);
-            panel16.Controls.Add(label12);
+            panel16.Controls.Add(label11);
             panel16.Location = new Point(34, 29);
             panel16.Name = "panel16";
-            panel16.Size = new Size(434, 164);
+            panel16.Size = new Size(434, 101);
             panel16.TabIndex = 50;
+            // 
+            // panel19
+            // 
+            panel19.BackColor = Color.FromArgb(30, 30, 40);
+            panel19.Controls.Add(label12);
+            panel19.Location = new Point(494, 29);
+            panel19.Name = "panel19";
+            panel19.Size = new Size(814, 50);
+            panel19.TabIndex = 51;
+            // 
+            // panel20
+            // 
+            panel20.BackColor = Color.FromArgb(30, 30, 40);
+            panel20.Location = new Point(3, 3);
+            panel20.Name = "panel20";
+            panel20.Size = new Size(428, 385);
+            panel20.TabIndex = 52;
+            // 
+            // panel3
+            // 
+            panel3.BackColor = Color.FromArgb(45, 45, 60);
+            panel3.Controls.Add(txtNomePd);
+            panel3.Controls.Add(panel8);
+            panel3.Controls.Add(label1);
+            panel3.Location = new Point(18, 49);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(403, 37);
+            panel3.TabIndex = 0;
+            // 
+            // txtNomePd
+            // 
+            txtNomePd.BackColor = Color.FromArgb(45, 45, 60);
+            txtNomePd.BorderStyle = BorderStyle.None;
+            txtNomePd.Font = new Font("Franklin Gothic Demi", 18F);
+            txtNomePd.ForeColor = Color.White;
+            txtNomePd.Location = new Point(163, 3);
+            txtNomePd.Name = "txtNomePd";
+            txtNomePd.ReadOnly = true;
+            txtNomePd.Size = new Size(232, 28);
+            txtNomePd.TabIndex = 2;
+            txtNomePd.TextAlign = HorizontalAlignment.Center;
+            // 
+            // panel8
+            // 
+            panel8.BackColor = Color.FromArgb(35, 35, 50);
+            panel8.Controls.Add(label6);
+            panel8.Location = new Point(0, 0);
+            panel8.Name = "panel8";
+            panel8.Size = new Size(157, 37);
+            panel8.TabIndex = 1;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.BackColor = Color.Transparent;
+            label6.Font = new Font("Franklin Gothic Demi", 18F);
+            label6.ForeColor = Color.White;
+            label6.Location = new Point(0, 3);
+            label6.Name = "label6";
+            label6.Size = new Size(81, 30);
+            label6.TabIndex = 0;
+            label6.Text = "Nome:";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.FromArgb(45, 45, 60);
+            label1.Font = new Font("Franklin Gothic Demi", 18F);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(24, 7);
+            label1.Name = "label1";
+            label1.Size = new Size(81, 30);
+            label1.TabIndex = 0;
+            label1.Text = "Nome:";
+            // 
+            // panel4
+            // 
+            panel4.BackColor = Color.FromArgb(45, 45, 60);
+            panel4.Controls.Add(txtCatPd);
+            panel4.Location = new Point(18, 108);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(403, 37);
+            panel4.TabIndex = 1;
+            // 
+            // txtCatPd
+            // 
+            txtCatPd.BackColor = Color.FromArgb(45, 45, 60);
+            txtCatPd.BorderStyle = BorderStyle.None;
+            txtCatPd.Font = new Font("Franklin Gothic Demi", 18F);
+            txtCatPd.ForeColor = Color.White;
+            txtCatPd.Location = new Point(163, 6);
+            txtCatPd.Name = "txtCatPd";
+            txtCatPd.ReadOnly = true;
+            txtCatPd.Size = new Size(232, 28);
+            txtCatPd.TabIndex = 3;
+            txtCatPd.TextAlign = HorizontalAlignment.Center;
+            // 
+            // panel6
+            // 
+            panel6.BackColor = Color.FromArgb(45, 45, 60);
+            panel6.Controls.Add(txtUnidadePd);
+            panel6.Controls.Add(panel10);
+            panel6.Location = new Point(18, 173);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(403, 37);
+            panel6.TabIndex = 1;
+            // 
+            // txtUnidadePd
+            // 
+            txtUnidadePd.BackColor = Color.FromArgb(45, 45, 60);
+            txtUnidadePd.BorderStyle = BorderStyle.None;
+            txtUnidadePd.Font = new Font("Franklin Gothic Demi", 18F);
+            txtUnidadePd.ForeColor = Color.White;
+            txtUnidadePd.Location = new Point(163, 6);
+            txtUnidadePd.Name = "txtUnidadePd";
+            txtUnidadePd.ReadOnly = true;
+            txtUnidadePd.Size = new Size(232, 28);
+            txtUnidadePd.TabIndex = 4;
+            txtUnidadePd.TextAlign = HorizontalAlignment.Center;
+            // 
+            // panel10
+            // 
+            panel10.BackColor = Color.FromArgb(35, 35, 50);
+            panel10.Controls.Add(label3);
+            panel10.Location = new Point(0, 0);
+            panel10.Name = "panel10";
+            panel10.Size = new Size(157, 37);
+            panel10.TabIndex = 3;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
+            label3.Font = new Font("Franklin Gothic Demi", 18F);
+            label3.ForeColor = Color.White;
+            label3.Location = new Point(3, 4);
+            label3.Name = "label3";
+            label3.Size = new Size(106, 30);
+            label3.TabIndex = 1;
+            label3.Text = "Unidade:";
+            // 
+            // panel5
+            // 
+            panel5.BackColor = Color.FromArgb(45, 45, 60);
+            panel5.Controls.Add(panel12);
+            panel5.Controls.Add(txtStatusPd);
+            panel5.Location = new Point(18, 301);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(403, 37);
+            panel5.TabIndex = 1;
+            // 
+            // panel12
+            // 
+            panel12.BackColor = Color.FromArgb(35, 35, 50);
+            panel12.Controls.Add(label5);
+            panel12.Location = new Point(0, 0);
+            panel12.Name = "panel12";
+            panel12.Size = new Size(157, 37);
+            panel12.TabIndex = 3;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.BackColor = Color.Transparent;
+            label5.Font = new Font("Franklin Gothic Demi", 18F);
+            label5.ForeColor = Color.White;
+            label5.Location = new Point(6, 3);
+            label5.Name = "label5";
+            label5.Size = new Size(86, 30);
+            label5.TabIndex = 1;
+            label5.Text = "Status:";
+            // 
+            // txtStatusPd
+            // 
+            txtStatusPd.BackColor = Color.FromArgb(45, 45, 60);
+            txtStatusPd.BorderStyle = BorderStyle.None;
+            txtStatusPd.Font = new Font("Franklin Gothic Demi", 18F);
+            txtStatusPd.ForeColor = Color.White;
+            txtStatusPd.Location = new Point(163, 3);
+            txtStatusPd.Name = "txtStatusPd";
+            txtStatusPd.ReadOnly = true;
+            txtStatusPd.Size = new Size(237, 28);
+            txtStatusPd.TabIndex = 6;
+            txtStatusPd.TextAlign = HorizontalAlignment.Center;
+            // 
+            // panel7
+            // 
+            panel7.BackColor = Color.FromArgb(45, 45, 60);
+            panel7.Controls.Add(TxtSaldoPd);
+            panel7.Location = new Point(18, 237);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(403, 37);
+            panel7.TabIndex = 1;
+            // 
+            // TxtSaldoPd
+            // 
+            TxtSaldoPd.BackColor = Color.FromArgb(45, 45, 60);
+            TxtSaldoPd.BorderStyle = BorderStyle.None;
+            TxtSaldoPd.Font = new Font("Franklin Gothic Demi", 18F);
+            TxtSaldoPd.ForeColor = Color.White;
+            TxtSaldoPd.Location = new Point(163, 6);
+            TxtSaldoPd.Name = "TxtSaldoPd";
+            TxtSaldoPd.ReadOnly = true;
+            TxtSaldoPd.Size = new Size(232, 28);
+            TxtSaldoPd.TabIndex = 5;
+            TxtSaldoPd.TextAlign = HorizontalAlignment.Center;
+            // 
+            // panel9
+            // 
+            panel9.BackColor = Color.FromArgb(35, 35, 50);
+            panel9.Controls.Add(label2);
+            panel9.Location = new Point(18, 108);
+            panel9.Name = "panel9";
+            panel9.Size = new Size(157, 37);
+            panel9.TabIndex = 2;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
+            label2.Font = new Font("Franklin Gothic Demi", 18F);
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(0, 4);
+            label2.Name = "label2";
+            label2.Size = new Size(121, 30);
+            label2.TabIndex = 1;
+            label2.Text = "Categoria:";
+            // 
+            // panel11
+            // 
+            panel11.BackColor = Color.FromArgb(35, 35, 50);
+            panel11.Controls.Add(label4);
+            panel11.Location = new Point(18, 237);
+            panel11.Name = "panel11";
+            panel11.Size = new Size(157, 37);
+            panel11.TabIndex = 3;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.BackColor = Color.Transparent;
+            label4.Font = new Font("Franklin Gothic Demi", 18F);
+            label4.ForeColor = Color.White;
+            label4.Location = new Point(0, 4);
+            label4.Name = "label4";
+            label4.Size = new Size(139, 30);
+            label4.TabIndex = 1;
+            label4.Text = "Quantidade:";
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.FromArgb(30, 30, 40);
+            panel1.Controls.Add(panel11);
+            panel1.Controls.Add(panel9);
+            panel1.Controls.Add(panel7);
+            panel1.Controls.Add(panel5);
+            panel1.Controls.Add(panel6);
+            panel1.Controls.Add(panel4);
+            panel1.Controls.Add(panel3);
+            panel1.Controls.Add(panel20);
+            panel1.Location = new Point(34, 130);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(434, 466);
+            panel1.TabIndex = 46;
+            // 
+            // astQtdEntrada
+            // 
+            astQtdEntrada.AutoSize = true;
+            astQtdEntrada.FlatStyle = FlatStyle.System;
+            astQtdEntrada.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            astQtdEntrada.ForeColor = Color.FromArgb(192, 0, 0);
+            astQtdEntrada.Location = new Point(211, 52);
+            astQtdEntrada.Name = "astQtdEntrada";
+            astQtdEntrada.Size = new Size(16, 24);
+            astQtdEntrada.TabIndex = 71;
+            astQtdEntrada.Text = "*";
+            astQtdEntrada.Visible = false;
+            // 
+            // astTpEntrada
+            // 
+            astTpEntrada.AutoSize = true;
+            astTpEntrada.FlatStyle = FlatStyle.System;
+            astTpEntrada.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            astTpEntrada.ForeColor = Color.FromArgb(192, 0, 0);
+            astTpEntrada.Location = new Point(151, 113);
+            astTpEntrada.Name = "astTpEntrada";
+            astTpEntrada.Size = new Size(16, 24);
+            astTpEntrada.TabIndex = 72;
+            astTpEntrada.Text = "*";
+            astTpEntrada.Visible = false;
+            // 
+            // astDescEntrada
+            // 
+            astDescEntrada.AutoSize = true;
+            astDescEntrada.FlatStyle = FlatStyle.System;
+            astDescEntrada.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            astDescEntrada.ForeColor = Color.FromArgb(192, 0, 0);
+            astDescEntrada.Location = new Point(111, 176);
+            astDescEntrada.Name = "astDescEntrada";
+            astDescEntrada.Size = new Size(16, 24);
+            astDescEntrada.TabIndex = 73;
+            astDescEntrada.Text = "*";
+            astDescEntrada.Visible = false;
+            // 
+            // astQtdSaida
+            // 
+            astQtdSaida.AutoSize = true;
+            astQtdSaida.FlatStyle = FlatStyle.System;
+            astQtdSaida.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            astQtdSaida.ForeColor = Color.FromArgb(192, 0, 0);
+            astQtdSaida.Location = new Point(201, 52);
+            astQtdSaida.Name = "astQtdSaida";
+            astQtdSaida.Size = new Size(16, 24);
+            astQtdSaida.TabIndex = 74;
+            astQtdSaida.Text = "*";
+            astQtdSaida.Visible = false;
+            // 
+            // astTpSaida
+            // 
+            astTpSaida.AutoSize = true;
+            astTpSaida.FlatStyle = FlatStyle.System;
+            astTpSaida.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            astTpSaida.ForeColor = Color.FromArgb(192, 0, 0);
+            astTpSaida.Location = new Point(148, 113);
+            astTpSaida.Name = "astTpSaida";
+            astTpSaida.Size = new Size(16, 24);
+            astTpSaida.TabIndex = 75;
+            astTpSaida.Text = "*";
+            astTpSaida.Visible = false;
+            // 
+            // astDescSaida
+            // 
+            astDescSaida.AutoSize = true;
+            astDescSaida.FlatStyle = FlatStyle.System;
+            astDescSaida.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            astDescSaida.ForeColor = Color.FromArgb(192, 0, 0);
+            astDescSaida.Location = new Point(119, 176);
+            astDescSaida.Name = "astDescSaida";
+            astDescSaida.Size = new Size(16, 24);
+            astDescSaida.TabIndex = 76;
+            astDescSaida.Text = "*";
+            astDescSaida.Visible = false;
             // 
             // frmControleEstoque
             // 
@@ -814,9 +924,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(45, 45, 60);
             ClientSize = new Size(1326, 686);
+            Controls.Add(panel1);
+            Controls.Add(panel19);
             Controls.Add(panel15);
             Controls.Add(panel2);
-            Controls.Add(panel1);
             Controls.Add(dtgProdutos);
             Controls.Add(panel16);
             FormBorderStyle = FormBorderStyle.None;
@@ -824,28 +935,6 @@
             Text = "frmControleEstoque";
             Load += frmControleEstoque_Load;
             ((System.ComponentModel.ISupportInitialize)dtgProdutos).EndInit();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
-            panel12.ResumeLayout(false);
-            panel12.PerformLayout();
-            panel11.ResumeLayout(false);
-            panel11.PerformLayout();
-            panel9.ResumeLayout(false);
-            panel9.PerformLayout();
-            panel7.ResumeLayout(false);
-            panel7.PerformLayout();
-            panel5.ResumeLayout(false);
-            panel5.PerformLayout();
-            panel6.ResumeLayout(false);
-            panel6.PerformLayout();
-            panel10.ResumeLayout(false);
-            panel10.PerformLayout();
-            panel4.ResumeLayout(false);
-            panel4.PerformLayout();
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
-            panel8.ResumeLayout(false);
-            panel8.PerformLayout();
             panel2.ResumeLayout(false);
             panel14.ResumeLayout(false);
             panel14.PerformLayout();
@@ -858,35 +947,36 @@
             panel15.ResumeLayout(false);
             panel16.ResumeLayout(false);
             panel16.PerformLayout();
+            panel19.ResumeLayout(false);
+            panel19.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
+            panel8.ResumeLayout(false);
+            panel8.PerformLayout();
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
+            panel6.ResumeLayout(false);
+            panel6.PerformLayout();
+            panel10.ResumeLayout(false);
+            panel10.PerformLayout();
+            panel5.ResumeLayout(false);
+            panel5.PerformLayout();
+            panel12.ResumeLayout(false);
+            panel12.PerformLayout();
+            panel7.ResumeLayout(false);
+            panel7.PerformLayout();
+            panel9.ResumeLayout(false);
+            panel9.PerformLayout();
+            panel11.ResumeLayout(false);
+            panel11.PerformLayout();
+            panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
         private DataGridView dtgProdutos;
-        private Panel panel1;
-        private Label label1;
         private Panel panel2;
-        private Panel panel7;
-        private Label label4;
-        private Panel panel5;
-        private Panel panel6;
-        private Label label3;
-        private Panel panel4;
-        private Label label2;
-        private Panel panel3;
-        private Panel panel12;
-        private Label label5;
-        private Panel panel11;
-        private Panel panel9;
-        private Panel panel10;
-        private TextBox txtNomePd;
-        private Panel panel8;
-        private Label label6;
-        private TextBox TxtSaldoPd;
-        private TextBox txtStatusPd;
-        private TextBox txtUnidadePd;
-        private TextBox txtCatPd;
         private Panel panel13;
         private Label label11;
         private Panel panel14;
@@ -919,5 +1009,35 @@
         private ComboBox cbTipoSaida;
         private Label label22;
         private TextBox mkQuantidadeSaida;
+        private Panel panel19;
+        private Panel panel20;
+        private Panel panel3;
+        private TextBox txtNomePd;
+        private Panel panel8;
+        private Label label6;
+        private Label label1;
+        private Panel panel4;
+        private TextBox txtCatPd;
+        private Panel panel6;
+        private TextBox txtUnidadePd;
+        private Panel panel10;
+        private Label label3;
+        private Panel panel5;
+        private Panel panel12;
+        private Label label5;
+        private TextBox txtStatusPd;
+        private Panel panel7;
+        private TextBox TxtSaldoPd;
+        private Panel panel9;
+        private Label label2;
+        private Panel panel11;
+        private Label label4;
+        private Panel panel1;
+        private Label astDescSaida;
+        private Label astTpSaida;
+        private Label astQtdSaida;
+        private Label astDescEntrada;
+        private Label astTpEntrada;
+        private Label astQtdEntrada;
     }
 }

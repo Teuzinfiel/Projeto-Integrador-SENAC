@@ -28,9 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             btnPesquisar = new Button();
             txtPesquisa = new TextBox();
-            flowLayoutPanel1 = new FlowLayoutPanel();
+            dtgProdutos = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dtgProdutos).BeginInit();
             SuspendLayout();
             // 
             // btnPesquisar
@@ -39,7 +44,7 @@
             btnPesquisar.FlatStyle = FlatStyle.Popup;
             btnPesquisar.Font = new Font("Franklin Gothic Medium", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnPesquisar.ForeColor = Color.White;
-            btnPesquisar.Location = new Point(755, 25);
+            btnPesquisar.Location = new Point(479, 25);
             btnPesquisar.Name = "btnPesquisar";
             btnPesquisar.Size = new Size(112, 38);
             btnPesquisar.TabIndex = 46;
@@ -51,18 +56,56 @@
             txtPesquisa.BackColor = Color.White;
             txtPesquisa.Font = new Font("Franklin Gothic Book", 20.25F);
             txtPesquisa.ForeColor = Color.FromArgb(40, 40, 50);
-            txtPesquisa.Location = new Point(51, 25);
+            txtPesquisa.Location = new Point(12, 25);
             txtPesquisa.Name = "txtPesquisa";
             txtPesquisa.PlaceholderText = "  Digite nome ou código do Produto";
-            txtPesquisa.Size = new Size(698, 38);
+            txtPesquisa.Size = new Size(461, 38);
             txtPesquisa.TabIndex = 45;
             // 
-            // flowLayoutPanel1
+            // dtgProdutos
             // 
-            flowLayoutPanel1.Location = new Point(51, 78);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(1229, 571);
-            flowLayoutPanel1.TabIndex = 44;
+            dtgProdutos.AllowUserToAddRows = false;
+            dtgProdutos.AllowUserToDeleteRows = false;
+            dtgProdutos.AllowUserToOrderColumns = true;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(35, 35, 45);
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dtgProdutos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dtgProdutos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dtgProdutos.BackgroundColor = Color.FromArgb(30, 30, 40);
+            dtgProdutos.BorderStyle = BorderStyle.None;
+            dtgProdutos.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(50, 50, 70);
+            dataGridViewCellStyle2.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dtgProdutos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dtgProdutos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgProdutos.EnableHeadersVisualStyles = false;
+            dtgProdutos.GridColor = Color.FromArgb(60, 60, 80);
+            dtgProdutos.Location = new Point(12, 69);
+            dtgProdutos.MultiSelect = false;
+            dtgProdutos.Name = "dtgProdutos";
+            dtgProdutos.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(40, 40, 50);
+            dataGridViewCellStyle3.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle3.SelectionForeColor = Color.White;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dtgProdutos.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(40, 40, 50);
+            dataGridViewCellStyle4.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle4.SelectionForeColor = Color.White;
+            dtgProdutos.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dtgProdutos.RowTemplate.Height = 40;
+            dtgProdutos.Size = new Size(1302, 605);
+            dtgProdutos.TabIndex = 47;
             // 
             // MovimentacaoProdutos
             // 
@@ -70,14 +113,15 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(45, 45, 60);
             ClientSize = new Size(1326, 686);
+            Controls.Add(dtgProdutos);
             Controls.Add(btnPesquisar);
             Controls.Add(txtPesquisa);
-            Controls.Add(flowLayoutPanel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "MovimentacaoProdutos";
             StartPosition = FormStartPosition.WindowsDefaultBounds;
             Text = "MovimentacaoProdutos";
             Load += MovimentacaoProdutos_Load;
+            ((System.ComponentModel.ISupportInitialize)dtgProdutos).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -86,6 +130,6 @@
 
         private Button btnPesquisar;
         private TextBox txtPesquisa;
-        private FlowLayoutPanel flowLayoutPanel1;
+        private DataGridView dtgProdutos;
     }
 }

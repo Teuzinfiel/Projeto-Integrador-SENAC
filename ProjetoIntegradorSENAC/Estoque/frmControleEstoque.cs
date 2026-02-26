@@ -40,6 +40,88 @@ namespace ProjetoIntegradorSENAC.Estoque
             CarregarMovimentacoes();
         }
 
+
+        private bool ValidarEntrada()
+        {
+            bool valido = true;
+
+            // Reset visual
+            astQtdEntrada.Visible = false;
+            astTpEntrada.Visible = false;
+            astDescEntrada.Visible = false;
+
+            label13.ForeColor = Color.White;
+            label14.ForeColor = Color.White;
+            label15.ForeColor = Color.White;
+
+            // QUANTIDADE
+            if (!decimal.TryParse(mkQuantidadeEntrada.Text, out decimal qtd) || qtd <= 0)
+            {
+                astQtdEntrada.Visible = true;
+                label13.ForeColor = Color.DarkRed;
+                valido = false;
+            }
+
+            // TIPO
+            if (string.IsNullOrWhiteSpace(cbTipoEntrada.Text))
+            {
+                astTpEntrada.Visible = true;
+                label14.ForeColor = Color.DarkRed;
+                valido = false;
+            }
+
+            // OBSERVAÇÃO
+            if (string.IsNullOrWhiteSpace(txtDescEntrada.Text))
+            {
+                astDescEntrada.Visible = true;
+                label15.ForeColor = Color.DarkRed;
+                valido = false;
+            }
+
+            return valido;
+        }
+
+        private bool ValidarSaida()
+        {
+            bool valido = true;
+
+            // Reset visual
+            astQtdSaida.Visible = false;
+            astTpSaida.Visible = false;
+            astDescSaida.Visible = false;
+
+            label22.ForeColor = Color.White;
+            label21.ForeColor = Color.White;
+            label18.ForeColor = Color.White;
+
+            // QUANTIDADE
+            if (!decimal.TryParse(mkQuantidadeSaida.Text, out decimal qtd) || qtd <= 0)
+            {
+                astQtdSaida.Visible = true;
+                label22.ForeColor = Color.DarkRed;
+                valido = false;
+            }
+
+            // TIPO
+            if (string.IsNullOrWhiteSpace(cbTipoSaida.Text))
+            {
+                astTpSaida.Visible = true;
+                label21.ForeColor = Color.DarkRed;
+                valido = false;
+            }
+
+            // OBSERVAÇÃO
+            if (string.IsNullOrWhiteSpace(txtDescSaida.Text))
+            {
+                astDescSaida.Visible = true;
+                label18.ForeColor = Color.DarkRed;
+                valido = false;
+            }
+
+            return valido;
+        }
+
+
         // ================================
         // GARANTE QUE EXISTE LINHA NO ESTOQUE
         // ================================
@@ -103,15 +185,16 @@ namespace ProjetoIntegradorSENAC.Estoque
         private void CarregarMovimentacoes()
         {
             string sql = @"
-                SELECT 
-                    tipo AS Tipo,
-                    quantidade AS Quantidade,
-                    motivo AS Motivo,
-                    observacao AS Observação,
-                    data AS Data
-                FROM movimentacoes_estoque
-                WHERE produto_id = @produtoId
-                ORDER BY data DESC";
+                    SELECT 
+                        tipo AS Tipo,
+                        quantidade AS Quantidade,
+                        quantidade_final AS 'Qtd Final',
+                        motivo AS Motivo,
+                        observacao AS Observação,
+                        data AS Data
+                    FROM movimentacoes_estoque
+                    WHERE produto_id = @produtoId
+                    ORDER BY data DESC";
 
             using (var conn = Banco.AbrirConexao())
             {
@@ -122,7 +205,12 @@ namespace ProjetoIntegradorSENAC.Estoque
                 {
                     DataTable dt = new DataTable();
                     da.Fill(dt);
+
                     dtgProdutos.DataSource = dt;
+
+                    // Formatação numérica
+                    dtgProdutos.Columns["Quantidade"].DefaultCellStyle.Format = "N2";
+                    dtgProdutos.Columns["Qtd Final"].DefaultCellStyle.Format = "N2";
                 }
             }
         }
@@ -132,11 +220,14 @@ namespace ProjetoIntegradorSENAC.Estoque
         // ================================
         private void btnEnviarEntrada_Click(object sender, EventArgs e)
         {
-            if (!decimal.TryParse(mkQuantidadeEntrada.Text, out decimal quantidade) || quantidade <= 0)
+            if (!ValidarEntrada())
             {
-                MessageBox.Show("Quantidade inválida.");
+                MessageBox.Show("Preencha corretamente os campos obrigatórios.");
                 return;
             }
+
+            // AGORA você pega a quantidade
+            decimal quantidade = Convert.ToDecimal(mkQuantidadeEntrada.Text);
 
             using (var conn = Banco.AbrirConexao())
             using (var trans = conn.BeginTransaction())
@@ -205,11 +296,13 @@ namespace ProjetoIntegradorSENAC.Estoque
         // ================================
         private void btnEnviarSaida_Click(object sender, EventArgs e)
         {
-            if (!decimal.TryParse(mkQuantidadeSaida.Text, out decimal quantidade) || quantidade <= 0)
+            if (!ValidarSaida())
             {
-                MessageBox.Show("Quantidade inválida.");
+                MessageBox.Show("Preencha corretamente os campos obrigatórios.");
                 return;
             }
+
+            decimal quantidade = Convert.ToDecimal(mkQuantidadeSaida.Text);
 
             using (var conn = Banco.AbrirConexao())
             using (var trans = conn.BeginTransaction())

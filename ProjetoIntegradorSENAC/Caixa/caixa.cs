@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using ProjetoIntegradorSENAC.Classes;
+using ProjetoIntegradorSENAC.LogInf;
 using ProjetoIntegradorSENAC.Usuario;
 using System;
 using System.Data;
@@ -383,7 +384,9 @@ namespace ProjetoIntegradorSENAC.Caixa
                         SalvarItensVenda(vendaId);
 
                         MessageBox.Show("Venda finalizada com sucesso!");
+                        LogService.CriarLog(this.idEmpresa, this.idUser, "Fez uma venda");
                         LimparVenda();
+                        AbrirTelaImpressao(vendaId);
                     }
                     catch (Exception ex)
                     {
@@ -392,6 +395,14 @@ namespace ProjetoIntegradorSENAC.Caixa
                 }
             }
 
+        }
+
+        private void AbrirTelaImpressao(int vendaId)
+        {
+            using (var frm = new frmImprimirVenda(vendaId))
+            {
+                frm.ShowDialog(this);
+            }
         }
 
         private void LimparVenda()

@@ -37,11 +37,13 @@ namespace ProjetoIntegradorSENAC.Dashboard
             (SELECT CONCAT(
                 'R$: ',
                 SUM(CASE 
-                    WHEN v.data_venda BETWEEN @dataInicio1Periodo AND @dataFim1Periodo 
+                    WHEN v.data_venda >= @dataInicio1Periodo
+                AND v.data_venda < DATE_ADD(@dataFim1Periodo, INTERVAL 1 DAY) 
                     THEN v.total ELSE 0 END),
                 ' | R$: ',
                 SUM(CASE 
-                    WHEN v.data_venda BETWEEN @dataInicio2Periodo AND @dataFim2Periodo
+                    WHEN v.data_venda >= @dataInicio2Periodo
+                AND v.data_venda < DATE_ADD(@dataFim2Periodo, INTERVAL 1 DAY)
                     THEN v.total ELSE 0 END)
             )
             FROM vendas v
@@ -53,11 +55,13 @@ namespace ProjetoIntegradorSENAC.Dashboard
             (SELECT CONCAT(
                 'Qtd: ',
                 IFNULL(SUM(CASE 
-                    WHEN v.data_venda BETWEEN @dataInicio1Periodo AND @dataFim1Periodo
+                    WHEN v.data_venda >= @dataInicio1Periodo
+                AND v.data_venda < DATE_ADD(@dataFim1Periodo, INTERVAL 1 DAY)
                     THEN iv.quantidade ELSE 0 END), 0),
                 ' | Qtd: ',
                 IFNULL(SUM(CASE 
-                    WHEN v.data_venda BETWEEN @dataInicio2Periodo AND @dataFim2Periodo
+                    WHEN v.data_venda >= @dataInicio2Periodo
+                AND v.data_venda < DATE_ADD(@dataFim2Periodo, INTERVAL 1 DAY)
                     THEN iv.quantidade ELSE 0 END), 0)
             )
             FROM items_venda iv
@@ -76,7 +80,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
             JOIN funcionarios f ON f.id = v.funcionario_id
             JOIN produtos p ON p.id = iv.produtos_id
             WHERE f.comercio_id = @idEmpresa
-            AND v.data_venda BETWEEN @dataInicio1Periodo AND @dataFim1Periodo
+            AND v.data_venda >= @dataInicio1Periodo
+                AND v.data_venda < DATE_ADD(@dataFim1Periodo, INTERVAL 1 DAY)
             GROUP BY p.id, p.nome
             ORDER BY SUM(iv.quantidade * iv.preco_unitario) DESC
             LIMIT 1
@@ -92,7 +97,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
             JOIN funcionarios f ON f.id = v.funcionario_id
             JOIN produtos p ON p.id = iv.produtos_id
             WHERE f.comercio_id = @idEmpresa
-            AND v.data_venda BETWEEN @dataInicio2Periodo AND @dataFim2Periodo
+            AND v.data_venda >= @dataInicio2Periodo
+                AND v.data_venda < DATE_ADD(@dataFim2Periodo, INTERVAL 1 DAY)
             GROUP BY p.id, p.nome
             ORDER BY SUM(iv.quantidade * iv.preco_unitario) DESC
             LIMIT 1
@@ -112,7 +118,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
             JOIN vendas v ON v.id = iv.vendas_id
             JOIN funcionarios f ON f.id = v.funcionario_id
             WHERE f.comercio_id = @idEmpresa
-            AND v.data_venda BETWEEN @dataInicio1Periodo AND @dataFim1Periodo
+            AND v.data_venda >= @dataInicio1Periodo
+                AND v.data_venda < DATE_ADD(@dataFim1Periodo, INTERVAL 1 DAY)
             ),'R$ 0,00') AS ticket_medio_atual,
             
             -- ================== TICKET MÉDIO PASSADO ==================
@@ -129,7 +136,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
             JOIN vendas v ON v.id = iv.vendas_id
             JOIN funcionarios f ON f.id = v.funcionario_id
             WHERE f.comercio_id = @idEmpresa
-            AND v.data_venda BETWEEN @dataInicio2Periodo AND @dataFim2Periodo
+            AND v.data_venda >= @dataInicio2Periodo
+                AND v.data_venda < DATE_ADD(@dataFim2Periodo, INTERVAL 1 DAY)
             ),'R$ 0,00') AS ticket_medio_passado
             FROM DUAL;", parametros);
             if (tabela.Rows.Count == 0)
@@ -153,16 +161,17 @@ namespace ProjetoIntegradorSENAC.Dashboard
             titulo.Text = "Produtos";
             string query = @"
             SELECT
-            -- Produto que gerou MENOS receita
+            -- Produto que gerou MAIS receita
             IFNULL((SELECT CONCAT(p.nome,' (Qtd:', SUM(iv.quantidade), ', R$',ROUND(SUM(iv.preco_unitario * iv.quantidade), 2),')')
             FROM items_venda iv
             JOIN vendas v ON v.id = iv.vendas_id
             JOIN funcionarios f ON f.id = v.funcionario_id
             JOIN produtos p ON p.id = iv.produtos_id
-            WHERE f.comercio_id = @idEmpresa AND DATE(v.data_venda) BETWEEN @dataInicio AND @dataFim
+            WHERE f.comercio_id = @idEmpresa AND v.data_venda >= @dataInicio
+            AND v.data_venda < DATE_ADD(@dataFim, INTERVAL 1 DAY)
             GROUP BY p.id
-            ORDER BY SUM(iv.preco_unitario * iv.quantidade) ASC
-            LIMIT 1), 'Sem vendas (Qtd:0, R$:0,00)') AS produto_menos_vendido,
+            ORDER BY SUM(iv.preco_unitario * iv.quantidade) DESC
+            LIMIT 1), 'Sem vendas (Qtd:0, R$:0,00)') AS produto_mais_receita,
 
             -- Ticket médio por produto
             IFNULL((
@@ -170,7 +179,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
             FROM items_venda iv
             JOIN vendas v ON v.id = iv.vendas_id
             JOIN funcionarios f ON f.id = v.funcionario_id
-            WHERE f.comercio_id = @idEmpresa AND DATE(v.data_venda) BETWEEN @dataInicio AND @dataFim
+            WHERE f.comercio_id = @idEmpresa AND v.data_venda >= @dataInicio
+            AND v.data_venda < DATE_ADD(@dataFim, INTERVAL 1 DAY)
             ), 'R$:0,00') AS ticket_medio_por_produto,
 
             -- Quantidade de produtos vendidos
@@ -179,7 +189,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
             JOIN vendas v ON v.id = iv.vendas_id
             JOIN funcionarios f ON f.id = v.funcionario_id
             WHERE f.comercio_id = @idEmpresa
-            AND DATE(v.data_venda) BETWEEN @dataInicio AND @dataFim
+            AND v.data_venda >= @dataInicio
+            AND v.data_venda < DATE_ADD(@dataFim, INTERVAL 1 DAY)
             ),'Qtd:0') AS quantidade_produtos_vendidos,
 
             -- Produto mais vendido (em quantidade)
@@ -188,7 +199,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
             JOIN vendas v ON v.id = iv.vendas_id
             JOIN funcionarios f ON f.id = v.funcionario_id
             JOIN produtos p ON p.id = iv.produtos_id
-            WHERE f.comercio_id = @idEmpresa AND DATE(v.data_venda) BETWEEN @dataInicio AND @dataFim
+            WHERE f.comercio_id = @idEmpresa AND v.data_venda >= @dataInicio
+            AND v.data_venda < DATE_ADD(@dataFim, INTERVAL 1 DAY)
             GROUP BY p.id
             ORDER BY SUM(iv.quantidade) DESC
             LIMIT 1), 'Sem venda(Qtd:0, R$:0,00)') AS produto_mais_vendido;
@@ -200,12 +212,12 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 if (tabela.Rows.Count > 0)
                 {
                     label1.Text = tabela.Rows[0]["quantidade_produtos_vendidos"].ToString();
-                    label2.Text = tabela.Rows[0]["produto_menos_vendido"].ToString();
+                    label2.Text = tabela.Rows[0]["produto_mais_receita"].ToString();
                     label3.Text = tabela.Rows[0]["ticket_medio_por_produto"].ToString();
                     label4.Text = tabela.Rows[0]["produto_mais_vendido"].ToString();
                 }
                 Info1_dash.Text = "Quantidade de produtos vendidos";
-                Info2_dash.Text = "Produto menos vendido (Quantidade, Receita)";
+                Info2_dash.Text = "Produto com mais receita (Quantidade, Receita)";
                 Info3_dash.Text = "Ticket medio por produto";
                 Info4_dash.Text = "Produto mais vendido (Quantidade, Receita)";
             }
@@ -227,13 +239,14 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 FROM vendas v
                 JOIN funcionarios f ON f.id = v.funcionario_id
                 WHERE f.comercio_id = @idEmpresa  
-                AND DATE(v.data_venda) BETWEEN @dataInicio AND @dataFim
+                AND v.data_venda >= @dataInicio
+                AND v.data_venda < DATE_ADD(@dataFim, INTERVAL 1 DAY)
             ), 'R$:0,00, Qtd:0') AS total_vendas,
             
             -- Categoria líder (em receita e quantidade)
             IFNULL((
                 SELECT CONCAT(
-                    p.categoria, 
+                    c.nome, 
                     ' (R$:', ROUND(SUM(iv.quantidade * iv.preco_unitario), 2), 
                     ', Qtd:', SUM(iv.quantidade), ')'
                 )
@@ -241,9 +254,11 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 JOIN vendas v ON v.id = iv.vendas_id
                 JOIN funcionarios f ON f.id = v.funcionario_id
                 JOIN produtos p ON p.id = iv.produtos_id
+                JOIN categorias c ON c.id = p.categoria_id
                 WHERE f.comercio_id = @idEmpresa  
-                AND DATE(v.data_venda) BETWEEN @dataInicio AND @dataFim
-                GROUP BY p.categoria
+                AND v.data_venda >= @dataInicio
+                AND v.data_venda < DATE_ADD(@dataFim, INTERVAL 1 DAY)
+                GROUP BY c.nome
                 ORDER BY SUM(iv.quantidade * iv.preco_unitario) DESC
                 LIMIT 1
             ), 'Sem vendas (R$:0,00, Qtd:0)') AS categoria_lider,
@@ -255,7 +270,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 JOIN vendas v ON v.id = iv.vendas_id
                 JOIN funcionarios f ON f.id = v.funcionario_id
                 WHERE f.comercio_id = @idEmpresa  
-                AND DATE(v.data_venda) BETWEEN @dataInicio AND @dataFim
+                AND v.data_venda >= @dataInicio
+                AND v.data_venda < DATE_ADD(@dataFim, INTERVAL 1 DAY)
             ), 'R$:0,00') AS ticket_medio_vendas,
             
             -- Itens por venda
@@ -265,7 +281,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 JOIN vendas v ON v.id = iv.vendas_id
                 JOIN funcionarios f ON f.id = v.funcionario_id
                 WHERE f.comercio_id = @idEmpresa  
-                AND DATE(v.data_venda) BETWEEN @dataInicio AND @dataFim
+                AND v.data_venda >= @dataInicio
+                AND v.data_venda < DATE_ADD(@dataFim, INTERVAL 1 DAY)
             ), 'Qtd:0') AS media_produtos_por_venda";
 
             try
@@ -288,7 +305,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 }
 
                 Info1_dash.Text = "Total de vendas (Receita, Quantidade)";
-                Info2_dash.Text = "Categoria líder (Receita, Quantidade)";
+                Info2_dash.Text = "Categoria com mais receita (Receita, Quantidade)";
                 Info3_dash.Text = "Ticket médio de vendas";
                 Info4_dash.Text = "Média de produtos vendidos por pedido";
             }
@@ -649,23 +666,23 @@ namespace ProjetoIntegradorSENAC.Dashboard
             };
             DataTable table = func_dashboard.ExecutarSelect(@"
             SELECT
-                p.categoria,
+                c.nome,
                 SUM(iv.quantidade) AS total_vendido
             FROM items_venda iv
             JOIN produtos p     ON p.id = iv.produtos_id
             JOIN vendas v       ON v.id = iv.vendas_id
             JOIN funcionarios f ON f.id = v.funcionario_id
+            JOIN categorias c ON c.id = p.categoria_id
             WHERE f.comercio_id = @idEmpresa
             AND v.data_venda >= @dataInicio
             AND v.data_venda < DATE_ADD(@dataFim, INTERVAL 1 DAY)
-
-            GROUP BY p.categoria
+            GROUP BY c.nome
             ORDER BY total_vendido DESC;
             ", parametros);
 
             foreach (DataRow row in table.Rows)
             {
-                eixoCategorias.Labels.Add(row["categoria"].ToString());
+                eixoCategorias.Labels.Add(row["nome"].ToString());
                 barSeries.Items.Add(new BarItem
                 {
                     Value = Convert.ToDouble(row["total_vendido"])
@@ -738,7 +755,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 FROM vendas v
                 JOIN funcionarios f ON f.id = v.funcionario_id
                 WHERE f.comercio_id = @idEmpresa
-                AND v.data_venda BETWEEN @dataInicio2Periodo AND @dataFim2Periodo
+                AND v.data_venda >= @dataInicio2Periodo
+                AND v.data_venda < DATE_ADD(@dataFim2Periodo, INTERVAL 1 DAY)
                 
                 UNION ALL
 
@@ -747,7 +765,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 FROM vendas v
                 JOIN funcionarios f ON f.id = v.funcionario_id
                 WHERE f.comercio_id = @idEmpresa
-                AND v.data_venda BETWEEN @dataInicio1Periodo AND @dataFim1Periodo;
+                AND v.data_venda >= @dataInicio1Periodo
+                AND v.data_venda < DATE_ADD(@dataFim1Periodo, INTERVAL 1 DAY)
             ", parametros);
 
             foreach (DataRow row in tabela.Rows)
@@ -842,25 +861,27 @@ namespace ProjetoIntegradorSENAC.Dashboard
             };
             DataTable table = func_dashboard.ExecutarSelect(@"
             SELECT
-            DAY(v.data_venda) AS dia,
-            'Mês Atual' AS periodo,
-            IFNULL(COUNT(v.id),0) AS total_vendas
+                DAY(v.data_venda) AS dia,
+                'Mês Atual' AS periodo,
+                COUNT(v.id) AS total_vendas
             FROM vendas v
             JOIN funcionarios f ON f.id = v.funcionario_id
             WHERE f.comercio_id = @idEmpresa
-            AND v.data_venda BETWEEN @dataInicio1Periodo AND @dataFim1Periodo
+            AND v.data_venda >= @dataInicio1Periodo
+            AND v.data_venda < DATE_ADD(@dataFim1Periodo, INTERVAL 1 DAY)
             GROUP BY DAY(v.data_venda)
             
             UNION ALL
             
             SELECT
-            DAY(v.data_venda) AS dia,
-            'Mês Passado' AS periodo,
-            IFNULL(COUNT(v.id),0) AS total_vendas
+                DAY(v.data_venda) AS dia,
+                'Mês Passado' AS periodo,
+                COUNT(v.id) AS total_vendas
             FROM vendas v
             JOIN funcionarios f ON f.id = v.funcionario_id
             WHERE f.comercio_id = @idEmpresa
-            AND v.data_venda BETWEEN @dataInicio2Periodo AND @dataFim2Periodo
+            AND v.data_venda >= @dataInicio2Periodo
+            AND v.data_venda < DATE_ADD(@dataFim2Periodo, INTERVAL 1 DAY)
             GROUP BY DAY(v.data_venda)
             
             ORDER BY dia, periodo;

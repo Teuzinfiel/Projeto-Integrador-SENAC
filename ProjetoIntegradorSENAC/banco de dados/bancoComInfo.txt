@@ -161,7 +161,7 @@ CREATE TABLE items_venda (
 
 
 INSERT INTO usuarios (nome, senha, telefone, email, cpf) VALUES
-('João Silva','123456','27990000001','joao@email.com','11111111111'),
+('a','ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb','27990000001','a','11111111111'),
 ('Maria Souza','123456','27990000002','maria@email.com','22222222222'),
 ('Pedro Lima','123456','27990000003','pedro@email.com','33333333333'),
 ('Ana Costa','123456','27990000004','ana@email.com','44444444444'),

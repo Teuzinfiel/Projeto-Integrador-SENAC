@@ -26,6 +26,7 @@ namespace ProjetoIntegradorSENAC
             this.idUsuario = idUsuario;
             nomeEmpresa = nomeEmpresa;
             label3.Text = nomeEmpresa;
+            LogService.CriarLog(this.idEmpresa, this.idUsuario, "Entrou na " + nomeEmpresa);
         }
 
         public void DestacarMovimentacoes()
@@ -67,6 +68,7 @@ namespace ProjetoIntegradorSENAC
 
         private void btnCaixa_Click(object sender, EventArgs e)
         {
+            LogService.CriarLog(this.idEmpresa, this.idUsuario, "Entrou no Caixa");
             AbrirFormNoPanel(new caixa(this.idEmpresa, this.idUsuario));
             labelCategorias.Text = "Caixa";
             EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos, btnMovimentacao);
@@ -74,6 +76,7 @@ namespace ProjetoIntegradorSENAC
         }
         private void btnDashboard_Click(object sender, EventArgs e)
         {
+            LogService.CriarLog(this.idEmpresa, this.idUsuario, "Entrou no Dashboard");
             AbrirFormNoPanel(new dashboard(this, this.idEmpresa,false));
             labelCategorias.Text = "Dashboard";
             EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos, btnMovimentacao);
@@ -82,6 +85,7 @@ namespace ProjetoIntegradorSENAC
 
         private void btnProdutos_Click(object sender, EventArgs e)
         {
+            LogService.CriarLog(this.idEmpresa, this.idUsuario, "Entrou em Produtos");
             AbrirFormNoPanel(new frmProduto(idUsuario, idEmpresa));
             labelCategorias.Text = "Produtos";
             EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos, btnMovimentacao);
@@ -90,6 +94,7 @@ namespace ProjetoIntegradorSENAC
 
         private void btnEstoque_Click(object sender, EventArgs e)
         {
+            LogService.CriarLog(this.idEmpresa, this.idUsuario, "Entrou em Estoque");
             AbrirFormNoPanel(new estoque(this, this.idEmpresa));
             labelCategorias.Text = "Estoque";
             EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos, btnMovimentacao);
@@ -98,6 +103,7 @@ namespace ProjetoIntegradorSENAC
 
         private void btnFuncionario_Click(object sender, EventArgs e)
         {
+            LogService.CriarLog(this.idEmpresa, this.idUsuario, "Entrou em Funcionarios");
             AbrirFormNoPanel(new frmFuncionarios(this.idEmpresa));
 
             labelCategorias.Text = "Funcionários";
@@ -107,6 +113,7 @@ namespace ProjetoIntegradorSENAC
 
         private void btnLog_Click(object sender, EventArgs e)
         {
+            LogService.CriarLog(this.idEmpresa, this.idUsuario, "Entrou em Log");
             AbrirFormNoPanel(new logInf(this.idEmpresa));
             labelCategorias.Text = "Log";
             EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos, btnMovimentacao);

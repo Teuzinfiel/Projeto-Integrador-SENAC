@@ -159,6 +159,24 @@ CREATE TABLE items_venda (
         ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
+-- ============================================
+-- LOGS DO SISTEMA
+-- ============================================
+DROP TABLE IF EXISTS logs;
+CREATE TABLE logs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    comercio_id INT NOT NULL,
+    usuario_id INT NOT NULL,
+    descricao VARCHAR(255) NOT NULL,
+    data TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (comercio_id) REFERENCES comercios(id)
+        ON DELETE CASCADE,
+
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+        ON DELETE CASCADE
+) ENGINE=InnoDB;
+
 
 INSERT INTO usuarios (nome, senha, telefone, email, cpf) VALUES
 ('a','ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb','27990000001','a','11111111111'),

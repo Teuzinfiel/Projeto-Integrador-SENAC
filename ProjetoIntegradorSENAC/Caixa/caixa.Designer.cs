@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             dtgProdutos = new DataGridView();
             btnCancelar = new Button();
             btnCompra = new Button();
@@ -57,42 +57,43 @@
             dtgProdutos.AllowUserToAddRows = false;
             dtgProdutos.AllowUserToDeleteRows = false;
             dtgProdutos.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(35, 35, 45);
-            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dtgProdutos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(35, 35, 45);
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dtgProdutos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dtgProdutos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             dtgProdutos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgProdutos.BackgroundColor = Color.FromArgb(30, 30, 40);
             dtgProdutos.BorderStyle = BorderStyle.None;
             dtgProdutos.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = Color.FromArgb(50, 50, 70);
-            dataGridViewCellStyle6.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle6.ForeColor = Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dtgProdutos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(50, 50, 70);
+            dataGridViewCellStyle2.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dtgProdutos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dtgProdutos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgProdutos.EnableHeadersVisualStyles = false;
             dtgProdutos.GridColor = Color.FromArgb(60, 60, 80);
-            dtgProdutos.Location = new Point(12, 205);
+            dtgProdutos.Location = new Point(15, 205);
             dtgProdutos.MultiSelect = false;
             dtgProdutos.Name = "dtgProdutos";
             dtgProdutos.ReadOnly = true;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = Color.FromArgb(40, 40, 50);
-            dataGridViewCellStyle7.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle7.ForeColor = Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dataGridViewCellStyle7.SelectionForeColor = Color.White;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            dtgProdutos.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            dataGridViewCellStyle8.BackColor = Color.FromArgb(40, 40, 50);
-            dataGridViewCellStyle8.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle8.ForeColor = Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dataGridViewCellStyle8.SelectionForeColor = Color.White;
-            dtgProdutos.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(40, 40, 50);
+            dataGridViewCellStyle3.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle3.SelectionForeColor = Color.White;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dtgProdutos.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(40, 40, 50);
+            dataGridViewCellStyle4.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle4.SelectionForeColor = Color.White;
+            dtgProdutos.RowsDefaultCellStyle = dataGridViewCellStyle4;
             dtgProdutos.RowTemplate.Height = 40;
             dtgProdutos.Size = new Size(562, 267);
             dtgProdutos.TabIndex = 6;
@@ -100,6 +101,7 @@
             // 
             // btnCancelar
             // 
+            btnCancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnCancelar.BackColor = Color.Transparent;
             btnCancelar.FlatStyle = FlatStyle.Popup;
             btnCancelar.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -114,6 +116,7 @@
             // 
             // btnCompra
             // 
+            btnCompra.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnCompra.BackColor = SystemColors.Highlight;
             btnCompra.FlatStyle = FlatStyle.Popup;
             btnCompra.Font = new Font("Franklin Gothic Medium", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -131,7 +134,7 @@
             label7.AutoSize = true;
             label7.Font = new Font("Franklin Gothic Medium", 25F);
             label7.ForeColor = Color.White;
-            label7.Location = new Point(12, 119);
+            label7.Location = new Point(14, 119);
             label7.Name = "label7";
             label7.Size = new Size(321, 39);
             label7.TabIndex = 27;
@@ -164,7 +167,7 @@
             txtPesquisa.BackColor = Color.White;
             txtPesquisa.Font = new Font("Franklin Gothic Book", 20.25F);
             txtPesquisa.ForeColor = Color.FromArgb(40, 40, 50);
-            txtPesquisa.Location = new Point(12, 161);
+            txtPesquisa.Location = new Point(14, 161);
             txtPesquisa.Name = "txtPesquisa";
             txtPesquisa.PlaceholderText = "  Digite nome ou código do Produto";
             txtPesquisa.Size = new Size(562, 38);
@@ -173,6 +176,7 @@
             // 
             // flpCaixa
             // 
+            flpCaixa.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             flpCaixa.BackColor = Color.FromArgb(30, 30, 40);
             flpCaixa.Location = new Point(592, 80);
             flpCaixa.Name = "flpCaixa";
@@ -181,6 +185,7 @@
             // 
             // lbPreço
             // 
+            lbPreço.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             lbPreço.AutoSize = true;
             lbPreço.Font = new Font("Franklin Gothic Medium Cond", 45F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lbPreço.ForeColor = Color.White;
@@ -192,6 +197,7 @@
             // 
             // label5
             // 
+            label5.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label5.AutoSize = true;
             label5.Font = new Font("Franklin Gothic Medium Cond", 30F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.White;
@@ -203,6 +209,7 @@
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label1.AutoSize = true;
             label1.Font = new Font("Franklin Gothic Medium Cond", 45F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.White;
@@ -214,6 +221,7 @@
             // 
             // label6
             // 
+            label6.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label6.AutoSize = true;
             label6.Font = new Font("Franklin Gothic Medium Cond", 30F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.White;
@@ -225,6 +233,7 @@
             // 
             // lbItens
             // 
+            lbItens.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             lbItens.AutoSize = true;
             lbItens.Font = new Font("Franklin Gothic Medium Cond", 45F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lbItens.ForeColor = Color.White;
@@ -236,6 +245,7 @@
             // 
             // label11
             // 
+            label11.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label11.AutoSize = true;
             label11.Font = new Font("Franklin Gothic Medium Cond", 45F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label11.ForeColor = Color.White;
@@ -247,6 +257,7 @@
             // 
             // label12
             // 
+            label12.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label12.AutoSize = true;
             label12.Font = new Font("Franklin Gothic Medium Cond", 30F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label12.ForeColor = Color.White;
@@ -258,6 +269,7 @@
             // 
             // textDesconto
             // 
+            textDesconto.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             textDesconto.BackColor = Color.White;
             textDesconto.Font = new Font("Franklin Gothic Book", 20.25F);
             textDesconto.ForeColor = Color.FromArgb(40, 40, 50);
@@ -270,6 +282,7 @@
             // 
             // btnDevolucao
             // 
+            btnDevolucao.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnDevolucao.BackColor = SystemColors.Highlight;
             btnDevolucao.FlatStyle = FlatStyle.Popup;
             btnDevolucao.Font = new Font("Franklin Gothic Medium", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -309,8 +322,7 @@
             Name = "caixa";
             Text = "caixa";
             Load += caixa_Load;
-
-            ((System.ComponentModel.ISupportInitialize)(dtgProdutos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dtgProdutos).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }

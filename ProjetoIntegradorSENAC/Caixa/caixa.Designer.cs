@@ -309,7 +309,8 @@
             Name = "caixa";
             Text = "caixa";
             Load += caixa_Load;
-            ((System.ComponentModel.ISupportInitialize)dtgProdutos).EndInit();
+
+            ((System.ComponentModel.ISupportInitialize)(dtgProdutos)).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }

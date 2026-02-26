@@ -28,14 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             dtgProdutos = new DataGridView();
             label11 = new Label();
             panel2 = new Panel();
             panel14 = new Panel();
+            astDescSaida = new Label();
+            astTpSaida = new Label();
+            astQtdSaida = new Label();
             btnEnviarSaida = new Button();
             label18 = new Label();
             txtDescSaida = new RichTextBox();
@@ -49,6 +52,9 @@
             label10 = new Label();
             label8 = new Label();
             panel13 = new Panel();
+            astDescEntrada = new Label();
+            astTpEntrada = new Label();
+            astQtdEntrada = new Label();
             btnEnviarEntrada = new Button();
             label15 = new Label();
             txtDescEntrada = new RichTextBox();
@@ -90,12 +96,6 @@
             panel11 = new Panel();
             label4 = new Label();
             panel1 = new Panel();
-            astQtdEntrada = new Label();
-            astTpEntrada = new Label();
-            astDescEntrada = new Label();
-            astQtdSaida = new Label();
-            astTpSaida = new Label();
-            astDescSaida = new Label();
             ((System.ComponentModel.ISupportInitialize)dtgProdutos).BeginInit();
             panel2.SuspendLayout();
             panel14.SuspendLayout();
@@ -123,21 +123,21 @@
             dtgProdutos.AllowUserToAddRows = false;
             dtgProdutos.AllowUserToDeleteRows = false;
             dtgProdutos.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(35, 35, 45);
-            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dtgProdutos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(35, 35, 45);
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dtgProdutos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dtgProdutos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgProdutos.BackgroundColor = Color.FromArgb(30, 30, 40);
             dtgProdutos.BorderStyle = BorderStyle.None;
             dtgProdutos.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = Color.FromArgb(50, 50, 70);
-            dataGridViewCellStyle6.Font = new Font("Franklin Gothic Medium", 13F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle6.ForeColor = Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dtgProdutos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(50, 50, 70);
+            dataGridViewCellStyle2.Font = new Font("Franklin Gothic Medium", 13F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dtgProdutos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dtgProdutos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgProdutos.EnableHeadersVisualStyles = false;
             dtgProdutos.GridColor = Color.FromArgb(60, 60, 80);
@@ -145,20 +145,20 @@
             dtgProdutos.MultiSelect = false;
             dtgProdutos.Name = "dtgProdutos";
             dtgProdutos.ReadOnly = true;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = Color.FromArgb(40, 40, 50);
-            dataGridViewCellStyle7.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle7.ForeColor = Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dataGridViewCellStyle7.SelectionForeColor = Color.White;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            dtgProdutos.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            dataGridViewCellStyle8.BackColor = Color.FromArgb(40, 40, 50);
-            dataGridViewCellStyle8.Font = new Font("Franklin Gothic Medium", 13F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle8.ForeColor = Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dataGridViewCellStyle8.SelectionForeColor = Color.White;
-            dtgProdutos.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(40, 40, 50);
+            dataGridViewCellStyle3.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle3.SelectionForeColor = Color.White;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dtgProdutos.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(40, 40, 50);
+            dataGridViewCellStyle4.Font = new Font("Franklin Gothic Medium", 13F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle4.SelectionForeColor = Color.White;
+            dtgProdutos.RowsDefaultCellStyle = dataGridViewCellStyle4;
             dtgProdutos.RowTemplate.Height = 20;
             dtgProdutos.Size = new Size(814, 236);
             dtgProdutos.TabIndex = 45;
@@ -206,6 +206,45 @@
             panel14.Name = "panel14";
             panel14.Size = new Size(379, 322);
             panel14.TabIndex = 49;
+            // 
+            // astDescSaida
+            // 
+            astDescSaida.AutoSize = true;
+            astDescSaida.FlatStyle = FlatStyle.System;
+            astDescSaida.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            astDescSaida.ForeColor = Color.FromArgb(192, 0, 0);
+            astDescSaida.Location = new Point(119, 176);
+            astDescSaida.Name = "astDescSaida";
+            astDescSaida.Size = new Size(16, 24);
+            astDescSaida.TabIndex = 76;
+            astDescSaida.Text = "*";
+            astDescSaida.Visible = false;
+            // 
+            // astTpSaida
+            // 
+            astTpSaida.AutoSize = true;
+            astTpSaida.FlatStyle = FlatStyle.System;
+            astTpSaida.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            astTpSaida.ForeColor = Color.FromArgb(192, 0, 0);
+            astTpSaida.Location = new Point(148, 113);
+            astTpSaida.Name = "astTpSaida";
+            astTpSaida.Size = new Size(16, 24);
+            astTpSaida.TabIndex = 75;
+            astTpSaida.Text = "*";
+            astTpSaida.Visible = false;
+            // 
+            // astQtdSaida
+            // 
+            astQtdSaida.AutoSize = true;
+            astQtdSaida.FlatStyle = FlatStyle.System;
+            astQtdSaida.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            astQtdSaida.ForeColor = Color.FromArgb(192, 0, 0);
+            astQtdSaida.Location = new Point(201, 52);
+            astQtdSaida.Name = "astQtdSaida";
+            astQtdSaida.Size = new Size(16, 24);
+            astQtdSaida.TabIndex = 74;
+            astQtdSaida.Text = "*";
+            astQtdSaida.Visible = false;
             // 
             // btnEnviarSaida
             // 
@@ -295,7 +334,7 @@
             cbTipoSaida.FlatStyle = FlatStyle.Popup;
             cbTipoSaida.Font = new Font("Franklin Gothic Demi Cond", 14F);
             cbTipoSaida.FormattingEnabled = true;
-            cbTipoSaida.Items.AddRange(new object[] { "DEVOLUCAO_CLIENTE  ", "AJUSTE_NEGATIVO", "OUTROS" });
+            cbTipoSaida.Items.AddRange(new object[] { "DEVOLUCAO_CLIENTE", "AJUSTE_NEGATIVO", "OUTROS" });
             cbTipoSaida.Location = new Point(24, 141);
             cbTipoSaida.Name = "cbTipoSaida";
             cbTipoSaida.Size = new Size(342, 32);
@@ -371,6 +410,45 @@
             panel13.Name = "panel13";
             panel13.Size = new Size(378, 322);
             panel13.TabIndex = 48;
+            // 
+            // astDescEntrada
+            // 
+            astDescEntrada.AutoSize = true;
+            astDescEntrada.FlatStyle = FlatStyle.System;
+            astDescEntrada.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            astDescEntrada.ForeColor = Color.FromArgb(192, 0, 0);
+            astDescEntrada.Location = new Point(111, 176);
+            astDescEntrada.Name = "astDescEntrada";
+            astDescEntrada.Size = new Size(16, 24);
+            astDescEntrada.TabIndex = 73;
+            astDescEntrada.Text = "*";
+            astDescEntrada.Visible = false;
+            // 
+            // astTpEntrada
+            // 
+            astTpEntrada.AutoSize = true;
+            astTpEntrada.FlatStyle = FlatStyle.System;
+            astTpEntrada.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            astTpEntrada.ForeColor = Color.FromArgb(192, 0, 0);
+            astTpEntrada.Location = new Point(151, 113);
+            astTpEntrada.Name = "astTpEntrada";
+            astTpEntrada.Size = new Size(16, 24);
+            astTpEntrada.TabIndex = 72;
+            astTpEntrada.Text = "*";
+            astTpEntrada.Visible = false;
+            // 
+            // astQtdEntrada
+            // 
+            astQtdEntrada.AutoSize = true;
+            astQtdEntrada.FlatStyle = FlatStyle.System;
+            astQtdEntrada.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            astQtdEntrada.ForeColor = Color.FromArgb(192, 0, 0);
+            astQtdEntrada.Location = new Point(211, 52);
+            astQtdEntrada.Name = "astQtdEntrada";
+            astQtdEntrada.Size = new Size(16, 24);
+            astQtdEntrada.TabIndex = 71;
+            astQtdEntrada.Text = "*";
+            astQtdEntrada.Visible = false;
             // 
             // btnEnviarEntrada
             // 
@@ -460,7 +538,7 @@
             cbTipoEntrada.FlatStyle = FlatStyle.Popup;
             cbTipoEntrada.Font = new Font("Franklin Gothic Demi Cond", 14F);
             cbTipoEntrada.FormattingEnabled = true;
-            cbTipoEntrada.Items.AddRange(new object[] { "DEVOLUCAO_CLIENTE  ", "AJUSTE_POSITIVO ", "OUTROS" });
+            cbTipoEntrada.Items.AddRange(new object[] { "DEVOLUCAO_CLIENTE", "AJUSTE_POSITIVO", "OUTROS" });
             cbTipoEntrada.Location = new Point(20, 141);
             cbTipoEntrada.Name = "cbTipoEntrada";
             cbTipoEntrada.Size = new Size(342, 32);
@@ -839,84 +917,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(434, 466);
             panel1.TabIndex = 46;
-            // 
-            // astQtdEntrada
-            // 
-            astQtdEntrada.AutoSize = true;
-            astQtdEntrada.FlatStyle = FlatStyle.System;
-            astQtdEntrada.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            astQtdEntrada.ForeColor = Color.FromArgb(192, 0, 0);
-            astQtdEntrada.Location = new Point(211, 52);
-            astQtdEntrada.Name = "astQtdEntrada";
-            astQtdEntrada.Size = new Size(16, 24);
-            astQtdEntrada.TabIndex = 71;
-            astQtdEntrada.Text = "*";
-            astQtdEntrada.Visible = false;
-            // 
-            // astTpEntrada
-            // 
-            astTpEntrada.AutoSize = true;
-            astTpEntrada.FlatStyle = FlatStyle.System;
-            astTpEntrada.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            astTpEntrada.ForeColor = Color.FromArgb(192, 0, 0);
-            astTpEntrada.Location = new Point(151, 113);
-            astTpEntrada.Name = "astTpEntrada";
-            astTpEntrada.Size = new Size(16, 24);
-            astTpEntrada.TabIndex = 72;
-            astTpEntrada.Text = "*";
-            astTpEntrada.Visible = false;
-            // 
-            // astDescEntrada
-            // 
-            astDescEntrada.AutoSize = true;
-            astDescEntrada.FlatStyle = FlatStyle.System;
-            astDescEntrada.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            astDescEntrada.ForeColor = Color.FromArgb(192, 0, 0);
-            astDescEntrada.Location = new Point(111, 176);
-            astDescEntrada.Name = "astDescEntrada";
-            astDescEntrada.Size = new Size(16, 24);
-            astDescEntrada.TabIndex = 73;
-            astDescEntrada.Text = "*";
-            astDescEntrada.Visible = false;
-            // 
-            // astQtdSaida
-            // 
-            astQtdSaida.AutoSize = true;
-            astQtdSaida.FlatStyle = FlatStyle.System;
-            astQtdSaida.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            astQtdSaida.ForeColor = Color.FromArgb(192, 0, 0);
-            astQtdSaida.Location = new Point(201, 52);
-            astQtdSaida.Name = "astQtdSaida";
-            astQtdSaida.Size = new Size(16, 24);
-            astQtdSaida.TabIndex = 74;
-            astQtdSaida.Text = "*";
-            astQtdSaida.Visible = false;
-            // 
-            // astTpSaida
-            // 
-            astTpSaida.AutoSize = true;
-            astTpSaida.FlatStyle = FlatStyle.System;
-            astTpSaida.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            astTpSaida.ForeColor = Color.FromArgb(192, 0, 0);
-            astTpSaida.Location = new Point(148, 113);
-            astTpSaida.Name = "astTpSaida";
-            astTpSaida.Size = new Size(16, 24);
-            astTpSaida.TabIndex = 75;
-            astTpSaida.Text = "*";
-            astTpSaida.Visible = false;
-            // 
-            // astDescSaida
-            // 
-            astDescSaida.AutoSize = true;
-            astDescSaida.FlatStyle = FlatStyle.System;
-            astDescSaida.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            astDescSaida.ForeColor = Color.FromArgb(192, 0, 0);
-            astDescSaida.Location = new Point(119, 176);
-            astDescSaida.Name = "astDescSaida";
-            astDescSaida.Size = new Size(16, 24);
-            astDescSaida.TabIndex = 76;
-            astDescSaida.Text = "*";
-            astDescSaida.Visible = false;
             // 
             // frmControleEstoque
             // 

@@ -55,9 +55,8 @@ namespace ProjetoIntegradorSENAC.Estoque
                     }
 
                     dtgProdutos.DataSource = dt;
+                    dtgProdutos.Columns["quantidade"].DefaultCellStyle.Format = "#,0.##";
 
-
-                    dtgProdutos.Columns["Situacao"].DefaultCellStyle.BackColor = Color.Empty;
                     dtgProdutos.Columns["Situacao"].DefaultCellStyle.ForeColor = Color.Empty;
 
                     dtgProdutos.Columns["codigo_barra"].HeaderText = "Código de Barras";

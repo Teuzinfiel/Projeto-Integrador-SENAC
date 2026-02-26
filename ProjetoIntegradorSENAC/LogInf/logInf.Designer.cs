@@ -40,7 +40,7 @@
             labelTitulo.AutoSize = true;
             labelTitulo.Font = new Font("Franklin Gothic Medium", 36F);
             labelTitulo.ForeColor = Color.FromArgb(180, 180, 190);
-            labelTitulo.Location = new Point(426, 9);
+            labelTitulo.Location = new Point(362, 7);
             labelTitulo.Name = "labelTitulo";
             labelTitulo.Size = new Size(409, 61);
             labelTitulo.TabIndex = 7;
@@ -88,7 +88,7 @@
             // 
             txtPesquisar.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             txtPesquisar.Font = new Font("Franklin Gothic Book", 18F);
-            txtPesquisar.Location = new Point(76, 90);
+            txtPesquisar.Location = new Point(12, 88);
             txtPesquisar.Name = "txtPesquisar";
             txtPesquisar.PlaceholderText = "Pesquisar por usuário ou descrição";
             txtPesquisar.Size = new Size(500, 35);
@@ -101,7 +101,7 @@
             btnPesquisar.FlatStyle = FlatStyle.Popup;
             btnPesquisar.Font = new Font("Franklin Gothic Medium", 14F);
             btnPesquisar.ForeColor = Color.White;
-            btnPesquisar.Location = new Point(586, 90);
+            btnPesquisar.Location = new Point(522, 88);
             btnPesquisar.Name = "btnPesquisar";
             btnPesquisar.Size = new Size(120, 35);
             btnPesquisar.TabIndex = 2;
@@ -115,7 +115,7 @@
             btnAtualizar.FlatStyle = FlatStyle.Popup;
             btnAtualizar.Font = new Font("Franklin Gothic Medium", 14F);
             btnAtualizar.ForeColor = Color.White;
-            btnAtualizar.Location = new Point(716, 90);
+            btnAtualizar.Location = new Point(652, 88);
             btnAtualizar.Name = "btnAtualizar";
             btnAtualizar.Size = new Size(120, 35);
             btnAtualizar.TabIndex = 3;
@@ -129,7 +129,7 @@
             btnExportar.FlatStyle = FlatStyle.Popup;
             btnExportar.Font = new Font("Franklin Gothic Medium", 14F);
             btnExportar.ForeColor = Color.White;
-            btnExportar.Location = new Point(846, 90);
+            btnExportar.Location = new Point(782, 88);
             btnExportar.Name = "btnExportar";
             btnExportar.Size = new Size(120, 35);
             btnExportar.TabIndex = 4;
@@ -140,7 +140,7 @@
             // 
             dtInicio.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             dtInicio.Font = new Font("Franklin Gothic Book", 14F);
-            dtInicio.Location = new Point(976, 90);
+            dtInicio.Location = new Point(912, 88);
             dtInicio.Name = "dtInicio";
             dtInicio.Size = new Size(140, 29);
             dtInicio.TabIndex = 5;
@@ -149,7 +149,7 @@
             // 
             dtFim.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             dtFim.Font = new Font("Franklin Gothic Book", 14F);
-            dtFim.Location = new Point(1126, 90);
+            dtFim.Location = new Point(1062, 88);
             dtFim.Name = "dtFim";
             dtFim.Size = new Size(140, 29);
             dtFim.TabIndex = 6;
@@ -160,7 +160,7 @@
             lbPesquisar.AutoSize = true;
             lbPesquisar.Font = new Font("Franklin Gothic Medium", 12F);
             lbPesquisar.ForeColor = Color.FromArgb(180, 180, 190);
-            lbPesquisar.Location = new Point(76, 65);
+            lbPesquisar.Location = new Point(12, 63);
             lbPesquisar.Name = "lbPesquisar";
             lbPesquisar.Size = new Size(109, 21);
             lbPesquisar.TabIndex = 8;
@@ -172,7 +172,7 @@
             lbPeriodo.AutoSize = true;
             lbPeriodo.Font = new Font("Franklin Gothic Medium", 12F);
             lbPeriodo.ForeColor = Color.FromArgb(180, 180, 190);
-            lbPeriodo.Location = new Point(976, 65);
+            lbPeriodo.Location = new Point(912, 63);
             lbPeriodo.Name = "lbPeriodo";
             lbPeriodo.Size = new Size(62, 21);
             lbPeriodo.TabIndex = 9;

@@ -173,7 +173,7 @@ namespace ProjetoIntegradorSENAC.Estoque
                         txtCatPd.Text = dt.Rows[0]["categoria"].ToString();
                         txtUnidadePd.Text = dt.Rows[0]["unidade_medida"].ToString();
                         txtStatusPd.Text = dt.Rows[0]["status"].ToString();
-                        TxtSaldoPd.Text = Convert.ToDecimal(dt.Rows[0]["saldo"]).ToString("N2");
+                        TxtSaldoPd.Text = Convert.ToDecimal(dt.Rows[0]["saldo"]).ToString("#,0.##");
                     }
                 }
             }
@@ -209,8 +209,8 @@ namespace ProjetoIntegradorSENAC.Estoque
                     dtgProdutos.DataSource = dt;
 
                     // Formatação numérica
-                    dtgProdutos.Columns["Quantidade"].DefaultCellStyle.Format = "N2";
-                    dtgProdutos.Columns["Qtd Final"].DefaultCellStyle.Format = "N2";
+                    dtgProdutos.Columns["Quantidade"].DefaultCellStyle.Format = "#,0.##";
+                    dtgProdutos.Columns["Qtd Final"].DefaultCellStyle.Format = "#,0.##";
                 }
             }
         }
@@ -274,7 +274,7 @@ namespace ProjetoIntegradorSENAC.Estoque
 
                     trans.Commit();
 
-                    TxtSaldoPd.Text = saldoNovo.ToString("N2");
+                    TxtSaldoPd.Text = saldoNovo.ToString("#,0.##");
                     CarregarMovimentacoes();
 
                     mkQuantidadeEntrada.Clear();
@@ -355,7 +355,7 @@ namespace ProjetoIntegradorSENAC.Estoque
 
                     trans.Commit();
 
-                    TxtSaldoPd.Text = saldoNovo.ToString("N2");
+                    TxtSaldoPd.Text = saldoNovo.ToString("#,0.##");
                     CarregarMovimentacoes();
 
                     mkQuantidadeSaida.Clear();
@@ -387,12 +387,12 @@ namespace ProjetoIntegradorSENAC.Estoque
 
             if (decimal.TryParse(mkQuantidadeEntrada.Text, out decimal qtdEntrada))
             {
-                lbSaldoAposEntrada.Text = (saldoAtual + qtdEntrada).ToString("N2");
+                lbSaldoAposEntrada.Text = (saldoAtual + qtdEntrada).ToString("#,0.##");
                 lbSaldoAposEntrada.ForeColor = Color.Green;
             }
             else
             {
-                lbSaldoAposEntrada.Text = saldoAtual.ToString("N2");
+                lbSaldoAposEntrada.Text = saldoAtual.ToString("#,0.##");
                 lbSaldoAposEntrada.ForeColor = Color.Black;
             }
         }
@@ -412,7 +412,7 @@ namespace ProjetoIntegradorSENAC.Estoque
                 }
                 else
                 {
-                    lbSaldoAposSaida.Text = saldoFinal.ToString("N2");
+                    lbSaldoAposSaida.Text = saldoFinal.ToString("#,0.##");
                     lbSaldoAposSaida.ForeColor = Color.Black;
                 }
             }

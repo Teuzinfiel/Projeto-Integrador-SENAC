@@ -446,25 +446,57 @@ namespace ProjetoIntegradorSENAC.Caixa
         private void SalvarItensVenda(int vendaId)
         {
             using (MySqlConnection conn = Banco.AbrirConexao())
+            using (MySqlTransaction trans = conn.BeginTransaction())
             {
-                string sql = @"
-            INSERT INTO items_venda
-            (produtos_id, quantidade, preco_unitario, vendas_id)
-            VALUES
-            (@produto, @quantidade, @preco, @venda);
-        ";
-
-                foreach (var item in _vendaAtual.Itens)
+                try
                 {
-                    using (MySqlCommand cmd = new MySqlCommand(sql, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@produto", item.ProdutoId);
-                        cmd.Parameters.AddWithValue("@quantidade", item.Quantidade);
-                        cmd.Parameters.AddWithValue("@preco", item.PrecoUnitario);
-                        cmd.Parameters.AddWithValue("@venda", vendaId);
+                    string sqlItem = @"
+                INSERT INTO items_venda
+                (produtos_id, quantidade, preco_unitario, vendas_id)
+                VALUES
+                (@produto, @quantidade, @preco, @venda);
+            ";
 
-                        cmd.ExecuteNonQuery();
+                    foreach (var item in _vendaAtual.Itens)
+                    {
+                        // 🔹 Salva item da venda (SEU CÓDIGO ORIGINAL)
+                        using (MySqlCommand cmd = new MySqlCommand(sqlItem, conn, trans))
+                        {
+                            cmd.Parameters.AddWithValue("@produto", item.ProdutoId);
+                            cmd.Parameters.AddWithValue("@quantidade", item.Quantidade);
+                            cmd.Parameters.AddWithValue("@preco", item.PrecoUnitario);
+                            cmd.Parameters.AddWithValue("@venda", vendaId);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        // 🔹 Atualiza estoque (NOVO - sem mexer no resto do sistema)
+                        decimal atual = BuscarEstoqueAtual(item.ProdutoId, conn, trans);
+                        decimal final = atual - item.Quantidade;
+
+                        string sqlMov = @"
+                    INSERT INTO movimentacoes_estoque
+                    (produto_id, funcionario_id, comercio_id, tipo, quantidade, quantidade_final, motivo)
+                    VALUES
+                    (@produto, @funcionario, @comercio, 'saida', @quantidade, @final, 'VENDA');
+                ";
+
+                        using (MySqlCommand cmdMov = new MySqlCommand(sqlMov, conn, trans))
+                        {
+                            cmdMov.Parameters.AddWithValue("@produto", item.ProdutoId);
+                            cmdMov.Parameters.AddWithValue("@funcionario", idFunc);
+                            cmdMov.Parameters.AddWithValue("@comercio", idEmpresa);
+                            cmdMov.Parameters.AddWithValue("@quantidade", item.Quantidade);
+                            cmdMov.Parameters.AddWithValue("@final", final);
+                            cmdMov.ExecuteNonQuery();
+                        }
                     }
+
+                    trans.Commit();
+                }
+                catch
+                {
+                    trans.Rollback();
+                    throw;
                 }
             }
         }
@@ -573,11 +605,14 @@ namespace ProjetoIntegradorSENAC.Caixa
                     foreach (var item in itens)
                     {
                         string sqlMov = @"
-                    INSERT INTO movimentacoes_estoque
-                    (produto_id, funcionario_id, comercio_id, tipo, quantidade)
-                    VALUES
-                    (@produto, @funcionario, @comercio, 'entrada', @quantidade);
-                ";
+    INSERT INTO movimentacoes_estoque
+    (produto_id, funcionario_id, comercio_id, tipo, quantidade, quantidade_final, motivo)
+    VALUES
+    (@produto, @funcionario, @comercio, 'entrada', @quantidade, @final, 'DEVOLUCAO_CLIENTE');
+";
+
+                        decimal atual = BuscarEstoqueAtual(item.produtoId, conn, trans);
+                        decimal final = atual + item.quantidade;
 
                         using (MySqlCommand cmd = new MySqlCommand(sqlMov, conn, trans))
                         {
@@ -585,6 +620,8 @@ namespace ProjetoIntegradorSENAC.Caixa
                             cmd.Parameters.AddWithValue("@funcionario", funcionarioId);
                             cmd.Parameters.AddWithValue("@comercio", idEmpresa);
                             cmd.Parameters.AddWithValue("@quantidade", item.quantidade);
+                            cmd.Parameters.AddWithValue("@final", final);
+
 
                             cmd.ExecuteNonQuery();
                         }
@@ -611,6 +648,7 @@ namespace ProjetoIntegradorSENAC.Caixa
                     trans.Commit();
 
                     MessageBox.Show("Venda excluída e estoque devolvido com sucesso!");
+                    RecarregarProdutos();
                 }
                 catch (Exception ex)
                 {
@@ -619,6 +657,52 @@ namespace ProjetoIntegradorSENAC.Caixa
                 }
             }
         }
+
+        private decimal BuscarEstoqueAtual(int produtoId, MySqlConnection conn, MySqlTransaction trans)
+        {
+            string sql = @"SELECT COALESCE((
+        SELECT quantidade_final 
+        FROM movimentacoes_estoque 
+        WHERE produto_id = @id 
+        ORDER BY id DESC 
+        LIMIT 1
+    ), 0)";
+
+            using (var cmd = new MySqlCommand(sql, conn, trans))
+            {
+                cmd.Parameters.AddWithValue("@id", produtoId);
+                return Convert.ToDecimal(cmd.ExecuteScalar());
+            }
+        }
+
+        private void RecarregarProdutos()
+        {
+            string pesquisa = (txtPesquisa.Text ?? "").Trim();
+
+            string query = $@"
+        SELECT 
+            p.id AS produto_id,
+            p.nome AS Produto,
+            p.preco AS Preco,
+            p.codigo_barra AS produto_codigo,
+            COALESCE((
+                SELECT quantidade_final
+                FROM movimentacoes_estoque m
+                WHERE m.produto_id = p.id
+                ORDER BY m.id DESC
+                LIMIT 1
+            ), 0) AS estoque
+        FROM produtos p
+        WHERE p.comercio_id = {idEmpresa}
+        AND (p.nome LIKE '%{pesquisa}%' 
+             OR p.codigo_barra LIKE '%{pesquisa}%')
+        ORDER BY p.nome ASC
+        LIMIT 50;
+    ";
+
+            carregarProdutos(Banco.Pesquisar(query));
+        }
+
 
     }
 }

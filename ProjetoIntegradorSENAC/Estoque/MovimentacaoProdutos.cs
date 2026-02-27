@@ -24,7 +24,7 @@ namespace ProjetoIntegradorSENAC.Estoque
             _comercioId = comercioId;
         }
 
-           private void MovimentacaoProdutos_Load(object sender, EventArgs e)
+        private void MovimentacaoProdutos_Load(object sender, EventArgs e)
         {
             cbTipoFiltro.Items.Clear();
             cbTipoFiltro.Items.Add("TODOS");
@@ -133,6 +133,19 @@ namespace ProjetoIntegradorSENAC.Estoque
             }
 
             CarregarMovimentacoes();
+        }
+
+        private void btnExportar_Click(object sender, EventArgs e)
+        {
+            if (dtgMovimentacoes.DataSource == null)
+            {
+                MessageBox.Show("Não há dados para imprimir.");
+                return;
+            }
+
+            DataTable dt = (DataTable)dtgMovimentacoes.DataSource;
+            frmPreviewMovimentacoes frm = new frmPreviewMovimentacoes(dt);
+            frm.ShowDialog();
         }
     }
 }

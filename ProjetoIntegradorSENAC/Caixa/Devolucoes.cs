@@ -17,6 +17,12 @@ namespace ProjetoIntegradorSENAC.Caixa
         public Devolucoes()
         {
             InitializeComponent();
+            this.AcceptButton = button1;
+        }
+
+        private void Devolucoes_Load(object sender, EventArgs e)
+        {
+            textBox1.Focus();
         }
 
         private void button1_Click(object sender, EventArgs e)

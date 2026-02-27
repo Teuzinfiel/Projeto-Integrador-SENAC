@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             panel2 = new Panel();
             btnMinimizar = new Button();
             btnSair = new Button();
@@ -111,24 +111,24 @@
             // 
             dtgEmpresas.AllowUserToAddRows = false;
             dtgEmpresas.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(35, 35, 45);
-            dataGridViewCellStyle4.ForeColor = Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(80, 80, 110);
-            dataGridViewCellStyle4.SelectionForeColor = Color.White;
-            dtgEmpresas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(35, 35, 45);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(80, 80, 110);
+            dataGridViewCellStyle1.SelectionForeColor = Color.White;
+            dtgEmpresas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dtgEmpresas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgEmpresas.BackgroundColor = Color.FromArgb(30, 30, 40);
             dtgEmpresas.BorderStyle = BorderStyle.None;
             dtgEmpresas.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(50, 50, 70);
-            dataGridViewCellStyle5.Font = new Font("Franklin Gothic Medium", 20F, FontStyle.Bold);
-            dataGridViewCellStyle5.ForeColor = Color.White;
-            dataGridViewCellStyle5.Padding = new Padding(5, 10, 5, 10);
-            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(60, 60, 85);
-            dataGridViewCellStyle5.SelectionForeColor = Color.White;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            dtgEmpresas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(50, 50, 70);
+            dataGridViewCellStyle2.Font = new Font("Franklin Gothic Medium", 20F, FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.Padding = new Padding(5, 10, 5, 10);
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(60, 60, 85);
+            dataGridViewCellStyle2.SelectionForeColor = Color.White;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dtgEmpresas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dtgEmpresas.ColumnHeadersHeight = 60;
             dtgEmpresas.EnableHeadersVisualStyles = false;
             dtgEmpresas.GridColor = Color.FromArgb(60, 60, 80);
@@ -137,13 +137,13 @@
             dtgEmpresas.Name = "dtgEmpresas";
             dtgEmpresas.ReadOnly = true;
             dtgEmpresas.RowHeadersVisible = false;
-            dataGridViewCellStyle6.BackColor = Color.FromArgb(40, 40, 50);
-            dataGridViewCellStyle6.Font = new Font("Franklin Gothic Medium", 16F);
-            dataGridViewCellStyle6.ForeColor = Color.White;
-            dataGridViewCellStyle6.Padding = new Padding(5);
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(90, 90, 120);
-            dataGridViewCellStyle6.SelectionForeColor = Color.White;
-            dtgEmpresas.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(40, 40, 50);
+            dataGridViewCellStyle3.Font = new Font("Franklin Gothic Medium", 16F);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.Padding = new Padding(5);
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(90, 90, 120);
+            dataGridViewCellStyle3.SelectionForeColor = Color.White;
+            dtgEmpresas.RowsDefaultCellStyle = dataGridViewCellStyle3;
             dtgEmpresas.RowTemplate.Height = 45;
             dtgEmpresas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dtgEmpresas.Size = new Size(792, 458);
@@ -398,7 +398,7 @@
             mkCPF.BackColor = Color.White;
             mkCPF.Font = new Font("Franklin Gothic Book", 20.25F);
             mkCPF.ForeColor = Color.FromArgb(40, 40, 50);
-            mkCPF.Location = new Point(1189, 411);
+            mkCPF.Location = new Point(329, 194);
             mkCPF.Mask = "  000.000.000-00";
             mkCPF.Name = "mkCPF";
             mkCPF.Size = new Size(558, 38);
@@ -479,6 +479,7 @@
             panel1.Controls.Add(btnExcluir);
             panel1.Controls.Add(mkCNPJ);
             panel1.Controls.Add(btnVoltar);
+            panel1.Controls.Add(mkCPF);
             panel1.Location = new Point(860, 217);
             panel1.Name = "panel1";
             panel1.Size = new Size(910, 458);
@@ -521,7 +522,6 @@
             Controls.Add(label2);
             Controls.Add(label3);
             Controls.Add(panel3);
-            Controls.Add(mkCPF);
             Controls.Add(label9);
             Controls.Add(txtNomeFantasia);
             Controls.Add(label10);

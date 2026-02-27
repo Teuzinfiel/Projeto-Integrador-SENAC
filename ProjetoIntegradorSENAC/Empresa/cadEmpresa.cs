@@ -162,9 +162,14 @@ namespace ProjetoIntegradorSENAC.Empresa
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            if (erroRazao || erroFantasia || erroCnpj || erroCpf || erroTelefone || erroEmail)
+            bool erroDocumento = radioButton1.Checked ? erroCpf : erroCnpj;
+
+            if (erroRazao || erroFantasia || erroDocumento || erroTelefone || erroEmail)
             {
-                MessageBox.Show("Preencha corretamente todos os campos!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Preencha corretamente todos os campos!",
+                                "Erro",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
                 return;
             }
 

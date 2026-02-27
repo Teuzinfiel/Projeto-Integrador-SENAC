@@ -58,12 +58,10 @@ namespace ProjetoIntegradorSENAC.Configurações
         {
             if (e.RowIndex < 0) return;
 
+            carregando = true;
+
             idEmpresa = Convert.ToInt32(
                 dtgEmpresas.Rows[e.RowIndex].Cells["id_comercio"].Value
-            );
-
-            idDono = Convert.ToInt32(
-                dtgEmpresas.Rows[e.RowIndex].Cells["id_dono"].Value
             );
 
             string query = $@"
@@ -86,14 +84,26 @@ namespace ProjetoIntegradorSENAC.Configurações
                 if (tipoDoc == "cpf")
                 {
                     radioButton1.Checked = true;
+                    label2.Text = "Cpf";
+                    mkCPF.Visible = true;
+                    mkCNPJ.Visible = false;
+                    
+                    mkCNPJ.Clear();
                     mkCPF.Text = doc;
                 }
                 else
                 {
                     radioButton2.Checked = true;
+                    label2.Text = "Cnpj";
+                    mkCPF.Visible = false;
+                    mkCNPJ.Visible = true;
+
+                    mkCPF.Clear();
                     mkCNPJ.Text = doc;
                 }
             }
+
+            carregando = false;
         }
 
         bool erroRazao = true;
@@ -200,32 +210,45 @@ namespace ProjetoIntegradorSENAC.Configurações
             }
         }
 
+        bool carregando = false;
+
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            label2.Text = "CNPJ:";           
+            if (carregando) return;
+
+            // CNPJ
+            label2.Text = "CNPJ:";
             mkCPF.Visible = false;
             mkCNPJ.Visible = true;
+
             mkCPF.Clear();
             mkCNPJ.Clear();
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
+            if (carregando) return;
+
+            // CPF
             label2.Text = "CPF:";
-            erroCnpj = false;
-            mkCNPJ.Visible = false;
             mkCPF.Visible = true;
+            mkCNPJ.Visible = false;
+
             mkCPF.Clear();
             mkCNPJ.Clear();
-           
+
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            if (erroRazao || erroFantasia || erroCnpj || erroCpf || erroTelefone || erroEmail)
+            bool erroDocumento = radioButton1.Checked ? erroCpf : erroCnpj;
+
+            if (erroRazao || erroFantasia || erroDocumento || erroTelefone || erroEmail)
             {
-                MessageBox.Show("Preencha corretamente todos os campos!", "Erro",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Preencha corretamente todos os campos!",
+                                "Erro",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
                 return;
             }
 

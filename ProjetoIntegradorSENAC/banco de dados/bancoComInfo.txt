@@ -10,9 +10,9 @@ CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(50) NOT NULL,
     senha VARCHAR(100),
-    telefone VARCHAR(15),
-    email VARCHAR(50),
-    cpf VARCHAR(15)
+    telefone VARCHAR(15) unique,
+    email VARCHAR(50) unique,
+    cpf VARCHAR(15) unique
 ) ENGINE=InnoDB;
 
 -- ============================================
@@ -43,7 +43,7 @@ CREATE TABLE funcionarios (
     comercio_id INT,
     cargo VARCHAR(30),
 
-    FOREIGN KEY (usuarios_id) REFERENCES usuarios(id),
+    FOREIGN KEY (usuarios_id) REFERENCES usuarios(id) on delete cascade,
 
     FOREIGN KEY (comercio_id) REFERENCES comercios(id)
         ON DELETE CASCADE
@@ -135,7 +135,7 @@ CREATE TABLE vendas (
     descontos DECIMAL(12,2),
     codigo_consumidor VARCHAR(50),
 
-    FOREIGN KEY (funcionario_id) REFERENCES funcionarios(id),
+    FOREIGN KEY (funcionario_id) REFERENCES funcionarios(id) on delete set null,
 
     FOREIGN KEY (comercio_id) REFERENCES comercios(id)
         ON DELETE CASCADE

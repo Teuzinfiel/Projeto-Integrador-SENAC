@@ -75,7 +75,7 @@
             lbMensagem.AutoSize = true;
             lbMensagem.Font = new Font("Franklin Gothic Medium", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lbMensagem.ForeColor = Color.FromArgb(180, 180, 190);
-            lbMensagem.Location = new Point(23, 28);
+            lbMensagem.Location = new Point(15, 20);
             lbMensagem.Name = "lbMensagem";
             lbMensagem.Size = new Size(50, 20);
             lbMensagem.TabIndex = 38;
@@ -83,16 +83,13 @@
             // 
             // btnNao
             // 
-            btnNao.BackColor = Color.FromArgb(192, 0, 0);
-            btnNao.FlatAppearance.BorderColor = SystemColors.Highlight;
-            btnNao.FlatAppearance.BorderSize = 0;
+            btnNao.BackColor = Color.Transparent;
             btnNao.FlatAppearance.MouseDownBackColor = Color.FromArgb(50, 50, 60);
             btnNao.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 50, 60);
-            btnNao.FlatStyle = FlatStyle.Flat;
+            btnNao.FlatStyle = FlatStyle.Popup;
             btnNao.Font = new Font("Franklin Gothic Medium", 15F);
-            btnNao.ForeColor = SystemColors.ButtonHighlight;
+            btnNao.ForeColor = Color.Maroon;
             btnNao.Location = new Point(216, 65);
-            btnNao.Margin = new Padding(3, 2, 3, 2);
             btnNao.Name = "btnNao";
             btnNao.Size = new Size(82, 33);
             btnNao.TabIndex = 39;

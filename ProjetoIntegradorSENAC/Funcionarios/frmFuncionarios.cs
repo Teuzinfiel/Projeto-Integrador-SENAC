@@ -285,7 +285,7 @@ namespace ProjetoIntegradorSENAC.Usuarios
 
         private void BtnEditar_Click(object sender, EventArgs e)
         {
-            if (Funcoes.CriptoSenha(EdSenha.Text) != Funcoes.CriptoSenha(senhaAntiga))
+            if (Funcoes.CriptoSenha(EdSenha.Text) != senhaAntiga)
             {
                 caixaMensagem erro = new caixaMensagem("A senha atual não correponde", "Tente novamente");
                 erro.Show();
@@ -459,7 +459,7 @@ namespace ProjetoIntegradorSENAC.Usuarios
             if (opcao.decisao)
             {
 
-                string excluir = $@"DELETE u FROM usuarios u
+              string excluir = $@"DELETE u FROM usuarios u
                          JOIN funcionarios f ON u.id = f.usuarios_id
                          WHERE u.id = {idFuncionario}";
 

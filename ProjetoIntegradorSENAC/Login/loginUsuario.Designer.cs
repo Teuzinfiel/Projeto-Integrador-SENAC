@@ -253,12 +253,12 @@
             // 
             label5.AutoSize = true;
             label5.BackColor = Color.Transparent;
-            label5.Font = new Font("Microsoft Sans Serif", 40F);
+            label5.Font = new Font("Franklin Gothic Medium", 39.75F);
             label5.ForeColor = SystemColors.Highlight;
-            label5.Location = new Point(646, 321);
+            label5.Location = new Point(614, 312);
             label5.Margin = new Padding(2, 0, 3, 0);
             label5.Name = "label5";
-            label5.Size = new Size(189, 63);
+            label5.Size = new Size(181, 66);
             label5.TabIndex = 6;
             label5.Text = "gestao";
             label5.TextAlign = ContentAlignment.MiddleLeft;
@@ -266,12 +266,12 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Font = new Font("Microsoft Sans Serif", 17F);
+            label7.Font = new Font("Franklin Gothic Medium Cond", 17.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.White;
-            label7.Location = new Point(539, 166);
+            label7.Location = new Point(510, 162);
             label7.Margin = new Padding(2, 0, 3, 0);
             label7.Name = "label7";
-            label7.Size = new Size(353, 29);
+            label7.Size = new Size(279, 29);
             label7.TabIndex = 4;
             label7.Text = "Conecte-se à sua produtividade";
             label7.TextAlign = ContentAlignment.MiddleLeft;
@@ -280,12 +280,12 @@
             // 
             label6.AutoSize = true;
             label6.BackColor = Color.Transparent;
-            label6.Font = new Font("Microsoft Sans Serif", 40F);
+            label6.Font = new Font("Franklin Gothic Medium", 39.75F);
             label6.ForeColor = Color.White;
-            label6.Location = new Point(539, 195);
+            label6.Location = new Point(507, 186);
             label6.Margin = new Padding(2, 0, 3, 0);
             label6.Name = "label6";
-            label6.Size = new Size(354, 189);
+            label6.Size = new Size(337, 198);
             label6.TabIndex = 5;
             label6.Text = "Vamos juntos\r\nsimplificar\r\nsua ";
             label6.TextAlign = ContentAlignment.MiddleLeft;

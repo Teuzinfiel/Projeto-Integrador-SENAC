@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             panel1 = new Panel();
             button2 = new Button();
             btnLogOut = new Button();
@@ -74,7 +74,7 @@
             // 
             // button2
             // 
-            button2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            button2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             button2.BackColor = SystemColors.Highlight;
             button2.FlatStyle = FlatStyle.Popup;
             button2.Font = new Font("Franklin Gothic Medium", 18F);
@@ -90,6 +90,7 @@
             // 
             // btnLogOut
             // 
+            btnLogOut.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnLogOut.BackColor = Color.Transparent;
             btnLogOut.FlatStyle = FlatStyle.Popup;
             btnLogOut.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -117,6 +118,7 @@
             // 
             // button1
             // 
+            button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             button1.BackColor = SystemColors.Highlight;
             button1.FlatStyle = FlatStyle.Popup;
             button1.Font = new Font("Franklin Gothic Medium", 18F);
@@ -135,22 +137,22 @@
             dtgEmpresas.AllowUserToAddRows = false;
             dtgEmpresas.AllowUserToDeleteRows = false;
             dtgEmpresas.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(35, 35, 45);
-            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dtgEmpresas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
-            dtgEmpresas.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(35, 35, 45);
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dtgEmpresas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dtgEmpresas.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dtgEmpresas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgEmpresas.BackgroundColor = Color.FromArgb(30, 30, 40);
             dtgEmpresas.BorderStyle = BorderStyle.None;
             dtgEmpresas.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = Color.FromArgb(50, 50, 70);
-            dataGridViewCellStyle6.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle6.ForeColor = Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dtgEmpresas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(50, 50, 70);
+            dataGridViewCellStyle2.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dtgEmpresas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dtgEmpresas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgEmpresas.EnableHeadersVisualStyles = false;
             dtgEmpresas.GridColor = Color.FromArgb(60, 60, 80);
@@ -159,21 +161,21 @@
             dtgEmpresas.MultiSelect = false;
             dtgEmpresas.Name = "dtgEmpresas";
             dtgEmpresas.ReadOnly = true;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = Color.FromArgb(40, 40, 50);
-            dataGridViewCellStyle7.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle7.ForeColor = Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dataGridViewCellStyle7.SelectionForeColor = Color.White;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            dtgEmpresas.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(40, 40, 50);
+            dataGridViewCellStyle3.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle3.SelectionForeColor = Color.White;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dtgEmpresas.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dtgEmpresas.RowHeadersWidth = 51;
-            dataGridViewCellStyle8.BackColor = Color.FromArgb(40, 40, 50);
-            dataGridViewCellStyle8.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle8.ForeColor = Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dataGridViewCellStyle8.SelectionForeColor = Color.White;
-            dtgEmpresas.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(40, 40, 50);
+            dataGridViewCellStyle4.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle4.SelectionForeColor = Color.White;
+            dtgEmpresas.RowsDefaultCellStyle = dataGridViewCellStyle4;
             dtgEmpresas.RowTemplate.Height = 35;
             dtgEmpresas.Size = new Size(903, 449);
             dtgEmpresas.TabIndex = 5;
@@ -195,6 +197,7 @@
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Microsoft Sans Serif", 30F);
@@ -207,6 +210,7 @@
             // 
             // label2
             // 
+            label2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Microsoft Sans Serif", 50F);
@@ -219,6 +223,7 @@
             // 
             // label3
             // 
+            label3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             label3.AutoSize = true;
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Microsoft Sans Serif", 50F);

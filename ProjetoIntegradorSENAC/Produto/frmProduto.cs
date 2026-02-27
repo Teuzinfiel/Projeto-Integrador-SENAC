@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using ProjetoIntegradorSENAC.Classes;
+using ProjetoIntegradorSENAC.LogInf;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -118,6 +119,7 @@ namespace ProjetoIntegradorSENAC.Produto
                 }
 
                 MessageBox.Show("Produto cadastrado com sucesso!");
+                LogService.CriarLog(this.idComercio, this.idUsuario, "Cadastrou produto");
 
                 limpandoFormulario = true;
 
@@ -356,6 +358,7 @@ namespace ProjetoIntegradorSENAC.Produto
                     string insert = $@"  INSERT INTO categorias (comercio_id, nome)  VALUES ({idComercio}, '{nome}')";
                     Banco.Inserir(insert);
                     MessageBox.Show("Categoria cadastrada!");
+                    LogService.CriarLog(this.idComercio, this.idUsuario, "Adicionou categoria");
                 }
                 else
                 {
@@ -363,6 +366,7 @@ namespace ProjetoIntegradorSENAC.Produto
                     string update = $@"  UPDATE categorias SET nome = '{nome}'  WHERE id = {idCategoriaSelecionada}  AND comercio_id = {idComercio}";
                     Banco.Inserir(update);
                     MessageBox.Show("Categoria atualizada!");
+                    LogService.CriarLog(this.idComercio, this.idUsuario, "Atualizou categora");
                 }
                 // Atualiza produtos associados à categoria atualizada
                 LimparCategoria();
@@ -404,6 +408,7 @@ namespace ProjetoIntegradorSENAC.Produto
                 Banco.Excluir(delete);
 
                 MessageBox.Show("Categoria excluída. Produtos atualizados.");
+                LogService.CriarLog(this.idComercio, this.idUsuario, "Excluiu categora");
 
                 LimparCategoria();
                 CarregarCategorias();
@@ -577,6 +582,7 @@ namespace ProjetoIntegradorSENAC.Produto
             {
                 Banco.Inserir(sql);
                 MessageBox.Show("Produto atualizado!");
+                LogService.CriarLog(this.idComercio, this.idUsuario, "Produto Cadastrado");
                 LimparEdicaoProduto();
                 CarregarProdutos();
                 ResetarBotoesProduto();
@@ -670,6 +676,7 @@ namespace ProjetoIntegradorSENAC.Produto
                 }
 
                 MessageBox.Show("Produto excluído!");
+                LogService.CriarLog(this.idComercio, this.idUsuario, "Excluiu Produto");
 
                 LimparEdicaoProduto();
                 CarregarProdutos();

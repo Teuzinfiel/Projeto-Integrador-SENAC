@@ -2,6 +2,7 @@
 using Mysqlx.Crud;
 using Org.BouncyCastle.Utilities;
 using ProjetoIntegradorSENAC.Classes;
+using ProjetoIntegradorSENAC.LogInf;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,13 +18,16 @@ namespace ProjetoIntegradorSENAC.Estoque
     public partial class frmControleEstoque : Form
     {
         private int _produtoId;
-        private int _comercioId = 1;
+        private int _comercioId;
+        private int _userId;
         private MainPrincipal _main;
-        public frmControleEstoque(MainPrincipal main, int produtoId)
+        public frmControleEstoque(MainPrincipal main, int produtoId, int user, int _comercioId)
         {
             InitializeComponent();
             _main = main;
             _produtoId = produtoId;
+            _userId = user;
+            this._comercioId = _comercioId;
         }
 
         private void frmControleEstoque_Load(object sender, EventArgs e)
@@ -273,7 +277,7 @@ namespace ProjetoIntegradorSENAC.Estoque
                     cmdInsert.ExecuteNonQuery();
 
                     trans.Commit();
-
+                    LogService.CriarLog(this._comercioId, this._userId, "Adicionou produto em estoque");
                     TxtSaldoPd.Text = saldoNovo.ToString("#,0.##");
                     CarregarMovimentacoes();
 
@@ -361,7 +365,7 @@ namespace ProjetoIntegradorSENAC.Estoque
                     mkQuantidadeSaida.Clear();
                     txtDescSaida.Clear();
                     cbTipoSaida.SelectedIndex = -1;
-
+                    LogService.CriarLog(this._comercioId, this._userId, "Saiu com produto do estoque");
                     MessageBox.Show("Saída registrada com sucesso!");
                 }
                 catch (Exception ex)
@@ -420,7 +424,7 @@ namespace ProjetoIntegradorSENAC.Estoque
 
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
-            _main.AbrirFormNoPanel(new estoque(_main, _main.idEmpresa));
+            _main.AbrirFormNoPanel(new estoque(_main, _main.idEmpresa, _userId));
         }
 
         private void button1_Click(object sender, EventArgs e)

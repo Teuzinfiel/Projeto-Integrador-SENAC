@@ -535,6 +535,8 @@ namespace ProjetoIntegradorSENAC.Caixa
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     ExcluirVendaPorCodigo(frm.CodigoDigitado);
+                    LogService.CriarLog(this.idEmpresa, this.idUser, "Devoluiu uma venda");
+
                 }
             }
         }

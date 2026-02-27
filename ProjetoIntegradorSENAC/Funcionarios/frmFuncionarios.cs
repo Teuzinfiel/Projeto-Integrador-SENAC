@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using ProjetoIntegradorSENAC.Classes;
+using ProjetoIntegradorSENAC.LogInf;
 using ProjetoIntegradorSENAC.personalizado;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace ProjetoIntegradorSENAC.Usuarios
     {
         int idEmpresa;
         int idFuncionario;
+        int idUser;
         string senhaAntiga;
 
         bool erroNome = true;
@@ -35,10 +37,11 @@ namespace ProjetoIntegradorSENAC.Usuarios
 
         caixaInformacao info;
 
-        public frmFuncionarios(int idEmpresa)
+        public frmFuncionarios(int idEmpresa, int idUser)
         {
             InitializeComponent();
             this.idEmpresa = idEmpresa;
+            this.idUser = idUser;
         }
 
         private void CarregarFucionarios()
@@ -125,6 +128,7 @@ namespace ProjetoIntegradorSENAC.Usuarios
                             cmd3.ExecuteNonQuery();
                     }
                     MessageBox.Show("Conta criada com sucesso!!");
+                    LogService.CriarLog(this.idEmpresa, this.idUser, "Cadastrou funcionario");
                     Funcoes.Limpar(this);
 
                     CarregarFucionarios();
@@ -281,7 +285,7 @@ namespace ProjetoIntegradorSENAC.Usuarios
 
         private void BtnEditar_Click(object sender, EventArgs e)
         {
-            if (Funcoes.CriptoSenha(EdSenha.Text) != Funcoes.CriptoSenha(senhaAntiga))
+            if (Funcoes.CriptoSenha(EdSenha.Text) != senhaAntiga)
             {
                 caixaMensagem erro = new caixaMensagem("A senha atual não correponde", "Tente novamente");
                 erro.Show();
@@ -302,6 +306,7 @@ namespace ProjetoIntegradorSENAC.Usuarios
                 Banco.Inserir(update);
 
                 caixaMensagem parabens = new caixaMensagem("Os dados do funcionário foram atualizados com êxito!", "Sucesso!");
+                LogService.CriarLog(this.idEmpresa, this.idUser, "Atualizou Funcionario");
                 parabens.Show();
 
                 CarregarFucionarios();
@@ -454,13 +459,14 @@ namespace ProjetoIntegradorSENAC.Usuarios
             if (opcao.decisao)
             {
 
-                string excluir = $@"DELETE u FROM usuarios u
+              string excluir = $@"DELETE u FROM usuarios u
                          JOIN funcionarios f ON u.id = f.usuarios_id
                          WHERE u.id = {idFuncionario}";
 
                 Banco.Excluir(excluir);
 
                 caixaMensagem deletou = new caixaMensagem("Funcionário excluído com êxito!", "Sucesso!");
+                LogService.CriarLog(this.idEmpresa, this.idUser, "Excluiu Funcionario");
                 deletou.Show();
 
                 CarregarFucionarios();

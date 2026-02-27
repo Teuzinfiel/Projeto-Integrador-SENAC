@@ -15,8 +15,9 @@ namespace ProjetoIntegradorSENAC.Estoque
     {
         private MainPrincipal _main;
         private int idEmpresa;
+        private int idUser;
 
-        public estoque(MainPrincipal main, int idEmpresa)
+        public estoque(MainPrincipal main, int idEmpresa, int user)
         {
             InitializeComponent();
             _main = main;
@@ -26,6 +27,7 @@ namespace ProjetoIntegradorSENAC.Estoque
             dtgProdutos.AlternatingRowsDefaultCellStyle.BackColor;
             dtgProdutos.TabStop = false;
             dtgProdutos.CurrentCell = null;
+            idUser = user;
        
         }
         private int _produtoId;
@@ -141,7 +143,7 @@ namespace ProjetoIntegradorSENAC.Estoque
             {
                 int idProduto = Convert.ToInt32(dtgProdutos.Rows[e.RowIndex].Cells["id"].Value);
 
-                _main.AbrirFormNoPanel(new frmControleEstoque(_main, idProduto));
+                _main.AbrirFormNoPanel(new frmControleEstoque(_main, idProduto, idUser, idEmpresa));
 
 
                 CarregarProdutos(); // Atualiza quando voltar

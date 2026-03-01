@@ -132,6 +132,8 @@ namespace ProjetoIntegradorSENAC
             // AbrirFormNoPanel(new configEmpresa(this.idEmpresa, this.idDono, this.idUsuario));
             labelCategorias.Text = "Configurações";
             EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos, btnMovimentacao);
+            frmChat frmChat = new frmChat();
+            frmChat.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)

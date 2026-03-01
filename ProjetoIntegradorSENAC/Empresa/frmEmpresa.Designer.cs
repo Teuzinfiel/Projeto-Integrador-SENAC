@@ -66,11 +66,12 @@
             panel1.Controls.Add(dtgEmpresas);
             panel1.Controls.Add(label4);
             panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(20, 20);
-            panel1.Margin = new Padding(20);
+            panel1.Location = new Point(18, 15);
+            panel1.Margin = new Padding(18, 15, 18, 15);
             panel1.Name = "panel1";
-            panel1.Size = new Size(943, 939);
+            panel1.Size = new Size(823, 624);
             panel1.TabIndex = 0;
+            panel1.Paint += panel1_Paint;
             // 
             // button2
             // 
@@ -79,10 +80,9 @@
             button2.FlatStyle = FlatStyle.Popup;
             button2.Font = new Font("Franklin Gothic Medium", 18F);
             button2.ForeColor = Color.White;
-            button2.Location = new Point(553, 688);
-            button2.Margin = new Padding(3, 4, 3, 4);
+            button2.Location = new Point(482, 436);
             button2.Name = "button2";
-            button2.Size = new Size(370, 84);
+            button2.Size = new Size(324, 63);
             button2.TabIndex = 9;
             button2.Text = "Gerenciar\r\n";
             button2.UseVisualStyleBackColor = false;
@@ -95,10 +95,9 @@
             btnLogOut.FlatStyle = FlatStyle.Popup;
             btnLogOut.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnLogOut.ForeColor = Color.White;
-            btnLogOut.Location = new Point(20, 816);
-            btnLogOut.Margin = new Padding(3, 4, 3, 4);
+            btnLogOut.Location = new Point(18, 532);
             btnLogOut.Name = "btnLogOut";
-            btnLogOut.Size = new Size(207, 47);
+            btnLogOut.Size = new Size(181, 35);
             btnLogOut.TabIndex = 8;
             btnLogOut.Text = "Sair";
             btnLogOut.UseVisualStyleBackColor = false;
@@ -109,9 +108,9 @@
             label5.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label5.Font = new Font("Microsoft Sans Serif", 18F);
             label5.ForeColor = Color.White;
-            label5.Location = new Point(219, 191);
+            label5.Location = new Point(192, 143);
             label5.Name = "label5";
-            label5.Size = new Size(514, 36);
+            label5.Size = new Size(448, 27);
             label5.TabIndex = 7;
             label5.Text = "Selecione o Comercio desejado";
             label5.TextAlign = ContentAlignment.MiddleCenter;
@@ -123,10 +122,9 @@
             button1.FlatStyle = FlatStyle.Popup;
             button1.Font = new Font("Franklin Gothic Medium", 18F);
             button1.ForeColor = Color.White;
-            button1.Location = new Point(20, 688);
-            button1.Margin = new Padding(3, 4, 3, 4);
+            button1.Location = new Point(18, 436);
             button1.Name = "button1";
-            button1.Size = new Size(527, 84);
+            button1.Size = new Size(461, 63);
             button1.TabIndex = 6;
             button1.Text = "Adicionar Empresa +";
             button1.UseVisualStyleBackColor = false;
@@ -156,8 +154,7 @@
             dtgEmpresas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgEmpresas.EnableHeadersVisualStyles = false;
             dtgEmpresas.GridColor = Color.FromArgb(60, 60, 80);
-            dtgEmpresas.Location = new Point(20, 231);
-            dtgEmpresas.Margin = new Padding(3, 4, 3, 4);
+            dtgEmpresas.Location = new Point(18, 173);
             dtgEmpresas.MultiSelect = false;
             dtgEmpresas.Name = "dtgEmpresas";
             dtgEmpresas.ReadOnly = true;
@@ -177,7 +174,7 @@
             dataGridViewCellStyle4.SelectionForeColor = Color.White;
             dtgEmpresas.RowsDefaultCellStyle = dataGridViewCellStyle4;
             dtgEmpresas.RowTemplate.Height = 35;
-            dtgEmpresas.Size = new Size(903, 449);
+            dtgEmpresas.Size = new Size(788, 257);
             dtgEmpresas.TabIndex = 5;
             dtgEmpresas.CellClick += dtgEmpresas_CellClick;
             dtgEmpresas.CellMouseEnter += dtgEmpresas_CellMouseEnter_1;
@@ -188,9 +185,9 @@
             label4.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label4.Font = new Font("Microsoft Sans Serif", 30F);
             label4.ForeColor = Color.White;
-            label4.Location = new Point(198, 32);
+            label4.Location = new Point(173, 24);
             label4.Name = "label4";
-            label4.Size = new Size(555, 58);
+            label4.Size = new Size(484, 44);
             label4.TabIndex = 4;
             label4.Text = "Bem vindo, Usuario!";
             label4.TextAlign = ContentAlignment.MiddleCenter;
@@ -202,9 +199,9 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Microsoft Sans Serif", 30F);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(24, 399);
+            label1.Location = new Point(21, 299);
             label1.Name = "label1";
-            label1.Size = new Size(562, 58);
+            label1.Size = new Size(450, 46);
             label1.TabIndex = 1;
             label1.Text = "Gerencie com facilidade";
             // 
@@ -215,9 +212,9 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Microsoft Sans Serif", 50F);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(24, 461);
+            label2.Location = new Point(21, 346);
             label2.Name = "label2";
-            label2.Size = new Size(628, 190);
+            label2.Size = new Size(500, 152);
             label2.TabIndex = 2;
             label2.Text = "Transforme sua\r\nEm resultados.";
             // 
@@ -228,9 +225,9 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Microsoft Sans Serif", 50F);
             label3.ForeColor = SystemColors.Highlight;
-            label3.Location = new Point(633, 461);
+            label3.Location = new Point(554, 346);
             label3.Name = "label3";
-            label3.Size = new Size(311, 95);
+            label3.Size = new Size(248, 76);
             label3.TabIndex = 3;
             label3.Text = "Gestao";
             // 
@@ -241,9 +238,8 @@
             panelTop.Controls.Add(btnSair);
             panelTop.Dock = DockStyle.Top;
             panelTop.Location = new Point(0, 0);
-            panelTop.Margin = new Padding(3, 4, 3, 4);
             panelTop.Name = "panelTop";
-            panelTop.Size = new Size(1942, 43);
+            panelTop.Size = new Size(1418, 32);
             panelTop.TabIndex = 4;
             // 
             // btnMinimizar
@@ -253,10 +249,9 @@
             btnMinimizar.FlatStyle = FlatStyle.Popup;
             btnMinimizar.Font = new Font("Segoe UI", 15F);
             btnMinimizar.ForeColor = Color.White;
-            btnMinimizar.Location = new Point(1818, 0);
-            btnMinimizar.Margin = new Padding(3, 4, 3, 4);
+            btnMinimizar.Location = new Point(1310, 0);
             btnMinimizar.Name = "btnMinimizar";
-            btnMinimizar.Size = new Size(62, 43);
+            btnMinimizar.Size = new Size(54, 32);
             btnMinimizar.TabIndex = 3;
             btnMinimizar.Text = "-";
             btnMinimizar.UseVisualStyleBackColor = false;
@@ -268,10 +263,9 @@
             btnSair.Dock = DockStyle.Right;
             btnSair.FlatStyle = FlatStyle.Popup;
             btnSair.ForeColor = Color.White;
-            btnSair.Location = new Point(1880, 0);
-            btnSair.Margin = new Padding(3, 4, 3, 4);
+            btnSair.Location = new Point(1364, 0);
             btnSair.Name = "btnSair";
-            btnSair.Size = new Size(62, 43);
+            btnSair.Size = new Size(54, 32);
             btnSair.TabIndex = 1;
             btnSair.Text = "X";
             btnSair.UseVisualStyleBackColor = false;
@@ -281,26 +275,28 @@
             // 
             panel2.Controls.Add(panel1);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(956, 3);
+            panel2.Location = new Point(556, 2);
+            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Padding = new Padding(20);
-            panel2.Size = new Size(983, 979);
+            panel2.Padding = new Padding(18, 15, 18, 15);
+            panel2.Size = new Size(859, 654);
             panel2.TabIndex = 5;
             // 
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.ColumnCount = 2;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 989F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 865F));
             tableLayoutPanel1.Controls.Add(panel2, 1, 0);
             tableLayoutPanel1.Controls.Add(panel3, 0, 0);
             tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(0, 43);
+            tableLayoutPanel1.Location = new Point(0, 32);
+            tableLayoutPanel1.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel1.Size = new Size(1942, 985);
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 15F));
+            tableLayoutPanel1.Size = new Size(1418, 658);
             tableLayoutPanel1.TabIndex = 6;
             // 
             // panel3
@@ -309,21 +305,21 @@
             panel3.Controls.Add(label1);
             panel3.Controls.Add(label3);
             panel3.Dock = DockStyle.Fill;
-            panel3.Location = new Point(3, 3);
+            panel3.Location = new Point(3, 2);
+            panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(947, 979);
+            panel3.Size = new Size(547, 654);
             panel3.TabIndex = 6;
             // 
             // frmEmpresa
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(35, 35, 45);
-            ClientSize = new Size(1942, 1028);
+            ClientSize = new Size(1418, 690);
             Controls.Add(tableLayoutPanel1);
             Controls.Add(panelTop);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 4, 3, 4);
             Name = "frmEmpresa";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "cadastroEmpresa";

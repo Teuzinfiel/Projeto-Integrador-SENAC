@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
+using System.Media;
 
 namespace ProjetoIntegradorSENAC.Caixa
 {
@@ -156,170 +157,193 @@ namespace ProjetoIntegradorSENAC.Caixa
 
 
         private Panel CriarPainelProduto(Image imagem, ItemVenda item, int estoque)
-        { // Painel do produto
-            string nome = item.NomeProduto;
+        {
             int id = item.ProdutoId;
 
-            Panel p = new Panel();
-            p.Width = 170;
-            p.Height = 250;
-            p.BackColor = Color.FromArgb(40, 40, 60);
-            p.BorderStyle = BorderStyle.FixedSingle;
-            p.Margin = new Padding(10);
-            p.Tag = id;
-
-
-            // Nome do produto
-            Label lblNome = new Label();
-            lblNome.Text = nome;
-            lblNome.ForeColor = Color.White;
-            lblNome.Font = new Font("Segoe UI", 10, FontStyle.Bold);
-            lblNome.AutoSize = false;
-            lblNome.TextAlign = ContentAlignment.MiddleCenter;
-            lblNome.Width = p.Width;
-            lblNome.Height = 25;
-            lblNome.Location = new Point(0, 5);
-
-            // PictureBox
-            PictureBox pic = new PictureBox();
-            pic.Width = 200;
-            pic.Height = 140;
-            pic.SizeMode = PictureBoxSizeMode.Zoom;
-            pic.Image = imagem;
-            pic.Location = new Point(15, 35);
-
-            // Label de quantidade
-            Label lblQtd = new Label();
-            lblQtd.Text = item.Quantidade.ToString();
-            lblQtd.ForeColor = Color.White;
-            lblQtd.Font = new Font("Segoe UI", 12, FontStyle.Bold);
-            lblQtd.AutoSize = false;
-            lblQtd.TextAlign = ContentAlignment.MiddleCenter;
-            lblQtd.Width = 40;
-            lblQtd.Height = 30;
-            lblQtd.Location = new Point(70, 185);
-            lblQtd.Tag = "qtd";
-            lblQtd.Name = "labelQuant";
-
-            // Label de preço total do produto
-            Label lblPreco = new Label();
-            lblPreco.Text = $"{item.Total:C2}";
-            lblPreco.ForeColor = Color.White;
-            lblPreco.Font = new Font("Segoe UI", 12, FontStyle.Bold);
-            lblPreco.AutoSize = false;
-            lblPreco.TextAlign = ContentAlignment.MiddleCenter;
-            lblPreco.Width = 120;
-            lblPreco.Height = 30;
-            lblPreco.Location = new Point(25, 210);
-            lblPreco.Tag = "preco";
-            lblPreco.Name = "labelPreco"
-;
-            Func<string, int, int, Button> btn = (texto, locx, locy) =>
+            Panel p = new Panel
             {
-                return new Button()
-                {
-                    Text = texto,
-                    Width = 40,
-                    Height = 30,
-                    Location = new Point(locx, locy),
-                    BackColor = Color.FromArgb(70, 70, 100),
-                    FlatStyle = FlatStyle.Flat,
-                    ForeColor = Color.White,
-                    Font = new Font("Segoe UI", 10, FontStyle.Bold)
-                };
+                Width = 170,
+                Height = 200,
+                BackColor = Color.FromArgb(35, 37, 50),
+                Margin = new Padding(10),
+                Tag = id
             };
 
-            Button btnMais = btn("+", 20, 185);
-            Button btnMenos = btn("-", 110, 185);
-            Button btnCancel = btn("X", 130, 3);
+            // 🔵 Cantos arredondados
+            p.Paint += (s, e) =>
+            {
+                using (var path = RoundedRect(new Rectangle(0, 0, p.Width - 1, p.Height - 1), 15))
+                {
+                    p.Region = new Region(path);
+                }
+            };
 
-            btnCancel.BackColor = Color.DarkRed;
+            // Nome
+            Label lblNome = new Label
+            {
+                Text = item.NomeProduto,
+                ForeColor = Color.White,
+                Font = new Font("Segoe UI Semibold", 9, FontStyle.Bold),
+                TextAlign = ContentAlignment.MiddleCenter,
+                Width = p.Width,
+                Height = 28,
+                Location = new Point(0, 8)
+            };
 
+            // Quantidade
+            Label lblQtd = new Label
+            {
+                Text = item.Quantidade.ToString(),
+                ForeColor = Color.White,
+                Font = new Font("Segoe UI", 13, FontStyle.Bold),
+                TextAlign = ContentAlignment.MiddleCenter,
+                Width = 50,
+                Height = 30,
+                Location = new Point(60, 75),
+                Tag = "qtd"
+            };
+
+            // 🔵 Preço Azul
+            Label lblPreco = new Label
+            {
+                Text = $"{item.Total:C2}",
+                ForeColor = Color.FromArgb(0, 150, 255),
+                Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                TextAlign = ContentAlignment.MiddleCenter,
+                Width = p.Width,
+                Height = 25,
+                Location = new Point(0, 120),
+                Tag = "preco"
+            };
+
+            Color azulSistema = Color.FromArgb(0, 150, 255);
+
+            Button btnMais = CriarBotao("+", azulSistema);
+            Button btnMenos = CriarBotao("-", azulSistema);
+            Button btnCancel = CriarBotao("X", Color.FromArgb(220, 50, 50));
+
+            btnMais.Location = new Point(20, 75);
+            btnMenos.Location = new Point(120, 75);
+
+            btnCancel.Size = new Size(24, 24);
+            btnCancel.Location = new Point(p.Width - 30, 8);
+            btnCancel.TextAlign = ContentAlignment.MiddleCenter;
+            btnCancel.Padding = new Padding(0);
+
+            // EVENTO +
             btnMais.Click += (s, e) =>
             {
                 if (estoque <= item.Quantidade)
                 {
                     MessageBox.Show("Estoque insuficiente");
+                    return;
                 }
-                else
-                {
-                    _vendaAtual.Incrementar(id);
 
+                _vendaAtual.Incrementar(id);
 
+                decimal desconto = 0;
+                decimal.TryParse(textDesconto.Text, out desconto);
+                _vendaAtual.AplicarDesconto(desconto, id);
 
-                    // Aplica desconto se existir texto válido
-                    decimal desconto = 0;
-                    decimal.TryParse(textDesconto.Text, out desconto);
-                    _vendaAtual.AplicarDesconto(desconto, id);
-
-                    AtualizarPainel(p, item);
-                    lbPreço.Text = _vendaAtual.TotalBruto.ToString();
-                }
+                AtualizarPainel(p, item);
+                AtualizarResumo();
             };
 
-            btnCancel.Click += (s, e) =>
-            {
-
-                _vendaAtual.Remover(id);
-                flpCaixa.Controls.Remove(p);
-                _painelPorProduto.Remove(id);
-                p.Dispose();
-                lbPreço.Text = _vendaAtual.TotalBruto.ToString();
-                lbItens.Text = _vendaAtual.Itens.Count.ToString();
-            };
-
+            // EVENTO -
             btnMenos.Click += (s, e) =>
             {
                 _vendaAtual.DecrementarOuRemover(id);
 
-                if (_vendaAtual.Itens.FirstOrDefault(i => i.ProdutoId == id) != null)
+                var existe = _vendaAtual.Itens.FirstOrDefault(i => i.ProdutoId == id);
+
+                if (existe != null)
                 {
-                    decimal desconto = 0;
-                    decimal.TryParse(textDesconto.Text, out desconto);
-                    _vendaAtual.AplicarDesconto(desconto, id);
-                    AtualizarPainel(p, item);
-                    lbPreço.Text = _vendaAtual.TotalBruto.ToString();
+                    AtualizarPainel(p, existe);
                 }
                 else
                 {
                     flpCaixa.Controls.Remove(p);
                     _painelPorProduto.Remove(id);
                     p.Dispose();
-                    lbPreço.Text = _vendaAtual.TotalBruto.ToString();
-                    lbItens.Text = _vendaAtual.Itens.Count.ToString();
                 }
+
+                AtualizarResumo();
             };
 
+            // EVENTO X
+            btnCancel.Click += (s, e) =>
+            {
+                _vendaAtual.Remover(id);
+
+                flpCaixa.Controls.Remove(p);
+                _painelPorProduto.Remove(id);
+                p.Dispose();
+
+                AtualizarResumo();
+            };
 
             p.Controls.Add(lblNome);
-            p.Controls.Add(pic);
             p.Controls.Add(lblQtd);
+            p.Controls.Add(lblPreco);
             p.Controls.Add(btnMais);
             p.Controls.Add(btnMenos);
             p.Controls.Add(btnCancel);
-            p.Controls.Add(lblPreco);
-
-            btnCancel.BringToFront();
-
 
             return p;
         }
 
+        private void AtualizarResumo()
+        {
+            lbPreço.Text = (_vendaAtual?.TotalBruto ?? 0).ToString();
+            lbItens.Text = (_vendaAtual?.Itens?.Count ?? 0).ToString();
+        }
+
         private void AtualizarPainel(Panel panel, ItemVenda item)
         {
-            var lblQuant = panel.Controls.OfType<Label>().FirstOrDefault(l => l.Tag?.ToString() == "qtd");
+            if (panel == null || panel.IsDisposed || item == null)
+                return;
 
-            lblQuant.Text = null;
-            lblQuant.Text = item.Quantidade.ToString();
+            var lblQuant = panel.Controls
+                .OfType<Label>()
+                .FirstOrDefault(l => l.Tag?.ToString() == "qtd");
 
+            if (lblQuant != null)
+                lblQuant.Text = item.Quantidade.ToString();
 
-            var lblPreco = panel.Controls.OfType<Label>().FirstOrDefault(l => l.Tag?.ToString() == "preco");
+            var lblPreco = panel.Controls
+                .OfType<Label>()
+                .FirstOrDefault(l => l.Tag?.ToString() == "preco");
 
-            lblPreco.Text = null;
-            lblPreco.Text = $"{item.Total:C2}";
+            if (lblPreco != null)
+                lblPreco.Text = $"{item.Total:C2}";
+        }
 
+        private Button CriarBotao(string texto, Color cor)
+        {
+            Button btn = new Button
+            {
+                Text = texto,
+                Width = 30,
+                Height = 30,
+                FlatStyle = FlatStyle.Flat,
+                BackColor = cor,
+                ForeColor = Color.White,
+                Font = new Font("Segoe UI", 10, FontStyle.Bold)
+            };
 
+            btn.FlatAppearance.BorderSize = 0;
 
+            // 🔵 Botão redondo
+            btn.Paint += (s, e) =>
+            {
+                using (var path = new System.Drawing.Drawing2D.GraphicsPath())
+                {
+                    path.AddEllipse(0, 0, btn.Width - 1, btn.Height - 1);
+                    btn.Region = new Region(path);
+                }
+            };
+
+            return btn;
         }
 
         private void textDesconto_TextChanged(object sender, EventArgs e)
@@ -383,6 +407,8 @@ namespace ProjetoIntegradorSENAC.Caixa
                         int vendaId = SalvarVenda();
                         SalvarItensVenda(vendaId);
 
+                        SoundPlayer player = new SoundPlayer(Properties.Resources.videoplayback);
+                        player.Play();
                         MessageBox.Show("Venda finalizada com sucesso!");
                         LogService.CriarLog(this.idEmpresa, this.idUser, "Fez uma venda");
                         LimparVenda();
@@ -542,7 +568,7 @@ namespace ProjetoIntegradorSENAC.Caixa
         }
 
 
-       
+
 
         private void ExcluirVendaPorCodigo(string codigo)
         {
@@ -659,7 +685,19 @@ namespace ProjetoIntegradorSENAC.Caixa
                 }
             }
         }
+        private System.Drawing.Drawing2D.GraphicsPath RoundedRect(Rectangle bounds, int radius)
+        {
+            int diameter = radius * 2;
+            var path = new System.Drawing.Drawing2D.GraphicsPath();
 
+            path.AddArc(bounds.X, bounds.Y, diameter, diameter, 180, 90);
+            path.AddArc(bounds.Right - diameter, bounds.Y, diameter, diameter, 270, 90);
+            path.AddArc(bounds.Right - diameter, bounds.Bottom - diameter, diameter, diameter, 0, 90);
+            path.AddArc(bounds.X, bounds.Bottom - diameter, diameter, diameter, 90, 90);
+            path.CloseFigure();
+
+            return path;
+        }
         private decimal BuscarEstoqueAtual(int produtoId, MySqlConnection conn, MySqlTransaction trans)
         {
             string sql = @"SELECT COALESCE((
@@ -705,6 +743,9 @@ namespace ProjetoIntegradorSENAC.Caixa
             carregarProdutos(Banco.Pesquisar(query));
         }
 
+        private void rightLayout_Paint(object sender, PaintEventArgs e)
+        {
 
+        }
     }
 }

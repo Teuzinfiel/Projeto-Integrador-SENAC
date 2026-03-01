@@ -44,7 +44,7 @@ namespace ProjetoIntegradorSENAC.Empresa
                 dtgEmpresas.Columns["fantasia"].HeaderText = "Nome Fantasia";
                 dtgEmpresas.Columns["documentacao"].HeaderText = "Documentacao";
             }
-              
+
             catch (Exception ex)
             {
                 MessageBox.Show("Erro ao carregar empresas: " + ex.Message);
@@ -58,7 +58,7 @@ namespace ProjetoIntegradorSENAC.Empresa
             if (dtUser.Rows.Count > 0)
             {
                 nomeUsuario = dtUser.Rows[0]["nome"].ToString();
-                label4.Text = ($"Bem - vindo, { nomeUsuario}");
+                label4.Text = ($"Bem - vindo, {nomeUsuario}");
             }
 
         }
@@ -121,6 +121,11 @@ namespace ProjetoIntegradorSENAC.Empresa
             configEmpresa cfg = new configEmpresa(this.idUsuario);
             cfg.Show();
             this.Hide();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

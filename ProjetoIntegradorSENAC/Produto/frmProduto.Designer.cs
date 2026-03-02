@@ -28,15 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle17 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle18 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
             btnCadastro = new Button();
             lbMarca = new Label();
             PrMarca = new TextBox();
@@ -77,6 +77,7 @@
             lbCatAtt = new Label();
             lbDescAtt = new Label();
             panel2 = new Panel();
+            astMedidaAtt = new Label();
             btnAtivarProd = new Button();
             astBarrasAtt = new Label();
             btnDesativarProd = new Button();
@@ -97,7 +98,7 @@
             txtNomeProd = new TextBox();
             label1 = new Label();
             dtgProdutos = new DataGridView();
-            astMedidaAtt = new Label();
+            panel3 = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgCategoria).BeginInit();
             panel2.SuspendLayout();
@@ -111,7 +112,7 @@
             btnCadastro.FlatStyle = FlatStyle.Popup;
             btnCadastro.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnCadastro.ForeColor = Color.White;
-            btnCadastro.Location = new Point(14, 321);
+            btnCadastro.Location = new Point(17, 641);
             btnCadastro.Name = "btnCadastro";
             btnCadastro.Size = new Size(556, 37);
             btnCadastro.TabIndex = 36;
@@ -124,7 +125,7 @@
             lbMarca.AutoSize = true;
             lbMarca.Font = new Font("Franklin Gothic Medium", 12F);
             lbMarca.ForeColor = Color.FromArgb(180, 180, 190);
-            lbMarca.Location = new Point(14, 114);
+            lbMarca.Location = new Point(18, 449);
             lbMarca.Name = "lbMarca";
             lbMarca.Size = new Size(131, 21);
             lbMarca.TabIndex = 40;
@@ -134,7 +135,7 @@
             // 
             PrMarca.BackColor = Color.FromArgb(224, 224, 224);
             PrMarca.Font = new Font("Microsoft Sans Serif", 16F);
-            PrMarca.Location = new Point(14, 138);
+            PrMarca.Location = new Point(18, 473);
             PrMarca.Name = "PrMarca";
             PrMarca.PlaceholderText = "Digite a marca do produto";
             PrMarca.Size = new Size(294, 32);
@@ -146,7 +147,7 @@
             lbNome.AutoSize = true;
             lbNome.Font = new Font("Franklin Gothic Medium", 12F);
             lbNome.ForeColor = Color.FromArgb(180, 180, 190);
-            lbNome.Location = new Point(14, 51);
+            lbNome.Location = new Point(17, 386);
             lbNome.Name = "lbNome";
             lbNome.Size = new Size(128, 21);
             lbNome.TabIndex = 32;
@@ -156,7 +157,7 @@
             // 
             PrNome.BackColor = Color.FromArgb(224, 224, 224);
             PrNome.Font = new Font("Microsoft Sans Serif", 16F);
-            PrNome.Location = new Point(14, 75);
+            PrNome.Location = new Point(17, 410);
             PrNome.Name = "PrNome";
             PrNome.PlaceholderText = "Digite o nome do produto";
             PrNome.Size = new Size(294, 32);
@@ -168,7 +169,7 @@
             lbDescricao.AutoSize = true;
             lbDescricao.Font = new Font("Franklin Gothic Medium", 12F);
             lbDescricao.ForeColor = Color.FromArgb(180, 180, 190);
-            lbDescricao.Location = new Point(319, 45);
+            lbDescricao.Location = new Point(322, 380);
             lbDescricao.Name = "lbDescricao";
             lbDescricao.Size = new Size(75, 21);
             lbDescricao.TabIndex = 50;
@@ -178,7 +179,7 @@
             // 
             PrDescricaoAtt.BackColor = Color.FromArgb(224, 224, 224);
             PrDescricaoAtt.Font = new Font("Microsoft Sans Serif", 16F);
-            PrDescricaoAtt.Location = new Point(345, 377);
+            PrDescricaoAtt.Location = new Point(345, 395);
             PrDescricaoAtt.Multiline = true;
             PrDescricaoAtt.Name = "PrDescricaoAtt";
             PrDescricaoAtt.PlaceholderText = "Digite a descrição do produto";
@@ -191,7 +192,7 @@
             lbUnidade.AutoSize = true;
             lbUnidade.Font = new Font("Franklin Gothic Medium", 12F);
             lbUnidade.ForeColor = Color.FromArgb(180, 180, 190);
-            lbUnidade.Location = new Point(14, 182);
+            lbUnidade.Location = new Point(17, 511);
             lbUnidade.Name = "lbUnidade";
             lbUnidade.Size = new Size(146, 21);
             lbUnidade.TabIndex = 51;
@@ -202,7 +203,7 @@
             lbCategoria.AutoSize = true;
             lbCategoria.Font = new Font("Franklin Gothic Medium", 12F);
             lbCategoria.ForeColor = Color.FromArgb(180, 180, 190);
-            lbCategoria.Location = new Point(319, 246);
+            lbCategoria.Location = new Point(322, 575);
             lbCategoria.Name = "lbCategoria";
             lbCategoria.Size = new Size(75, 21);
             lbCategoria.TabIndex = 53;
@@ -213,7 +214,7 @@
             CmbCategoria.BackColor = Color.FromArgb(224, 224, 224);
             CmbCategoria.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             CmbCategoria.FormattingEnabled = true;
-            CmbCategoria.Location = new Point(319, 271);
+            CmbCategoria.Location = new Point(322, 600);
             CmbCategoria.Name = "CmbCategoria";
             CmbCategoria.Size = new Size(251, 33);
             CmbCategoria.TabIndex = 54;
@@ -226,7 +227,7 @@
             CmbUnidade.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             CmbUnidade.FormattingEnabled = true;
             CmbUnidade.Items.AddRange(new object[] { "Unidade", "Caixa", "Pacote", "Kg", "Gramas", "Litros", "Ml", "Dúzia", "Fardo", "Kit" });
-            CmbUnidade.Location = new Point(14, 206);
+            CmbUnidade.Location = new Point(17, 535);
             CmbUnidade.Name = "CmbUnidade";
             CmbUnidade.Size = new Size(294, 33);
             CmbUnidade.TabIndex = 55;
@@ -237,7 +238,7 @@
             lbPreco.AutoSize = true;
             lbPreco.Font = new Font("Franklin Gothic Medium", 12F);
             lbPreco.ForeColor = Color.FromArgb(180, 180, 190);
-            lbPreco.Location = new Point(14, 247);
+            lbPreco.Location = new Point(17, 576);
             lbPreco.Name = "lbPreco";
             lbPreco.Size = new Size(135, 21);
             lbPreco.TabIndex = 57;
@@ -247,7 +248,7 @@
             // 
             PrPreco.BackColor = Color.FromArgb(224, 224, 224);
             PrPreco.Font = new Font("Microsoft Sans Serif", 16F);
-            PrPreco.Location = new Point(14, 271);
+            PrPreco.Location = new Point(17, 600);
             PrPreco.Name = "PrPreco";
             PrPreco.PlaceholderText = "digite o preço do produto";
             PrPreco.Size = new Size(294, 32);
@@ -259,7 +260,7 @@
             astNome.AutoSize = true;
             astNome.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             astNome.ForeColor = Color.FromArgb(192, 0, 0);
-            astNome.Location = new Point(144, 48);
+            astNome.Location = new Point(147, 383);
             astNome.Name = "astNome";
             astNome.Size = new Size(16, 24);
             astNome.TabIndex = 58;
@@ -271,7 +272,7 @@
             astCategoria.AutoSize = true;
             astCategoria.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             astCategoria.ForeColor = Color.FromArgb(192, 0, 0);
-            astCategoria.Location = new Point(388, 244);
+            astCategoria.Location = new Point(391, 573);
             astCategoria.Name = "astCategoria";
             astCategoria.Size = new Size(16, 24);
             astCategoria.TabIndex = 59;
@@ -283,7 +284,7 @@
             astMarca.AutoSize = true;
             astMarca.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             astMarca.ForeColor = Color.FromArgb(192, 0, 0);
-            astMarca.Location = new Point(144, 111);
+            astMarca.Location = new Point(148, 446);
             astMarca.Name = "astMarca";
             astMarca.Size = new Size(16, 24);
             astMarca.TabIndex = 60;
@@ -295,7 +296,7 @@
             astPreco.AutoSize = true;
             astPreco.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             astPreco.ForeColor = Color.FromArgb(192, 0, 0);
-            astPreco.Location = new Point(144, 247);
+            astPreco.Location = new Point(147, 576);
             astPreco.Name = "astPreco";
             astPreco.Size = new Size(16, 24);
             astPreco.TabIndex = 61;
@@ -307,7 +308,7 @@
             astDescAtt.AutoSize = true;
             astDescAtt.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             astDescAtt.ForeColor = Color.FromArgb(192, 0, 0);
-            astDescAtt.Location = new Point(426, 350);
+            astDescAtt.Location = new Point(426, 368);
             astDescAtt.Name = "astDescAtt";
             astDescAtt.Size = new Size(16, 24);
             astDescAtt.TabIndex = 62;
@@ -317,22 +318,23 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(30, 30, 45);
+            panel1.Controls.Add(panel3);
             panel1.Controls.Add(label23);
             panel1.Controls.Add(astCod);
+            panel1.Controls.Add(dtgCategoria);
             panel1.Controls.Add(PrCodigoBarra);
             panel1.Controls.Add(label19);
-            panel1.Controls.Add(btnCadCategoria);
-            panel1.Controls.Add(btnExcluirCat);
-            panel1.Controls.Add(label17);
-            panel1.Controls.Add(label18);
-            panel1.Controls.Add(txtCategoria);
-            panel1.Controls.Add(dtgCategoria);
-            panel1.Controls.Add(label15);
             panel1.Controls.Add(astUnidade);
+            panel1.Controls.Add(label15);
+            panel1.Controls.Add(btnCadCategoria);
             panel1.Controls.Add(astCategoria);
+            panel1.Controls.Add(txtCategoria);
             panel1.Controls.Add(astDescricao);
+            panel1.Controls.Add(btnExcluirCat);
             panel1.Controls.Add(PrDescricao);
+            panel1.Controls.Add(label18);
             panel1.Controls.Add(label14);
+            panel1.Controls.Add(label17);
             panel1.Controls.Add(astPreco);
             panel1.Controls.Add(astMarca);
             panel1.Controls.Add(astNome);
@@ -358,7 +360,7 @@
             label23.AutoSize = true;
             label23.Font = new Font("Franklin Gothic Medium", 12F);
             label23.ForeColor = Color.FromArgb(180, 180, 190);
-            label23.Location = new Point(319, 179);
+            label23.Location = new Point(322, 508);
             label23.Name = "label23";
             label23.Size = new Size(126, 21);
             label23.TabIndex = 84;
@@ -369,7 +371,7 @@
             astCod.AutoSize = true;
             astCod.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             astCod.ForeColor = Color.FromArgb(192, 0, 0);
-            astCod.Location = new Point(451, 176);
+            astCod.Location = new Point(454, 505);
             astCod.Name = "astCod";
             astCod.Size = new Size(16, 24);
             astCod.TabIndex = 81;
@@ -380,7 +382,7 @@
             // 
             PrCodigoBarra.BackColor = Color.FromArgb(224, 224, 224);
             PrCodigoBarra.Font = new Font("Microsoft Sans Serif", 16F);
-            PrCodigoBarra.Location = new Point(319, 206);
+            PrCodigoBarra.Location = new Point(322, 535);
             PrCodigoBarra.Name = "PrCodigoBarra";
             PrCodigoBarra.PlaceholderText = "Digite o codigo do produto";
             PrCodigoBarra.Size = new Size(251, 32);
@@ -389,13 +391,13 @@
             // label19
             // 
             label19.AutoSize = true;
-            label19.Font = new Font("Franklin Gothic Medium", 9F);
+            label19.Font = new Font("Franklin Gothic Medium", 10F);
             label19.ForeColor = Color.FromArgb(180, 180, 190);
-            label19.Location = new Point(19, 406);
+            label19.Location = new Point(18, 50);
             label19.Name = "label19";
-            label19.Size = new Size(236, 16);
+            label19.Size = new Size(264, 36);
             label19.TabIndex = 78;
-            label19.Text = "Clique em alguma categoria, ou cadastre uma!\r\n";
+            label19.Text = "Clique em alguma categoria para exclui-la!\r\n\r\n";
             // 
             // btnCadCategoria
             // 
@@ -404,7 +406,7 @@
             btnCadCategoria.FlatStyle = FlatStyle.Popup;
             btnCadCategoria.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnCadCategoria.ForeColor = Color.White;
-            btnCadCategoria.Location = new Point(303, 624);
+            btnCadCategoria.Location = new Point(306, 259);
             btnCadCategoria.Name = "btnCadCategoria";
             btnCadCategoria.Size = new Size(267, 35);
             btnCadCategoria.TabIndex = 77;
@@ -418,7 +420,7 @@
             btnExcluirCat.FlatStyle = FlatStyle.Popup;
             btnExcluirCat.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnExcluirCat.ForeColor = Color.Maroon;
-            btnExcluirCat.Location = new Point(14, 624);
+            btnExcluirCat.Location = new Point(17, 259);
             btnExcluirCat.Name = "btnExcluirCat";
             btnExcluirCat.Size = new Size(262, 35);
             btnExcluirCat.TabIndex = 76;
@@ -431,7 +433,7 @@
             label17.AutoSize = true;
             label17.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label17.ForeColor = Color.FromArgb(192, 0, 0);
-            label17.Location = new Point(156, 546);
+            label17.Location = new Point(159, 194);
             label17.Name = "label17";
             label17.Size = new Size(16, 24);
             label17.TabIndex = 75;
@@ -443,7 +445,7 @@
             label18.AutoSize = true;
             label18.Font = new Font("Franklin Gothic Medium", 12F);
             label18.ForeColor = Color.FromArgb(180, 180, 190);
-            label18.Location = new Point(14, 549);
+            label18.Location = new Point(17, 197);
             label18.Name = "label18";
             label18.Size = new Size(145, 21);
             label18.TabIndex = 74;
@@ -453,7 +455,7 @@
             // 
             txtCategoria.BackColor = Color.FromArgb(224, 224, 224);
             txtCategoria.Font = new Font("Microsoft Sans Serif", 16F);
-            txtCategoria.Location = new Point(14, 573);
+            txtCategoria.Location = new Point(17, 221);
             txtCategoria.Name = "txtCategoria";
             txtCategoria.PlaceholderText = "Digite o nome do produto";
             txtCategoria.Size = new Size(556, 32);
@@ -464,56 +466,56 @@
             dtgCategoria.AllowUserToAddRows = false;
             dtgCategoria.AllowUserToDeleteRows = false;
             dtgCategoria.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle10.BackColor = Color.FromArgb(35, 35, 45);
-            dataGridViewCellStyle10.Font = new Font("Franklin Gothic Medium Cond", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle10.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dtgCategoria.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(35, 35, 45);
+            dataGridViewCellStyle1.Font = new Font("Franklin Gothic Medium Cond", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dtgCategoria.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dtgCategoria.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgCategoria.BackgroundColor = Color.FromArgb(30, 35, 45);
             dtgCategoria.BorderStyle = BorderStyle.None;
             dtgCategoria.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = Color.FromArgb(50, 50, 70);
-            dataGridViewCellStyle11.Font = new Font("Franklin Gothic Medium", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle11.ForeColor = Color.White;
-            dataGridViewCellStyle11.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.True;
-            dtgCategoria.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(50, 50, 70);
+            dataGridViewCellStyle2.Font = new Font("Franklin Gothic Medium", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dtgCategoria.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dtgCategoria.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = Color.FromArgb(40, 40, 50);
-            dataGridViewCellStyle12.Font = new Font("Franklin Gothic Medium", 11F);
-            dataGridViewCellStyle12.ForeColor = Color.White;
-            dataGridViewCellStyle12.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dataGridViewCellStyle12.SelectionForeColor = Color.White;
-            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.False;
-            dtgCategoria.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(40, 40, 50);
+            dataGridViewCellStyle3.Font = new Font("Franklin Gothic Medium", 11F);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle3.SelectionForeColor = Color.White;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dtgCategoria.DefaultCellStyle = dataGridViewCellStyle3;
             dtgCategoria.EnableHeadersVisualStyles = false;
             dtgCategoria.GridColor = Color.FromArgb(60, 60, 80);
-            dtgCategoria.Location = new Point(14, 425);
+            dtgCategoria.Location = new Point(17, 69);
             dtgCategoria.MultiSelect = false;
             dtgCategoria.Name = "dtgCategoria";
             dtgCategoria.ReadOnly = true;
-            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = Color.FromArgb(40, 40, 50);
-            dataGridViewCellStyle13.Font = new Font("Franklin Gothic Medium", 11F);
-            dataGridViewCellStyle13.ForeColor = Color.White;
-            dataGridViewCellStyle13.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dataGridViewCellStyle13.SelectionForeColor = Color.White;
-            dataGridViewCellStyle13.WrapMode = DataGridViewTriState.True;
-            dtgCategoria.RowHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(40, 40, 50);
+            dataGridViewCellStyle4.Font = new Font("Franklin Gothic Medium", 11F);
+            dataGridViewCellStyle4.ForeColor = Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle4.SelectionForeColor = Color.White;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dtgCategoria.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dtgCategoria.RowHeadersVisible = false;
-            dataGridViewCellStyle14.BackColor = Color.FromArgb(40, 40, 50);
-            dataGridViewCellStyle14.Font = new Font("Franklin Gothic Medium", 11F);
-            dataGridViewCellStyle14.ForeColor = Color.White;
-            dataGridViewCellStyle14.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dataGridViewCellStyle14.SelectionForeColor = Color.White;
-            dtgCategoria.RowsDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(40, 40, 50);
+            dataGridViewCellStyle5.Font = new Font("Franklin Gothic Medium", 11F);
+            dataGridViewCellStyle5.ForeColor = Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle5.SelectionForeColor = Color.White;
+            dtgCategoria.RowsDefaultCellStyle = dataGridViewCellStyle5;
             dtgCategoria.RowTemplate.Height = 26;
             dtgCategoria.ScrollBars = ScrollBars.Vertical;
             dtgCategoria.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dtgCategoria.Size = new Size(556, 116);
+            dtgCategoria.Size = new Size(556, 125);
             dtgCategoria.TabIndex = 72;
             dtgCategoria.CellClick += dtgCategoria_CellClick;
             // 
@@ -522,7 +524,7 @@
             label15.AutoSize = true;
             label15.Font = new Font("Franklin Gothic Medium", 20F);
             label15.ForeColor = Color.FromArgb(180, 180, 190);
-            label15.Location = new Point(82, 361);
+            label15.Location = new Point(89, 8);
             label15.Name = "label15";
             label15.Size = new Size(430, 34);
             label15.TabIndex = 71;
@@ -533,7 +535,7 @@
             astUnidade.AutoSize = true;
             astUnidade.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             astUnidade.ForeColor = Color.FromArgb(192, 0, 0);
-            astUnidade.Location = new Point(166, 179);
+            astUnidade.Location = new Point(169, 508);
             astUnidade.Name = "astUnidade";
             astUnidade.Size = new Size(16, 24);
             astUnidade.TabIndex = 70;
@@ -545,7 +547,7 @@
             astDescricao.AutoSize = true;
             astDescricao.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             astDescricao.ForeColor = Color.FromArgb(192, 0, 0);
-            astDescricao.Location = new Point(390, 42);
+            astDescricao.Location = new Point(393, 377);
             astDescricao.Name = "astDescricao";
             astDescricao.Size = new Size(16, 24);
             astDescricao.TabIndex = 69;
@@ -556,7 +558,7 @@
             // 
             PrDescricao.BackColor = Color.FromArgb(224, 224, 224);
             PrDescricao.Font = new Font("Microsoft Sans Serif", 16F);
-            PrDescricao.Location = new Point(319, 69);
+            PrDescricao.Location = new Point(322, 404);
             PrDescricao.Multiline = true;
             PrDescricao.Name = "PrDescricao";
             PrDescricao.PlaceholderText = "Descrição do produto";
@@ -566,20 +568,20 @@
             // label14
             // 
             label14.AutoSize = true;
-            label14.Font = new Font("Franklin Gothic Medium", 20F);
+            label14.Font = new Font("Franklin Gothic Medium", 16F);
             label14.ForeColor = Color.FromArgb(180, 180, 190);
-            label14.Location = new Point(144, 8);
+            label14.Location = new Point(159, 349);
             label14.Name = "label14";
-            label14.Size = new Size(272, 34);
+            label14.Size = new Size(268, 28);
             label14.TabIndex = 63;
-            label14.Text = "Cadastre um Produto!";
+            label14.Text = "Cadastre aqui um Produto!";
             // 
             // lbBarrasAtt
             // 
             lbBarrasAtt.AutoSize = true;
             lbBarrasAtt.Font = new Font("Franklin Gothic Medium", 12F);
             lbBarrasAtt.ForeColor = Color.FromArgb(180, 180, 190);
-            lbBarrasAtt.Location = new Point(345, 484);
+            lbBarrasAtt.Location = new Point(345, 502);
             lbBarrasAtt.Name = "lbBarrasAtt";
             lbBarrasAtt.Size = new Size(126, 21);
             lbBarrasAtt.TabIndex = 80;
@@ -590,7 +592,7 @@
             astCatAtt.AutoSize = true;
             astCatAtt.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             astCatAtt.ForeColor = Color.FromArgb(192, 0, 0);
-            astCatAtt.Location = new Point(416, 543);
+            astCatAtt.Location = new Point(416, 561);
             astCatAtt.Name = "astCatAtt";
             astCatAtt.Size = new Size(16, 24);
             astCatAtt.TabIndex = 68;
@@ -602,7 +604,7 @@
             cmbCatAtt.BackColor = Color.FromArgb(224, 224, 224);
             cmbCatAtt.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbCatAtt.FormattingEnabled = true;
-            cmbCatAtt.Location = new Point(345, 572);
+            cmbCatAtt.Location = new Point(345, 590);
             cmbCatAtt.Name = "cmbCatAtt";
             cmbCatAtt.Size = new Size(345, 33);
             cmbCatAtt.TabIndex = 67;
@@ -612,7 +614,7 @@
             lbCatAtt.AutoSize = true;
             lbCatAtt.Font = new Font("Franklin Gothic Medium", 12F);
             lbCatAtt.ForeColor = Color.FromArgb(180, 180, 190);
-            lbCatAtt.Location = new Point(345, 546);
+            lbCatAtt.Location = new Point(345, 564);
             lbCatAtt.Name = "lbCatAtt";
             lbCatAtt.Size = new Size(75, 21);
             lbCatAtt.TabIndex = 66;
@@ -623,7 +625,7 @@
             lbDescAtt.AutoSize = true;
             lbDescAtt.Font = new Font("Franklin Gothic Medium", 12F);
             lbDescAtt.ForeColor = Color.FromArgb(180, 180, 190);
-            lbDescAtt.Location = new Point(345, 353);
+            lbDescAtt.Location = new Point(345, 371);
             lbDescAtt.Name = "lbDescAtt";
             lbDescAtt.Size = new Size(75, 21);
             lbDescAtt.TabIndex = 65;
@@ -665,13 +667,25 @@
             panel2.Size = new Size(705, 701);
             panel2.TabIndex = 64;
             // 
+            // astMedidaAtt
+            // 
+            astMedidaAtt.AutoSize = true;
+            astMedidaAtt.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            astMedidaAtt.ForeColor = Color.FromArgb(192, 0, 0);
+            astMedidaAtt.Location = new Point(163, 499);
+            astMedidaAtt.Name = "astMedidaAtt";
+            astMedidaAtt.Size = new Size(16, 24);
+            astMedidaAtt.TabIndex = 88;
+            astMedidaAtt.Text = "*";
+            astMedidaAtt.Visible = false;
+            // 
             // btnAtivarProd
             // 
             btnAtivarProd.BackColor = Color.Transparent;
             btnAtivarProd.FlatStyle = FlatStyle.Popup;
             btnAtivarProd.Font = new Font("Franklin Gothic Medium", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnAtivarProd.ForeColor = Color.DarkSeaGreen;
-            btnAtivarProd.Location = new Point(172, 621);
+            btnAtivarProd.Location = new Point(172, 639);
             btnAtivarProd.Name = "btnAtivarProd";
             btnAtivarProd.Size = new Size(155, 37);
             btnAtivarProd.TabIndex = 87;
@@ -684,7 +698,7 @@
             astBarrasAtt.AutoSize = true;
             astBarrasAtt.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             astBarrasAtt.ForeColor = Color.FromArgb(192, 0, 0);
-            astBarrasAtt.Location = new Point(477, 475);
+            astBarrasAtt.Location = new Point(477, 493);
             astBarrasAtt.Name = "astBarrasAtt";
             astBarrasAtt.Size = new Size(16, 24);
             astBarrasAtt.TabIndex = 85;
@@ -697,7 +711,7 @@
             btnDesativarProd.FlatStyle = FlatStyle.Popup;
             btnDesativarProd.Font = new Font("Franklin Gothic Medium", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnDesativarProd.ForeColor = Color.Maroon;
-            btnDesativarProd.Location = new Point(173, 621);
+            btnDesativarProd.Location = new Point(173, 639);
             btnDesativarProd.Name = "btnDesativarProd";
             btnDesativarProd.Size = new Size(154, 38);
             btnDesativarProd.TabIndex = 86;
@@ -709,7 +723,7 @@
             // 
             txtCodBarra.BackColor = Color.FromArgb(224, 224, 224);
             txtCodBarra.Font = new Font("Microsoft Sans Serif", 16F);
-            txtCodBarra.Location = new Point(345, 508);
+            txtCodBarra.Location = new Point(345, 526);
             txtCodBarra.Name = "txtCodBarra";
             txtCodBarra.PlaceholderText = "Digite o codigo do produto";
             txtCodBarra.Size = new Size(345, 32);
@@ -732,7 +746,7 @@
             btnExcluirProd.FlatStyle = FlatStyle.Popup;
             btnExcluirProd.Font = new Font("Franklin Gothic Medium", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnExcluirProd.ForeColor = Color.Maroon;
-            btnExcluirProd.Location = new Point(20, 622);
+            btnExcluirProd.Location = new Point(20, 640);
             btnExcluirProd.Name = "btnExcluirProd";
             btnExcluirProd.Size = new Size(146, 38);
             btnExcluirProd.TabIndex = 74;
@@ -747,7 +761,7 @@
             btnAttProd.FlatStyle = FlatStyle.Popup;
             btnAttProd.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnAttProd.ForeColor = Color.White;
-            btnAttProd.Location = new Point(345, 622);
+            btnAttProd.Location = new Point(345, 640);
             btnAttProd.Name = "btnAttProd";
             btnAttProd.Size = new Size(345, 37);
             btnAttProd.TabIndex = 73;
@@ -760,7 +774,7 @@
             astPrecoAtt.AutoSize = true;
             astPrecoAtt.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             astPrecoAtt.ForeColor = Color.FromArgb(192, 0, 0);
-            astPrecoAtt.Location = new Point(150, 549);
+            astPrecoAtt.Location = new Point(150, 567);
             astPrecoAtt.Name = "astPrecoAtt";
             astPrecoAtt.Size = new Size(16, 24);
             astPrecoAtt.TabIndex = 72;
@@ -772,7 +786,7 @@
             astmarcaAtt.AutoSize = true;
             astmarcaAtt.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             astmarcaAtt.ForeColor = Color.FromArgb(192, 0, 0);
-            astmarcaAtt.Location = new Point(150, 413);
+            astmarcaAtt.Location = new Point(150, 431);
             astmarcaAtt.Name = "astmarcaAtt";
             astmarcaAtt.Size = new Size(16, 24);
             astmarcaAtt.TabIndex = 71;
@@ -785,7 +799,7 @@
             astNomeAtt.FlatStyle = FlatStyle.System;
             astNomeAtt.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             astNomeAtt.ForeColor = Color.FromArgb(192, 0, 0);
-            astNomeAtt.Location = new Point(150, 350);
+            astNomeAtt.Location = new Point(150, 368);
             astNomeAtt.Name = "astNomeAtt";
             astNomeAtt.Size = new Size(16, 24);
             astNomeAtt.TabIndex = 70;
@@ -797,7 +811,7 @@
             lbPrecoAtt.AutoSize = true;
             lbPrecoAtt.Font = new Font("Franklin Gothic Medium", 12F);
             lbPrecoAtt.ForeColor = Color.FromArgb(180, 180, 190);
-            lbPrecoAtt.Location = new Point(20, 549);
+            lbPrecoAtt.Location = new Point(20, 567);
             lbPrecoAtt.Name = "lbPrecoAtt";
             lbPrecoAtt.Size = new Size(135, 21);
             lbPrecoAtt.TabIndex = 69;
@@ -807,7 +821,7 @@
             // 
             txtPrecoProd.BackColor = Color.FromArgb(224, 224, 224);
             txtPrecoProd.Font = new Font("Microsoft Sans Serif", 16F);
-            txtPrecoProd.Location = new Point(20, 573);
+            txtPrecoProd.Location = new Point(20, 591);
             txtPrecoProd.Name = "txtPrecoProd";
             txtPrecoProd.PlaceholderText = "digite o preço do produto";
             txtPrecoProd.Size = new Size(307, 32);
@@ -820,7 +834,7 @@
             cmbMedida.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbMedida.FormattingEnabled = true;
             cmbMedida.Items.AddRange(new object[] { "Unidade", "Caixa", "Pacote", "Kg", "Gramas", "Litros", "Ml", "Dúzia", "Fardo", "Kit" });
-            cmbMedida.Location = new Point(20, 508);
+            cmbMedida.Location = new Point(20, 526);
             cmbMedida.Name = "cmbMedida";
             cmbMedida.Size = new Size(307, 33);
             cmbMedida.TabIndex = 67;
@@ -830,7 +844,7 @@
             lbMedidaAtt.AutoSize = true;
             lbMedidaAtt.Font = new Font("Franklin Gothic Medium", 12F);
             lbMedidaAtt.ForeColor = Color.FromArgb(180, 180, 190);
-            lbMedidaAtt.Location = new Point(20, 484);
+            lbMedidaAtt.Location = new Point(20, 502);
             lbMedidaAtt.Name = "lbMedidaAtt";
             lbMedidaAtt.Size = new Size(146, 21);
             lbMedidaAtt.TabIndex = 66;
@@ -841,7 +855,7 @@
             lbMarcaAtt.AutoSize = true;
             lbMarcaAtt.Font = new Font("Franklin Gothic Medium", 12F);
             lbMarcaAtt.ForeColor = Color.FromArgb(180, 180, 190);
-            lbMarcaAtt.Location = new Point(20, 416);
+            lbMarcaAtt.Location = new Point(20, 434);
             lbMarcaAtt.Name = "lbMarcaAtt";
             lbMarcaAtt.Size = new Size(131, 21);
             lbMarcaAtt.TabIndex = 65;
@@ -851,7 +865,7 @@
             // 
             txtMarcaProd.BackColor = Color.FromArgb(224, 224, 224);
             txtMarcaProd.Font = new Font("Microsoft Sans Serif", 16F);
-            txtMarcaProd.Location = new Point(20, 440);
+            txtMarcaProd.Location = new Point(20, 458);
             txtMarcaProd.Name = "txtMarcaProd";
             txtMarcaProd.PlaceholderText = "Digite a marca do produto";
             txtMarcaProd.Size = new Size(307, 32);
@@ -862,7 +876,7 @@
             lbNomeAtt.AutoSize = true;
             lbNomeAtt.Font = new Font("Franklin Gothic Medium", 12F);
             lbNomeAtt.ForeColor = Color.FromArgb(180, 180, 190);
-            lbNomeAtt.Location = new Point(20, 353);
+            lbNomeAtt.Location = new Point(20, 371);
             lbNomeAtt.Name = "lbNomeAtt";
             lbNomeAtt.Size = new Size(128, 21);
             lbNomeAtt.TabIndex = 63;
@@ -872,7 +886,7 @@
             // 
             txtNomeProd.BackColor = Color.FromArgb(224, 224, 224);
             txtNomeProd.Font = new Font("Microsoft Sans Serif", 16F);
-            txtNomeProd.Location = new Point(20, 377);
+            txtNomeProd.Location = new Point(20, 395);
             txtNomeProd.Name = "txtNomeProd";
             txtNomeProd.PlaceholderText = "Digite o nome do produto";
             txtNomeProd.Size = new Size(307, 32);
@@ -881,34 +895,34 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Franklin Gothic Medium", 20F);
+            label1.Font = new Font("Franklin Gothic Medium", 17F);
             label1.ForeColor = Color.FromArgb(180, 180, 190);
-            label1.Location = new Point(183, 8);
+            label1.Location = new Point(52, 13);
             label1.Name = "label1";
-            label1.Size = new Size(342, 34);
+            label1.Size = new Size(592, 29);
             label1.TabIndex = 60;
-            label1.Text = "Atualizar e excluir Produtos!";
+            label1.Text = "Clique em algum produto para Atualizar e excluir Produtos!\r\n";
             // 
             // dtgProdutos
             // 
             dtgProdutos.AllowUserToAddRows = false;
             dtgProdutos.AllowUserToDeleteRows = false;
             dtgProdutos.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle15.BackColor = Color.FromArgb(35, 35, 45);
-            dataGridViewCellStyle15.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dtgProdutos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(35, 35, 45);
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dtgProdutos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
             dtgProdutos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgProdutos.BackgroundColor = Color.FromArgb(30, 35, 45);
             dtgProdutos.BorderStyle = BorderStyle.None;
             dtgProdutos.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = Color.FromArgb(50, 50, 70);
-            dataGridViewCellStyle16.Font = new Font("Franklin Gothic Medium", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle16.ForeColor = Color.White;
-            dataGridViewCellStyle16.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dataGridViewCellStyle16.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = DataGridViewTriState.True;
-            dtgProdutos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = Color.FromArgb(50, 50, 70);
+            dataGridViewCellStyle7.Font = new Font("Franklin Gothic Medium", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle7.ForeColor = Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            dtgProdutos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             dtgProdutos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgProdutos.EnableHeadersVisualStyles = false;
             dtgProdutos.GridColor = Color.FromArgb(60, 60, 80);
@@ -916,45 +930,41 @@
             dtgProdutos.MultiSelect = false;
             dtgProdutos.Name = "dtgProdutos";
             dtgProdutos.ReadOnly = true;
-            dataGridViewCellStyle17.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = Color.FromArgb(40, 40, 50);
-            dataGridViewCellStyle17.Font = new Font("Franklin Gothic Medium", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle17.ForeColor = Color.White;
-            dataGridViewCellStyle17.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dataGridViewCellStyle17.SelectionForeColor = Color.White;
-            dataGridViewCellStyle17.WrapMode = DataGridViewTriState.True;
-            dtgProdutos.RowHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = Color.FromArgb(40, 40, 50);
+            dataGridViewCellStyle8.Font = new Font("Franklin Gothic Medium", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle8.ForeColor = Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle8.SelectionForeColor = Color.White;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
+            dtgProdutos.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             dtgProdutos.RowHeadersVisible = false;
-            dataGridViewCellStyle18.BackColor = Color.FromArgb(40, 40, 50);
-            dataGridViewCellStyle18.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle18.ForeColor = Color.White;
-            dataGridViewCellStyle18.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dataGridViewCellStyle18.SelectionForeColor = Color.White;
-            dtgProdutos.RowsDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle9.BackColor = Color.FromArgb(40, 40, 50);
+            dataGridViewCellStyle9.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle9.ForeColor = Color.White;
+            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle9.SelectionForeColor = Color.White;
+            dtgProdutos.RowsDefaultCellStyle = dataGridViewCellStyle9;
             dtgProdutos.RowTemplate.Height = 26;
             dtgProdutos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dtgProdutos.Size = new Size(670, 265);
             dtgProdutos.TabIndex = 7;
             dtgProdutos.CellClick += dtgProdutos_CellClick;
             // 
-            // astMedidaAtt
+            // panel3
             // 
-            astMedidaAtt.AutoSize = true;
-            astMedidaAtt.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            astMedidaAtt.ForeColor = Color.FromArgb(192, 0, 0);
-            astMedidaAtt.Location = new Point(163, 481);
-            astMedidaAtt.Name = "astMedidaAtt";
-            astMedidaAtt.Size = new Size(16, 24);
-            astMedidaAtt.TabIndex = 88;
-            astMedidaAtt.Text = "*";
-            astMedidaAtt.Visible = false;
+            panel3.BackColor = Color.FromArgb(45, 45, 60);
+            panel3.Location = new Point(-6, 322);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(591, 24);
+            panel3.TabIndex = 85;
             // 
             // frmProduto
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(45, 45, 60);
-            ClientSize = new Size(1342, 725);
+            ClientSize = new Size(1342, 735);
             Controls.Add(panel2);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
@@ -1032,5 +1042,6 @@
         private TextBox txtCodBarra;
         private Button btnAtivarProd;
         private Label astMedidaAtt;
+        private Panel panel3;
     }
 }

@@ -186,6 +186,7 @@
             // grafico1
             // 
             grafico1.Dock = DockStyle.Fill;
+            grafico1.Font = new Font("Franklin Gothic Medium Cond", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             grafico1.Location = new Point(3, 18);
             grafico1.Margin = new Padding(3, 2, 3, 2);
             grafico1.Name = "grafico1";
@@ -215,6 +216,7 @@
             // grafico2
             // 
             grafico2.Dock = DockStyle.Fill;
+            grafico2.Font = new Font("Franklin Gothic Medium Cond", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             grafico2.Location = new Point(3, 18);
             grafico2.Margin = new Padding(3, 2, 3, 2);
             grafico2.Name = "grafico2";
@@ -234,7 +236,7 @@
             btnProdutos.FlatStyle = FlatStyle.Popup;
             btnProdutos.Font = new Font("Franklin Gothic Medium", 15F);
             btnProdutos.ForeColor = Color.White;
-            btnProdutos.Location = new Point(827, 109);
+            btnProdutos.Location = new Point(416, 57);
             btnProdutos.Margin = new Padding(3, 2, 3, 2);
             btnProdutos.Name = "btnProdutos";
             btnProdutos.Size = new Size(145, 40);
@@ -251,7 +253,7 @@
             btnVendas.FlatStyle = FlatStyle.Popup;
             btnVendas.Font = new Font("Franklin Gothic Medium", 15F);
             btnVendas.ForeColor = Color.White;
-            btnVendas.Location = new Point(996, 109);
+            btnVendas.Location = new Point(578, 57);
             btnVendas.Margin = new Padding(3, 2, 3, 2);
             btnVendas.Name = "btnVendas";
             btnVendas.Size = new Size(145, 40);
@@ -268,7 +270,7 @@
             btnComparacao.FlatStyle = FlatStyle.Popup;
             btnComparacao.Font = new Font("Franklin Gothic Medium", 15F);
             btnComparacao.ForeColor = Color.White;
-            btnComparacao.Location = new Point(1164, 109);
+            btnComparacao.Location = new Point(736, 57);
             btnComparacao.Margin = new Padding(3, 2, 3, 2);
             btnComparacao.Name = "btnComparacao";
             btnComparacao.Size = new Size(145, 40);
@@ -280,20 +282,20 @@
             // maskedInicio
             // 
             maskedInicio.Font = new Font("Microsoft Sans Serif", 20.25F);
-            maskedInicio.Location = new Point(101, 55);
+            maskedInicio.Location = new Point(237, 113);
             maskedInicio.Mask = "00/00/0000";
             maskedInicio.Name = "maskedInicio";
-            maskedInicio.Size = new Size(373, 38);
+            maskedInicio.Size = new Size(331, 38);
             maskedInicio.TabIndex = 13;
             maskedInicio.ValidatingType = typeof(DateTime);
             // 
             // maskedFim
             // 
             maskedFim.Font = new Font("Microsoft Sans Serif", 20.25F);
-            maskedFim.Location = new Point(101, 114);
+            maskedFim.Location = new Point(630, 112);
             maskedFim.Mask = "00/00/0000";
             maskedFim.Name = "maskedFim";
-            maskedFim.Size = new Size(373, 38);
+            maskedFim.Size = new Size(331, 38);
             maskedFim.TabIndex = 14;
             maskedFim.ValidatingType = typeof(DateTime);
             // 
@@ -303,7 +305,7 @@
             btnBuscar.FlatStyle = FlatStyle.Popup;
             btnBuscar.Font = new Font("Franklin Gothic Medium", 15F);
             btnBuscar.ForeColor = Color.White;
-            btnBuscar.Location = new Point(512, 109);
+            btnBuscar.Location = new Point(967, 111);
             btnBuscar.Name = "btnBuscar";
             btnBuscar.Size = new Size(124, 40);
             btnBuscar.TabIndex = 15;
@@ -316,22 +318,22 @@
             lbTempo1.AutoSize = true;
             lbTempo1.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lbTempo1.ForeColor = Color.White;
-            lbTempo1.Location = new Point(19, 62);
+            lbTempo1.Location = new Point(187, 118);
             lbTempo1.Name = "lbTempo1";
-            lbTempo1.Size = new Size(68, 30);
+            lbTempo1.Size = new Size(44, 30);
             lbTempo1.TabIndex = 16;
-            lbTempo1.Text = "Início:";
+            lbTempo1.Text = "De:";
             // 
             // lbTempo2
             // 
             lbTempo2.AutoSize = true;
             lbTempo2.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lbTempo2.ForeColor = Color.White;
-            lbTempo2.Location = new Point(38, 121);
+            lbTempo2.Location = new Point(574, 117);
             lbTempo2.Name = "lbTempo2";
-            lbTempo2.Size = new Size(51, 30);
+            lbTempo2.Size = new Size(50, 30);
             lbTempo2.TabIndex = 17;
-            lbTempo2.Text = "Fim:";
+            lbTempo2.Text = "Ate:";
             // 
             // panel1
             // 
@@ -425,7 +427,7 @@
             lbTituloDash.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lbTituloDash.Font = new Font("Franklin Gothic Medium", 23F);
             lbTituloDash.ForeColor = SystemColors.Highlight;
-            lbTituloDash.Location = new Point(588, 10);
+            lbTituloDash.Location = new Point(586, 10);
             lbTituloDash.Name = "lbTituloDash";
             lbTituloDash.Size = new Size(148, 34);
             lbTituloDash.TabIndex = 37;

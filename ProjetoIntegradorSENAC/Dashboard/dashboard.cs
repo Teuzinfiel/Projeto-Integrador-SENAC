@@ -64,6 +64,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
         }
         private void dashboard_Load(object sender, EventArgs e)
         {
+            EstilizarCards();
             if (abrirVendas == true)
             {
                 vendasBoo = true;
@@ -93,13 +94,20 @@ namespace ProjetoIntegradorSENAC.Dashboard
             }
             if (produtosBoo)
             {
+
                 func_dashboard.load_grafico_produtos(grafico1, grafico2, param_idEmpresa);
+                AplicarTemaDark(grafico1);
+                AplicarTemaDark(grafico2);
+
                 func_dashboard.carregarInfoProdutos(lbDash1, lbDash2, lbDash3, lbDash4,
                 Info1_dash, Info2_dash, Info3_dash, Info4_dash, param_idEmpresa, lbTituloDash);
             }
             else if (vendasBoo)
             {
                 func_dashboard.load_grafico_vendas(grafico1, grafico2, param_idEmpresa);
+                AplicarTemaDark(grafico1);
+                AplicarTemaDark(grafico2);
+
                 func_dashboard.carregarInfoVendas(lbDash1, lbDash2, lbDash3, lbDash4, Info1_dash,
                 Info2_dash, Info3_dash, Info4_dash, param_idEmpresa, lbTituloDash);
             }
@@ -119,6 +127,79 @@ namespace ProjetoIntegradorSENAC.Dashboard
         private void btnComparacao_Click(object sender, EventArgs e)
         {
             _main.AbrirFormNoPanel(new dashboardComparacao(_main, idEmpresa));
+        }
+        private void AplicarTemaDark(OxyPlot.WindowsForms.PlotView plot)
+        {
+            if (plot.Model == null) return;
+
+            var model = plot.Model;
+
+            // Fundo
+            model.Background = OxyColors.Transparent;
+            model.PlotAreaBorderColor = OxyColors.Transparent;
+
+            // Texto
+            model.TextColor = OxyColors.White;
+            model.TitleColor = OxyColors.White;
+            model.TitleFontSize = 15;
+
+            // Eixos
+            foreach (var axis in model.Axes)
+            {
+                axis.TextColor = OxyColors.White;
+                axis.AxislineColor = OxyColors.Gray;
+
+                axis.MajorGridlineStyle = LineStyle.Solid;
+                axis.MajorGridlineColor = OxyColor.FromAColor(40, OxyColors.White);
+
+                axis.MinorGridlineStyle = LineStyle.None;
+            }
+
+            // Séries (somente LineSeries para evitar erro)
+            foreach (var s in model.Series)
+            {
+                if (s is LineSeries)
+                {
+                    var line = (LineSeries)s;
+
+                    line.Color = OxyColor.Parse("#1E90FF"); // Azul moderno
+                    line.StrokeThickness = 3;
+
+                    line.MarkerType = MarkerType.Circle;
+                    line.MarkerSize = 4;
+                    line.MarkerFill = OxyColor.Parse("#1E90FF");
+                }
+            }
+
+            plot.InvalidatePlot(true);
+        }
+        private void EstilizarCards()
+        {
+            var cards = new[] { Info1_dash, Info2_dash, Info3_dash, Info4_dash };
+            var labels = new[] { lbDash1, lbDash2, lbDash3, lbDash4 };
+
+            for (int i = 0; i < cards.Length; i++)
+            {
+                var card = cards[i];
+                var label = labels[i];
+
+                // Fundo moderno
+                card.BackColor = Color.FromArgb(35, 35, 55);
+                card.ForeColor = Color.FromArgb(180, 180, 200);
+
+                // Remove borda padrão feia
+                card.FlatStyle = FlatStyle.Flat;
+
+                // Título menor
+                card.Font = new Font("Segoe UI", 9F, FontStyle.Regular);
+
+                // Número principal grande
+                label.Font = new Font("Segoe UI Semibold", 22F, FontStyle.Bold);
+                label.ForeColor = Color.FromArgb(30, 144, 255); // Azul moderno
+                label.AutoSize = false;
+                label.Dock = DockStyle.Fill;
+                label.TextAlign = ContentAlignment.MiddleCenter;
+            }
         }
     }
 }

@@ -25,29 +25,30 @@ namespace ProjetoIntegradorSENAC.Caixa
             InitializeComponent();
             this.idEmpresa = idEmpresa;
             this.idUser = idUsuario;
-
+            this.Load += caixa_Load;
             BuscarFuncionario();
         }
 
         private void caixa_Load(object sender, EventArgs e)
         {
-            string query = $@"
-            SELECT 
-                 p.id AS produto_id,
-                  p.nome AS Produto,
-                  p.preco AS Preco,
-            COALESCE((
-                 SELECT quantidade_final
-                  FROM movimentacoes_estoque m
-                   WHERE m.produto_id = p.id
-               ORDER BY m.id DESC
-                  LIMIT 1
-               ), 0) AS estoque
-            FROM produtos p
-            WHERE p.comercio_id = {idEmpresa}
-            ORDER BY p.nome ASC
-            LIMIT 50;
-            ";
+                   string query = $@"
+                SELECT 
+                     p.id AS produto_id,
+                     p.nome AS Produto,
+                     p.preco AS Preco,
+                     p.codigo_barra AS produto_codigo,
+                     COALESCE((
+                         SELECT quantidade_final
+                         FROM movimentacoes_estoque m
+                         WHERE m.produto_id = p.id
+                         ORDER BY m.id DESC
+                         LIMIT 1
+                     ), 0) AS estoque
+                FROM produtos p
+                WHERE p.comercio_id = {idEmpresa}
+                ORDER BY p.nome ASC
+                LIMIT 50;
+                ";
 
             carregarProdutos(Banco.Pesquisar(query));
             dtgProdutos.AllowUserToResizeRows = false;
@@ -59,17 +60,21 @@ namespace ProjetoIntegradorSENAC.Caixa
 
         private void carregarProdutos(DataTable db)
         {
+            dtgProdutos.AutoGenerateColumns = true;
             dtgProdutos.DataSource = null;
-            dtgProdutos.Rows.Clear();
-            dtgProdutos.Columns.Clear();
             dtgProdutos.DataSource = db;
 
-            dtgProdutos.Columns["produto_id"].Visible = false;
-            dtgProdutos.Columns["estoque"].Visible = false;
+            if (dtgProdutos.Columns.Contains("produto_id"))
+                dtgProdutos.Columns["produto_id"].Visible = false;
+
+            if (dtgProdutos.Columns.Contains("estoque"))
+                dtgProdutos.Columns["estoque"].Visible = false;
 
             if (dtgProdutos.Columns.Contains("produto_codigo"))
                 dtgProdutos.Columns["produto_codigo"].Visible = false;
 
+            dtgProdutos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dtgProdutos.ClearSelection();
         }
 
         private void txtPesquisa_TextChanged(object sender, EventArgs e)

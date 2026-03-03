@@ -34,18 +34,21 @@
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             dtgMovimentacoes = new DataGridView();
             txtPesquisar = new TextBox();
-            btnPesquisar = new Button();
             btnExportar = new Button();
             dtpDe = new DateTimePicker();
             dtpAte = new DateTimePicker();
-            labelTitulo = new Label();
             lbPesquisar = new Label();
             label1 = new Label();
             label2 = new Label();
             cbTipoFiltro = new ComboBox();
             button1 = new Button();
             label3 = new Label();
+            panelMain = new Panel();
+            lbTituloDash = new Label();
+            panelForm = new Panel();
             ((System.ComponentModel.ISupportInitialize)dtgMovimentacoes).BeginInit();
+            panelMain.SuspendLayout();
+            panelForm.SuspendLayout();
             SuspendLayout();
             // 
             // dtgMovimentacoes
@@ -58,7 +61,7 @@
             dtgMovimentacoes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dtgMovimentacoes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dtgMovimentacoes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dtgMovimentacoes.BackgroundColor = Color.FromArgb(30, 30, 40);
+            dtgMovimentacoes.BackgroundColor = Color.FromArgb(30, 35, 45);
             dtgMovimentacoes.BorderStyle = BorderStyle.None;
             dtgMovimentacoes.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -72,7 +75,8 @@
             dtgMovimentacoes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgMovimentacoes.EnableHeadersVisualStyles = false;
             dtgMovimentacoes.GridColor = Color.FromArgb(60, 60, 80);
-            dtgMovimentacoes.Location = new Point(12, 157);
+            dtgMovimentacoes.Location = new Point(20, 221);
+            dtgMovimentacoes.Margin = new Padding(3, 4, 3, 4);
             dtgMovimentacoes.MultiSelect = false;
             dtgMovimentacoes.Name = "dtgMovimentacoes";
             dtgMovimentacoes.ReadOnly = true;
@@ -84,6 +88,7 @@
             dataGridViewCellStyle3.SelectionForeColor = Color.White;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
             dtgMovimentacoes.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dtgMovimentacoes.RowHeadersWidth = 51;
             dataGridViewCellStyle4.BackColor = Color.FromArgb(40, 40, 50);
             dataGridViewCellStyle4.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dataGridViewCellStyle4.ForeColor = Color.White;
@@ -91,45 +96,31 @@
             dataGridViewCellStyle4.SelectionForeColor = Color.White;
             dtgMovimentacoes.RowsDefaultCellStyle = dataGridViewCellStyle4;
             dtgMovimentacoes.RowTemplate.Height = 40;
-            dtgMovimentacoes.Size = new Size(1302, 517);
+            dtgMovimentacoes.Size = new Size(1456, 653);
             dtgMovimentacoes.TabIndex = 47;
             // 
             // txtPesquisar
             // 
-            txtPesquisar.Anchor = AnchorStyles.Top;
-            txtPesquisar.Font = new Font("Franklin Gothic Book", 18F);
-            txtPesquisar.Location = new Point(12, 112);
+            txtPesquisar.Font = new Font("Microsoft Sans Serif", 18F);
+            txtPesquisar.Location = new Point(20, 165);
+            txtPesquisar.Margin = new Padding(3, 4, 3, 4);
             txtPesquisar.Name = "txtPesquisar";
             txtPesquisar.PlaceholderText = "Pesquisar por Produto";
-            txtPesquisar.Size = new Size(398, 35);
+            txtPesquisar.Size = new Size(425, 41);
             txtPesquisar.TabIndex = 48;
             txtPesquisar.TextChanged += txtPesquisar_TextChanged_1;
             // 
-            // btnPesquisar
-            // 
-            btnPesquisar.Anchor = AnchorStyles.Top;
-            btnPesquisar.BackColor = SystemColors.Highlight;
-            btnPesquisar.FlatStyle = FlatStyle.Popup;
-            btnPesquisar.Font = new Font("Franklin Gothic Medium", 14F);
-            btnPesquisar.ForeColor = Color.White;
-            btnPesquisar.Location = new Point(416, 112);
-            btnPesquisar.Name = "btnPesquisar";
-            btnPesquisar.Size = new Size(99, 32);
-            btnPesquisar.TabIndex = 49;
-            btnPesquisar.Text = "Pesquisar";
-            btnPesquisar.UseVisualStyleBackColor = false;
-            btnPesquisar.Click += btnPesquisar_Click;
-            // 
             // btnExportar
             // 
-            btnExportar.Anchor = AnchorStyles.Top;
+            btnExportar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnExportar.BackColor = Color.FromArgb(80, 80, 120);
             btnExportar.FlatStyle = FlatStyle.Popup;
             btnExportar.Font = new Font("Franklin Gothic Medium", 14F);
             btnExportar.ForeColor = Color.White;
-            btnExportar.Location = new Point(1194, 115);
+            btnExportar.Location = new Point(1339, 166);
+            btnExportar.Margin = new Padding(3, 4, 3, 4);
             btnExportar.Name = "btnExportar";
-            btnExportar.Size = new Size(120, 31);
+            btnExportar.Size = new Size(137, 41);
             btnExportar.TabIndex = 51;
             btnExportar.Text = "Exportar";
             btnExportar.UseVisualStyleBackColor = false;
@@ -138,42 +129,32 @@
             // dtpDe
             // 
             dtpDe.Anchor = AnchorStyles.Top;
-            dtpDe.Font = new Font("Franklin Gothic Book", 14F);
-            dtpDe.Location = new Point(520, 115);
+            dtpDe.CalendarFont = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dtpDe.Font = new Font("Microsoft Sans Serif", 14F);
+            dtpDe.Location = new Point(496, 172);
+            dtpDe.Margin = new Padding(3, 4, 3, 4);
             dtpDe.Name = "dtpDe";
-            dtpDe.Size = new Size(179, 29);
+            dtpDe.Size = new Size(215, 34);
             dtpDe.TabIndex = 52;
             // 
             // dtpAte
             // 
             dtpAte.Anchor = AnchorStyles.Top;
-            dtpAte.Font = new Font("Franklin Gothic Book", 14F);
-            dtpAte.Location = new Point(705, 116);
+            dtpAte.Font = new Font("Microsoft Sans Serif", 14F);
+            dtpAte.Location = new Point(736, 172);
+            dtpAte.Margin = new Padding(3, 4, 3, 4);
             dtpAte.Name = "dtpAte";
-            dtpAte.Size = new Size(192, 29);
+            dtpAte.Size = new Size(215, 34);
             dtpAte.TabIndex = 53;
-            // 
-            // labelTitulo
-            // 
-            labelTitulo.Anchor = AnchorStyles.Top;
-            labelTitulo.AutoSize = true;
-            labelTitulo.Font = new Font("Franklin Gothic Medium", 36F);
-            labelTitulo.ForeColor = Color.FromArgb(180, 180, 190);
-            labelTitulo.Location = new Point(368, 9);
-            labelTitulo.Name = "labelTitulo";
-            labelTitulo.Size = new Size(596, 61);
-            labelTitulo.TabIndex = 54;
-            labelTitulo.Text = "Movimentações Do Estoque";
             // 
             // lbPesquisar
             // 
-            lbPesquisar.Anchor = AnchorStyles.Top;
             lbPesquisar.AutoSize = true;
             lbPesquisar.Font = new Font("Franklin Gothic Medium", 12F);
             lbPesquisar.ForeColor = Color.FromArgb(180, 180, 190);
-            lbPesquisar.Location = new Point(12, 87);
+            lbPesquisar.Location = new Point(20, 133);
             lbPesquisar.Name = "lbPesquisar";
-            lbPesquisar.Size = new Size(337, 21);
+            lbPesquisar.Size = new Size(425, 25);
             lbPesquisar.TabIndex = 55;
             lbPesquisar.Text = "Pesquisar Movimentação com nome do produto";
             // 
@@ -183,9 +164,9 @@
             label1.AutoSize = true;
             label1.Font = new Font("Franklin Gothic Medium", 12F);
             label1.ForeColor = Color.FromArgb(180, 180, 190);
-            label1.Location = new Point(520, 91);
+            label1.Location = new Point(496, 133);
             label1.Name = "label1";
-            label1.Size = new Size(28, 21);
+            label1.Size = new Size(35, 25);
             label1.TabIndex = 57;
             label1.Text = "De";
             // 
@@ -195,22 +176,23 @@
             label2.AutoSize = true;
             label2.Font = new Font("Franklin Gothic Medium", 12F);
             label2.ForeColor = Color.FromArgb(180, 180, 190);
-            label2.Location = new Point(705, 92);
+            label2.Location = new Point(736, 133);
             label2.Name = "label2";
-            label2.Size = new Size(33, 21);
+            label2.Size = new Size(40, 25);
             label2.TabIndex = 58;
             label2.Text = "Até";
             // 
             // cbTipoFiltro
             // 
-            cbTipoFiltro.Anchor = AnchorStyles.Top;
+            cbTipoFiltro.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             cbTipoFiltro.FlatStyle = FlatStyle.Popup;
-            cbTipoFiltro.Font = new Font("Franklin Gothic Demi Cond", 13F);
+            cbTipoFiltro.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbTipoFiltro.FormattingEnabled = true;
             cbTipoFiltro.Items.AddRange(new object[] { "DEVOLUCAO_CLIENTE", "AJUSTE_POSITIVO", "OUTROS" });
-            cbTipoFiltro.Location = new Point(1019, 115);
+            cbTipoFiltro.Location = new Point(1140, 170);
+            cbTipoFiltro.Margin = new Padding(3, 4, 3, 4);
             cbTipoFiltro.Name = "cbTipoFiltro";
-            cbTipoFiltro.Size = new Size(169, 29);
+            cbTipoFiltro.Size = new Size(193, 37);
             cbTipoFiltro.TabIndex = 59;
             cbTipoFiltro.SelectedIndexChanged += cbTipoFiltro_SelectedIndexChanged;
             // 
@@ -221,9 +203,10 @@
             button1.FlatStyle = FlatStyle.Popup;
             button1.Font = new Font("Franklin Gothic Medium", 14F);
             button1.ForeColor = Color.White;
-            button1.Location = new Point(903, 116);
+            button1.Location = new Point(967, 166);
+            button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
-            button1.Size = new Size(110, 29);
+            button1.Size = new Size(126, 40);
             button1.TabIndex = 60;
             button1.Text = "Filtrar";
             button1.UseVisualStyleBackColor = false;
@@ -231,58 +214,93 @@
             // 
             // label3
             // 
-            label3.Anchor = AnchorStyles.Top;
+            label3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label3.AutoSize = true;
             label3.Font = new Font("Franklin Gothic Medium", 12F);
             label3.ForeColor = Color.FromArgb(180, 180, 190);
-            label3.Location = new Point(1019, 91);
+            label3.Location = new Point(1140, 133);
             label3.Name = "label3";
-            label3.Size = new Size(106, 21);
+            label3.Size = new Size(135, 25);
             label3.TabIndex = 61;
             label3.Text = "Filtrar por tipo";
             // 
+            // panelMain
+            // 
+            panelMain.BackColor = Color.FromArgb(30, 30, 45);
+            panelMain.Controls.Add(lbTituloDash);
+            panelMain.Controls.Add(dtgMovimentacoes);
+            panelMain.Controls.Add(label3);
+            panelMain.Controls.Add(lbPesquisar);
+            panelMain.Controls.Add(button1);
+            panelMain.Controls.Add(cbTipoFiltro);
+            panelMain.Controls.Add(dtpAte);
+            panelMain.Controls.Add(label2);
+            panelMain.Controls.Add(dtpDe);
+            panelMain.Controls.Add(label1);
+            panelMain.Controls.Add(btnExportar);
+            panelMain.Controls.Add(txtPesquisar);
+            panelMain.Dock = DockStyle.Fill;
+            panelMain.Location = new Point(10, 10);
+            panelMain.Name = "panelMain";
+            panelMain.Size = new Size(1495, 895);
+            panelMain.TabIndex = 62;
+            // 
+            // lbTituloDash
+            // 
+            lbTituloDash.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            lbTituloDash.Font = new Font("Franklin Gothic Medium", 23F);
+            lbTituloDash.ForeColor = SystemColors.Highlight;
+            lbTituloDash.Location = new Point(460, 20);
+            lbTituloDash.Name = "lbTituloDash";
+            lbTituloDash.Size = new Size(559, 45);
+            lbTituloDash.TabIndex = 62;
+            lbTituloDash.Text = "Movimentações Do Estoque";
+            lbTituloDash.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // panelForm
+            // 
+            panelForm.Controls.Add(panelMain);
+            panelForm.Dock = DockStyle.Fill;
+            panelForm.Location = new Point(0, 0);
+            panelForm.Name = "panelForm";
+            panelForm.Padding = new Padding(10);
+            panelForm.Size = new Size(1515, 915);
+            panelForm.TabIndex = 63;
+            // 
             // MovimentacaoProdutos
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(45, 45, 60);
-            ClientSize = new Size(1326, 686);
-            Controls.Add(label3);
-            Controls.Add(button1);
-            Controls.Add(cbTipoFiltro);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(txtPesquisar);
-            Controls.Add(btnPesquisar);
-            Controls.Add(btnExportar);
-            Controls.Add(dtpDe);
-            Controls.Add(dtpAte);
-            Controls.Add(labelTitulo);
-            Controls.Add(lbPesquisar);
-            Controls.Add(dtgMovimentacoes);
+            ClientSize = new Size(1515, 915);
+            Controls.Add(panelForm);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "MovimentacaoProdutos";
             StartPosition = FormStartPosition.WindowsDefaultBounds;
             Text = "MovimentacaoProdutos";
             Load += MovimentacaoProdutos_Load;
             ((System.ComponentModel.ISupportInitialize)dtgMovimentacoes).EndInit();
+            panelMain.ResumeLayout(false);
+            panelMain.PerformLayout();
+            panelForm.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
         private DataGridView dtgMovimentacoes;
         private TextBox txtPesquisar;
-        private Button btnPesquisar;
         private Button btnExportar;
         private DateTimePicker dtpDe;
         private DateTimePicker dtpAte;
-        private Label labelTitulo;
         private Label lbPesquisar;
         private Label label1;
         private Label label2;
         private ComboBox cbTipoFiltro;
         private Button button1;
         private Label label3;
+        private Panel panelMain;
+        private Panel panelForm;
+        private Label lbTituloDash;
     }
 }

@@ -913,13 +913,6 @@ namespace ProjetoIntegradorSENAC.Dashboard
                     new DataPoint(d, Passado.ContainsKey(d) ? Passado[d] : 0)
                 );
             }
-
-            bool temVendaAtual = linhaAtual.Points.Any(p => p.Y > 0);
-            bool temVendaPassado = linhaPassado.Points.Any(p => p.Y > 0);
-
-            lblproximo.Text = temVendaAtual ? "1ºPeríodo" : "Sem venda";
-            lbllonge.Text = temVendaPassado ? "2ºPeríodo" : "Sem venda";
-
             modeloDiario.Axes.Add(eixoDias);
             modeloDiario.Axes.Add(eixoQuantidade);
             modeloDiario.Series.Add(linhaAtual);

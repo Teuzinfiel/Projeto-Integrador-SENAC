@@ -104,13 +104,6 @@ namespace ProjetoIntegradorSENAC.Estoque
             }
         }
 
-
-
-        private void btnPesquisar_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void txtPesquisar_TextChanged_1(object sender, EventArgs e)
         {
             CarregarMovimentacoes();

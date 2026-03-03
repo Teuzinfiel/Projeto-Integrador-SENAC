@@ -32,6 +32,7 @@
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             dtgProdutos = new DataGridView();
             btnPesquisar = new Button();
             txtPesquisa = new TextBox();
@@ -41,7 +42,11 @@
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
+            panelForm = new Panel();
+            panelMain = new Panel();
             ((System.ComponentModel.ISupportInitialize)dtgProdutos).BeginInit();
+            panelForm.SuspendLayout();
+            panelMain.SuspendLayout();
             SuspendLayout();
             // 
             // dtgProdutos
@@ -52,8 +57,9 @@
             dataGridViewCellStyle1.BackColor = Color.FromArgb(35, 35, 45);
             dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(70, 70, 90);
             dtgProdutos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dtgProdutos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dtgProdutos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dtgProdutos.BackgroundColor = Color.FromArgb(30, 30, 40);
+            dtgProdutos.BackgroundColor = Color.FromArgb(30, 35, 45);
             dtgProdutos.BorderStyle = BorderStyle.None;
             dtgProdutos.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -65,34 +71,41 @@
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             dtgProdutos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dtgProdutos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = Color.White;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dtgProdutos.DefaultCellStyle = dataGridViewCellStyle3;
             dtgProdutos.EnableHeadersVisualStyles = false;
             dtgProdutos.GridColor = Color.FromArgb(60, 60, 80);
-            dtgProdutos.Location = new Point(12, 125);
+            dtgProdutos.Location = new Point(11, 155);
+            dtgProdutos.Margin = new Padding(3, 4, 3, 4);
             dtgProdutos.MultiSelect = false;
             dtgProdutos.Name = "dtgProdutos";
             dtgProdutos.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(40, 40, 50);
-            dataGridViewCellStyle3.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dataGridViewCellStyle3.SelectionForeColor = Color.White;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dtgProdutos.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = Color.FromArgb(40, 40, 50);
             dataGridViewCellStyle4.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dataGridViewCellStyle4.ForeColor = Color.White;
             dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(70, 70, 90);
             dataGridViewCellStyle4.SelectionForeColor = Color.White;
-            dtgProdutos.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dtgProdutos.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dtgProdutos.RowHeadersWidth = 51;
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(40, 40, 50);
+            dataGridViewCellStyle5.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle5.SelectionForeColor = Color.White;
+            dtgProdutos.RowsDefaultCellStyle = dataGridViewCellStyle5;
             dtgProdutos.RowTemplate.Height = 40;
-            dtgProdutos.Size = new Size(1302, 549);
+            dtgProdutos.Size = new Size(1471, 724);
             dtgProdutos.TabIndex = 44;
-           
-            dtgProdutos.DefaultCellStyle.SelectionForeColor = Color.White;
             dtgProdutos.CellClick += dtgProdutos_CellClick;
             dtgProdutos.CellFormatting += dtgProdutos_CellFormatting;
-          
             // 
             // btnPesquisar
             // 
@@ -100,9 +113,10 @@
             btnPesquisar.FlatStyle = FlatStyle.Popup;
             btnPesquisar.Font = new Font("Franklin Gothic Medium", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnPesquisar.ForeColor = Color.White;
-            btnPesquisar.Location = new Point(759, 81);
+            btnPesquisar.Location = new Point(864, 96);
+            btnPesquisar.Margin = new Padding(3, 4, 3, 4);
             btnPesquisar.Name = "btnPesquisar";
-            btnPesquisar.Size = new Size(132, 38);
+            btnPesquisar.Size = new Size(151, 46);
             btnPesquisar.TabIndex = 46;
             btnPesquisar.Text = "Pesquisar";
             btnPesquisar.UseVisualStyleBackColor = false;
@@ -111,12 +125,13 @@
             // txtPesquisa
             // 
             txtPesquisa.BackColor = Color.White;
-            txtPesquisa.Font = new Font("Franklin Gothic Book", 20.25F);
+            txtPesquisa.Font = new Font("Microsoft Sans Serif", 20.25F);
             txtPesquisa.ForeColor = Color.FromArgb(40, 40, 50);
-            txtPesquisa.Location = new Point(81, 81);
+            txtPesquisa.Location = new Point(90, 96);
+            txtPesquisa.Margin = new Padding(3, 4, 3, 4);
             txtPesquisa.Name = "txtPesquisa";
             txtPesquisa.PlaceholderText = "  Digite nome ou código do Produto";
-            txtPesquisa.Size = new Size(672, 38);
+            txtPesquisa.Size = new Size(767, 46);
             txtPesquisa.TabIndex = 45;
             txtPesquisa.TextChanged += txtPesquisa_TextChanged;
             // 
@@ -126,9 +141,10 @@
             button2.FlatStyle = FlatStyle.Popup;
             button2.Font = new Font("Franklin Gothic Medium", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button2.ForeColor = Color.White;
-            button2.Location = new Point(12, 81);
+            button2.Location = new Point(12, 96);
+            button2.Margin = new Padding(3, 4, 3, 4);
             button2.Name = "button2";
-            button2.Size = new Size(63, 38);
+            button2.Size = new Size(72, 46);
             button2.TabIndex = 48;
             button2.Text = "\u007f";
             button2.UseVisualStyleBackColor = false;
@@ -136,12 +152,14 @@
             // 
             // comboBox1
             // 
+            comboBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             comboBox1.FlatStyle = FlatStyle.Popup;
             comboBox1.Font = new Font("Franklin Gothic Medium", 17F);
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(897, 81);
+            comboBox1.Location = new Point(1022, 96);
+            comboBox1.Margin = new Padding(3, 4, 3, 4);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(417, 37);
+            comboBox1.Size = new Size(460, 44);
             comboBox1.TabIndex = 49;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
@@ -150,20 +168,21 @@
             lbDescricao.AutoSize = true;
             lbDescricao.Font = new Font("Franklin Gothic Medium", 12F);
             lbDescricao.ForeColor = Color.FromArgb(180, 180, 190);
-            lbDescricao.Location = new Point(81, 57);
+            lbDescricao.Location = new Point(87, 64);
             lbDescricao.Name = "lbDescricao";
-            lbDescricao.Size = new Size(135, 21);
+            lbDescricao.Size = new Size(170, 25);
             lbDescricao.TabIndex = 51;
             lbDescricao.Text = "Pesquisar produto";
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label1.AutoSize = true;
             label1.Font = new Font("Franklin Gothic Medium", 12F);
             label1.ForeColor = Color.FromArgb(180, 180, 190);
-            label1.Location = new Point(897, 57);
+            label1.Location = new Point(1022, 64);
             label1.Name = "label1";
-            label1.Size = new Size(138, 21);
+            label1.Size = new Size(175, 25);
             label1.TabIndex = 52;
             label1.Text = "Filtrar por situação";
             // 
@@ -172,45 +191,69 @@
             label2.AutoSize = true;
             label2.Font = new Font("Franklin Gothic Medium", 12F);
             label2.ForeColor = Color.FromArgb(180, 180, 190);
-            label2.Location = new Point(12, 57);
+            label2.Location = new Point(11, 64);
             label2.Name = "label2";
-            label2.Size = new Size(56, 21);
+            label2.Size = new Size(70, 25);
             label2.TabIndex = 53;
             label2.Text = "Ordem";
             // 
             // label3
             // 
-            label3.AutoSize = true;
+            label3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label3.Font = new Font("Franklin Gothic Medium", 23F);
             label3.ForeColor = Color.FromArgb(180, 180, 190);
-            label3.Location = new Point(470, 9);
+            label3.Location = new Point(523, 18);
             label3.Name = "label3";
-            label3.Size = new Size(378, 37);
+            label3.Size = new Size(477, 42);
             label3.TabIndex = 61;
             label3.Text = "Informações sobre Estoque";
+            label3.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // panelForm
+            // 
+            panelForm.Controls.Add(panelMain);
+            panelForm.Dock = DockStyle.Fill;
+            panelForm.Location = new Point(0, 0);
+            panelForm.Name = "panelForm";
+            panelForm.Padding = new Padding(10);
+            panelForm.Size = new Size(1515, 915);
+            panelForm.TabIndex = 62;
+            // 
+            // panelMain
+            // 
+            panelMain.BackColor = Color.FromArgb(30, 30, 45);
+            panelMain.Controls.Add(label3);
+            panelMain.Controls.Add(dtgProdutos);
+            panelMain.Controls.Add(comboBox1);
+            panelMain.Controls.Add(lbDescricao);
+            panelMain.Controls.Add(txtPesquisa);
+            panelMain.Controls.Add(button2);
+            panelMain.Controls.Add(label2);
+            panelMain.Controls.Add(label1);
+            panelMain.Controls.Add(btnPesquisar);
+            panelMain.Dock = DockStyle.Fill;
+            panelMain.Location = new Point(10, 10);
+            panelMain.Name = "panelMain";
+            panelMain.Size = new Size(1495, 895);
+            panelMain.TabIndex = 62;
             // 
             // estoque
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(45, 45, 60);
-            ClientSize = new Size(1326, 686);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(lbDescricao);
-            Controls.Add(comboBox1);
-            Controls.Add(button2);
-            Controls.Add(btnPesquisar);
-            Controls.Add(txtPesquisa);
-            Controls.Add(dtgProdutos);
+            ClientSize = new Size(1515, 915);
+            Controls.Add(panelForm);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "estoque";
             Text = "estoque";
             Load += estoque_Load_1;
             ((System.ComponentModel.ISupportInitialize)dtgProdutos).EndInit();
+            panelForm.ResumeLayout(false);
+            panelMain.ResumeLayout(false);
+            panelMain.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -223,5 +266,7 @@
         private Label label1;
         private Label label2;
         private Label label3;
+        private Panel panelForm;
+        private Panel panelMain;
     }
 }

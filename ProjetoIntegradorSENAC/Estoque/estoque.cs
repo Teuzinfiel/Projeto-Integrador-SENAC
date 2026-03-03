@@ -99,7 +99,6 @@ namespace ProjetoIntegradorSENAC.Estoque
             dtgProdutos.EnableHeadersVisualStyles = false;
             dtgProdutos.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(30, 30, 45);
             dtgProdutos.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dtgProdutos.BackgroundColor = Color.FromArgb(20, 20, 35);
             dtgProdutos.BorderStyle = BorderStyle.None;
             comboBox1.Items.Add("Todas");
             comboBox1.Items.Add("Normal");

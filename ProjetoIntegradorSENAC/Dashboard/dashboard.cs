@@ -183,9 +183,6 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 var card = cards[i];
                 var label = labels[i];
 
-                // Fundo moderno
-                card.BackColor = Color.FromArgb(35, 35, 55);
-                card.ForeColor = Color.FromArgb(180, 180, 200);
 
                 // Remove borda padrão feia
                 card.FlatStyle = FlatStyle.Flat;
@@ -194,11 +191,11 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 card.Font = new Font("Segoe UI", 9F, FontStyle.Regular);
 
                 // Número principal grande
-                label.Font = new Font("Segoe UI Semibold", 22F, FontStyle.Bold);
+                label.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold);
                 label.ForeColor = Color.FromArgb(30, 144, 255); // Azul moderno
                 label.AutoSize = false;
                 label.Dock = DockStyle.Fill;
-                label.TextAlign = ContentAlignment.MiddleCenter;
+                label.TextAlign = ContentAlignment.TopLeft;
             }
         }
     }

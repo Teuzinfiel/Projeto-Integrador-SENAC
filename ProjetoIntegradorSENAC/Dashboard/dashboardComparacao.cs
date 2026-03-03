@@ -1,4 +1,6 @@
-﻿using ProjetoIntegradorSENAC.Dashboard;
+﻿using OxyPlot;
+using OxyPlot.Series;
+using ProjetoIntegradorSENAC.Dashboard;
 using ProjetoIntegradorSENAC.personalizado;
 using System;
 using System.Collections.Generic;
@@ -33,9 +35,10 @@ namespace ProjetoIntegradorSENAC
         }
         private void EstilizarComparacao()
         {
-            // 🎨 FUNDO GERAL
-            panel1.BackColor = Color.FromArgb(30, 30, 45);
-            tlpMain.BackColor = Color.FromArgb(25, 25, 40);
+            lbDash1.MaximumSize = new Size(Info1_dash.Width, 0);
+            lbDash2.MaximumSize = new Size(Info2_dash.Width, 0);
+            lbDash3.MaximumSize = new Size(Info3_dash.Width, 0);
+            lbDash4.MaximumSize = new Size(Info4_dash.Width, 0);
 
             // 🔥 TÍTULO
             lbTituloDash.ForeColor = Color.FromArgb(0, 150, 255);
@@ -67,15 +70,14 @@ namespace ProjetoIntegradorSENAC
                 var card = cards[i];
                 var label = labels[i];
 
-                card.BackColor = Color.FromArgb(35, 35, 55);
-                card.ForeColor = Color.FromArgb(180, 180, 200);
                 card.FlatStyle = FlatStyle.Flat;
 
                 card.Font = new Font("Segoe UI", 9F);
 
                 label.Dock = DockStyle.Fill;
-                label.TextAlign = ContentAlignment.MiddleCenter;
-                label.Font = new Font("Segoe UI Semibold", 22F, FontStyle.Bold);
+                label.TextAlign = ContentAlignment.TopLeft;
+                label.AutoSize = false;
+                label.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold);
                 label.ForeColor = Color.FromArgb(0, 150, 255);
             }
 
@@ -86,7 +88,6 @@ namespace ProjetoIntegradorSENAC
 
             foreach (var g in graficos)
             {
-                g.BackColor = Color.FromArgb(35, 35, 55);
                 g.ForeColor = Color.White;
                 g.FlatStyle = FlatStyle.Flat;
                 g.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
@@ -95,17 +96,59 @@ namespace ProjetoIntegradorSENAC
             // =============================
             // 🏷️ LEGENDAS PRÓXIMO / LONGE
             // =============================
-            lblProximo.ForeColor = Color.FromArgb(0, 200, 120); // verde
-            lblLonge.ForeColor = Color.FromArgb(255, 140, 0);   // laranja
 
             lblProximo.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblLonge.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+        }
+        private void AplicarTemaDarkComparacao(OxyPlot.WindowsForms.PlotView plot)
+        {
+            if (plot.Model == null) return;
+
+            var model = plot.Model;
+
+            // Fundo
+            model.Background = OxyColors.Transparent;
+            model.PlotAreaBorderColor = OxyColors.Transparent;
+
+            // Texto
+            model.TextColor = OxyColors.White;
+            model.TitleColor = OxyColors.White;
+            model.TitleFontSize = 15;
+
+            // Eixos
+            foreach (var axis in model.Axes)
+            {
+                axis.TextColor = OxyColors.White;
+                axis.AxislineColor = OxyColors.Gray;
+
+                axis.MajorGridlineStyle = LineStyle.Solid;
+                axis.MajorGridlineColor = OxyColor.FromAColor(40, OxyColors.White);
+
+                axis.MinorGridlineStyle = LineStyle.None;
+            }
+
+            // Séries (somente LineSeries para evitar erro)
+            foreach (var s in model.Series)
+            {
+                if (s is LineSeries)
+                {
+                    var line = (LineSeries)s;
+
+                    
+                    line.StrokeThickness = 3;
+
+                    line.MarkerType = MarkerType.Circle;
+                    line.MarkerSize = 4;
+                }
+            }
+
+            plot.InvalidatePlot(true);
         }
         private void dashboardComparacao_Load(object sender, EventArgs e)
         {
 
             EstilizarComparacao();
-
+            
             maskedInicio1Periodo.Text = DateTime.Now.AddMonths(-1).ToString("dd/MM/yyyy");
             maskedFim1Periodo.Text = DateTime.Now.ToString("dd/MM/yyyy");
             maskedInicio2Periodo.Text = DateTime.Now.AddMonths(-2).ToString("dd/MM/yyyy");
@@ -120,6 +163,8 @@ namespace ProjetoIntegradorSENAC
             func_dashboard.carregarInfoComparacao(lbDash1, lbDash2, lbDash3, lbDash4, Info1_dash,
             Info2_dash, Info3_dash, Info4_dash, param_idEmpresa,lbTituloDash);
             func_dashboard.load_grafico_comparacao(grafico1, grafico2, param_idEmpresa, lblProximo, lblLonge);
+            AplicarTemaDarkComparacao(grafico1);
+            AplicarTemaDarkComparacao(grafico2);
 
         }
 

@@ -56,6 +56,12 @@ namespace ProjetoIntegradorSENAC
             panelContainer.Tag = formFilho;
             formFilho.Show();
         }
+
+        private void MainEmpresa_Load(object sender, EventArgs e)
+        {
+            if (idUsuario != idDono) btnFuncionario.ImageIndex = 9;
+        }
+
         private void btnSair_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -68,7 +74,7 @@ namespace ProjetoIntegradorSENAC
 
         private void btnCaixa_Click(object sender, EventArgs e)
         {
-          
+
             AbrirFormNoPanel(new caixa(this.idEmpresa, this.idUsuario));
             labelCategorias.Text = "Caixa";
             EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos, btnMovimentacao);
@@ -76,8 +82,8 @@ namespace ProjetoIntegradorSENAC
         }
         private void btnDashboard_Click(object sender, EventArgs e)
         {
-          
-            AbrirFormNoPanel(new dashboard(this, this.idEmpresa,false));
+
+            AbrirFormNoPanel(new dashboard(this, this.idEmpresa, false));
             labelCategorias.Text = "Dashboard";
             EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos, btnMovimentacao);
             btnDashboard.BackColor = Color.FromArgb(45, 45, 60);
@@ -85,7 +91,7 @@ namespace ProjetoIntegradorSENAC
 
         private void btnProdutos_Click(object sender, EventArgs e)
         {
-         
+
             AbrirFormNoPanel(new frmProduto(idUsuario, idEmpresa));
             labelCategorias.Text = "Produtos";
             EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos, btnMovimentacao);
@@ -94,7 +100,7 @@ namespace ProjetoIntegradorSENAC
 
         private void btnEstoque_Click(object sender, EventArgs e)
         {
-           
+
             AbrirFormNoPanel(new estoque(this, this.idEmpresa, this.idUsuario));
             labelCategorias.Text = "Estoque";
             EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos, btnMovimentacao);
@@ -103,12 +109,19 @@ namespace ProjetoIntegradorSENAC
 
         private void btnFuncionario_Click(object sender, EventArgs e)
         {
-           
-            AbrirFormNoPanel(new frmFuncionarios(this.idEmpresa, this.idUsuario));
 
-            labelCategorias.Text = "Funcionários";
-            EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos, btnMovimentacao);
-            btnFuncionario.BackColor = Color.FromArgb(45, 45, 60);
+            if (idUsuario == idDono)
+            {
+                AbrirFormNoPanel(new frmFuncionarios(this.idEmpresa, this.idUsuario));
+
+                labelCategorias.Text = "Funcionários";
+                EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos, btnMovimentacao);
+                btnFuncionario.BackColor = Color.FromArgb(45, 45, 60);
+            }
+            else
+            {
+                MessageBox.Show("Apenas o dono da empresa pode acessar a tela de funcionários.", "Acesso Negado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnLog_Click(object sender, EventArgs e)

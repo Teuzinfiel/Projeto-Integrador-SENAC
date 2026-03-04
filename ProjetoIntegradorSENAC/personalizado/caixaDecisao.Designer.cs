@@ -50,6 +50,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(340, 110);
             panel1.TabIndex = 44;
+            panel1.Paint += panel1_Paint;
             // 
             // BtnSim
             // 

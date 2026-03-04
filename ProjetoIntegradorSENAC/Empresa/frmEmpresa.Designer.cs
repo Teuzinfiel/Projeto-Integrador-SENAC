@@ -107,6 +107,7 @@
             dtgEmpresas.Size = new Size(703, 312);
             dtgEmpresas.TabIndex = 5;
             dtgEmpresas.CellClick += dtgEmpresas_CellClick;
+            dtgEmpresas.CellContentClick += dtgEmpresas_CellContentClick;
             dtgEmpresas.CellMouseEnter += dtgEmpresas_CellMouseEnter_1;
             dtgEmpresas.CellMouseLeave += dtgEmpresas_CellMouseLeave;
             // 

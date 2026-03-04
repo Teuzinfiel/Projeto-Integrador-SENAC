@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            button3 = new Button();
             panel2 = new Panel();
             label19 = new Label();
             label18 = new Label();
             label12 = new Label();
-            maskedTextBox1 = new MaskedTextBox();
-            textBox2 = new TextBox();
-            textBox1 = new TextBox();
+            mkCep = new MaskedTextBox();
+            txtBairro = new TextBox();
+            txtMunicipio = new TextBox();
             button2 = new Button();
             mkTelefone = new MaskedTextBox();
             label15 = new Label();
@@ -72,6 +73,7 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(40, 40, 50);
+            panel1.Controls.Add(button3);
             panel1.Controls.Add(panel2);
             panel1.Controls.Add(mkTelefone);
             panel1.Controls.Add(label15);
@@ -100,14 +102,28 @@
             panel1.Size = new Size(719, 644);
             panel1.TabIndex = 6;
             // 
+            // button3
+            // 
+            button3.BackColor = Color.Transparent;
+            button3.FlatStyle = FlatStyle.Popup;
+            button3.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button3.ForeColor = Color.White;
+            button3.Location = new Point(49, 583);
+            button3.Name = "button3";
+            button3.Size = new Size(234, 35);
+            button3.TabIndex = 36;
+            button3.Text = "Voltar";
+            button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
+            // 
             // panel2
             // 
             panel2.Controls.Add(label19);
             panel2.Controls.Add(label18);
             panel2.Controls.Add(label12);
-            panel2.Controls.Add(maskedTextBox1);
-            panel2.Controls.Add(textBox2);
-            panel2.Controls.Add(textBox1);
+            panel2.Controls.Add(mkCep);
+            panel2.Controls.Add(txtBairro);
+            panel2.Controls.Add(txtMunicipio);
             panel2.Controls.Add(button2);
             panel2.Location = new Point(49, 251);
             panel2.Name = "panel2";
@@ -148,39 +164,40 @@
             label12.TabIndex = 37;
             label12.Text = "CEP";
             // 
-            // maskedTextBox1
+            // mkCep
             // 
-            maskedTextBox1.BackColor = Color.White;
-            maskedTextBox1.Font = new Font("Franklin Gothic Book", 20.25F);
-            maskedTextBox1.ForeColor = Color.FromArgb(40, 40, 50);
-            maskedTextBox1.Location = new Point(0, 27);
-            maskedTextBox1.Mask = "00000-000";
-            maskedTextBox1.Name = "maskedTextBox1";
-            maskedTextBox1.Size = new Size(619, 38);
-            maskedTextBox1.TabIndex = 36;
-            maskedTextBox1.Leave += maskedTextBox1_Leave;
+            mkCep.BackColor = Color.White;
+            mkCep.Font = new Font("Franklin Gothic Book", 20.25F);
+            mkCep.ForeColor = Color.FromArgb(40, 40, 50);
+            mkCep.Location = new Point(0, 27);
+            mkCep.Mask = "00000-000";
+            mkCep.Name = "mkCep";
+            mkCep.Size = new Size(619, 38);
+            mkCep.TabIndex = 36;
+            mkCep.Leave += maskedTextBox1_Leave;
             // 
-            // textBox2
+            // txtBairro
             // 
-            textBox2.BackColor = Color.White;
-            textBox2.Font = new Font("Franklin Gothic Book", 20.25F);
-            textBox2.ForeColor = Color.FromArgb(40, 40, 50);
-            textBox2.Location = new Point(0, 181);
-            textBox2.Name = "textBox2";
-            textBox2.PlaceholderText = "  Digite aqui o Bairro do seu Comércio";
-            textBox2.Size = new Size(622, 38);
-            textBox2.TabIndex = 27;
+            txtBairro.BackColor = Color.White;
+            txtBairro.Font = new Font("Franklin Gothic Book", 20.25F);
+            txtBairro.ForeColor = Color.FromArgb(40, 40, 50);
+            txtBairro.Location = new Point(0, 181);
+            txtBairro.Name = "txtBairro";
+            txtBairro.PlaceholderText = "  Digite aqui o Bairro do seu Comércio";
+            txtBairro.Size = new Size(622, 38);
+            txtBairro.TabIndex = 27;
             // 
-            // textBox1
+            // txtMunicipio
             // 
-            textBox1.BackColor = Color.White;
-            textBox1.Font = new Font("Franklin Gothic Book", 20.25F);
-            textBox1.ForeColor = Color.FromArgb(40, 40, 50);
-            textBox1.Location = new Point(0, 103);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "  Digite aqui o Municipio do seu Comércio";
-            textBox1.Size = new Size(622, 38);
-            textBox1.TabIndex = 26;
+            txtMunicipio.BackColor = Color.White;
+            txtMunicipio.Font = new Font("Franklin Gothic Book", 20.25F);
+            txtMunicipio.ForeColor = Color.FromArgb(40, 40, 50);
+            txtMunicipio.Location = new Point(0, 103);
+            txtMunicipio.Name = "txtMunicipio";
+            txtMunicipio.PlaceholderText = "  Digite aqui o Municipio do seu Comércio";
+            txtMunicipio.Size = new Size(622, 38);
+            txtMunicipio.TabIndex = 26;
+            txtMunicipio.TextChanged += textBox1_TextChanged;
             // 
             // button2
             // 
@@ -252,7 +269,7 @@
             btnSalvar.FlatStyle = FlatStyle.Popup;
             btnSalvar.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnSalvar.ForeColor = Color.White;
-            btnSalvar.Location = new Point(227, 583);
+            btnSalvar.Location = new Point(438, 583);
             btnSalvar.Name = "btnSalvar";
             btnSalvar.Size = new Size(234, 35);
             btnSalvar.TabIndex = 29;
@@ -582,13 +599,14 @@
         private Label label10;
         private Label label11;
         private Panel panel2;
-        private TextBox textBox2;
-        private TextBox textBox1;
+        private TextBox txtBairro;
+        private TextBox txtMunicipio;
         private Button button2;
-        private MaskedTextBox maskedTextBox1;
+        private MaskedTextBox mkCep;
         private Label label19;
         private Label label18;
         private Label label12;
         private Button button1;
+        private Button button3;
     }
 }

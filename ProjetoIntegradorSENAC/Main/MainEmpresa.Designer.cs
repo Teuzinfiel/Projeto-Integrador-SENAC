@@ -56,7 +56,6 @@
             panel4.SuspendLayout();
             panelTop2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            panelContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
             SuspendLayout();
             // 
@@ -67,6 +66,7 @@
             panelLeft.Controls.Add(btnLogOut);
             panelLeft.Controls.Add(label3);
             panelLeft.Controls.Add(pictureBox1);
+            panelLeft.Controls.Add(panel4);
             panelLeft.Dock = DockStyle.Left;
             panelLeft.Location = new Point(0, 0);
             panelLeft.Name = "panelLeft";
@@ -79,7 +79,7 @@
             label4.FlatStyle = FlatStyle.System;
             label4.Font = new Font("Franklin Gothic Medium", 15F);
             label4.ForeColor = Color.FromArgb(224, 224, 224);
-            label4.Location = new Point(187, 734);
+            label4.Location = new Point(175, 24);
             label4.Name = "label4";
             label4.Size = new Size(62, 25);
             label4.TabIndex = 4;
@@ -91,7 +91,7 @@
             btnLogOut.FlatStyle = FlatStyle.Popup;
             btnLogOut.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnLogOut.ForeColor = Color.FromArgb(224, 224, 224);
-            btnLogOut.Location = new Point(41, 554);
+            btnLogOut.Location = new Point(46, 14);
             btnLogOut.Name = "btnLogOut";
             btnLogOut.Size = new Size(107, 35);
             btnLogOut.TabIndex = 7;
@@ -134,7 +134,7 @@
             panel4.Controls.Add(btnCaixa);
             panel4.Controls.Add(btnEstoque);
             panel4.ForeColor = SystemColors.ActiveCaptionText;
-            panel4.Location = new Point(50, 78);
+            panel4.Location = new Point(3, 234);
             panel4.Name = "panel4";
             panel4.Size = new Size(294, 488);
             panel4.TabIndex = 1;
@@ -293,7 +293,7 @@
             btnCaixa.ImageAlign = ContentAlignment.MiddleLeft;
             btnCaixa.ImageIndex = 2;
             btnCaixa.ImageList = imageList1;
-            btnCaixa.Location = new Point(34, 73);
+            btnCaixa.Location = new Point(27, 63);
             btnCaixa.Name = "btnCaixa";
             btnCaixa.Size = new Size(260, 54);
             btnCaixa.TabIndex = 5;
@@ -376,7 +376,6 @@
             // panelContainer
             // 
             panelContainer.BackColor = Color.FromArgb(45, 45, 60);
-            panelContainer.Controls.Add(panel4);
             panelContainer.Dock = DockStyle.Fill;
             panelContainer.ForeColor = Color.White;
             panelContainer.Location = new Point(291, 58);
@@ -396,7 +395,6 @@
             Name = "MainEmpresa";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
-            WindowState = FormWindowState.Maximized;
             panelLeft.ResumeLayout(false);
             panelLeft.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -404,7 +402,6 @@
             panelTop2.ResumeLayout(false);
             panelTop2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            panelContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
             ResumeLayout(false);
         }

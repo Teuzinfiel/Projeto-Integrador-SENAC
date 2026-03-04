@@ -89,15 +89,15 @@
             panel1.Controls.Add(lbNome);
             panel1.Controls.Add(UsNome);
             panel1.Controls.Add(label1);
-            panel1.Location = new Point(451, 1);
+            panel1.Location = new Point(18, 25);
             panel1.Name = "panel1";
-            panel1.Size = new Size(501, 679);
+            panel1.Size = new Size(505, 632);
             panel1.TabIndex = 0;
             // 
             // picSenha
             // 
             picSenha.Image = Properties.Resources.pontoInterrogacao;
-            picSenha.Location = new Point(463, 183);
+            picSenha.Location = new Point(465, 153);
             picSenha.Margin = new Padding(3, 2, 3, 2);
             picSenha.Name = "picSenha";
             picSenha.Size = new Size(35, 28);
@@ -112,7 +112,7 @@
             astConfirmar.AutoSize = true;
             astConfirmar.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             astConfirmar.ForeColor = Color.FromArgb(192, 0, 0);
-            astConfirmar.Location = new Point(147, 227);
+            astConfirmar.Location = new Point(148, 197);
             astConfirmar.Name = "astConfirmar";
             astConfirmar.Size = new Size(16, 24);
             astConfirmar.TabIndex = 35;
@@ -124,7 +124,7 @@
             astSenha.AutoSize = true;
             astSenha.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             astSenha.ForeColor = Color.FromArgb(192, 0, 0);
-            astSenha.Location = new Point(111, 159);
+            astSenha.Location = new Point(112, 129);
             astSenha.Name = "astSenha";
             astSenha.Size = new Size(16, 24);
             astSenha.TabIndex = 34;
@@ -136,7 +136,7 @@
             astTelefone.AutoSize = true;
             astTelefone.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             astTelefone.ForeColor = Color.FromArgb(192, 0, 0);
-            astTelefone.Location = new Point(110, 469);
+            astTelefone.Location = new Point(111, 439);
             astTelefone.Name = "astTelefone";
             astTelefone.Size = new Size(16, 24);
             astTelefone.TabIndex = 33;
@@ -148,7 +148,7 @@
             astCpf.AutoSize = true;
             astCpf.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             astCpf.ForeColor = Color.FromArgb(192, 0, 0);
-            astCpf.Location = new Point(75, 321);
+            astCpf.Location = new Point(76, 291);
             astCpf.Name = "astCpf";
             astCpf.Size = new Size(16, 24);
             astCpf.TabIndex = 33;
@@ -160,7 +160,7 @@
             astEmail.AutoSize = true;
             astEmail.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             astEmail.ForeColor = Color.FromArgb(192, 0, 0);
-            astEmail.Location = new Point(75, 405);
+            astEmail.Location = new Point(76, 375);
             astEmail.Name = "astEmail";
             astEmail.Size = new Size(16, 24);
             astEmail.TabIndex = 32;
@@ -172,7 +172,7 @@
             astNome.AutoSize = true;
             astNome.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             astNome.ForeColor = Color.FromArgb(192, 0, 0);
-            astNome.Location = new Point(151, 84);
+            astNome.Location = new Point(152, 54);
             astNome.Name = "astNome";
             astNome.Size = new Size(16, 24);
             astNome.TabIndex = 31;
@@ -190,7 +190,7 @@
             bntSair.FlatStyle = FlatStyle.Flat;
             bntSair.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             bntSair.ForeColor = SystemColors.Highlight;
-            bntSair.Location = new Point(252, 608);
+            bntSair.Location = new Point(253, 578);
             bntSair.Name = "bntSair";
             bntSair.Size = new Size(206, 37);
             bntSair.TabIndex = 29;
@@ -208,7 +208,7 @@
             chkMostrarSenha.FlatAppearance.MouseOverBackColor = Color.FromArgb(30, 30, 40);
             chkMostrarSenha.Font = new Font("Segoe UI", 13F);
             chkMostrarSenha.ForeColor = Color.FromArgb(180, 180, 190);
-            chkMostrarSenha.Location = new Point(29, 289);
+            chkMostrarSenha.Location = new Point(30, 259);
             chkMostrarSenha.Name = "chkMostrarSenha";
             chkMostrarSenha.Size = new Size(146, 29);
             chkMostrarSenha.TabIndex = 28;
@@ -227,7 +227,7 @@
             btnLimpar.FlatStyle = FlatStyle.Flat;
             btnLimpar.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnLimpar.ForeColor = SystemColors.Highlight;
-            btnLimpar.Location = new Point(29, 608);
+            btnLimpar.Location = new Point(30, 578);
             btnLimpar.Name = "btnLimpar";
             btnLimpar.Size = new Size(216, 37);
             btnLimpar.TabIndex = 18;
@@ -241,7 +241,7 @@
             lbCpf.BackColor = Color.FromArgb(40, 40, 50);
             lbCpf.Font = new Font("Franklin Gothic Medium", 15F);
             lbCpf.ForeColor = Color.FromArgb(180, 180, 190);
-            lbCpf.Location = new Point(29, 320);
+            lbCpf.Location = new Point(30, 290);
             lbCpf.Name = "lbCpf";
             lbCpf.Size = new Size(46, 25);
             lbCpf.TabIndex = 27;
@@ -254,7 +254,7 @@
             btnCadastro.FlatStyle = FlatStyle.Popup;
             btnCadastro.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnCadastro.ForeColor = Color.White;
-            btnCadastro.Location = new Point(29, 556);
+            btnCadastro.Location = new Point(30, 526);
             btnCadastro.Name = "btnCadastro";
             btnCadastro.Size = new Size(429, 37);
             btnCadastro.TabIndex = 17;
@@ -267,7 +267,7 @@
             UsTelefone.BackColor = Color.FromArgb(224, 224, 224);
             UsTelefone.Font = new Font("Microsoft Sans Serif", 20.25F);
             UsTelefone.ForeColor = SystemColors.WindowText;
-            UsTelefone.Location = new Point(29, 497);
+            UsTelefone.Location = new Point(30, 467);
             UsTelefone.Mask = "(00)00000-9999";
             UsTelefone.Name = "UsTelefone";
             UsTelefone.Size = new Size(429, 38);
@@ -279,7 +279,7 @@
             maskedTextBox2.BackColor = Color.White;
             maskedTextBox2.Font = new Font("Microsoft Sans Serif", 20.25F);
             maskedTextBox2.ForeColor = Color.FromArgb(40, 40, 50);
-            maskedTextBox2.Location = new Point(29, 497);
+            maskedTextBox2.Location = new Point(30, 467);
             maskedTextBox2.Mask = "  000.000.000-00";
             maskedTextBox2.Name = "maskedTextBox2";
             maskedTextBox2.Size = new Size(357, 38);
@@ -291,7 +291,7 @@
             lbTelefone.BackColor = Color.FromArgb(40, 40, 50);
             lbTelefone.Font = new Font("Franklin Gothic Medium", 15F);
             lbTelefone.ForeColor = Color.FromArgb(180, 180, 190);
-            lbTelefone.Location = new Point(29, 469);
+            lbTelefone.Location = new Point(30, 439);
             lbTelefone.Name = "lbTelefone";
             lbTelefone.Size = new Size(84, 25);
             lbTelefone.TabIndex = 24;
@@ -302,7 +302,7 @@
             UsCpf.BackColor = Color.FromArgb(224, 224, 224);
             UsCpf.Font = new Font("Microsoft Sans Serif", 20.25F);
             UsCpf.ForeColor = SystemColors.WindowText;
-            UsCpf.Location = new Point(29, 348);
+            UsCpf.Location = new Point(30, 318);
             UsCpf.Mask = " 000,000,000-00";
             UsCpf.Name = "UsCpf";
             UsCpf.Size = new Size(429, 38);
@@ -314,7 +314,7 @@
             mkCPF.BackColor = Color.White;
             mkCPF.Font = new Font("Microsoft Sans Serif", 20.25F);
             mkCPF.ForeColor = Color.FromArgb(40, 40, 50);
-            mkCPF.Location = new Point(29, 348);
+            mkCPF.Location = new Point(30, 318);
             mkCPF.Mask = "  000.000.000-00";
             mkCPF.Name = "mkCPF";
             mkCPF.Size = new Size(357, 38);
@@ -325,7 +325,7 @@
             lbEmail.AutoSize = true;
             lbEmail.Font = new Font("Franklin Gothic Medium", 12F);
             lbEmail.ForeColor = Color.FromArgb(180, 180, 190);
-            lbEmail.Location = new Point(29, 405);
+            lbEmail.Location = new Point(30, 375);
             lbEmail.Name = "lbEmail";
             lbEmail.Size = new Size(50, 21);
             lbEmail.TabIndex = 19;
@@ -335,7 +335,7 @@
             // 
             UsEmail.BackColor = Color.FromArgb(224, 224, 224);
             UsEmail.Font = new Font("Microsoft Sans Serif", 16F);
-            UsEmail.Location = new Point(29, 429);
+            UsEmail.Location = new Point(30, 399);
             UsEmail.Name = "UsEmail";
             UsEmail.PlaceholderText = "Digite o seu email";
             UsEmail.Size = new Size(429, 32);
@@ -347,7 +347,7 @@
             lbConfirmar.AutoSize = true;
             lbConfirmar.Font = new Font("Franklin Gothic Medium", 12F);
             lbConfirmar.ForeColor = Color.FromArgb(180, 180, 190);
-            lbConfirmar.Location = new Point(29, 227);
+            lbConfirmar.Location = new Point(30, 197);
             lbConfirmar.Name = "lbConfirmar";
             lbConfirmar.Size = new Size(124, 21);
             lbConfirmar.TabIndex = 17;
@@ -357,7 +357,7 @@
             // 
             ConfirmarSenha.BackColor = Color.FromArgb(224, 224, 224);
             ConfirmarSenha.Font = new Font("Microsoft Sans Serif", 16F);
-            ConfirmarSenha.Location = new Point(29, 251);
+            ConfirmarSenha.Location = new Point(30, 221);
             ConfirmarSenha.Name = "ConfirmarSenha";
             ConfirmarSenha.PlaceholderText = "Confirme sua senha";
             ConfirmarSenha.Size = new Size(429, 32);
@@ -370,7 +370,7 @@
             lbSenha.AutoSize = true;
             lbSenha.Font = new Font("Franklin Gothic Medium", 12F);
             lbSenha.ForeColor = Color.FromArgb(180, 180, 190);
-            lbSenha.Location = new Point(29, 159);
+            lbSenha.Location = new Point(30, 129);
             lbSenha.Name = "lbSenha";
             lbSenha.Size = new Size(88, 21);
             lbSenha.TabIndex = 15;
@@ -380,7 +380,7 @@
             // 
             UsSenha.BackColor = Color.FromArgb(224, 224, 224);
             UsSenha.Font = new Font("Microsoft Sans Serif", 16F);
-            UsSenha.Location = new Point(29, 183);
+            UsSenha.Location = new Point(30, 153);
             UsSenha.Name = "UsSenha";
             UsSenha.PlaceholderText = "Digite sua senha";
             UsSenha.Size = new Size(429, 32);
@@ -393,7 +393,7 @@
             lbNome.AutoSize = true;
             lbNome.Font = new Font("Franklin Gothic Medium", 12F);
             lbNome.ForeColor = Color.FromArgb(180, 180, 190);
-            lbNome.Location = new Point(29, 84);
+            lbNome.Location = new Point(30, 54);
             lbNome.Name = "lbNome";
             lbNome.Size = new Size(126, 21);
             lbNome.TabIndex = 13;
@@ -403,7 +403,7 @@
             // 
             UsNome.BackColor = Color.FromArgb(224, 224, 224);
             UsNome.Font = new Font("Microsoft Sans Serif", 16F);
-            UsNome.Location = new Point(29, 108);
+            UsNome.Location = new Point(30, 78);
             UsNome.Name = "UsNome";
             UsNome.PlaceholderText = "Digite o nome de usuario";
             UsNome.Size = new Size(429, 32);
@@ -415,7 +415,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Franklin Gothic Medium", 23F);
             label1.ForeColor = SystemColors.Highlight;
-            label1.Location = new Point(55, 37);
+            label1.Location = new Point(56, 7);
             label1.Name = "label1";
             label1.Size = new Size(350, 37);
             label1.TabIndex = 9;
@@ -426,7 +426,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(35, 35, 45);
-            ClientSize = new Size(1280, 680);
+            ClientSize = new Size(541, 687);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "cadUsuario";

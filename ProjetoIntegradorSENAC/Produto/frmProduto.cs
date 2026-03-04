@@ -442,10 +442,48 @@ namespace ProjetoIntegradorSENAC.Produto
 
         private int idProdutoSelecionado = 0;
 
+        private void esconderBotao()
+        {
+            lbPrecoAtt.Visible = false;
+            txtPrecoProd.Visible = false;
+
+            lbDescAtt.Visible = false;
+            PrDescricaoAtt.Visible = false;
+
+            lbBarrasAtt.Visible = false;
+            txtCodBarra.Visible = false;
+
+            lbCatAtt.Visible = false;
+            cmbCatAtt.Visible = false;
+
+            btnAtivarProd.Visible = false;
+            btnDesativarProd.Visible = false;
+            btnExcluirProd.Visible = false;
+            btnAttProd.Visible = false;
+        }
+
         // Evento de clique na celula do datagrid de produtos
         private void dtgProdutos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
+
+            lbPrecoAtt.Visible = true;
+            txtPrecoProd.Visible = true;
+
+            lbDescAtt.Visible = true;
+            PrDescricaoAtt.Visible = true;   
+            
+            lbBarrasAtt.Visible = true;
+            txtCodBarra.Visible = true;
+
+            lbCatAtt.Visible = true;
+            cmbCatAtt.Visible = true;
+
+            btnAtivarProd.Visible = true;
+            btnDesativarProd.Visible = true;
+            btnExcluirProd.Visible = true;
+            btnAttProd.Visible = true;
+
 
             limpandoFormulario = true;
 
@@ -468,8 +506,6 @@ namespace ProjetoIntegradorSENAC.Produto
             btnDesativarProd.Visible = status == "ativo";
             btnAtivarProd.Visible = status == "desativo";
 
-            btnExcluirProd.Visible = true;
-            btnAttProd.Visible = true;
 
             limpandoFormulario = false;
 
@@ -586,6 +622,7 @@ namespace ProjetoIntegradorSENAC.Produto
                 LimparEdicaoProduto();
                 CarregarProdutos();
                 ResetarBotoesProduto();
+                esconderBotao();
                 dtgProdutos.ClearSelection();
                 idProdutoSelecionado = 0;
             }
@@ -614,6 +651,7 @@ namespace ProjetoIntegradorSENAC.Produto
                 MessageBox.Show("Produto desativado!");
                 LimparEdicaoProduto();
                 CarregarProdutos();
+                esconderBotao();
                 idProdutoSelecionado = 0;
             }
             catch (Exception ex)
@@ -677,7 +715,7 @@ namespace ProjetoIntegradorSENAC.Produto
 
                 MessageBox.Show("Produto excluído!");
                 LogService.CriarLog(this.idComercio, this.idUsuario, "Excluiu Produto");
-
+                esconderBotao();
                 LimparEdicaoProduto();
                 CarregarProdutos();
                 ResetarBotoesProduto();
@@ -756,6 +794,7 @@ namespace ProjetoIntegradorSENAC.Produto
             {
                 Banco.Inserir(sql);
                 MessageBox.Show("Produto ativado!");
+                esconderBotao();
                 ResetarBotoesProduto();
                 LimparEdicaoProduto();
                 CarregarProdutos();

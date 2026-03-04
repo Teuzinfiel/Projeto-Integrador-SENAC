@@ -31,9 +31,9 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainEmpresa));
             panelLeft = new Panel();
+            txtNomeEmpresa = new TextBox();
             label4 = new Label();
             btnLogOut = new Button();
-            label3 = new Label();
             pictureBox1 = new PictureBox();
             panel4 = new Panel();
             btnMovimentacao = new Button();
@@ -46,8 +46,8 @@
             btnCaixa = new Button();
             btnEstoque = new Button();
             panelTop2 = new Panel();
+            txtNomeUser = new TextBox();
             pictureBox2 = new PictureBox();
-            label2 = new Label();
             labelCategorias = new Label();
             panelContainer = new Panel();
             bindingSource1 = new BindingSource(components);
@@ -62,9 +62,9 @@
             // panelLeft
             // 
             panelLeft.BackColor = Color.FromArgb(30, 30, 40);
+            panelLeft.Controls.Add(txtNomeEmpresa);
             panelLeft.Controls.Add(label4);
             panelLeft.Controls.Add(btnLogOut);
-            panelLeft.Controls.Add(label3);
             panelLeft.Controls.Add(pictureBox1);
             panelLeft.Controls.Add(panel4);
             panelLeft.Dock = DockStyle.Left;
@@ -72,6 +72,20 @@
             panelLeft.Name = "panelLeft";
             panelLeft.Size = new Size(291, 680);
             panelLeft.TabIndex = 0;
+            // 
+            // txtNomeEmpresa
+            // 
+            txtNomeEmpresa.BackColor = Color.FromArgb(30, 30, 40);
+            txtNomeEmpresa.BorderStyle = BorderStyle.None;
+            txtNomeEmpresa.Font = new Font("Franklin Gothic Demi", 15F);
+            txtNomeEmpresa.ForeColor = Color.FromArgb(224, 224, 224);
+            txtNomeEmpresa.Location = new Point(5, 190);
+            txtNomeEmpresa.Name = "txtNomeEmpresa";
+            txtNomeEmpresa.ReadOnly = true;
+            txtNomeEmpresa.Size = new Size(280, 23);
+            txtNomeEmpresa.TabIndex = 8;
+            txtNomeEmpresa.Text = "Nome Empresa";
+            txtNomeEmpresa.TextAlign = HorizontalAlignment.Center;
             // 
             // label4
             // 
@@ -99,24 +113,11 @@
             btnLogOut.UseVisualStyleBackColor = false;
             btnLogOut.Click += btnLogOut_Click;
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.FlatStyle = FlatStyle.System;
-            label3.Font = new Font("Microsoft Sans Serif", 15F);
-            label3.ForeColor = Color.FromArgb(180, 180, 190);
-            label3.Location = new Point(65, 197);
-            label3.Name = "label3";
-            label3.Size = new Size(147, 25);
-            label3.TabIndex = 3;
-            label3.Text = "Nome Empresa";
-            label3.TextAlign = ContentAlignment.MiddleCenter;
-            // 
             // pictureBox1
             // 
             pictureBox1.BorderStyle = BorderStyle.FixedSingle;
             pictureBox1.Image = Properties.Resources.logo;
-            pictureBox1.Location = new Point(65, 55);
+            pictureBox1.Location = new Point(80, 58);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(141, 126);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -154,7 +155,7 @@
             btnMovimentacao.ImageList = imageList1;
             btnMovimentacao.Location = new Point(28, 346);
             btnMovimentacao.Name = "btnMovimentacao";
-            btnMovimentacao.Size = new Size(260, 56);
+            btnMovimentacao.Size = new Size(267, 56);
             btnMovimentacao.TabIndex = 9;
             btnMovimentacao.Text = "Movimentações";
             btnMovimentacao.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -176,6 +177,7 @@
             imageList1.Images.SetKeyName(6, "ChatGPT Image 3 de out. de 2025, 20_22_52.png");
             imageList1.Images.SetKeyName(7, "ChatGPT Image 3 de out. de 2025, 20_27_40.png");
             imageList1.Images.SetKeyName(8, "ChatGPT Image 1 de mar. de 2026, 23_11_41.png");
+            imageList1.Images.SetKeyName(9, "cadeado (1).png");
             // 
             // button1
             // 
@@ -207,7 +209,7 @@
             btnProdutos.ImageList = imageList1;
             btnProdutos.Location = new Point(28, 169);
             btnProdutos.Name = "btnProdutos";
-            btnProdutos.Size = new Size(260, 58);
+            btnProdutos.Size = new Size(267, 58);
             btnProdutos.TabIndex = 2;
             btnProdutos.Text = "Produtos";
             btnProdutos.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -229,7 +231,7 @@
             btnFuncionario.ImageList = imageList1;
             btnFuncionario.Location = new Point(28, 284);
             btnFuncionario.Name = "btnFuncionario";
-            btnFuncionario.Size = new Size(260, 56);
+            btnFuncionario.Size = new Size(267, 56);
             btnFuncionario.TabIndex = 3;
             btnFuncionario.Text = "Funcionário";
             btnFuncionario.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -251,7 +253,7 @@
             btnLog.ImageList = imageList1;
             btnLog.Location = new Point(28, 408);
             btnLog.Name = "btnLog";
-            btnLog.Size = new Size(260, 54);
+            btnLog.Size = new Size(267, 54);
             btnLog.TabIndex = 7;
             btnLog.Text = "Logs";
             btnLog.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -273,7 +275,7 @@
             btnDashboard.ImageList = imageList1;
             btnDashboard.Location = new Point(27, 116);
             btnDashboard.Name = "btnDashboard";
-            btnDashboard.Size = new Size(260, 55);
+            btnDashboard.Size = new Size(267, 55);
             btnDashboard.TabIndex = 6;
             btnDashboard.Text = "Dashboard";
             btnDashboard.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -295,7 +297,7 @@
             btnCaixa.ImageList = imageList1;
             btnCaixa.Location = new Point(27, 63);
             btnCaixa.Name = "btnCaixa";
-            btnCaixa.Size = new Size(260, 54);
+            btnCaixa.Size = new Size(267, 54);
             btnCaixa.TabIndex = 5;
             btnCaixa.Text = "Caixa";
             btnCaixa.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -317,7 +319,7 @@
             btnEstoque.ImageList = imageList1;
             btnEstoque.Location = new Point(28, 233);
             btnEstoque.Name = "btnEstoque";
-            btnEstoque.Size = new Size(260, 54);
+            btnEstoque.Size = new Size(267, 54);
             btnEstoque.TabIndex = 4;
             btnEstoque.Text = "Estoque";
             btnEstoque.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -327,14 +329,28 @@
             // panelTop2
             // 
             panelTop2.BackColor = Color.FromArgb(30, 30, 40);
+            panelTop2.Controls.Add(txtNomeUser);
             panelTop2.Controls.Add(pictureBox2);
-            panelTop2.Controls.Add(label2);
             panelTop2.Controls.Add(labelCategorias);
             panelTop2.Dock = DockStyle.Top;
             panelTop2.Location = new Point(291, 0);
             panelTop2.Name = "panelTop2";
             panelTop2.Size = new Size(989, 58);
             panelTop2.TabIndex = 1;
+            // 
+            // txtNomeUser
+            // 
+            txtNomeUser.BackColor = Color.FromArgb(30, 30, 40);
+            txtNomeUser.BorderStyle = BorderStyle.None;
+            txtNomeUser.Font = new Font("Franklin Gothic Demi", 18F);
+            txtNomeUser.ForeColor = Color.FromArgb(224, 224, 224);
+            txtNomeUser.Location = new Point(565, 14);
+            txtNomeUser.Name = "txtNomeUser";
+            txtNomeUser.ReadOnly = true;
+            txtNomeUser.Size = new Size(331, 28);
+            txtNomeUser.TabIndex = 9;
+            txtNomeUser.Text = "Nome User";
+            txtNomeUser.TextAlign = HorizontalAlignment.Center;
             // 
             // pictureBox2
             // 
@@ -347,18 +363,6 @@
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 3;
             pictureBox2.TabStop = false;
-            // 
-            // label2
-            // 
-            label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            label2.AutoSize = true;
-            label2.Font = new Font("Franklin Gothic Medium", 15F);
-            label2.ForeColor = Color.FromArgb(180, 180, 190);
-            label2.Location = new Point(717, 17);
-            label2.Name = "label2";
-            label2.Size = new Size(181, 25);
-            label2.TabIndex = 1;
-            label2.Text = "Bem Vindo, Usuario";
             // 
             // labelCategorias
             // 
@@ -395,6 +399,7 @@
             Name = "MainEmpresa";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
+            Load += MainEmpresa_Load;
             panelLeft.ResumeLayout(false);
             panelLeft.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -411,11 +416,9 @@
         private Panel panelLeft;
         private Panel panel4;
         private Panel panelTop2;
-        private Label label2;
         private Label labelCategorias;
         private Button btnProdutos;
         private Button btnFuncionario;
-        private Label label3;
         private PictureBox pictureBox1;
         private Button btnDashboard;
         private Button btnCaixa;
@@ -429,5 +432,7 @@
         private ImageList imageList1;
         private Button btnMovimentacao;
         private BindingSource bindingSource1;
+        private TextBox txtNomeEmpresa;
+        private TextBox txtNomeUser;
     }
 }

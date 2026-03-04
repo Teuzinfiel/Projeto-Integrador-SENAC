@@ -66,21 +66,14 @@
             astCpfEd = new Label();
             astEmailEd = new Label();
             lbCpfEd = new Label();
-            EdTelefone = new MaskedTextBox();
-            maskedTextBox3 = new MaskedTextBox();
-            lbTelefoneEd = new Label();
             EdCpf = new MaskedTextBox();
             maskedTextBox5 = new MaskedTextBox();
+            EdTelefone = new MaskedTextBox();
+            maskedTextBox3 = new MaskedTextBox();
             lbEmailEd = new Label();
             EdEmail = new TextBox();
-            astSenhaEd = new Label();
-            astRedefinir = new Label();
+            lbTelefoneEd = new Label();
             astNomeEd = new Label();
-            EdMostrar = new CheckBox();
-            lbSenhaEd = new Label();
-            EdSenha = new TextBox();
-            lbRedefinir = new Label();
-            EdRedefinir = new TextBox();
             lbNomeEd = new Label();
             EdNome = new TextBox();
             dtgFuncionarios = new DataGridView();
@@ -423,21 +416,14 @@
             panel2.Controls.Add(astCpfEd);
             panel2.Controls.Add(astEmailEd);
             panel2.Controls.Add(lbCpfEd);
-            panel2.Controls.Add(EdTelefone);
-            panel2.Controls.Add(maskedTextBox3);
-            panel2.Controls.Add(lbTelefoneEd);
             panel2.Controls.Add(EdCpf);
             panel2.Controls.Add(maskedTextBox5);
+            panel2.Controls.Add(EdTelefone);
+            panel2.Controls.Add(maskedTextBox3);
             panel2.Controls.Add(lbEmailEd);
             panel2.Controls.Add(EdEmail);
-            panel2.Controls.Add(astSenhaEd);
-            panel2.Controls.Add(astRedefinir);
+            panel2.Controls.Add(lbTelefoneEd);
             panel2.Controls.Add(astNomeEd);
-            panel2.Controls.Add(EdMostrar);
-            panel2.Controls.Add(lbSenhaEd);
-            panel2.Controls.Add(EdSenha);
-            panel2.Controls.Add(lbRedefinir);
-            panel2.Controls.Add(EdRedefinir);
             panel2.Controls.Add(lbNomeEd);
             panel2.Controls.Add(EdNome);
             panel2.Controls.Add(dtgFuncionarios);
@@ -502,7 +488,7 @@
             astTelefoneEd.AutoSize = true;
             astTelefoneEd.Font = new Font("Franklin Gothic Medium Cond", 12F);
             astTelefoneEd.ForeColor = Color.FromArgb(192, 0, 0);
-            astTelefoneEd.Location = new Point(424, 392);
+            astTelefoneEd.Location = new Point(424, 519);
             astTelefoneEd.Name = "astTelefoneEd";
             astTelefoneEd.Size = new Size(18, 21);
             astTelefoneEd.TabIndex = 55;
@@ -514,7 +500,7 @@
             astCpfEd.AutoSize = true;
             astCpfEd.Font = new Font("Franklin Gothic Medium Cond", 12F);
             astCpfEd.ForeColor = Color.FromArgb(192, 0, 0);
-            astCpfEd.Location = new Point(415, 452);
+            astCpfEd.Location = new Point(63, 520);
             astCpfEd.Name = "astCpfEd";
             astCpfEd.Size = new Size(18, 21);
             astCpfEd.TabIndex = 56;
@@ -526,7 +512,7 @@
             astEmailEd.AutoSize = true;
             astEmailEd.Font = new Font("Franklin Gothic Medium Cond", 12F);
             astEmailEd.ForeColor = Color.FromArgb(192, 0, 0);
-            astEmailEd.Location = new Point(415, 512);
+            astEmailEd.Location = new Point(63, 458);
             astEmailEd.Name = "astEmailEd";
             astEmailEd.Size = new Size(18, 21);
             astEmailEd.TabIndex = 54;
@@ -539,53 +525,18 @@
             lbCpfEd.BackColor = Color.FromArgb(40, 40, 50);
             lbCpfEd.Font = new Font("Franklin Gothic Medium Cond", 12F);
             lbCpfEd.ForeColor = Color.FromArgb(180, 180, 190);
-            lbCpfEd.Location = new Point(369, 451);
+            lbCpfEd.Location = new Point(17, 519);
             lbCpfEd.Name = "lbCpfEd";
             lbCpfEd.Size = new Size(33, 21);
             lbCpfEd.TabIndex = 53;
             lbCpfEd.Text = "CPF";
-            // 
-            // EdTelefone
-            // 
-            EdTelefone.BackColor = Color.FromArgb(224, 224, 224);
-            EdTelefone.Font = new Font("Microsoft Sans Serif", 16F);
-            EdTelefone.ForeColor = SystemColors.WindowText;
-            EdTelefone.Location = new Point(369, 418);
-            EdTelefone.Mask = "(00)00000-9999";
-            EdTelefone.Name = "EdTelefone";
-            EdTelefone.Size = new Size(318, 32);
-            EdTelefone.TabIndex = 52;
-            EdTelefone.TextChanged += EdTelefone_TextChanged;
-            // 
-            // maskedTextBox3
-            // 
-            maskedTextBox3.BackColor = Color.White;
-            maskedTextBox3.Font = new Font("Microsoft Sans Serif", 16F);
-            maskedTextBox3.ForeColor = Color.FromArgb(40, 40, 50);
-            maskedTextBox3.Location = new Point(369, 418);
-            maskedTextBox3.Mask = "  000.000.000-00";
-            maskedTextBox3.Name = "maskedTextBox3";
-            maskedTextBox3.Size = new Size(318, 32);
-            maskedTextBox3.TabIndex = 51;
-            // 
-            // lbTelefoneEd
-            // 
-            lbTelefoneEd.AutoSize = true;
-            lbTelefoneEd.BackColor = Color.FromArgb(40, 40, 50);
-            lbTelefoneEd.Font = new Font("Franklin Gothic Medium Cond", 12F);
-            lbTelefoneEd.ForeColor = Color.FromArgb(180, 180, 190);
-            lbTelefoneEd.Location = new Point(369, 392);
-            lbTelefoneEd.Name = "lbTelefoneEd";
-            lbTelefoneEd.Size = new Size(59, 21);
-            lbTelefoneEd.TabIndex = 50;
-            lbTelefoneEd.Text = "Telefone";
             // 
             // EdCpf
             // 
             EdCpf.BackColor = Color.FromArgb(224, 224, 224);
             EdCpf.Font = new Font("Microsoft Sans Serif", 16F);
             EdCpf.ForeColor = SystemColors.WindowText;
-            EdCpf.Location = new Point(369, 477);
+            EdCpf.Location = new Point(17, 545);
             EdCpf.Mask = " 000.000.000-00";
             EdCpf.Name = "EdCpf";
             EdCpf.Size = new Size(318, 32);
@@ -597,18 +548,41 @@
             maskedTextBox5.BackColor = Color.White;
             maskedTextBox5.Font = new Font("Microsoft Sans Serif", 16F);
             maskedTextBox5.ForeColor = Color.FromArgb(40, 40, 50);
-            maskedTextBox5.Location = new Point(369, 477);
+            maskedTextBox5.Location = new Point(17, 545);
             maskedTextBox5.Mask = "  000.000.000-00";
             maskedTextBox5.Name = "maskedTextBox5";
             maskedTextBox5.Size = new Size(318, 32);
             maskedTextBox5.TabIndex = 48;
+            // 
+            // EdTelefone
+            // 
+            EdTelefone.BackColor = Color.FromArgb(224, 224, 224);
+            EdTelefone.Font = new Font("Microsoft Sans Serif", 16F);
+            EdTelefone.ForeColor = SystemColors.WindowText;
+            EdTelefone.Location = new Point(369, 545);
+            EdTelefone.Mask = "(00)00000-9999";
+            EdTelefone.Name = "EdTelefone";
+            EdTelefone.Size = new Size(318, 32);
+            EdTelefone.TabIndex = 52;
+            EdTelefone.TextChanged += EdTelefone_TextChanged;
+            // 
+            // maskedTextBox3
+            // 
+            maskedTextBox3.BackColor = Color.White;
+            maskedTextBox3.Font = new Font("Microsoft Sans Serif", 16F);
+            maskedTextBox3.ForeColor = Color.FromArgb(40, 40, 50);
+            maskedTextBox3.Location = new Point(369, 545);
+            maskedTextBox3.Mask = "  000.000.000-00";
+            maskedTextBox3.Name = "maskedTextBox3";
+            maskedTextBox3.Size = new Size(318, 32);
+            maskedTextBox3.TabIndex = 51;
             // 
             // lbEmailEd
             // 
             lbEmailEd.AutoSize = true;
             lbEmailEd.Font = new Font("Franklin Gothic Medium Cond", 12F);
             lbEmailEd.ForeColor = Color.FromArgb(180, 180, 190);
-            lbEmailEd.Location = new Point(369, 512);
+            lbEmailEd.Location = new Point(17, 458);
             lbEmailEd.Name = "lbEmailEd";
             lbEmailEd.Size = new Size(43, 21);
             lbEmailEd.TabIndex = 47;
@@ -618,36 +592,24 @@
             // 
             EdEmail.BackColor = Color.FromArgb(224, 224, 224);
             EdEmail.Font = new Font("Microsoft Sans Serif", 16F);
-            EdEmail.Location = new Point(369, 538);
+            EdEmail.Location = new Point(17, 485);
             EdEmail.Name = "EdEmail";
             EdEmail.PlaceholderText = "Digite o seu email";
-            EdEmail.Size = new Size(318, 32);
+            EdEmail.Size = new Size(670, 32);
             EdEmail.TabIndex = 46;
             EdEmail.TextChanged += EdEmail_TextChanged;
             // 
-            // astSenhaEd
+            // lbTelefoneEd
             // 
-            astSenhaEd.AutoSize = true;
-            astSenhaEd.Font = new Font("Franklin Gothic Medium Cond", 12F);
-            astSenhaEd.ForeColor = Color.FromArgb(192, 0, 0);
-            astSenhaEd.Location = new Point(99, 512);
-            astSenhaEd.Name = "astSenhaEd";
-            astSenhaEd.Size = new Size(18, 21);
-            astSenhaEd.TabIndex = 45;
-            astSenhaEd.Text = "*";
-            astSenhaEd.Visible = false;
-            // 
-            // astRedefinir
-            // 
-            astRedefinir.AutoSize = true;
-            astRedefinir.Font = new Font("Franklin Gothic Medium Cond", 12F);
-            astRedefinir.ForeColor = Color.FromArgb(192, 0, 0);
-            astRedefinir.Location = new Point(123, 453);
-            astRedefinir.Name = "astRedefinir";
-            astRedefinir.Size = new Size(18, 21);
-            astRedefinir.TabIndex = 44;
-            astRedefinir.Text = "*";
-            astRedefinir.Visible = false;
+            lbTelefoneEd.AutoSize = true;
+            lbTelefoneEd.BackColor = Color.FromArgb(40, 40, 50);
+            lbTelefoneEd.Font = new Font("Franklin Gothic Medium Cond", 12F);
+            lbTelefoneEd.ForeColor = Color.FromArgb(180, 180, 190);
+            lbTelefoneEd.Location = new Point(369, 519);
+            lbTelefoneEd.Name = "lbTelefoneEd";
+            lbTelefoneEd.Size = new Size(59, 21);
+            lbTelefoneEd.TabIndex = 50;
+            lbTelefoneEd.Text = "Telefone";
             // 
             // astNomeEd
             // 
@@ -660,70 +622,6 @@
             astNomeEd.TabIndex = 43;
             astNomeEd.Text = "*";
             astNomeEd.Visible = false;
-            // 
-            // EdMostrar
-            // 
-            EdMostrar.AutoSize = true;
-            EdMostrar.Cursor = Cursors.Hand;
-            EdMostrar.FlatAppearance.BorderColor = Color.White;
-            EdMostrar.FlatAppearance.CheckedBackColor = SystemColors.Highlight;
-            EdMostrar.FlatAppearance.MouseDownBackColor = Color.FromArgb(30, 30, 40);
-            EdMostrar.FlatAppearance.MouseOverBackColor = Color.FromArgb(30, 30, 40);
-            EdMostrar.Font = new Font("Franklin Gothic Medium Cond", 12F);
-            EdMostrar.ForeColor = Color.FromArgb(180, 180, 190);
-            EdMostrar.Location = new Point(17, 570);
-            EdMostrar.Name = "EdMostrar";
-            EdMostrar.Size = new Size(111, 25);
-            EdMostrar.TabIndex = 42;
-            EdMostrar.Text = "Mostrar Senha";
-            EdMostrar.UseVisualStyleBackColor = true;
-            EdMostrar.CheckedChanged += EdMostrar_CheckedChanged;
-            // 
-            // lbSenhaEd
-            // 
-            lbSenhaEd.AutoSize = true;
-            lbSenhaEd.Font = new Font("Franklin Gothic Medium Cond", 12F);
-            lbSenhaEd.ForeColor = Color.FromArgb(180, 180, 190);
-            lbSenhaEd.Location = new Point(17, 512);
-            lbSenhaEd.Name = "lbSenhaEd";
-            lbSenhaEd.Size = new Size(78, 21);
-            lbSenhaEd.TabIndex = 41;
-            lbSenhaEd.Text = "Senha atual";
-            // 
-            // EdSenha
-            // 
-            EdSenha.BackColor = Color.FromArgb(224, 224, 224);
-            EdSenha.Font = new Font("Microsoft Sans Serif", 16F);
-            EdSenha.Location = new Point(17, 538);
-            EdSenha.Name = "EdSenha";
-            EdSenha.PlaceholderText = "Confirme sua senha atual";
-            EdSenha.Size = new Size(326, 32);
-            EdSenha.TabIndex = 40;
-            EdSenha.UseSystemPasswordChar = true;
-            EdSenha.TextChanged += EdSenha_TextChanged;
-            // 
-            // lbRedefinir
-            // 
-            lbRedefinir.AutoSize = true;
-            lbRedefinir.Font = new Font("Franklin Gothic Medium Cond", 12F);
-            lbRedefinir.ForeColor = Color.FromArgb(180, 180, 190);
-            lbRedefinir.Location = new Point(17, 453);
-            lbRedefinir.Name = "lbRedefinir";
-            lbRedefinir.Size = new Size(100, 21);
-            lbRedefinir.TabIndex = 39;
-            lbRedefinir.Text = "Redefinir senha";
-            // 
-            // EdRedefinir
-            // 
-            EdRedefinir.BackColor = Color.FromArgb(224, 224, 224);
-            EdRedefinir.Font = new Font("Microsoft Sans Serif", 16F);
-            EdRedefinir.Location = new Point(17, 479);
-            EdRedefinir.Name = "EdRedefinir";
-            EdRedefinir.PlaceholderText = "Digite sua nova senha";
-            EdRedefinir.Size = new Size(326, 32);
-            EdRedefinir.TabIndex = 38;
-            EdRedefinir.UseSystemPasswordChar = true;
-            EdRedefinir.TextChanged += EdRedefinir_TextChanged;
             // 
             // lbNomeEd
             // 
@@ -743,7 +641,7 @@
             EdNome.Location = new Point(17, 420);
             EdNome.Name = "EdNome";
             EdNome.PlaceholderText = "Digite o nome de usuario";
-            EdNome.Size = new Size(326, 32);
+            EdNome.Size = new Size(670, 32);
             EdNome.TabIndex = 36;
             EdNome.TextChanged += EdNome_TextChanged;
             // 
@@ -792,7 +690,6 @@
             dtgFuncionarios.Size = new Size(670, 265);
             dtgFuncionarios.TabIndex = 6;
             dtgFuncionarios.CellClick += dtgFuncionarios_CellClick;
-            dtgFuncionarios.CellContentClick += dtgFuncionarios_CellContentClick;
             // 
             // frmFuncionarios
             // 
@@ -854,14 +751,7 @@
         private MaskedTextBox maskedTextBox5;
         private Label lbEmailEd;
         private TextBox EdEmail;
-        private Label astSenhaEd;
-        private Label astRedefinir;
         private Label astNomeEd;
-        private CheckBox EdMostrar;
-        private Label lbSenhaEd;
-        private TextBox EdSenha;
-        private Label lbRedefinir;
-        private TextBox EdRedefinir;
         private Label lbNomeEd;
         private TextBox EdNome;
         private DataGridView dtgFuncionarios;

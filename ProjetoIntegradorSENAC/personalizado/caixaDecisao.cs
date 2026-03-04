@@ -42,5 +42,10 @@ namespace ProjetoIntegradorSENAC.personalizado
             lbMensagem.Text = Mensagem;
             lbTitulo.Text = Titulo;
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

@@ -186,13 +186,13 @@ INSERT INTO usuarios (nome, senha, telefone, email, cpf) VALUES
 ('Lucas Rocha','123456','27990000005','lucas@email.com','55555555555');
 INSERT INTO comercios (dono_id, nome, nome_fantasia, email, tipo_documentacao, documentacao, telefone) VALUES
 (1,'Mercado Silva','Super Silva','contato@silva.com','cnpj','12345678000101','27981111111'),
-(2,'Loja Souza','Souza Store','contato@souza.com','cnpj','12345678000102','27982222222');
+(4,'Loja Souza','Souza Store','contato@souza.com','cnpj','12345678000102','27982222222');
 INSERT INTO funcionarios (usuarios_id, comercio_id, cargo) VALUES
-(1,1,'Gerente'),
-(2,1,'Caixa'),
-(3,1,'Estoquista'),
-(4,2,'Gerente'),
-(5,2,'Caixa');
+(1,1,'Dono'),
+(2,1,'Funcionario'),
+(3,1,'Funcionario'),
+(4,2,'Dono'),
+(5,2,'Funcionario');
 INSERT INTO categorias (comercio_id, nome) VALUES
 (1,'Bebidas'),
 (1,'Alimentos'),

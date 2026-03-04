@@ -21,11 +21,11 @@ namespace ProjetoIntegradorSENAC.Dashboard
 {
     public partial class dashboard : Form
     {
-        private MainPrincipal _main; // referência ao form pai
+        private MainEmpresa _main; // referência ao form pai
         private int idEmpresa;
         private Dictionary<string, object> param_idEmpresa;
         private bool abrirVendas = false;
-        public dashboard(MainPrincipal main, int idEmpresa, bool abrirVendas)
+        public dashboard(MainEmpresa main, int idEmpresa, bool abrirVendas)
         {
             InitializeComponent();
             _main = main;

@@ -12,13 +12,13 @@ using ProjetoIntegradorSENAC.Usuarios;
 
 namespace ProjetoIntegradorSENAC
 {
-    public partial class MainPrincipal : Form
+    public partial class MainEmpresa : Form
     {
         public int idEmpresa;
         public int idDono;
         public int idUsuario;
         public string nomeEmpresa;
-        public MainPrincipal(int idEmpresa, int idDono, int idUsuario, string nomeEmpresa)
+        public MainEmpresa(int idEmpresa, int idDono, int idUsuario, string nomeEmpresa)
         {
             InitializeComponent();
             this.idEmpresa = idEmpresa;
@@ -122,7 +122,7 @@ namespace ProjetoIntegradorSENAC
 
         private void btnLogOut_Click(object sender, EventArgs e)
         {
-            frmEmpresa frm = new frmEmpresa(this.idUsuario);
+            frmEmpresa frm = new frmEmpresa(this.idUsuario, null);
             frm.Show();
             this.Hide();
         }

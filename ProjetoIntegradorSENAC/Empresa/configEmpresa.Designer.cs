@@ -146,7 +146,7 @@
             dtgEmpresas.RowsDefaultCellStyle = dataGridViewCellStyle3;
             dtgEmpresas.RowTemplate.Height = 45;
             dtgEmpresas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dtgEmpresas.Size = new Size(792, 458);
+            dtgEmpresas.Size = new Size(510, 458);
             dtgEmpresas.TabIndex = 11;
             dtgEmpresas.CellClick += dtgEmpresas_CellClick;
             // 
@@ -167,7 +167,7 @@
             mkTelefone.BackColor = Color.White;
             mkTelefone.Font = new Font("Franklin Gothic Book", 20.25F);
             mkTelefone.ForeColor = Color.FromArgb(40, 40, 50);
-            mkTelefone.Location = new Point(890, 485);
+            mkTelefone.Location = new Point(41, 267);
             mkTelefone.Mask = "(00) 00000-0000";
             mkTelefone.Name = "mkTelefone";
             mkTelefone.Size = new Size(558, 38);
@@ -179,7 +179,7 @@
             label17.AutoSize = true;
             label17.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label17.ForeColor = Color.FromArgb(192, 0, 0);
-            label17.Location = new Point(1055, 532);
+            label17.Location = new Point(224, 308);
             label17.Name = "label17";
             label17.Size = new Size(16, 24);
             label17.TabIndex = 56;
@@ -191,7 +191,7 @@
             label16.AutoSize = true;
             label16.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label16.ForeColor = Color.FromArgb(192, 0, 0);
-            label16.Location = new Point(1068, 457);
+            label16.Location = new Point(194, 241);
             label16.Name = "label16";
             label16.Size = new Size(16, 24);
             label16.TabIndex = 55;
@@ -203,7 +203,7 @@
             label15.AutoSize = true;
             label15.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label15.ForeColor = Color.FromArgb(192, 0, 0);
-            label15.Location = new Point(1241, 382);
+            label15.Location = new Point(450, 18);
             label15.Name = "label15";
             label15.Size = new Size(16, 24);
             label15.TabIndex = 54;
@@ -215,7 +215,7 @@
             label14.AutoSize = true;
             label14.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label14.ForeColor = Color.FromArgb(192, 0, 0);
-            label14.Location = new Point(1027, 312);
+            label14.Location = new Point(194, 95);
             label14.Name = "label14";
             label14.Size = new Size(16, 24);
             label14.TabIndex = 53;
@@ -227,7 +227,7 @@
             label13.AutoSize = true;
             label13.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label13.ForeColor = Color.FromArgb(192, 0, 0);
-            label13.Location = new Point(1008, 236);
+            label13.Location = new Point(177, 18);
             label13.Name = "label13";
             label13.Size = new Size(16, 24);
             label13.TabIndex = 52;
@@ -240,7 +240,7 @@
             btnSalvar.FlatStyle = FlatStyle.Popup;
             btnSalvar.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnSalvar.ForeColor = Color.White;
-            btnSalvar.Location = new Point(1513, 613);
+            btnSalvar.Location = new Point(632, 387);
             btnSalvar.Name = "btnSalvar";
             btnSalvar.Size = new Size(234, 35);
             btnSalvar.TabIndex = 51;
@@ -254,7 +254,7 @@
             btnVoltar.FlatStyle = FlatStyle.Popup;
             btnVoltar.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnVoltar.ForeColor = Color.White;
-            btnVoltar.Location = new Point(30, 396);
+            btnVoltar.Location = new Point(40, 387);
             btnVoltar.Name = "btnVoltar";
             btnVoltar.Size = new Size(181, 35);
             btnVoltar.TabIndex = 50;
@@ -289,7 +289,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Franklin Gothic Medium", 15F);
             label6.ForeColor = Color.White;
-            label6.Location = new Point(890, 532);
+            label6.Location = new Point(49, 314);
             label6.Name = "label6";
             label6.Size = new Size(169, 25);
             label6.TabIndex = 47;
@@ -300,7 +300,7 @@
             txtEmail.BackColor = Color.White;
             txtEmail.Font = new Font("Franklin Gothic Book", 20.25F);
             txtEmail.ForeColor = Color.FromArgb(40, 40, 50);
-            txtEmail.Location = new Point(890, 560);
+            txtEmail.Location = new Point(30, 343);
             txtEmail.Name = "txtEmail";
             txtEmail.PlaceholderText = "  seuemail@gmail.com";
             txtEmail.Size = new Size(857, 38);
@@ -312,7 +312,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Franklin Gothic Medium", 15F);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(890, 457);
+            label1.Location = new Point(23, 240);
             label1.Name = "label1";
             label1.Size = new Size(184, 25);
             label1.TabIndex = 45;
@@ -323,7 +323,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Franklin Gothic Medium", 15F);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(1189, 381);
+            label2.Location = new Point(664, 284);
             label2.Name = "label2";
             label2.Size = new Size(56, 25);
             label2.TabIndex = 44;
@@ -334,7 +334,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Franklin Gothic Medium", 15F);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(890, 383);
+            label3.Location = new Point(734, 161);
             label3.Name = "label3";
             label3.Size = new Size(194, 25);
             label3.TabIndex = 43;
@@ -345,7 +345,7 @@
             panel3.BackColor = Color.FromArgb(30, 30, 40);
             panel3.Controls.Add(radioButton2);
             panel3.Controls.Add(radioButton1);
-            panel3.Location = new Point(890, 411);
+            panel3.Location = new Point(727, 189);
             panel3.Name = "panel3";
             panel3.Size = new Size(259, 31);
             panel3.TabIndex = 42;
@@ -386,7 +386,7 @@
             mkCNPJ.BackColor = Color.White;
             mkCNPJ.Font = new Font("Franklin Gothic Book", 20.25F);
             mkCNPJ.ForeColor = Color.FromArgb(40, 40, 50);
-            mkCNPJ.Location = new Point(329, 194);
+            mkCNPJ.Location = new Point(1033, 189);
             mkCNPJ.Mask = "  00.000.000/0000-00";
             mkCNPJ.Name = "mkCNPJ";
             mkCNPJ.Size = new Size(558, 38);
@@ -398,7 +398,7 @@
             mkCPF.BackColor = Color.White;
             mkCPF.Font = new Font("Franklin Gothic Book", 20.25F);
             mkCPF.ForeColor = Color.FromArgb(40, 40, 50);
-            mkCPF.Location = new Point(329, 194);
+            mkCPF.Location = new Point(1033, 189);
             mkCPF.Mask = "  000.000.000-00";
             mkCPF.Name = "mkCPF";
             mkCPF.Size = new Size(558, 38);
@@ -410,7 +410,7 @@
             label9.AutoSize = true;
             label9.Font = new Font("Franklin Gothic Medium", 15F);
             label9.ForeColor = Color.White;
-            label9.Location = new Point(890, 308);
+            label9.Location = new Point(41, 94);
             label9.Name = "label9";
             label9.Size = new Size(142, 25);
             label9.TabIndex = 39;
@@ -421,7 +421,7 @@
             txtNomeFantasia.BackColor = Color.White;
             txtNomeFantasia.Font = new Font("Franklin Gothic Book", 20.25F);
             txtNomeFantasia.ForeColor = Color.FromArgb(40, 40, 50);
-            txtNomeFantasia.Location = new Point(890, 336);
+            txtNomeFantasia.Location = new Point(30, 119);
             txtNomeFantasia.Name = "txtNomeFantasia";
             txtNomeFantasia.PlaceholderText = "  Digite aqui o nome Fantasia";
             txtNomeFantasia.Size = new Size(857, 38);
@@ -433,7 +433,7 @@
             label10.AutoSize = true;
             label10.Font = new Font("Franklin Gothic Medium", 15F);
             label10.ForeColor = Color.White;
-            label10.Location = new Point(890, 236);
+            label10.Location = new Point(40, 18);
             label10.Name = "label10";
             label10.Size = new Size(123, 25);
             label10.TabIndex = 37;
@@ -444,7 +444,7 @@
             txtRazaoSocial.BackColor = Color.White;
             txtRazaoSocial.Font = new Font("Franklin Gothic Book", 20.25F);
             txtRazaoSocial.ForeColor = Color.FromArgb(40, 40, 50);
-            txtRazaoSocial.Location = new Point(890, 264);
+            txtRazaoSocial.Location = new Point(30, 46);
             txtRazaoSocial.Name = "txtRazaoSocial";
             txtRazaoSocial.PlaceholderText = "  Digite aqui a Razao Social";
             txtRazaoSocial.Size = new Size(857, 38);
@@ -477,12 +477,24 @@
             // 
             panel1.BackColor = Color.FromArgb(30, 30, 40);
             panel1.Controls.Add(btnExcluir);
-            panel1.Controls.Add(mkCNPJ);
+            panel1.Controls.Add(label17);
+            panel1.Controls.Add(btnSalvar);
+            panel1.Controls.Add(label15);
+            panel1.Controls.Add(mkTelefone);
+            panel1.Controls.Add(label16);
             panel1.Controls.Add(btnVoltar);
-            panel1.Controls.Add(mkCPF);
-            panel1.Location = new Point(860, 217);
+            panel1.Controls.Add(txtEmail);
+            panel1.Controls.Add(label14);
+            panel1.Controls.Add(label6);
+            panel1.Controls.Add(label13);
+            panel1.Controls.Add(txtNomeFantasia);
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(txtRazaoSocial);
+            panel1.Controls.Add(label10);
+            panel1.Controls.Add(label9);
+            panel1.Location = new Point(807, 532);
             panel1.Name = "panel1";
-            panel1.Size = new Size(910, 458);
+            panel1.Size = new Size(686, 438);
             panel1.TabIndex = 60;
             // 
             // btnExcluir
@@ -491,7 +503,7 @@
             btnExcluir.FlatStyle = FlatStyle.Popup;
             btnExcluir.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnExcluir.ForeColor = Color.Maroon;
-            btnExcluir.Location = new Point(413, 396);
+            btnExcluir.Location = new Point(392, 387);
             btnExcluir.Name = "btnExcluir";
             btnExcluir.Size = new Size(234, 35);
             btnExcluir.TabIndex = 52;
@@ -504,32 +516,20 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(35, 35, 45);
-            ClientSize = new Size(1798, 732);
+            ClientSize = new Size(1620, 680);
             Controls.Add(label11);
+            Controls.Add(mkCNPJ);
             Controls.Add(label5);
-            Controls.Add(mkTelefone);
-            Controls.Add(label17);
-            Controls.Add(label16);
-            Controls.Add(label15);
-            Controls.Add(label14);
-            Controls.Add(label13);
-            Controls.Add(btnSalvar);
             Controls.Add(label8);
             Controls.Add(label7);
-            Controls.Add(label6);
-            Controls.Add(txtEmail);
-            Controls.Add(label1);
             Controls.Add(label2);
-            Controls.Add(label3);
-            Controls.Add(panel3);
-            Controls.Add(label9);
-            Controls.Add(txtNomeFantasia);
-            Controls.Add(label10);
-            Controls.Add(txtRazaoSocial);
             Controls.Add(dtgEmpresas);
             Controls.Add(label4);
+            Controls.Add(mkCPF);
             Controls.Add(panel2);
             Controls.Add(panel1);
+            Controls.Add(label3);
+            Controls.Add(panel3);
             FormBorderStyle = FormBorderStyle.None;
             Name = "configEmpresa";
             StartPosition = FormStartPosition.CenterScreen;

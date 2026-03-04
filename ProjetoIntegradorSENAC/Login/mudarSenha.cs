@@ -95,21 +95,19 @@ namespace ProjetoIntegradorSENAC
                     {"@email", Email}
                 };
                 func_dashboard.Update(query, parametros);
-                loginUsuario usuario = new loginUsuario();
+                loginUsuario usuario = new loginUsuario(null);
                 usuario.Show();
 
 
                 caixaMensagem mensagem = new caixaMensagem("Senha alterada com sucesso", "Sucesso ✔");
                 mensagem.Show();
-                this.Hide();
+                this.Close();
             }
         }
 
         private void btnVoltarParaLogin_Click(object sender, EventArgs e)
         {
-            loginUsuario usuario = new loginUsuario();
-            usuario.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void mudarSenha_Load(object sender, EventArgs e)

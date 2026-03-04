@@ -1,6 +1,6 @@
 ﻿namespace ProjetoIntegradorSENAC
 {
-    partial class MainPrincipal
+    partial class MainEmpresa
     {
         /// <summary>
         ///  Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainPrincipal));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainEmpresa));
             panelLeft = new Panel();
             label4 = new Label();
             btnLogOut = new Button();

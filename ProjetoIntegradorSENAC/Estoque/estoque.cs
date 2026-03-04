@@ -13,11 +13,11 @@ namespace ProjetoIntegradorSENAC.Estoque
 {
     public partial class estoque : Form
     {
-        private MainPrincipal _main;
+        private MainEmpresa _main;
         private int idEmpresa;
         private int idUser;
 
-        public estoque(MainPrincipal main, int idEmpresa, int user)
+        public estoque(MainEmpresa main, int idEmpresa, int user)
         {
             InitializeComponent();
             _main = main;

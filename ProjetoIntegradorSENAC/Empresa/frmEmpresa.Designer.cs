@@ -32,106 +32,33 @@
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            panel1 = new Panel();
-            button2 = new Button();
-            btnLogOut = new Button();
-            label5 = new Label();
-            button1 = new Button();
-            dtgEmpresas = new DataGridView();
             label4 = new Label();
-            label1 = new Label();
-            label2 = new Label();
+            dtgEmpresas = new DataGridView();
+            button1 = new Button();
+            label5 = new Label();
+            button2 = new Button();
+            panel1 = new Panel();
+            voltarBtn = new Button();
+            logoPic = new PictureBox();
             label3 = new Label();
-            panelTop = new Panel();
-            btnMinimizar = new Button();
-            btnSair = new Button();
-            panel2 = new Panel();
-            tableLayoutPanel1 = new TableLayoutPanel();
-            panel3 = new Panel();
-            panel1.SuspendLayout();
+            label6 = new Label();
+            label7 = new Label();
             ((System.ComponentModel.ISupportInitialize)dtgEmpresas).BeginInit();
-            panelTop.SuspendLayout();
-            panel2.SuspendLayout();
-            tableLayoutPanel1.SuspendLayout();
-            panel3.SuspendLayout();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)logoPic).BeginInit();
             SuspendLayout();
             // 
-            // panel1
+            // label4
             // 
-            panel1.BackColor = Color.FromArgb(40, 40, 50);
-            panel1.Controls.Add(button2);
-            panel1.Controls.Add(btnLogOut);
-            panel1.Controls.Add(label5);
-            panel1.Controls.Add(button1);
-            panel1.Controls.Add(dtgEmpresas);
-            panel1.Controls.Add(label4);
-            panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(21, 20);
-            panel1.Margin = new Padding(21, 20, 21, 20);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(941, 831);
-            panel1.TabIndex = 0;
-            panel1.Paint += panel1_Paint;
-            // 
-            // button2
-            // 
-            button2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            button2.BackColor = SystemColors.Highlight;
-            button2.FlatStyle = FlatStyle.Popup;
-            button2.Font = new Font("Franklin Gothic Medium", 18F);
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(551, 580);
-            button2.Margin = new Padding(3, 4, 3, 4);
-            button2.Name = "button2";
-            button2.Size = new Size(370, 84);
-            button2.TabIndex = 9;
-            button2.Text = "Gerenciar\r\n";
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
-            // 
-            // btnLogOut
-            // 
-            btnLogOut.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnLogOut.BackColor = Color.Transparent;
-            btnLogOut.FlatStyle = FlatStyle.Popup;
-            btnLogOut.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnLogOut.ForeColor = Color.White;
-            btnLogOut.Location = new Point(21, 708);
-            btnLogOut.Margin = new Padding(3, 4, 3, 4);
-            btnLogOut.Name = "btnLogOut";
-            btnLogOut.Size = new Size(207, 47);
-            btnLogOut.TabIndex = 8;
-            btnLogOut.Text = "Sair";
-            btnLogOut.UseVisualStyleBackColor = false;
-            btnLogOut.Click += btnLogOut_Click;
-            // 
-            // label5
-            // 
-            label5.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            label5.Font = new Font("Microsoft Sans Serif", 18F);
-            label5.ForeColor = Color.White;
-            label5.Location = new Point(219, 191);
-            label5.Name = "label5";
-            label5.Size = new Size(512, 36);
-            label5.TabIndex = 7;
-            label5.Text = "Selecione o Comercio desejado";
-            label5.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // button1
-            // 
-            button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            button1.BackColor = SystemColors.Highlight;
-            button1.FlatStyle = FlatStyle.Popup;
-            button1.Font = new Font("Franklin Gothic Medium", 18F);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(21, 580);
-            button1.Margin = new Padding(3, 4, 3, 4);
-            button1.Name = "button1";
-            button1.Size = new Size(527, 84);
-            button1.TabIndex = 6;
-            button1.Text = "Adicionar Empresa +";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            label4.Anchor = AnchorStyles.Top;
+            label4.Font = new Font("Microsoft Sans Serif", 30F);
+            label4.ForeColor = Color.White;
+            label4.Location = new Point(173, 24);
+            label4.Name = "label4";
+            label4.Size = new Size(399, 44);
+            label4.TabIndex = 4;
+            label4.Text = "Bem vindo, Usuario!";
+            label4.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // dtgEmpresas
             // 
@@ -141,7 +68,7 @@
             dataGridViewCellStyle1.BackColor = Color.FromArgb(35, 35, 45);
             dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(70, 70, 90);
             dtgEmpresas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dtgEmpresas.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dtgEmpresas.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             dtgEmpresas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgEmpresas.BackgroundColor = Color.FromArgb(30, 30, 40);
             dtgEmpresas.BorderStyle = BorderStyle.None;
@@ -157,8 +84,7 @@
             dtgEmpresas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgEmpresas.EnableHeadersVisualStyles = false;
             dtgEmpresas.GridColor = Color.FromArgb(60, 60, 80);
-            dtgEmpresas.Location = new Point(21, 231);
-            dtgEmpresas.Margin = new Padding(3, 4, 3, 4);
+            dtgEmpresas.Location = new Point(18, 173);
             dtgEmpresas.MultiSelect = false;
             dtgEmpresas.Name = "dtgEmpresas";
             dtgEmpresas.ReadOnly = true;
@@ -178,185 +104,168 @@
             dataGridViewCellStyle4.SelectionForeColor = Color.White;
             dtgEmpresas.RowsDefaultCellStyle = dataGridViewCellStyle4;
             dtgEmpresas.RowTemplate.Height = 35;
-            dtgEmpresas.Size = new Size(901, 342);
+            dtgEmpresas.Size = new Size(703, 312);
             dtgEmpresas.TabIndex = 5;
             dtgEmpresas.CellClick += dtgEmpresas_CellClick;
             dtgEmpresas.CellMouseEnter += dtgEmpresas_CellMouseEnter_1;
             dtgEmpresas.CellMouseLeave += dtgEmpresas_CellMouseLeave;
             // 
-            // label4
+            // button1
             // 
-            label4.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            label4.Font = new Font("Microsoft Sans Serif", 30F);
-            label4.ForeColor = Color.White;
-            label4.Location = new Point(198, 32);
-            label4.Name = "label4";
-            label4.Size = new Size(553, 59);
-            label4.TabIndex = 4;
-            label4.Text = "Bem vindo, Usuario!";
-            label4.TextAlign = ContentAlignment.MiddleCenter;
+            button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            button1.BackColor = SystemColors.Highlight;
+            button1.FlatStyle = FlatStyle.Popup;
+            button1.Font = new Font("Franklin Gothic Medium", 18F);
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(18, 503);
+            button1.Name = "button1";
+            button1.Size = new Size(333, 63);
+            button1.TabIndex = 6;
+            button1.Text = "Adicionar Empresa +";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
-            // label1
+            // label5
             // 
-            label1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            label1.AutoSize = true;
-            label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Microsoft Sans Serif", 30F);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(24, 399);
-            label1.Name = "label1";
-            label1.Size = new Size(562, 58);
-            label1.TabIndex = 1;
-            label1.Text = "Gerencie com facilidade";
+            label5.Anchor = AnchorStyles.Top;
+            label5.Font = new Font("Microsoft Sans Serif", 18F);
+            label5.ForeColor = Color.White;
+            label5.Location = new Point(185, 127);
+            label5.Name = "label5";
+            label5.Size = new Size(363, 27);
+            label5.TabIndex = 7;
+            label5.Text = "Selecione o Comercio desejado";
+            label5.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // label2
+            // button2
             // 
-            label2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            label2.AutoSize = true;
-            label2.BackColor = Color.Transparent;
-            label2.Font = new Font("Microsoft Sans Serif", 50F);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(24, 461);
-            label2.Name = "label2";
-            label2.Size = new Size(628, 190);
-            label2.TabIndex = 2;
-            label2.Text = "Transforme sua\r\nEm resultados.";
+            button2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            button2.BackColor = SystemColors.Highlight;
+            button2.FlatStyle = FlatStyle.Popup;
+            button2.Font = new Font("Franklin Gothic Medium", 18F);
+            button2.ForeColor = Color.White;
+            button2.Location = new Point(397, 503);
+            button2.Name = "button2";
+            button2.Size = new Size(324, 63);
+            button2.TabIndex = 9;
+            button2.Text = "Gerenciar\r\n";
+            button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
+            // 
+            // panel1
+            // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            panel1.BackColor = Color.FromArgb(40, 40, 50);
+            panel1.Controls.Add(button2);
+            panel1.Controls.Add(label5);
+            panel1.Controls.Add(button1);
+            panel1.Controls.Add(dtgEmpresas);
+            panel1.Controls.Add(label4);
+            panel1.Location = new Point(530, 31);
+            panel1.Margin = new Padding(18, 15, 18, 15);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(738, 616);
+            panel1.TabIndex = 0;
+            panel1.Paint += panel1_Paint;
+            // 
+            // voltarBtn
+            // 
+            voltarBtn.BackColor = Color.Transparent;
+            voltarBtn.FlatAppearance.BorderSize = 0;
+            voltarBtn.FlatStyle = FlatStyle.Flat;
+            voltarBtn.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+            voltarBtn.ForeColor = SystemColors.Highlight;
+            voltarBtn.Location = new Point(12, 12);
+            voltarBtn.Name = "voltarBtn";
+            voltarBtn.Size = new Size(60, 50);
+            voltarBtn.TabIndex = 11;
+            voltarBtn.Text = "←";
+            voltarBtn.UseVisualStyleBackColor = false;
+            voltarBtn.Click += voltarBtn_Click;
+            // 
+            // logoPic
+            // 
+            logoPic.BackColor = Color.Transparent;
+            logoPic.Image = Properties.Resources.logo;
+            logoPic.Location = new Point(78, 12);
+            logoPic.Name = "logoPic";
+            logoPic.Size = new Size(120, 50);
+            logoPic.SizeMode = PictureBoxSizeMode.Zoom;
+            logoPic.TabIndex = 12;
+            logoPic.TabStop = false;
             // 
             // label3
             // 
-            label3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            label3.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label3.AutoSize = true;
             label3.BackColor = Color.Transparent;
-            label3.Font = new Font("Microsoft Sans Serif", 50F);
+            label3.Font = new Font("Franklin Gothic Demi Cond", 40F);
             label3.ForeColor = SystemColors.Highlight;
-            label3.Location = new Point(633, 461);
+            label3.Location = new Point(349, 301);
             label3.Name = "label3";
-            label3.Size = new Size(311, 95);
-            label3.TabIndex = 3;
-            label3.Text = "Gestao";
+            label3.Size = new Size(175, 68);
+            label3.TabIndex = 15;
+            label3.Text = "Gestão";
             // 
-            // panelTop
+            // label6
             // 
-            panelTop.BackColor = Color.FromArgb(30, 30, 40);
-            panelTop.Controls.Add(btnMinimizar);
-            panelTop.Controls.Add(btnSair);
-            panelTop.Dock = DockStyle.Top;
-            panelTop.Location = new Point(0, 0);
-            panelTop.Margin = new Padding(3, 4, 3, 4);
-            panelTop.Name = "panelTop";
-            panelTop.Size = new Size(1621, 43);
-            panelTop.TabIndex = 4;
+            label6.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            label6.AutoSize = true;
+            label6.Font = new Font("Franklin Gothic Demi Cond", 40F);
+            label6.ForeColor = Color.White;
+            label6.Location = new Point(20, 299);
+            label6.Name = "label6";
+            label6.Size = new Size(346, 136);
+            label6.TabIndex = 14;
+            label6.Text = "Transforme sua\r\nEm resultados.";
             // 
-            // btnMinimizar
+            // label7
             // 
-            btnMinimizar.BackColor = Color.Transparent;
-            btnMinimizar.Dock = DockStyle.Right;
-            btnMinimizar.FlatStyle = FlatStyle.Popup;
-            btnMinimizar.Font = new Font("Segoe UI", 15F);
-            btnMinimizar.ForeColor = Color.White;
-            btnMinimizar.Location = new Point(1497, 0);
-            btnMinimizar.Margin = new Padding(3, 4, 3, 4);
-            btnMinimizar.Name = "btnMinimizar";
-            btnMinimizar.Size = new Size(62, 43);
-            btnMinimizar.TabIndex = 3;
-            btnMinimizar.Text = "-";
-            btnMinimizar.UseVisualStyleBackColor = false;
-            btnMinimizar.Click += btnMinimizar_Click;
-            // 
-            // btnSair
-            // 
-            btnSair.BackColor = Color.Transparent;
-            btnSair.Dock = DockStyle.Right;
-            btnSair.FlatStyle = FlatStyle.Popup;
-            btnSair.ForeColor = Color.White;
-            btnSair.Location = new Point(1559, 0);
-            btnSair.Margin = new Padding(3, 4, 3, 4);
-            btnSair.Name = "btnSair";
-            btnSair.Size = new Size(62, 43);
-            btnSair.TabIndex = 1;
-            btnSair.Text = "X";
-            btnSair.UseVisualStyleBackColor = false;
-            btnSair.Click += btnSair_Click;
-            // 
-            // panel2
-            // 
-            panel2.Controls.Add(panel1);
-            panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(635, 3);
-            panel2.Name = "panel2";
-            panel2.Padding = new Padding(21, 20, 21, 20);
-            panel2.Size = new Size(983, 871);
-            panel2.TabIndex = 5;
-            // 
-            // tableLayoutPanel1
-            // 
-            tableLayoutPanel1.ColumnCount = 2;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 989F));
-            tableLayoutPanel1.Controls.Add(panel2, 1, 0);
-            tableLayoutPanel1.Controls.Add(panel3, 0, 0);
-            tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(0, 43);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 1;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel1.Size = new Size(1621, 877);
-            tableLayoutPanel1.TabIndex = 6;
-            // 
-            // panel3
-            // 
-            panel3.Controls.Add(label2);
-            panel3.Controls.Add(label1);
-            panel3.Controls.Add(label3);
-            panel3.Dock = DockStyle.Fill;
-            panel3.Location = new Point(3, 3);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(626, 871);
-            panel3.TabIndex = 6;
+            label7.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            label7.AutoSize = true;
+            label7.Font = new Font("Franklin Gothic Medium Cond", 20F);
+            label7.ForeColor = Color.White;
+            label7.Location = new Point(31, 265);
+            label7.Name = "label7";
+            label7.Size = new Size(252, 34);
+            label7.TabIndex = 13;
+            label7.Text = "Gerencie com facilidade";
             // 
             // frmEmpresa
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(35, 35, 45);
-            ClientSize = new Size(1621, 920);
-            Controls.Add(tableLayoutPanel1);
-            Controls.Add(panelTop);
+            ClientSize = new Size(1280, 680);
+            Controls.Add(label3);
+            Controls.Add(label6);
+            Controls.Add(label7);
+            Controls.Add(logoPic);
+            Controls.Add(voltarBtn);
+            Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 4, 3, 4);
             Name = "frmEmpresa";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "cadastroEmpresa";
-            WindowState = FormWindowState.Maximized;
             Load += frmEmpresa_Load;
-            panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dtgEmpresas).EndInit();
-            panelTop.ResumeLayout(false);
-            panel2.ResumeLayout(false);
-            tableLayoutPanel1.ResumeLayout(false);
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
+            panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)logoPic).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
-
-        private Panel panel1;
-        private Label label1;
-        private Label label2;
-        private Label label3;
         private Label label4;
-        private Button button1;
         private DataGridView dtgEmpresas;
+        private Button button1;
         private Label label5;
-        private Panel panelTop;
-        private Button btnMinimizar;
-        private Button btnSair;
-        private Button btnLogOut;
         private Button button2;
-        private Panel panel2;
-        private TableLayoutPanel tableLayoutPanel1;
-        private Panel panel3;
+        private Panel panel1;
+        private Button voltarBtn;
+        private PictureBox logoPic;
+        private Label label3;
+        private Label label6;
+        private Label label7;
     }
 }

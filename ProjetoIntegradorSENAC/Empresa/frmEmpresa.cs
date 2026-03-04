@@ -6,17 +6,20 @@ using System.Windows.Forms;
 using ProjetoIntegradorSENAC.Classes;
 using ProjetoIntegradorSENAC.Configurações;
 using ProjetoIntegradorSENAC.Logins;
+using ProjetoIntegradorSENAC.Main;
 
 namespace ProjetoIntegradorSENAC.Empresa
 {
     public partial class frmEmpresa : Form
     {
         public int idUsuario;
+        mainFrm main;
 
-        public frmEmpresa(int idUsuario)
+        public frmEmpresa(int idUsuario, mainFrm mainFrm)
         {
             InitializeComponent();
             this.idUsuario = idUsuario;
+            main = mainFrm;
         }
 
         private void frmEmpresa_Load(object sender, EventArgs e)
@@ -73,8 +76,8 @@ namespace ProjetoIntegradorSENAC.Empresa
             string nomeEmpresa =
              dtgEmpresas.Rows[e.RowIndex].Cells["fantasia"].Value.ToString();
 
-            MainPrincipal main =
-                new MainPrincipal(idComercio, idDono, this.idUsuario, nomeEmpresa);
+            MainEmpresa main =
+                new MainEmpresa(idComercio, idDono, this.idUsuario, nomeEmpresa);
 
             main.Show();
             this.Hide();
@@ -92,28 +95,10 @@ namespace ProjetoIntegradorSENAC.Empresa
                 dtgEmpresas.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(40, 40, 50);
         }
 
-        private void btnSair_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void btnMinimizar_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Minimized;
-        }
-
-        private void btnLogOut_Click(object sender, EventArgs e)
-        {
-            loginUsuario loginUsuario = new loginUsuario();
-            loginUsuario.Show();
-            this.Hide();
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            cadEmpresa cad = new cadEmpresa(this.idUsuario);
-            cad.Show();
-            this.Hide();
+             main.AbrirFormNoPanel( new cadEmpresa(this.idUsuario, main));
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -126,6 +111,11 @@ namespace ProjetoIntegradorSENAC.Empresa
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void voltarBtn_Click(object sender, EventArgs e)
+        {
+            main.AbrirFormNoPanel(new loginUsuario(main));
         }
     }
 }

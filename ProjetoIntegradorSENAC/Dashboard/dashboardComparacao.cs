@@ -17,13 +17,13 @@ namespace ProjetoIntegradorSENAC
 {
     public partial class dashboardComparacao : Form
     {
-        private MainPrincipal _main;
+        private MainEmpresa _main;
         private int idEmpresa;
         private Dictionary<string, object> param_idEmpresa;
         private bool produtosBoo = false;
         private bool vendasBoo = true;
 
-        public dashboardComparacao(MainPrincipal main, int idEmpresa)
+        public dashboardComparacao(MainEmpresa main, int idEmpresa)
         {
             InitializeComponent();
             this.idEmpresa = idEmpresa;

@@ -276,7 +276,7 @@ namespace ProjetoIntegradorSENAC.Configurações
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            frmEmpresa frm = new frmEmpresa(this.idUsuario);
+            frmEmpresa frm = new frmEmpresa(this.idUsuario, null);
             frm.Show();
             this.Hide();
         }

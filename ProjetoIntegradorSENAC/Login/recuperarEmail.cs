@@ -1,5 +1,6 @@
 ﻿using ProjetoIntegradorSENAC.Classes;
 using ProjetoIntegradorSENAC.Logins;
+using ProjetoIntegradorSENAC.Main;
 using ProjetoIntegradorSENAC.personalizado;
 using System;
 using System.Collections.Generic;
@@ -25,21 +26,11 @@ namespace ProjetoIntegradorSENAC
         int codigoVal = 0;
         float angulo = 0;
 
-        private void btnSair_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
 
-        private void btnMinimizar_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Minimized;
-        }
 
         private void bntVoltar_Click(object sender, EventArgs e)
         {
-            loginUsuario usuario = new loginUsuario();
-            usuario.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void recuperarEmail_Load(object sender, EventArgs e)
@@ -61,7 +52,7 @@ namespace ProjetoIntegradorSENAC
             }
 
             string verificarEmail =
-                $"SELECT * FROM usuarios WHERE email = '{txtEmail.Text}' ";
+                $"SELECT * FROM usuarios WHERE email = '{txtEmail.Text.ToLower()}' ";
 
             var data = Banco.Pesquisar(verificarEmail);
 
@@ -86,9 +77,9 @@ namespace ProjetoIntegradorSENAC
                 EsconderLoading(); 
 
                 codigo codigo = new codigo(codigoVal, txtEmail.Text);
-                codigo.Show();
+                codigo.ShowDialog();
 
-                this.Hide();
+                this.Close();
             }
             catch (Exception ex)
             {

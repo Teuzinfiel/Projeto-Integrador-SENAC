@@ -10,48 +10,27 @@ using System.Windows.Forms;
 using ProjetoIntegradorSENAC.Caixa;
 using ProjetoIntegradorSENAC.Classes;
 using ProjetoIntegradorSENAC.Empresa;
+using ProjetoIntegradorSENAC.Main;
 using ProjetoIntegradorSENAC.Usuario;
 
 namespace ProjetoIntegradorSENAC.Logins
 {
     public partial class loginUsuario : Form
     {
-        public loginUsuario()
+        mainFrm main;
+        public loginUsuario(mainFrm mainFrm)
         {
             InitializeComponent();
+            this.main = mainFrm;
         }
-        /*
-         Davi, O que precisamos ->
-        
-            - Validações de cada campo, usar as funcoes, acho melhor vc esperar o usuario preencher tudo e depois vc mostra oq ta de errado
-
-            - muda o metodo de login sem afetar os id, joga o codigo no chat pra vc entender melhor,
-            esse codigo todo que fiz foi so pra comparar se o id do usuario era de funcionario ou de dono, pra
-            direcionar ele pra frmEmpresa ou pra MainPrincipal, 
-
-            (MUDAR O METODO DE LOGIN EU FALO, MELHORAR SEGURANÇA -> TENTA FAZER SENHAS HASH, PROTEGER CONTRA SQL INJECTION, E ETC, VE O MELHOR METODO 
-            DE LOGIN QUE VOCE CONSEGUIR FAZER, USE ALGUNS SITES DE REFERENCIA)
-
-            - NO CADASTRO DE CONTA TBM, APLICAR TUDO ISSO Q FALEI, VALIDAÇÕES MELHORES METODOS PARA CADASTRO ETC,
-
-            - QUESTAO DO DESIGN PODE DEIXAR QUE EU RESOLVO QUANDO VOCE TIVER FINALIZADO
-
-            ! PRECISEI ALTERAR O BANCO DE DADOS PARA FUNCIONAR A VERIFICACAO DE CARGO.
-
-            - ENFIM, FAZENDO ISSO, APLICA AS MESMAS COISA NO CADASTRO DE FUNCIONARIOS, LA EU FIZ QUE CADA CADASTRO FEITO POR LA, O USUARIO SEJA RELACIONADO 
-            COMO FUNCIONARIO, POREM EU N FIZ NENHUM TIPO DE VALIDAÇÃO E ETC ENTAO FAZ LA TBM, SEM DAR CONFLITO COM O CADASTRO QUE TA LA, QUANDO VC 
-            TERMINAR EU VOU MELHORAR O DESIGN LA ENT TA DE BOA,  VAI TOMAR NO CU MATHEUS!!!
-
-
-
-        */
+       
         private void btnLogin_Click(object sender, EventArgs e)
         {
             //  Busca usuário
             string queryUser = $@"
             SELECT id, senha 
             FROM usuarios 
-            WHERE email = '{txtEmail.Text}'";
+            WHERE email = '{txtEmail.Text.ToLower()}'";
 
             DataTable user = Banco.Pesquisar(queryUser);
 
@@ -91,8 +70,8 @@ namespace ProjetoIntegradorSENAC.Logins
             if (isDono)
             {
                 //  dono escolhe empresa depois
-                frmEmpresa frm = new frmEmpresa(idUser);
-                frm.Show();
+                 main.AbrirFormNoPanel(new frmEmpresa(idUser, main));
+                
             }
             else if (ehFuncionario)
             {
@@ -110,28 +89,17 @@ namespace ProjetoIntegradorSENAC.Logins
                 int idDono = Convert.ToInt32(emp.Rows[0]["dono_id"]);
 
                 //  entra direto na main
-                MainPrincipal main =
-                    new MainPrincipal(idEmpresa, idDono, idUser, nomeEmpresa);
+                
+                  main.AbrirFormNoPanel (new MainEmpresa(idEmpresa, idDono, idUser, nomeEmpresa));
 
-                main.Show();
+                
             }
             else
             {
-                frmEmpresa frm = new frmEmpresa(idUser);
-                frm.Show();
+                main.AbrirFormNoPanel(new frmEmpresa(idUser, main));
+              
             }
 
-        }
-
-
-        private void btnSair_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void btnMinimizar_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Minimized;
         }
 
         private void chkMostrarSenha_CheckedChanged(object sender, EventArgs e)
@@ -148,17 +116,21 @@ namespace ProjetoIntegradorSENAC.Logins
 
         private void CriarConta_Click(object sender, EventArgs e)
         {
-            cadUsuario cadastrar = new cadUsuario();
-            cadastrar.Show();
-            this.Hide();
-
+            main.AbrirFormNoPanel(new cadUsuario(main));
         }
 
         private void recuperarConta_Click(object sender, EventArgs e)
         {
-            recuperarEmail email = new recuperarEmail();
-            email.Show();
-            this.Hide();
+          recuperarEmail frmEmail = new recuperarEmail();
+            frmEmail.ShowDialog();
+
         }
+
+        private void loginUsuario_Load(object sender, EventArgs e)
+        {
+           
+        }
+
+      
     }
 }

@@ -14,8 +14,8 @@ namespace ProjetoIntegradorSENAC.Classes
 
         public static string banco = "senac";
         public static string senha = "12345";
-        public static string usuario = "root"; 
-        public static string servidor = "localhost";
+        public static string usuario = "erpex"; 
+        public static string servidor = "76.13.165.146";
 
         public static string caminho = $"server={servidor};database={banco};uid={usuario};password={senha}";
 

@@ -1,5 +1,6 @@
 ﻿using ProjetoIntegradorSENAC.Classes;
 using ProjetoIntegradorSENAC.Logins;
+using ProjetoIntegradorSENAC.Main;
 using ProjetoIntegradorSENAC.personalizado;
 using System;
 using System.Collections.Generic;
@@ -23,39 +24,66 @@ namespace ProjetoIntegradorSENAC.Usuario
         bool[] erroSenha = { true, true };
 
         caixaInformacao? info;
+        mainFrm main;
 
-        public cadUsuario()
+        public cadUsuario(mainFrm mainFrm)
         {
             InitializeComponent();
+            main = mainFrm;
         }
 
         private void btnCadastro_Click(object sender, EventArgs e)
         {
             bool senhaVal = false;
 
-            if (UsSenha.Text == ConfirmarSenha.Text) senhaVal = true;
-
+            if (UsSenha.Text == ConfirmarSenha.Text)
+                senhaVal = true;
 
             if (senhaVal && !erroNome && !erroCpf && !erroEmail && !erroTelefone && !erroSenha[0] && !erroSenha[1])
             {
+                // 🔎 Verifica se já existe email, cpf ou telefone
+                string select = "SELECT * FROM usuarios WHERE " +
+                                $"email = '{UsEmail.Text.ToLower()}' OR " +
+                                $"cpf = '{UsCpf.Text}' OR " +
+                                $"telefone = '{UsTelefone.Text}'";
 
+                DataTable dt = Banco.Pesquisar(select);
+
+                if (dt.Rows.Count > 0)
+                {
+                    string mensagem = "";
+
+                    if (dt.Rows[0]["email"].ToString() == UsEmail.Text)
+                        mensagem += "Email já cadastrado!\n";
+
+                    if (dt.Rows[0]["cpf"].ToString() == UsCpf.Text)
+                        mensagem += "CPF já cadastrado!\n";
+
+                    if (dt.Rows[0]["telefone"].ToString() == UsTelefone.Text)
+                        mensagem += "Telefone já cadastrado!\n";
+
+                    MessageBox.Show(mensagem);
+                    return;
+                }
+
+                // 🔐 Criptografa senha
                 string senha = Funcoes.CriptoSenha(ConfirmarSenha.Text);
 
-                string insert = "insert into usuarios (nome, email, cpf, telefone, senha)" +
-                    $" value ('{UsNome.Text}', '{UsEmail.Text}', '{UsCpf.Text}', '{UsTelefone.Text}', '{senha}')";
+                string insert = "INSERT INTO usuarios (nome, email, cpf, telefone, senha) " +
+                                $"VALUES ('{UsNome.Text}', '{UsEmail.Text.ToLower()}', '{UsCpf.Text}', '{UsTelefone.Text}', '{senha}')";
 
                 Banco.Inserir(insert);
 
                 MessageBox.Show("Conta criada com sucesso!!");
                 Funcoes.Limpar(this);
-                loginUsuario loginUsuario = new loginUsuario();
-                loginUsuario.Show();
-                this.Close();
+                main.AbrirFormNoPanel(new loginUsuario(main));
             }
             else
             {
-                if (!senhaVal) MessageBox.Show("As senhas não correspondem");
-                else MessageBox.Show("Preencha todos os campos corretamente");
+                if (!senhaVal)
+                    MessageBox.Show("As senhas não correspondem");
+                else
+                    MessageBox.Show("Preencha todos os campos corretamente");
             }
         }
 
@@ -75,15 +103,6 @@ namespace ProjetoIntegradorSENAC.Usuario
 
         }
 
-        private void btnMinimizar_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Minimized;
-        }
-
-        private void btnFechar_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
 
         private void btnLimpar_Click(object sender, EventArgs e)
         {
@@ -92,9 +111,8 @@ namespace ProjetoIntegradorSENAC.Usuario
 
         private void bntSair_Click(object sender, EventArgs e)
         {
-            loginUsuario loginUsuario = new loginUsuario();
-            loginUsuario.Show();
-            this.Close();
+            main.AbrirFormNoPanel (new loginUsuario(main));
+
         }
 
         private void UsNome_TextChanged(object sender, EventArgs e)
@@ -210,7 +228,7 @@ namespace ProjetoIntegradorSENAC.Usuario
 
                 info.Location = new Point(pos.X + 10, pos.Y + 10);
 
-                info.Show();
+                main.AbrirFormNoPanel(info);
             }
         }
 

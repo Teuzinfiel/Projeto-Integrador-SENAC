@@ -39,8 +39,6 @@
             txtNovaSenha = new TextBox();
             label2 = new Label();
             label1 = new Label();
-            btnMinimizar = new Button();
-            btnSair = new Button();
             panelTop = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picSenha).BeginInit();
@@ -88,7 +86,7 @@
             btnVoltarParaLogin.FlatStyle = FlatStyle.Flat;
             btnVoltarParaLogin.Font = new Font("Franklin Gothic Medium", 15F);
             btnVoltarParaLogin.ForeColor = SystemColors.Highlight;
-            btnVoltarParaLogin.Location = new Point(38, 408);
+            btnVoltarParaLogin.Location = new Point(105, 404);
             btnVoltarParaLogin.Margin = new Padding(3, 2, 3, 2);
             btnVoltarParaLogin.Name = "btnVoltarParaLogin";
             btnVoltarParaLogin.Size = new Size(195, 37);
@@ -200,39 +198,12 @@
             label1.TabIndex = 0;
             label1.Text = "🔐 Redefinir Senha";
             // 
-            // btnMinimizar
-            // 
-            btnMinimizar.BackColor = Color.Transparent;
-            btnMinimizar.FlatStyle = FlatStyle.Popup;
-            btnMinimizar.Font = new Font("Segoe UI", 15F);
-            btnMinimizar.ForeColor = Color.White;
-            btnMinimizar.Location = new Point(344, 0);
-            btnMinimizar.Name = "btnMinimizar";
-            btnMinimizar.Size = new Size(54, 33);
-            btnMinimizar.TabIndex = 33;
-            btnMinimizar.Text = "-";
-            btnMinimizar.UseVisualStyleBackColor = false;
-            btnMinimizar.Click += btnMinimizar_Click;
-            // 
-            // btnSair
-            // 
-            btnSair.BackColor = Color.Transparent;
-            btnSair.FlatStyle = FlatStyle.Popup;
-            btnSair.ForeColor = Color.White;
-            btnSair.Location = new Point(397, 0);
-            btnSair.Name = "btnSair";
-            btnSair.Size = new Size(54, 33);
-            btnSair.TabIndex = 32;
-            btnSair.Text = "X";
-            btnSair.UseVisualStyleBackColor = false;
-            btnSair.Click += btnSair_Click;
-            // 
             // panelTop
             // 
             panelTop.BackColor = Color.FromArgb(30, 30, 40);
             panelTop.Location = new Point(0, 0);
             panelTop.Name = "panelTop";
-            panelTop.Size = new Size(344, 33);
+            panelTop.Size = new Size(454, 33);
             panelTop.TabIndex = 34;
             // 
             // mudarSenha
@@ -241,8 +212,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(35, 35, 45);
             ClientSize = new Size(452, 540);
-            Controls.Add(btnMinimizar);
-            Controls.Add(btnSair);
             Controls.Add(panel1);
             Controls.Add(panelTop);
             FormBorderStyle = FormBorderStyle.None;
@@ -263,8 +232,6 @@
         private TextBox txtNovaSenha;
         private Label label2;
         private Label label1;
-        private Button btnMinimizar;
-        private Button btnSair;
         private Panel panelTop;
         private TextBox txtConfirmarSenha;
         private Label lbNovaSenha;

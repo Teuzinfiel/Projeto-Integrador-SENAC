@@ -65,7 +65,7 @@ namespace ProjetoIntegradorSENAC
 
         private void btnVoltarParaLogin_Click(object sender, EventArgs e)
         {
-            loginUsuario usuario = new loginUsuario();
+            loginUsuario usuario = new loginUsuario(null);
             usuario.Show();
             this.Hide();
         }

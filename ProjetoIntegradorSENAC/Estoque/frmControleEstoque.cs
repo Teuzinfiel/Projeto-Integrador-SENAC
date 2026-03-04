@@ -20,8 +20,8 @@ namespace ProjetoIntegradorSENAC.Estoque
         private int _produtoId;
         private int _comercioId;
         private int _userId;
-        private MainPrincipal _main;
-        public frmControleEstoque(MainPrincipal main, int produtoId, int user, int _comercioId)
+        private MainEmpresa _main;
+        public frmControleEstoque(MainEmpresa main, int produtoId, int user, int _comercioId)
         {
             InitializeComponent();
             _main = main;

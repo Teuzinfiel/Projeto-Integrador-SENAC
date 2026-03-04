@@ -1,21 +1,25 @@
-﻿using MySql.Data.MySqlClient;
-using Mysqlx.Crud;
-using ProjetoIntegradorSENAC.Classes;
-using System;
-using System.Drawing;
-using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+﻿    using MySql.Data.MySqlClient;
+    using Mysqlx.Crud;
+    using ProjetoIntegradorSENAC.Classes;
+    using System;
+    using System.Drawing;
+    using System.Windows.Forms;
+    using MySql.Data.MySqlClient;
+    using ProjetoIntegradorSENAC.Main;
 
-namespace ProjetoIntegradorSENAC.Empresa
-{
+    namespace ProjetoIntegradorSENAC.Empresa
+    {
     public partial class cadEmpresa : Form
     {
         public int idUsuario;
-
-        public cadEmpresa(int idUsuario)
+        mainFrm main;
+        EmpresaCnpj empresa;
+        public cadEmpresa(int idUsuario, mainFrm mainFrm)
         {
             InitializeComponent();
             this.idUsuario = idUsuario;
+            main = mainFrm;
+            empresa = new EmpresaCnpj();
         }
 
         private void cadEmpresa_Load(object sender, EventArgs e)
@@ -48,10 +52,10 @@ namespace ProjetoIntegradorSENAC.Empresa
             mkCNPJ.Clear();
         }
 
-  
+
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            frmEmpresa frm = new frmEmpresa(this.idUsuario);
+            frmEmpresa frm = new frmEmpresa(this.idUsuario, null);
             frm.Show();
             this.Hide();
         }
@@ -95,13 +99,33 @@ namespace ProjetoIntegradorSENAC.Empresa
             }
         }
 
-        private void mkCNPJ_TextChanged(object sender, EventArgs e)
+        private async void mkCNPJ_TextChanged(object sender, EventArgs e)
         {
             if (Funcoes.isCnpj(mkCNPJ.Text))
             {
                 erroCnpj = false;
                 label15.Visible = false;
                 label4.ForeColor = Color.White;
+                try
+                {
+                    var dados = await empresa.ConsultarCnpj(mkCNPJ.Text);
+
+
+                    if (dados == null)
+                    {
+                        return;
+                    }
+
+                    txtEmail.Text = dados.Email;
+                    txtNomeFantasia.Text = dados.NomeFantasia;
+                    txtRazaoSocial.Text = dados.RazaoSocial;
+                    mkTelefone.Text = dados.Telefone;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                    return;
+                }
             }
             else
             {
@@ -129,19 +153,19 @@ namespace ProjetoIntegradorSENAC.Empresa
 
         private void mkTelefone_TextChanged(object sender, EventArgs e)
         {
-             if (Funcoes.isTelefone(mkTelefone.Text))
-             {
-                 erroTelefone = false;
-                 label16.Visible = false;
-                 label5.ForeColor = Color.White;
-             }
-             else
-             {
-                 erroTelefone = true;
-                 label16.Visible = true;
-                 label5.ForeColor = Color.DarkRed;
-             }
-            
+            if (Funcoes.isTelefone(mkTelefone.Text))
+            {
+                erroTelefone = false;
+                label16.Visible = false;
+                label5.ForeColor = Color.White;
+            }
+            else
+            {
+                erroTelefone = true;
+                label16.Visible = true;
+                label5.ForeColor = Color.DarkRed;
+            }
+
         }
 
         private void txtEmail_TextChanged(object sender, EventArgs e)
@@ -184,10 +208,10 @@ namespace ProjetoIntegradorSENAC.Empresa
             {
                 //  cria empresa
                 string insertEmpresa = $@"
-                INSERT INTO comercios 
-                (dono_id, nome, nome_fantasia, email, tipo_documentacao, documentacao, telefone)
-                VALUES  ({idUsuario}, '{nome}', '{nomeFantasia}', '{email}', '{tipoDoc}', '{doc}', '{telefone}')
-                ";
+                    INSERT INTO comercios 
+                    (dono_id, nome, nome_fantasia, email, tipo_documentacao, documentacao, telefone)
+                    VALUES  ({idUsuario}, '{nome}', '{nomeFantasia}', '{email}', '{tipoDoc}', '{doc}', '{telefone}')
+                    ";
 
                 using (var cmd1 = new MySqlCommand(insertEmpresa, conn))
                     cmd1.ExecuteNonQuery();
@@ -200,9 +224,9 @@ namespace ProjetoIntegradorSENAC.Empresa
 
                 //  cadastra dono como funcionario
                 string insertFuncionario = $@"
-                INSERT INTO funcionarios (usuarios_id, comercio_id, cargo)
-                VALUES ({idUsuario}, {idEmpresa}, 'dono')
-                ";
+                    INSERT INTO funcionarios (usuarios_id, comercio_id, cargo)
+                    VALUES ({idUsuario}, {idEmpresa}, 'dono')
+                    ";
 
                 using (var cmd3 = new MySqlCommand(insertFuncionario, conn))
                     cmd3.ExecuteNonQuery();
@@ -210,11 +234,34 @@ namespace ProjetoIntegradorSENAC.Empresa
 
             MessageBox.Show("Empresa cadastrada com sucesso!");
             Funcoes.Limpar(this);
-            frmEmpresa frm = new frmEmpresa(this.idUsuario);
+            frmEmpresa frm = new frmEmpresa(this.idUsuario, null);
             frm.Show();
             this.Hide();
         }
 
-     
+        private async void mkCNPJ_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+        }
+
+        private async void maskedTextBox1_Leave(object sender, EventArgs e)
+        {
+            
+        }
+
+        private async void mkCNPJ_Leave(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            panel2.Visible = true;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            panel2.Visible = false;
+        }
     }
+
 }

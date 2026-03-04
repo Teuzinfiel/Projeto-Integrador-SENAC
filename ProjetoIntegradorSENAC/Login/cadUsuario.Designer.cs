@@ -55,16 +55,13 @@
             lbNome = new Label();
             UsNome = new TextBox();
             label1 = new Label();
-            btnMinimizar = new Button();
-            btnFechar = new Button();
-            panel2 = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picSenha).BeginInit();
-            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
+            panel1.Anchor = AnchorStyles.None;
             panel1.BackColor = Color.FromArgb(40, 40, 50);
             panel1.Controls.Add(picSenha);
             panel1.Controls.Add(astConfirmar);
@@ -92,9 +89,9 @@
             panel1.Controls.Add(lbNome);
             panel1.Controls.Add(UsNome);
             panel1.Controls.Add(label1);
-            panel1.Location = new Point(12, 12);
+            panel1.Location = new Point(451, 1);
             panel1.Name = "panel1";
-            panel1.Size = new Size(501, 668);
+            panel1.Size = new Size(501, 679);
             panel1.TabIndex = 0;
             // 
             // picSenha
@@ -306,7 +303,7 @@
             UsCpf.Font = new Font("Microsoft Sans Serif", 20.25F);
             UsCpf.ForeColor = SystemColors.WindowText;
             UsCpf.Location = new Point(29, 348);
-            UsCpf.Mask = " 000.000.000-00";
+            UsCpf.Mask = " 000,000,000-00";
             UsCpf.Name = "UsCpf";
             UsCpf.Size = new Size(429, 38);
             UsCpf.TabIndex = 23;
@@ -424,52 +421,12 @@
             label1.TabIndex = 9;
             label1.Text = "Cadastre sua conta aqui!";
             // 
-            // btnMinimizar
-            // 
-            btnMinimizar.Anchor = AnchorStyles.None;
-            btnMinimizar.BackColor = Color.Transparent;
-            btnMinimizar.FlatStyle = FlatStyle.Popup;
-            btnMinimizar.Font = new Font("Segoe UI", 15F);
-            btnMinimizar.ForeColor = Color.White;
-            btnMinimizar.Location = new Point(415, -2);
-            btnMinimizar.Name = "btnMinimizar";
-            btnMinimizar.RightToLeft = RightToLeft.No;
-            btnMinimizar.Size = new Size(54, 33);
-            btnMinimizar.TabIndex = 5;
-            btnMinimizar.Text = "-";
-            btnMinimizar.UseVisualStyleBackColor = true;
-            btnMinimizar.Click += btnMinimizar_Click;
-            // 
-            // btnFechar
-            // 
-            btnFechar.BackColor = Color.Transparent;
-            btnFechar.FlatStyle = FlatStyle.Popup;
-            btnFechar.ForeColor = Color.White;
-            btnFechar.Location = new Point(465, -2);
-            btnFechar.Name = "btnFechar";
-            btnFechar.Size = new Size(54, 33);
-            btnFechar.TabIndex = 4;
-            btnFechar.Text = "X";
-            btnFechar.UseVisualStyleBackColor = false;
-            btnFechar.Click += btnFechar_Click;
-            // 
-            // panel2
-            // 
-            panel2.BackColor = Color.FromArgb(30, 30, 40);
-            panel2.Controls.Add(btnMinimizar);
-            panel2.Controls.Add(btnFechar);
-            panel2.Location = new Point(1, 5);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(521, 31);
-            panel2.TabIndex = 38;
-            // 
             // cadUsuario
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(35, 35, 45);
-            ClientSize = new Size(523, 692);
-            Controls.Add(panel2);
+            ClientSize = new Size(1280, 680);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "cadUsuario";
@@ -478,7 +435,6 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picSenha).EndInit();
-            panel2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -510,9 +466,6 @@
         private Label astSenha;
         private Label astTelefone;
         private Label astCpf;
-        private Button btnMinimizar;
-        private Button btnFechar;
         private PictureBox picSenha;
-        private Panel panel2;
     }
 }

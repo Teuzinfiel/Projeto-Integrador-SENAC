@@ -84,22 +84,24 @@ namespace ProjetoIntegradorSENAC.Configurações
                 if (tipoDoc == "cpf")
                 {
                     radioButton1.Checked = true;
-                    label2.Text = "Cpf";
-                    mkCPF.Visible = true;
-                    mkCNPJ.Visible = false;
-                    
-                    mkCNPJ.Clear();
-                    mkCPF.Text = doc;
+
+                    label18.Text = "CPF";
+                    maskedTextBox2.Visible = true;   // CPF
+                    maskedTextBox1.Visible = false;  // CNPJ
+
+                    maskedTextBox1.Clear();
+                    maskedTextBox2.Text = doc;
                 }
                 else
                 {
                     radioButton2.Checked = true;
-                    label2.Text = "Cnpj";
-                    mkCPF.Visible = false;
-                    mkCNPJ.Visible = true;
 
-                    mkCPF.Clear();
-                    mkCNPJ.Text = doc;
+                    label18.Text = "CNPJ";
+                    maskedTextBox2.Visible = false;
+                    maskedTextBox1.Visible = true;
+
+                    maskedTextBox2.Clear();
+                    maskedTextBox1.Text = doc;
                 }
             }
 
@@ -146,36 +148,34 @@ namespace ProjetoIntegradorSENAC.Configurações
             }
         }
 
-        private void mkCNPJ_TextChanged(object sender, EventArgs e)
+        private void maskedTextBox1_TextChanged(object sender, EventArgs e)
         {
-            erroCnpj = true;
-            if (Funcoes.isCnpj(mkCNPJ.Text))
+            if (Funcoes.isCnpj(maskedTextBox1.Text))
             {
                 erroCnpj = false;
-                label15.Visible = false;
-                label2.ForeColor = Color.White;
+                label12.Visible = false;
+                label18.ForeColor = Color.White;
             }
             else
             {
                 erroCnpj = true;
-                label15.Visible = true;
-                label2.ForeColor = Color.DarkRed;
+                label12.Visible = true;
+                label18.ForeColor = Color.DarkRed;
             }
         }
-        private void mkCPF_TextChanged(object sender, EventArgs e)
+        private void maskedTextBox2_TextChanged(object sender, EventArgs e)
         {
-            erroCpf = true;
-            if (Funcoes.isCpf(mkCPF.Text))
+            if (Funcoes.isCpf(maskedTextBox2.Text))
             {
                 erroCpf = false;
-                label15.Visible = false;
-                label2.ForeColor = Color.White;
+                label12.Visible = false;
+                label18.ForeColor = Color.White;
             }
             else
             {
                 erroCpf = true;
-                label15.Visible = true;
-                label2.ForeColor = Color.DarkRed;
+                label12.Visible = true;
+                label18.ForeColor = Color.DarkRed;
             }
         }
         private void mkTelefone_TextChanged(object sender, EventArgs e)
@@ -199,13 +199,11 @@ namespace ProjetoIntegradorSENAC.Configurações
             if (Funcoes.isEmail(txtEmail.Text))
             {
                 erroEmail = false;
-                label17.Visible = false;
                 label6.ForeColor = Color.White;
             }
             else
             {
                 erroEmail = true;
-                label17.Visible = true;
                 label6.ForeColor = Color.DarkRed;
             }
         }
@@ -216,27 +214,24 @@ namespace ProjetoIntegradorSENAC.Configurações
         {
             if (carregando) return;
 
-            // CNPJ
-            label2.Text = "CNPJ:";
-            mkCPF.Visible = false;
-            mkCNPJ.Visible = true;
+            label18.Text = "CNPJ";
+            maskedTextBox2.Visible = false;
+            maskedTextBox1.Visible = true;
 
-            mkCPF.Clear();
-            mkCNPJ.Clear();
+            maskedTextBox2.Clear();
+            maskedTextBox1.Clear();
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             if (carregando) return;
 
-            // CPF
-            label2.Text = "CPF:";
-            mkCPF.Visible = true;
-            mkCNPJ.Visible = false;
+            label18.Text = "CPF";
+            maskedTextBox2.Visible = true;
+            maskedTextBox1.Visible = false;
 
-            mkCPF.Clear();
-            mkCNPJ.Clear();
-
+            maskedTextBox2.Clear();
+            maskedTextBox1.Clear();
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -257,7 +252,9 @@ namespace ProjetoIntegradorSENAC.Configurações
             string nomeFantasia = txtNomeFantasia.Text;
             string email = txtEmail.Text;
             string tipoDoc = radioButton1.Checked ? "cpf" : "cnpj";
-            string doc = radioButton1.Checked ? mkCPF.Text : mkCNPJ.Text;
+            string doc = radioButton1.Checked
+    ? maskedTextBox2.Text   // CPF
+    : maskedTextBox1.Text;  // CNPJ
 
             string update = $@"
         UPDATE comercios SET

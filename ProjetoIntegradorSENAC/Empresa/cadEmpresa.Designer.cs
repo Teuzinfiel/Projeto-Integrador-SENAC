@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            button3 = new Button();
             panel2 = new Panel();
             label19 = new Label();
             label18 = new Label();
@@ -38,6 +37,7 @@
             txtBairro = new TextBox();
             txtMunicipio = new TextBox();
             button2 = new Button();
+            button3 = new Button();
             mkTelefone = new MaskedTextBox();
             label15 = new Label();
             label17 = new Label();
@@ -72,9 +72,10 @@
             // 
             // panel1
             // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             panel1.BackColor = Color.FromArgb(40, 40, 50);
-            panel1.Controls.Add(button3);
             panel1.Controls.Add(panel2);
+            panel1.Controls.Add(button3);
             panel1.Controls.Add(mkTelefone);
             panel1.Controls.Add(label15);
             panel1.Controls.Add(label17);
@@ -102,22 +103,9 @@
             panel1.Size = new Size(719, 644);
             panel1.TabIndex = 6;
             // 
-            // button3
-            // 
-            button3.BackColor = Color.Transparent;
-            button3.FlatStyle = FlatStyle.Popup;
-            button3.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button3.ForeColor = Color.White;
-            button3.Location = new Point(49, 583);
-            button3.Name = "button3";
-            button3.Size = new Size(234, 35);
-            button3.TabIndex = 36;
-            button3.Text = "Voltar";
-            button3.UseVisualStyleBackColor = false;
-            button3.Click += button3_Click;
-            // 
             // panel2
             // 
+            panel2.BackColor = Color.FromArgb(40, 40, 50);
             panel2.Controls.Add(label19);
             panel2.Controls.Add(label18);
             panel2.Controls.Add(label12);
@@ -174,6 +162,7 @@
             mkCep.Name = "mkCep";
             mkCep.Size = new Size(619, 38);
             mkCep.TabIndex = 36;
+            mkCep.TextChanged += mkCep_TextChanged;
             mkCep.Leave += maskedTextBox1_Leave;
             // 
             // txtBairro
@@ -202,7 +191,7 @@
             // button2
             // 
             button2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            button2.BackColor = SystemColors.Highlight;
+            button2.BackColor = Color.Transparent;
             button2.Cursor = Cursors.Hand;
             button2.FlatStyle = FlatStyle.Popup;
             button2.Font = new Font("Franklin Gothic Medium", 14F);
@@ -214,6 +203,21 @@
             button2.Text = "←";
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
+            // 
+            // button3
+            // 
+            button3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            button3.BackColor = Color.Transparent;
+            button3.FlatStyle = FlatStyle.Popup;
+            button3.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button3.ForeColor = Color.White;
+            button3.Location = new Point(49, 583);
+            button3.Name = "button3";
+            button3.Size = new Size(234, 35);
+            button3.TabIndex = 36;
+            button3.Text = "Voltar";
+            button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
             // 
             // mkTelefone
             // 
@@ -265,6 +269,7 @@
             // 
             // btnSalvar
             // 
+            btnSalvar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnSalvar.BackColor = Color.Transparent;
             btnSalvar.FlatStyle = FlatStyle.Popup;
             btnSalvar.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -494,8 +499,8 @@
             // 
             // button1
             // 
-            button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            button1.BackColor = SystemColors.Highlight;
+            button1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            button1.BackColor = Color.Transparent;
             button1.Cursor = Cursors.Hand;
             button1.FlatStyle = FlatStyle.Popup;
             button1.Font = new Font("Franklin Gothic Medium", 14F);

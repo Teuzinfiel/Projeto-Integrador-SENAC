@@ -14,12 +14,14 @@
         public int idUsuario;
         mainFrm main;
         EmpresaCnpj empresa;
+        CepService cepService;
         public cadEmpresa(int idUsuario, mainFrm mainFrm)
         {
             InitializeComponent();
             this.idUsuario = idUsuario;
             main = mainFrm;
             empresa = new EmpresaCnpj();
+            cepService = new CepService();
         }
 
         private void cadEmpresa_Load(object sender, EventArgs e)
@@ -66,6 +68,7 @@
         bool erroCpf = true;
         bool erroTelefone = true;
         bool erroEmail = true;
+        bool erroCep = true;
 
         private void txtRazaoSocial_TextChanged(object sender, EventArgs e)
         {
@@ -121,6 +124,12 @@
                     txtRazaoSocial.Text = dados.RazaoSocial;
                     mkTelefone.Text = dados.Telefone;
                     mkCep.Text = dados.Cep;
+
+
+                    var cep = await cepService.BuscarCepAsync(mkCep.Text);
+                    txtBairro.Text = cep.Bairro;
+                    txtMunicipio.Text = cep.Localidade;
+
 
 
                 }
@@ -191,7 +200,7 @@
         {
             bool erroDocumento = radioButton1.Checked ? erroCpf : erroCnpj;
 
-            if (erroRazao || erroFantasia || erroDocumento || erroTelefone || erroEmail)
+            if (erroRazao || erroFantasia || erroDocumento || erroTelefone || erroEmail || erroCep)
             {
                 MessageBox.Show("Preencha corretamente todos os campos!",
                                 "Erro",
@@ -206,14 +215,41 @@
             string email = txtEmail.Text;
             string tipoDoc = radioButton1.Checked ? "cpf" : "cnpj";
             string doc = radioButton1.Checked ? mkCPF.Text : mkCNPJ.Text;
+            string cep = mkCep.Text;
+            string bairro = string.IsNullOrWhiteSpace(txtBairro.Text)
+     ? "Não definido"
+     : txtBairro.Text.Trim();
+            string municipio = string.IsNullOrWhiteSpace(txtMunicipio.Text)
+    ? "Não definido"
+    : txtMunicipio.Text.Trim();
 
             using (var conn = Banco.AbrirConexao())
             {
+
+                string verificaSql = $@"
+        SELECT COUNT(*) 
+        FROM comercios 
+        WHERE documentacao = '{doc}'
+    ";
+
+                int existe;
+
+                using (var cmdVerifica = new MySqlCommand(verificaSql, conn))
+                    existe = Convert.ToInt32(cmdVerifica.ExecuteScalar());
+
+                if (existe > 0)
+                {
+                    MessageBox.Show("Já existe uma empresa cadastrada com esse CPF/CNPJ!",
+                                    "Documento duplicado",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning);
+                    return;
+                }
                 //  cria empresa
                 string insertEmpresa = $@"
                     INSERT INTO comercios 
-                    (dono_id, nome, nome_fantasia, email, tipo_documentacao, documentacao, telefone)
-                    VALUES  ({idUsuario}, '{nome}', '{nomeFantasia}', '{email}', '{tipoDoc}', '{doc}', '{telefone}')
+                    (dono_id, nome, nome_fantasia, email, tipo_documentacao, documentacao, telefone, cep, bairro, municipio)
+                    VALUES  ({idUsuario}, '{nome}', '{nomeFantasia}', '{email}', '{tipoDoc}', '{doc}', '{telefone}', '{cep}', '{bairro}', '{municipio}')
                     ";
 
                 using (var cmd1 = new MySqlCommand(insertEmpresa, conn))
@@ -237,9 +273,8 @@
 
             MessageBox.Show("Empresa cadastrada com sucesso!");
             Funcoes.Limpar(this);
-            frmEmpresa frm = new frmEmpresa(this.idUsuario, null);
-            frm.Show();
-            this.Hide();
+            main.AbrirFormNoPanel(new frmEmpresa(this.idUsuario, main));
+           
         }
 
         private async void mkCNPJ_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -273,7 +308,39 @@
 
         private void button3_Click(object sender, EventArgs e)
         {
-            main.AbrirFormNoPanel(new frmEmpresa(idUsuario ,main));
+            main.AbrirFormNoPanel(new frmEmpresa(idUsuario, main));
+        }
+
+        private async void mkCep_TextChanged(object sender, EventArgs e)
+        {
+            if (Funcoes.CepValido(mkCep.Text))
+            {
+                erroCep = false;
+                label12.ForeColor = Color.White;
+                label12.Text = "CEP";
+
+                try
+                {
+                    var cep = await cepService.BuscarCepAsync(mkCep.Text);
+
+                    if (cep == null)
+                    {
+                        return;
+                    }
+                    txtBairro.Text = cep.Bairro;
+                    txtMunicipio.Text = cep.Localidade;
+                }
+                catch (Exception ex) {
+                    return;
+                }
+            }
+
+            else
+            {
+                erroCep = true;
+                label12.ForeColor = Color.DarkRed;
+                label12.Text = "CEP invalido *";
+            }
         }
     }
 

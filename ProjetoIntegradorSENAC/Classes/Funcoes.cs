@@ -11,6 +11,19 @@ namespace ProjetoIntegradorSENAC.Classes
 {
     internal class Funcoes
     {
+
+        public static bool CepValido(string cep)
+        {
+            if (string.IsNullOrWhiteSpace(cep))
+                return false;
+
+            // Remove tudo que não for número
+            cep = new string(cep.Where(char.IsDigit).ToArray());
+
+            // CEP válido tem exatamente 8 números
+            return cep.Length == 8;
+        }
+
         public static bool isCnpj(string cnpj)
         {
 

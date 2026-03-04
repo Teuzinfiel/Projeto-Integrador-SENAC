@@ -80,6 +80,7 @@ CREATE TABLE produtos (
     unidade_medida VARCHAR(20) NOT NULL,
     categoria_id INT NULL,
     preco DECIMAL(10,2) NOT NULL,
+    custo DECIMAL(10,2) NOT NULL,
 
     FOREIGN KEY (comercio_id) REFERENCES comercios(id)
         ON DELETE CASCADE,
@@ -153,6 +154,7 @@ CREATE TABLE items_venda (
     produtos_id INT NOT NULL,
     quantidade DECIMAL(10,2),
     preco_unitario DECIMAL(10,2),
+    lucro DECIMAL(10,2),
     vendas_id INT NOT NULL,
 
     FOREIGN KEY (produtos_id) REFERENCES produtos(id)
@@ -174,7 +176,7 @@ CREATE TABLE logs (
     data TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
     FOREIGN KEY (comercio_id) REFERENCES comercios(id)
-        ON DELETE CASCADE,-
+        ON DELETE CASCADE,
 
     FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
         ON DELETE CASCADE

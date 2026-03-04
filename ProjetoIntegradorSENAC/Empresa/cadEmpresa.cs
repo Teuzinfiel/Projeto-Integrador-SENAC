@@ -120,6 +120,9 @@
                     txtNomeFantasia.Text = dados.NomeFantasia;
                     txtRazaoSocial.Text = dados.RazaoSocial;
                     mkTelefone.Text = dados.Telefone;
+                    mkCep.Text = dados.Cep;
+
+
                 }
                 catch (Exception ex)
                 {
@@ -245,12 +248,12 @@
 
         private async void maskedTextBox1_Leave(object sender, EventArgs e)
         {
-            
+
         }
 
         private async void mkCNPJ_Leave(object sender, EventArgs e)
         {
-           
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -261,6 +264,16 @@
         private void button2_Click(object sender, EventArgs e)
         {
             panel2.Visible = false;
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            main.AbrirFormNoPanel(new frmEmpresa(idUsuario ,main));
         }
     }
 

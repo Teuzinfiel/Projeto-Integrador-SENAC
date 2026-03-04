@@ -56,6 +56,9 @@
             astPreco = new Label();
             astDescAtt = new Label();
             panel1 = new Panel();
+            label2 = new Label();
+            label3 = new Label();
+            txtPrecoCusto = new TextBox();
             label23 = new Label();
             astCod = new Label();
             dtgCategoria = new DataGridView();
@@ -98,9 +101,9 @@
             txtNomeProd = new TextBox();
             label1 = new Label();
             dtgProdutos = new DataGridView();
-            label2 = new Label();
-            label3 = new Label();
-            txtPrecoCusto = new TextBox();
+            label4 = new Label();
+            label5 = new Label();
+            textBox1 = new TextBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgCategoria).BeginInit();
             panel2.SuspendLayout();
@@ -359,6 +362,39 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(455, 598);
             panel1.TabIndex = 63;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.FromArgb(192, 0, 0);
+            label2.Location = new Point(367, 373);
+            label2.Name = "label2";
+            label2.Size = new Size(16, 24);
+            label2.TabIndex = 87;
+            label2.Text = "*";
+            label2.Visible = false;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Franklin Gothic Medium", 12F);
+            label3.ForeColor = Color.FromArgb(180, 180, 190);
+            label3.Location = new Point(237, 373);
+            label3.Name = "label3";
+            label3.Size = new Size(112, 21);
+            label3.TabIndex = 86;
+            label3.Text = "Preço De Custo";
+            // 
+            // txtPrecoCusto
+            // 
+            txtPrecoCusto.BackColor = Color.FromArgb(224, 224, 224);
+            txtPrecoCusto.Font = new Font("Microsoft Sans Serif", 12F);
+            txtPrecoCusto.Location = new Point(237, 397);
+            txtPrecoCusto.Name = "txtPrecoCusto";
+            txtPrecoCusto.PlaceholderText = "Digite o preço de custo";
+            txtPrecoCusto.Size = new Size(203, 26);
+            txtPrecoCusto.TabIndex = 85;
             // 
             // label23
             // 
@@ -643,6 +679,9 @@
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(30, 30, 45);
+            panel2.Controls.Add(label4);
+            panel2.Controls.Add(label5);
+            panel2.Controls.Add(textBox1);
             panel2.Controls.Add(astMedidaAtt);
             panel2.Controls.Add(btnAtivarProd);
             panel2.Controls.Add(astBarrasAtt);
@@ -973,38 +1012,38 @@
             dtgProdutos.TabIndex = 7;
             dtgProdutos.CellClick += dtgProdutos_CellClick;
             // 
-            // label2
+            // label4
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.FromArgb(192, 0, 0);
-            label2.Location = new Point(367, 373);
-            label2.Name = "label2";
-            label2.Size = new Size(16, 24);
-            label2.TabIndex = 87;
-            label2.Text = "*";
-            label2.Visible = false;
+            label4.AutoSize = true;
+            label4.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.FromArgb(192, 0, 0);
+            label4.Location = new Point(375, 347);
+            label4.Name = "label4";
+            label4.Size = new Size(16, 24);
+            label4.TabIndex = 91;
+            label4.Text = "*";
+            label4.Visible = false;
             // 
-            // label3
+            // label5
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Franklin Gothic Medium", 12F);
-            label3.ForeColor = Color.FromArgb(180, 180, 190);
-            label3.Location = new Point(237, 373);
-            label3.Name = "label3";
-            label3.Size = new Size(112, 21);
-            label3.TabIndex = 86;
-            label3.Text = "Preço De Custo";
+            label5.AutoSize = true;
+            label5.Font = new Font("Franklin Gothic Medium", 12F);
+            label5.ForeColor = Color.FromArgb(180, 180, 190);
+            label5.Location = new Point(245, 347);
+            label5.Name = "label5";
+            label5.Size = new Size(112, 21);
+            label5.TabIndex = 90;
+            label5.Text = "Preço De Custo";
             // 
-            // txtPrecoCusto
+            // textBox1
             // 
-            txtPrecoCusto.BackColor = Color.FromArgb(224, 224, 224);
-            txtPrecoCusto.Font = new Font("Microsoft Sans Serif", 12F);
-            txtPrecoCusto.Location = new Point(237, 397);
-            txtPrecoCusto.Name = "txtPrecoCusto";
-            txtPrecoCusto.PlaceholderText = "Digite o preço de custo";
-            txtPrecoCusto.Size = new Size(203, 26);
-            txtPrecoCusto.TabIndex = 85;
+            textBox1.BackColor = Color.FromArgb(224, 224, 224);
+            textBox1.Font = new Font("Microsoft Sans Serif", 12F);
+            textBox1.Location = new Point(245, 371);
+            textBox1.Name = "textBox1";
+            textBox1.PlaceholderText = "Digite o preço de custo";
+            textBox1.Size = new Size(203, 26);
+            textBox1.TabIndex = 89;
             // 
             // frmProduto
             // 
@@ -1092,5 +1131,8 @@
         private Label label2;
         private Label label3;
         private TextBox txtPrecoCusto;
+        private Label label4;
+        private Label label5;
+        private TextBox textBox1;
     }
 }

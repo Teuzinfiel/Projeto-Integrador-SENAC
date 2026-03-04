@@ -59,10 +59,7 @@ namespace ProjetoIntegradorSENAC
             formFilho.Show();
         }
 
-        private void MainEmpresa_Load(object sender, EventArgs e)
-        {
-            if (idUsuario != idDono) btnFuncionario.ImageIndex = 9;
-        }
+      
 
         private void btnSair_Click(object sender, EventArgs e)
         {

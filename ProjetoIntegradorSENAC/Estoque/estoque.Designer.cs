@@ -34,7 +34,6 @@
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             dtgProdutos = new DataGridView();
-            btnPesquisar = new Button();
             txtPesquisa = new TextBox();
             button2 = new Button();
             comboBox1 = new ComboBox();
@@ -81,8 +80,7 @@
             dtgProdutos.DefaultCellStyle = dataGridViewCellStyle3;
             dtgProdutos.EnableHeadersVisualStyles = false;
             dtgProdutos.GridColor = Color.FromArgb(60, 60, 80);
-            dtgProdutos.Location = new Point(11, 155);
-            dtgProdutos.Margin = new Padding(3, 4, 3, 4);
+            dtgProdutos.Location = new Point(10, 116);
             dtgProdutos.MultiSelect = false;
             dtgProdutos.Name = "dtgProdutos";
             dtgProdutos.ReadOnly = true;
@@ -102,36 +100,21 @@
             dataGridViewCellStyle5.SelectionForeColor = Color.White;
             dtgProdutos.RowsDefaultCellStyle = dataGridViewCellStyle5;
             dtgProdutos.RowTemplate.Height = 40;
-            dtgProdutos.Size = new Size(1471, 724);
+            dtgProdutos.Size = new Size(950, 478);
             dtgProdutos.TabIndex = 44;
             dtgProdutos.CellClick += dtgProdutos_CellClick;
             dtgProdutos.CellFormatting += dtgProdutos_CellFormatting;
             // 
-            // btnPesquisar
-            // 
-            btnPesquisar.BackColor = SystemColors.Highlight;
-            btnPesquisar.FlatStyle = FlatStyle.Popup;
-            btnPesquisar.Font = new Font("Franklin Gothic Medium", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnPesquisar.ForeColor = Color.White;
-            btnPesquisar.Location = new Point(864, 96);
-            btnPesquisar.Margin = new Padding(3, 4, 3, 4);
-            btnPesquisar.Name = "btnPesquisar";
-            btnPesquisar.Size = new Size(151, 46);
-            btnPesquisar.TabIndex = 46;
-            btnPesquisar.Text = "Pesquisar";
-            btnPesquisar.UseVisualStyleBackColor = false;
-            btnPesquisar.Click += btnPesquisar_Click;
-            // 
             // txtPesquisa
             // 
+            txtPesquisa.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             txtPesquisa.BackColor = Color.White;
             txtPesquisa.Font = new Font("Microsoft Sans Serif", 20.25F);
             txtPesquisa.ForeColor = Color.FromArgb(40, 40, 50);
-            txtPesquisa.Location = new Point(90, 96);
-            txtPesquisa.Margin = new Padding(3, 4, 3, 4);
+            txtPesquisa.Location = new Point(79, 72);
             txtPesquisa.Name = "txtPesquisa";
             txtPesquisa.PlaceholderText = "  Digite nome ou código do Produto";
-            txtPesquisa.Size = new Size(767, 46);
+            txtPesquisa.Size = new Size(434, 38);
             txtPesquisa.TabIndex = 45;
             txtPesquisa.TextChanged += txtPesquisa_TextChanged;
             // 
@@ -141,10 +124,9 @@
             button2.FlatStyle = FlatStyle.Popup;
             button2.Font = new Font("Franklin Gothic Medium", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button2.ForeColor = Color.White;
-            button2.Location = new Point(12, 96);
-            button2.Margin = new Padding(3, 4, 3, 4);
+            button2.Location = new Point(10, 72);
             button2.Name = "button2";
-            button2.Size = new Size(72, 46);
+            button2.Size = new Size(63, 39);
             button2.TabIndex = 48;
             button2.Text = "\u007f";
             button2.UseVisualStyleBackColor = false;
@@ -156,10 +138,9 @@
             comboBox1.FlatStyle = FlatStyle.Popup;
             comboBox1.Font = new Font("Franklin Gothic Medium", 17F);
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(1022, 96);
-            comboBox1.Margin = new Padding(3, 4, 3, 4);
+            comboBox1.Location = new Point(705, 69);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(460, 44);
+            comboBox1.Size = new Size(255, 37);
             comboBox1.TabIndex = 49;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
@@ -168,9 +149,9 @@
             lbDescricao.AutoSize = true;
             lbDescricao.Font = new Font("Franklin Gothic Medium", 12F);
             lbDescricao.ForeColor = Color.FromArgb(180, 180, 190);
-            lbDescricao.Location = new Point(87, 64);
+            lbDescricao.Location = new Point(76, 48);
             lbDescricao.Name = "lbDescricao";
-            lbDescricao.Size = new Size(170, 25);
+            lbDescricao.Size = new Size(135, 21);
             lbDescricao.TabIndex = 51;
             lbDescricao.Text = "Pesquisar produto";
             // 
@@ -180,9 +161,9 @@
             label1.AutoSize = true;
             label1.Font = new Font("Franklin Gothic Medium", 12F);
             label1.ForeColor = Color.FromArgb(180, 180, 190);
-            label1.Location = new Point(1022, 64);
+            label1.Location = new Point(705, 48);
             label1.Name = "label1";
-            label1.Size = new Size(175, 25);
+            label1.Size = new Size(138, 21);
             label1.TabIndex = 52;
             label1.Text = "Filtrar por situação";
             // 
@@ -191,20 +172,20 @@
             label2.AutoSize = true;
             label2.Font = new Font("Franklin Gothic Medium", 12F);
             label2.ForeColor = Color.FromArgb(180, 180, 190);
-            label2.Location = new Point(11, 64);
+            label2.Location = new Point(10, 48);
             label2.Name = "label2";
-            label2.Size = new Size(70, 25);
+            label2.Size = new Size(56, 21);
             label2.TabIndex = 53;
             label2.Text = "Ordem";
             // 
             // label3
             // 
-            label3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            label3.Anchor = AnchorStyles.Top;
             label3.Font = new Font("Franklin Gothic Medium", 23F);
-            label3.ForeColor = Color.FromArgb(180, 180, 190);
-            label3.Location = new Point(523, 18);
+            label3.ForeColor = SystemColors.Highlight;
+            label3.Location = new Point(289, 14);
             label3.Name = "label3";
-            label3.Size = new Size(477, 42);
+            label3.Size = new Size(417, 32);
             label3.TabIndex = 61;
             label3.Text = "Informações sobre Estoque";
             label3.TextAlign = ContentAlignment.MiddleCenter;
@@ -214,9 +195,10 @@
             panelForm.Controls.Add(panelMain);
             panelForm.Dock = DockStyle.Fill;
             panelForm.Location = new Point(0, 0);
+            panelForm.Margin = new Padding(3, 2, 3, 2);
             panelForm.Name = "panelForm";
-            panelForm.Padding = new Padding(10);
-            panelForm.Size = new Size(1515, 915);
+            panelForm.Padding = new Padding(9, 8, 9, 8);
+            panelForm.Size = new Size(989, 622);
             panelForm.TabIndex = 62;
             // 
             // panelMain
@@ -230,22 +212,21 @@
             panelMain.Controls.Add(button2);
             panelMain.Controls.Add(label2);
             panelMain.Controls.Add(label1);
-            panelMain.Controls.Add(btnPesquisar);
             panelMain.Dock = DockStyle.Fill;
-            panelMain.Location = new Point(10, 10);
+            panelMain.Location = new Point(9, 8);
+            panelMain.Margin = new Padding(3, 2, 3, 2);
             panelMain.Name = "panelMain";
-            panelMain.Size = new Size(1495, 895);
+            panelMain.Size = new Size(971, 606);
             panelMain.TabIndex = 62;
             // 
             // estoque
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(45, 45, 60);
-            ClientSize = new Size(1515, 915);
+            ClientSize = new Size(989, 622);
             Controls.Add(panelForm);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 4, 3, 4);
             Name = "estoque";
             Text = "estoque";
             Load += estoque_Load_1;
@@ -258,7 +239,6 @@
 
         #endregion
         private DataGridView dtgProdutos;
-        private Button btnPesquisar;
         private TextBox txtPesquisa;
         private Button button2;
         private ComboBox comboBox1;

@@ -107,16 +107,9 @@ namespace ProjetoIntegradorSENAC.Estoque
             comboBox1.Items.Add("Sem Estoque");
             comboBox1.SelectedIndex = 0;
             dtgProdutos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-       
-
         }
 
         private void txtPesquisa_TextChanged(object sender, EventArgs e)
-        {
-            btnPesquisar_Click(sender, e);
-        }
-
-        private void btnPesquisar_Click(object sender, EventArgs e)
         {
             if (dtgProdutos.DataSource == null)
                 return;

@@ -67,7 +67,7 @@
             mainLayout.Padding = new Padding(10);
             mainLayout.RowCount = 1;
             mainLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            mainLayout.Size = new Size(1400, 800);
+            mainLayout.Size = new Size(989, 622);
             mainLayout.TabIndex = 0;
             // 
             // leftPanel
@@ -80,7 +80,7 @@
             leftPanel.Margin = new Padding(0, 0, 5, 0);
             leftPanel.Name = "leftPanel";
             leftPanel.Padding = new Padding(15);
-            leftPanel.Size = new Size(823, 780);
+            leftPanel.Size = new Size(576, 602);
             leftPanel.TabIndex = 0;
             // 
             // dtgProdutos
@@ -99,7 +99,7 @@
             dtgProdutos.ColumnHeadersHeight = 29;
             dtgProdutos.Dock = DockStyle.Fill;
             dtgProdutos.EnableHeadersVisualStyles = false;
-            dtgProdutos.Location = new Point(15, 54);
+            dtgProdutos.Location = new Point(15, 47);
             dtgProdutos.Margin = new Padding(0, 15, 0, 0);
             dtgProdutos.Name = "dtgProdutos";
             dtgProdutos.ReadOnly = true;
@@ -109,7 +109,7 @@
             dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(70, 70, 90);
             dtgProdutos.RowsDefaultCellStyle = dataGridViewCellStyle2;
             dtgProdutos.RowTemplate.Height = 40;
-            dtgProdutos.Size = new Size(793, 711);
+            dtgProdutos.Size = new Size(546, 540);
             dtgProdutos.TabIndex = 0;
             dtgProdutos.CellClick += dtgProdutos_CellClick;
             // 
@@ -120,7 +120,7 @@
             txtPesquisa.Location = new Point(15, 15);
             txtPesquisa.Name = "txtPesquisa";
             txtPesquisa.PlaceholderText = "Digite nome ou código do produto";
-            txtPesquisa.Size = new Size(793, 39);
+            txtPesquisa.Size = new Size(546, 32);
             txtPesquisa.TabIndex = 1;
             txtPesquisa.TextChanged += txtPesquisa_TextChanged;
             // 
@@ -129,11 +129,11 @@
             rightPanel.BackColor = Color.FromArgb(40, 40, 50);
             rightPanel.Controls.Add(rightLayout);
             rightPanel.Dock = DockStyle.Fill;
-            rightPanel.Location = new Point(843, 10);
+            rightPanel.Location = new Point(596, 10);
             rightPanel.Margin = new Padding(5, 0, 0, 0);
             rightPanel.Name = "rightPanel";
             rightPanel.Padding = new Padding(20);
-            rightPanel.Size = new Size(547, 780);
+            rightPanel.Size = new Size(383, 602);
             rightPanel.TabIndex = 1;
             // 
             // rightLayout
@@ -164,7 +164,7 @@
             rightLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 55F));
             rightLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 55F));
             rightLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 55F));
-            rightLayout.Size = new Size(507, 740);
+            rightLayout.Size = new Size(343, 562);
             rightLayout.TabIndex = 0;
             // 
             // flpCaixa
@@ -175,7 +175,7 @@
             flpCaixa.Location = new Point(3, 3);
             flpCaixa.Name = "flpCaixa";
             flpCaixa.Padding = new Padding(10);
-            flpCaixa.Size = new Size(501, 321);
+            flpCaixa.Size = new Size(337, 187);
             flpCaixa.TabIndex = 0;
             // 
             // lblPrecoTotal
@@ -183,9 +183,9 @@
             lblPrecoTotal.AutoSize = true;
             lblPrecoTotal.Font = new Font("Segoe UI", 14F);
             lblPrecoTotal.ForeColor = Color.White;
-            lblPrecoTotal.Location = new Point(3, 327);
+            lblPrecoTotal.Location = new Point(3, 193);
             lblPrecoTotal.Name = "lblPrecoTotal";
-            lblPrecoTotal.Size = new Size(131, 32);
+            lblPrecoTotal.Size = new Size(105, 25);
             lblPrecoTotal.TabIndex = 1;
             lblPrecoTotal.Text = "Preço Total";
             // 
@@ -194,9 +194,9 @@
             lbPreço.AutoSize = true;
             lbPreço.Font = new Font("Segoe UI", 28F, FontStyle.Bold);
             lbPreço.ForeColor = Color.FromArgb(0, 150, 255);
-            lbPreço.Location = new Point(3, 359);
+            lbPreço.Location = new Point(3, 218);
             lbPreço.Name = "lbPreço";
-            lbPreço.Size = new Size(192, 62);
+            lbPreço.Size = new Size(155, 51);
             lbPreço.TabIndex = 2;
             lbPreço.Text = "R$ 0,00";
             // 
@@ -205,9 +205,9 @@
             lblDesconto.AutoSize = true;
             lblDesconto.Font = new Font("Segoe UI", 14F);
             lblDesconto.ForeColor = Color.White;
-            lblDesconto.Location = new Point(3, 421);
+            lblDesconto.Location = new Point(3, 269);
             lblDesconto.Name = "lblDesconto";
-            lblDesconto.Size = new Size(156, 32);
+            lblDesconto.Size = new Size(124, 25);
             lblDesconto.TabIndex = 3;
             lblDesconto.Text = "Desconto (%)";
             // 
@@ -215,9 +215,9 @@
             // 
             textDesconto.Dock = DockStyle.Fill;
             textDesconto.Font = new Font("Segoe UI", 14F);
-            textDesconto.Location = new Point(3, 456);
+            textDesconto.Location = new Point(3, 297);
             textDesconto.Name = "textDesconto";
-            textDesconto.Size = new Size(501, 39);
+            textDesconto.Size = new Size(337, 32);
             textDesconto.TabIndex = 4;
             textDesconto.Text = "0";
             textDesconto.TextChanged += textDesconto_TextChanged;
@@ -227,10 +227,10 @@
             lblItensTitulo.AutoSize = true;
             lblItensTitulo.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             lblItensTitulo.ForeColor = Color.White;
-            lblItensTitulo.Location = new Point(0, 513);
+            lblItensTitulo.Location = new Point(0, 347);
             lblItensTitulo.Margin = new Padding(0, 15, 0, 0);
             lblItensTitulo.Name = "lblItensTitulo";
-            lblItensTitulo.Size = new Size(121, 25);
+            lblItensTitulo.Size = new Size(95, 20);
             lblItensTitulo.TabIndex = 0;
             lblItensTitulo.Text = "Itens Venda:";
             // 
@@ -239,10 +239,10 @@
             lbItens.AutoSize = true;
             lbItens.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             lbItens.ForeColor = Color.FromArgb(0, 200, 83);
-            lbItens.Location = new Point(0, 543);
+            lbItens.Location = new Point(0, 372);
             lbItens.Margin = new Padding(0, 5, 0, 0);
             lbItens.Name = "lbItens";
-            lbItens.Size = new Size(28, 32);
+            lbItens.Size = new Size(23, 25);
             lbItens.TabIndex = 8;
             lbItens.Text = "0";
             // 
@@ -254,9 +254,9 @@
             btnCompra.FlatStyle = FlatStyle.Flat;
             btnCompra.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             btnCompra.ForeColor = Color.White;
-            btnCompra.Location = new Point(3, 578);
+            btnCompra.Location = new Point(3, 400);
             btnCompra.Name = "btnCompra";
-            btnCompra.Size = new Size(501, 49);
+            btnCompra.Size = new Size(337, 49);
             btnCompra.TabIndex = 5;
             btnCompra.Text = "Finalizar Compra";
             btnCompra.UseVisualStyleBackColor = false;
@@ -270,9 +270,9 @@
             btnCancelar.FlatStyle = FlatStyle.Flat;
             btnCancelar.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             btnCancelar.ForeColor = Color.White;
-            btnCancelar.Location = new Point(3, 633);
+            btnCancelar.Location = new Point(3, 455);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(501, 49);
+            btnCancelar.Size = new Size(337, 49);
             btnCancelar.TabIndex = 6;
             btnCancelar.Text = "Cancelar Compra";
             btnCancelar.UseVisualStyleBackColor = false;
@@ -286,9 +286,9 @@
             btnDevolucao.FlatStyle = FlatStyle.Flat;
             btnDevolucao.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             btnDevolucao.ForeColor = Color.White;
-            btnDevolucao.Location = new Point(3, 688);
+            btnDevolucao.Location = new Point(3, 510);
             btnDevolucao.Name = "btnDevolucao";
-            btnDevolucao.Size = new Size(501, 49);
+            btnDevolucao.Size = new Size(337, 49);
             btnDevolucao.TabIndex = 7;
             btnDevolucao.Text = "Devolver Pedido";
             btnDevolucao.UseVisualStyleBackColor = false;
@@ -297,7 +297,7 @@
             // caixa
             // 
             BackColor = Color.FromArgb(30, 30, 40);
-            ClientSize = new Size(1400, 800);
+            ClientSize = new Size(989, 622);
             Controls.Add(mainLayout);
             FormBorderStyle = FormBorderStyle.None;
             Name = "caixa";

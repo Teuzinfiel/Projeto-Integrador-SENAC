@@ -258,7 +258,6 @@ namespace ProjetoIntegradorSENAC.Usuarios
             DataGridViewRow row = dtgFuncionarios.Rows[e.RowIndex];
 
             idFuncionario = Convert.ToInt32(row.Cells["id"].Value);
-            senhaAntiga = row.Cells["senha"].Value.ToString();
             EdNome.Text = row.Cells["nome"].Value.ToString();
             EdEmail.Text = row.Cells["email"].Value.ToString();
             EdCpf.Text = row.Cells["cpf"].Value.ToString();

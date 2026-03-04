@@ -8,6 +8,7 @@ using ProjetoIntegradorSENAC.LogInf;
 using ProjetoIntegradorSENAC.Logins;
 using ProjetoIntegradorSENAC.Produto;
 using ProjetoIntegradorSENAC.Usuarios;
+using System.Data;
 
 
 namespace ProjetoIntegradorSENAC
@@ -25,7 +26,8 @@ namespace ProjetoIntegradorSENAC
             this.idDono = idDono;
             this.idUsuario = idUsuario;
             nomeEmpresa = nomeEmpresa;
-            label3.Text = nomeEmpresa;
+            txtNomeEmpresa.Text = nomeEmpresa;
+
             LogService.CriarLog(this.idEmpresa, this.idUsuario, "Entrou na " + nomeEmpresa);
         }
 
@@ -57,10 +59,7 @@ namespace ProjetoIntegradorSENAC
             formFilho.Show();
         }
 
-        private void MainEmpresa_Load(object sender, EventArgs e)
-        {
-            if (idUsuario != idDono) btnFuncionario.ImageIndex = 9;
-        }
+      
 
         private void btnSair_Click(object sender, EventArgs e)
         {
@@ -110,6 +109,7 @@ namespace ProjetoIntegradorSENAC
         private void btnFuncionario_Click(object sender, EventArgs e)
         {
 
+
             if (idUsuario == idDono)
             {
                 AbrirFormNoPanel(new frmFuncionarios(this.idEmpresa, this.idUsuario));
@@ -122,6 +122,7 @@ namespace ProjetoIntegradorSENAC
             {
                 MessageBox.Show("Apenas o dono da empresa pode acessar a tela de funcionários.", "Acesso Negado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+
         }
 
         private void btnLog_Click(object sender, EventArgs e)
@@ -155,6 +156,33 @@ namespace ProjetoIntegradorSENAC
             labelCategorias.Text = "Movimentações";
             EfeitoClickBotaocs.ResetarBotoes(btnCaixa, btnDashboard, btnEstoque, btnFuncionario, btnLog, btnProdutos, btnMovimentacao);
             btnMovimentacao.BackColor = Color.FromArgb(45, 45, 60);
+        }
+
+        private void MainEmpresa_Load(object sender, EventArgs e)
+        {
+            if (idUsuario != idDono) btnFuncionario.ImageIndex = 9;
+
+
+            try
+            {
+                string sql = $"SELECT nome FROM usuarios WHERE id = {idUsuario} LIMIT 1";
+                DataTable dt = Banco.Pesquisar(sql);
+
+                if (dt.Rows.Count > 0)
+                {
+                    string nomeUsuario = dt.Rows[0]["nome"].ToString();
+                    txtNomeUser.Text = "Bem-vindo, " + nomeUsuario;
+                }
+                else
+                {
+                    txtNomeUser.Text = "Bem-vindo, usuário";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao buscar nome do usuário:\n" + ex.Message);
+                txtNomeUser.Text = "Bem-vindo";
+            }
         }
     }
 }

@@ -49,6 +49,25 @@ namespace ProjetoIntegradorSENAC.Produto
             CarregarCategorias();
             CarregarCategoriasCbAtt();
             ResetarBotoesProduto();
+
+            DataTable dt = (DataTable)dtgProdutos.DataSource;
+
+            if (dt != null)
+            {
+                DataRow novaLinha = dt.NewRow();
+
+                novaLinha["id"] = 999;
+                novaLinha["Produto"] = "Produto Teste";
+                novaLinha["Marca"] = "Marca Teste";
+                novaLinha["Descricao"] = "Descrição teste";
+                novaLinha["CodigoBarra"] = "123456789";
+                novaLinha["Medida"] = "Unidade";
+                novaLinha["Categoria"] = "Categoria Teste";
+                novaLinha["Preco"] = 9.99;
+                novaLinha["Status"] = "ativo";
+
+                dt.Rows.Add(novaLinha);
+            }
         }
 
 
@@ -456,6 +475,17 @@ namespace ProjetoIntegradorSENAC.Produto
             lbCatAtt.Visible = false;
             cmbCatAtt.Visible = false;
 
+            lbNomeAtt.Visible = false;
+            txtNomeProd.Visible = false;
+
+            lbMarcaAtt.Visible = false;
+            txtMarcaProd.Visible = false;
+
+            lbMedidaAtt.Visible = false;
+            cmbMedida.Visible = false;
+
+
+
             btnAtivarProd.Visible = false;
             btnDesativarProd.Visible = false;
             btnExcluirProd.Visible = false;
@@ -466,6 +496,16 @@ namespace ProjetoIntegradorSENAC.Produto
         private void dtgProdutos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
+
+            lbNomeAtt.Visible = true;
+            txtNomeProd.Visible = true;
+
+            lbMarcaAtt.Visible = true;
+            txtMarcaProd.Visible = true;
+
+           lbMedidaAtt.Visible = true;
+            cmbMedida.Visible = true;
+
 
             lbPrecoAtt.Visible = true;
             txtPrecoProd.Visible = true;
@@ -478,6 +518,8 @@ namespace ProjetoIntegradorSENAC.Produto
 
             lbCatAtt.Visible = true;
             cmbCatAtt.Visible = true;
+
+
 
             btnAtivarProd.Visible = true;
             btnDesativarProd.Visible = true;

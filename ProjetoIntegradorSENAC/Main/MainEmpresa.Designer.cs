@@ -49,9 +49,6 @@
             pictureBox2 = new PictureBox();
             label2 = new Label();
             labelCategorias = new Label();
-            panelTop = new Panel();
-            btnMinimizar = new Button();
-            btnSair = new Button();
             panelContainer = new Panel();
             bindingSource1 = new BindingSource(components);
             panelLeft.SuspendLayout();
@@ -59,7 +56,6 @@
             panel4.SuspendLayout();
             panelTop2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
             SuspendLayout();
             // 
@@ -72,9 +68,9 @@
             panelLeft.Controls.Add(pictureBox1);
             panelLeft.Controls.Add(panel4);
             panelLeft.Dock = DockStyle.Left;
-            panelLeft.Location = new Point(0, 36);
+            panelLeft.Location = new Point(0, 0);
             panelLeft.Name = "panelLeft";
-            panelLeft.Size = new Size(291, 775);
+            panelLeft.Size = new Size(291, 680);
             panelLeft.TabIndex = 0;
             // 
             // label4
@@ -83,7 +79,7 @@
             label4.FlatStyle = FlatStyle.System;
             label4.Font = new Font("Franklin Gothic Medium", 15F);
             label4.ForeColor = Color.FromArgb(224, 224, 224);
-            label4.Location = new Point(187, 734);
+            label4.Location = new Point(175, 24);
             label4.Name = "label4";
             label4.Size = new Size(62, 25);
             label4.TabIndex = 4;
@@ -95,7 +91,7 @@
             btnLogOut.FlatStyle = FlatStyle.Popup;
             btnLogOut.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnLogOut.ForeColor = Color.FromArgb(224, 224, 224);
-            btnLogOut.Location = new Point(35, 729);
+            btnLogOut.Location = new Point(46, 14);
             btnLogOut.Name = "btnLogOut";
             btnLogOut.Size = new Size(107, 35);
             btnLogOut.TabIndex = 7;
@@ -180,7 +176,6 @@
             imageList1.Images.SetKeyName(6, "ChatGPT Image 3 de out. de 2025, 20_22_52.png");
             imageList1.Images.SetKeyName(7, "ChatGPT Image 3 de out. de 2025, 20_27_40.png");
             imageList1.Images.SetKeyName(8, "ChatGPT Image 1 de mar. de 2026, 23_11_41.png");
-            imageList1.Images.SetKeyName(9, "cadeado (1).png");
             // 
             // button1
             // 
@@ -336,9 +331,9 @@
             panelTop2.Controls.Add(label2);
             panelTop2.Controls.Add(labelCategorias);
             panelTop2.Dock = DockStyle.Top;
-            panelTop2.Location = new Point(291, 36);
+            panelTop2.Location = new Point(291, 0);
             panelTop2.Name = "panelTop2";
-            panelTop2.Size = new Size(1341, 58);
+            panelTop2.Size = new Size(989, 58);
             panelTop2.TabIndex = 1;
             // 
             // pictureBox2
@@ -346,7 +341,7 @@
             pictureBox2.BorderStyle = BorderStyle.FixedSingle;
             pictureBox2.Dock = DockStyle.Right;
             pictureBox2.Image = Properties.Resources.logo;
-            pictureBox2.Location = new Point(1254, 0);
+            pictureBox2.Location = new Point(902, 0);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(87, 58);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -359,7 +354,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Franklin Gothic Medium", 15F);
             label2.ForeColor = Color.FromArgb(180, 180, 190);
-            label2.Location = new Point(1069, 17);
+            label2.Location = new Point(717, 17);
             label2.Name = "label2";
             label2.Size = new Size(181, 25);
             label2.TabIndex = 1;
@@ -373,82 +368,33 @@
             labelCategorias.ForeColor = Color.FromArgb(180, 180, 190);
             labelCategorias.Location = new Point(383, 17);
             labelCategorias.Name = "labelCategorias";
-            labelCategorias.Size = new Size(113, 24);
+            labelCategorias.Size = new Size(0, 24);
             labelCategorias.TabIndex = 0;
             labelCategorias.Text = "Categorias";
             labelCategorias.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // panelTop
-            // 
-            panelTop.BackColor = Color.FromArgb(27, 27, 37);
-            panelTop.Controls.Add(btnMinimizar);
-            panelTop.Controls.Add(btnSair);
-            panelTop.Dock = DockStyle.Top;
-            panelTop.Location = new Point(0, 0);
-            panelTop.Name = "panelTop";
-            panelTop.Size = new Size(1632, 36);
-            panelTop.TabIndex = 2;
-            // 
-            // btnMinimizar
-            // 
-            btnMinimizar.BackColor = Color.Transparent;
-            btnMinimizar.Dock = DockStyle.Right;
-            btnMinimizar.FlatAppearance.BorderColor = Color.FromArgb(45, 45, 60);
-            btnMinimizar.FlatAppearance.MouseDownBackColor = Color.Maroon;
-            btnMinimizar.FlatAppearance.MouseOverBackColor = Color.Transparent;
-            btnMinimizar.FlatStyle = FlatStyle.Popup;
-            btnMinimizar.Font = new Font("Segoe UI", 15F);
-            btnMinimizar.ForeColor = Color.White;
-            btnMinimizar.Location = new Point(1524, 0);
-            btnMinimizar.Name = "btnMinimizar";
-            btnMinimizar.Size = new Size(54, 36);
-            btnMinimizar.TabIndex = 2;
-            btnMinimizar.Text = "-";
-            btnMinimizar.UseVisualStyleBackColor = false;
-            btnMinimizar.Click += btnMinimizar_Click;
-            // 
-            // btnSair
-            // 
-            btnSair.BackColor = Color.Transparent;
-            btnSair.Dock = DockStyle.Right;
-            btnSair.FlatAppearance.BorderColor = Color.FromArgb(45, 45, 60);
-            btnSair.FlatAppearance.MouseDownBackColor = Color.Maroon;
-            btnSair.FlatAppearance.MouseOverBackColor = Color.Transparent;
-            btnSair.FlatStyle = FlatStyle.Popup;
-            btnSair.ForeColor = Color.White;
-            btnSair.Location = new Point(1578, 0);
-            btnSair.Name = "btnSair";
-            btnSair.Size = new Size(54, 36);
-            btnSair.TabIndex = 0;
-            btnSair.Text = "X";
-            btnSair.UseVisualStyleBackColor = false;
-            btnSair.Click += btnSair_Click;
             // 
             // panelContainer
             // 
             panelContainer.BackColor = Color.FromArgb(45, 45, 60);
             panelContainer.Dock = DockStyle.Fill;
             panelContainer.ForeColor = Color.White;
-            panelContainer.Location = new Point(291, 94);
+            panelContainer.Location = new Point(291, 58);
             panelContainer.Name = "panelContainer";
-            panelContainer.Size = new Size(1341, 717);
+            panelContainer.Size = new Size(989, 622);
             panelContainer.TabIndex = 2;
             // 
             // MainEmpresa
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1632, 811);
+            ClientSize = new Size(1280, 680);
             Controls.Add(panelContainer);
             Controls.Add(panelTop2);
             Controls.Add(panelLeft);
-            Controls.Add(panelTop);
             FormBorderStyle = FormBorderStyle.None;
             Name = "MainEmpresa";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
-            WindowState = FormWindowState.Maximized;
-            Load += MainEmpresa_Load;
             panelLeft.ResumeLayout(false);
             panelLeft.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -456,7 +402,6 @@
             panelTop2.ResumeLayout(false);
             panelTop2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            panelTop.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
             ResumeLayout(false);
         }
@@ -479,9 +424,6 @@
         private PictureBox pictureBox2;
         private Button btnLogOut;
         private Button btnLog;
-        private Panel panelTop;
-        private Button btnMinimizar;
-        private Button btnSair;
         private Panel panelContainer;
         private Button button1;
         private ImageList imageList1;

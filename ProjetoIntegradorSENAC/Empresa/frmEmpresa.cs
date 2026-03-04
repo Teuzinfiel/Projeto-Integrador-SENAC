@@ -76,11 +76,10 @@ namespace ProjetoIntegradorSENAC.Empresa
             string nomeEmpresa =
              dtgEmpresas.Rows[e.RowIndex].Cells["fantasia"].Value.ToString();
 
-            MainEmpresa main =
-                new MainEmpresa(idComercio, idDono, this.idUsuario, nomeEmpresa);
+           
+            main.AbrirFormNoPanel (new MainEmpresa(idComercio, idDono, this.idUsuario, nomeEmpresa));
 
-            main.Show();
-            this.Hide();
+           
         }
 
         private void dtgEmpresas_CellMouseEnter_1(object sender, DataGridViewCellEventArgs e)
@@ -97,8 +96,8 @@ namespace ProjetoIntegradorSENAC.Empresa
 
         private void button1_Click(object sender, EventArgs e)
         {
-             main.AbrirFormNoPanel( new cadEmpresa(this.idUsuario, main));
-            
+            main.AbrirFormNoPanel(new cadEmpresa(this.idUsuario, main));
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -116,6 +115,11 @@ namespace ProjetoIntegradorSENAC.Empresa
         private void voltarBtn_Click(object sender, EventArgs e)
         {
             main.AbrirFormNoPanel(new loginUsuario(main));
+        }
+
+        private void dtgEmpresas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

@@ -77,7 +77,7 @@ namespace ProjetoIntegradorSENAC.Empresa
              dtgEmpresas.Rows[e.RowIndex].Cells["fantasia"].Value.ToString();
 
            
-            main.AbrirFormNoPanel (new MainEmpresa(idComercio, idDono, this.idUsuario, nomeEmpresa));
+            main.AbrirFormNoPanel (new MainEmpresa(idComercio, idDono, this.idUsuario, nomeEmpresa, main));
 
            
         }
@@ -102,9 +102,8 @@ namespace ProjetoIntegradorSENAC.Empresa
 
         private void button2_Click(object sender, EventArgs e)
         {
-            configEmpresa cfg = new configEmpresa(this.idUsuario);
-            cfg.Show();
-            this.Hide();
+            main.AbrirFormNoPanel(new configEmpresa(this.idUsuario, main));
+            
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)

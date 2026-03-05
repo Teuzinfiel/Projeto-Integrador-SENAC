@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 namespace ProjetoIntegradorSENAC.Produto
@@ -15,7 +16,7 @@ namespace ProjetoIntegradorSENAC.Produto
 
         public int idUsuario;
         public int idComercio;
-
+        private string foto;
         // Flags para erros
 
         private bool erroNome = true;
@@ -24,7 +25,7 @@ namespace ProjetoIntegradorSENAC.Produto
         private bool erroPreco = true;
         private bool erroCategoria = true;
         private bool erroUnidade = true;
-
+        private bool erroCusto = true;
 
         private bool limpandoFormulario = false;
         private bool validarCampos = false;
@@ -48,7 +49,7 @@ namespace ProjetoIntegradorSENAC.Produto
             CarregarCategoriasCb();
             CarregarCategorias();
             CarregarCategoriasCbAtt();
-            ResetarBotoesProduto();
+
 
             DataTable dt = (DataTable)dtgProdutos.DataSource;
 
@@ -72,7 +73,7 @@ namespace ProjetoIntegradorSENAC.Produto
 
 
         //Botao de cadastro de produtos
-        private void btnCadastro_Click(object sender, EventArgs e)
+        private async void btnCadastro_Click(object sender, EventArgs e)
         {
             validarCampos = true;
             if (!CamposValidos())
@@ -93,6 +94,27 @@ namespace ProjetoIntegradorSENAC.Produto
 
             string preco = PrPreco.Text.Replace(",", ".");
 
+            string urlFoto = null;
+
+            if (!string.IsNullOrWhiteSpace(foto))
+            {
+                var request = new requestFoto();
+
+                var (ok, resposta) = await request.UploadFotoProdutoAsync(
+                    foto,
+                    codigoBarra
+                );
+
+                if (!ok)
+                {
+                    MessageBox.Show("Erro ao enviar foto: " + resposta);
+                    return;
+                }
+
+                // JSON: { "sucesso": true, "url": "https://..." }
+                dynamic json = Newtonsoft.Json.JsonConvert.DeserializeObject(resposta);
+                urlFoto = json.url;
+            }
             try
             {
                 using (var conn = Banco.AbrirConexao())
@@ -103,7 +125,7 @@ namespace ProjetoIntegradorSENAC.Produto
                         // 1️⃣ Inserir produto
                         string insertProduto = $@"
                 INSERT INTO produtos 
-                (comercio_id, nome, descricao, status, marca, codigo_barra, unidade_medida, categoria_id, preco)
+                (comercio_id, nome, descricao, status, marca, codigo_barra, unidade_medida, categoria_id, preco, custo, caminho_foto)
                 VALUES
                 ({idComercio},
                 '{PrNome.Text}',
@@ -113,7 +135,9 @@ namespace ProjetoIntegradorSENAC.Produto
                 '{codigoBarra}',
                 '{unidade}',
                 {CmbCategoria.SelectedValue},
-                {preco});
+                {preco},
+                {decimal.Parse(txtPrecoCusto.Text)},
+                '{urlFoto}');
                 
                 SELECT LAST_INSERT_ID();";
 
@@ -147,12 +171,6 @@ namespace ProjetoIntegradorSENAC.Produto
                 limpandoFormulario = false;
                 validarCampos = false;
                 // Reset visual
-                astNome.Visible = false;
-                astDescAtt.Visible = false;
-                astMarca.Visible = false;
-                astPreco.Visible = false;
-                astCategoria.Visible = false;
-                astUnidade.Visible = false;
 
                 lbNome.ForeColor = Color.White;
                 lbDescricao.ForeColor = Color.White;
@@ -169,7 +187,7 @@ namespace ProjetoIntegradorSENAC.Produto
 
                 CmbUnidade.SelectedIndex = -1;
 
-           
+
             }
             catch (Exception ex)
             {
@@ -183,7 +201,7 @@ namespace ProjetoIntegradorSENAC.Produto
         {
             if (limpandoFormulario || !validarCampos) return;
             erroNome = Funcoes.CampoVazio(PrNome);
-            astNome.Visible = erroNome;
+
             lbNome.ForeColor = erroNome ? Color.DarkRed : Color.White;
         }
 
@@ -191,7 +209,7 @@ namespace ProjetoIntegradorSENAC.Produto
         {
             if (limpandoFormulario || !validarCampos) return;
             erroDescricao = Funcoes.CampoVazio(PrDescricao);
-            astDescAtt.Visible = erroDescricao;
+
             lbDescricao.ForeColor = erroDescricao ? Color.DarkRed : Color.White;
         }
 
@@ -200,7 +218,7 @@ namespace ProjetoIntegradorSENAC.Produto
             if (limpandoFormulario || !validarCampos) return;
             erroMarca = Funcoes.CampoVazio(PrMarca);
 
-            astMarca.Visible = erroMarca;
+
             lbMarca.ForeColor = erroMarca ? Color.DarkRed : Color.White;
         }
 
@@ -209,7 +227,7 @@ namespace ProjetoIntegradorSENAC.Produto
             if (limpandoFormulario || !validarCampos) return;
             erroPreco = Funcoes.CampoVazio(PrPreco);
 
-            astPreco.Visible = erroPreco;
+
             lbPreco.ForeColor = erroPreco ? Color.DarkRed : Color.White;
         }
 
@@ -218,7 +236,7 @@ namespace ProjetoIntegradorSENAC.Produto
             if (limpandoFormulario || !validarCampos) return;
             erroCategoria = Funcoes.CampoVazio(CmbCategoria);
 
-            astCategoria.Visible = erroCategoria;
+
             lbCategoria.ForeColor = erroCategoria ? Color.DarkRed : Color.White;
         }
 
@@ -226,7 +244,7 @@ namespace ProjetoIntegradorSENAC.Produto
         {
             if (limpandoFormulario || !validarCampos) return;
             erroUnidade = Funcoes.CampoVazio(CmbUnidade);
-            astUnidade.Visible = erroUnidade;
+
             lbUnidade.ForeColor = erroUnidade ? Color.DarkRed : Color.White;
 
             if (!erroUnidade)
@@ -256,22 +274,21 @@ namespace ProjetoIntegradorSENAC.Produto
             erroCategoria = Funcoes.CampoVazio(CmbCategoria);
             erroUnidade = Funcoes.CampoVazio(CmbUnidade);
 
-            astNome.Visible = erroNome;
+
             lbNome.ForeColor = erroNome ? Color.DarkRed : Color.White;
 
-            astDescAtt.Visible = erroDescricao;
             lbDescricao.ForeColor = erroDescricao ? Color.DarkRed : Color.White;
 
-            astMarca.Visible = erroMarca;
+
             lbMarca.ForeColor = erroMarca ? Color.DarkRed : Color.White;
 
-            astPreco.Visible = erroPreco;
+
             lbPreco.ForeColor = erroPreco ? Color.DarkRed : Color.White;
 
-            astCategoria.Visible = erroCategoria;
+
             lbCategoria.ForeColor = erroCategoria ? Color.DarkRed : Color.White;
 
-            astUnidade.Visible = erroUnidade;
+
             lbUnidade.ForeColor = erroUnidade ? Color.DarkRed : Color.White;
 
             return !erroNome &&
@@ -503,7 +520,7 @@ namespace ProjetoIntegradorSENAC.Produto
             lbMarcaAtt.Visible = true;
             txtMarcaProd.Visible = true;
 
-           lbMedidaAtt.Visible = true;
+            lbMedidaAtt.Visible = true;
             cmbMedida.Visible = true;
 
 
@@ -511,8 +528,8 @@ namespace ProjetoIntegradorSENAC.Produto
             txtPrecoProd.Visible = true;
 
             lbDescAtt.Visible = true;
-            PrDescricaoAtt.Visible = true;   
-            
+            PrDescricaoAtt.Visible = true;
+
             lbBarrasAtt.Visible = true;
             txtCodBarra.Visible = true;
 
@@ -591,13 +608,7 @@ namespace ProjetoIntegradorSENAC.Produto
             bool erroCodBarra = string.IsNullOrWhiteSpace(txtCodBarra.Text) || !txtCodBarra.Text.All(char.IsDigit);
 
             // Atualiza visibilidade dos asteriscos
-            astNomeAtt.Visible = erroNome;
-            astmarcaAtt.Visible = erroMarca;
-            astDescricao.Visible = erroDescricao;
-            astPrecoAtt.Visible = erroPreco;
-            astCatAtt.Visible = erroCategoria;
-            astMedidaAtt.Visible = erroUnidade;
-            astBarrasAtt.Visible = erroCodBarra;
+
 
             // Atualiza cor dos labels
             lbNomeAtt.ForeColor = erroNome ? Color.DarkRed : Color.White;
@@ -663,7 +674,6 @@ namespace ProjetoIntegradorSENAC.Produto
                 LogService.CriarLog(this.idComercio, this.idUsuario, "Produto Cadastrado");
                 LimparEdicaoProduto();
                 CarregarProdutos();
-                ResetarBotoesProduto();
                 esconderBotao();
                 dtgProdutos.ClearSelection();
                 idProdutoSelecionado = 0;
@@ -689,7 +699,6 @@ namespace ProjetoIntegradorSENAC.Produto
             try
             {
                 Banco.Inserir(sql);
-                ResetarBotoesProduto();
                 MessageBox.Show("Produto desativado!");
                 LimparEdicaoProduto();
                 CarregarProdutos();
@@ -760,7 +769,6 @@ namespace ProjetoIntegradorSENAC.Produto
                 esconderBotao();
                 LimparEdicaoProduto();
                 CarregarProdutos();
-                ResetarBotoesProduto();
 
                 idProdutoSelecionado = 0;
 
@@ -778,7 +786,7 @@ namespace ProjetoIntegradorSENAC.Produto
         // Carrega categorias no comboBox de edição de produtos
         private void CarregarCategoriasCbAtt()
         {
-                    string sql = $@"
+            string sql = $@"
             SELECT id, nome
             FROM categorias
             WHERE comercio_id = {idComercio}
@@ -786,21 +794,15 @@ namespace ProjetoIntegradorSENAC.Produto
 
             DataTable dt = Banco.Pesquisar(sql);
 
-                    cmbCatAtt.DataSource = dt;
-                    cmbCatAtt.DisplayMember = "nome";
-                    cmbCatAtt.ValueMember = "id";
-                    cmbCatAtt.SelectedIndex = -1;
+            cmbCatAtt.DataSource = dt;
+            cmbCatAtt.DisplayMember = "nome";
+            cmbCatAtt.ValueMember = "id";
+            cmbCatAtt.SelectedIndex = -1;
         }
 
         // Reseta botões de edição de produtos
 
-        private void ResetarBotoesProduto()
-        {
-            btnAtivarProd.Visible = false;
-            btnDesativarProd.Visible = false;
-            btnExcluirProd.Visible = false;
-            btnAttProd.Visible = false;
-        }
+
         // Limpa campos de edição de produtos
         private void LimparEdicaoProduto()
         {
@@ -837,7 +839,6 @@ namespace ProjetoIntegradorSENAC.Produto
                 Banco.Inserir(sql);
                 MessageBox.Show("Produto ativado!");
                 esconderBotao();
-                ResetarBotoesProduto();
                 LimparEdicaoProduto();
                 CarregarProdutos();
                 idProdutoSelecionado = 0;
@@ -846,6 +847,56 @@ namespace ProjetoIntegradorSENAC.Produto
             {
                 MessageBox.Show("Erro:\n" + ex.Message);
             }
+        }
+
+        private void astCatAtt_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            button1.Visible = false;
+            button2.Visible = true;
+            panel6.Visible = true;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            button1.Visible = true;
+            button2.Visible = false;
+            panel6.Visible = false;
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog dialog = new OpenFileDialog())
+            {
+                dialog.Title = "Selecionar Foto";
+                dialog.Filter = "Arquivos de Imagem|*.jpg;*.jpeg;*.png";
+                dialog.Multiselect = false;
+
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    string ext = Path.GetExtension(dialog.FileName).ToLower();
+
+                    if (ext != ".jpg" && ext != ".jpeg" && ext != ".png")
+                    {
+                        MessageBox.Show("Formato Invalido");
+                        return;
+                    }
+
+                    pictureBox1.Image = Image.FromFile(dialog.FileName);
+                    foto = dialog.FileName;
+                }
+            }
+        }
+
+        private void removePic_Click(object sender, EventArgs e)
+        {
+            foto = null;
+            pictureBox1.Image = null;
         }
     }
 }

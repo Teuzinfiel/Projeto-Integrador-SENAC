@@ -1,5 +1,6 @@
 ﻿using ProjetoIntegradorSENAC.Classes;
 using ProjetoIntegradorSENAC.Empresa;
+using ProjetoIntegradorSENAC.Main;
 using ProjetoIntegradorSENAC.Usuario;
 using System;
 using System.Collections.Generic;
@@ -18,10 +19,14 @@ namespace ProjetoIntegradorSENAC.Configurações
         public int idUsuario;
         public int idEmpresa;
         public int idDono;
-        public configEmpresa(int idUsuario)
+        CepService cepService;
+        mainFrm main;
+        public configEmpresa(int idUsuario, mainFrm mainFrm)
         {
             InitializeComponent();
             this.idUsuario = idUsuario;
+            main = mainFrm;
+            cepService = new CepService();
         }
         private void CarregarEmpresas()
         {
@@ -65,7 +70,7 @@ namespace ProjetoIntegradorSENAC.Configurações
             );
 
             string query = $@"
-        SELECT nome, nome_fantasia, email, tipo_documentacao, documentacao, telefone
+        SELECT nome, nome_fantasia, email, tipo_documentacao, documentacao, telefone, cep, municipio, bairro
         FROM comercios
         WHERE id = {idEmpresa}";
 
@@ -77,13 +82,16 @@ namespace ProjetoIntegradorSENAC.Configurações
                 txtNomeFantasia.Text = dt.Rows[0]["nome_fantasia"].ToString();
                 txtEmail.Text = dt.Rows[0]["email"].ToString();
                 mkTelefone.Text = dt.Rows[0]["telefone"].ToString();
+                txtBairro.Text = dt.Rows[0]["bairro"].ToString();
+                txtMunicipio.Text = dt.Rows[0]["municipio"].ToString();
+                mkCep.Text = dt.Rows[0]["cep"].ToString();
 
                 string tipoDoc = dt.Rows[0]["tipo_documentacao"].ToString();
                 string doc = dt.Rows[0]["documentacao"].ToString();
 
                 if (tipoDoc == "cpf")
                 {
-                    radioButton1.Checked = true;
+
 
                     label18.Text = "CPF";
                     maskedTextBox2.Visible = true;   // CPF
@@ -94,7 +102,7 @@ namespace ProjetoIntegradorSENAC.Configurações
                 }
                 else
                 {
-                    radioButton2.Checked = true;
+
 
                     label18.Text = "CNPJ";
                     maskedTextBox2.Visible = false;
@@ -108,12 +116,13 @@ namespace ProjetoIntegradorSENAC.Configurações
             carregando = false;
         }
 
-        bool erroRazao = true;
-        bool erroFantasia = true;
-        bool erroCnpj = true;
-        bool erroCpf = true;
-        bool erroTelefone = true;
-        bool erroEmail = true;
+        bool erroRazao = false;
+        bool erroFantasia = false;
+        bool erroCnpj = false;
+        bool erroCpf = false;
+        bool erroTelefone = false;
+        bool erroEmail = false;
+        bool erroCep = false;
 
 
         private void txtRazaoSocial_TextChanged(object sender, EventArgs e)
@@ -236,54 +245,39 @@ namespace ProjetoIntegradorSENAC.Configurações
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            bool erroDocumento = radioButton1.Checked ? erroCpf : erroCnpj;
-
-            if (erroRazao || erroFantasia || erroDocumento || erroTelefone || erroEmail)
+            if (!erroRazao || !erroFantasia || !erroCnpj || !erroCpf ||
+    !erroTelefone || !erroEmail || !erroCep)
             {
-                MessageBox.Show("Preencha corretamente todos os campos!",
-                                "Erro",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
-                return;
-            }
 
-            string telefone = mkTelefone.Text;
-            string nome = txtRazaoSocial.Text;
-            string nomeFantasia = txtNomeFantasia.Text;
-            string email = txtEmail.Text;
-            string tipoDoc = radioButton1.Checked ? "cpf" : "cnpj";
-            string doc = radioButton1.Checked
-    ? maskedTextBox2.Text   // CPF
-    : maskedTextBox1.Text;  // CNPJ
+                string telefone = mkTelefone.Text;
+                string nome = txtRazaoSocial.Text;
+                string nomeFantasia = txtNomeFantasia.Text;
+                string email = txtEmail.Text;
 
-            string update = $@"
+                string update = $@"
         UPDATE comercios SET
             nome = '{nome}',
             nome_fantasia = '{nomeFantasia}',
             email = '{email}',
-            tipo_documentacao = '{tipoDoc}',
-            documentacao = '{doc}',
             telefone = '{telefone}'
         WHERE id = {idEmpresa}";
 
-            Banco.Inserir(update);
-            MessageBox.Show("Empresa atualizada com sucesso!");
-            CarregarEmpresas();
+                Banco.Inserir(update);
+                MessageBox.Show("Empresa atualizada com sucesso!");
+                CarregarEmpresas();
+            }
+            else {
+                MessageBox.Show("Preencha corretamente todos os campos!",
+                                   "Erro",
+                                   MessageBoxButtons.OK,
+                                   MessageBoxIcon.Error);
+
+            }
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            frmEmpresa frm = new frmEmpresa(this.idUsuario, null);
-            frm.Show();
-            this.Hide();
-        }
-        private void btnSair_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-        private void btnMinimizar_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Minimized;
+           main.AbrirFormNoPanel(new frmEmpresa(this.idUsuario, main));
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
@@ -312,6 +306,49 @@ namespace ProjetoIntegradorSENAC.Configurações
         private void label4_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            panel2.Visible = false;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            panel2.Visible = true;
+        }
+
+        private async void mkCep_TextChanged(object sender, EventArgs e)
+        {
+            if (Funcoes.CepValido(mkCep.Text))
+            {
+                erroCep = false;
+                label12.ForeColor = Color.White;
+                label12.Text = "CEP";
+
+                try
+                {
+                    var cep = await cepService.BuscarCepAsync(mkCep.Text);
+
+                    if (cep == null)
+                    {
+                        return;
+                    }
+                    txtBairro.Text = cep.Bairro;
+                    txtMunicipio.Text = cep.Localidade;
+                }
+                catch (Exception ex)
+                {
+                    return;
+                }
+            }
+
+            else
+            {
+                erroCep = true;
+                label12.ForeColor = Color.DarkRed;
+                label12.Text = "CEP invalido *";
+            }
         }
     }
 }

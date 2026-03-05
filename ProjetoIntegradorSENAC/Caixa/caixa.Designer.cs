@@ -302,7 +302,6 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "caixa";
             StartPosition = FormStartPosition.CenterScreen;
-            WindowState = FormWindowState.Maximized;
             mainLayout.ResumeLayout(false);
             leftPanel.ResumeLayout(false);
             leftPanel.PerformLayout();

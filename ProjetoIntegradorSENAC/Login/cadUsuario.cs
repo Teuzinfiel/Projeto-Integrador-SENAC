@@ -133,7 +133,7 @@ namespace ProjetoIntegradorSENAC.Usuario
 
         private void UsEmail_TextChanged(object sender, EventArgs e)
         {
-            if (Funcoes.isEmail(UsEmail.Text))
+            if (Funcoes.ValidarGmail(UsEmail.Text))
             {
                 erroEmail = false;
                 astEmail.Visible = false;

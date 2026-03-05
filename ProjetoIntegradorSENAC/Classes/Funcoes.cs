@@ -12,6 +12,11 @@ namespace ProjetoIntegradorSENAC.Classes
     internal class Funcoes
     {
 
+
+        public static bool ValidarGmail(string email)
+        {
+            return Regex.IsMatch(email, @"^[a-z0-9][a-z0-9._%+-]*@gmail\.com$");
+        }
         public static bool CepValido(string cep)
         {
             if (string.IsNullOrWhiteSpace(cep))

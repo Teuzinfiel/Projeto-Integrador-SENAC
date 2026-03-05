@@ -31,26 +31,29 @@ namespace ProjetoIntegradorSENAC.Caixa
 
         private void caixa_Load(object sender, EventArgs e)
         {
-                   string query = $@"
-                SELECT 
-                     p.id AS produto_id,
-                     p.nome AS Produto,
-                     p.preco AS Preco,
-                     p.codigo_barra AS produto_codigo,
-                     COALESCE((
-                         SELECT quantidade_final
-                         FROM movimentacoes_estoque m
-                         WHERE m.produto_id = p.id
-                         ORDER BY m.id DESC
-                         LIMIT 1
-                     ), 0) AS estoque
-                FROM produtos p
-                WHERE p.comercio_id = {idEmpresa}
-                ORDER BY p.nome ASC
-                LIMIT 50;
-                ";
+            string query = $@"
+        SELECT 
+            p.id AS produto_id,
+            p.nome AS Produto,
+            p.preco AS Preco,
+            p.codigo_barra AS produto_codigo,
+            p.caminho_foto,
+            COALESCE((
+                SELECT quantidade_final
+                FROM movimentacoes_estoque m
+                WHERE m.produto_id = p.id
+                ORDER BY m.id DESC
+                LIMIT 1
+            ), 0) AS estoque
+        FROM produtos p
+        WHERE p.comercio_id = {idEmpresa}
+        AND p.status = 'ativo'
+        ORDER BY p.nome ASC
+        LIMIT 50;
+    ";
 
             carregarProdutos(Banco.Pesquisar(query));
+
             dtgProdutos.AllowUserToResizeRows = false;
 
             flpCaixa.AutoScroll = true;
@@ -73,6 +76,9 @@ namespace ProjetoIntegradorSENAC.Caixa
             if (dtgProdutos.Columns.Contains("produto_codigo"))
                 dtgProdutos.Columns["produto_codigo"].Visible = false;
 
+            if (dtgProdutos.Columns.Contains("caminho_foto"))
+                dtgProdutos.Columns["caminho_foto"].Visible = false;
+
             dtgProdutos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgProdutos.ClearSelection();
         }
@@ -81,32 +87,30 @@ namespace ProjetoIntegradorSENAC.Caixa
         {
             string pesquisa = (txtPesquisa.Text ?? "").Trim();
 
-
             string query = $@"
-            SELECT 
-                 p.id AS produto_id,
-                 p.nome AS Produto,
-                 p.preco AS Preco,
-                 p.codigo_barra AS produto_codigo,
-             COALESCE((
-             SELECT quantidade_final
-             FROM movimentacoes_estoque m
-             WHERE m.produto_id = p.id
-             ORDER BY m.id DESC
-             LIMIT 1
-             ), 0) AS estoque
-            FROM produtos p
-            WHERE p.comercio_id = {idEmpresa}
-             AND (p.nome LIKE '%{pesquisa}%' 
+        SELECT 
+            p.id AS produto_id,
+            p.nome AS Produto,
+            p.preco AS Preco,
+            p.codigo_barra AS produto_codigo,
+            p.caminho_foto,
+            COALESCE((
+                SELECT quantidade_final
+                FROM movimentacoes_estoque m
+                WHERE m.produto_id = p.id
+                ORDER BY m.id DESC
+                LIMIT 1
+            ), 0) AS estoque
+        FROM produtos p
+        WHERE p.comercio_id = {idEmpresa}
+        AND p.status = 'ativo'
+        AND (p.nome LIKE '%{pesquisa}%' 
              OR p.codigo_barra LIKE '%{pesquisa}%')
-            ORDER BY p.nome ASC
-            LIMIT 50;
-            ";
-
-
+        ORDER BY p.nome ASC
+        LIMIT 50;
+    ";
 
             carregarProdutos(Banco.Pesquisar(query));
-
         }
 
         private void dtgProdutos_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -123,20 +127,17 @@ namespace ProjetoIntegradorSENAC.Caixa
                 : 0m;
 
             int estoque = Convert.ToInt32(row.Cells["estoque"].Value);
+            string foto = row.Cells["caminho_foto"]?.Value?.ToString();
 
-            // 🔍 Verifica se já existe no carrinho
             var itemExistente = _vendaAtual.Itens.FirstOrDefault(i => i.ProdutoId == idProduto);
-
             int quantidadeAtual = itemExistente?.Quantidade ?? 0;
 
-            // 🚫 Bloqueia antes de adicionar
             if (quantidadeAtual >= estoque)
             {
                 MessageBox.Show("Estoque insuficiente");
                 return;
             }
 
-            // ✅ Agora sim pode adicionar
             _vendaAtual.AdicionarOuIncrimentar(idProduto, nome, preco);
 
             var item = _vendaAtual.Itens.First(i => i.ProdutoId == idProduto);
@@ -151,7 +152,7 @@ namespace ProjetoIntegradorSENAC.Caixa
             }
             else
             {
-                Panel novoP = CriarPainelProduto(null, item, estoque);
+                Panel novoP = CriarPainelProduto(foto, item, estoque);
                 flpCaixa.Controls.Add(novoP);
                 _painelPorProduto[idProduto] = novoP;
                 lbItens.Text = _vendaAtual.Itens.Count.ToString();
@@ -161,7 +162,7 @@ namespace ProjetoIntegradorSENAC.Caixa
         }
 
 
-        private Panel CriarPainelProduto(Image imagem, ItemVenda item, int estoque)
+        private Panel CriarPainelProduto(string caminhoFoto, ItemVenda item, int estoque)
         {
             int id = item.ProdutoId;
 
@@ -174,7 +175,6 @@ namespace ProjetoIntegradorSENAC.Caixa
                 Tag = id
             };
 
-            // 🔵 Cantos arredondados
             p.Paint += (s, e) =>
             {
                 using (var path = RoundedRect(new Rectangle(0, 0, p.Width - 1, p.Height - 1), 15))
@@ -183,7 +183,6 @@ namespace ProjetoIntegradorSENAC.Caixa
                 }
             };
 
-            // Nome
             Label lblNome = new Label
             {
                 Text = item.NomeProduto,
@@ -195,7 +194,26 @@ namespace ProjetoIntegradorSENAC.Caixa
                 Location = new Point(0, 8)
             };
 
-            // Quantidade
+            PictureBox pic = new PictureBox
+            {
+                Width = 150,
+                Height = 90,
+                SizeMode = PictureBoxSizeMode.Zoom,
+                Location = new Point(10, 35)
+            };
+
+            if (!string.IsNullOrEmpty(caminhoFoto))
+            {
+                try
+                {
+                    pic.LoadAsync(caminhoFoto);
+                }
+                catch
+                {
+                    pic.Image = null;
+                }
+            }
+
             Label lblQtd = new Label
             {
                 Text = item.Quantidade.ToString(),
@@ -204,11 +222,10 @@ namespace ProjetoIntegradorSENAC.Caixa
                 TextAlign = ContentAlignment.MiddleCenter,
                 Width = 50,
                 Height = 30,
-                Location = new Point(60, 75),
+                Location = new Point(60, 130),
                 Tag = "qtd"
             };
 
-            // 🔵 Preço Azul
             Label lblPreco = new Label
             {
                 Text = $"{item.Total:C2}",
@@ -217,25 +234,24 @@ namespace ProjetoIntegradorSENAC.Caixa
                 TextAlign = ContentAlignment.MiddleCenter,
                 Width = p.Width,
                 Height = 25,
-                Location = new Point(0, 120),
+                Location = new Point(0, 160),
                 Tag = "preco"
             };
 
-            Color azulSistema = Color.FromArgb(0, 150, 255);
+            Color azul = Color.FromArgb(0, 150, 255);
 
-            Button btnMais = CriarBotao("+", azulSistema);
-            Button btnMenos = CriarBotao("-", azulSistema);
+            Button btnMais = CriarBotao("+", azul);
+            Button btnMenos = CriarBotao("-", azul);
             Button btnCancel = CriarBotao("X", Color.FromArgb(220, 50, 50));
 
-            btnMais.Location = new Point(20, 75);
-            btnMenos.Location = new Point(120, 75);
+            btnMais.Location = new Point(20, 130);
+            btnMenos.Location = new Point(120, 130);
 
             btnCancel.Size = new Size(24, 24);
             btnCancel.Location = new Point(p.Width - 30, 8);
             btnCancel.TextAlign = ContentAlignment.MiddleCenter;
             btnCancel.Padding = new Padding(0);
 
-            // EVENTO +
             btnMais.Click += (s, e) =>
             {
                 if (estoque <= item.Quantidade)
@@ -254,7 +270,6 @@ namespace ProjetoIntegradorSENAC.Caixa
                 AtualizarResumo();
             };
 
-            // EVENTO -
             btnMenos.Click += (s, e) =>
             {
                 _vendaAtual.DecrementarOuRemover(id);
@@ -275,7 +290,6 @@ namespace ProjetoIntegradorSENAC.Caixa
                 AtualizarResumo();
             };
 
-            // EVENTO X
             btnCancel.Click += (s, e) =>
             {
                 _vendaAtual.Remover(id);
@@ -288,6 +302,7 @@ namespace ProjetoIntegradorSENAC.Caixa
             };
 
             p.Controls.Add(lblNome);
+            p.Controls.Add(pic);
             p.Controls.Add(lblQtd);
             p.Controls.Add(lblPreco);
             p.Controls.Add(btnMais);
@@ -453,7 +468,7 @@ namespace ProjetoIntegradorSENAC.Caixa
             {
                 string sql = @"
             INSERT INTO vendas
-            (funcionario_id, comercio_id, total, forma_pagamento, descontos, codigo_consumidor)
+            (funcionario_id, comercio_id, total, forma_pagamento_id, descontos, codigo_consumidor)
             VALUES
             (@funcionario, @comercio, @total, @forma, @descontos, @codigo_consumidor);
             SELECT LAST_INSERT_ID();
@@ -465,7 +480,7 @@ namespace ProjetoIntegradorSENAC.Caixa
                     cmd.Parameters.AddWithValue("@funcionario", idFunc);
                     cmd.Parameters.AddWithValue("@comercio", idEmpresa);
                     cmd.Parameters.AddWithValue("@total", _vendaAtual.TotalBruto);
-                    cmd.Parameters.AddWithValue("@forma", _vendaAtual.FormaPagamento);
+                    cmd.Parameters.AddWithValue("@forma", 1);
                     cmd.Parameters.AddWithValue("@descontos", _vendaAtual.Descontos);
                     cmd.Parameters.AddWithValue("@codigo_consumidor", this._codigoConsumidor);
 
@@ -490,7 +505,7 @@ namespace ProjetoIntegradorSENAC.Caixa
 
                     foreach (var item in _vendaAtual.Itens)
                     {
-                        // 🔹 Salva item da venda (SEU CÓDIGO ORIGINAL)
+                        // salva item
                         using (MySqlCommand cmd = new MySqlCommand(sqlItem, conn, trans))
                         {
                             cmd.Parameters.AddWithValue("@produto", item.ProdutoId);
@@ -500,10 +515,11 @@ namespace ProjetoIntegradorSENAC.Caixa
                             cmd.ExecuteNonQuery();
                         }
 
-                        // 🔹 Atualiza estoque (NOVO - sem mexer no resto do sistema)
+                        // estoque atual
                         decimal atual = BuscarEstoqueAtual(item.ProdutoId, conn, trans);
                         decimal final = atual - item.Quantidade;
 
+                        // movimentação de saída
                         string sqlMov = @"
                     INSERT INTO movimentacoes_estoque
                     (produto_id, funcionario_id, comercio_id, tipo, quantidade, quantidade_final, motivo)
@@ -519,6 +535,20 @@ namespace ProjetoIntegradorSENAC.Caixa
                             cmdMov.Parameters.AddWithValue("@quantidade", item.Quantidade);
                             cmdMov.Parameters.AddWithValue("@final", final);
                             cmdMov.ExecuteNonQuery();
+                        }
+
+                        // atualiza estoque (insert or update)
+                        string sqlEstoque = @"
+                    INSERT INTO estoque (produto_id, quantidade_atual)
+                    VALUES (@produto, @final)
+                    ON DUPLICATE KEY UPDATE quantidade_atual = @final;
+                ";
+
+                        using (MySqlCommand cmdEst = new MySqlCommand(sqlEstoque, conn, trans))
+                        {
+                            cmdEst.Parameters.AddWithValue("@produto", item.ProdutoId);
+                            cmdEst.Parameters.AddWithValue("@final", final);
+                            cmdEst.ExecuteNonQuery();
                         }
                     }
 

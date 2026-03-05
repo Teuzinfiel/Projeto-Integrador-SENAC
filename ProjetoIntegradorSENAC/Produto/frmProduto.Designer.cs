@@ -28,15 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle17 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle18 = new DataGridViewCellStyle();
             btnCadastro = new Button();
             lbMarca = new Label();
             PrMarca = new TextBox();
@@ -50,76 +50,75 @@
             CmbUnidade = new ComboBox();
             lbPreco = new Label();
             PrPreco = new TextBox();
-            astNome = new Label();
-            astCategoria = new Label();
-            astMarca = new Label();
-            astPreco = new Label();
-            astDescAtt = new Label();
             panel1 = new Panel();
-            label2 = new Label();
-            label3 = new Label();
-            txtPrecoCusto = new TextBox();
-            label23 = new Label();
-            astCod = new Label();
-            dtgCategoria = new DataGridView();
-            PrCodigoBarra = new TextBox();
-            label19 = new Label();
-            astUnidade = new Label();
-            label15 = new Label();
-            btnCadCategoria = new Button();
-            txtCategoria = new TextBox();
-            astDescricao = new Label();
-            btnExcluirCat = new Button();
+            button1 = new Button();
+            button2 = new Button();
             PrDescricao = new TextBox();
-            label18 = new Label();
             label14 = new Label();
-            label17 = new Label();
+            panel4 = new Panel();
+            btnCadCategoria = new Button();
+            btnExcluirCat = new Button();
+            txtCategoria = new TextBox();
+            dtgCategoria = new DataGridView();
+            label15 = new Label();
+            label18 = new Label();
+            panel6 = new Panel();
+            removePic = new Label();
+            label2 = new Label();
+            pictureBox1 = new PictureBox();
+            panel5 = new Panel();
+            PrCodigoBarra = new TextBox();
+            label23 = new Label();
+            txtPrecoCusto = new TextBox();
+            label3 = new Label();
             lbBarrasAtt = new Label();
-            astCatAtt = new Label();
             cmbCatAtt = new ComboBox();
             lbCatAtt = new Label();
             lbDescAtt = new Label();
             panel2 = new Panel();
-            astMedidaAtt = new Label();
-            btnAtivarProd = new Button();
-            astBarrasAtt = new Label();
-            btnDesativarProd = new Button();
-            txtCodBarra = new TextBox();
             label16 = new Label();
-            btnExcluirProd = new Button();
-            btnAttProd = new Button();
-            astPrecoAtt = new Label();
-            astmarcaAtt = new Label();
-            astNomeAtt = new Label();
-            lbPrecoAtt = new Label();
-            txtPrecoProd = new TextBox();
-            cmbMedida = new ComboBox();
-            lbMedidaAtt = new Label();
-            lbMarcaAtt = new Label();
-            txtMarcaProd = new TextBox();
-            lbNomeAtt = new Label();
-            txtNomeProd = new TextBox();
             label1 = new Label();
             dtgProdutos = new DataGridView();
-            label4 = new Label();
+            panel3 = new Panel();
+            btnDesativarProd = new Button();
+            txtCodBarra = new TextBox();
+            btnAtivarProd = new Button();
+            btnAttProd = new Button();
             label5 = new Label();
+            txtPrecoProd = new TextBox();
             textBox1 = new TextBox();
+            lbPrecoAtt = new Label();
+            cmbMedida = new ComboBox();
+            lbMedidaAtt = new Label();
+            btnExcluirProd = new Button();
+            txtMarcaProd = new TextBox();
+            lbMarcaAtt = new Label();
+            lbNomeAtt = new Label();
+            txtNomeProd = new TextBox();
+            mainLayout = new TableLayoutPanel();
             panel1.SuspendLayout();
+            panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgCategoria).BeginInit();
+            panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panel5.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgProdutos).BeginInit();
+            panel3.SuspendLayout();
+            mainLayout.SuspendLayout();
             SuspendLayout();
             // 
             // btnCadastro
             // 
+            btnCadastro.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             btnCadastro.BackColor = SystemColors.Highlight;
             btnCadastro.Cursor = Cursors.Hand;
             btnCadastro.FlatStyle = FlatStyle.Popup;
             btnCadastro.Font = new Font("Franklin Gothic Medium", 13F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnCadastro.ForeColor = Color.White;
-            btnCadastro.Location = new Point(14, 550);
+            btnCadastro.Location = new Point(111, 551);
             btnCadastro.Name = "btnCadastro";
-            btnCadastro.Size = new Size(429, 34);
+            btnCadastro.Size = new Size(233, 34);
             btnCadastro.TabIndex = 36;
             btnCadastro.Text = "Cadastrar Produto";
             btnCadastro.UseVisualStyleBackColor = false;
@@ -130,7 +129,7 @@
             lbMarca.AutoSize = true;
             lbMarca.Font = new Font("Franklin Gothic Medium", 12F);
             lbMarca.ForeColor = Color.FromArgb(180, 180, 190);
-            lbMarca.Location = new Point(17, 373);
+            lbMarca.Location = new Point(3, -3);
             lbMarca.Name = "lbMarca";
             lbMarca.Size = new Size(131, 21);
             lbMarca.TabIndex = 40;
@@ -138,9 +137,10 @@
             // 
             // PrMarca
             // 
+            PrMarca.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             PrMarca.BackColor = Color.FromArgb(224, 224, 224);
             PrMarca.Font = new Font("Microsoft Sans Serif", 12F);
-            PrMarca.Location = new Point(17, 397);
+            PrMarca.Location = new Point(3, 21);
             PrMarca.Name = "PrMarca";
             PrMarca.PlaceholderText = "Digite a marca do produto";
             PrMarca.Size = new Size(207, 26);
@@ -160,6 +160,7 @@
             // 
             // PrNome
             // 
+            PrNome.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             PrNome.BackColor = Color.FromArgb(224, 224, 224);
             PrNome.Font = new Font("Microsoft Sans Serif", 12F);
             PrNome.Location = new Point(17, 344);
@@ -171,6 +172,7 @@
             // 
             // lbDescricao
             // 
+            lbDescricao.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lbDescricao.AutoSize = true;
             lbDescricao.Font = new Font("Franklin Gothic Medium", 12F);
             lbDescricao.ForeColor = Color.FromArgb(180, 180, 190);
@@ -182,15 +184,15 @@
             // 
             // PrDescricaoAtt
             // 
+            PrDescricaoAtt.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             PrDescricaoAtt.BackColor = Color.FromArgb(224, 224, 224);
             PrDescricaoAtt.Font = new Font("Microsoft Sans Serif", 12F);
-            PrDescricaoAtt.Location = new Point(245, 305);
+            PrDescricaoAtt.Location = new Point(238, 25);
             PrDescricaoAtt.Multiline = true;
             PrDescricaoAtt.Name = "PrDescricaoAtt";
             PrDescricaoAtt.PlaceholderText = "Digite a descrição do produto";
-            PrDescricaoAtt.Size = new Size(243, 29);
+            PrDescricaoAtt.Size = new Size(246, 29);
             PrDescricaoAtt.TabIndex = 49;
-            PrDescricaoAtt.Visible = false;
             PrDescricaoAtt.TextChanged += PrDescricao_TextChanged;
             // 
             // lbUnidade
@@ -198,7 +200,7 @@
             lbUnidade.AutoSize = true;
             lbUnidade.Font = new Font("Franklin Gothic Medium", 12F);
             lbUnidade.ForeColor = Color.FromArgb(180, 180, 190);
-            lbUnidade.Location = new Point(16, 432);
+            lbUnidade.Location = new Point(3, 56);
             lbUnidade.Name = "lbUnidade";
             lbUnidade.Size = new Size(146, 21);
             lbUnidade.TabIndex = 51;
@@ -209,7 +211,7 @@
             lbCategoria.AutoSize = true;
             lbCategoria.Font = new Font("Franklin Gothic Medium", 12F);
             lbCategoria.ForeColor = Color.FromArgb(180, 180, 190);
-            lbCategoria.Location = new Point(17, 491);
+            lbCategoria.Location = new Point(3, 115);
             lbCategoria.Name = "lbCategoria";
             lbCategoria.Size = new Size(75, 21);
             lbCategoria.TabIndex = 53;
@@ -217,10 +219,11 @@
             // 
             // CmbCategoria
             // 
+            CmbCategoria.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             CmbCategoria.BackColor = Color.FromArgb(224, 224, 224);
             CmbCategoria.Font = new Font("Microsoft Sans Serif", 12F);
             CmbCategoria.FormattingEnabled = true;
-            CmbCategoria.Location = new Point(17, 516);
+            CmbCategoria.Location = new Point(3, 137);
             CmbCategoria.Name = "CmbCategoria";
             CmbCategoria.Size = new Size(207, 28);
             CmbCategoria.TabIndex = 54;
@@ -228,12 +231,13 @@
             // 
             // CmbUnidade
             // 
+            CmbUnidade.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             CmbUnidade.AutoCompleteCustomSource.AddRange(new string[] { "Unidade", "Grama" });
             CmbUnidade.BackColor = Color.FromArgb(224, 224, 224);
             CmbUnidade.Font = new Font("Microsoft Sans Serif", 12F);
             CmbUnidade.FormattingEnabled = true;
             CmbUnidade.Items.AddRange(new object[] { "Unidade", "Caixa", "Pacote", "Kg", "Gramas", "Litros", "Ml", "Dúzia", "Fardo", "Kit" });
-            CmbUnidade.Location = new Point(16, 456);
+            CmbUnidade.Location = new Point(0, 80);
             CmbUnidade.Name = "CmbUnidade";
             CmbUnidade.Size = new Size(207, 28);
             CmbUnidade.TabIndex = 55;
@@ -241,10 +245,11 @@
             // 
             // lbPreco
             // 
+            lbPreco.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lbPreco.AutoSize = true;
             lbPreco.Font = new Font("Franklin Gothic Medium", 12F);
             lbPreco.ForeColor = Color.FromArgb(180, 180, 190);
-            lbPreco.Location = new Point(237, 432);
+            lbPreco.Location = new Point(223, 53);
             lbPreco.Name = "lbPreco";
             lbPreco.Size = new Size(127, 21);
             lbPreco.TabIndex = 57;
@@ -252,328 +257,72 @@
             // 
             // PrPreco
             // 
+            PrPreco.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             PrPreco.BackColor = Color.FromArgb(224, 224, 224);
             PrPreco.Font = new Font("Microsoft Sans Serif", 12F);
-            PrPreco.Location = new Point(237, 456);
+            PrPreco.Location = new Point(223, 80);
             PrPreco.Name = "PrPreco";
             PrPreco.PlaceholderText = "digite o preço do produto";
             PrPreco.Size = new Size(203, 26);
             PrPreco.TabIndex = 56;
             PrPreco.TextChanged += PrPreco_TextChanged;
             // 
-            // astNome
-            // 
-            astNome.AutoSize = true;
-            astNome.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            astNome.ForeColor = Color.FromArgb(192, 0, 0);
-            astNome.Location = new Point(147, 317);
-            astNome.Name = "astNome";
-            astNome.Size = new Size(16, 24);
-            astNome.TabIndex = 58;
-            astNome.Text = "*";
-            astNome.Visible = false;
-            // 
-            // astCategoria
-            // 
-            astCategoria.AutoSize = true;
-            astCategoria.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            astCategoria.ForeColor = Color.FromArgb(192, 0, 0);
-            astCategoria.Location = new Point(86, 489);
-            astCategoria.Name = "astCategoria";
-            astCategoria.Size = new Size(16, 24);
-            astCategoria.TabIndex = 59;
-            astCategoria.Text = "*";
-            astCategoria.Visible = false;
-            // 
-            // astMarca
-            // 
-            astMarca.AutoSize = true;
-            astMarca.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            astMarca.ForeColor = Color.FromArgb(192, 0, 0);
-            astMarca.Location = new Point(147, 373);
-            astMarca.Name = "astMarca";
-            astMarca.Size = new Size(16, 24);
-            astMarca.TabIndex = 60;
-            astMarca.Text = "*";
-            astMarca.Visible = false;
-            // 
-            // astPreco
-            // 
-            astPreco.AutoSize = true;
-            astPreco.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            astPreco.ForeColor = Color.FromArgb(192, 0, 0);
-            astPreco.Location = new Point(367, 426);
-            astPreco.Name = "astPreco";
-            astPreco.Size = new Size(16, 24);
-            astPreco.TabIndex = 61;
-            astPreco.Text = "*";
-            astPreco.Visible = false;
-            // 
-            // astDescAtt
-            // 
-            astDescAtt.AutoSize = true;
-            astDescAtt.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            astDescAtt.ForeColor = Color.FromArgb(192, 0, 0);
-            astDescAtt.Location = new Point(326, 278);
-            astDescAtt.Name = "astDescAtt";
-            astDescAtt.Size = new Size(16, 24);
-            astDescAtt.TabIndex = 62;
-            astDescAtt.Text = "*";
-            astDescAtt.Visible = false;
-            // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(30, 30, 45);
-            panel1.Controls.Add(label2);
-            panel1.Controls.Add(label3);
-            panel1.Controls.Add(txtPrecoCusto);
-            panel1.Controls.Add(label23);
-            panel1.Controls.Add(astCod);
-            panel1.Controls.Add(dtgCategoria);
-            panel1.Controls.Add(PrCodigoBarra);
-            panel1.Controls.Add(label19);
-            panel1.Controls.Add(astUnidade);
-            panel1.Controls.Add(label15);
-            panel1.Controls.Add(btnCadCategoria);
-            panel1.Controls.Add(astCategoria);
-            panel1.Controls.Add(txtCategoria);
-            panel1.Controls.Add(astDescricao);
-            panel1.Controls.Add(btnExcluirCat);
+            panel1.Controls.Add(button1);
+            panel1.Controls.Add(button2);
             panel1.Controls.Add(PrDescricao);
-            panel1.Controls.Add(label18);
             panel1.Controls.Add(label14);
-            panel1.Controls.Add(label17);
-            panel1.Controls.Add(astPreco);
-            panel1.Controls.Add(astMarca);
-            panel1.Controls.Add(astNome);
-            panel1.Controls.Add(CmbCategoria);
-            panel1.Controls.Add(CmbUnidade);
-            panel1.Controls.Add(lbPreco);
-            panel1.Controls.Add(lbUnidade);
-            panel1.Controls.Add(PrPreco);
-            panel1.Controls.Add(lbCategoria);
             panel1.Controls.Add(btnCadastro);
             panel1.Controls.Add(lbDescricao);
-            panel1.Controls.Add(lbMarca);
-            panel1.Controls.Add(PrMarca);
             panel1.Controls.Add(lbNome);
             panel1.Controls.Add(PrNome);
-            panel1.Location = new Point(12, 12);
+            panel1.Controls.Add(panel4);
+            panel1.Controls.Add(panel6);
+            panel1.Controls.Add(panel5);
+            panel1.Dock = DockStyle.Fill;
+            panel1.Location = new Point(13, 13);
             panel1.Name = "panel1";
-            panel1.Size = new Size(455, 598);
+            panel1.Size = new Size(462, 596);
             panel1.TabIndex = 63;
             // 
-            // label2
+            // button1
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.FromArgb(192, 0, 0);
-            label2.Location = new Point(367, 373);
-            label2.Name = "label2";
-            label2.Size = new Size(16, 24);
-            label2.TabIndex = 87;
-            label2.Text = "*";
-            label2.Visible = false;
+            button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            button1.BackColor = Color.Transparent;
+            button1.Cursor = Cursors.Hand;
+            button1.FlatStyle = FlatStyle.Popup;
+            button1.Font = new Font("Franklin Gothic Medium", 14F);
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(363, 552);
+            button1.Name = "button1";
+            button1.Size = new Size(78, 32);
+            button1.TabIndex = 90;
+            button1.Text = "→";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
-            // label3
+            // button2
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Franklin Gothic Medium", 12F);
-            label3.ForeColor = Color.FromArgb(180, 180, 190);
-            label3.Location = new Point(237, 373);
-            label3.Name = "label3";
-            label3.Size = new Size(112, 21);
-            label3.TabIndex = 86;
-            label3.Text = "Preço De Custo";
-            // 
-            // txtPrecoCusto
-            // 
-            txtPrecoCusto.BackColor = Color.FromArgb(224, 224, 224);
-            txtPrecoCusto.Font = new Font("Microsoft Sans Serif", 12F);
-            txtPrecoCusto.Location = new Point(237, 397);
-            txtPrecoCusto.Name = "txtPrecoCusto";
-            txtPrecoCusto.PlaceholderText = "Digite o preço de custo";
-            txtPrecoCusto.Size = new Size(203, 26);
-            txtPrecoCusto.TabIndex = 85;
-            // 
-            // label23
-            // 
-            label23.AutoSize = true;
-            label23.Font = new Font("Franklin Gothic Medium", 12F);
-            label23.ForeColor = Color.FromArgb(180, 180, 190);
-            label23.Location = new Point(237, 492);
-            label23.Name = "label23";
-            label23.Size = new Size(126, 21);
-            label23.TabIndex = 84;
-            label23.Text = "Codigo de Barras";
-            // 
-            // astCod
-            // 
-            astCod.AutoSize = true;
-            astCod.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            astCod.ForeColor = Color.FromArgb(192, 0, 0);
-            astCod.Location = new Point(369, 492);
-            astCod.Name = "astCod";
-            astCod.Size = new Size(16, 24);
-            astCod.TabIndex = 81;
-            astCod.Text = "*";
-            astCod.Visible = false;
-            // 
-            // dtgCategoria
-            // 
-            dtgCategoria.AllowUserToAddRows = false;
-            dtgCategoria.AllowUserToDeleteRows = false;
-            dtgCategoria.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(35, 35, 45);
-            dataGridViewCellStyle1.Font = new Font("Franklin Gothic Medium Cond", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dtgCategoria.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dtgCategoria.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dtgCategoria.BackgroundColor = Color.FromArgb(30, 35, 45);
-            dtgCategoria.BorderStyle = BorderStyle.None;
-            dtgCategoria.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(50, 50, 70);
-            dataGridViewCellStyle2.Font = new Font("Franklin Gothic Medium", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dtgCategoria.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            dtgCategoria.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(40, 40, 50);
-            dataGridViewCellStyle3.Font = new Font("Franklin Gothic Medium", 11F);
-            dataGridViewCellStyle3.ForeColor = Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dataGridViewCellStyle3.SelectionForeColor = Color.White;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dtgCategoria.DefaultCellStyle = dataGridViewCellStyle3;
-            dtgCategoria.EnableHeadersVisualStyles = false;
-            dtgCategoria.GridColor = Color.FromArgb(60, 60, 80);
-            dtgCategoria.Location = new Point(17, 69);
-            dtgCategoria.MultiSelect = false;
-            dtgCategoria.Name = "dtgCategoria";
-            dtgCategoria.ReadOnly = true;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(40, 40, 50);
-            dataGridViewCellStyle4.Font = new Font("Franklin Gothic Medium", 11F);
-            dataGridViewCellStyle4.ForeColor = Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dataGridViewCellStyle4.SelectionForeColor = Color.White;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dtgCategoria.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            dtgCategoria.RowHeadersVisible = false;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(40, 40, 50);
-            dataGridViewCellStyle5.Font = new Font("Franklin Gothic Medium", 11F);
-            dataGridViewCellStyle5.ForeColor = Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dataGridViewCellStyle5.SelectionForeColor = Color.White;
-            dtgCategoria.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            dtgCategoria.RowTemplate.Height = 26;
-            dtgCategoria.ScrollBars = ScrollBars.Vertical;
-            dtgCategoria.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dtgCategoria.Size = new Size(426, 99);
-            dtgCategoria.TabIndex = 72;
-            dtgCategoria.CellClick += dtgCategoria_CellClick;
-            // 
-            // PrCodigoBarra
-            // 
-            PrCodigoBarra.BackColor = Color.FromArgb(224, 224, 224);
-            PrCodigoBarra.Font = new Font("Microsoft Sans Serif", 12F);
-            PrCodigoBarra.Location = new Point(237, 518);
-            PrCodigoBarra.Name = "PrCodigoBarra";
-            PrCodigoBarra.PlaceholderText = "Digite o codigo do produto";
-            PrCodigoBarra.Size = new Size(203, 26);
-            PrCodigoBarra.TabIndex = 79;
-            // 
-            // label19
-            // 
-            label19.AutoSize = true;
-            label19.Font = new Font("Franklin Gothic Medium", 10F);
-            label19.ForeColor = Color.FromArgb(180, 180, 190);
-            label19.Location = new Point(18, 50);
-            label19.Name = "label19";
-            label19.Size = new Size(264, 36);
-            label19.TabIndex = 78;
-            label19.Text = "Clique em alguma categoria para exclui-la!\r\n\r\n";
-            // 
-            // astUnidade
-            // 
-            astUnidade.AutoSize = true;
-            astUnidade.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            astUnidade.ForeColor = Color.FromArgb(192, 0, 0);
-            astUnidade.Location = new Point(168, 429);
-            astUnidade.Name = "astUnidade";
-            astUnidade.Size = new Size(16, 24);
-            astUnidade.TabIndex = 70;
-            astUnidade.Text = "*";
-            astUnidade.Visible = false;
-            // 
-            // label15
-            // 
-            label15.AutoSize = true;
-            label15.Font = new Font("Franklin Gothic Medium", 15F);
-            label15.ForeColor = Color.FromArgb(180, 180, 190);
-            label15.Location = new Point(102, 17);
-            label15.Name = "label15";
-            label15.Size = new Size(317, 25);
-            label15.TabIndex = 71;
-            label15.Text = "Cadastre aqui uma nova Categoria!";
-            // 
-            // btnCadCategoria
-            // 
-            btnCadCategoria.BackColor = SystemColors.Highlight;
-            btnCadCategoria.Cursor = Cursors.Hand;
-            btnCadCategoria.FlatStyle = FlatStyle.Popup;
-            btnCadCategoria.Font = new Font("Franklin Gothic Medium", 13F);
-            btnCadCategoria.ForeColor = Color.White;
-            btnCadCategoria.Location = new Point(231, 226);
-            btnCadCategoria.Name = "btnCadCategoria";
-            btnCadCategoria.Size = new Size(212, 31);
-            btnCadCategoria.TabIndex = 77;
-            btnCadCategoria.Text = "Cadastrar categoria";
-            btnCadCategoria.UseVisualStyleBackColor = false;
-            btnCadCategoria.Click += btnCadCategoria_Click;
-            // 
-            // txtCategoria
-            // 
-            txtCategoria.BackColor = Color.FromArgb(224, 224, 224);
-            txtCategoria.Font = new Font("Microsoft Sans Serif", 8.25F);
-            txtCategoria.Location = new Point(17, 200);
-            txtCategoria.Name = "txtCategoria";
-            txtCategoria.PlaceholderText = "Digite o nome do produto";
-            txtCategoria.Size = new Size(426, 20);
-            txtCategoria.TabIndex = 73;
-            // 
-            // astDescricao
-            // 
-            astDescricao.AutoSize = true;
-            astDescricao.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            astDescricao.ForeColor = Color.FromArgb(192, 0, 0);
-            astDescricao.Location = new Point(309, 317);
-            astDescricao.Name = "astDescricao";
-            astDescricao.Size = new Size(16, 24);
-            astDescricao.TabIndex = 69;
-            astDescricao.Text = "*";
-            astDescricao.Visible = false;
-            // 
-            // btnExcluirCat
-            // 
-            btnExcluirCat.BackColor = Color.Transparent;
-            btnExcluirCat.FlatStyle = FlatStyle.Popup;
-            btnExcluirCat.Font = new Font("Franklin Gothic Medium", 13F);
-            btnExcluirCat.ForeColor = Color.Maroon;
-            btnExcluirCat.Location = new Point(17, 226);
-            btnExcluirCat.Name = "btnExcluirCat";
-            btnExcluirCat.Size = new Size(197, 31);
-            btnExcluirCat.TabIndex = 76;
-            btnExcluirCat.Text = "Excluir Categoria";
-            btnExcluirCat.UseVisualStyleBackColor = false;
-            btnExcluirCat.Click += btnExcluirCat_Click;
+            button2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            button2.BackColor = Color.Transparent;
+            button2.Cursor = Cursors.Hand;
+            button2.FlatStyle = FlatStyle.Popup;
+            button2.Font = new Font("Franklin Gothic Medium", 14F);
+            button2.ForeColor = Color.White;
+            button2.Location = new Point(17, 552);
+            button2.Name = "button2";
+            button2.Size = new Size(78, 32);
+            button2.TabIndex = 89;
+            button2.Text = "←";
+            button2.UseVisualStyleBackColor = false;
+            button2.Visible = false;
+            button2.Click += button2_Click;
             // 
             // PrDescricao
             // 
+            PrDescricao.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             PrDescricao.BackColor = Color.FromArgb(224, 224, 224);
             PrDescricao.Font = new Font("Microsoft Sans Serif", 12F);
             PrDescricao.Location = new Point(240, 344);
@@ -583,375 +332,341 @@
             PrDescricao.Size = new Size(200, 26);
             PrDescricao.TabIndex = 64;
             // 
-            // label18
-            // 
-            label18.AutoSize = true;
-            label18.Font = new Font("Franklin Gothic Medium", 12F);
-            label18.ForeColor = Color.FromArgb(180, 180, 190);
-            label18.Location = new Point(17, 176);
-            label18.Name = "label18";
-            label18.Size = new Size(145, 21);
-            label18.TabIndex = 74;
-            label18.Text = "Nome da Categoria!";
-            // 
             // label14
             // 
+            label14.Anchor = AnchorStyles.Top;
             label14.AutoSize = true;
             label14.Font = new Font("Franklin Gothic Medium", 16F);
             label14.ForeColor = Color.FromArgb(180, 180, 190);
-            label14.Location = new Point(102, 280);
+            label14.Location = new Point(81, 285);
             label14.Name = "label14";
             label14.Size = new Size(268, 28);
             label14.TabIndex = 63;
             label14.Text = "Cadastre aqui um Produto!";
             // 
-            // label17
+            // panel4
             // 
-            label17.AutoSize = true;
-            label17.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label17.ForeColor = Color.FromArgb(192, 0, 0);
-            label17.Location = new Point(159, 173);
-            label17.Name = "label17";
-            label17.Size = new Size(16, 24);
-            label17.TabIndex = 75;
-            label17.Text = "*";
-            label17.Visible = false;
+            panel4.Controls.Add(btnCadCategoria);
+            panel4.Controls.Add(btnExcluirCat);
+            panel4.Controls.Add(txtCategoria);
+            panel4.Controls.Add(dtgCategoria);
+            panel4.Controls.Add(label15);
+            panel4.Controls.Add(label18);
+            panel4.Dock = DockStyle.Top;
+            panel4.Location = new Point(0, 0);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(462, 282);
+            panel4.TabIndex = 87;
+            // 
+            // btnCadCategoria
+            // 
+            btnCadCategoria.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnCadCategoria.BackColor = SystemColors.Highlight;
+            btnCadCategoria.Cursor = Cursors.Hand;
+            btnCadCategoria.FlatStyle = FlatStyle.Popup;
+            btnCadCategoria.Font = new Font("Franklin Gothic Medium", 13F);
+            btnCadCategoria.ForeColor = Color.White;
+            btnCadCategoria.Location = new Point(228, 231);
+            btnCadCategoria.Name = "btnCadCategoria";
+            btnCadCategoria.Size = new Size(212, 31);
+            btnCadCategoria.TabIndex = 77;
+            btnCadCategoria.Text = "Cadastrar categoria";
+            btnCadCategoria.UseVisualStyleBackColor = false;
+            btnCadCategoria.Click += btnCadCategoria_Click;
+            // 
+            // btnExcluirCat
+            // 
+            btnExcluirCat.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnExcluirCat.BackColor = Color.Transparent;
+            btnExcluirCat.FlatStyle = FlatStyle.Popup;
+            btnExcluirCat.Font = new Font("Franklin Gothic Medium", 13F);
+            btnExcluirCat.ForeColor = Color.Maroon;
+            btnExcluirCat.Location = new Point(14, 231);
+            btnExcluirCat.Name = "btnExcluirCat";
+            btnExcluirCat.Size = new Size(197, 31);
+            btnExcluirCat.TabIndex = 76;
+            btnExcluirCat.Text = "Excluir Categoria";
+            btnExcluirCat.UseVisualStyleBackColor = false;
+            btnExcluirCat.Click += btnExcluirCat_Click;
+            // 
+            // txtCategoria
+            // 
+            txtCategoria.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtCategoria.BackColor = Color.FromArgb(224, 224, 224);
+            txtCategoria.Font = new Font("Microsoft Sans Serif", 12.25F);
+            txtCategoria.Location = new Point(15, 197);
+            txtCategoria.Name = "txtCategoria";
+            txtCategoria.PlaceholderText = "Digite o nome do produto";
+            txtCategoria.Size = new Size(426, 26);
+            txtCategoria.TabIndex = 73;
+            // 
+            // dtgCategoria
+            // 
+            dtgCategoria.AllowUserToAddRows = false;
+            dtgCategoria.AllowUserToDeleteRows = false;
+            dtgCategoria.AllowUserToOrderColumns = true;
+            dataGridViewCellStyle10.BackColor = Color.FromArgb(35, 35, 45);
+            dataGridViewCellStyle10.Font = new Font("Franklin Gothic Medium Cond", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle10.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dtgCategoria.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
+            dtgCategoria.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dtgCategoria.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dtgCategoria.BackgroundColor = Color.FromArgb(30, 35, 45);
+            dtgCategoria.BorderStyle = BorderStyle.None;
+            dtgCategoria.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = Color.FromArgb(50, 50, 70);
+            dataGridViewCellStyle11.Font = new Font("Franklin Gothic Medium", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle11.ForeColor = Color.White;
+            dataGridViewCellStyle11.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.True;
+            dtgCategoria.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dtgCategoria.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = Color.FromArgb(40, 40, 50);
+            dataGridViewCellStyle12.Font = new Font("Franklin Gothic Medium", 11F);
+            dataGridViewCellStyle12.ForeColor = Color.White;
+            dataGridViewCellStyle12.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle12.SelectionForeColor = Color.White;
+            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.False;
+            dtgCategoria.DefaultCellStyle = dataGridViewCellStyle12;
+            dtgCategoria.EnableHeadersVisualStyles = false;
+            dtgCategoria.GridColor = Color.FromArgb(60, 60, 80);
+            dtgCategoria.Location = new Point(17, 39);
+            dtgCategoria.MultiSelect = false;
+            dtgCategoria.Name = "dtgCategoria";
+            dtgCategoria.ReadOnly = true;
+            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = Color.FromArgb(40, 40, 50);
+            dataGridViewCellStyle13.Font = new Font("Franklin Gothic Medium", 11F);
+            dataGridViewCellStyle13.ForeColor = Color.White;
+            dataGridViewCellStyle13.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle13.SelectionForeColor = Color.White;
+            dataGridViewCellStyle13.WrapMode = DataGridViewTriState.True;
+            dtgCategoria.RowHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dtgCategoria.RowHeadersVisible = false;
+            dataGridViewCellStyle14.BackColor = Color.FromArgb(40, 40, 50);
+            dataGridViewCellStyle14.Font = new Font("Franklin Gothic Medium", 11F);
+            dataGridViewCellStyle14.ForeColor = Color.White;
+            dataGridViewCellStyle14.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle14.SelectionForeColor = Color.White;
+            dtgCategoria.RowsDefaultCellStyle = dataGridViewCellStyle14;
+            dtgCategoria.RowTemplate.Height = 26;
+            dtgCategoria.ScrollBars = ScrollBars.Vertical;
+            dtgCategoria.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dtgCategoria.Size = new Size(426, 131);
+            dtgCategoria.TabIndex = 72;
+            dtgCategoria.CellClick += dtgCategoria_CellClick;
+            // 
+            // label15
+            // 
+            label15.Anchor = AnchorStyles.Top;
+            label15.AutoSize = true;
+            label15.Font = new Font("Franklin Gothic Medium", 15F);
+            label15.ForeColor = Color.FromArgb(180, 180, 190);
+            label15.Location = new Point(71, 11);
+            label15.Name = "label15";
+            label15.Size = new Size(317, 25);
+            label15.TabIndex = 71;
+            label15.Text = "Cadastre aqui uma nova Categoria!";
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Font = new Font("Franklin Gothic Medium", 12F);
+            label18.ForeColor = Color.FromArgb(180, 180, 190);
+            label18.Location = new Point(15, 173);
+            label18.Name = "label18";
+            label18.Size = new Size(145, 21);
+            label18.TabIndex = 74;
+            label18.Text = "Nome da Categoria!";
+            // 
+            // panel6
+            // 
+            panel6.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panel6.Controls.Add(removePic);
+            panel6.Controls.Add(label2);
+            panel6.Controls.Add(pictureBox1);
+            panel6.Location = new Point(14, 373);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(426, 172);
+            panel6.TabIndex = 87;
+            panel6.Visible = false;
+            // 
+            // removePic
+            // 
+            removePic.AutoSize = true;
+            removePic.Cursor = Cursors.Hand;
+            removePic.Font = new Font("Franklin Gothic Medium", 12F);
+            removePic.ForeColor = Color.DarkRed;
+            removePic.Location = new Point(137, 68);
+            removePic.Name = "removePic";
+            removePic.Size = new Size(103, 21);
+            removePic.TabIndex = 79;
+            removePic.Text = "Remover Foto";
+            removePic.Click += removePic_Click;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Franklin Gothic Medium", 15F);
+            label2.ForeColor = Color.FromArgb(180, 180, 190);
+            label2.Location = new Point(137, 34);
+            label2.Name = "label2";
+            label2.Size = new Size(277, 25);
+            label2.TabIndex = 78;
+            label2.Text = "Adicione a foto do seu Produto";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackColor = Color.FromArgb(45, 45, 60);
+            pictureBox1.Cursor = Cursors.Hand;
+            pictureBox1.Location = new Point(16, 30);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(115, 109);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
+            // 
+            // panel5
+            // 
+            panel5.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panel5.Controls.Add(PrCodigoBarra);
+            panel5.Controls.Add(label23);
+            panel5.Controls.Add(txtPrecoCusto);
+            panel5.Controls.Add(label3);
+            panel5.Controls.Add(lbUnidade);
+            panel5.Controls.Add(CmbCategoria);
+            panel5.Controls.Add(lbCategoria);
+            panel5.Controls.Add(CmbUnidade);
+            panel5.Controls.Add(lbPreco);
+            panel5.Controls.Add(PrPreco);
+            panel5.Controls.Add(PrMarca);
+            panel5.Controls.Add(lbMarca);
+            panel5.Location = new Point(14, 376);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(429, 168);
+            panel5.TabIndex = 88;
+            // 
+            // PrCodigoBarra
+            // 
+            PrCodigoBarra.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            PrCodigoBarra.BackColor = Color.FromArgb(224, 224, 224);
+            PrCodigoBarra.Font = new Font("Microsoft Sans Serif", 12F);
+            PrCodigoBarra.Location = new Point(223, 137);
+            PrCodigoBarra.Name = "PrCodigoBarra";
+            PrCodigoBarra.PlaceholderText = "Digite o codigo do produto";
+            PrCodigoBarra.Size = new Size(203, 26);
+            PrCodigoBarra.TabIndex = 79;
+            // 
+            // label23
+            // 
+            label23.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label23.AutoSize = true;
+            label23.Font = new Font("Franklin Gothic Medium", 12F);
+            label23.ForeColor = Color.FromArgb(180, 180, 190);
+            label23.Location = new Point(223, 115);
+            label23.Name = "label23";
+            label23.Size = new Size(126, 21);
+            label23.TabIndex = 84;
+            label23.Text = "Codigo de Barras";
+            // 
+            // txtPrecoCusto
+            // 
+            txtPrecoCusto.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            txtPrecoCusto.BackColor = Color.FromArgb(224, 224, 224);
+            txtPrecoCusto.Font = new Font("Microsoft Sans Serif", 12F);
+            txtPrecoCusto.Location = new Point(223, 21);
+            txtPrecoCusto.Name = "txtPrecoCusto";
+            txtPrecoCusto.PlaceholderText = "Digite o preço de custo";
+            txtPrecoCusto.Size = new Size(203, 26);
+            txtPrecoCusto.TabIndex = 85;
+            // 
+            // label3
+            // 
+            label3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label3.AutoSize = true;
+            label3.Font = new Font("Franklin Gothic Medium", 12F);
+            label3.ForeColor = Color.FromArgb(180, 180, 190);
+            label3.Location = new Point(223, -3);
+            label3.Name = "label3";
+            label3.Size = new Size(112, 21);
+            label3.TabIndex = 86;
+            label3.Text = "Preço De Custo";
             // 
             // lbBarrasAtt
             // 
+            lbBarrasAtt.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lbBarrasAtt.AutoSize = true;
             lbBarrasAtt.Font = new Font("Franklin Gothic Medium", 12F);
             lbBarrasAtt.ForeColor = Color.FromArgb(180, 180, 190);
-            lbBarrasAtt.Location = new Point(245, 418);
+            lbBarrasAtt.Location = new Point(238, 119);
             lbBarrasAtt.Name = "lbBarrasAtt";
             lbBarrasAtt.Size = new Size(126, 21);
             lbBarrasAtt.TabIndex = 80;
             lbBarrasAtt.Text = "Codigo de Barras";
-            lbBarrasAtt.Visible = false;
-            // 
-            // astCatAtt
-            // 
-            astCatAtt.AutoSize = true;
-            astCatAtt.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            astCatAtt.ForeColor = Color.FromArgb(192, 0, 0);
-            astCatAtt.Location = new Point(316, 477);
-            astCatAtt.Name = "astCatAtt";
-            astCatAtt.Size = new Size(16, 24);
-            astCatAtt.TabIndex = 68;
-            astCatAtt.Text = "*";
-            astCatAtt.Visible = false;
             // 
             // cmbCatAtt
             // 
+            cmbCatAtt.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             cmbCatAtt.BackColor = Color.FromArgb(224, 224, 224);
             cmbCatAtt.Font = new Font("Microsoft Sans Serif", 12F);
             cmbCatAtt.FormattingEnabled = true;
-            cmbCatAtt.Location = new Point(245, 506);
+            cmbCatAtt.Location = new Point(238, 211);
             cmbCatAtt.Name = "cmbCatAtt";
-            cmbCatAtt.Size = new Size(243, 28);
+            cmbCatAtt.Size = new Size(246, 28);
             cmbCatAtt.TabIndex = 67;
-            cmbCatAtt.Visible = false;
             // 
             // lbCatAtt
             // 
+            lbCatAtt.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lbCatAtt.AutoSize = true;
             lbCatAtt.Font = new Font("Franklin Gothic Medium", 12F);
             lbCatAtt.ForeColor = Color.FromArgb(180, 180, 190);
-            lbCatAtt.Location = new Point(245, 480);
+            lbCatAtt.Location = new Point(238, 182);
             lbCatAtt.Name = "lbCatAtt";
             lbCatAtt.Size = new Size(75, 21);
             lbCatAtt.TabIndex = 66;
             lbCatAtt.Text = "Categoria";
-            lbCatAtt.Visible = false;
             // 
             // lbDescAtt
             // 
+            lbDescAtt.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lbDescAtt.AutoSize = true;
             lbDescAtt.Font = new Font("Franklin Gothic Medium", 12F);
             lbDescAtt.ForeColor = Color.FromArgb(180, 180, 190);
-            lbDescAtt.Location = new Point(245, 281);
+            lbDescAtt.Location = new Point(238, 3);
             lbDescAtt.Name = "lbDescAtt";
             lbDescAtt.Size = new Size(75, 21);
             lbDescAtt.TabIndex = 65;
             lbDescAtt.Text = "Descrição";
-            lbDescAtt.Visible = false;
             // 
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(30, 30, 45);
-            panel2.Controls.Add(label4);
-            panel2.Controls.Add(label5);
-            panel2.Controls.Add(textBox1);
-            panel2.Controls.Add(astMedidaAtt);
-            panel2.Controls.Add(btnAtivarProd);
-            panel2.Controls.Add(astBarrasAtt);
-            panel2.Controls.Add(btnDesativarProd);
-            panel2.Controls.Add(txtCodBarra);
-            panel2.Controls.Add(lbBarrasAtt);
             panel2.Controls.Add(label16);
-            panel2.Controls.Add(btnExcluirProd);
-            panel2.Controls.Add(btnAttProd);
-            panel2.Controls.Add(astPrecoAtt);
-            panel2.Controls.Add(astDescAtt);
-            panel2.Controls.Add(astmarcaAtt);
-            panel2.Controls.Add(astNomeAtt);
-            panel2.Controls.Add(lbPrecoAtt);
-            panel2.Controls.Add(astCatAtt);
-            panel2.Controls.Add(lbCatAtt);
-            panel2.Controls.Add(cmbCatAtt);
-            panel2.Controls.Add(txtPrecoProd);
-            panel2.Controls.Add(cmbMedida);
-            panel2.Controls.Add(lbMedidaAtt);
-            panel2.Controls.Add(lbDescAtt);
-            panel2.Controls.Add(lbMarcaAtt);
-            panel2.Controls.Add(txtMarcaProd);
-            panel2.Controls.Add(lbNomeAtt);
-            panel2.Controls.Add(txtNomeProd);
             panel2.Controls.Add(label1);
             panel2.Controls.Add(dtgProdutos);
-            panel2.Controls.Add(PrDescricaoAtt);
-            panel2.Location = new Point(473, 12);
+            panel2.Controls.Add(panel3);
+            panel2.Dock = DockStyle.Fill;
+            panel2.Location = new Point(481, 13);
             panel2.Name = "panel2";
-            panel2.Size = new Size(504, 598);
+            panel2.Size = new Size(495, 596);
             panel2.TabIndex = 64;
-            // 
-            // astMedidaAtt
-            // 
-            astMedidaAtt.AutoSize = true;
-            astMedidaAtt.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            astMedidaAtt.ForeColor = Color.FromArgb(192, 0, 0);
-            astMedidaAtt.Location = new Point(159, 412);
-            astMedidaAtt.Name = "astMedidaAtt";
-            astMedidaAtt.Size = new Size(16, 24);
-            astMedidaAtt.TabIndex = 88;
-            astMedidaAtt.Text = "*";
-            astMedidaAtt.Visible = false;
-            // 
-            // btnAtivarProd
-            // 
-            btnAtivarProd.BackColor = Color.Transparent;
-            btnAtivarProd.FlatStyle = FlatStyle.Popup;
-            btnAtivarProd.Font = new Font("Franklin Gothic Medium", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnAtivarProd.ForeColor = Color.DarkSeaGreen;
-            btnAtivarProd.Location = new Point(129, 568);
-            btnAtivarProd.Name = "btnAtivarProd";
-            btnAtivarProd.Size = new Size(110, 27);
-            btnAtivarProd.TabIndex = 87;
-            btnAtivarProd.Text = "Ativar Produto";
-            btnAtivarProd.UseVisualStyleBackColor = false;
-            btnAtivarProd.Visible = false;
-            btnAtivarProd.Click += btnAtivarProd_Click;
-            // 
-            // astBarrasAtt
-            // 
-            astBarrasAtt.AutoSize = true;
-            astBarrasAtt.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            astBarrasAtt.ForeColor = Color.FromArgb(192, 0, 0);
-            astBarrasAtt.Location = new Point(377, 412);
-            astBarrasAtt.Name = "astBarrasAtt";
-            astBarrasAtt.Size = new Size(16, 24);
-            astBarrasAtt.TabIndex = 85;
-            astBarrasAtt.Text = "*";
-            astBarrasAtt.Visible = false;
-            // 
-            // btnDesativarProd
-            // 
-            btnDesativarProd.BackColor = Color.Transparent;
-            btnDesativarProd.FlatStyle = FlatStyle.Popup;
-            btnDesativarProd.Font = new Font("Franklin Gothic Medium", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnDesativarProd.ForeColor = Color.Maroon;
-            btnDesativarProd.Location = new Point(129, 549);
-            btnDesativarProd.Name = "btnDesativarProd";
-            btnDesativarProd.Size = new Size(110, 28);
-            btnDesativarProd.TabIndex = 86;
-            btnDesativarProd.Text = "Desativar Produto";
-            btnDesativarProd.UseVisualStyleBackColor = false;
-            btnDesativarProd.Visible = false;
-            btnDesativarProd.Click += btnDesativarProd_Click;
-            // 
-            // txtCodBarra
-            // 
-            txtCodBarra.BackColor = Color.FromArgb(224, 224, 224);
-            txtCodBarra.Font = new Font("Microsoft Sans Serif", 12F);
-            txtCodBarra.Location = new Point(245, 442);
-            txtCodBarra.Name = "txtCodBarra";
-            txtCodBarra.PlaceholderText = "Digite o codigo do produto";
-            txtCodBarra.Size = new Size(243, 26);
-            txtCodBarra.TabIndex = 83;
-            txtCodBarra.Visible = false;
             // 
             // label16
             // 
+            label16.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label16.AutoSize = true;
-            label16.Font = new Font("Franklin Gothic Medium", 9F);
+            label16.Font = new Font("Franklin Gothic Medium", 10F);
             label16.ForeColor = Color.FromArgb(180, 180, 190);
             label16.Location = new Point(21, 60);
             label16.Name = "label16";
-            label16.Size = new Size(130, 16);
+            label16.Size = new Size(159, 18);
             label16.TabIndex = 75;
             label16.Text = "Clique em algum produto";
-            // 
-            // btnExcluirProd
-            // 
-            btnExcluirProd.BackColor = Color.Transparent;
-            btnExcluirProd.FlatStyle = FlatStyle.Popup;
-            btnExcluirProd.Font = new Font("Franklin Gothic Medium", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnExcluirProd.ForeColor = Color.Maroon;
-            btnExcluirProd.Location = new Point(16, 550);
-            btnExcluirProd.Name = "btnExcluirProd";
-            btnExcluirProd.Size = new Size(107, 27);
-            btnExcluirProd.TabIndex = 74;
-            btnExcluirProd.Text = "Excluir Produto";
-            btnExcluirProd.UseVisualStyleBackColor = false;
-            btnExcluirProd.Visible = false;
-            btnExcluirProd.Click += btnExcluirProd_Click;
-            // 
-            // btnAttProd
-            // 
-            btnAttProd.BackColor = SystemColors.Highlight;
-            btnAttProd.Cursor = Cursors.Hand;
-            btnAttProd.FlatStyle = FlatStyle.Popup;
-            btnAttProd.Font = new Font("Franklin Gothic Medium", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnAttProd.ForeColor = Color.White;
-            btnAttProd.Location = new Point(245, 550);
-            btnAttProd.Name = "btnAttProd";
-            btnAttProd.Size = new Size(243, 27);
-            btnAttProd.TabIndex = 73;
-            btnAttProd.Text = "Atualizar Produto";
-            btnAttProd.UseVisualStyleBackColor = false;
-            btnAttProd.Visible = false;
-            btnAttProd.Click += btnAttProd_Click;
-            // 
-            // astPrecoAtt
-            // 
-            astPrecoAtt.AutoSize = true;
-            astPrecoAtt.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            astPrecoAtt.ForeColor = Color.FromArgb(192, 0, 0);
-            astPrecoAtt.Location = new Point(146, 480);
-            astPrecoAtt.Name = "astPrecoAtt";
-            astPrecoAtt.Size = new Size(16, 24);
-            astPrecoAtt.TabIndex = 72;
-            astPrecoAtt.Text = "*";
-            astPrecoAtt.Visible = false;
-            // 
-            // astmarcaAtt
-            // 
-            astmarcaAtt.AutoSize = true;
-            astmarcaAtt.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            astmarcaAtt.ForeColor = Color.FromArgb(192, 0, 0);
-            astmarcaAtt.Location = new Point(146, 344);
-            astmarcaAtt.Name = "astmarcaAtt";
-            astmarcaAtt.Size = new Size(16, 24);
-            astmarcaAtt.TabIndex = 71;
-            astmarcaAtt.Text = "*";
-            astmarcaAtt.Visible = false;
-            // 
-            // astNomeAtt
-            // 
-            astNomeAtt.AutoSize = true;
-            astNomeAtt.FlatStyle = FlatStyle.System;
-            astNomeAtt.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            astNomeAtt.ForeColor = Color.FromArgb(192, 0, 0);
-            astNomeAtt.Location = new Point(146, 281);
-            astNomeAtt.Name = "astNomeAtt";
-            astNomeAtt.Size = new Size(16, 24);
-            astNomeAtt.TabIndex = 70;
-            astNomeAtt.Text = "*";
-            astNomeAtt.Visible = false;
-            // 
-            // lbPrecoAtt
-            // 
-            lbPrecoAtt.AutoSize = true;
-            lbPrecoAtt.Font = new Font("Franklin Gothic Medium", 12F);
-            lbPrecoAtt.ForeColor = Color.FromArgb(180, 180, 190);
-            lbPrecoAtt.Location = new Point(16, 480);
-            lbPrecoAtt.Name = "lbPrecoAtt";
-            lbPrecoAtt.Size = new Size(135, 21);
-            lbPrecoAtt.TabIndex = 69;
-            lbPrecoAtt.Text = "Preço por unidade";
-            lbPrecoAtt.Visible = false;
-            // 
-            // txtPrecoProd
-            // 
-            txtPrecoProd.BackColor = Color.FromArgb(224, 224, 224);
-            txtPrecoProd.Font = new Font("Microsoft Sans Serif", 12F);
-            txtPrecoProd.Location = new Point(16, 504);
-            txtPrecoProd.Name = "txtPrecoProd";
-            txtPrecoProd.PlaceholderText = "digite o preço do produto";
-            txtPrecoProd.Size = new Size(223, 26);
-            txtPrecoProd.TabIndex = 68;
-            txtPrecoProd.Visible = false;
-            // 
-            // cmbMedida
-            // 
-            cmbMedida.AutoCompleteCustomSource.AddRange(new string[] { "Unidade", "Grama" });
-            cmbMedida.BackColor = Color.FromArgb(224, 224, 224);
-            cmbMedida.Font = new Font("Microsoft Sans Serif", 12F);
-            cmbMedida.FormattingEnabled = true;
-            cmbMedida.Items.AddRange(new object[] { "Unidade", "Caixa", "Pacote", "Kg", "Gramas", "Litros", "Ml", "Dúzia", "Fardo", "Kit" });
-            cmbMedida.Location = new Point(16, 439);
-            cmbMedida.Name = "cmbMedida";
-            cmbMedida.Size = new Size(223, 28);
-            cmbMedida.TabIndex = 67;
-            cmbMedida.Visible = false;
-            // 
-            // lbMedidaAtt
-            // 
-            lbMedidaAtt.AutoSize = true;
-            lbMedidaAtt.Font = new Font("Franklin Gothic Medium", 12F);
-            lbMedidaAtt.ForeColor = Color.FromArgb(180, 180, 190);
-            lbMedidaAtt.Location = new Point(16, 415);
-            lbMedidaAtt.Name = "lbMedidaAtt";
-            lbMedidaAtt.Size = new Size(146, 21);
-            lbMedidaAtt.TabIndex = 66;
-            lbMedidaAtt.Text = "Unidade de medida";
-            lbMedidaAtt.Visible = false;
-            // 
-            // lbMarcaAtt
-            // 
-            lbMarcaAtt.AutoSize = true;
-            lbMarcaAtt.Font = new Font("Franklin Gothic Medium", 12F);
-            lbMarcaAtt.ForeColor = Color.FromArgb(180, 180, 190);
-            lbMarcaAtt.Location = new Point(16, 347);
-            lbMarcaAtt.Name = "lbMarcaAtt";
-            lbMarcaAtt.Size = new Size(131, 21);
-            lbMarcaAtt.TabIndex = 65;
-            lbMarcaAtt.Text = "Marca do produto";
-            lbMarcaAtt.Visible = false;
-            // 
-            // txtMarcaProd
-            // 
-            txtMarcaProd.BackColor = Color.FromArgb(224, 224, 224);
-            txtMarcaProd.Font = new Font("Microsoft Sans Serif", 12F);
-            txtMarcaProd.Location = new Point(16, 371);
-            txtMarcaProd.Name = "txtMarcaProd";
-            txtMarcaProd.PlaceholderText = "Digite a marca do produto";
-            txtMarcaProd.Size = new Size(223, 26);
-            txtMarcaProd.TabIndex = 64;
-            txtMarcaProd.Visible = false;
-            // 
-            // lbNomeAtt
-            // 
-            lbNomeAtt.AutoSize = true;
-            lbNomeAtt.Font = new Font("Franklin Gothic Medium", 12F);
-            lbNomeAtt.ForeColor = Color.FromArgb(180, 180, 190);
-            lbNomeAtt.Location = new Point(16, 284);
-            lbNomeAtt.Name = "lbNomeAtt";
-            lbNomeAtt.Size = new Size(128, 21);
-            lbNomeAtt.TabIndex = 63;
-            lbNomeAtt.Text = "Nome do produto";
-            lbNomeAtt.Visible = false;
-            // 
-            // txtNomeProd
-            // 
-            txtNomeProd.BackColor = Color.FromArgb(224, 224, 224);
-            txtNomeProd.Font = new Font("Microsoft Sans Serif", 12F);
-            txtNomeProd.Location = new Point(16, 308);
-            txtNomeProd.Name = "txtNomeProd";
-            txtNomeProd.PlaceholderText = "Digite o nome do produto";
-            txtNomeProd.Size = new Size(223, 26);
-            txtNomeProd.TabIndex = 62;
-            txtNomeProd.Visible = false;
             // 
             // label1
             // 
@@ -969,21 +684,22 @@
             dtgProdutos.AllowUserToAddRows = false;
             dtgProdutos.AllowUserToDeleteRows = false;
             dtgProdutos.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle6.BackColor = Color.FromArgb(35, 35, 45);
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dtgProdutos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle15.BackColor = Color.FromArgb(35, 35, 45);
+            dataGridViewCellStyle15.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dtgProdutos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle15;
+            dtgProdutos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dtgProdutos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgProdutos.BackgroundColor = Color.FromArgb(30, 35, 45);
             dtgProdutos.BorderStyle = BorderStyle.None;
             dtgProdutos.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = Color.FromArgb(50, 50, 70);
-            dataGridViewCellStyle7.Font = new Font("Franklin Gothic Medium", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle7.ForeColor = Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            dtgProdutos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = Color.FromArgb(50, 50, 70);
+            dataGridViewCellStyle16.Font = new Font("Franklin Gothic Medium", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle16.ForeColor = Color.White;
+            dataGridViewCellStyle16.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle16.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = DataGridViewTriState.True;
+            dtgProdutos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
             dtgProdutos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgProdutos.EnableHeadersVisualStyles = false;
             dtgProdutos.GridColor = Color.FromArgb(60, 60, 80);
@@ -991,59 +707,255 @@
             dtgProdutos.MultiSelect = false;
             dtgProdutos.Name = "dtgProdutos";
             dtgProdutos.ReadOnly = true;
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = Color.FromArgb(40, 40, 50);
-            dataGridViewCellStyle8.Font = new Font("Franklin Gothic Medium", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle8.ForeColor = Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dataGridViewCellStyle8.SelectionForeColor = Color.White;
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
-            dtgProdutos.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle17.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = Color.FromArgb(40, 40, 50);
+            dataGridViewCellStyle17.Font = new Font("Franklin Gothic Medium", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle17.ForeColor = Color.White;
+            dataGridViewCellStyle17.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle17.SelectionForeColor = Color.White;
+            dataGridViewCellStyle17.WrapMode = DataGridViewTriState.True;
+            dtgProdutos.RowHeadersDefaultCellStyle = dataGridViewCellStyle17;
             dtgProdutos.RowHeadersVisible = false;
-            dataGridViewCellStyle9.BackColor = Color.FromArgb(40, 40, 50);
-            dataGridViewCellStyle9.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle9.ForeColor = Color.White;
-            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dataGridViewCellStyle9.SelectionForeColor = Color.White;
-            dtgProdutos.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle18.BackColor = Color.FromArgb(40, 40, 50);
+            dataGridViewCellStyle18.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle18.ForeColor = Color.White;
+            dataGridViewCellStyle18.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle18.SelectionForeColor = Color.White;
+            dtgProdutos.RowsDefaultCellStyle = dataGridViewCellStyle18;
             dtgProdutos.RowTemplate.Height = 26;
             dtgProdutos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dtgProdutos.Size = new Size(468, 180);
             dtgProdutos.TabIndex = 7;
             dtgProdutos.CellClick += dtgProdutos_CellClick;
             // 
-            // label4
+            // panel3
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.FromArgb(192, 0, 0);
-            label4.Location = new Point(375, 347);
-            label4.Name = "label4";
-            label4.Size = new Size(16, 24);
-            label4.TabIndex = 91;
-            label4.Text = "*";
-            label4.Visible = false;
+            panel3.Controls.Add(btnDesativarProd);
+            panel3.Controls.Add(txtCodBarra);
+            panel3.Controls.Add(btnAtivarProd);
+            panel3.Controls.Add(btnAttProd);
+            panel3.Controls.Add(label5);
+            panel3.Controls.Add(cmbCatAtt);
+            panel3.Controls.Add(lbBarrasAtt);
+            panel3.Controls.Add(lbCatAtt);
+            panel3.Controls.Add(txtPrecoProd);
+            panel3.Controls.Add(textBox1);
+            panel3.Controls.Add(lbPrecoAtt);
+            panel3.Controls.Add(cmbMedida);
+            panel3.Controls.Add(lbMedidaAtt);
+            panel3.Controls.Add(btnExcluirProd);
+            panel3.Controls.Add(txtMarcaProd);
+            panel3.Controls.Add(lbMarcaAtt);
+            panel3.Controls.Add(lbNomeAtt);
+            panel3.Controls.Add(txtNomeProd);
+            panel3.Controls.Add(PrDescricaoAtt);
+            panel3.Controls.Add(lbDescAtt);
+            panel3.Dock = DockStyle.Bottom;
+            panel3.Location = new Point(0, 281);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(495, 315);
+            panel3.TabIndex = 92;
+            // 
+            // btnDesativarProd
+            // 
+            btnDesativarProd.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnDesativarProd.BackColor = Color.Transparent;
+            btnDesativarProd.FlatStyle = FlatStyle.Popup;
+            btnDesativarProd.Font = new Font("Franklin Gothic Medium", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnDesativarProd.ForeColor = Color.Maroon;
+            btnDesativarProd.Location = new Point(113, 263);
+            btnDesativarProd.Name = "btnDesativarProd";
+            btnDesativarProd.Size = new Size(110, 28);
+            btnDesativarProd.TabIndex = 86;
+            btnDesativarProd.Text = "Desativar Produto";
+            btnDesativarProd.UseVisualStyleBackColor = false;
+            btnDesativarProd.Click += btnDesativarProd_Click;
+            // 
+            // txtCodBarra
+            // 
+            txtCodBarra.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            txtCodBarra.BackColor = Color.FromArgb(224, 224, 224);
+            txtCodBarra.Font = new Font("Microsoft Sans Serif", 12F);
+            txtCodBarra.Location = new Point(238, 145);
+            txtCodBarra.Name = "txtCodBarra";
+            txtCodBarra.PlaceholderText = "Digite o codigo do produto";
+            txtCodBarra.Size = new Size(246, 26);
+            txtCodBarra.TabIndex = 83;
+            // 
+            // btnAtivarProd
+            // 
+            btnAtivarProd.BackColor = Color.Transparent;
+            btnAtivarProd.FlatStyle = FlatStyle.Popup;
+            btnAtivarProd.Font = new Font("Franklin Gothic Medium", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnAtivarProd.ForeColor = Color.DarkSeaGreen;
+            btnAtivarProd.Location = new Point(113, 264);
+            btnAtivarProd.Name = "btnAtivarProd";
+            btnAtivarProd.Size = new Size(110, 27);
+            btnAtivarProd.TabIndex = 87;
+            btnAtivarProd.Text = "Ativar Produto";
+            btnAtivarProd.UseVisualStyleBackColor = false;
+            btnAtivarProd.Visible = false;
+            btnAtivarProd.Click += btnAtivarProd_Click;
+            // 
+            // btnAttProd
+            // 
+            btnAttProd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnAttProd.BackColor = SystemColors.Highlight;
+            btnAttProd.Cursor = Cursors.Hand;
+            btnAttProd.FlatStyle = FlatStyle.Popup;
+            btnAttProd.Font = new Font("Franklin Gothic Medium", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnAttProd.ForeColor = Color.White;
+            btnAttProd.Location = new Point(238, 263);
+            btnAttProd.Name = "btnAttProd";
+            btnAttProd.Size = new Size(243, 28);
+            btnAttProd.TabIndex = 73;
+            btnAttProd.Text = "Atualizar Produto";
+            btnAttProd.UseVisualStyleBackColor = false;
+            btnAttProd.Click += btnAttProd_Click;
             // 
             // label5
             // 
+            label5.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label5.AutoSize = true;
             label5.Font = new Font("Franklin Gothic Medium", 12F);
             label5.ForeColor = Color.FromArgb(180, 180, 190);
-            label5.Location = new Point(245, 347);
+            label5.Location = new Point(238, 63);
             label5.Name = "label5";
             label5.Size = new Size(112, 21);
             label5.TabIndex = 90;
             label5.Text = "Preço De Custo";
             // 
+            // txtPrecoProd
+            // 
+            txtPrecoProd.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtPrecoProd.BackColor = Color.FromArgb(224, 224, 224);
+            txtPrecoProd.Font = new Font("Microsoft Sans Serif", 12F);
+            txtPrecoProd.Location = new Point(0, 210);
+            txtPrecoProd.Name = "txtPrecoProd";
+            txtPrecoProd.PlaceholderText = "digite o preço do produto";
+            txtPrecoProd.Size = new Size(223, 26);
+            txtPrecoProd.TabIndex = 68;
+            // 
             // textBox1
             // 
+            textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             textBox1.BackColor = Color.FromArgb(224, 224, 224);
             textBox1.Font = new Font("Microsoft Sans Serif", 12F);
-            textBox1.Location = new Point(245, 371);
+            textBox1.Location = new Point(238, 90);
             textBox1.Name = "textBox1";
             textBox1.PlaceholderText = "Digite o preço de custo";
-            textBox1.Size = new Size(203, 26);
+            textBox1.Size = new Size(243, 26);
             textBox1.TabIndex = 89;
+            // 
+            // lbPrecoAtt
+            // 
+            lbPrecoAtt.AutoSize = true;
+            lbPrecoAtt.Font = new Font("Franklin Gothic Medium", 12F);
+            lbPrecoAtt.ForeColor = Color.FromArgb(180, 180, 190);
+            lbPrecoAtt.Location = new Point(3, 182);
+            lbPrecoAtt.Name = "lbPrecoAtt";
+            lbPrecoAtt.Size = new Size(135, 21);
+            lbPrecoAtt.TabIndex = 69;
+            lbPrecoAtt.Text = "Preço por unidade";
+            // 
+            // cmbMedida
+            // 
+            cmbMedida.AutoCompleteCustomSource.AddRange(new string[] { "Unidade", "Grama" });
+            cmbMedida.BackColor = Color.FromArgb(224, 224, 224);
+            cmbMedida.Font = new Font("Microsoft Sans Serif", 12F);
+            cmbMedida.FormattingEnabled = true;
+            cmbMedida.Items.AddRange(new object[] { "Unidade", "Caixa", "Pacote", "Kg", "Gramas", "Litros", "Ml", "Dúzia", "Fardo", "Kit" });
+            cmbMedida.Location = new Point(-4, 142);
+            cmbMedida.Name = "cmbMedida";
+            cmbMedida.Size = new Size(227, 28);
+            cmbMedida.TabIndex = 67;
+            // 
+            // lbMedidaAtt
+            // 
+            lbMedidaAtt.AutoSize = true;
+            lbMedidaAtt.Font = new Font("Franklin Gothic Medium", 12F);
+            lbMedidaAtt.ForeColor = Color.FromArgb(180, 180, 190);
+            lbMedidaAtt.Location = new Point(3, 118);
+            lbMedidaAtt.Name = "lbMedidaAtt";
+            lbMedidaAtt.Size = new Size(146, 21);
+            lbMedidaAtt.TabIndex = 66;
+            lbMedidaAtt.Text = "Unidade de medida";
+            // 
+            // btnExcluirProd
+            // 
+            btnExcluirProd.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnExcluirProd.BackColor = Color.Transparent;
+            btnExcluirProd.FlatStyle = FlatStyle.Popup;
+            btnExcluirProd.Font = new Font("Franklin Gothic Medium", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnExcluirProd.ForeColor = Color.Maroon;
+            btnExcluirProd.Location = new Point(4, 263);
+            btnExcluirProd.Name = "btnExcluirProd";
+            btnExcluirProd.Size = new Size(107, 27);
+            btnExcluirProd.TabIndex = 74;
+            btnExcluirProd.Text = "Excluir Produto";
+            btnExcluirProd.UseVisualStyleBackColor = false;
+            btnExcluirProd.Click += btnExcluirProd_Click;
+            // 
+            // txtMarcaProd
+            // 
+            txtMarcaProd.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtMarcaProd.BackColor = Color.FromArgb(224, 224, 224);
+            txtMarcaProd.Font = new Font("Microsoft Sans Serif", 12F);
+            txtMarcaProd.Location = new Point(0, 87);
+            txtMarcaProd.Name = "txtMarcaProd";
+            txtMarcaProd.PlaceholderText = "Digite a marca do produto";
+            txtMarcaProd.Size = new Size(223, 26);
+            txtMarcaProd.TabIndex = 64;
+            // 
+            // lbMarcaAtt
+            // 
+            lbMarcaAtt.AutoSize = true;
+            lbMarcaAtt.Font = new Font("Franklin Gothic Medium", 12F);
+            lbMarcaAtt.ForeColor = Color.FromArgb(180, 180, 190);
+            lbMarcaAtt.Location = new Point(5, 60);
+            lbMarcaAtt.Name = "lbMarcaAtt";
+            lbMarcaAtt.Size = new Size(131, 21);
+            lbMarcaAtt.TabIndex = 65;
+            lbMarcaAtt.Text = "Marca do produto";
+            // 
+            // lbNomeAtt
+            // 
+            lbNomeAtt.AutoSize = true;
+            lbNomeAtt.Font = new Font("Franklin Gothic Medium", 12F);
+            lbNomeAtt.ForeColor = Color.FromArgb(180, 180, 190);
+            lbNomeAtt.Location = new Point(3, 4);
+            lbNomeAtt.Name = "lbNomeAtt";
+            lbNomeAtt.Size = new Size(128, 21);
+            lbNomeAtt.TabIndex = 63;
+            lbNomeAtt.Text = "Nome do produto";
+            // 
+            // txtNomeProd
+            // 
+            txtNomeProd.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtNomeProd.BackColor = Color.FromArgb(224, 224, 224);
+            txtNomeProd.Font = new Font("Microsoft Sans Serif", 12F);
+            txtNomeProd.Location = new Point(4, 28);
+            txtNomeProd.Name = "txtNomeProd";
+            txtNomeProd.PlaceholderText = "Digite o nome do produto";
+            txtNomeProd.Size = new Size(219, 26);
+            txtNomeProd.TabIndex = 62;
+            // 
+            // mainLayout
+            // 
+            mainLayout.BackColor = Color.FromArgb(45, 45, 60);
+            mainLayout.ColumnCount = 2;
+            mainLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 48.2972145F));
+            mainLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 51.7027855F));
+            mainLayout.Controls.Add(panel2, 1, 0);
+            mainLayout.Controls.Add(panel1, 0, 0);
+            mainLayout.Dock = DockStyle.Fill;
+            mainLayout.Location = new Point(0, 0);
+            mainLayout.Name = "mainLayout";
+            mainLayout.Padding = new Padding(10);
+            mainLayout.RowCount = 1;
+            mainLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            mainLayout.Size = new Size(989, 622);
+            mainLayout.TabIndex = 92;
             // 
             // frmProduto
             // 
@@ -1051,19 +963,30 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(45, 45, 60);
             ClientSize = new Size(989, 622);
-            Controls.Add(panel2);
-            Controls.Add(panel1);
+            Controls.Add(mainLayout);
             FormBorderStyle = FormBorderStyle.None;
             Name = "frmProduto";
             Text = "cadastroProduto";
             Load += frmProduto_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dtgCategoria).EndInit();
+            panel6.ResumeLayout(false);
+            panel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panel5.ResumeLayout(false);
+            panel5.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dtgProdutos).EndInit();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
+            mainLayout.ResumeLayout(false);
             ResumeLayout(false);
+
+
         }
 
         #endregion
@@ -1080,18 +1003,10 @@
         private ComboBox CmbUnidade;
         private Label lbPreco;
         private TextBox PrPreco;
-        private Label astNome;
-        private Label astCategoria;
-        private Label astMarca;
-        private Label astPreco;
-        private Label astDescAtt;
         private Panel panel1;
         private Panel panel2;
         private DataGridView dtgProdutos;
         private Label label14;
-        private Label astPrecoAtt;
-        private Label astmarcaAtt;
-        private Label astNomeAtt;
         private Label lbPrecoAtt;
         private TextBox txtPrecoProd;
         private ComboBox cmbMedida;
@@ -1101,8 +1016,6 @@
         private Label lbNomeAtt;
         private TextBox txtNomeProd;
         private Label label1;
-        private Label astDescricao;
-        private Label astCatAtt;
         private ComboBox cmbCatAtt;
         private Label lbCatAtt;
         private Label lbDescAtt;
@@ -1110,29 +1023,31 @@
         private Button btnAttProd;
         private Button btnExcluirProd;
         private Label label15;
-        private Label astUnidade;
         private Button btnCadCategoria;
         private Button btnExcluirCat;
-        private Label label17;
         private Label label18;
         private TextBox txtCategoria;
         private DataGridView dtgCategoria;
         private Label label16;
-        private Label label19;
-        private Label astCod;
         private Label lbBarrasAtt;
         private TextBox PrCodigoBarra;
         private Button btnDesativarProd;
-        private Label astBarrasAtt;
         private Label label23;
         private TextBox txtCodBarra;
         private Button btnAtivarProd;
-        private Label astMedidaAtt;
-        private Label label2;
         private Label label3;
         private TextBox txtPrecoCusto;
-        private Label label4;
         private Label label5;
         private TextBox textBox1;
+        private TableLayoutPanel mainLayout;
+        private Panel panel3;
+        private Panel panel4;
+        private Panel panel5;
+        private Button button2;
+        private Button button1;
+        private Panel panel6;
+        private Label label2;
+        private PictureBox pictureBox1;
+        private Label removePic;
     }
 }

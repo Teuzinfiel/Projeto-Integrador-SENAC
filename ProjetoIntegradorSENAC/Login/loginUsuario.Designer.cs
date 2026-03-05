@@ -30,6 +30,10 @@
         {
             components = new System.ComponentModel.Container();
             panel1 = new Panel();
+            panel2 = new Panel();
+            pictureBox2 = new PictureBox();
+            label12 = new Label();
+            label11 = new Label();
             label10 = new Label();
             label9 = new Label();
             recuperarConta = new Label();
@@ -47,14 +51,16 @@
             label5 = new Label();
             label7 = new Label();
             label6 = new Label();
-            label11 = new Label();
             panel1.SuspendLayout();
+            panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             panel1.BackColor = Color.FromArgb(40, 40, 50);
+            panel1.Controls.Add(panel2);
             panel1.Controls.Add(label11);
             panel1.Controls.Add(label10);
             panel1.Controls.Add(label9);
@@ -71,16 +77,65 @@
             panel1.Controls.Add(btnLogin);
             panel1.Location = new Point(318, 96);
             panel1.Name = "panel1";
-            panel1.Size = new Size(432, 470);
+            panel1.Size = new Size(432, 517);
             panel1.TabIndex = 1;
+            // 
+            // panel2
+            // 
+            panel2.BackColor = SystemColors.Highlight;
+            panel2.Controls.Add(pictureBox2);
+            panel2.Controls.Add(label12);
+            panel2.Cursor = Cursors.Hand;
+            panel2.Location = new Point(63, 349);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(291, 40);
+            panel2.TabIndex = 23;
+            panel2.Click += panel2_Click;
+            panel2.Paint += panel2_Paint;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.BackColor = Color.White;
+            pictureBox2.Dock = DockStyle.Left;
+            pictureBox2.Image = Properties.Resources.google;
+            pictureBox2.Location = new Point(0, 0);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(65, 40);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.TabIndex = 0;
+            pictureBox2.TabStop = false;
+            pictureBox2.Click += pictureBox2_Click;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Cursor = Cursors.Hand;
+            label12.Font = new Font("Franklin Gothic Medium", 15F);
+            label12.ForeColor = Color.White;
+            label12.Location = new Point(85, 8);
+            label12.Name = "label12";
+            label12.Size = new Size(172, 25);
+            label12.TabIndex = 1;
+            label12.Text = "Entrar com Google";
+            label12.Click += label12_Click;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Franklin Gothic Medium", 12F);
+            label11.ForeColor = Color.FromArgb(180, 180, 190);
+            label11.Location = new Point(198, 308);
+            label11.Name = "label11";
+            label11.Size = new Size(30, 21);
+            label11.TabIndex = 23;
+            label11.Text = "OU";
             // 
             // label10
             // 
-            label10.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label10.AutoSize = true;
             label10.Font = new Font("Franklin Gothic Medium", 12F);
             label10.ForeColor = Color.FromArgb(180, 180, 190);
-            label10.Location = new Point(0, 308);
+            label10.Location = new Point(0, 304);
             label10.Name = "label10";
             label10.Size = new Size(170, 21);
             label10.TabIndex = 22;
@@ -88,11 +143,10 @@
             // 
             // label9
             // 
-            label9.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label9.AutoSize = true;
             label9.Font = new Font("Franklin Gothic Medium", 12F);
             label9.ForeColor = Color.FromArgb(180, 180, 190);
-            label9.Location = new Point(259, 308);
+            label9.Location = new Point(259, 304);
             label9.Name = "label9";
             label9.Size = new Size(170, 21);
             label9.TabIndex = 21;
@@ -105,7 +159,7 @@
             recuperarConta.Cursor = Cursors.Hand;
             recuperarConta.Font = new Font("Franklin Gothic Medium", 12F);
             recuperarConta.ForeColor = SystemColors.Highlight;
-            recuperarConta.Location = new Point(260, 372);
+            recuperarConta.Location = new Point(260, 465);
             recuperarConta.Name = "recuperarConta";
             recuperarConta.Size = new Size(132, 21);
             recuperarConta.TabIndex = 20;
@@ -118,7 +172,7 @@
             label8.AutoSize = true;
             label8.Font = new Font("Franklin Gothic Medium", 12F);
             label8.ForeColor = Color.FromArgb(180, 180, 190);
-            label8.Location = new Point(256, 348);
+            label8.Location = new Point(256, 441);
             label8.Name = "label8";
             label8.Size = new Size(143, 21);
             label8.TabIndex = 19;
@@ -131,7 +185,7 @@
             CriarConta.Cursor = Cursors.Hand;
             CriarConta.Font = new Font("Franklin Gothic Medium", 12F);
             CriarConta.ForeColor = SystemColors.Highlight;
-            CriarConta.Location = new Point(73, 372);
+            CriarConta.Location = new Point(73, 465);
             CriarConta.Name = "CriarConta";
             CriarConta.Size = new Size(90, 21);
             CriarConta.TabIndex = 18;
@@ -144,7 +198,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Franklin Gothic Medium", 12F);
             label4.ForeColor = Color.FromArgb(180, 180, 190);
-            label4.Location = new Point(42, 348);
+            label4.Location = new Point(42, 441);
             label4.Name = "label4";
             label4.Size = new Size(154, 21);
             label4.TabIndex = 17;
@@ -288,18 +342,6 @@
             label6.TextAlign = ContentAlignment.MiddleLeft;
             label6.UseMnemonic = false;
             // 
-            // label11
-            // 
-            label11.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            label11.AutoSize = true;
-            label11.Font = new Font("Franklin Gothic Medium", 12F);
-            label11.ForeColor = Color.FromArgb(180, 180, 190);
-            label11.Location = new Point(195, 314);
-            label11.Name = "label11";
-            label11.Size = new Size(30, 21);
-            label11.TabIndex = 23;
-            label11.Text = "OU";
-            // 
             // loginUsuario
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -317,6 +359,9 @@
             Load += loginUsuario_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -342,5 +387,8 @@
         private Label label10;
         private Label label9;
         private Label label11;
+        private Panel panel2;
+        private PictureBox pictureBox2;
+        private Label label12;
     }
 }

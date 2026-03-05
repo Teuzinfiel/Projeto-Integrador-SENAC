@@ -6,6 +6,7 @@ using ProjetoIntegradorSENAC.Empresa;
 using ProjetoIntegradorSENAC.Estoque;
 using ProjetoIntegradorSENAC.LogInf;
 using ProjetoIntegradorSENAC.Logins;
+using ProjetoIntegradorSENAC.Main;
 using ProjetoIntegradorSENAC.Produto;
 using ProjetoIntegradorSENAC.Usuarios;
 using System.Data;
@@ -19,14 +20,25 @@ namespace ProjetoIntegradorSENAC
         public int idDono;
         public int idUsuario;
         public string nomeEmpresa;
-        public MainEmpresa(int idEmpresa, int idDono, int idUsuario, string nomeEmpresa)
+        mainFrm main;
+        public MainEmpresa(int idEmpresa, int idDono, int idUsuario, string nomeEmpresa, mainFrm mainFrm)
         {
             InitializeComponent();
             this.idEmpresa = idEmpresa;
             this.idDono = idDono;
             this.idUsuario = idUsuario;
-            nomeEmpresa = nomeEmpresa;
-            txtNomeEmpresa.Text = nomeEmpresa;
+            this.nomeEmpresa = nomeEmpresa;
+
+            if (nomeEmpresa.Length < 20)
+            {
+                txtNomeEmpresa.Text = nomeEmpresa;
+            }
+            else
+            {
+                txtNomeEmpresa.Text = nomeEmpresa.Substring(0, 20) + "...";
+            }
+            
+            main = mainFrm;
 
             LogService.CriarLog(this.idEmpresa, this.idUsuario, "Entrou na " + nomeEmpresa);
         }
@@ -60,16 +72,6 @@ namespace ProjetoIntegradorSENAC
         }
 
       
-
-        private void btnSair_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void btnMinimizar_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Minimized;
-        }
 
         private void btnCaixa_Click(object sender, EventArgs e)
         {
@@ -136,9 +138,7 @@ namespace ProjetoIntegradorSENAC
 
         private void btnLogOut_Click(object sender, EventArgs e)
         {
-            frmEmpresa frm = new frmEmpresa(this.idUsuario, null);
-            frm.Show();
-            this.Hide();
+            main.AbrirFormNoPanel(new frmEmpresa(this.idUsuario, main));
         }
 
         private void button1_Click(object sender, EventArgs e)

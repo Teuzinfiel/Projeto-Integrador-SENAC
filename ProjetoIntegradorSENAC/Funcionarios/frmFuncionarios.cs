@@ -55,25 +55,25 @@ namespace ProjetoIntegradorSENAC.Usuarios
             dtgFuncionarios.Columns["id"].Visible = false;
             dtgFuncionarios.Columns["senha"].Visible = false;
 
-            astNome.Visible = false;
+            
             lbNome.ForeColor = Color.White;
-            astEmail.Visible = false;
+           
             lbEmail.ForeColor = Color.White;
-            astEmail.Visible = false;
+          
             lbEmail.ForeColor = Color.White;
-            astCpf.Visible = false;
+          
             lbCpf.ForeColor = Color.White;
-            astSenha.Visible = false;
+         
             lbSenha.ForeColor = Color.White;
-            astConfirmar.Visible = false;
+           
             lbConfirmar.ForeColor = Color.White;
-            astNomeEd.Visible = false;
+           
             lbNomeEd.ForeColor = Color.White;
-            astEmailEd.Visible = false;
+           
             lbEmailEd.ForeColor = Color.White;
-            astTelefoneEd.Visible = false;
+            
             lbTelefoneEd.ForeColor = Color.White;
-            astCpfEd.Visible = false;
+            
             lbCpfEd.ForeColor = Color.White;
 
 
@@ -155,13 +155,13 @@ namespace ProjetoIntegradorSENAC.Usuarios
             if (Funcoes.CampoVazio(UsNome))
             {
                 erroNome = true;
-                astNome.Visible = true;
+                
                 lbNome.ForeColor = Color.DarkRed;
             }
             else
             {
                 erroNome = false;
-                astNome.Visible = false;
+                
                 lbNome.ForeColor = Color.White;
 
             }
@@ -172,13 +172,13 @@ namespace ProjetoIntegradorSENAC.Usuarios
             if (Funcoes.isEmail(UsEmail.Text))
             {
                 erroEmail = false;
-                astEmail.Visible = false;
+              
                 lbEmail.ForeColor = Color.White;
             }
             else
             {
                 erroEmail = true;
-                astEmail.Visible = true;
+               
                 lbEmail.ForeColor = Color.DarkRed;
             }
         }
@@ -188,13 +188,13 @@ namespace ProjetoIntegradorSENAC.Usuarios
             if (Funcoes.isTelefone(UsTelefone.Text))
             {
                 erroTelefone = false;
-                astTelefone.Visible = false;
+               
                 lbTelefone.ForeColor = Color.White;
             }
             else
             {
                 erroTelefone = true;
-                astTelefone.Visible = true;
+              
                 lbTelefone.ForeColor = Color.DarkRed;
             }
         }
@@ -205,13 +205,13 @@ namespace ProjetoIntegradorSENAC.Usuarios
             if (Funcoes.isCpf(UsCpf.Text))
             {
                 erroCpf = false;
-                astCpf.Visible = false;
+              
                 lbCpf.ForeColor = Color.White;
             }
             else
             {
                 erroCpf = true;
-                astCpf.Visible = true;
+               
                 lbCpf.ForeColor = Color.DarkRed;
             }
 
@@ -223,13 +223,13 @@ namespace ProjetoIntegradorSENAC.Usuarios
             if (Funcoes.isSenha(UsSenha.Text))
             {
                 erroSenha[0] = false;
-                astSenha.Visible = false;
+              
                 lbSenha.ForeColor = Color.White;
             }
             else
             {
                 erroSenha[0] = true;
-                astSenha.Visible = true;
+               
                 lbSenha.ForeColor = Color.DarkRed;
             }
         }
@@ -239,13 +239,13 @@ namespace ProjetoIntegradorSENAC.Usuarios
             if (Funcoes.isSenha(UsSenha.Text))
             {
                 erroSenha[1] = false;
-                astConfirmar.Visible = false;
+                
                 lbConfirmar.ForeColor = Color.White;
             }
             else
             {
                 erroSenha[1] = true;
-                astConfirmar.Visible = true;
+              
                 lbConfirmar.ForeColor = Color.DarkRed;
             }
         }
@@ -322,13 +322,13 @@ namespace ProjetoIntegradorSENAC.Usuarios
             if (Funcoes.CampoVazio(EdNome))
             {
                 erroNomeEd = true;
-                astNomeEd.Visible = true;
+                
                 lbNomeEd.ForeColor = Color.DarkRed;
             }
             else
             {
                 erroNomeEd = false;
-                astNomeEd.Visible = false;
+               
                 lbNomeEd.ForeColor = Color.White;
             }
         }
@@ -338,13 +338,13 @@ namespace ProjetoIntegradorSENAC.Usuarios
             if (Funcoes.isEmail(EdEmail.Text))
             {
                 erroEmailEd = false;
-                astEmailEd.Visible = false;
+          
                 lbEmailEd.ForeColor = Color.White;
             }
             else
             {
                 erroEmailEd = true;
-                astEmailEd.Visible = true;
+                
                 lbEmailEd.ForeColor = Color.DarkRed;
             }
         }
@@ -354,13 +354,13 @@ namespace ProjetoIntegradorSENAC.Usuarios
             if (Funcoes.isTelefone(EdTelefone.Text))
             {
                 erroTelefoneEd = false;
-                astTelefoneEd.Visible = false;
+                
                 lbTelefoneEd.ForeColor = Color.White;
             }
             else
             {
                 erroTelefoneEd = true;
-                astTelefoneEd.Visible = true;
+              
                 lbTelefoneEd.ForeColor = Color.DarkRed;
             }
         }
@@ -370,13 +370,13 @@ namespace ProjetoIntegradorSENAC.Usuarios
             if (Funcoes.isCpf(EdCpf.Text))
             {
                 erroCpfEd = false;
-                astCpfEd.Visible = false;
+               
                 lbCpfEd.ForeColor = Color.White;
             }
             else
             {
                 erroCpfEd = true;
-                astCpfEd.Visible = true;
+                
                 lbCpfEd.ForeColor = Color.DarkRed;
             }
         }

@@ -38,7 +38,7 @@
             // 
             // brrTarefaPanel
             // 
-            brrTarefaPanel.BackColor = Color.FromArgb(30, 30, 40);
+            brrTarefaPanel.BackColor = Color.FromArgb(25, 25, 30);
             brrTarefaPanel.Controls.Add(btnMinimizar);
             brrTarefaPanel.Controls.Add(btnDimension);
             brrTarefaPanel.Controls.Add(btnSair);

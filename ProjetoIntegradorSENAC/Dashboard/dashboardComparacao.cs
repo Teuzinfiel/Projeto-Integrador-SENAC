@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.DirectoryServices.ActiveDirectory;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,8 +21,6 @@ namespace ProjetoIntegradorSENAC
         private MainEmpresa _main;
         private int idEmpresa;
         private Dictionary<string, object> param_idEmpresa;
-        private bool produtosBoo = false;
-        private bool vendasBoo = true;
 
         public dashboardComparacao(MainEmpresa main, int idEmpresa)
         {
@@ -33,53 +32,21 @@ namespace ProjetoIntegradorSENAC
                 { "@idEmpresa", idEmpresa }
             };
         }
+        private void btnVendas_Click(object sender, EventArgs e)
+        {
+            _main.AbrirFormNoPanel(new dashboardVenda(_main, idEmpresa));
+        }
+        private void btnProdutos_Click(object sender, EventArgs e)
+        {
+            _main.AbrirFormNoPanel(new dashboardProduto(_main, idEmpresa));
+        }
+        private void btnEstoque_Click(object sender, EventArgs e)
+        {
+            _main.AbrirFormNoPanel(new dashboardEstoque(_main, idEmpresa));
+        }
         private void EstilizarComparacao()
         {
-            lbDash1.MaximumSize = new Size(Info1_dash.Width, 0);
-            lbDash2.MaximumSize = new Size(Info2_dash.Width, 0);
-            lbDash3.MaximumSize = new Size(Info3_dash.Width, 0);
-            lbDash4.MaximumSize = new Size(Info4_dash.Width, 0);
-
-            // 🔥 TÍTULO
-            lbTituloDash.ForeColor = Color.FromArgb(0, 150, 255);
-            lbTituloDash.Font = new Font("Segoe UI Semibold", 24F, FontStyle.Bold);
-
-            // =============================
-            // 🟦 BOTÕES
-            // =============================
-            Button[] botoes = { btnBuscar, btnProdutos, btnVendas, btnComparacao };
-
-            foreach (var btn in botoes)
-            {
-                btn.FlatStyle = FlatStyle.Flat;
-                btn.FlatAppearance.BorderSize = 0;
-                btn.BackColor = Color.FromArgb(0, 120, 215);
-                btn.ForeColor = Color.White;
-                btn.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-                btn.Cursor = Cursors.Hand;
-            }
-
-            // =============================
-            // 📊 CARDS KPI
-            // =============================
-            var cards = new[] { Info1_dash, Info2_dash, Info3_dash, Info4_dash };
-            var labels = new[] { lbDash1, lbDash2, lbDash3, lbDash4 };
-
-            for (int i = 0; i < cards.Length; i++)
-            {
-                var card = cards[i];
-                var label = labels[i];
-
-                card.FlatStyle = FlatStyle.Flat;
-
-                card.Font = new Font("Segoe UI", 9F);
-
-                label.Dock = DockStyle.Fill;
-                label.TextAlign = ContentAlignment.TopLeft;
-                label.AutoSize = false;
-                label.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold);
-                label.ForeColor = Color.FromArgb(0, 150, 255);
-            }
+           
 
             // =============================
             // 📈 GRÁFICOS (Container)
@@ -97,7 +64,7 @@ namespace ProjetoIntegradorSENAC
             // 🏷️ LEGENDAS PRÓXIMO / LONGE
             // =============================
 
-            lblProximo.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lbl1periodo.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblLonge.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
         }
         private void AplicarTemaDarkComparacao(OxyPlot.WindowsForms.PlotView plot)
@@ -134,7 +101,7 @@ namespace ProjetoIntegradorSENAC
                 {
                     var line = (LineSeries)s;
 
-                    
+
                     line.StrokeThickness = 3;
 
                     line.MarkerType = MarkerType.Circle;
@@ -146,52 +113,71 @@ namespace ProjetoIntegradorSENAC
         }
         private void dashboardComparacao_Load(object sender, EventArgs e)
         {
-
-            EstilizarComparacao();
-            
             maskedInicio1Periodo.Text = DateTime.Now.AddMonths(-1).ToString("dd/MM/yyyy");
             maskedFim1Periodo.Text = DateTime.Now.ToString("dd/MM/yyyy");
             maskedInicio2Periodo.Text = DateTime.Now.AddMonths(-2).ToString("dd/MM/yyyy");
             maskedFim2Periodo.Text = DateTime.Now.AddMonths(-1).ToString("dd/MM/yyyy");
-            if (!func_dashboard.AtualizarPeriodoComparacao(maskedInicio1Periodo, maskedFim1Periodo, maskedInicio2Periodo, maskedFim2Periodo, param_idEmpresa))
-            { 
-                caixaMensagem info = new caixaMensagem("As datas estão incorreta ou na posição" +
-                    "\nerrada!!!", "Falha ❌");
-                info.ShowDialog();
-                return;
-            }
-            func_dashboard.carregarInfoComparacao(lbDash1, lbDash2, lbDash3, lbDash4, Info1_dash,
-            Info2_dash, Info3_dash, Info4_dash, param_idEmpresa,lbTituloDash);
-            func_dashboard.load_grafico_comparacao(grafico1, grafico2, param_idEmpresa, lblProximo, lblLonge);
-            AplicarTemaDarkComparacao(grafico1);
-            AplicarTemaDarkComparacao(grafico2);
+            CarregarPag();
+            EstilizarComparacao();
 
         }
 
-        private void btnVendas_Click(object sender, EventArgs e)
-        {
-            produtosBoo = false;
-            vendasBoo = true;
-            _main.AbrirFormNoPanel(new dashboard(_main, idEmpresa, vendasBoo));
-        }
-        private void btnProdutos_Click(object sender, EventArgs e)
-        {
-            produtosBoo = true;
-            vendasBoo = false;
-            _main.AbrirFormNoPanel(new dashboard(_main, idEmpresa, vendasBoo));
-        }
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            if (!func_dashboard.AtualizarPeriodoComparacao(maskedInicio1Periodo, maskedFim1Periodo, maskedInicio2Periodo, maskedFim2Periodo, param_idEmpresa))
+            CarregarPag();
+        }
+        private void CarregarPag()
+        {
+            if (!AtualizarPeriodoComparacao())
             {
                 caixaMensagem info = new caixaMensagem("As datas estão incorreta ou na posição" +
                     "\nerrada!!!", "Falha ❌");
                 info.ShowDialog();
                 return;
             }
-            func_dashboard.carregarInfoComparacao(lbDash1, lbDash2, lbDash3, lbDash4, Info1_dash,
-            Info2_dash, Info3_dash, Info4_dash, param_idEmpresa, lbTituloDash);
-            func_dashboard.load_grafico_comparacao(grafico1, grafico2, param_idEmpresa, lblProximo, lblLonge);
+            func_dashboard.carregarInfoComparacao(lbDash1, lbDash2, lbDash3, lbDash4, param_idEmpresa);
+            func_dashboard.load_grafico_comparacao(grafico1, grafico2, param_idEmpresa, lbl1periodo, lblLonge,lbTituloGrafico1, lbTituloGrafico2);
+            AplicarTemaDarkComparacao(grafico1);
+            AplicarTemaDarkComparacao(grafico2);
+        }
+        private bool AtualizarPeriodoComparacao()
+        {
+            if (!DateTime.TryParseExact(maskedInicio1Periodo.Text, "dd/MM/yyyy",
+                CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime inicio1Periodo))
+                return false;
+
+            if (!DateTime.TryParseExact(maskedFim1Periodo.Text, "dd/MM/yyyy",
+                CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime fim1Periodo))
+                return false;
+
+            if (!DateTime.TryParseExact(maskedInicio2Periodo.Text, "dd/MM/yyyy",
+                CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime inicio2Periodo))
+                return false;
+
+            if (!DateTime.TryParseExact(maskedFim2Periodo.Text, "dd/MM/yyyy",
+                CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime fim2Periodo))
+                return false;
+
+            inicio1Periodo = inicio1Periodo.Date;
+            fim1Periodo = fim1Periodo.Date.AddDays(1).AddSeconds(-1);
+
+            inicio2Periodo = inicio2Periodo.Date;
+            fim2Periodo = fim2Periodo.Date.AddDays(1).AddSeconds(-1);
+
+
+            if (inicio1Periodo > fim1Periodo)
+                return false;
+
+            if (inicio2Periodo > fim2Periodo)
+                return false;
+
+            param_idEmpresa["@dataInicio1Periodo"] = inicio1Periodo;
+            param_idEmpresa["@dataFim1Periodo"] = fim1Periodo;
+
+            param_idEmpresa["@dataInicio2Periodo"] = inicio2Periodo;
+            param_idEmpresa["@dataFim2Periodo"] = fim2Periodo;
+
+            return true;
         }
     }
 }

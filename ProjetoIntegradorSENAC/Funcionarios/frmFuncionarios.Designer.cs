@@ -107,7 +107,7 @@
             picSenha.Location = new Point(441, 184);
             picSenha.Margin = new Padding(3, 2, 3, 2);
             picSenha.Name = "picSenha";
-            picSenha.Size = new Size(35, 28);
+            picSenha.Size = new Size(40, 37);
             picSenha.SizeMode = PictureBoxSizeMode.StretchImage;
             picSenha.TabIndex = 37;
             picSenha.TabStop = false;
@@ -122,11 +122,11 @@
             chkMostrarSenha.FlatAppearance.CheckedBackColor = SystemColors.Highlight;
             chkMostrarSenha.FlatAppearance.MouseDownBackColor = Color.FromArgb(30, 30, 40);
             chkMostrarSenha.FlatAppearance.MouseOverBackColor = Color.FromArgb(30, 30, 40);
-            chkMostrarSenha.Font = new Font("Franklin Gothic Medium Cond", 12F);
+            chkMostrarSenha.Font = new Font("Microsoft Sans Serif", 12F);
             chkMostrarSenha.ForeColor = Color.FromArgb(180, 180, 190);
             chkMostrarSenha.Location = new Point(324, 277);
             chkMostrarSenha.Name = "chkMostrarSenha";
-            chkMostrarSenha.Size = new Size(111, 25);
+            chkMostrarSenha.Size = new Size(163, 29);
             chkMostrarSenha.TabIndex = 28;
             chkMostrarSenha.Text = "Mostrar Senha";
             chkMostrarSenha.UseVisualStyleBackColor = true;
@@ -135,12 +135,12 @@
             // lbCpf
             // 
             lbCpf.AutoSize = true;
-            lbCpf.BackColor = Color.FromArgb(40, 40, 50);
-            lbCpf.Font = new Font("Franklin Gothic Medium Cond", 12F);
+            lbCpf.BackColor = Color.FromArgb(30, 30, 40);
+            lbCpf.Font = new Font("Microsoft Sans Serif", 12F);
             lbCpf.ForeColor = Color.FromArgb(180, 180, 190);
             lbCpf.Location = new Point(51, 364);
             lbCpf.Name = "lbCpf";
-            lbCpf.Size = new Size(33, 21);
+            lbCpf.Size = new Size(52, 25);
             lbCpf.TabIndex = 27;
             lbCpf.Text = "CPF";
             // 
@@ -185,12 +185,12 @@
             // lbTelefone
             // 
             lbTelefone.AutoSize = true;
-            lbTelefone.BackColor = Color.FromArgb(40, 40, 50);
-            lbTelefone.Font = new Font("Franklin Gothic Medium Cond", 12F);
+            lbTelefone.BackColor = Color.FromArgb(30, 30, 40);
+            lbTelefone.Font = new Font("Microsoft Sans Serif", 12F);
             lbTelefone.ForeColor = Color.FromArgb(180, 180, 190);
             lbTelefone.Location = new Point(51, 302);
             lbTelefone.Name = "lbTelefone";
-            lbTelefone.Size = new Size(59, 21);
+            lbTelefone.Size = new Size(89, 25);
             lbTelefone.TabIndex = 24;
             lbTelefone.Text = "Telefone";
             // 
@@ -220,11 +220,11 @@
             // lbEmail
             // 
             lbEmail.AutoSize = true;
-            lbEmail.Font = new Font("Franklin Gothic Medium Cond", 12F);
+            lbEmail.Font = new Font("Microsoft Sans Serif", 12F);
             lbEmail.ForeColor = Color.FromArgb(180, 180, 190);
             lbEmail.Location = new Point(51, 425);
             lbEmail.Name = "lbEmail";
-            lbEmail.Size = new Size(43, 21);
+            lbEmail.Size = new Size(60, 25);
             lbEmail.TabIndex = 19;
             lbEmail.Text = "Email";
             // 
@@ -242,11 +242,11 @@
             // lbConfirmar
             // 
             lbConfirmar.AutoSize = true;
-            lbConfirmar.Font = new Font("Franklin Gothic Medium Cond", 12F);
+            lbConfirmar.Font = new Font("Microsoft Sans Serif", 12F);
             lbConfirmar.ForeColor = Color.FromArgb(180, 180, 190);
             lbConfirmar.Location = new Point(51, 215);
             lbConfirmar.Name = "lbConfirmar";
-            lbConfirmar.Size = new Size(103, 21);
+            lbConfirmar.Size = new Size(156, 25);
             lbConfirmar.TabIndex = 17;
             lbConfirmar.Text = "Confirmar senha";
             // 
@@ -265,11 +265,11 @@
             // lbSenha
             // 
             lbSenha.AutoSize = true;
-            lbSenha.Font = new Font("Franklin Gothic Medium Cond", 12F);
+            lbSenha.Font = new Font("Microsoft Sans Serif", 12F);
             lbSenha.ForeColor = Color.FromArgb(180, 180, 190);
             lbSenha.Location = new Point(51, 156);
             lbSenha.Name = "lbSenha";
-            lbSenha.Size = new Size(74, 21);
+            lbSenha.Size = new Size(113, 25);
             lbSenha.TabIndex = 15;
             lbSenha.Text = "Criar senha";
             // 
@@ -288,11 +288,11 @@
             // lbNome
             // 
             lbNome.AutoSize = true;
-            lbNome.Font = new Font("Franklin Gothic Medium Cond", 12F);
+            lbNome.Font = new Font("Microsoft Sans Serif", 12F);
             lbNome.ForeColor = Color.FromArgb(180, 180, 190);
             lbNome.Location = new Point(51, 97);
             lbNome.Name = "lbNome";
-            lbNome.Size = new Size(107, 21);
+            lbNome.Size = new Size(160, 25);
             lbNome.TabIndex = 13;
             lbNome.Text = "Nome de usuário";
             // 
@@ -309,14 +309,15 @@
             // 
             // label1
             // 
-            label1.AutoSize = true;
+            label1.Anchor = AnchorStyles.Top;
             label1.Font = new Font("Franklin Gothic Medium", 23F);
             label1.ForeColor = Color.FromArgb(180, 180, 190);
             label1.Location = new Point(61, 32);
             label1.Name = "label1";
-            label1.Size = new Size(358, 37);
+            label1.Size = new Size(513, 60);
             label1.TabIndex = 9;
             label1.Text = "Cadastre seu funcionario!";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // panel2
             // 
@@ -347,20 +348,21 @@
             label16.ForeColor = Color.FromArgb(180, 180, 190);
             label16.Location = new Point(17, 76);
             label16.Name = "label16";
-            label16.Size = new Size(151, 16);
+            label16.Size = new Size(199, 20);
             label16.TabIndex = 76;
             label16.Text = "Clique em algum funcionario!\r\n";
             // 
             // label14
             // 
-            label14.AutoSize = true;
+            label14.Anchor = AnchorStyles.Top;
             label14.Font = new Font("Franklin Gothic Medium", 23F);
             label14.ForeColor = Color.FromArgb(180, 180, 190);
             label14.Location = new Point(80, 32);
             label14.Name = "label14";
-            label14.Size = new Size(348, 37);
+            label14.Size = new Size(498, 60);
             label14.TabIndex = 59;
             label14.Text = "Selecione um fucionario!";
+            label14.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btnExcluir
             // 
@@ -394,12 +396,12 @@
             // lbCpfEd
             // 
             lbCpfEd.AutoSize = true;
-            lbCpfEd.BackColor = Color.FromArgb(40, 40, 50);
-            lbCpfEd.Font = new Font("Franklin Gothic Medium Cond", 12F);
+            lbCpfEd.BackColor = Color.FromArgb(30, 30, 40);
+            lbCpfEd.Font = new Font("Microsoft Sans Serif", 12F);
             lbCpfEd.ForeColor = Color.FromArgb(180, 180, 190);
             lbCpfEd.Location = new Point(17, 411);
             lbCpfEd.Name = "lbCpfEd";
-            lbCpfEd.Size = new Size(33, 21);
+            lbCpfEd.Size = new Size(52, 25);
             lbCpfEd.TabIndex = 53;
             lbCpfEd.Text = "CPF";
             // 
@@ -430,11 +432,11 @@
             // lbEmailEd
             // 
             lbEmailEd.AutoSize = true;
-            lbEmailEd.Font = new Font("Franklin Gothic Medium Cond", 12F);
+            lbEmailEd.Font = new Font("Microsoft Sans Serif", 12F);
             lbEmailEd.ForeColor = Color.FromArgb(180, 180, 190);
             lbEmailEd.Location = new Point(17, 350);
             lbEmailEd.Name = "lbEmailEd";
-            lbEmailEd.Size = new Size(43, 21);
+            lbEmailEd.Size = new Size(60, 25);
             lbEmailEd.TabIndex = 47;
             lbEmailEd.Text = "Email";
             // 
@@ -452,23 +454,23 @@
             // lbTelefoneEd
             // 
             lbTelefoneEd.AutoSize = true;
-            lbTelefoneEd.BackColor = Color.FromArgb(40, 40, 50);
-            lbTelefoneEd.Font = new Font("Franklin Gothic Medium Cond", 12F);
+            lbTelefoneEd.BackColor = Color.FromArgb(30, 30, 40);
+            lbTelefoneEd.Font = new Font("Microsoft Sans Serif", 12F);
             lbTelefoneEd.ForeColor = Color.FromArgb(180, 180, 190);
             lbTelefoneEd.Location = new Point(17, 470);
             lbTelefoneEd.Name = "lbTelefoneEd";
-            lbTelefoneEd.Size = new Size(59, 21);
+            lbTelefoneEd.Size = new Size(89, 25);
             lbTelefoneEd.TabIndex = 50;
             lbTelefoneEd.Text = "Telefone";
             // 
             // lbNomeEd
             // 
             lbNomeEd.AutoSize = true;
-            lbNomeEd.Font = new Font("Franklin Gothic Medium Cond", 12F);
+            lbNomeEd.Font = new Font("Microsoft Sans Serif", 12F);
             lbNomeEd.ForeColor = Color.FromArgb(180, 180, 190);
             lbNomeEd.Location = new Point(17, 286);
             lbNomeEd.Name = "lbNomeEd";
-            lbNomeEd.Size = new Size(107, 21);
+            lbNomeEd.Size = new Size(160, 25);
             lbNomeEd.TabIndex = 37;
             lbNomeEd.Text = "Nome de usuário";
             // 
@@ -491,6 +493,7 @@
             dataGridViewCellStyle1.BackColor = Color.FromArgb(35, 35, 45);
             dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(70, 70, 90);
             dtgFuncionarios.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dtgFuncionarios.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dtgFuncionarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgFuncionarios.BackgroundColor = Color.FromArgb(30, 35, 45);
             dtgFuncionarios.BorderStyle = BorderStyle.None;
@@ -518,6 +521,7 @@
             dataGridViewCellStyle3.SelectionForeColor = Color.White;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
             dtgFuncionarios.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dtgFuncionarios.RowHeadersWidth = 51;
             dataGridViewCellStyle4.BackColor = Color.FromArgb(40, 40, 50);
             dataGridViewCellStyle4.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dataGridViewCellStyle4.ForeColor = Color.White;
@@ -547,22 +551,27 @@
             // 
             // frmFuncionarios
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(45, 45, 60);
             ClientSize = new Size(989, 622);
             Controls.Add(tableLayoutPanel1);
+            Controls.Add(panel1);
+            Controls.Add(panel1);
+            Controls.Add(panel1);
+            Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "frmFuncionarios";
             Text = "cadastroUsuario";
             Load += frmFuncionarios_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)picSenha).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dtgFuncionarios).EndInit();
-            tableLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -597,10 +606,10 @@
         private Label lbNomeEd;
         private TextBox EdNome;
         private DataGridView dtgFuncionarios;
+        private TableLayoutPanel tableLayoutPanel1;
         private Label label14;
         private Button btnExcluir;
         private Label label16;
         private PictureBox picSenha;
-        private TableLayoutPanel tableLayoutPanel1;
     }
 }

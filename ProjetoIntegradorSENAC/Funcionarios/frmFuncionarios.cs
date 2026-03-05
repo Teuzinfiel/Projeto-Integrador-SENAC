@@ -273,7 +273,7 @@ namespace ProjetoIntegradorSENAC.Usuarios
         private void BtnEditar_Click(object sender, EventArgs e)
         {
             if (!erroNomeEd && !erroCpfEd && !erroEmailEd && !erroTelefoneEd)
-            { 
+            {
 
                 string update = $@"UPDATE usuarios u
                             JOIN funcionarios f ON u.id = f.usuarios_id
@@ -332,7 +332,7 @@ namespace ProjetoIntegradorSENAC.Usuarios
                 lbNomeEd.ForeColor = Color.White;
             }
         }
-      
+
         private void EdEmail_TextChanged(object sender, EventArgs e)
         {
             if (Funcoes.isEmail(EdEmail.Text))
@@ -389,7 +389,7 @@ namespace ProjetoIntegradorSENAC.Usuarios
             if (opcao.decisao)
             {
 
-              string excluir = $@"DELETE u FROM usuarios u
+                string excluir = $@"DELETE u FROM usuarios u
                          JOIN funcionarios f ON u.id = f.usuarios_id
                          WHERE u.id = {idFuncionario}";
 

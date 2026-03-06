@@ -664,6 +664,7 @@ WHERE id = {idProdutoSelecionado};";
             {
                 Banco.Inserir(sql);
                 MessageBox.Show("Produto desativado!");
+                LogService.CriarLog(this.idComercio, this.idUsuario, "Desativou um produto");
                 LimparEdicaoProduto();
                 CarregarProdutos();
 
@@ -802,7 +803,7 @@ WHERE id = {idProdutoSelecionado};";
             {
                 Banco.Inserir(sql);
                 MessageBox.Show("Produto ativado!");
-
+                LogService.CriarLog(this.idComercio, this.idUsuario, "Ativou um produto");
                 LimparEdicaoProduto();
                 CarregarProdutos();
                 idProdutoSelecionado = 0;

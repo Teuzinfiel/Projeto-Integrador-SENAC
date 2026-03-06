@@ -81,7 +81,6 @@
             dtgProdutos = new DataGridView();
             panel3 = new Panel();
             txtCodBarra = new TextBox();
-            btnAtivarProd = new Button();
             btnAttProd = new Button();
             label5 = new Label();
             txtPrecoProd = new TextBox();
@@ -94,6 +93,7 @@
             lbMarcaAtt = new Label();
             lbNomeAtt = new Label();
             txtNomeProd = new TextBox();
+            btnAtivarProd = new Button();
             btnDesativarProd = new Button();
             mainLayout = new TableLayoutPanel();
             panel1.SuspendLayout();
@@ -767,21 +767,6 @@
             txtCodBarra.Size = new Size(246, 26);
             txtCodBarra.TabIndex = 83;
             // 
-            // btnAtivarProd
-            // 
-            btnAtivarProd.BackColor = Color.Transparent;
-            btnAtivarProd.FlatStyle = FlatStyle.Popup;
-            btnAtivarProd.Font = new Font("Franklin Gothic Medium", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnAtivarProd.ForeColor = Color.DarkSeaGreen;
-            btnAtivarProd.Location = new Point(113, 264);
-            btnAtivarProd.Name = "btnAtivarProd";
-            btnAtivarProd.Size = new Size(110, 27);
-            btnAtivarProd.TabIndex = 87;
-            btnAtivarProd.Text = "Ativar Produto";
-            btnAtivarProd.UseVisualStyleBackColor = false;
-            btnAtivarProd.Visible = false;
-            btnAtivarProd.Click += btnAtivarProd_Click;
-            // 
             // btnAttProd
             // 
             btnAttProd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
@@ -924,6 +909,21 @@
             txtNomeProd.PlaceholderText = "Digite o nome do produto";
             txtNomeProd.Size = new Size(219, 26);
             txtNomeProd.TabIndex = 62;
+            // 
+            // btnAtivarProd
+            // 
+            btnAtivarProd.BackColor = Color.Transparent;
+            btnAtivarProd.FlatStyle = FlatStyle.Popup;
+            btnAtivarProd.Font = new Font("Franklin Gothic Medium", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnAtivarProd.ForeColor = Color.DarkSeaGreen;
+            btnAtivarProd.Location = new Point(113, 264);
+            btnAtivarProd.Name = "btnAtivarProd";
+            btnAtivarProd.Size = new Size(110, 27);
+            btnAtivarProd.TabIndex = 87;
+            btnAtivarProd.Text = "Ativar Produto";
+            btnAtivarProd.UseVisualStyleBackColor = false;
+            btnAtivarProd.Visible = false;
+            btnAtivarProd.Click += btnAtivarProd_Click;
             // 
             // btnDesativarProd
             // 

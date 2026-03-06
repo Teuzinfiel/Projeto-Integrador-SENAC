@@ -40,7 +40,7 @@ namespace ProjetoIntegradorSENAC
             
             main = mainFrm;
 
-            LogService.CriarLog(this.idEmpresa, this.idUsuario, "Entrou na " + nomeEmpresa);
+           
         }
 
         public void DestacarMovimentacoes()
@@ -138,7 +138,14 @@ namespace ProjetoIntegradorSENAC
 
         private void btnLogOut_Click(object sender, EventArgs e)
         {
-            main.AbrirFormNoPanel(new frmEmpresa(this.idUsuario, main));
+            if (idDono == idUsuario)
+            {
+                main.AbrirFormNoPanel(new frmEmpresa(this.idUsuario, main));
+            }
+            else
+            {
+                main.AbrirFormNoPanel(new loginUsuario(main));
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

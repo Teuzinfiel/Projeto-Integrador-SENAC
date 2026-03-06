@@ -40,7 +40,7 @@ namespace ProjetoIntegradorSENAC
             
             main = mainFrm;
 
-            LogService.CriarLog(this.idEmpresa, this.idUsuario, "Entrou na " + nomeEmpresa);
+           
         }
 
         public void DestacarMovimentacoes()

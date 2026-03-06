@@ -46,64 +46,65 @@ namespace ProjetoIntegradorSENAC.Estoque
             using (var conn = Banco.AbrirConexao())
             {
                 string sql = @"
-            SELECT 
-                p.nome AS Produto,
-                m.tipo AS Tipo,
-                m.quantidade AS Quantidade,
-                m.quantidade_final AS 'Qtd Final',
-                m.motivo AS Motivo,
-                m.observacao AS Observacao,
-                m.data AS Data,
-                u.nome AS Funcionario
-            FROM movimentacoes_estoque m
-            INNER JOIN produtos p ON p.id = m.produto_id
-            LEFT JOIN funcionarios f ON f.id = m.funcionario_id
-            LEFT JOIN usuarios u ON u.id = f.usuarios_id
-            WHERE m.comercio_id = @comercioId
-        ";
+SELECT 
+    me.tipo AS Tipo,
+    me.quantidade AS Quantidade,
+    me.quantidade_final AS 'Qtd Final',
+    me.motivo AS Motivo,
+    me.observacao AS Observação,
+    me.data AS Data,
+    COALESCE(u.nome, '--') AS Funcionario
+FROM movimentacoes_estoque me
+LEFT JOIN funcionarios f ON f.id = me.funcionario_id
+LEFT JOIN usuarios u ON u.id = f.usuarios_id
+WHERE 1=1"; // base sempre verdadeira para concatenar filtros
 
-                // 🔎 FILTRO NOME PRODUTO
-                if (!string.IsNullOrWhiteSpace(txtPesquisar.Text))
-                {
-                    sql += " AND p.nome LIKE @nomeProduto ";
-                }
-
-                // 🔎 FILTRO MOTIVO (CORRETO AGORA)
+                // 🔎 FILTRO MOTIVO
                 if (cbTipoFiltro.Text != "TODOS")
                 {
-                    sql += " AND m.motivo = @motivo ";
+                    sql += " AND me.motivo = @motivo ";
                 }
 
-                // 🔎 FILTRO DATA
-                sql += " AND DATE(m.data) BETWEEN @dataInicio AND @dataFim ";
-
-                sql += " ORDER BY m.data DESC";
-
-                var cmd = new MySqlCommand(sql, conn);
-
-                cmd.Parameters.AddWithValue("@comercioId", _comercioId);
-
+                // 🔎 FILTRO TEXTO (observacao ou outro campo)
                 if (!string.IsNullOrWhiteSpace(txtPesquisar.Text))
-                    cmd.Parameters.AddWithValue("@nomeProduto", "%" + txtPesquisar.Text + "%");
-
-                if (cbTipoFiltro.Text != "TODOS")
-                    cmd.Parameters.AddWithValue("@motivo", cbTipoFiltro.Text);
-
-                cmd.Parameters.AddWithValue("@dataInicio", dtpDe.Value.Date);
-                cmd.Parameters.AddWithValue("@dataFim", dtpAte.Value.Date);
-
-                using (var da = new MySqlDataAdapter(cmd))
                 {
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    dtgMovimentacoes.DataSource = dt;
+                    sql += " AND me.observacao LIKE @textoFiltro ";
+                }
 
-                    dtgMovimentacoes.Columns["Quantidade"].DefaultCellStyle.Format = "#,0.##";
-                    dtgMovimentacoes.Columns["Qtd Final"].DefaultCellStyle.Format = "#,0.##";
+                // 🔎 FILTRO DATA (pega o dia inteiro)
+                sql += " AND me.data BETWEEN @dataInicio AND @dataFim ";
+
+                // 🔎 ORDER
+                sql += " ORDER BY me.data DESC";
+
+                using (var cmd = new MySqlCommand(sql, conn))
+                {
+                    if (cbTipoFiltro.Text != "TODOS")
+                        cmd.Parameters.AddWithValue("@motivo", cbTipoFiltro.Text);
+
+                    if (!string.IsNullOrWhiteSpace(txtPesquisar.Text))
+                        cmd.Parameters.AddWithValue("@textoFiltro", "%" + txtPesquisar.Text + "%");
+
+                    // pega início do dia e fim do dia
+                    DateTime dataInicio = dtpDe.Value.Date;
+                    DateTime dataFim = dtpAte.Value.Date.AddDays(1).AddSeconds(-1);
+                    cmd.Parameters.AddWithValue("@dataInicio", dataInicio);
+                    cmd.Parameters.AddWithValue("@dataFim", dataFim);
+
+                    using (var da = new MySqlDataAdapter(cmd))
+                    {
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        dtgMovimentacoes.DataSource = dt;
+
+                        // Formatação
+                        dtgMovimentacoes.Columns["Quantidade"].DefaultCellStyle.Format = "#,0.##";
+                        dtgMovimentacoes.Columns["Qtd Final"].DefaultCellStyle.Format = "#,0.##";
+                        dtgMovimentacoes.Columns["Data"].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm";
+                    }
                 }
             }
         }
-
         private void txtPesquisar_TextChanged_1(object sender, EventArgs e)
         {
             CarregarMovimentacoes();

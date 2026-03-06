@@ -160,9 +160,11 @@ namespace ProjetoIntegradorSENAC
 
         private void MainEmpresa_Load(object sender, EventArgs e)
         {
-            if (idUsuario != idDono) btnFuncionario.ImageIndex = 9;
-
-
+            if (idUsuario != idDono)
+            {
+                btnFuncionario.ImageIndex = 9;             
+                btnFuncionario.ForeColor = Color.FromArgb(100, 100, 100);
+            }
             try
             {
                 string sql = $"SELECT nome FROM usuarios WHERE id = {idUsuario} LIMIT 1";

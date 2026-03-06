@@ -1,187 +1,187 @@
-﻿using MySql.Data.MySqlClient;
-using Mysqlx.Crud;
-using Org.BouncyCastle.Utilities;
-using ProjetoIntegradorSENAC.Classes;
-using ProjetoIntegradorSENAC.LogInf;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿    using MySql.Data.MySqlClient;
+    using Mysqlx.Crud;
+    using Org.BouncyCastle.Utilities;
+    using ProjetoIntegradorSENAC.Classes;
+    using ProjetoIntegradorSENAC.LogInf;
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Data;
+    using System.Drawing;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
 
-namespace ProjetoIntegradorSENAC.Estoque
-{
-    public partial class frmControleEstoque : Form
+    namespace ProjetoIntegradorSENAC.Estoque
     {
-        private int _produtoId;
-        private int _comercioId;
-        private int _userId;
-        private MainEmpresa _main;
-        public frmControleEstoque(MainEmpresa main, int produtoId, int user, int _comercioId)
+        public partial class frmControleEstoque : Form
         {
-            InitializeComponent();
-            _main = main;
-            _produtoId = produtoId;
-            _userId = user;
-            this._comercioId = _comercioId;
-        }
-
-        private void frmControleEstoque_Load(object sender, EventArgs e)
-        {
-            if (txtStatusPd.Text.ToLower() == "inativo")
+            private int _produtoId;
+            private int _comercioId;
+            private int _userId;
+            private MainEmpresa _main;
+            public frmControleEstoque(MainEmpresa main, int produtoId, int user, int _comercioId)
             {
-                btnEnviarEntrada.Enabled = false;
-                btnEnviarSaida.Enabled = false;
-
-                MessageBox.Show("Produto inativo. Movimentações bloqueadas.");
-            }
-            GarantirEstoqueExiste();
-            CarregarProduto();
-            CarregarMovimentacoes();
-        }
-
-
-        private bool ValidarEntrada()
-        {
-            bool valido = true;
-
-            // Reset visual
-            astQtdEntrada.Visible = false;
-            astTpEntrada.Visible = false;
-            astDescEntrada.Visible = false;
-
-            label13.ForeColor = Color.White;
-            label14.ForeColor = Color.White;
-            label15.ForeColor = Color.White;
-
-            // QUANTIDADE
-            if (!decimal.TryParse(mkQuantidadeEntrada.Text, out decimal qtd) || qtd <= 0)
-            {
-                astQtdEntrada.Visible = true;
-                label13.ForeColor = Color.DarkRed;
-                valido = false;
+                InitializeComponent();
+                _main = main;
+                _produtoId = produtoId;
+                _userId = user;
+                this._comercioId = _comercioId;
             }
 
-            // TIPO
-            if (string.IsNullOrWhiteSpace(cbTipoEntrada.Text))
+            private void frmControleEstoque_Load(object sender, EventArgs e)
             {
-                astTpEntrada.Visible = true;
-                label14.ForeColor = Color.DarkRed;
-                valido = false;
+                if (txtStatusPd.Text.ToLower() == "inativo")
+                {
+                    btnEnviarEntrada.Enabled = false;
+                    btnEnviarSaida.Enabled = false;
+
+                    MessageBox.Show("Produto inativo. Movimentações bloqueadas.");
+                }
+                GarantirEstoqueExiste();
+                CarregarProduto();
+                CarregarMovimentacoes();
             }
 
-            // OBSERVAÇÃO
-            if (string.IsNullOrWhiteSpace(txtDescEntrada.Text))
+
+            private bool ValidarEntrada()
             {
-                astDescEntrada.Visible = true;
-                label15.ForeColor = Color.DarkRed;
-                valido = false;
+                bool valido = true;
+
+                // Reset visual
+                astQtdEntrada.Visible = false;
+                astTpEntrada.Visible = false;
+                astDescEntrada.Visible = false;
+
+                label13.ForeColor = Color.White;
+                label14.ForeColor = Color.White;
+                label15.ForeColor = Color.White;
+
+                // QUANTIDADE
+                if (!decimal.TryParse(mkQuantidadeEntrada.Text, out decimal qtd) || qtd <= 0)
+                {
+                    astQtdEntrada.Visible = true;
+                    label13.ForeColor = Color.DarkRed;
+                    valido = false;
+                }
+
+                // TIPO
+                if (string.IsNullOrWhiteSpace(cbTipoEntrada.Text))
+                {
+                    astTpEntrada.Visible = true;
+                    label14.ForeColor = Color.DarkRed;
+                    valido = false;
+                }
+
+                // OBSERVAÇÃO
+                if (string.IsNullOrWhiteSpace(txtDescEntrada.Text))
+                {
+                    astDescEntrada.Visible = true;
+                    label15.ForeColor = Color.DarkRed;
+                    valido = false;
+                }
+
+                return valido;
             }
 
-            return valido;
-        }
-
-        private bool ValidarSaida()
-        {
-            bool valido = true;
-
-            // Reset visual
-            astQtdSaida.Visible = false;
-            astTpSaida.Visible = false;
-            astDescSaida.Visible = false;
-
-            label22.ForeColor = Color.White;
-            label21.ForeColor = Color.White;
-            label18.ForeColor = Color.White;
-
-            // QUANTIDADE
-            if (!decimal.TryParse(mkQuantidadeSaida.Text, out decimal qtd) || qtd <= 0)
+            private bool ValidarSaida()
             {
-                astQtdSaida.Visible = true;
-                label22.ForeColor = Color.DarkRed;
-                valido = false;
+                bool valido = true;
+
+                // Reset visual
+                astQtdSaida.Visible = false;
+                astTpSaida.Visible = false;
+                astDescSaida.Visible = false;
+
+                label22.ForeColor = Color.White;
+                label21.ForeColor = Color.White;
+                label18.ForeColor = Color.White;
+
+                // QUANTIDADE
+                if (!decimal.TryParse(mkQuantidadeSaida.Text, out decimal qtd) || qtd <= 0)
+                {
+                    astQtdSaida.Visible = true;
+                    label22.ForeColor = Color.DarkRed;
+                    valido = false;
+                }
+
+                // TIPO
+                if (string.IsNullOrWhiteSpace(cbTipoSaida.Text))
+                {
+                    astTpSaida.Visible = true;
+                    label21.ForeColor = Color.DarkRed;
+                    valido = false;
+                }
+
+                // OBSERVAÇÃO
+                if (string.IsNullOrWhiteSpace(txtDescSaida.Text))
+                {
+                    astDescSaida.Visible = true;
+                    label18.ForeColor = Color.DarkRed;
+                    valido = false;
+                }
+
+                return valido;
             }
 
-            // TIPO
-            if (string.IsNullOrWhiteSpace(cbTipoSaida.Text))
+
+            // ================================
+            // GARANTE QUE EXISTE LINHA NO ESTOQUE
+            // ================================
+            private void GarantirEstoqueExiste()
             {
-                astTpSaida.Visible = true;
-                label21.ForeColor = Color.DarkRed;
-                valido = false;
+                using (var conn = Banco.AbrirConexao())
+                {
+                    string sql = @"
+                        INSERT INTO estoque (produto_id, quantidade_atual)
+                        VALUES (@produtoId, 0)
+                        ON DUPLICATE KEY UPDATE produto_id = produto_id";
+
+                    var cmd = new MySqlCommand(sql, conn);
+                    cmd.Parameters.Add("@produtoId", MySqlDbType.Int32).Value = _produtoId;
+                    cmd.ExecuteNonQuery();
+                }
             }
 
-            // OBSERVAÇÃO
-            if (string.IsNullOrWhiteSpace(txtDescSaida.Text))
-            {
-                astDescSaida.Visible = true;
-                label18.ForeColor = Color.DarkRed;
-                valido = false;
-            }
-
-            return valido;
-        }
-
-
-        // ================================
-        // GARANTE QUE EXISTE LINHA NO ESTOQUE
-        // ================================
-        private void GarantirEstoqueExiste()
-        {
-            using (var conn = Banco.AbrirConexao())
+            // ================================
+            // CARREGAR PRODUTO
+            // ================================
+            private void CarregarProduto()
             {
                 string sql = @"
-                    INSERT INTO estoque (produto_id, quantidade_atual)
-                    VALUES (@produtoId, 0)
-                    ON DUPLICATE KEY UPDATE produto_id = produto_id";
+                    SELECT 
+                        p.nome,
+                        c.nome AS categoria,
+                        p.unidade_medida,
+                        p.status,
+                        IFNULL(e.quantidade_atual,0) AS saldo
+                    FROM produtos p
+                    LEFT JOIN categorias c ON c.id = p.categoria_id
+                    LEFT JOIN estoque e ON e.produto_id = p.id
+                    WHERE p.id = @produtoId";
 
-                var cmd = new MySqlCommand(sql, conn);
-                cmd.Parameters.Add("@produtoId", MySqlDbType.Int32).Value = _produtoId;
-                cmd.ExecuteNonQuery();
-            }
-        }
-
-        // ================================
-        // CARREGAR PRODUTO
-        // ================================
-        private void CarregarProduto()
-        {
-            string sql = @"
-                SELECT 
-                    p.nome,
-                    c.nome AS categoria,
-                    p.unidade_medida,
-                    p.status,
-                    IFNULL(e.quantidade_atual,0) AS saldo
-                FROM produtos p
-                LEFT JOIN categorias c ON c.id = p.categoria_id
-                LEFT JOIN estoque e ON e.produto_id = p.id
-                WHERE p.id = @produtoId";
-
-            using (var conn = Banco.AbrirConexao())
-            {
-                var cmd = new MySqlCommand(sql, conn);
-                cmd.Parameters.Add("@produtoId", MySqlDbType.Int32).Value = _produtoId;
-
-                using (var da = new MySqlDataAdapter(cmd))
+                using (var conn = Banco.AbrirConexao())
                 {
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
+                    var cmd = new MySqlCommand(sql, conn);
+                    cmd.Parameters.Add("@produtoId", MySqlDbType.Int32).Value = _produtoId;
 
-                    if (dt.Rows.Count > 0)
+                    using (var da = new MySqlDataAdapter(cmd))
                     {
-                        txtNomePd.Text = dt.Rows[0]["nome"].ToString();
-                        txtCatPd.Text = dt.Rows[0]["categoria"].ToString();
-                        txtUnidadePd.Text = dt.Rows[0]["unidade_medida"].ToString();
-                        txtStatusPd.Text = dt.Rows[0]["status"].ToString();
-                        TxtSaldoPd.Text = Convert.ToDecimal(dt.Rows[0]["saldo"]).ToString("#,0.##");
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+
+                        if (dt.Rows.Count > 0)
+                        {
+                            txtNomePd.Text = dt.Rows[0]["nome"].ToString();
+                            txtCatPd.Text = dt.Rows[0]["categoria"].ToString();
+                            txtUnidadePd.Text = dt.Rows[0]["unidade_medida"].ToString();
+                            txtStatusPd.Text = dt.Rows[0]["status"].ToString();
+                            TxtSaldoPd.Text = Convert.ToDecimal(dt.Rows[0]["saldo"]).ToString("#,0.##");
+                        }
                     }
                 }
             }
-        }
 
         // ================================
         // CARREGAR MOVIMENTAÇÕES
@@ -189,16 +189,19 @@ namespace ProjetoIntegradorSENAC.Estoque
         private void CarregarMovimentacoes()
         {
             string sql = @"
-                    SELECT 
-                        tipo AS Tipo,
-                        quantidade AS Quantidade,
-                        quantidade_final AS 'Qtd Final',
-                        motivo AS Motivo,
-                        observacao AS Observação,
-                        data AS Data
-                    FROM movimentacoes_estoque
-                    WHERE produto_id = @produtoId
-                    ORDER BY data DESC";
+        SELECT 
+            me.tipo AS Tipo,
+            me.quantidade AS Quantidade,
+            me.quantidade_final AS 'Qtd Final',
+            me.motivo AS Motivo,
+            me.observacao AS Observação,
+            me.data AS Data,
+            COALESCE(u.nome, '--') AS Funcionario
+        FROM movimentacoes_estoque me
+        LEFT JOIN funcionarios f ON f.id = me.funcionario_id
+        LEFT JOIN usuarios u ON u.id = f.usuarios_id
+        WHERE me.produto_id = @produtoId
+        ORDER BY me.data DESC";
 
             using (var conn = Banco.AbrirConexao())
             {
@@ -212,9 +215,9 @@ namespace ProjetoIntegradorSENAC.Estoque
 
                     dtgProdutos.DataSource = dt;
 
-                    // Formatação numérica
                     dtgProdutos.Columns["Quantidade"].DefaultCellStyle.Format = "#,0.##";
                     dtgProdutos.Columns["Qtd Final"].DefaultCellStyle.Format = "#,0.##";
+                    dtgProdutos.Columns["Data"].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm";
                 }
             }
         }
@@ -223,218 +226,217 @@ namespace ProjetoIntegradorSENAC.Estoque
         // ENTRADA
         // ================================
         private void btnEnviarEntrada_Click(object sender, EventArgs e)
-        {
-            if (!ValidarEntrada())
             {
-                MessageBox.Show("Preencha corretamente os campos obrigatórios.");
-                return;
-            }
-
-            // AGORA você pega a quantidade
-            decimal quantidade = Convert.ToDecimal(mkQuantidadeEntrada.Text);
-
-            using (var conn = Banco.AbrirConexao())
-            using (var trans = conn.BeginTransaction())
-            {
-                try
+                if (!ValidarEntrada())
                 {
-                    decimal saldoAnterior = 0;
-
-                    var cmdSaldo = new MySqlCommand(
-                        "SELECT quantidade_atual FROM estoque WHERE produto_id = @produtoId",
-                        conn, trans);
-
-                    cmdSaldo.Parameters.Add("@produtoId", MySqlDbType.Int32).Value = _produtoId;
-
-                    var result = cmdSaldo.ExecuteScalar();
-                    if (result != null)
-                        saldoAnterior = Convert.ToDecimal(result);
-
-                    decimal saldoNovo = saldoAnterior + quantidade;
-
-                    var cmdUpdate = new MySqlCommand(
-                        "UPDATE estoque SET quantidade_atual = @saldo WHERE produto_id = @produtoId",
-                        conn, trans);
-
-                    cmdUpdate.Parameters.Add("@saldo", MySqlDbType.Decimal).Value = saldoNovo;
-                    cmdUpdate.Parameters.Add("@produtoId", MySqlDbType.Int32).Value = _produtoId;
-                    cmdUpdate.ExecuteNonQuery();
-
-                    var cmdInsert = new MySqlCommand(@"
-                        INSERT INTO movimentacoes_estoque
-                        (produto_id, tipo, quantidade, quantidade_final, motivo, observacao, comercio_id)
-                        VALUES
-                        (@produtoId, 'entrada', @quantidade, @saldoFinal, @motivo, @obs, @comercioId)",
-                        conn, trans);
-
-                    cmdInsert.Parameters.Add("@produtoId", MySqlDbType.Int32).Value = _produtoId;
-                    cmdInsert.Parameters.Add("@quantidade", MySqlDbType.Decimal).Value = quantidade;
-                    cmdInsert.Parameters.Add("@saldoFinal", MySqlDbType.Decimal).Value = saldoNovo;
-                    cmdInsert.Parameters.Add("@motivo", MySqlDbType.VarChar).Value = cbTipoEntrada.Text;
-                    cmdInsert.Parameters.Add("@obs", MySqlDbType.VarChar).Value = txtDescEntrada.Text;
-                    cmdInsert.Parameters.Add("@comercioId", MySqlDbType.Int32).Value = _comercioId;
-
-                    cmdInsert.ExecuteNonQuery();
-
-                    trans.Commit();
-                    LogService.CriarLog(this._comercioId, this._userId, "Adicionou produto em estoque");
-                    TxtSaldoPd.Text = saldoNovo.ToString("#,0.##");
-                    CarregarMovimentacoes();
-
-                    mkQuantidadeEntrada.Clear();
-                    txtDescEntrada.Clear();
-                    cbTipoEntrada.SelectedIndex = -1;
-
-                    MessageBox.Show("Entrada registrada com sucesso!");
+                    MessageBox.Show("Preencha corretamente os campos obrigatórios.");
+                    return;
                 }
-                catch (Exception ex)
+
+                // AGORA você pega a quantidade
+                decimal quantidade = Convert.ToDecimal(mkQuantidadeEntrada.Text);
+
+                using (var conn = Banco.AbrirConexao())
+                using (var trans = conn.BeginTransaction())
                 {
-                    trans.Rollback();
-                    MessageBox.Show("Erro: " + ex.Message);
-                }
-            }
-        }
-
-        // ================================
-        // SAÍDA
-        // ================================
-        private void btnEnviarSaida_Click(object sender, EventArgs e)
-        {
-            if (!ValidarSaida())
-            {
-                MessageBox.Show("Preencha corretamente os campos obrigatórios.");
-                return;
-            }
-
-            decimal quantidade = Convert.ToDecimal(mkQuantidadeSaida.Text);
-
-            using (var conn = Banco.AbrirConexao())
-            using (var trans = conn.BeginTransaction())
-            {
-                try
-                {
-                    decimal saldoAnterior = 0;
-
-                    var cmdSaldo = new MySqlCommand(
-                        "SELECT quantidade_atual FROM estoque WHERE produto_id = @produtoId",
-                        conn, trans);
-
-                    cmdSaldo.Parameters.Add("@produtoId", MySqlDbType.Int32).Value = _produtoId;
-
-                    var result = cmdSaldo.ExecuteScalar();
-                    if (result != null)
-                        saldoAnterior = Convert.ToDecimal(result);
-
-                    if (quantidade > saldoAnterior)
+                    try
                     {
-                        MessageBox.Show("Estoque insuficiente.");
-                        return;
-                    }
+                        decimal saldoAnterior = 0;
 
-                    decimal saldoNovo = saldoAnterior - quantidade;
+                        var cmdSaldo = new MySqlCommand(
+                            "SELECT quantidade_atual FROM estoque WHERE produto_id = @produtoId",
+                            conn, trans);
 
-                    var cmdUpdate = new MySqlCommand(
-                        "UPDATE estoque SET quantidade_atual = @saldo WHERE produto_id = @produtoId",
-                        conn, trans);
+                        cmdSaldo.Parameters.Add("@produtoId", MySqlDbType.Int32).Value = _produtoId;
 
-                    cmdUpdate.Parameters.Add("@saldo", MySqlDbType.Decimal).Value = saldoNovo;
-                    cmdUpdate.Parameters.Add("@produtoId", MySqlDbType.Int32).Value = _produtoId;
-                    cmdUpdate.ExecuteNonQuery();
+                        var result = cmdSaldo.ExecuteScalar();
+                        if (result != null)
+                            saldoAnterior = Convert.ToDecimal(result);
 
-                    var cmdInsert = new MySqlCommand(@"
-                        INSERT INTO movimentacoes_estoque
-                        (produto_id, tipo, quantidade, quantidade_final, motivo, observacao, comercio_id)
+                        decimal saldoNovo = saldoAnterior + quantidade;
+
+                        var cmdUpdate = new MySqlCommand(
+                            "UPDATE estoque SET quantidade_atual = @saldo WHERE produto_id = @produtoId",
+                            conn, trans);
+
+                        cmdUpdate.Parameters.Add("@saldo", MySqlDbType.Decimal).Value = saldoNovo;
+                        cmdUpdate.Parameters.Add("@produtoId", MySqlDbType.Int32).Value = _produtoId;
+                        cmdUpdate.ExecuteNonQuery();
+
+                        var cmdInsert = new MySqlCommand(@"INSERT INTO movimentacoes_estoque
+                        (produto_id, tipo, quantidade, quantidade_final, motivo, observacao, comercio_id, funcionario_id)
                         VALUES
-                        (@produtoId, 'saida', @quantidade, @saldoFinal, @motivo, @obs, @comercioId)",
-                        conn, trans);
+                        (@produtoId, 'entrada', @quantidade, @saldoFinal, @motivo, @obs, @comercioId, @usuarioId)",
+                            conn, trans);
 
-                    cmdInsert.Parameters.Add("@produtoId", MySqlDbType.Int32).Value = _produtoId;
-                    cmdInsert.Parameters.Add("@quantidade", MySqlDbType.Decimal).Value = quantidade;
-                    cmdInsert.Parameters.Add("@saldoFinal", MySqlDbType.Decimal).Value = saldoNovo;
-                    cmdInsert.Parameters.Add("@motivo", MySqlDbType.VarChar).Value = cbTipoSaida.Text;
-                    cmdInsert.Parameters.Add("@obs", MySqlDbType.VarChar).Value = txtDescSaida.Text;
-                    cmdInsert.Parameters.Add("@comercioId", MySqlDbType.Int32).Value = _comercioId;
+                        cmdInsert.Parameters.Add("@produtoId", MySqlDbType.Int32).Value = _produtoId;
+                        cmdInsert.Parameters.Add("@quantidade", MySqlDbType.Decimal).Value = quantidade;
+                        cmdInsert.Parameters.Add("@saldoFinal", MySqlDbType.Decimal).Value = saldoNovo;
+                        cmdInsert.Parameters.Add("@motivo", MySqlDbType.VarChar).Value = cbTipoEntrada.Text;
+                        cmdInsert.Parameters.Add("@obs", MySqlDbType.VarChar).Value = txtDescEntrada.Text;
+                        cmdInsert.Parameters.Add("@comercioId", MySqlDbType.Int32).Value = _comercioId;
+                        cmdInsert.Parameters.Add("@usuarioId", MySqlDbType.Int32).Value = _userId;
+                        cmdInsert.ExecuteNonQuery();
 
-                    cmdInsert.ExecuteNonQuery();
+                        trans.Commit();
+                        LogService.CriarLog(this._comercioId, this._userId, "Adicionou produto em estoque");
+                        TxtSaldoPd.Text = saldoNovo.ToString("#,0.##");
+                        CarregarMovimentacoes();
 
-                    trans.Commit();
+                        mkQuantidadeEntrada.Clear();
+                        txtDescEntrada.Clear();
+                        cbTipoEntrada.SelectedIndex = -1;
 
-                    TxtSaldoPd.Text = saldoNovo.ToString("#,0.##");
-                    CarregarMovimentacoes();
-
-                    mkQuantidadeSaida.Clear();
-                    txtDescSaida.Clear();
-                    cbTipoSaida.SelectedIndex = -1;
-                    LogService.CriarLog(this._comercioId, this._userId, "Saiu com produto do estoque");
-                    MessageBox.Show("Saída registrada com sucesso!");
+                        MessageBox.Show("Entrada registrada com sucesso!");
+                    }
+                    catch (Exception ex)
+                    {
+                        trans.Rollback();
+                        MessageBox.Show("Erro: " + ex.Message);
+                    }
                 }
-                catch (Exception ex)
+            }
+
+            // ================================
+            // SAÍDA
+            // ================================
+            private void btnEnviarSaida_Click(object sender, EventArgs e)
+            {
+                if (!ValidarSaida())
                 {
-                    trans.Rollback();
-                    MessageBox.Show("Erro: " + ex.Message);
+                    MessageBox.Show("Preencha corretamente os campos obrigatórios.");
+                    return;
+                }
+
+                decimal quantidade = Convert.ToDecimal(mkQuantidadeSaida.Text);
+
+                using (var conn = Banco.AbrirConexao())
+                using (var trans = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        decimal saldoAnterior = 0;
+
+                        var cmdSaldo = new MySqlCommand(
+                            "SELECT quantidade_atual FROM estoque WHERE produto_id = @produtoId",
+                            conn, trans);
+
+                        cmdSaldo.Parameters.Add("@produtoId", MySqlDbType.Int32).Value = _produtoId;
+
+                        var result = cmdSaldo.ExecuteScalar();
+                        if (result != null)
+                            saldoAnterior = Convert.ToDecimal(result);
+
+                        if (quantidade > saldoAnterior)
+                        {
+                            MessageBox.Show("Estoque insuficiente.");
+                            return;
+                        }
+
+                        decimal saldoNovo = saldoAnterior - quantidade;
+
+                        var cmdUpdate = new MySqlCommand(
+                            "UPDATE estoque SET quantidade_atual = @saldo WHERE produto_id = @produtoId",
+                            conn, trans);
+
+                        cmdUpdate.Parameters.Add("@saldo", MySqlDbType.Decimal).Value = saldoNovo;
+                        cmdUpdate.Parameters.Add("@produtoId", MySqlDbType.Int32).Value = _produtoId;
+                        cmdUpdate.ExecuteNonQuery();
+
+                        var cmdInsert = new MySqlCommand(@"INSERT INTO movimentacoes_estoque
+                        (produto_id, tipo, quantidade, quantidade_final, motivo, observacao, comercio_id, funcionario_id)
+                        VALUES
+                        (@produtoId, 'saida', @quantidade, @saldoFinal, @motivo, @obs, @comercioId, @usuarioId)",
+                            conn, trans);
+
+                        cmdInsert.Parameters.Add("@produtoId", MySqlDbType.Int32).Value = _produtoId;
+                        cmdInsert.Parameters.Add("@quantidade", MySqlDbType.Decimal).Value = quantidade;
+                        cmdInsert.Parameters.Add("@saldoFinal", MySqlDbType.Decimal).Value = saldoNovo;
+                        cmdInsert.Parameters.Add("@motivo", MySqlDbType.VarChar).Value = cbTipoSaida.Text;
+                        cmdInsert.Parameters.Add("@obs", MySqlDbType.VarChar).Value = txtDescSaida.Text;
+                        cmdInsert.Parameters.Add("@comercioId", MySqlDbType.Int32).Value = _comercioId;
+                        cmdInsert.Parameters.Add("@usuarioId", MySqlDbType.Int32).Value = _userId;
+
+                        cmdInsert.ExecuteNonQuery();
+
+                        trans.Commit();
+
+                        TxtSaldoPd.Text = saldoNovo.ToString("#,0.##");
+                        CarregarMovimentacoes();
+
+                        mkQuantidadeSaida.Clear();
+                        txtDescSaida.Clear();
+                        cbTipoSaida.SelectedIndex = -1;
+                        LogService.CriarLog(this._comercioId, this._userId, "Saiu com produto do estoque");
+                        MessageBox.Show("Saída registrada com sucesso!");
+                    }
+                    catch (Exception ex)
+                    {
+                        trans.Rollback();
+                        MessageBox.Show("Erro: " + ex.Message);
+                    }
                 }
             }
-        }
 
-        // ================================
-        // TEXT CHANGED (PREVIEW SALDO)
-        // ================================
-        private decimal ObterSaldoAtual()
-        {
-            decimal.TryParse(TxtSaldoPd.Text, out decimal saldo);
-            return saldo;
-        }
-
-        private void mkQuantidadeEntrada_TextChanged(object sender, EventArgs e)
-        {
-            decimal saldoAtual = ObterSaldoAtual();
-
-            if (decimal.TryParse(mkQuantidadeEntrada.Text, out decimal qtdEntrada))
+            // ================================
+            // TEXT CHANGED (PREVIEW SALDO)
+            // ================================
+            private decimal ObterSaldoAtual()
             {
-                lbSaldoAposEntrada.Text = (saldoAtual + qtdEntrada).ToString("#,0.##");
-                lbSaldoAposEntrada.ForeColor = Color.Green;
+                decimal.TryParse(TxtSaldoPd.Text, out decimal saldo);
+                return saldo;
             }
-            else
+
+            private void mkQuantidadeEntrada_TextChanged(object sender, EventArgs e)
             {
-                lbSaldoAposEntrada.Text = saldoAtual.ToString("#,0.##");
-                lbSaldoAposEntrada.ForeColor = Color.Black;
-            }
-        }
+                decimal saldoAtual = ObterSaldoAtual();
 
-        private void mkQuantidadeSaida_TextChanged(object sender, EventArgs e)
-        {
-            decimal saldoAtual = ObterSaldoAtual();
-
-            if (decimal.TryParse(mkQuantidadeSaida.Text, out decimal qtdSaida))
-            {
-                decimal saldoFinal = saldoAtual - qtdSaida;
-
-                if (saldoFinal < 0)
+                if (decimal.TryParse(mkQuantidadeEntrada.Text, out decimal qtdEntrada))
                 {
-                    lbSaldoAposSaida.Text = "Estoque insuficiente";
-                    lbSaldoAposSaida.ForeColor = Color.Red;
+                    lbSaldoAposEntrada.Text = (saldoAtual + qtdEntrada).ToString("#,0.##");
+                    lbSaldoAposEntrada.ForeColor = Color.Green;
                 }
                 else
                 {
-                    lbSaldoAposSaida.Text = saldoFinal.ToString("#,0.##");
-                    lbSaldoAposSaida.ForeColor = Color.Black;
+                    lbSaldoAposEntrada.Text = saldoAtual.ToString("#,0.##");
+                    lbSaldoAposEntrada.ForeColor = Color.Black;
                 }
             }
-        }
 
-        private void btnPesquisar_Click(object sender, EventArgs e)
-        {
-            _main.AbrirFormNoPanel(new estoque(_main, _main.idEmpresa, _userId));
-        }
+            private void mkQuantidadeSaida_TextChanged(object sender, EventArgs e)
+            {
+                decimal saldoAtual = ObterSaldoAtual();
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            _main.AbrirFormNoPanel(
-               new MovimentacaoProdutos(_main.idEmpresa) );
+                if (decimal.TryParse(mkQuantidadeSaida.Text, out decimal qtdSaida))
+                {
+                    decimal saldoFinal = saldoAtual - qtdSaida;
 
-            _main.DestacarMovimentacoes();
+                    if (saldoFinal < 0)
+                    {
+                        lbSaldoAposSaida.Text = "Estoque insuficiente";
+                        lbSaldoAposSaida.ForeColor = Color.Red;
+                    }
+                    else
+                    {
+                        lbSaldoAposSaida.Text = saldoFinal.ToString("#,0.##");
+                        lbSaldoAposSaida.ForeColor = Color.Black;
+                    }
+                }
+            }
+
+            private void btnPesquisar_Click(object sender, EventArgs e)
+            {
+                _main.AbrirFormNoPanel(new estoque(_main, _main.idEmpresa, _userId));
+            }
+
+            private void button1_Click(object sender, EventArgs e)
+            {
+                _main.AbrirFormNoPanel(
+                   new MovimentacaoProdutos(_main.idEmpresa) );
+
+                _main.DestacarMovimentacoes();
+            }
         }
     }
-}
 
 

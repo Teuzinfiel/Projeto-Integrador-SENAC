@@ -116,7 +116,7 @@
             btnMovimentacao.ImageList = imageList1;
             btnMovimentacao.Location = new Point(12, 335);
             btnMovimentacao.Name = "btnMovimentacao";
-            btnMovimentacao.Size = new Size(267, 52);
+            btnMovimentacao.Size = new Size(279, 52);
             btnMovimentacao.TabIndex = 9;
             btnMovimentacao.Text = "Movimentações";
             btnMovimentacao.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -138,7 +138,7 @@
             imageList1.Images.SetKeyName(6, "ChatGPT Image 3 de out. de 2025, 20_22_52.png");
             imageList1.Images.SetKeyName(7, "ChatGPT Image 3 de out. de 2025, 20_27_40.png");
             imageList1.Images.SetKeyName(8, "ChatGPT Image 1 de mar. de 2026, 23_11_41.png");
-            imageList1.Images.SetKeyName(9, "cadeado (1).png");
+            imageList1.Images.SetKeyName(9, "cadeado mais vonito.png");
             // 
             // btnProdutos
             // 
@@ -155,7 +155,7 @@
             btnProdutos.ImageList = imageList1;
             btnProdutos.Location = new Point(12, 134);
             btnProdutos.Name = "btnProdutos";
-            btnProdutos.Size = new Size(267, 56);
+            btnProdutos.Size = new Size(279, 56);
             btnProdutos.TabIndex = 2;
             btnProdutos.Text = "Produtos";
             btnProdutos.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -165,6 +165,7 @@
             // btnFuncionario
             // 
             btnFuncionario.BackColor = Color.Transparent;
+            btnFuncionario.BackgroundImageLayout = ImageLayout.Zoom;
             btnFuncionario.FlatAppearance.BorderColor = Color.FromArgb(45, 45, 60);
             btnFuncionario.FlatAppearance.BorderSize = 0;
             btnFuncionario.FlatAppearance.MouseDownBackColor = Color.FromArgb(45, 45, 60);
@@ -177,7 +178,7 @@
             btnFuncionario.ImageList = imageList1;
             btnFuncionario.Location = new Point(12, 262);
             btnFuncionario.Name = "btnFuncionario";
-            btnFuncionario.Size = new Size(267, 67);
+            btnFuncionario.Size = new Size(279, 67);
             btnFuncionario.TabIndex = 3;
             btnFuncionario.Text = "Funcionário";
             btnFuncionario.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -199,7 +200,7 @@
             btnLog.ImageList = imageList1;
             btnLog.Location = new Point(12, 393);
             btnLog.Name = "btnLog";
-            btnLog.Size = new Size(267, 44);
+            btnLog.Size = new Size(279, 44);
             btnLog.TabIndex = 7;
             btnLog.Text = "Logs";
             btnLog.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -221,7 +222,7 @@
             btnDashboard.ImageList = imageList1;
             btnDashboard.Location = new Point(12, 73);
             btnDashboard.Name = "btnDashboard";
-            btnDashboard.Size = new Size(267, 55);
+            btnDashboard.Size = new Size(279, 55);
             btnDashboard.TabIndex = 6;
             btnDashboard.Text = "Dashboard";
             btnDashboard.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -243,7 +244,7 @@
             btnCaixa.ImageList = imageList1;
             btnCaixa.Location = new Point(12, 13);
             btnCaixa.Name = "btnCaixa";
-            btnCaixa.Size = new Size(267, 54);
+            btnCaixa.Size = new Size(279, 54);
             btnCaixa.TabIndex = 5;
             btnCaixa.Text = "Caixa";
             btnCaixa.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -265,7 +266,7 @@
             btnEstoque.ImageList = imageList1;
             btnEstoque.Location = new Point(12, 196);
             btnEstoque.Name = "btnEstoque";
-            btnEstoque.Size = new Size(267, 60);
+            btnEstoque.Size = new Size(279, 60);
             btnEstoque.TabIndex = 4;
             btnEstoque.Text = "Estoque";
             btnEstoque.TextImageRelation = TextImageRelation.ImageBeforeText;

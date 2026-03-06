@@ -200,7 +200,7 @@
         FROM movimentacoes_estoque me
         LEFT JOIN funcionarios f ON f.id = me.funcionario_id
         LEFT JOIN usuarios u ON u.id = f.usuarios_id
-        WHERE me.produto_id = @produtoId
+        WHERE me.produto_id = @produtoId 
         ORDER BY me.data DESC";
 
             using (var conn = Banco.AbrirConexao())

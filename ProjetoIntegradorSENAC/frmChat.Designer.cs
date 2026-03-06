@@ -49,7 +49,7 @@
             panelTop.Dock = DockStyle.Top;
             panelTop.Location = new Point(0, 0);
             panelTop.Name = "panelTop";
-            panelTop.Size = new Size(360, 32);
+            panelTop.Size = new Size(392, 32);
             panelTop.TabIndex = 1;
             // 
             // btnMinimizar
@@ -57,7 +57,7 @@
             btnMinimizar.Dock = DockStyle.Right;
             btnMinimizar.FlatStyle = FlatStyle.Popup;
             btnMinimizar.ForeColor = Color.White;
-            btnMinimizar.Location = new Point(280, 0);
+            btnMinimizar.Location = new Point(312, 0);
             btnMinimizar.Name = "btnMinimizar";
             btnMinimizar.Size = new Size(40, 32);
             btnMinimizar.TabIndex = 0;
@@ -68,7 +68,7 @@
             btnSair.Dock = DockStyle.Right;
             btnSair.FlatStyle = FlatStyle.Popup;
             btnSair.ForeColor = Color.White;
-            btnSair.Location = new Point(320, 0);
+            btnSair.Location = new Point(352, 0);
             btnSair.Name = "btnSair";
             btnSair.Size = new Size(40, 32);
             btnSair.TabIndex = 1;
@@ -81,7 +81,7 @@
             panel2.Location = new Point(0, 32);
             panel2.Name = "panel2";
             panel2.Padding = new Padding(18, 15, 18, 15);
-            panel2.Size = new Size(360, 442);
+            panel2.Size = new Size(392, 442);
             panel2.TabIndex = 0;
             // 
             // panel1
@@ -94,7 +94,7 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(18, 15);
             panel1.Name = "panel1";
-            panel1.Size = new Size(324, 412);
+            panel1.Size = new Size(356, 412);
             panel1.TabIndex = 0;
             // 
             // flowChat
@@ -106,7 +106,7 @@
             flowChat.Location = new Point(0, 40);
             flowChat.Name = "flowChat";
             flowChat.Padding = new Padding(10);
-            flowChat.Size = new Size(324, 316);
+            flowChat.Size = new Size(356, 316);
             flowChat.TabIndex = 0;
             flowChat.WrapContents = false;
             // 
@@ -119,7 +119,7 @@
             txtMensagem.ForeColor = Color.White;
             txtMensagem.Location = new Point(0, 356);
             txtMensagem.Name = "txtMensagem";
-            txtMensagem.Size = new Size(324, 16);
+            txtMensagem.Size = new Size(356, 16);
             txtMensagem.TabIndex = 1;
             // 
             // btnEnviar
@@ -131,7 +131,7 @@
             btnEnviar.ForeColor = Color.White;
             btnEnviar.Location = new Point(0, 372);
             btnEnviar.Name = "btnEnviar";
-            btnEnviar.Size = new Size(324, 40);
+            btnEnviar.Size = new Size(356, 40);
             btnEnviar.TabIndex = 2;
             btnEnviar.Text = "Enviar";
             btnEnviar.UseVisualStyleBackColor = false;
@@ -143,7 +143,7 @@
             labelTitulo.ForeColor = Color.White;
             labelTitulo.Location = new Point(0, 0);
             labelTitulo.Name = "labelTitulo";
-            labelTitulo.Size = new Size(324, 40);
+            labelTitulo.Size = new Size(356, 40);
             labelTitulo.TabIndex = 3;
             labelTitulo.Text = "Chat Interno";
             labelTitulo.TextAlign = ContentAlignment.MiddleCenter;
@@ -151,7 +151,7 @@
             // frmChat
             // 
             BackColor = Color.FromArgb(35, 35, 45);
-            ClientSize = new Size(360, 474);
+            ClientSize = new Size(392, 474);
             Controls.Add(panel2);
             Controls.Add(panelTop);
             FormBorderStyle = FormBorderStyle.None;

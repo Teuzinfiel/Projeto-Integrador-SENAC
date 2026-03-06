@@ -51,6 +51,11 @@ namespace ProjetoIntegradorSENAC.Classes
 
         public async Task<string> LoginAsync()
         {
+            var dataStore = new FileDataStore("TokenGoogleLogin", true);
+
+            // remove token antigo
+            await dataStore.ClearAsync();
+
             var credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
                 new ClientSecrets
                 {
@@ -60,7 +65,7 @@ namespace ProjetoIntegradorSENAC.Classes
                 _scopes,
                 "user",
                 CancellationToken.None,
-                new FileDataStore("TokenGoogleLogin", true)
+                dataStore
             );
 
             var settings = new GoogleJsonWebSignature.ValidationSettings
@@ -70,7 +75,11 @@ namespace ProjetoIntegradorSENAC.Classes
                 ExpirationTimeClockTolerance = TimeSpan.FromMinutes(10)
             };
 
-            var payload = await GoogleJsonWebSignature.ValidateAsync(credential.Token.IdToken!, settings);
+            var payload = await GoogleJsonWebSignature.ValidateAsync(
+                credential.Token.IdToken!,
+                settings
+            );
+
             return payload.Email!;
         }
     }

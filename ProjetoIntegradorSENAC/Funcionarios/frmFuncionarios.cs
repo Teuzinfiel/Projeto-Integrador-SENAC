@@ -96,6 +96,30 @@ namespace ProjetoIntegradorSENAC.Usuarios
 
                 using (var conn = Banco.AbrirConexao())
                 {
+
+                    string select = "SELECT * FROM usuarios WHERE " +
+                                $"email = '{UsEmail.Text.ToLower()}' OR " +
+                                $"cpf = '{UsCpf.Text}' OR " +
+                                $"telefone = '{UsTelefone.Text}'";
+
+                    DataTable dt = Banco.Pesquisar(select);
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        string mensagem = "";
+
+                        if (dt.Rows[0]["email"].ToString() == UsEmail.Text)
+                            mensagem += "Email já cadastrado!\n";
+
+                        if (dt.Rows[0]["cpf"].ToString() == UsCpf.Text)
+                            mensagem += "CPF já cadastrado!\n";
+
+                        if (dt.Rows[0]["telefone"].ToString() == UsTelefone.Text)
+                            mensagem += "Telefone já cadastrado!\n";
+
+                        MessageBox.Show(mensagem);
+                        return;
+                    }
                     // 1 - cria usuario
                     string senha = Funcoes.CriptoSenha(ConfirmarSenha.Text);
 
@@ -274,7 +298,30 @@ namespace ProjetoIntegradorSENAC.Usuarios
         {
             if (!erroNomeEd && !erroCpfEd && !erroEmailEd && !erroTelefoneEd)
             {
+                string select = "SELECT * FROM usuarios WHERE " +
+                $"(email = '{EdEmail.Text.ToLower()}' OR " +
+                $"cpf = '{EdCpf.Text}' OR " +
+                $"telefone = '{EdTelefone.Text}') " +
+                $"AND id != {idFuncionario}";
 
+                DataTable dt = Banco.Pesquisar(select);
+
+                if (dt.Rows.Count > 0)
+                {
+                    string mensagem = "";
+
+                    if (dt.Rows[0]["email"].ToString() == EdEmail.Text)
+                        mensagem += "Email já cadastrado!\n";
+
+                    if (dt.Rows[0]["cpf"].ToString() == EdCpf.Text)
+                        mensagem += "CPF já cadastrado!\n";
+
+                    if (dt.Rows[0]["telefone"].ToString() == EdTelefone.Text)
+                        mensagem += "Telefone já cadastrado!\n";
+
+                    MessageBox.Show(mensagem);
+                    return;
+                }
                 string update = $@"UPDATE usuarios u
                             JOIN funcionarios f ON u.id = f.usuarios_id
                             SET u.nome = '{EdNome.Text}', u.email = '{EdEmail.Text}', u.cpf = '{EdCpf.Text}', 

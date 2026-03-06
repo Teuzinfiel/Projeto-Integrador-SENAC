@@ -1,4 +1,6 @@
-﻿using System;
+﻿using iText.Layout.Properties;
+using ProjetoIntegradorSENAC.Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -28,7 +30,10 @@ namespace ProjetoIntegradorSENAC
         private string _taskIdAtual = null;
         private bool _chatIniciado = false;
         private List<string> _historico = new List<string>();
-        public frmChat()
+        private int idEmpresa;
+        private int idFuncionario;
+
+        public frmChat(int idEmpresa, int idFunc)
         {
             InitializeComponent();
             btnSair.Click += (s, e) => this.Close();
@@ -36,6 +41,8 @@ namespace ProjetoIntegradorSENAC
             panelTop.MouseDown += PanelTop_MouseDown;
 
             btnEnviar.Click += BtnEnviar_Click;
+            this.idFuncionario = idFunc;
+            this.idEmpresa = idEmpresa;
         }
 
         private void PanelTop_MouseDown(object sender, MouseEventArgs e)
@@ -98,80 +105,294 @@ namespace ProjetoIntegradorSENAC
             flowChat.ScrollControlIntoView(container);
         }
 
-        private void frmChat_Load(object sender, EventArgs e)
+        private async void frmChat_Load(object sender, EventArgs e)
         {
-            Button btnCaixa = new Button();
-            btnCaixa.Text = "Dúvidas sobre o Caixa";
-            btnCaixa.Width = 200;
-            btnCaixa.Height = 40;
-            btnCaixa.BackColor = Color.FromArgb(0, 150, 255);
-            btnCaixa.ForeColor = Color.White;
-
-            btnCaixa.Click += async (s, ev) =>
-            {
-                btnCaixa.Enabled = false;
-
-                AdicionarMensagem("Carregando manual do Caixa...", false);
-
-                await IniciarChatCaixa();
-            };
-
-            flowChat.Controls.Add(btnCaixa);
+            AdicionarMensagem("Carregando informações do sistema...", false);
+            await IniciarChatSistemaCompleto();
+        }
+        private bool IAQuerSQL(string resposta)
+        {
+            return resposta.TrimStart().StartsWith("SQL_QUERY:");
         }
 
-        private string GerarManualCaixa()
+        private string ExtrairSQL(string resposta)
+        {
+            return resposta.Replace("SQL_QUERY:", "").Trim();
+        }
+
+        private string DataTableParaTexto(DataTable dt)
+        {
+            if (dt.Rows.Count == 0)
+                return "RESULTADO: Nenhum registro encontrado.";
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach (DataColumn col in dt.Columns)
+                sb.Append(col.ColumnName + " | ");
+
+            sb.AppendLine();
+            sb.AppendLine("-----------------------------------");
+
+            foreach (DataRow row in dt.Rows)
+            {
+                foreach (var item in row.ItemArray)
+                    sb.Append(item.ToString() + " | ");
+
+                sb.AppendLine();
+            }
+
+            return sb.ToString();
+        }
+
+        private string GerarManualSistemaCompleto()
         {
             return @"
-Você está respondendo dúvidas sobre um sistema de CAIXA comercial.
+Você é um assistente técnico interno do sistema Erpex.
+Você responde dúvidas sobre TODO o funcionamento do sistema.
 
-FUNCIONAMENTO DO CAIXA:
+========================================
+BANCO DE DADOS
+========================================
 
-- Produtos são carregados da tabela produtos.
-- Estoque é controlado pela tabela movimentacoes_estoque.
-- Ao adicionar item:
-    • Verifica estoque
-    • Incrementa quantidade
-    • Aplica desconto percentual (0-99)
-- A venda mantém:
-    • Lista de itens
-    • Total bruto
-    • Descontos
-    • Forma de pagamento
+========================================
+EMPRESA ATUAL
+========================================
 
-FINALIZAÇÃO DA VENDA:
-- Salva na tabela vendas
-- Salva itens em items_venda
-- Dá baixa no estoque (tipo = saida)
-- Gera código_consumidor (GUID)
+comercio_id = {{comercio_id}}
 
-FORMAS DE PAGAMENTO:
+NUNCA acessar dados de outra empresa.
+
+========================================
+BANCO DE DADOS DO SISTEMA ERP
+========================================
+
+TABELAS:
+
+usuarios
+- id
+- nome
+- telefone
+- email
+- cpf
+
+funcionarios
+- id
+- usuarios_id
+- comercio_id
+- cargo
+
+produtos
+- id
+- comercio_id
+- nome
+- descricao
+- marca
+- codigo_barra
+- unidade_medida
+- categoria_id
+- preco
+- custo
+
+estoque
+- produto_id
+- quantidade_atual
+
+vendas
+- id
+- funcionario_id
+- comercio_id
+- data_venda
+- total
+- descontos
+- forma_pagamento_id
+- lucro
+
+items_venda
+- id
+- produtos_id
+- quantidade
+- preco_unitario
+- lucro
+- vendas_id
+
+forma_pagamento
+- id
+- nome
+
+movimentacoes_estoque
+- id
+- produto_id
+- funcionario_id
+- comercio_id
+- tipo
+- quantidade
+- quantidade_final
+- motivo
+- data
+
+contas_receber
+- id
+- comercio_id
+- pagador_tipo
+- pagador_id
+- descricao
+- valor
+- data_vencimento
+- status
+
+parcelas
+- id
+- tipo
+- titulo_id
+- numero_parcela
+- valor
+- data_vencimento
+- status
+
+pagamentos
+- id
+- parcela_id
+- movimentacao_id
+- valor_pago
+- data_pagamento
+
+movimentacoes_financeiras
+- id
+- conta_financeira_id
+- tipo
+- valor
+- data_movimento
+- origem_tipo
+- origem_id
+- descricao
+
+logs
+- id
+- comercio_id
+- usuario_id
+- descricao
+- data
+
+========================================
+FLUXO DO SISTEMA
+========================================
+
+USUÁRIOS:
+- Cadastro com nome, senha, telefone, email e cpf.
+
+EMPRESA:
+- Dono cadastra comércio.
+- Comércio pode ser CPF ou CNPJ.
+- Dono vira automaticamente funcionário com cargo 'dono'.
+
+FUNCIONÁRIOS:
+- Vinculados a usuário e comércio.
+
+PRODUTOS:
+- Ligados ao comércio.
+- Possuem categoria, preço, código de barra.
+- Estoque controlado por movimentacoes_estoque.
+- Tabela estoque mantém quantidade atual.
+
+========================================
+CAIXA
+========================================
+
+Ao abrir:
+- Carrega produtos do comércio.
+- Busca estoque pela última movimentação.
+
+Ao adicionar item:
+- Verifica estoque.
+- Incrementa quantidade.
+- Aplica desconto percentual (0 a 99).
+- Atualiza painel visual.
+
+Finalização da venda:
+- Salva em vendas.
+- Salva em items_venda.
+- Registra movimentação tipo 'saida'.
+- Atualiza tabela estoque.
+- Gera codigo_consumidor (GUID).
+- Permite impressão.
+
+Devolução:
+- Busca venda pelo codigo_consumidor.
+- Reverte estoque (tipo 'entrada').
+- Exclui items_venda.
+- Exclui venda.
+
+Formas de pagamento:
 - Pix
 - Dinheiro
 - Crédito
 - Débito
 
-DEVOLUÇÃO:
-- Busca venda pelo codigo_consumidor
-- Devolve estoque (tipo = entrada)
-- Remove itens_venda
-- Remove venda
+========================================
+IMPRESSÃO
+========================================
 
-IMPRESSÃO:
-- Gera comprovante com:
-    • Código
-    • Data
-    • Forma pagamento
-    • Itens
-    • Total
-    • Descontos
+Comprovante contém:
+- Código consumidor
+- Data
+- Forma pagamento
+- Lista de itens
+- Total
+- Descontos
 
-Responda sempre de forma clara e didática para usuários do sistema.
+========================================
+DASHBOARD
+========================================
+
+Permite:
+- Gráfico de vendas
+- Gráfico de produtos
+- Comparação de períodos
+- Exportação Excel
+- Ranking de produtos
+- Faturamento mensal
+
+========================================
+
+========================================
+ACESSO AO BANCO DE DADOS
+========================================
+
+Se precisar consultar dados do banco:
+
+Responda APENAS com:
+
+SQL_QUERY: SELECT ...
+
+REGRAS:
+
+1 Apenas SELECT
+2 Nunca INSERT
+3 Nunca UPDATE
+4 Nunca DELETE
+5 Sempre filtrar por comercio_id = {comercio_id}
+6 Nunca acessar dados de outra empresa
+7 Nunca acessar dados de outro funcionario
+
+Após receber o RESULTADO_SQL você deve gerar a resposta final para o usuário.
+
+REGRAS DE RESPOSTA:
+
+- Nunca faça perguntas.
+- Nunca peça confirmação.
+- Nunca aguarde resposta do usuário.
+- Sempre gere a resposta final completa, sem criar efeitos visuais com caracteres... Apenas texto.
+-Nunca exponha dados da estrutura do banco de dados, apenas oque ele precisa para a requisição.
+-Escreva Totalmente em portugues.
+Responda sempre de forma didática e técnica.
+Explique fluxos internos quando necessário. E responda no maximo em 30 segundos
 ";
         }
 
-        private async Task IniciarChatCaixa()
+        private async Task IniciarChatSistemaCompleto()
         {
-            string manual = GerarManualCaixa();
+            string manual = GerarManualSistemaCompleto()
+    .Replace("{comercio_id}", idEmpresa.ToString());
 
             _historico.Clear();
             _historico.Add("SISTEMA:\n" + manual);
@@ -203,9 +424,38 @@ Responda sempre de forma clara e didática para usuários do sistema.
 
             string resposta = await EnviarParaManus(promptCompleto);
 
-            AdicionarMensagem(resposta, false);
+            // 🔥 SE IA PEDIR SQL
+            if (IAQuerSQL(resposta))
+            {
+                string sql = ExtrairSQL(resposta);
 
-            _historico.Add("ASSISTENTE:\n" + resposta);
+                try
+                {
+                    DataTable dados = Banco.Pesquisar(sql);
+
+                    string resultado = DataTableParaTexto(dados);
+
+                    _historico.Add("SISTEMA_RESULTADO_SQL:\n" + resultado);
+
+                    string promptFinal = String.Join("\n\n", _historico);
+
+                    string respostaFinal = await EnviarParaManus(promptFinal);
+
+                    AdicionarMensagem(respostaFinal, false);
+
+                    _historico.Add("ASSISTENTE:\n" + respostaFinal);
+                }
+                catch (Exception ex)
+                {
+                    AdicionarMensagem("Erro ao consultar banco. Tente Novamente", false);
+                }
+            }
+            else
+            {
+                AdicionarMensagem(resposta, false);
+
+                _historico.Add("ASSISTENTE:\n" + resposta);
+            }
         }
 
         private async Task<string> CreateTask(string prompt)
@@ -234,15 +484,20 @@ Responda sempre de forma clara e didática para usuários do sistema.
             using HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Add("API_KEY", MANUS_API_KEY);
 
-            while (true)
+            int tentativas = 0;
+            int maxTentativas = 10; // 10 x 3 segundos = 30 segundos
+
+            while (tentativas < maxTentativas)
             {
+                tentativas++;
+
                 var response = await client.GetAsync(url);
                 string body = await response.Content.ReadAsStringAsync();
 
                 using JsonDocument doc = JsonDocument.Parse(body);
                 var root = doc.RootElement;
 
-                string status = root.GetProperty("status").GetString();
+                string status = root.GetProperty("status").GetString()?? "WOLF";
 
                 if (status == "completed")
                 {
@@ -267,10 +522,8 @@ Responda sempre de forma clara e didática para usuários do sistema.
 
                             foreach (var content in contentArray.EnumerateArray())
                             {
-                                if (content.TryGetProperty("text", out JsonElement textElement) &&
-                                    textElement.ValueKind == JsonValueKind.String)
+                                if (content.TryGetProperty("text", out JsonElement textElement))
                                 {
-                                    // 🔥 Guarda sempre a última
                                     ultimaResposta = textElement.GetString();
                                 }
                             }
@@ -280,11 +533,16 @@ Responda sempre de forma clara e didática para usuários do sistema.
                     return ultimaResposta ?? "Sem resposta.";
                 }
 
+                if (status == "WOLF")
+                    return "Tente novamente";
+
                 if (status == "failed")
                     return "Erro ao processar.";
 
                 await Task.Delay(3000);
             }
+
+            return "Tempo limite atingido tente novamente:";
         }
     }
 }

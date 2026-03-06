@@ -53,22 +53,7 @@ namespace ProjetoIntegradorSENAC.Produto
 
             DataTable dt = (DataTable)dtgProdutos.DataSource;
 
-            if (dt != null)
-            {
-                DataRow novaLinha = dt.NewRow();
-
-                novaLinha["id"] = 999;
-                novaLinha["Produto"] = "Produto Teste";
-                novaLinha["Marca"] = "Marca Teste";
-                novaLinha["Descricao"] = "Descrição teste";
-                novaLinha["CodigoBarra"] = "123456789";
-                novaLinha["Medida"] = "Unidade";
-                novaLinha["Categoria"] = "Categoria Teste";
-                novaLinha["Preco"] = 9.99;
-                novaLinha["Status"] = "ativo";
-
-                dt.Rows.Add(novaLinha);
-            }
+            
         }
 
 
@@ -306,24 +291,29 @@ namespace ProjetoIntegradorSENAC.Produto
             try
             {
                 string query = $@"
-                SELECT  
-                    p.id,
-                    p.nome AS Produto,
-                    p.marca AS Marca,
-                    p.descricao AS Descricao,
-                    p.codigo_barra AS CodigoBarra,
-                    p.unidade_medida AS Medida,
-                    c.nome AS Categoria,
-                    p.preco AS Preco,
-                    p.status AS Status
-                FROM produtos p
-                LEFT JOIN categorias c ON c.id = p.categoria_id
-                WHERE p.comercio_id = {idComercio}";
+        SELECT  
+            p.id,
+            p.nome AS Produto,
+            p.marca AS Marca,
+            p.descricao AS Descricao,
+            p.codigo_barra AS CodigoBarra,
+            p.unidade_medida AS Medida,
+            c.nome AS Categoria,
+            p.preco AS Preco,
+            p.custo AS Custo,
+            p.status AS Status
+        FROM produtos p
+        LEFT JOIN categorias c ON c.id = p.categoria_id
+        WHERE p.comercio_id = {idComercio}";
 
                 DataTable dt = Banco.Pesquisar(query);
 
                 dtgProdutos.DataSource = dt;
                 dtgProdutos.Columns["id"].Visible = false;
+
+                // se não quiser mostrar custo na tabela
+                dtgProdutos.Columns["Custo"].Visible = false;
+
                 dtgProdutos.ClearSelection();
                 dtgProdutos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
@@ -514,37 +504,7 @@ namespace ProjetoIntegradorSENAC.Produto
         {
             if (e.RowIndex < 0) return;
 
-            lbNomeAtt.Visible = true;
-            txtNomeProd.Visible = true;
 
-            lbMarcaAtt.Visible = true;
-            txtMarcaProd.Visible = true;
-
-            lbMedidaAtt.Visible = true;
-            cmbMedida.Visible = true;
-
-
-            lbPrecoAtt.Visible = true;
-            txtPrecoProd.Visible = true;
-
-            lbDescAtt.Visible = true;
-            PrDescricaoAtt.Visible = true;
-
-            lbBarrasAtt.Visible = true;
-            txtCodBarra.Visible = true;
-
-            lbCatAtt.Visible = true;
-            cmbCatAtt.Visible = true;
-
-
-
-            btnAtivarProd.Visible = true;
-            btnDesativarProd.Visible = true;
-            btnExcluirProd.Visible = true;
-            btnAttProd.Visible = true;
-
-
-            limpandoFormulario = true;
 
             DataGridViewRow row = dtgProdutos.Rows[e.RowIndex];
 
@@ -559,6 +519,7 @@ namespace ProjetoIntegradorSENAC.Produto
             cmbCatAtt.Text = row.Cells["Categoria"].Value.ToString();
 
             txtPrecoProd.Text = row.Cells["Preco"].Value.ToString();
+            textBox1.Text = row.Cells["Custo"].Value.ToString();
 
             string status = row.Cells["Status"].Value.ToString().ToLower();
 
@@ -575,7 +536,7 @@ namespace ProjetoIntegradorSENAC.Produto
             nomeOriginal = txtNomeProd.Text;
             marcaOriginal = txtMarcaProd.Text;
             codBarraOriginal = txtCodBarra.Text;
-
+            custoOrigen = textBox1.Text;
         }
         string descricaoOriginal;
         string categoriaOriginal;
@@ -584,6 +545,7 @@ namespace ProjetoIntegradorSENAC.Produto
         string marcaOriginal;
         string codBarraOriginal;
         string unidadeOriginal;
+        string custoOrigen;
         // Botao de atualizacao de produtos
 
 
@@ -641,7 +603,8 @@ namespace ProjetoIntegradorSENAC.Produto
                 txtCodBarra.Text == codBarraOriginal &&
                 decimal.Parse(txtPrecoProd.Text) == precoOriginal &&
                 cmbCatAtt.Text == categoriaOriginal &&
-                cmbMedida.SelectedItem?.ToString() == unidadeOriginal
+                cmbMedida.SelectedItem?.ToString() == unidadeOriginal &&
+                textBox1.Text == custoOrigen 
             )
             {
                 MessageBox.Show(
@@ -656,16 +619,17 @@ namespace ProjetoIntegradorSENAC.Produto
             string unidade = cmbMedida.SelectedItem.ToString();
 
             string sql = $@"
-    UPDATE produtos
-    SET  
-        nome = '{txtNomeProd.Text}',
-        marca = '{txtMarcaProd.Text}',
-        descricao = '{PrDescricaoAtt.Text}',
-        unidade_medida = '{unidade}',
-        preco = {txtPrecoProd.Text.Replace(",", ".")},
-        codigo_barra = '{txtCodBarra.Text}',
-        categoria_id = {cmbCatAtt.SelectedValue}
-    WHERE id = {idProdutoSelecionado};";
+UPDATE produtos
+SET  
+    nome = '{txtNomeProd.Text}',
+    marca = '{txtMarcaProd.Text}',
+    descricao = '{PrDescricaoAtt.Text}',
+    unidade_medida = '{unidade}',
+    preco = {txtPrecoProd.Text.Replace(",", ".")},
+    custo = {textBox1.Text.Replace(",", ".")},
+    codigo_barra = '{txtCodBarra.Text}',
+    categoria_id = {cmbCatAtt.SelectedValue}
+WHERE id = {idProdutoSelecionado};";
 
             try
             {
@@ -674,7 +638,7 @@ namespace ProjetoIntegradorSENAC.Produto
                 LogService.CriarLog(this.idComercio, this.idUsuario, "Produto Cadastrado");
                 LimparEdicaoProduto();
                 CarregarProdutos();
-                esconderBotao();
+
                 dtgProdutos.ClearSelection();
                 idProdutoSelecionado = 0;
             }
@@ -702,7 +666,7 @@ namespace ProjetoIntegradorSENAC.Produto
                 MessageBox.Show("Produto desativado!");
                 LimparEdicaoProduto();
                 CarregarProdutos();
-                esconderBotao();
+
                 idProdutoSelecionado = 0;
             }
             catch (Exception ex)
@@ -838,7 +802,7 @@ namespace ProjetoIntegradorSENAC.Produto
             {
                 Banco.Inserir(sql);
                 MessageBox.Show("Produto ativado!");
-                esconderBotao();
+
                 LimparEdicaoProduto();
                 CarregarProdutos();
                 idProdutoSelecionado = 0;
@@ -897,6 +861,11 @@ namespace ProjetoIntegradorSENAC.Produto
         {
             foto = null;
             pictureBox1.Image = null;
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

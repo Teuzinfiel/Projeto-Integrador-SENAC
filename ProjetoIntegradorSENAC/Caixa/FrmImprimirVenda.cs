@@ -13,8 +13,9 @@ namespace ProjetoIntegradorSENAC.Caixa
     {
         private readonly int _vendaId;
 
-        private string _codigoConsumidor;
         private string _formaPagamento;
+        private string _codigoConsumidor;
+        private int _formaPagamentoId;
         private decimal _total;
         private decimal _descontos;
         private DateTime _dataVenda;
@@ -69,11 +70,18 @@ namespace ProjetoIntegradorSENAC.Caixa
             using (MySqlConnection conn = Banco.AbrirConexao())
             {
                 string sqlVenda = @"
-                    SELECT codigo_consumidor, forma_pagamento, total, descontos, data_venda
-                    FROM vendas
-                    WHERE id = @id
-                    LIMIT 1;
-                ";
+        SELECT 
+            v.codigo_consumidor,
+            v.forma_pagamento_id,
+            fp.nome AS forma_pagamento,
+            v.total,
+            v.descontos,
+            v.data_venda
+        FROM vendas v
+        LEFT JOIN forma_pagamento fp ON fp.id = v.forma_pagamento_id
+        WHERE v.id = @id
+        LIMIT 1;
+        ";
 
                 using (MySqlCommand cmd = new MySqlCommand(sqlVenda, conn))
                 {
@@ -85,19 +93,28 @@ namespace ProjetoIntegradorSENAC.Caixa
                             throw new Exception("Venda não encontrada.");
 
                         _codigoConsumidor = reader.GetString("codigo_consumidor");
-                        _formaPagamento = reader.GetString("forma_pagamento");
+                        _formaPagamentoId = reader.GetInt32("forma_pagamento_id");
+
+                        _formaPagamento = reader.IsDBNull(reader.GetOrdinal("forma_pagamento"))
+                            ? "Não informado"
+                            : reader.GetString("forma_pagamento");
+
                         _total = reader.GetDecimal("total");
-                        _descontos = reader.IsDBNull(reader.GetOrdinal("descontos")) ? 0 : reader.GetDecimal("descontos");
+
+                        _descontos = reader.IsDBNull(reader.GetOrdinal("descontos"))
+                            ? 0
+                            : reader.GetDecimal("descontos");
+
                         _dataVenda = reader.GetDateTime("data_venda");
                     }
                 }
 
                 string sqlItens = @"
-                    SELECT p.nome, iv.quantidade, iv.preco_unitario
-                    FROM items_venda iv
-                    INNER JOIN produtos p ON p.id = iv.produtos_id
-                    WHERE iv.vendas_id = @venda;
-                ";
+        SELECT p.nome, iv.quantidade, iv.preco_unitario
+        FROM items_venda iv
+        INNER JOIN produtos p ON p.id = iv.produtos_id
+        WHERE iv.vendas_id = @venda;
+        ";
 
                 using (MySqlCommand cmd = new MySqlCommand(sqlItens, conn))
                 {

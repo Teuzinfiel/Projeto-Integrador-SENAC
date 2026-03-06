@@ -29,6 +29,31 @@ namespace ProjetoIntegradorSENAC.Caixa
             BuscarFuncionario();
         }
 
+
+        private int BuscarFormaPagamentoId(string nomeForma)
+        {
+            using (MySqlConnection conn = Banco.AbrirConexao())
+            {
+                string sql = @"
+        SELECT id 
+        FROM forma_pagamento
+        WHERE nome = @nome
+        LIMIT 1;
+        ";
+
+                using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@nome", nomeForma);
+
+                    object result = cmd.ExecuteScalar();
+
+                    if (result == null)
+                        throw new Exception("Forma de pagamento não encontrada.");
+
+                    return Convert.ToInt32(result);
+                }
+            }
+        }
         private void caixa_Load(object sender, EventArgs e)
         {
             string query = $@"
@@ -467,20 +492,23 @@ namespace ProjetoIntegradorSENAC.Caixa
             using (MySqlConnection conn = Banco.AbrirConexao())
             {
                 string sql = @"
-            INSERT INTO vendas
-            (funcionario_id, comercio_id, total, forma_pagamento_id, descontos, codigo_consumidor)
-            VALUES
-            (@funcionario, @comercio, @total, @forma, @descontos, @codigo_consumidor);
-            SELECT LAST_INSERT_ID();
+        INSERT INTO vendas
+        (funcionario_id, comercio_id, total, forma_pagamento_id, descontos, codigo_consumidor)
+        VALUES
+        (@funcionario, @comercio, @total, @forma, @descontos, @codigo_consumidor);
+        SELECT LAST_INSERT_ID();
         ";
 
                 using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                 {
                     this._codigoConsumidor = Guid.NewGuid().ToString("N");
+
+                    int formaPagamentoId = BuscarFormaPagamentoId(_vendaAtual.FormaPagamento);
+
                     cmd.Parameters.AddWithValue("@funcionario", idFunc);
                     cmd.Parameters.AddWithValue("@comercio", idEmpresa);
                     cmd.Parameters.AddWithValue("@total", _vendaAtual.TotalBruto);
-                    cmd.Parameters.AddWithValue("@forma", 1);
+                    cmd.Parameters.AddWithValue("@forma", formaPagamentoId);
                     cmd.Parameters.AddWithValue("@descontos", _vendaAtual.Descontos);
                     cmd.Parameters.AddWithValue("@codigo_consumidor", this._codigoConsumidor);
 
@@ -496,35 +524,42 @@ namespace ProjetoIntegradorSENAC.Caixa
             {
                 try
                 {
+                    decimal lucroTotalVenda = 0;
+
                     string sqlItem = @"
-                INSERT INTO items_venda
-                (produtos_id, quantidade, preco_unitario, vendas_id)
-                VALUES
-                (@produto, @quantidade, @preco, @venda);
+            INSERT INTO items_venda
+            (produtos_id, quantidade, preco_unitario, lucro, vendas_id)
+            VALUES
+            (@produto, @quantidade, @preco, @lucro, @venda);
             ";
 
                     foreach (var item in _vendaAtual.Itens)
                     {
-                        // salva item
+                        decimal custoProduto = BuscarCustoProduto(item.ProdutoId, conn, trans);
+
+                        decimal lucroItem = (item.PrecoUnitario - custoProduto) * item.Quantidade;
+
+                        lucroTotalVenda += lucroItem;
+
                         using (MySqlCommand cmd = new MySqlCommand(sqlItem, conn, trans))
                         {
                             cmd.Parameters.AddWithValue("@produto", item.ProdutoId);
                             cmd.Parameters.AddWithValue("@quantidade", item.Quantidade);
                             cmd.Parameters.AddWithValue("@preco", item.PrecoUnitario);
+                            cmd.Parameters.AddWithValue("@lucro", lucroItem);
                             cmd.Parameters.AddWithValue("@venda", vendaId);
+
                             cmd.ExecuteNonQuery();
                         }
 
-                        // estoque atual
                         decimal atual = BuscarEstoqueAtual(item.ProdutoId, conn, trans);
                         decimal final = atual - item.Quantidade;
 
-                        // movimentação de saída
                         string sqlMov = @"
-                    INSERT INTO movimentacoes_estoque
-                    (produto_id, funcionario_id, comercio_id, tipo, quantidade, quantidade_final, motivo)
-                    VALUES
-                    (@produto, @funcionario, @comercio, 'saida', @quantidade, @final, 'VENDA');
+                INSERT INTO movimentacoes_estoque
+                (produto_id, funcionario_id, comercio_id, tipo, quantidade, quantidade_final, motivo)
+                VALUES
+                (@produto, @funcionario, @comercio, 'saida', @quantidade, @final, 'VENDA');
                 ";
 
                         using (MySqlCommand cmdMov = new MySqlCommand(sqlMov, conn, trans))
@@ -534,14 +569,14 @@ namespace ProjetoIntegradorSENAC.Caixa
                             cmdMov.Parameters.AddWithValue("@comercio", idEmpresa);
                             cmdMov.Parameters.AddWithValue("@quantidade", item.Quantidade);
                             cmdMov.Parameters.AddWithValue("@final", final);
+
                             cmdMov.ExecuteNonQuery();
                         }
 
-                        // atualiza estoque (insert or update)
                         string sqlEstoque = @"
-                    INSERT INTO estoque (produto_id, quantidade_atual)
-                    VALUES (@produto, @final)
-                    ON DUPLICATE KEY UPDATE quantidade_atual = @final;
+                INSERT INTO estoque (produto_id, quantidade_atual)
+                VALUES (@produto, @final)
+                ON DUPLICATE KEY UPDATE quantidade_atual = @final;
                 ";
 
                         using (MySqlCommand cmdEst = new MySqlCommand(sqlEstoque, conn, trans))
@@ -552,6 +587,19 @@ namespace ProjetoIntegradorSENAC.Caixa
                         }
                     }
 
+                    string sqlLucroVenda = @"
+            UPDATE vendas 
+            SET lucro = @lucro
+            WHERE id = @venda;
+            ";
+
+                    using (MySqlCommand cmdLucro = new MySqlCommand(sqlLucroVenda, conn, trans))
+                    {
+                        cmdLucro.Parameters.AddWithValue("@lucro", lucroTotalVenda);
+                        cmdLucro.Parameters.AddWithValue("@venda", vendaId);
+                        cmdLucro.ExecuteNonQuery();
+                    }
+
                     trans.Commit();
                 }
                 catch
@@ -559,6 +607,17 @@ namespace ProjetoIntegradorSENAC.Caixa
                     trans.Rollback();
                     throw;
                 }
+            }
+        }
+
+        private decimal BuscarCustoProduto(int produtoId, MySqlConnection conn, MySqlTransaction trans)
+        {
+            string sql = "SELECT custo FROM produtos WHERE id = @id LIMIT 1";
+
+            using (var cmd = new MySqlCommand(sql, conn, trans))
+            {
+                cmd.Parameters.AddWithValue("@id", produtoId);
+                return Convert.ToDecimal(cmd.ExecuteScalar());
             }
         }
 

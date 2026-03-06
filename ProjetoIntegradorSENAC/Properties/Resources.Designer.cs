@@ -131,6 +131,24 @@ namespace ProjetoIntegradorSENAC.Properties {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a 143289553913-tctio2oq192jj3met6gaq41dehdm4gcn.apps.googleusercontent.com.
+        /// </summary>
+        internal static string tokenPublicGoogle {
+            get {
+                return ResourceManager.GetString("tokenPublicGoogle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a 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.
+        /// </summary>
+        internal static string tokenSecurityGoogle {
+            get {
+                return ResourceManager.GetString("tokenSecurityGoogle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta um recurso localizado do tipo System.IO.UnmanagedMemoryStream semelhante a System.IO.MemoryStream.
         /// </summary>
         internal static System.IO.UnmanagedMemoryStream videoplayback {

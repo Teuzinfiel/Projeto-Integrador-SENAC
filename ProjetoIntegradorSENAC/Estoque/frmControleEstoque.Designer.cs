@@ -35,6 +35,7 @@
             dtgProdutos = new DataGridView();
             label11 = new Label();
             panel2 = new Panel();
+            tableLayoutPanel2 = new TableLayoutPanel();
             panel14 = new Panel();
             astDescSaida = new Label();
             astTpSaida = new Label();
@@ -99,9 +100,9 @@
             tableLayoutPanel1 = new TableLayoutPanel();
             panel21 = new Panel();
             panel22 = new Panel();
-            tableLayoutPanel2 = new TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)dtgProdutos).BeginInit();
             panel2.SuspendLayout();
+            tableLayoutPanel2.SuspendLayout();
             panel14.SuspendLayout();
             panel18.SuspendLayout();
             panel13.SuspendLayout();
@@ -124,7 +125,6 @@
             tableLayoutPanel1.SuspendLayout();
             panel21.SuspendLayout();
             panel22.SuspendLayout();
-            tableLayoutPanel2.SuspendLayout();
             SuspendLayout();
             // 
             // dtgProdutos
@@ -196,6 +196,21 @@
             panel2.Size = new Size(609, 305);
             panel2.TabIndex = 47;
             // 
+            // tableLayoutPanel2
+            // 
+            tableLayoutPanel2.ColumnCount = 2;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.Controls.Add(panel14, 1, 0);
+            tableLayoutPanel2.Controls.Add(panel13, 0, 0);
+            tableLayoutPanel2.Dock = DockStyle.Fill;
+            tableLayoutPanel2.Location = new Point(0, 0);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 1;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.Size = new Size(609, 305);
+            tableLayoutPanel2.TabIndex = 2;
+            // 
             // panel14
             // 
             panel14.BackColor = Color.FromArgb(40, 40, 50);
@@ -259,6 +274,7 @@
             // 
             // btnEnviarSaida
             // 
+            btnEnviarSaida.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnEnviarSaida.BackColor = Color.Transparent;
             btnEnviarSaida.FlatStyle = FlatStyle.Flat;
             btnEnviarSaida.Font = new Font("Franklin Gothic Medium", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -286,6 +302,7 @@
             // 
             // txtDescSaida
             // 
+            txtDescSaida.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             txtDescSaida.Font = new Font("Segoe UI", 12F);
             txtDescSaida.Location = new Point(24, 204);
             txtDescSaida.Name = "txtDescSaida";
@@ -295,6 +312,7 @@
             // 
             // panel18
             // 
+            panel18.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             panel18.BackColor = Color.FromArgb(30, 30, 40);
             panel18.Controls.Add(label19);
             panel18.Controls.Add(lbSaldoAposSaida);
@@ -342,6 +360,7 @@
             // 
             // cbTipoSaida
             // 
+            cbTipoSaida.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             cbTipoSaida.FlatStyle = FlatStyle.Popup;
             cbTipoSaida.Font = new Font("Franklin Gothic Demi Cond", 14F);
             cbTipoSaida.FormattingEnabled = true;
@@ -366,6 +385,7 @@
             // 
             // mkQuantidadeSaida
             // 
+            mkQuantidadeSaida.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             mkQuantidadeSaida.BackColor = Color.White;
             mkQuantidadeSaida.Font = new Font("Franklin Gothic Book", 16F);
             mkQuantidadeSaida.ForeColor = Color.FromArgb(40, 40, 50);
@@ -465,6 +485,7 @@
             // 
             // btnEnviarEntrada
             // 
+            btnEnviarEntrada.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnEnviarEntrada.BackColor = Color.Transparent;
             btnEnviarEntrada.FlatStyle = FlatStyle.Flat;
             btnEnviarEntrada.Font = new Font("Franklin Gothic Medium", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -492,6 +513,7 @@
             // 
             // txtDescEntrada
             // 
+            txtDescEntrada.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             txtDescEntrada.Font = new Font("Segoe UI", 12F);
             txtDescEntrada.Location = new Point(21, 204);
             txtDescEntrada.Name = "txtDescEntrada";
@@ -501,6 +523,7 @@
             // 
             // panel17
             // 
+            panel17.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             panel17.BackColor = Color.FromArgb(30, 30, 40);
             panel17.Controls.Add(label16);
             panel17.Controls.Add(lbSaldoAposEntrada);
@@ -548,6 +571,7 @@
             // 
             // cbTipoEntrada
             // 
+            cbTipoEntrada.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             cbTipoEntrada.FlatStyle = FlatStyle.Popup;
             cbTipoEntrada.Font = new Font("Franklin Gothic Demi Cond", 14F);
             cbTipoEntrada.FormattingEnabled = true;
@@ -572,6 +596,7 @@
             // 
             // mkQuantidadeEntrada
             // 
+            mkQuantidadeEntrada.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             mkQuantidadeEntrada.BackColor = Color.White;
             mkQuantidadeEntrada.Font = new Font("Franklin Gothic Book", 16F);
             mkQuantidadeEntrada.ForeColor = Color.FromArgb(40, 40, 50);
@@ -989,21 +1014,6 @@
             panel22.Size = new Size(989, 622);
             panel22.TabIndex = 53;
             // 
-            // tableLayoutPanel2
-            // 
-            tableLayoutPanel2.ColumnCount = 2;
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.Controls.Add(panel14, 1, 0);
-            tableLayoutPanel2.Controls.Add(panel13, 0, 0);
-            tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(0, 0);
-            tableLayoutPanel2.Name = "tableLayoutPanel2";
-            tableLayoutPanel2.RowCount = 1;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.Size = new Size(609, 305);
-            tableLayoutPanel2.TabIndex = 2;
-            // 
             // frmControleEstoque
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1017,6 +1027,7 @@
             Load += frmControleEstoque_Load;
             ((System.ComponentModel.ISupportInitialize)dtgProdutos).EndInit();
             panel2.ResumeLayout(false);
+            tableLayoutPanel2.ResumeLayout(false);
             panel14.ResumeLayout(false);
             panel14.PerformLayout();
             panel18.ResumeLayout(false);
@@ -1053,7 +1064,6 @@
             tableLayoutPanel1.ResumeLayout(false);
             panel21.ResumeLayout(false);
             panel22.ResumeLayout(false);
-            tableLayoutPanel2.ResumeLayout(false);
             ResumeLayout(false);
         }
 

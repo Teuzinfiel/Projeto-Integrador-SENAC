@@ -19,7 +19,7 @@ namespace ProjetoIntegradorSENAC.Properties {
     // através de uma ferramenta como ResGen ou Visual Studio.
     // Para adicionar ou remover um associado, edite o arquivo .ResX e execute ResGen novamente
     // com a opção /str, ou recrie o projeto do VS.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -127,6 +127,24 @@ namespace ProjetoIntegradorSENAC.Properties {
             get {
                 object obj = ResourceManager.GetObject("spinner", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a 143289553913-tctio2oq192jj3met6gaq41dehdm4gcn.apps.googleusercontent.com.
+        /// </summary>
+        internal static string tokenPublicGoogle {
+            get {
+                return ResourceManager.GetString("tokenPublicGoogle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a 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.
+        /// </summary>
+        internal static string tokenSecurityGoogle {
+            get {
+                return ResourceManager.GetString("tokenSecurityGoogle", resourceCulture);
             }
         }
         

@@ -32,7 +32,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             DataTable tabela = ExecutarSelect(@"
                 SELECT
             -- ================== Lucro ==================
-            IFNULL((SELECT CONCAT(
+            IFNULL((SELECT CAST(CONCAT(
                 'R$: ',
                 SUM(CASE 
                     WHEN v.data_venda >= @dataInicio1Periodo
@@ -43,7 +43,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
                     WHEN v.data_venda >= @dataInicio2Periodo
                 AND v.data_venda < DATE_ADD(@dataFim2Periodo, INTERVAL 1 DAY)
                     THEN v.lucro ELSE 0 END)
-            )
+            ) AS CHAR)
             FROM vendas v
             JOIN funcionarios f ON f.id = v.funcionario_id
             WHERE f.comercio_id = @idEmpresa
@@ -157,7 +157,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             
             -- Total de produtos cadastrados
             IFNULL((
-                SELECT CONCAT('Qtd:', COUNT(*))
+                SELECT CAST(CONCAT('Qtd:', COUNT(*)) AS CHAR)
                 FROM produtos p
                 WHERE p.comercio_id = @idEmpresa
             ),'Qtd:0') AS total_produtos,
@@ -201,7 +201,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
 
                 if (tabela.Rows.Count > 0)
                 {
-                    label1.Text = tabela.Rows[0]["total_produtos"].ToString();
+                    var valor = tabela.Rows[0]["total_produtos"];
+                    label1.Text = valor.ToString();
                     label2.Text = tabela.Rows[0]["produto_mais_caro"].ToString();
                     label3.Text = tabela.Rows[0]["produto_mais_barato"].ToString();
                     label4.Text = tabela.Rows[0]["melhor_margem"].ToString();
@@ -219,7 +220,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
             SELECT
             -- Total de vendas
             IFNULL((
-                SELECT CONCAT('R$:', SUM(v.lucro), ', Qtd:', COUNT(DISTINCT v.id))
+                SELECT CAST(CONCAT('R$:', SUM(v.lucro), ', Qtd:', COUNT(DISTINCT v.id)) AS CHAR)
                 FROM vendas v
                 JOIN funcionarios f ON f.id = v.funcionario_id
                 WHERE f.comercio_id = @idEmpresa  

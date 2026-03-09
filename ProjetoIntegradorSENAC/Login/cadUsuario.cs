@@ -111,7 +111,7 @@ namespace ProjetoIntegradorSENAC.Usuario
 
         private void bntSair_Click(object sender, EventArgs e)
         {
-            main.AbrirFormNoPanel (new loginUsuario(main));
+            main.AbrirFormNoPanel(new loginUsuario(main));
 
         }
 
@@ -227,8 +227,8 @@ namespace ProjetoIntegradorSENAC.Usuario
                 info.ShowInTaskbar = false;
 
                 info.Location = new Point(pos.X + 10, pos.Y + 10);
+                info.Show();
 
-                main.AbrirFormNoPanel(info);
             }
         }
 
@@ -239,5 +239,7 @@ namespace ProjetoIntegradorSENAC.Usuario
                 info.Close();
             }
         }
+
+      
     }
 }

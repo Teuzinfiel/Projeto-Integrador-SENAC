@@ -30,10 +30,10 @@
         {
             panel2 = new Panel();
             lbTitulo = new Label();
+            btnSair = new Button();
             lbMensagem = new Label();
             btnOk = new Button();
             panel1 = new Panel();
-            btnSair = new Button();
             panel2.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -42,9 +42,10 @@
             // 
             panel2.BackColor = Color.FromArgb(30, 30, 40);
             panel2.Controls.Add(lbTitulo);
+            panel2.Controls.Add(btnSair);
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(301, 33);
+            panel2.Size = new Size(361, 33);
             panel2.TabIndex = 37;
             // 
             // lbTitulo
@@ -58,12 +59,26 @@
             lbTitulo.TabIndex = 0;
             lbTitulo.Text = "label1";
             // 
+            // btnSair
+            // 
+            btnSair.BackColor = Color.Transparent;
+            btnSair.Dock = DockStyle.Right;
+            btnSair.FlatStyle = FlatStyle.Popup;
+            btnSair.ForeColor = Color.White;
+            btnSair.Location = new Point(307, 0);
+            btnSair.Name = "btnSair";
+            btnSair.Size = new Size(54, 33);
+            btnSair.TabIndex = 35;
+            btnSair.Text = "X";
+            btnSair.UseVisualStyleBackColor = false;
+            btnSair.Click += btnSair_Click;
+            // 
             // lbMensagem
             // 
             lbMensagem.AutoSize = true;
             lbMensagem.Font = new Font("Franklin Gothic Medium", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lbMensagem.ForeColor = Color.FromArgb(180, 180, 190);
-            lbMensagem.Location = new Point(23, 28);
+            lbMensagem.Location = new Point(13, 14);
             lbMensagem.Name = "lbMensagem";
             lbMensagem.Size = new Size(50, 20);
             lbMensagem.TabIndex = 38;
@@ -99,19 +114,6 @@
             panel1.Size = new Size(340, 110);
             panel1.TabIndex = 40;
             // 
-            // btnSair
-            // 
-            btnSair.BackColor = Color.Transparent;
-            btnSair.FlatStyle = FlatStyle.Popup;
-            btnSair.ForeColor = Color.White;
-            btnSair.Location = new Point(307, 0);
-            btnSair.Name = "btnSair";
-            btnSair.Size = new Size(54, 33);
-            btnSair.TabIndex = 35;
-            btnSair.Text = "X";
-            btnSair.UseVisualStyleBackColor = false;
-            btnSair.Click += btnSair_Click;
-            // 
             // caixaMensagem
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -119,7 +121,6 @@
             BackColor = Color.FromArgb(35, 35, 45);
             ClientSize = new Size(361, 164);
             Controls.Add(panel1);
-            Controls.Add(btnSair);
             Controls.Add(panel2);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 2, 3, 2);

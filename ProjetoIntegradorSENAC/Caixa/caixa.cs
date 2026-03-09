@@ -456,8 +456,6 @@ namespace ProjetoIntegradorSENAC.Caixa
 
                         SalvarFinanceiro(vendaId, parcelas);
 
-                        SoundPlayer player = new SoundPlayer(Properties.Resources.videoplayback);
-                        player.Play();
 
                         MessageBox.Show("Venda finalizada com sucesso!");
 

@@ -44,7 +44,7 @@
             btnMinimizar.Text = "-";
             btnMinimizar.Size = new Size(40, 30);
             btnMinimizar.Location = new Point(300, 0);
-            btnMinimizar.Click += (s, e) => WindowState = FormWindowState.Minimized;
+                btnMinimizar.Click += (s, e) => WindowState = FormWindowState.Minimized;
 
             // btnFechar
             btnFechar.FlatStyle = FlatStyle.Popup;

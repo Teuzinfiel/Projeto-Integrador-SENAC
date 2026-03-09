@@ -6,7 +6,7 @@ namespace ProjetoIntegradorSENAC.Caixa
     public partial class FrmPagamento : Form
     {
         public string FormaPagamentoSelecionada { get; private set; }
-
+        public int ParcelasSelecionadas { get; private set; } = 1;
         public FrmPagamento()
         {
             InitializeComponent();
@@ -32,12 +32,24 @@ namespace ProjetoIntegradorSENAC.Caixa
 
         private void panel2_Click(object sender, EventArgs e)
         {
-            this.Selecionar("Credito");
+            FrmParcelamento frm = new FrmParcelamento();
+
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                ParcelasSelecionadas = frm.Parcelas;
+                Selecionar("Credito");
+            }
         }
 
         private void panel5_Click(object sender, EventArgs e)
         {
-            this.Selecionar("Débito");
+            FrmParcelamento frm = new FrmParcelamento();
+
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                ParcelasSelecionadas = frm.Parcelas;
+                Selecionar("Debito");
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

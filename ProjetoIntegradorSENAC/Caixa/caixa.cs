@@ -449,14 +449,22 @@ namespace ProjetoIntegradorSENAC.Caixa
                     {
                         _vendaAtual.FormaPagamento = frm.FormaPagamentoSelecionada;
 
+                        int parcelas = frm.ParcelasSelecionadas;
+
                         int vendaId = SalvarVenda();
                         SalvarItensVenda(vendaId);
 
+                        SalvarFinanceiro(vendaId, parcelas);
+
                         SoundPlayer player = new SoundPlayer(Properties.Resources.videoplayback);
                         player.Play();
+
                         MessageBox.Show("Venda finalizada com sucesso!");
+
                         LogService.CriarLog(this.idEmpresa, this.idUser, "Fez uma venda");
+
                         LimparVenda();
+
                         AbrirTelaImpressao(vendaId);
                     }
                     catch (Exception ex)
@@ -465,9 +473,121 @@ namespace ProjetoIntegradorSENAC.Caixa
                     }
                 }
             }
-
         }
+        private void SalvarFinanceiro(int vendaId, int parcelas)
+        {
+            using (MySqlConnection conn = Banco.AbrirConexao())
+            using (MySqlTransaction trans = conn.BeginTransaction())
+            {
+                try
+                {
+                    int contaFinanceira = BuscarOuCriarContaFinanceira(conn, trans);
 
+                    decimal valorTotal = _vendaAtual.TotalBruto;
+
+                    string sqlConta = @"
+            INSERT INTO contas_receber
+            (comercio_id,pagador_tipo,descricao,valor,data_vencimento,origem_tipo,origem_id,centro_custo_id,status)
+            VALUES
+            (@comercio,'CLIENTE','Venda PDV',@valor,CURDATE(),'VENDA',@venda,NULL,'RECEBIDO');
+
+            SELECT LAST_INSERT_ID();
+            ";
+
+                    int contaReceber;
+
+                    using (MySqlCommand cmd = new MySqlCommand(sqlConta, conn, trans))
+                    {
+                        cmd.Parameters.AddWithValue("@comercio", idEmpresa);
+                        cmd.Parameters.AddWithValue("@valor", valorTotal);
+                        cmd.Parameters.AddWithValue("@venda", vendaId);
+
+                        contaReceber = Convert.ToInt32(cmd.ExecuteScalar());
+                    }
+
+                    decimal valorParcela = valorTotal / parcelas;
+
+                    for (int i = 1; i <= parcelas; i++)
+                    {
+                        string sqlParcela = @"
+                INSERT INTO parcelas
+                (tipo,titulo_id,numero_parcela,valor,data_vencimento,status)
+                VALUES
+                ('RECEBER',@titulo,@numero,@valor,
+                DATE_ADD(CURDATE(),INTERVAL @mes MONTH),'ABERTO');
+
+                SELECT LAST_INSERT_ID();
+                ";
+
+                        int parcelaId;
+
+                        using (MySqlCommand cmd = new MySqlCommand(sqlParcela, conn, trans))
+                        {
+                            cmd.Parameters.AddWithValue("@titulo", contaReceber);
+                            cmd.Parameters.AddWithValue("@numero", i);
+                            cmd.Parameters.AddWithValue("@valor", valorParcela);
+                            cmd.Parameters.AddWithValue("@mes", i - 1);
+
+                            parcelaId = Convert.ToInt32(cmd.ExecuteScalar());
+                        }
+
+                        if (i == 1)
+                        {
+                            string sqlMov = @"
+                    INSERT INTO movimentacoes_financeiras
+                    (conta_financeira_id,tipo,valor,data_movimento,origem_tipo,origem_id,descricao)
+                    VALUES
+                    (@conta,'ENTRADA',@valor,CURDATE(),'RECEBER',@origem,'Venda PDV');
+
+                    SELECT LAST_INSERT_ID();
+                    ";
+
+                            int movId;
+
+                            using (MySqlCommand cmd = new MySqlCommand(sqlMov, conn, trans))
+                            {
+                                cmd.Parameters.AddWithValue("@conta", contaFinanceira);
+                                cmd.Parameters.AddWithValue("@valor", valorParcela);
+                                cmd.Parameters.AddWithValue("@origem", contaReceber);
+
+                                movId = Convert.ToInt32(cmd.ExecuteScalar());
+                            }
+
+                            string sqlPagamento = @"
+                    INSERT INTO pagamentos
+                    (parcela_id,movimentacao_id,valor_pago,data_pagamento)
+                    VALUES
+                    (@parcela,@mov,@valor,CURDATE());
+                    ";
+
+                            using (MySqlCommand cmd = new MySqlCommand(sqlPagamento, conn, trans))
+                            {
+                                cmd.Parameters.AddWithValue("@parcela", parcelaId);
+                                cmd.Parameters.AddWithValue("@mov", movId);
+                                cmd.Parameters.AddWithValue("@valor", valorParcela);
+
+                                cmd.ExecuteNonQuery();
+                            }
+
+                            string sqlUpdate = "UPDATE parcelas SET status='PAGO' WHERE id=@id";
+
+                            using (MySqlCommand cmd = new MySqlCommand(sqlUpdate, conn, trans))
+                            {
+                                cmd.Parameters.AddWithValue("@id", parcelaId);
+                                cmd.ExecuteNonQuery();
+                            }
+                        }
+                    }
+
+                    trans.Commit();
+                }
+                catch
+                {
+                    trans.Rollback();
+                    throw;
+                }
+            }
+        }
         private void AbrirTelaImpressao(int vendaId)
         {
             using (var frm = new frmImprimirVenda(vendaId))
@@ -673,14 +793,15 @@ namespace ProjetoIntegradorSENAC.Caixa
                 {
                     // 🔎 Buscar venda
                     string sqlVenda = @"
-                SELECT id, funcionario_id
-                FROM vendas
-                WHERE codigo_consumidor = @codigo
-                LIMIT 1;
+               SELECT id, funcionario_id, total
+FROM vendas
+WHERE codigo_consumidor = @codigo
+LIMIT 1;
             ";
 
                     int vendaId;
                     int funcionarioId;
+                    decimal valorVenda;
 
                     using (MySqlCommand cmd = new MySqlCommand(sqlVenda, conn, trans))
                     {
@@ -695,6 +816,7 @@ namespace ProjetoIntegradorSENAC.Caixa
                             funcionarioId = reader.IsDBNull(reader.GetOrdinal("funcionario_id"))
                                 ? 0
                                 : reader.GetInt32("funcionario_id");
+                            valorVenda = reader.GetDecimal("total");
                         }
                     }
 
@@ -726,6 +848,7 @@ namespace ProjetoIntegradorSENAC.Caixa
                     // 🔁 Devolver estoque
                     foreach (var item in itens)
                     {
+
                         string sqlMov = @"
     INSERT INTO movimentacoes_estoque
     (produto_id, funcionario_id, comercio_id, tipo, quantidade, quantidade_final, motivo)
@@ -748,7 +871,7 @@ namespace ProjetoIntegradorSENAC.Caixa
                             cmd.ExecuteNonQuery();
                         }
                     }
-
+                    RegistrarFinanceiroDevolucao(vendaId, valorVenda, conn, trans);
                     // ❌ Excluir itens
                     using (MySqlCommand cmd = new MySqlCommand(
                         "DELETE FROM items_venda WHERE vendas_id = @venda",
@@ -837,9 +960,120 @@ namespace ProjetoIntegradorSENAC.Caixa
             carregarProdutos(Banco.Pesquisar(query));
         }
 
-        private void rightLayout_Paint(object sender, PaintEventArgs e)
+        private int BuscarOuCriarContaFinanceira(MySqlConnection conn, MySqlTransaction trans)
         {
+            string sql = @"SELECT id 
+                   FROM contas_financeiras
+                   WHERE comercio_id = @comercio
+                   AND ativo = 1
+                   LIMIT 1";
 
+            using (MySqlCommand cmd = new MySqlCommand(sql, conn, trans))
+            {
+                cmd.Parameters.AddWithValue("@comercio", idEmpresa);
+
+                object result = cmd.ExecuteScalar();
+
+                if (result != null)
+                    return Convert.ToInt32(result);
+            }
+
+            string insert = @"
+    INSERT INTO contas_financeiras
+    (comercio_id,nome,tipo,banco,agencia,conta)
+    VALUES
+    (@comercio,'Conta Caixa','CAIXA','TEMP','000','000');
+
+    SELECT LAST_INSERT_ID();
+    ";
+
+            using (MySqlCommand cmd = new MySqlCommand(insert, conn, trans))
+            {
+                cmd.Parameters.AddWithValue("@comercio", idEmpresa);
+
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
         }
+
+        private void RegistrarFinanceiroDevolucao(int vendaId, decimal valor, MySqlConnection conn, MySqlTransaction trans)
+        {
+            int contaFinanceira = BuscarOuCriarContaFinanceira(conn, trans);
+
+            string sqlConta = @"
+    INSERT INTO contas_pagar
+    (comercio_id, descricao, valor, data_vencimento, origem_tipo, origem_id, status)
+    VALUES
+    (@comercio,'Devolução venda',@valor,CURDATE(),'DEVOLUCAO',@venda,'PAGO');
+
+    SELECT LAST_INSERT_ID();
+    ";
+
+            int contaPagar;
+
+            using (MySqlCommand cmd = new MySqlCommand(sqlConta, conn, trans))
+            {
+                cmd.Parameters.AddWithValue("@comercio", idEmpresa);
+                cmd.Parameters.AddWithValue("@valor", valor);
+                cmd.Parameters.AddWithValue("@venda", vendaId);
+
+                contaPagar = Convert.ToInt32(cmd.ExecuteScalar());
+            }
+
+            string sqlParcela = @"
+    INSERT INTO parcelas
+    (tipo,titulo_id,numero_parcela,valor,data_vencimento,status)
+    VALUES
+    ('PAGAR',@titulo,1,@valor,CURDATE(),'PAGO');
+
+    SELECT LAST_INSERT_ID();
+    ";
+
+            int parcelaId;
+
+            using (MySqlCommand cmd = new MySqlCommand(sqlParcela, conn, trans))
+            {
+                cmd.Parameters.AddWithValue("@titulo", contaPagar);
+                cmd.Parameters.AddWithValue("@valor", valor);
+
+                parcelaId = Convert.ToInt32(cmd.ExecuteScalar());
+            }
+
+            string sqlMov = @"
+    INSERT INTO movimentacoes_financeiras
+    (conta_financeira_id,tipo,valor,data_movimento,origem_tipo,origem_id,descricao)
+    VALUES
+    (@conta,'SAIDA',@valor,CURDATE(),'DEVOLUCAO',@origem,'Devolução de venda');
+
+    SELECT LAST_INSERT_ID();
+    ";
+
+            int movId;
+
+            using (MySqlCommand cmd = new MySqlCommand(sqlMov, conn, trans))
+            {
+                cmd.Parameters.AddWithValue("@conta", contaFinanceira);
+                cmd.Parameters.AddWithValue("@valor", valor);
+                cmd.Parameters.AddWithValue("@origem", contaPagar);
+
+                movId = Convert.ToInt32(cmd.ExecuteScalar());
+            }
+
+            string sqlPagamento = @"
+    INSERT INTO pagamentos
+    (parcela_id,movimentacao_id,valor_pago,data_pagamento)
+    VALUES
+    (@parcela,@mov,@valor,CURDATE());
+    ";
+
+            using (MySqlCommand cmd = new MySqlCommand(sqlPagamento, conn, trans))
+            {
+                cmd.Parameters.AddWithValue("@parcela", parcelaId);
+                cmd.Parameters.AddWithValue("@mov", movId);
+                cmd.Parameters.AddWithValue("@valor", valor);
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+
     }
 }

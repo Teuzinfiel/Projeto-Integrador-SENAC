@@ -277,6 +277,7 @@
             // 
             label4.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label4.AutoSize = true;
+            label4.Cursor = Cursors.Hand;
             label4.FlatStyle = FlatStyle.System;
             label4.Font = new Font("Franklin Gothic Medium", 15F);
             label4.ForeColor = Color.FromArgb(224, 224, 224);
@@ -285,6 +286,7 @@
             label4.Size = new Size(62, 25);
             label4.TabIndex = 4;
             label4.Text = "Ajuda";
+            label4.Click += label4_Click;
             // 
             // txtNomeEmpresa
             // 

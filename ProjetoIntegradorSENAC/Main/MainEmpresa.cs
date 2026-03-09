@@ -10,6 +10,7 @@ using ProjetoIntegradorSENAC.Main;
 using ProjetoIntegradorSENAC.Produto;
 using ProjetoIntegradorSENAC.Usuarios;
 using System.Data;
+using System.Diagnostics;
 
 
 namespace ProjetoIntegradorSENAC
@@ -37,10 +38,10 @@ namespace ProjetoIntegradorSENAC
             {
                 txtNomeEmpresa.Text = nomeEmpresa.Substring(0, 20) + "...";
             }
-            
+
             main = mainFrm;
 
-           
+
         }
 
         public void DestacarMovimentacoes()
@@ -71,7 +72,7 @@ namespace ProjetoIntegradorSENAC
             formFilho.Show();
         }
 
-      
+
 
         private void btnCaixa_Click(object sender, EventArgs e)
         {
@@ -169,7 +170,7 @@ namespace ProjetoIntegradorSENAC
         {
             if (idUsuario != idDono)
             {
-                btnFuncionario.ImageIndex = 9;             
+                btnFuncionario.ImageIndex = 9;
                 btnFuncionario.ForeColor = Color.FromArgb(100, 100, 100);
             }
             try
@@ -192,6 +193,16 @@ namespace ProjetoIntegradorSENAC
                 MessageBox.Show("Erro ao buscar nome do usuário:\n" + ex.Message);
                 txtNomeUser.Text = "Bem-vindo";
             }
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = "http://localhost/TCC-GG/index.html",
+                UseShellExecute = true
+            });
+
         }
     }
 }

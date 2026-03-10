@@ -9,6 +9,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using System.Media;
+using ProjetoIntegradorSENAC.personalizado;
 
 namespace ProjetoIntegradorSENAC.Caixa
 {
@@ -159,7 +160,10 @@ namespace ProjetoIntegradorSENAC.Caixa
 
             if (quantidadeAtual >= estoque)
             {
-                MessageBox.Show("Estoque insuficiente");
+
+                var opa = new caixaMensagem("Estoque insuficiente", "Falha");
+                opa.ShowDialog();
+
                 return;
             }
 
@@ -281,7 +285,10 @@ namespace ProjetoIntegradorSENAC.Caixa
             {
                 if (estoque <= item.Quantidade)
                 {
-                    MessageBox.Show("Estoque insuficiente");
+
+                    var opa = new caixaMensagem("Estoque insuficiente", "Falha");
+                    opa.ShowDialog();
+                 
                     return;
                 }
 
@@ -412,7 +419,8 @@ namespace ProjetoIntegradorSENAC.Caixa
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Selecione um Desconto entre 0 a 99");
+                var opa = new caixaMensagem("Selecione um Desconto entre 0 a 99", "Falha ❌");
+                opa.ShowDialog();
                 textDesconto.Text = "0";
             }
         }
@@ -420,6 +428,7 @@ namespace ProjetoIntegradorSENAC.Caixa
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             if (_vendaAtual.EstaVazia()) return;
+
 
             var resp = MessageBox.Show(
                 "Deseja cancelar a venda?",
@@ -437,7 +446,10 @@ namespace ProjetoIntegradorSENAC.Caixa
         {
             if (_vendaAtual.EstaVazia())
             {
-                MessageBox.Show("Não há itens na venda.");
+
+                var opa = new caixaMensagem("Não há itens na venda.", "Falha ❌");
+                opa.ShowDialog();
+   
                 return;
             }
 
@@ -456,8 +468,9 @@ namespace ProjetoIntegradorSENAC.Caixa
 
                         SalvarFinanceiro(vendaId, parcelas);
 
+                        var opa = new caixaMensagem("Venda finalizada com sucesso!", "Sucesso ✔");
+                        opa.ShowDialog();
 
-                        MessageBox.Show("Venda finalizada com sucesso!");
 
                         LogService.CriarLog(this.idEmpresa, this.idUser, "Fez uma venda");
 

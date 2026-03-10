@@ -252,15 +252,17 @@ namespace ProjetoIntegradorSENAC.Dashboard
             ), 'Sem vendas (R$: 0,00, Qtd: 0)') AS categoria_lider,
             
             -- Ticket médio de vendas
-            IFNULL((
-                SELECT CONCAT('R$:', ROUND(SUM(iv.quantidade * iv.preco_unitario) / NULLIF(COUNT(DISTINCT v.id), 0), 2))
-                FROM items_venda iv
-                JOIN vendas v ON v.id = iv.vendas_id
+            IFNULL(
+            (
+                SELECT CONCAT('R$:', FORMAT(SUM(v.total) / COUNT(v.id), 2))
+                FROM vendas v
                 JOIN funcionarios f ON f.id = v.funcionario_id
-                WHERE f.comercio_id = @idEmpresa  
+                WHERE f.comercio_id = @idEmpresa
                 AND v.data_venda >= @dataInicio
                 AND v.data_venda < DATE_ADD(@dataFim, INTERVAL 1 DAY)
-            ), 'R$:0,00') AS ticket_medio_vendas,
+            ),
+            'R$:0,00'
+            ) AS ticket_medio_vendas  ,
             
             -- Itens por venda
             IFNULL((

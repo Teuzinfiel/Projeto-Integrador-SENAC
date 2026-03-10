@@ -357,13 +357,14 @@
             // 
             // labelCategorias
             // 
-            labelCategorias.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            labelCategorias.Anchor = AnchorStyles.Top;
+            labelCategorias.AutoSize = true;
             labelCategorias.FlatStyle = FlatStyle.System;
             labelCategorias.Font = new Font("Franklin Gothic Medium", 15F);
             labelCategorias.ForeColor = Color.FromArgb(180, 180, 190);
-            labelCategorias.Location = new Point(460, 17);
+            labelCategorias.Location = new Point(487, 17);
             labelCategorias.Name = "labelCategorias";
-            labelCategorias.Size = new Size(104, 24);
+            labelCategorias.Size = new Size(104, 25);
             labelCategorias.TabIndex = 0;
             labelCategorias.Text = "Categorias";
             labelCategorias.TextAlign = ContentAlignment.MiddleCenter;

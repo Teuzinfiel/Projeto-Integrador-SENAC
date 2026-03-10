@@ -426,7 +426,7 @@
             dtgCategoria.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.FromArgb(40, 40, 50);
-            dataGridViewCellStyle3.Font = new Font("Franklin Gothic Medium", 14.25F);
+            dataGridViewCellStyle3.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dataGridViewCellStyle3.ForeColor = Color.White;
             dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(70, 70, 90);
             dataGridViewCellStyle3.SelectionForeColor = Color.White;
@@ -440,7 +440,7 @@
             dtgCategoria.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = Color.FromArgb(40, 40, 50);
-            dataGridViewCellStyle4.Font = new Font("Franklin Gothic Medium", 11F);
+            dataGridViewCellStyle4.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dataGridViewCellStyle4.ForeColor = Color.White;
             dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(70, 70, 90);
             dataGridViewCellStyle4.SelectionForeColor = Color.White;
@@ -448,7 +448,7 @@
             dtgCategoria.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dtgCategoria.RowHeadersVisible = false;
             dataGridViewCellStyle5.BackColor = Color.FromArgb(40, 40, 50);
-            dataGridViewCellStyle5.Font = new Font("Franklin Gothic Medium", 11F);
+            dataGridViewCellStyle5.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dataGridViewCellStyle5.ForeColor = Color.White;
             dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(70, 70, 90);
             dataGridViewCellStyle5.SelectionForeColor = Color.White;
@@ -704,7 +704,7 @@
             dtgProdutos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle8.BackColor = SystemColors.Window;
-            dataGridViewCellStyle8.Font = new Font("Franklin Gothic Medium", 14.25F);
+            dataGridViewCellStyle8.Font = new Font("Franklin Gothic Medium", 12F);
             dataGridViewCellStyle8.ForeColor = SystemColors.ControlText;
             dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
@@ -718,7 +718,7 @@
             dtgProdutos.ReadOnly = true;
             dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle9.BackColor = Color.FromArgb(40, 40, 50);
-            dataGridViewCellStyle9.Font = new Font("Franklin Gothic Medium", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle9.Font = new Font("Franklin Gothic Medium", 12F);
             dataGridViewCellStyle9.ForeColor = Color.White;
             dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(70, 70, 90);
             dataGridViewCellStyle9.SelectionForeColor = Color.White;
@@ -726,7 +726,7 @@
             dtgProdutos.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             dtgProdutos.RowHeadersVisible = false;
             dataGridViewCellStyle10.BackColor = Color.FromArgb(40, 40, 50);
-            dataGridViewCellStyle10.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle10.Font = new Font("Franklin Gothic Medium", 12F);
             dataGridViewCellStyle10.ForeColor = Color.White;
             dataGridViewCellStyle10.SelectionBackColor = Color.FromArgb(70, 70, 90);
             dataGridViewCellStyle10.SelectionForeColor = Color.White;

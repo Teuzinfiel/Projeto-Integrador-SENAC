@@ -98,10 +98,9 @@
             panel1.Controls.Add(mkCNPJ);
             panel1.Controls.Add(mkCPF);
             panel1.Controls.Add(button1);
-            panel1.Location = new Point(627, 32);
-            panel1.Margin = new Padding(3, 4, 3, 4);
+            panel1.Location = new Point(549, 24);
             panel1.Name = "panel1";
-            panel1.Size = new Size(822, 859);
+            panel1.Size = new Size(719, 644);
             panel1.TabIndex = 6;
             // 
             // panel2
@@ -114,10 +113,9 @@
             panel2.Controls.Add(txtBairro);
             panel2.Controls.Add(txtMunicipio);
             panel2.Controls.Add(button2);
-            panel2.Location = new Point(56, 335);
-            panel2.Margin = new Padding(3, 4, 3, 4);
+            panel2.Location = new Point(49, 251);
             panel2.Name = "panel2";
-            panel2.Size = new Size(711, 435);
+            panel2.Size = new Size(622, 326);
             panel2.TabIndex = 19;
             panel2.Visible = false;
             // 
@@ -126,9 +124,9 @@
             label19.AutoSize = true;
             label19.Font = new Font("Franklin Gothic Medium", 15F);
             label19.ForeColor = Color.White;
-            label19.Location = new Point(0, 204);
+            label19.Location = new Point(0, 153);
             label19.Name = "label19";
-            label19.Size = new Size(78, 32);
+            label19.Size = new Size(65, 25);
             label19.TabIndex = 39;
             label19.Text = "Bairro";
             // 
@@ -137,9 +135,9 @@
             label18.AutoSize = true;
             label18.Font = new Font("Franklin Gothic Medium", 15F);
             label18.ForeColor = Color.White;
-            label18.Location = new Point(0, 100);
+            label18.Location = new Point(0, 75);
             label18.Name = "label18";
-            label18.Size = new Size(117, 32);
+            label18.Size = new Size(96, 25);
             label18.TabIndex = 38;
             label18.Text = "Munícipio";
             // 
@@ -150,7 +148,7 @@
             label12.ForeColor = Color.White;
             label12.Location = new Point(3, -1);
             label12.Name = "label12";
-            label12.Size = new Size(56, 32);
+            label12.Size = new Size(47, 25);
             label12.TabIndex = 37;
             label12.Text = "CEP";
             // 
@@ -159,11 +157,10 @@
             mkCep.BackColor = Color.White;
             mkCep.Font = new Font("Microsoft Sans Serif", 20.25F);
             mkCep.ForeColor = Color.FromArgb(40, 40, 50);
-            mkCep.Location = new Point(0, 36);
-            mkCep.Margin = new Padding(3, 4, 3, 4);
+            mkCep.Location = new Point(0, 27);
             mkCep.Mask = "00000-000";
             mkCep.Name = "mkCep";
-            mkCep.Size = new Size(707, 46);
+            mkCep.Size = new Size(619, 38);
             mkCep.TabIndex = 36;
             mkCep.TextChanged += mkCep_TextChanged;
             mkCep.Leave += maskedTextBox1_Leave;
@@ -173,11 +170,10 @@
             txtBairro.BackColor = Color.White;
             txtBairro.Font = new Font("Microsoft Sans Serif", 20.25F);
             txtBairro.ForeColor = Color.FromArgb(40, 40, 50);
-            txtBairro.Location = new Point(0, 241);
-            txtBairro.Margin = new Padding(3, 4, 3, 4);
+            txtBairro.Location = new Point(0, 181);
             txtBairro.Name = "txtBairro";
             txtBairro.PlaceholderText = "  Digite aqui o Bairro do seu Comércio";
-            txtBairro.Size = new Size(710, 46);
+            txtBairro.Size = new Size(622, 38);
             txtBairro.TabIndex = 27;
             // 
             // txtMunicipio
@@ -185,11 +181,10 @@
             txtMunicipio.BackColor = Color.White;
             txtMunicipio.Font = new Font("Microsoft Sans Serif", 20.25F);
             txtMunicipio.ForeColor = Color.FromArgb(40, 40, 50);
-            txtMunicipio.Location = new Point(0, 137);
-            txtMunicipio.Margin = new Padding(3, 4, 3, 4);
+            txtMunicipio.Location = new Point(0, 103);
             txtMunicipio.Name = "txtMunicipio";
             txtMunicipio.PlaceholderText = "  Digite aqui o Municipio do seu Comércio";
-            txtMunicipio.Size = new Size(710, 46);
+            txtMunicipio.Size = new Size(622, 38);
             txtMunicipio.TabIndex = 26;
             txtMunicipio.TextChanged += textBox1_TextChanged;
             // 
@@ -201,10 +196,9 @@
             button2.FlatStyle = FlatStyle.Popup;
             button2.Font = new Font("Franklin Gothic Medium", 14F);
             button2.ForeColor = Color.White;
-            button2.Location = new Point(3, 392);
-            button2.Margin = new Padding(3, 4, 3, 4);
+            button2.Location = new Point(3, 294);
             button2.Name = "button2";
-            button2.Size = new Size(110, 43);
+            button2.Size = new Size(96, 32);
             button2.TabIndex = 25;
             button2.Text = "←";
             button2.UseVisualStyleBackColor = false;
@@ -217,10 +211,9 @@
             button3.FlatStyle = FlatStyle.Popup;
             button3.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button3.ForeColor = Color.White;
-            button3.Location = new Point(56, 777);
-            button3.Margin = new Padding(3, 4, 3, 4);
+            button3.Location = new Point(49, 583);
             button3.Name = "button3";
-            button3.Size = new Size(267, 47);
+            button3.Size = new Size(234, 35);
             button3.TabIndex = 36;
             button3.Text = "Voltar";
             button3.UseVisualStyleBackColor = false;
@@ -231,11 +224,10 @@
             mkTelefone.BackColor = Color.White;
             mkTelefone.Font = new Font("Microsoft Sans Serif", 20.25F);
             mkTelefone.ForeColor = Color.FromArgb(40, 40, 50);
-            mkTelefone.Location = new Point(56, 563);
-            mkTelefone.Margin = new Padding(3, 4, 3, 4);
+            mkTelefone.Location = new Point(49, 422);
             mkTelefone.Mask = "(00) 00000-0000";
             mkTelefone.Name = "mkTelefone";
-            mkTelefone.Size = new Size(710, 46);
+            mkTelefone.Size = new Size(622, 38);
             mkTelefone.TabIndex = 35;
             mkTelefone.TextChanged += mkTelefone_TextChanged;
             // 
@@ -244,9 +236,9 @@
             label15.AutoSize = true;
             label15.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label15.ForeColor = Color.FromArgb(192, 0, 0);
-            label15.Location = new Point(115, 207);
+            label15.Location = new Point(101, 155);
             label15.Name = "label15";
-            label15.Size = new Size(23, 29);
+            label15.Size = new Size(20, 25);
             label15.TabIndex = 32;
             label15.Text = "*";
             label15.Visible = false;
@@ -256,9 +248,9 @@
             label17.AutoSize = true;
             label17.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label17.ForeColor = Color.FromArgb(192, 0, 0);
-            label17.Location = new Point(245, 625);
+            label17.Location = new Point(214, 469);
             label17.Name = "label17";
-            label17.Size = new Size(23, 29);
+            label17.Size = new Size(20, 25);
             label17.TabIndex = 34;
             label17.Text = "*";
             label17.Visible = false;
@@ -268,9 +260,9 @@
             label14.AutoSize = true;
             label14.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label14.ForeColor = Color.FromArgb(192, 0, 0);
-            label14.Location = new Point(213, 436);
+            label14.Location = new Point(186, 327);
             label14.Name = "label14";
-            label14.Size = new Size(23, 29);
+            label14.Size = new Size(20, 25);
             label14.TabIndex = 31;
             label14.Text = "*";
             label14.Visible = false;
@@ -282,10 +274,9 @@
             btnSalvar.FlatStyle = FlatStyle.Popup;
             btnSalvar.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnSalvar.ForeColor = Color.White;
-            btnSalvar.Location = new Point(501, 777);
-            btnSalvar.Margin = new Padding(3, 4, 3, 4);
+            btnSalvar.Location = new Point(438, 583);
             btnSalvar.Name = "btnSalvar";
-            btnSalvar.Size = new Size(267, 47);
+            btnSalvar.Size = new Size(234, 35);
             btnSalvar.TabIndex = 29;
             btnSalvar.Text = "Salvar";
             btnSalvar.UseVisualStyleBackColor = false;
@@ -296,9 +287,9 @@
             label16.AutoSize = true;
             label16.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label16.ForeColor = Color.FromArgb(192, 0, 0);
-            label16.Location = new Point(259, 525);
+            label16.Location = new Point(227, 394);
             label16.Name = "label16";
-            label16.Size = new Size(23, 29);
+            label16.Size = new Size(20, 25);
             label16.TabIndex = 33;
             label16.Text = "*";
             label16.Visible = false;
@@ -308,11 +299,10 @@
             txtRazaoSocial.BackColor = Color.White;
             txtRazaoSocial.Font = new Font("Microsoft Sans Serif", 20.25F);
             txtRazaoSocial.ForeColor = Color.FromArgb(40, 40, 50);
-            txtRazaoSocial.Location = new Point(56, 372);
-            txtRazaoSocial.Margin = new Padding(3, 4, 3, 4);
+            txtRazaoSocial.Location = new Point(49, 279);
             txtRazaoSocial.Name = "txtRazaoSocial";
             txtRazaoSocial.PlaceholderText = "  Digite aqui a Razao Social";
-            txtRazaoSocial.Size = new Size(710, 46);
+            txtRazaoSocial.Size = new Size(622, 38);
             txtRazaoSocial.TabIndex = 0;
             txtRazaoSocial.TextChanged += txtRazaoSocial_TextChanged;
             // 
@@ -321,9 +311,9 @@
             label8.AutoSize = true;
             label8.Font = new Font("Franklin Gothic Medium", 25F);
             label8.ForeColor = SystemColors.Highlight;
-            label8.Location = new Point(430, 21);
+            label8.Location = new Point(357, 16);
             label8.Name = "label8";
-            label8.Size = new Size(193, 49);
+            label8.Size = new Size(156, 39);
             label8.TabIndex = 27;
             label8.Text = "Comércio";
             // 
@@ -332,9 +322,9 @@
             label13.AutoSize = true;
             label13.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label13.ForeColor = Color.FromArgb(192, 0, 0);
-            label13.Location = new Point(191, 335);
+            label13.Location = new Point(167, 251);
             label13.Name = "label13";
-            label13.Size = new Size(23, 29);
+            label13.Size = new Size(20, 25);
             label13.TabIndex = 30;
             label13.Text = "*";
             label13.Visible = false;
@@ -344,11 +334,10 @@
             txtEmail.BackColor = Color.White;
             txtEmail.Font = new Font("Microsoft Sans Serif", 20.25F);
             txtEmail.ForeColor = Color.FromArgb(40, 40, 50);
-            txtEmail.Location = new Point(56, 663);
-            txtEmail.Margin = new Padding(3, 4, 3, 4);
+            txtEmail.Location = new Point(49, 497);
             txtEmail.Name = "txtEmail";
             txtEmail.PlaceholderText = "  seuemail@gmail.com";
-            txtEmail.Size = new Size(710, 46);
+            txtEmail.Size = new Size(622, 38);
             txtEmail.TabIndex = 24;
             txtEmail.TextChanged += txtEmail_TextChanged;
             // 
@@ -357,9 +346,9 @@
             label7.AutoSize = true;
             label7.Font = new Font("Franklin Gothic Medium", 25F);
             label7.ForeColor = Color.White;
-            label7.Location = new Point(178, 21);
+            label7.Location = new Point(156, 16);
             label7.Name = "label7";
-            label7.Size = new Size(548, 49);
+            label7.Size = new Size(439, 39);
             label7.TabIndex = 26;
             label7.Text = "Cadastre seu                  aqui!";
             // 
@@ -368,9 +357,9 @@
             label5.AutoSize = true;
             label5.Font = new Font("Franklin Gothic Medium", 15F);
             label5.ForeColor = Color.White;
-            label5.Location = new Point(56, 525);
+            label5.Location = new Point(49, 394);
             label5.Name = "label5";
-            label5.Size = new Size(228, 32);
+            label5.Size = new Size(184, 25);
             label5.TabIndex = 23;
             label5.Text = "Numero de Telefone";
             // 
@@ -379,9 +368,9 @@
             label2.AutoSize = true;
             label2.Font = new Font("Franklin Gothic Medium", 15F);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(56, 335);
+            label2.Location = new Point(49, 251);
             label2.Name = "label2";
-            label2.Size = new Size(152, 32);
+            label2.Size = new Size(123, 25);
             label2.TabIndex = 12;
             label2.Text = "Razao Social";
             // 
@@ -390,9 +379,9 @@
             label6.AutoSize = true;
             label6.Font = new Font("Franklin Gothic Medium", 15F);
             label6.ForeColor = Color.White;
-            label6.Location = new Point(56, 625);
+            label6.Location = new Point(49, 469);
             label6.Name = "label6";
-            label6.Size = new Size(208, 32);
+            label6.Size = new Size(169, 25);
             label6.TabIndex = 25;
             label6.Text = "Email da Empresa";
             // 
@@ -401,11 +390,10 @@
             txtNomeFantasia.BackColor = Color.White;
             txtNomeFantasia.Font = new Font("Microsoft Sans Serif", 20.25F);
             txtNomeFantasia.ForeColor = Color.FromArgb(40, 40, 50);
-            txtNomeFantasia.Location = new Point(56, 468);
-            txtNomeFantasia.Margin = new Padding(3, 4, 3, 4);
+            txtNomeFantasia.Location = new Point(49, 351);
             txtNomeFantasia.Name = "txtNomeFantasia";
             txtNomeFantasia.PlaceholderText = "  Digite aqui o nome Fantasia";
-            txtNomeFantasia.Size = new Size(710, 46);
+            txtNomeFantasia.Size = new Size(622, 38);
             txtNomeFantasia.TabIndex = 13;
             txtNomeFantasia.TextChanged += txtNomeFantasia_TextChanged;
             // 
@@ -414,9 +402,9 @@
             label1.AutoSize = true;
             label1.Font = new Font("Franklin Gothic Medium", 15F);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(56, 431);
+            label1.Location = new Point(49, 323);
             label1.Name = "label1";
-            label1.Size = new Size(178, 32);
+            label1.Size = new Size(142, 25);
             label1.TabIndex = 14;
             label1.Text = "Nome Fantasia";
             // 
@@ -425,9 +413,9 @@
             label4.AutoSize = true;
             label4.Font = new Font("Franklin Gothic Medium", 15F);
             label4.ForeColor = Color.White;
-            label4.Location = new Point(56, 205);
+            label4.Location = new Point(49, 154);
             label4.Name = "label4";
-            label4.Size = new Size(68, 32);
+            label4.Size = new Size(56, 25);
             label4.TabIndex = 21;
             label4.Text = "CNPJ";
             // 
@@ -436,9 +424,9 @@
             label3.AutoSize = true;
             label3.Font = new Font("Franklin Gothic Medium", 15F);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(56, 116);
+            label3.Location = new Point(49, 87);
             label3.Name = "label3";
-            label3.Size = new Size(237, 32);
+            label3.Size = new Size(194, 25);
             label3.TabIndex = 20;
             label3.Text = "Escolha CNPJ ou CPF";
             // 
@@ -447,10 +435,9 @@
             panel3.BackColor = Color.FromArgb(30, 30, 40);
             panel3.Controls.Add(radioButton2);
             panel3.Controls.Add(radioButton1);
-            panel3.Location = new Point(56, 153);
-            panel3.Margin = new Padding(3, 4, 3, 4);
+            panel3.Location = new Point(49, 115);
             panel3.Name = "panel3";
-            panel3.Size = new Size(296, 41);
+            panel3.Size = new Size(259, 31);
             panel3.TabIndex = 19;
             // 
             // radioButton2
@@ -460,10 +447,9 @@
             radioButton2.FlatStyle = FlatStyle.Popup;
             radioButton2.Font = new Font("Franklin Gothic Medium", 15F);
             radioButton2.ForeColor = Color.White;
-            radioButton2.Location = new Point(30, 0);
-            radioButton2.Margin = new Padding(3, 4, 3, 4);
+            radioButton2.Location = new Point(26, 0);
             radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(88, 36);
+            radioButton2.Size = new Size(73, 29);
             radioButton2.TabIndex = 18;
             radioButton2.TabStop = true;
             radioButton2.Text = "CNPJ";
@@ -477,10 +463,9 @@
             radioButton1.FlatStyle = FlatStyle.Popup;
             radioButton1.Font = new Font("Franklin Gothic Medium", 15F);
             radioButton1.ForeColor = Color.White;
-            radioButton1.Location = new Point(181, 0);
-            radioButton1.Margin = new Padding(3, 4, 3, 4);
+            radioButton1.Location = new Point(158, 0);
             radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(76, 36);
+            radioButton1.Size = new Size(63, 29);
             radioButton1.TabIndex = 17;
             radioButton1.Text = "CPF";
             radioButton1.UseVisualStyleBackColor = true;
@@ -491,11 +476,10 @@
             mkCNPJ.BackColor = Color.White;
             mkCNPJ.Font = new Font("Microsoft Sans Serif", 20.25F);
             mkCNPJ.ForeColor = Color.FromArgb(40, 40, 50);
-            mkCNPJ.Location = new Point(56, 245);
-            mkCNPJ.Margin = new Padding(3, 4, 3, 4);
+            mkCNPJ.Location = new Point(49, 184);
             mkCNPJ.Mask = "  00,000,000/0000-00";
             mkCNPJ.Name = "mkCNPJ";
-            mkCNPJ.Size = new Size(370, 46);
+            mkCNPJ.Size = new Size(324, 38);
             mkCNPJ.TabIndex = 16;
             mkCNPJ.TextChanged += mkCNPJ_TextChanged;
             mkCNPJ.Leave += mkCNPJ_Leave;
@@ -506,11 +490,10 @@
             mkCPF.BackColor = Color.White;
             mkCPF.Font = new Font("Microsoft Sans Serif", 20.25F);
             mkCPF.ForeColor = Color.FromArgb(40, 40, 50);
-            mkCPF.Location = new Point(56, 245);
-            mkCPF.Margin = new Padding(3, 4, 3, 4);
+            mkCPF.Location = new Point(49, 184);
             mkCPF.Mask = "  000.000.000-00";
             mkCPF.Name = "mkCPF";
-            mkCPF.Size = new Size(370, 46);
+            mkCPF.Size = new Size(324, 38);
             mkCPF.TabIndex = 15;
             mkCPF.TextChanged += mkCPF_TextChanged;
             // 
@@ -522,10 +505,9 @@
             button1.FlatStyle = FlatStyle.Popup;
             button1.Font = new Font("Franklin Gothic Medium", 14F);
             button1.ForeColor = Color.White;
-            button1.Location = new Point(658, 724);
-            button1.Margin = new Padding(3, 4, 3, 4);
+            button1.Location = new Point(576, 543);
             button1.Name = "button1";
-            button1.Size = new Size(110, 43);
+            button1.Size = new Size(96, 32);
             button1.TabIndex = 25;
             button1.Text = "→";
             button1.UseVisualStyleBackColor = false;
@@ -538,9 +520,9 @@
             label9.BackColor = Color.Transparent;
             label9.Font = new Font("Microsoft Sans Serif", 43.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label9.ForeColor = SystemColors.Highlight;
-            label9.Location = new Point(23, 419);
+            label9.Location = new Point(20, 314);
             label9.Name = "label9";
-            label9.Size = new Size(278, 83);
+            label9.Size = new Size(226, 67);
             label9.TabIndex = 18;
             label9.Text = "Gestão";
             // 
@@ -550,9 +532,9 @@
             label10.AutoSize = true;
             label10.Font = new Font("Microsoft Sans Serif", 40F);
             label10.ForeColor = Color.White;
-            label10.Location = new Point(23, 339);
+            label10.Location = new Point(20, 254);
             label10.Name = "label10";
-            label10.Size = new Size(500, 228);
+            label10.Size = new Size(404, 189);
             label10.TabIndex = 17;
             label10.Text = "Transforme sua\r\n\r\nEm resultados.";
             // 
@@ -562,24 +544,23 @@
             label11.AutoSize = true;
             label11.Font = new Font("Microsoft Sans Serif", 20F);
             label11.ForeColor = Color.White;
-            label11.Location = new Point(35, 293);
+            label11.Location = new Point(31, 220);
             label11.Name = "label11";
-            label11.Size = new Size(382, 39);
+            label11.Size = new Size(304, 31);
             label11.TabIndex = 16;
             label11.Text = "Gerencie com facilidade";
             // 
             // cadEmpresa
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(35, 35, 45);
-            ClientSize = new Size(1463, 907);
+            ClientSize = new Size(1280, 680);
             Controls.Add(label9);
             Controls.Add(label10);
             Controls.Add(label11);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 4, 3, 4);
             Name = "cadEmpresa";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "cadEmpresa";

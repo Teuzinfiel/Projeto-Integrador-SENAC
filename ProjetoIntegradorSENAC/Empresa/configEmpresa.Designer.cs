@@ -32,6 +32,7 @@
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             dtgEmpresas = new DataGridView();
             label4 = new Label();
             mkTelefone = new MaskedTextBox();
@@ -80,7 +81,7 @@
             dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(80, 80, 110);
             dataGridViewCellStyle1.SelectionForeColor = Color.White;
             dtgEmpresas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dtgEmpresas.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            dtgEmpresas.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dtgEmpresas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgEmpresas.BackgroundColor = Color.FromArgb(30, 30, 40);
             dtgEmpresas.BorderStyle = BorderStyle.None;
@@ -97,7 +98,7 @@
             dtgEmpresas.ColumnHeadersHeight = 60;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = SystemColors.Window;
-            dataGridViewCellStyle3.Font = new Font("Franklin Gothic Medium", 14.25F);
+            dataGridViewCellStyle3.Font = new Font("Franklin Gothic Medium", 12F);
             dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
             dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
@@ -109,31 +110,39 @@
             dtgEmpresas.MultiSelect = false;
             dtgEmpresas.Name = "dtgEmpresas";
             dtgEmpresas.ReadOnly = true;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            dataGridViewCellStyle4.Font = new Font("Franklin Gothic Medium", 12F);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dtgEmpresas.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dtgEmpresas.RowHeadersVisible = false;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(40, 40, 50);
-            dataGridViewCellStyle4.Font = new Font("Franklin Gothic Medium", 16F);
-            dataGridViewCellStyle4.ForeColor = Color.White;
-            dataGridViewCellStyle4.Padding = new Padding(5);
-            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(90, 90, 120);
-            dataGridViewCellStyle4.SelectionForeColor = Color.White;
-            dtgEmpresas.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(40, 40, 50);
+            dataGridViewCellStyle5.Font = new Font("Franklin Gothic Medium", 12F);
+            dataGridViewCellStyle5.ForeColor = Color.White;
+            dataGridViewCellStyle5.Padding = new Padding(5);
+            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(90, 90, 120);
+            dataGridViewCellStyle5.SelectionForeColor = Color.White;
+            dtgEmpresas.RowsDefaultCellStyle = dataGridViewCellStyle5;
             dtgEmpresas.RowTemplate.Height = 45;
             dtgEmpresas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dtgEmpresas.Size = new Size(510, 458);
+            dtgEmpresas.Size = new Size(510, 440);
             dtgEmpresas.TabIndex = 11;
             dtgEmpresas.CellClick += dtgEmpresas_CellClick;
             // 
             // label4
             // 
             label4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            label4.AutoSize = true;
             label4.Font = new Font("Franklin Gothic Demi Cond", 30F);
             label4.ForeColor = Color.White;
-            label4.Location = new Point(716, 9);
+            label4.Location = new Point(738, 113);
             label4.Name = "label4";
             label4.Size = new Size(350, 47);
             label4.TabIndex = 10;
             label4.Text = "Gerenciar Comercios!";
+            label4.TextAlign = ContentAlignment.MiddleCenter;
             label4.Click += label4_Click;
             // 
             // mkTelefone
@@ -218,7 +227,7 @@
             btnVoltar.FlatStyle = FlatStyle.Popup;
             btnVoltar.Font = new Font("Franklin Gothic Medium", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnVoltar.ForeColor = Color.White;
-            btnVoltar.Location = new Point(612, 618);
+            btnVoltar.Location = new Point(582, 618);
             btnVoltar.Name = "btnVoltar";
             btnVoltar.Size = new Size(129, 35);
             btnVoltar.TabIndex = 50;
@@ -318,31 +327,32 @@
             // 
             // label5
             // 
-            label5.AutoSize = true;
+            label5.Anchor = AnchorStyles.Top;
             label5.Font = new Font("Franklin Gothic Medium", 25F);
             label5.ForeColor = Color.White;
-            label5.Location = new Point(9, 120);
+            label5.Location = new Point(21, 121);
             label5.Name = "label5";
             label5.Size = new Size(487, 39);
             label5.TabIndex = 58;
             label5.Text = "Selecione o                  desejado!";
+            label5.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label11
             // 
-            label11.AutoSize = true;
+            label11.Anchor = AnchorStyles.Top;
             label11.Font = new Font("Franklin Gothic Medium", 25F);
             label11.ForeColor = SystemColors.Highlight;
-            label11.Location = new Point(188, 120);
+            label11.Location = new Point(201, 121);
             label11.Name = "label11";
             label11.Size = new Size(156, 39);
             label11.TabIndex = 59;
             label11.Text = "Comercio";
+            label11.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // panel1
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             panel1.BackColor = Color.FromArgb(30, 30, 40);
-            panel1.Controls.Add(button1);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(label15);
             panel1.Controls.Add(mkTelefone);
@@ -355,20 +365,21 @@
             panel1.Controls.Add(txtRazaoSocial);
             panel1.Controls.Add(label10);
             panel1.Controls.Add(label9);
-            panel1.Location = new Point(582, 233);
+            panel1.Controls.Add(button1);
+            panel1.Location = new Point(582, 172);
             panel1.Name = "panel1";
-            panel1.Size = new Size(657, 379);
+            panel1.Size = new Size(657, 440);
             panel1.TabIndex = 60;
             // 
             // button1
             // 
-            button1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             button1.BackColor = Color.Transparent;
             button1.Cursor = Cursors.Hand;
             button1.FlatStyle = FlatStyle.Popup;
             button1.Font = new Font("Franklin Gothic Medium", 14F);
             button1.ForeColor = Color.White;
-            button1.Location = new Point(530, 336);
+            button1.Location = new Point(530, 397);
             button1.Name = "button1";
             button1.Size = new Size(96, 32);
             button1.TabIndex = 59;
@@ -397,7 +408,7 @@
             label12.AutoSize = true;
             label12.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label12.ForeColor = Color.FromArgb(192, 0, 0);
-            label12.Location = new Point(664, 158);
+            label12.Location = new Point(82, 17);
             label12.Name = "label12";
             label12.Size = new Size(16, 24);
             label12.TabIndex = 64;
@@ -410,7 +421,7 @@
             label18.AutoSize = true;
             label18.Font = new Font("Franklin Gothic Medium", 15F);
             label18.ForeColor = Color.White;
-            label18.Location = new Point(612, 157);
+            label18.Location = new Point(30, 16);
             label18.Name = "label18";
             label18.Size = new Size(56, 25);
             label18.TabIndex = 63;
@@ -423,7 +434,7 @@
             maskedTextBox1.Enabled = false;
             maskedTextBox1.Font = new Font("Franklin Gothic Book", 20.25F);
             maskedTextBox1.ForeColor = Color.FromArgb(40, 40, 50);
-            maskedTextBox1.Location = new Point(612, 187);
+            maskedTextBox1.Location = new Point(30, 46);
             maskedTextBox1.Mask = "  00,000,000/0000-00";
             maskedTextBox1.Name = "maskedTextBox1";
             maskedTextBox1.Size = new Size(324, 38);
@@ -436,7 +447,7 @@
             maskedTextBox2.Enabled = false;
             maskedTextBox2.Font = new Font("Franklin Gothic Book", 20.25F);
             maskedTextBox2.ForeColor = Color.FromArgb(40, 40, 50);
-            maskedTextBox2.Location = new Point(612, 187);
+            maskedTextBox2.Location = new Point(30, 46);
             maskedTextBox2.Mask = "  000,000,000-00";
             maskedTextBox2.Name = "maskedTextBox2";
             maskedTextBox2.Size = new Size(324, 38);
@@ -450,7 +461,7 @@
             button2.FlatStyle = FlatStyle.Popup;
             button2.Font = new Font("Franklin Gothic Medium", 14F);
             button2.ForeColor = Color.White;
-            button2.Location = new Point(33, 336);
+            button2.Location = new Point(33, 397);
             button2.Name = "button2";
             button2.Size = new Size(96, 32);
             button2.TabIndex = 58;
@@ -463,15 +474,19 @@
             panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             panel2.BackColor = Color.FromArgb(30, 30, 40);
             panel2.Controls.Add(label19);
+            panel2.Controls.Add(label12);
             panel2.Controls.Add(label2);
+            panel2.Controls.Add(label18);
             panel2.Controls.Add(label7);
             panel2.Controls.Add(mkCep);
             panel2.Controls.Add(txtBairro);
             panel2.Controls.Add(txtMunicipio);
             panel2.Controls.Add(button2);
-            panel2.Location = new Point(582, 233);
+            panel2.Controls.Add(maskedTextBox1);
+            panel2.Controls.Add(maskedTextBox2);
+            panel2.Location = new Point(582, 172);
             panel2.Name = "panel2";
-            panel2.Size = new Size(657, 379);
+            panel2.Size = new Size(657, 440);
             panel2.TabIndex = 65;
             panel2.Visible = false;
             // 
@@ -480,7 +495,7 @@
             label19.AutoSize = true;
             label19.Font = new Font("Franklin Gothic Medium", 15F);
             label19.ForeColor = Color.White;
-            label19.Location = new Point(30, 171);
+            label19.Location = new Point(30, 253);
             label19.Name = "label19";
             label19.Size = new Size(65, 25);
             label19.TabIndex = 64;
@@ -491,7 +506,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Franklin Gothic Medium", 15F);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(30, 94);
+            label2.Location = new Point(30, 176);
             label2.Name = "label2";
             label2.Size = new Size(96, 25);
             label2.TabIndex = 63;
@@ -502,7 +517,7 @@
             label7.AutoSize = true;
             label7.Font = new Font("Franklin Gothic Medium", 15F);
             label7.ForeColor = Color.White;
-            label7.Location = new Point(30, 19);
+            label7.Location = new Point(30, 101);
             label7.Name = "label7";
             label7.Size = new Size(47, 25);
             label7.TabIndex = 62;
@@ -513,10 +528,10 @@
             mkCep.BackColor = Color.White;
             mkCep.Font = new Font("Franklin Gothic Book", 20.25F);
             mkCep.ForeColor = Color.FromArgb(40, 40, 50);
-            mkCep.Location = new Point(30, 46);
+            mkCep.Location = new Point(30, 128);
             mkCep.Mask = "00000-000";
             mkCep.Name = "mkCep";
-            mkCep.Size = new Size(619, 38);
+            mkCep.Size = new Size(606, 38);
             mkCep.TabIndex = 61;
             mkCep.TextChanged += mkCep_TextChanged;
             // 
@@ -525,10 +540,10 @@
             txtBairro.BackColor = Color.White;
             txtBairro.Font = new Font("Franklin Gothic Book", 20.25F);
             txtBairro.ForeColor = Color.FromArgb(40, 40, 50);
-            txtBairro.Location = new Point(30, 199);
+            txtBairro.Location = new Point(30, 281);
             txtBairro.Name = "txtBairro";
             txtBairro.PlaceholderText = "  Digite aqui o Bairro do seu Comércio";
-            txtBairro.Size = new Size(622, 38);
+            txtBairro.Size = new Size(606, 38);
             txtBairro.TabIndex = 60;
             // 
             // txtMunicipio
@@ -536,10 +551,10 @@
             txtMunicipio.BackColor = Color.White;
             txtMunicipio.Font = new Font("Franklin Gothic Book", 20.25F);
             txtMunicipio.ForeColor = Color.FromArgb(40, 40, 50);
-            txtMunicipio.Location = new Point(30, 122);
+            txtMunicipio.Location = new Point(30, 204);
             txtMunicipio.Name = "txtMunicipio";
             txtMunicipio.PlaceholderText = "  Digite aqui o Municipio do seu Comércio";
-            txtMunicipio.Size = new Size(622, 38);
+            txtMunicipio.Size = new Size(606, 38);
             txtMunicipio.TabIndex = 59;
             // 
             // configEmpresa
@@ -548,9 +563,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(35, 35, 45);
             ClientSize = new Size(1280, 680);
+            Controls.Add(panel2);
             Controls.Add(btnExcluir);
-            Controls.Add(label12);
-            Controls.Add(label18);
             Controls.Add(btnSalvar);
             Controls.Add(btnVoltar);
             Controls.Add(label11);
@@ -558,9 +572,6 @@
             Controls.Add(label8);
             Controls.Add(dtgEmpresas);
             Controls.Add(label4);
-            Controls.Add(maskedTextBox1);
-            Controls.Add(maskedTextBox2);
-            Controls.Add(panel2);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "configEmpresa";

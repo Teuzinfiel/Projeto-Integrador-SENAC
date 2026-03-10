@@ -563,10 +563,10 @@ namespace ProjetoIntegradorSENAC.Dashboard
             };
             var barSeries1 = new BarSeries
             {
-                Title = "Qauntidade",
+                Title = "Quantidade",
                 FillColor = OxyColors.RoyalBlue,
                 LabelPlacement = LabelPlacement.Inside,
-                LabelFormatString = "Qtd: {0}"
+                LabelFormatString = "R$: {0}"
             };
             DataTable tabela1 = func_dashboard.ExecutarSelect(@"SELECT 
                 c.nome AS categoria,

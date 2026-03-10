@@ -37,6 +37,7 @@
             DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
             btnCadastro = new Button();
             lbMarca = new Label();
             PrMarca = new TextBox();
@@ -93,8 +94,8 @@
             lbMarcaAtt = new Label();
             lbNomeAtt = new Label();
             txtNomeProd = new TextBox();
-            btnAtivarProd = new Button();
             btnDesativarProd = new Button();
+            btnAtivarProd = new Button();
             mainLayout = new TableLayoutPanel();
             panel1.SuspendLayout();
             panel4.SuspendLayout();
@@ -425,7 +426,7 @@
             dtgCategoria.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.FromArgb(40, 40, 50);
-            dataGridViewCellStyle3.Font = new Font("Franklin Gothic Medium", 11F);
+            dataGridViewCellStyle3.Font = new Font("Franklin Gothic Medium", 14.25F);
             dataGridViewCellStyle3.ForeColor = Color.White;
             dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(70, 70, 90);
             dataGridViewCellStyle3.SelectionForeColor = Color.White;
@@ -701,27 +702,35 @@
             dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
             dtgProdutos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             dtgProdutos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = SystemColors.Window;
+            dataGridViewCellStyle8.Font = new Font("Franklin Gothic Medium", 14.25F);
+            dataGridViewCellStyle8.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
+            dtgProdutos.DefaultCellStyle = dataGridViewCellStyle8;
             dtgProdutos.EnableHeadersVisualStyles = false;
             dtgProdutos.GridColor = Color.FromArgb(60, 60, 80);
             dtgProdutos.Location = new Point(16, 95);
             dtgProdutos.MultiSelect = false;
             dtgProdutos.Name = "dtgProdutos";
             dtgProdutos.ReadOnly = true;
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = Color.FromArgb(40, 40, 50);
-            dataGridViewCellStyle8.Font = new Font("Franklin Gothic Medium", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle8.ForeColor = Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(70, 70, 90);
-            dataGridViewCellStyle8.SelectionForeColor = Color.White;
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
-            dtgProdutos.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
-            dtgProdutos.RowHeadersVisible = false;
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle9.BackColor = Color.FromArgb(40, 40, 50);
-            dataGridViewCellStyle9.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle9.Font = new Font("Franklin Gothic Medium", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dataGridViewCellStyle9.ForeColor = Color.White;
             dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(70, 70, 90);
             dataGridViewCellStyle9.SelectionForeColor = Color.White;
-            dtgProdutos.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
+            dtgProdutos.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dtgProdutos.RowHeadersVisible = false;
+            dataGridViewCellStyle10.BackColor = Color.FromArgb(40, 40, 50);
+            dataGridViewCellStyle10.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle10.ForeColor = Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = Color.FromArgb(70, 70, 90);
+            dataGridViewCellStyle10.SelectionForeColor = Color.White;
+            dtgProdutos.RowsDefaultCellStyle = dataGridViewCellStyle10;
             dtgProdutos.RowTemplate.Height = 26;
             dtgProdutos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dtgProdutos.Size = new Size(468, 180);
@@ -910,21 +919,6 @@
             txtNomeProd.Size = new Size(219, 26);
             txtNomeProd.TabIndex = 62;
             // 
-            // btnAtivarProd
-            // 
-            btnAtivarProd.BackColor = Color.Transparent;
-            btnAtivarProd.FlatStyle = FlatStyle.Popup;
-            btnAtivarProd.Font = new Font("Franklin Gothic Medium", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnAtivarProd.ForeColor = Color.DarkSeaGreen;
-            btnAtivarProd.Location = new Point(113, 264);
-            btnAtivarProd.Name = "btnAtivarProd";
-            btnAtivarProd.Size = new Size(110, 27);
-            btnAtivarProd.TabIndex = 87;
-            btnAtivarProd.Text = "Ativar Produto";
-            btnAtivarProd.UseVisualStyleBackColor = false;
-            btnAtivarProd.Visible = false;
-            btnAtivarProd.Click += btnAtivarProd_Click;
-            // 
             // btnDesativarProd
             // 
             btnDesativarProd.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
@@ -939,6 +933,21 @@
             btnDesativarProd.Text = "Desativar Produto";
             btnDesativarProd.UseVisualStyleBackColor = false;
             btnDesativarProd.Click += btnDesativarProd_Click;
+            // 
+            // btnAtivarProd
+            // 
+            btnAtivarProd.BackColor = Color.Transparent;
+            btnAtivarProd.FlatStyle = FlatStyle.Popup;
+            btnAtivarProd.Font = new Font("Franklin Gothic Medium", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnAtivarProd.ForeColor = Color.DarkSeaGreen;
+            btnAtivarProd.Location = new Point(113, 264);
+            btnAtivarProd.Name = "btnAtivarProd";
+            btnAtivarProd.Size = new Size(110, 27);
+            btnAtivarProd.TabIndex = 87;
+            btnAtivarProd.Text = "Ativar Produto";
+            btnAtivarProd.UseVisualStyleBackColor = false;
+            btnAtivarProd.Visible = false;
+            btnAtivarProd.Click += btnAtivarProd_Click;
             // 
             // mainLayout
             // 

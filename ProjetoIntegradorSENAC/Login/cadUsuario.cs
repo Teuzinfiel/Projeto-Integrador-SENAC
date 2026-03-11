@@ -62,7 +62,8 @@ namespace ProjetoIntegradorSENAC.Usuario
                     if (dt.Rows[0]["telefone"].ToString() == UsTelefone.Text)
                         mensagem += "Telefone já cadastrado!\n";
 
-                    MessageBox.Show(mensagem);
+                    var opa1 = new caixaMensagem(mensagem, "Falha ❌");
+                    opa1.ShowDialog(); 
                     return;
                 }
 
@@ -74,16 +75,23 @@ namespace ProjetoIntegradorSENAC.Usuario
 
                 Banco.Inserir(insert);
 
-                MessageBox.Show("Conta criada com sucesso!!");
+                var opa = new caixaMensagem("Conta criada com sucesso!", "Sucesso ✔");
+                opa.ShowDialog();
                 Funcoes.Limpar(this);
                 main.AbrirFormNoPanel(new loginUsuario(main));
             }
             else
             {
                 if (!senhaVal)
-                    MessageBox.Show("As senhas não correspondem");
+                {
+                    var opa = new caixaMensagem("As senhas não correspondem", "Falha ❌");
+                    opa.ShowDialog();
+                }
                 else
-                    MessageBox.Show("Preencha todos os campos corretamente");
+                {
+                    var opa = new caixaMensagem("Preencha todos os campos corretamente", "Falha ❌");
+                    opa.ShowDialog();
+                }
             }
         }
 

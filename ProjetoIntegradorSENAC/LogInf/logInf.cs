@@ -1,4 +1,5 @@
 ﻿using ProjetoIntegradorSENAC.Classes;
+using ProjetoIntegradorSENAC.personalizado;
 using System;
 using System.Data;
 using System.Text;
@@ -27,7 +28,8 @@ namespace ProjetoIntegradorSENAC.LogInf
         {
             if (dgvLogs.DataSource == null)
             {
-                MessageBox.Show("Não há dados para exportar.");
+                var opa = new caixaMensagem("Não há dados para exportar.", "Falha ❌");
+                opa.ShowDialog();
                 return;
             }
 

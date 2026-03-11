@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjetoIntegradorSENAC.personalizado;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,22 +21,38 @@ namespace ProjetoIntegradorSENAC.Caixa
             this.AcceptButton = button1;
         }
 
-        private void Devolucoes_Load(object sender, EventArgs e)
-        {
-            textBox1.Focus();
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(textBox1.Text))
             {
-                MessageBox.Show("Digite o código da venda.");
+                var opa = new caixaMensagem("Digite o código da venda.", "Falha ❌");
+                opa.ShowDialog(); 
                 return;
             }
 
             CodigoDigitado = textBox1.Text.Trim();
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnFechar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnMinimizar_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void Devolucoes_Load(object sender, EventArgs e)
+        {
+            textBox1.Focus();
         }
     }
 }

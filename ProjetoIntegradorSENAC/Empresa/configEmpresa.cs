@@ -1,6 +1,7 @@
 ﻿using ProjetoIntegradorSENAC.Classes;
 using ProjetoIntegradorSENAC.Empresa;
 using ProjetoIntegradorSENAC.Main;
+using ProjetoIntegradorSENAC.personalizado;
 using ProjetoIntegradorSENAC.Usuario;
 using System;
 using System.Collections.Generic;
@@ -263,15 +264,13 @@ namespace ProjetoIntegradorSENAC.Configurações
         WHERE id = {idEmpresa}";
 
                 Banco.Inserir(update);
-                MessageBox.Show("Empresa atualizada com sucesso!");
+                var opa = new caixaMensagem("Empresa atualizada com sucesso!", "Sucesso ✔");
+                opa.ShowDialog();
                 CarregarEmpresas();
             }
             else {
-                MessageBox.Show("Preencha corretamente todos os campos!",
-                                   "Erro",
-                                   MessageBoxButtons.OK,
-                                   MessageBoxIcon.Error);
-
+                var opa = new caixaMensagem("Preencha corretamente todos os campos!", "Falha ❌");
+                opa.ShowDialog();
             }
         }
 
@@ -284,17 +283,18 @@ namespace ProjetoIntegradorSENAC.Configurações
         {
             if (idEmpresa == 0)
             {
-                MessageBox.Show("Selecione uma empresa para excluir.", "Erro",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                var opa = new caixaMensagem("Selecione uma empresa para excluir.", "Falha ❌");
+                opa.ShowDialog();
                 return;
             }
-
-            DialogResult resultado = MessageBox.Show("Você tem certeza que deseja excluir este comércio?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-            if (resultado == DialogResult.Yes)
+            var opcao = new caixaDecisao("Você tem certeza que deseja excluir este comércio?", "Confirmação");
+            opcao.ShowDialog();
+            
+            if (opcao.decisao)
             {
                 Banco.Excluir($"DELETE FROM comercios WHERE id = {idEmpresa}");
-                MessageBox.Show("Empresa excluída com sucesso!");
+                var opa = new caixaMensagem("Empresa excluída com sucesso!", "Sucesso ✔");
+                opa.ShowDialog();
                 CarregarEmpresas();
             }
             else

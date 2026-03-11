@@ -71,7 +71,7 @@
             numParcelas.Maximum = new decimal(new int[] { 12, 0, 0, 0 });
             numParcelas.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numParcelas.Name = "numParcelas";
-            numParcelas.Size = new Size(344, 32);
+            numParcelas.Size = new Size(344, 39);
             numParcelas.TabIndex = 1;
             numParcelas.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 

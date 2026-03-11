@@ -1,11 +1,12 @@
 ﻿    using MySql.Data.MySqlClient;
+    using MySql.Data.MySqlClient;
     using Mysqlx.Crud;
     using ProjetoIntegradorSENAC.Classes;
+    using ProjetoIntegradorSENAC.Main;
+using ProjetoIntegradorSENAC.personalizado;
     using System;
     using System.Drawing;
     using System.Windows.Forms;
-    using MySql.Data.MySqlClient;
-    using ProjetoIntegradorSENAC.Main;
 
     namespace ProjetoIntegradorSENAC.Empresa
     {
@@ -135,7 +136,8 @@
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.ToString());
+                    var opa = new caixaMensagem("falha no CNPJ" + ex.ToString(), "Falha ❌");
+                    opa.ShowDialog();
                     return;
                 }
             }
@@ -202,10 +204,8 @@
 
             if (erroRazao || erroFantasia || erroDocumento || erroTelefone || erroEmail || erroCep)
             {
-                MessageBox.Show("Preencha corretamente todos os campos!",
-                                "Erro",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
+                var opa1 = new caixaMensagem("Preencha corretamente todos os campos!", "Falha ❌");
+                opa1.ShowDialog();
                 return;
             }
 
@@ -239,10 +239,8 @@
 
                 if (existe > 0)
                 {
-                    MessageBox.Show("Já existe uma empresa cadastrada com esse CPF/CNPJ!",
-                                    "Documento duplicado",
-                                    MessageBoxButtons.OK,
-                                    MessageBoxIcon.Warning);
+                    var opa2 = new caixaMensagem("Já existe uma empresa cadastrada com esse CPF/CNPJ!", "Falha ❌");
+                    opa2.ShowDialog();
                     return;
                 }
                 //  cria empresa
@@ -270,8 +268,8 @@
                 using (var cmd3 = new MySqlCommand(insertFuncionario, conn))
                     cmd3.ExecuteNonQuery();
             }
-
-            MessageBox.Show("Empresa cadastrada com sucesso!");
+            var opa = new caixaMensagem("Empresa cadastrada com sucesso!", "Falha ❌");
+            opa.ShowDialog();
             Funcoes.Limpar(this);
             main.AbrirFormNoPanel(new frmEmpresa(this.idUsuario, main));
            

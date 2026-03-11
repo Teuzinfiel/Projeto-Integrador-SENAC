@@ -4,6 +4,7 @@ using OxyPlot.Axes;
 using OxyPlot.Series;
 using OxyPlot.WindowsForms;
 using ProjetoIntegradorSENAC.Classes;
+using ProjetoIntegradorSENAC.personalizado;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -66,12 +67,14 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 !DateTime.TryParse(maskedInicio.Text, out _) ||
                 !DateTime.TryParse(maskedFim.Text, out _))
             {
-                MessageBox.Show("Data incompleta ou vazia.");
+                var opa = new caixaMensagem("Data incompleta ou vazia.", "Falha ❌");
+                opa.ShowDialog();
                 return;
             }
             if (!AtualizarPeriodo())
             {
-                MessageBox.Show("Erro ao atualizar o período. Verifique as datas e tente novamente.");
+                var opa = new caixaMensagem("Erro ao atualizar o período. Verifique as datas e tente novamente.", "Falha ❌");
+                opa.ShowDialog();
                 return;
             }
             func_dashboard.load_grafico_vendas(grafico1, grafico2, parametros,lbTituloGrafico1,lbTituloGrafico2);

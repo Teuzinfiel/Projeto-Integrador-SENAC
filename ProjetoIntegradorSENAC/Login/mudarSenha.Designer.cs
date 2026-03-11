@@ -73,7 +73,6 @@
             picSenha.SizeMode = PictureBoxSizeMode.StretchImage;
             picSenha.TabIndex = 36;
             picSenha.TabStop = false;
-            picSenha.Click += picSenha_Click;
             picSenha.MouseLeave += picSenha_MouseLeave;
             picSenha.MouseHover += pictureBox1_MouseHover;
             // 

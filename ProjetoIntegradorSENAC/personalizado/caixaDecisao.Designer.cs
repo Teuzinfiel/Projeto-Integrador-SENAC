@@ -45,12 +45,10 @@
             panel1.Controls.Add(BtnSim);
             panel1.Controls.Add(lbMensagem);
             panel1.Controls.Add(btnNao);
-            panel1.Location = new Point(10, 46);
-            panel1.Margin = new Padding(3, 2, 3, 2);
+            panel1.Location = new Point(11, 61);
             panel1.Name = "panel1";
-            panel1.Size = new Size(340, 110);
+            panel1.Size = new Size(389, 147);
             panel1.TabIndex = 44;
-            panel1.Paint += panel1_Paint;
             // 
             // BtnSim
             // 
@@ -62,10 +60,9 @@
             BtnSim.FlatStyle = FlatStyle.Flat;
             BtnSim.Font = new Font("Franklin Gothic Medium", 15F);
             BtnSim.ForeColor = SystemColors.Control;
-            BtnSim.Location = new Point(50, 65);
-            BtnSim.Margin = new Padding(3, 2, 3, 2);
+            BtnSim.Location = new Point(57, 87);
             BtnSim.Name = "BtnSim";
-            BtnSim.Size = new Size(82, 33);
+            BtnSim.Size = new Size(94, 44);
             BtnSim.TabIndex = 40;
             BtnSim.Text = "Sim";
             BtnSim.UseVisualStyleBackColor = false;
@@ -76,23 +73,26 @@
             lbMensagem.AutoSize = true;
             lbMensagem.Font = new Font("Franklin Gothic Medium", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lbMensagem.ForeColor = Color.FromArgb(180, 180, 190);
-            lbMensagem.Location = new Point(15, 20);
+            lbMensagem.Location = new Point(17, 27);
             lbMensagem.Name = "lbMensagem";
-            lbMensagem.Size = new Size(50, 20);
+            lbMensagem.Size = new Size(58, 23);
             lbMensagem.TabIndex = 38;
             lbMensagem.Text = "label1";
             // 
             // btnNao
             // 
             btnNao.BackColor = Color.Transparent;
+            btnNao.FlatAppearance.BorderColor = Color.FromArgb(201, 0, 0);
+            btnNao.FlatAppearance.BorderSize = 2;
             btnNao.FlatAppearance.MouseDownBackColor = Color.FromArgb(50, 50, 60);
             btnNao.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 50, 60);
-            btnNao.FlatStyle = FlatStyle.Popup;
+            btnNao.FlatStyle = FlatStyle.Flat;
             btnNao.Font = new Font("Franklin Gothic Medium", 15F);
-            btnNao.ForeColor = Color.Maroon;
-            btnNao.Location = new Point(216, 65);
+            btnNao.ForeColor = Color.FromArgb(201, 0, 0);
+            btnNao.Location = new Point(247, 87);
+            btnNao.Margin = new Padding(3, 4, 3, 4);
             btnNao.Name = "btnNao";
-            btnNao.Size = new Size(82, 33);
+            btnNao.Size = new Size(94, 44);
             btnNao.TabIndex = 39;
             btnNao.Text = "Não";
             btnNao.UseVisualStyleBackColor = false;
@@ -101,11 +101,13 @@
             // btnSair
             // 
             btnSair.BackColor = Color.Transparent;
+            btnSair.Dock = DockStyle.Right;
             btnSair.FlatStyle = FlatStyle.Popup;
             btnSair.ForeColor = Color.White;
-            btnSair.Location = new Point(307, 0);
+            btnSair.Location = new Point(351, 0);
+            btnSair.Margin = new Padding(3, 4, 3, 4);
             btnSair.Name = "btnSair";
-            btnSair.Size = new Size(54, 33);
+            btnSair.Size = new Size(62, 44);
             btnSair.TabIndex = 41;
             btnSair.Text = "X";
             btnSair.UseVisualStyleBackColor = false;
@@ -114,9 +116,11 @@
             // 
             panel2.BackColor = Color.FromArgb(30, 30, 40);
             panel2.Controls.Add(lbTitulo);
+            panel2.Controls.Add(btnSair);
             panel2.Location = new Point(0, 0);
+            panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(301, 33);
+            panel2.Size = new Size(413, 44);
             panel2.TabIndex = 43;
             // 
             // lbTitulo
@@ -124,22 +128,22 @@
             lbTitulo.AutoSize = true;
             lbTitulo.Font = new Font("Franklin Gothic Medium", 10.8F);
             lbTitulo.ForeColor = Color.FromArgb(180, 180, 190);
-            lbTitulo.Location = new Point(10, 8);
+            lbTitulo.Location = new Point(11, 11);
             lbTitulo.Name = "lbTitulo";
-            lbTitulo.Size = new Size(50, 20);
+            lbTitulo.Size = new Size(58, 23);
             lbTitulo.TabIndex = 0;
             lbTitulo.Text = "label1";
             // 
             // caixaDecisao
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(40, 40, 50);
-            ClientSize = new Size(361, 164);
+            BackColor = Color.FromArgb(35, 35, 45);
+            ClientSize = new Size(413, 219);
             Controls.Add(panel1);
-            Controls.Add(btnSair);
             Controls.Add(panel2);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "caixaDecisao";
             ShowInTaskbar = false;
             StartPosition = FormStartPosition.Manual;

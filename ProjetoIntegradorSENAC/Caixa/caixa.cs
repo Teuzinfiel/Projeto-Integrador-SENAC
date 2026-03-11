@@ -72,10 +72,11 @@ namespace ProjetoIntegradorSENAC.Caixa
                 LIMIT 1
             ), 0) AS estoque
         FROM produtos p
+        JOIN estoque e ON e.produto_id = p.id
         WHERE p.comercio_id = {idEmpresa}
+        AND e.quantidade_atual > 0
         AND p.status = 'ativo'
         ORDER BY p.nome ASC
-        LIMIT 50;
     ";
 
             carregarProdutos(Banco.Pesquisar(query));
@@ -288,7 +289,7 @@ namespace ProjetoIntegradorSENAC.Caixa
 
                     var opa = new caixaMensagem("Estoque insuficiente", "Falha");
                     opa.ShowDialog();
-                 
+
                     return;
                 }
 
@@ -430,14 +431,10 @@ namespace ProjetoIntegradorSENAC.Caixa
             if (_vendaAtual.EstaVazia()) return;
 
 
-            var resp = MessageBox.Show(
-                "Deseja cancelar a venda?",
-                "Cancelar",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question
-            );
+            var opcao = new caixaDecisao("Tem certeza que deseja cancelar a venda?", "Confirmação");
+            opcao.ShowDialog();
 
-            if (resp == DialogResult.Yes)
+            if (opcao.decisao)
                 LimparVenda();
 
         }
@@ -449,7 +446,7 @@ namespace ProjetoIntegradorSENAC.Caixa
 
                 var opa = new caixaMensagem("Não há itens na venda.", "Falha ❌");
                 opa.ShowDialog();
-   
+
                 return;
             }
 
@@ -480,7 +477,8 @@ namespace ProjetoIntegradorSENAC.Caixa
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Erro ao salvar venda:\n" + ex.Message);
+                        var erro = new caixaMensagem("Erro ao salvar venda: " + ex.Message, "Falha ❌");
+                        erro.ShowDialog();
                     }
                 }
             }
@@ -774,7 +772,10 @@ namespace ProjetoIntegradorSENAC.Caixa
                     if (result != null)
                         idFunc = Convert.ToInt32(result);
                     else
-                        MessageBox.Show("Funcionário não encontrado para este usuário.");
+                    {
+                        var opa = new caixaMensagem("Funcionário não encontrado para este usuário.", "Falha ❌");
+                        opa.ShowDialog();
+                    }
                 }
             }
         }
@@ -903,13 +904,16 @@ LIMIT 1;
 
                     trans.Commit();
 
-                    MessageBox.Show("Venda excluída e estoque devolvido com sucesso!");
+                    var opa = new caixaMensagem("Venda excluída e estoque devolvido com sucesso!", "Sucesso ✔");
+                    opa.ShowDialog();
+
                     RecarregarProdutos();
                 }
                 catch (Exception ex)
                 {
                     trans.Rollback();
-                    MessageBox.Show("Erro ao excluir venda:\n" + ex.Message);
+                    var opa = new caixaMensagem("Erro ao excluir venda: " + ex.Message, "Falha ❌");
+                    opa.ShowDialog();
                 }
             }
         }
@@ -1085,6 +1089,5 @@ LIMIT 1;
                 cmd.ExecuteNonQuery();
             }
         }
-
     }
 }

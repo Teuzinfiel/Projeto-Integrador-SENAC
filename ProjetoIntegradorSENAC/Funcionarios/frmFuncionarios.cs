@@ -117,7 +117,8 @@ namespace ProjetoIntegradorSENAC.Usuarios
                         if (dt.Rows[0]["telefone"].ToString() == UsTelefone.Text)
                             mensagem += "Telefone já cadastrado!\n";
 
-                        MessageBox.Show(mensagem);
+                        var opa1 = new caixaMensagem(mensagem, "Falha ❌");
+                        opa1.ShowDialog();
                         return;
                     }
                     // 1 - cria usuario
@@ -144,7 +145,8 @@ namespace ProjetoIntegradorSENAC.Usuarios
                         using (var cmd3 = new MySqlCommand(insertFuncionario, conn))
                             cmd3.ExecuteNonQuery();
                     }
-                    MessageBox.Show("Conta criada com sucesso!!");
+                    var opa = new caixaMensagem("Conta criada com sucesso!", "Sucesso ✔");
+                    opa.ShowDialog();
                     LogService.CriarLog(this.idEmpresa, this.idUser, "Cadastrou funcionario");
                     Funcoes.Limpar(this);
 
@@ -154,8 +156,16 @@ namespace ProjetoIntegradorSENAC.Usuarios
             }
             else
             {
-                if (!senhaVal) MessageBox.Show("As senhas não correspondem");
-                else MessageBox.Show("Preencha todos os campos corretamente");
+                if (!senhaVal)
+                {
+                    var opa = new caixaMensagem("As senhas não correspondem", "Falha ❌");
+                    opa.ShowDialog();
+                }
+                else
+                {
+                    var opa = new caixaMensagem("Preencha todos os campos corretamente", "Falha ❌");
+                    opa.ShowDialog();
+                }
             }
         }
         private void chkMostrarSenha_CheckedChanged(object sender, EventArgs e)
@@ -319,7 +329,8 @@ namespace ProjetoIntegradorSENAC.Usuarios
                     if (dt.Rows[0]["telefone"].ToString() == EdTelefone.Text)
                         mensagem += "Telefone já cadastrado!\n";
 
-                    MessageBox.Show(mensagem);
+                    var opa = new caixaMensagem(mensagem, "Falha ❌");
+                    opa.ShowDialog(); 
                     return;
                 }
                 string update = $@"UPDATE usuarios u

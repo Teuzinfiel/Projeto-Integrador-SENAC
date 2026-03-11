@@ -25,7 +25,7 @@ namespace ProjetoIntegradorSENAC.personalizado
         {
             lbMensagem.Text = Mensagem;
             lbTitulo.Text = Titulo;
-            lbMensagem.MaximumSize = new Size(panel1.Width -5, 0);
+            lbMensagem.MaximumSize = new Size(panel1.Width -8, 0);
         }
 
         private void btnSair_Click(object sender, EventArgs e)

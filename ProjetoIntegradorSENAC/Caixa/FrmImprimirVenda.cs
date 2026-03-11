@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using ProjetoIntegradorSENAC.Classes;
+using ProjetoIntegradorSENAC.personalizado;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -151,7 +152,8 @@ namespace ProjetoIntegradorSENAC.Caixa
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao imprimir: " + ex.Message);
+                var opa = new caixaMensagem("Erro ao imprimir: " + ex.Message, "Falha ❌");
+                opa.ShowDialog(); 
             }
         }
 

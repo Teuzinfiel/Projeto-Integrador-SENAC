@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using ProjetoIntegradorSENAC.Classes;
 using ProjetoIntegradorSENAC.LogInf;
+using ProjetoIntegradorSENAC.personalizado;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -63,11 +64,8 @@ namespace ProjetoIntegradorSENAC.Produto
             validarCampos = true;
             if (!CamposValidos())
             {
-                MessageBox.Show(
-                    "Preencha corretamente todos os campos obrigatórios!",
-                    "Erro",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                var opa = new caixaMensagem("Preencha corretamente todos os campos obrigatórios!", "Falha ❌");
+                opa.ShowDialog();
                 return;
             }
 
@@ -92,7 +90,8 @@ namespace ProjetoIntegradorSENAC.Produto
 
                 if (!ok)
                 {
-                    MessageBox.Show("Erro ao enviar foto: " + resposta);
+                    var opa = new caixaMensagem("Erro ao enviar foto: " + resposta, "Falha ❌");
+                    opa.ShowDialog();
                     return;
                 }
 
@@ -145,8 +144,8 @@ namespace ProjetoIntegradorSENAC.Produto
                         throw;
                     }
                 }
-
-                MessageBox.Show("Produto cadastrado com sucesso!");
+                var opa = new caixaMensagem("Produto cadastrado com sucesso!", "Sucesso ✔");
+                opa.ShowDialog();
                 LogService.CriarLog(this.idComercio, this.idUsuario, "Cadastrou produto");
 
                 limpandoFormulario = true;
@@ -176,7 +175,8 @@ namespace ProjetoIntegradorSENAC.Produto
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao cadastrar produto:\n" + ex.Message);
+                var opa = new caixaMensagem("Erro ao cadastrar produto: " + ex.Message, "Falha ❌");
+                opa.ShowDialog();
             }
         }
 
@@ -319,7 +319,8 @@ namespace ProjetoIntegradorSENAC.Produto
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao carregar produtos:\n" + ex.Message);
+                var opa = new caixaMensagem("Erro ao carregar produtos: " + ex.Message, "Falha ❌");
+                opa.ShowDialog();
             }
         }
 
@@ -371,7 +372,8 @@ namespace ProjetoIntegradorSENAC.Produto
         {
             if (string.IsNullOrWhiteSpace(txtCategoria.Text))
             {
-                MessageBox.Show("Informe o nome da categoria.");
+                var opa = new caixaMensagem("Informe o nome da categoria.", "Falha ❌");
+                opa.ShowDialog();
                 return;
             }
             string nome = txtCategoria.Text.Trim();
@@ -383,7 +385,8 @@ namespace ProjetoIntegradorSENAC.Produto
                     // CADASTRAR
                     string insert = $@"  INSERT INTO categorias (comercio_id, nome)  VALUES ({idComercio}, '{nome}')";
                     Banco.Inserir(insert);
-                    MessageBox.Show("Categoria cadastrada!");
+                    var opa = new caixaMensagem("Categoria cadastrada!", "Sucesso ✔");
+                    opa.ShowDialog();
                     LogService.CriarLog(this.idComercio, this.idUsuario, "Adicionou categoria");
                 }
                 else
@@ -391,7 +394,8 @@ namespace ProjetoIntegradorSENAC.Produto
                     // ATUALIZAR
                     string update = $@"  UPDATE categorias SET nome = '{nome}'  WHERE id = {idCategoriaSelecionada}  AND comercio_id = {idComercio}";
                     Banco.Inserir(update);
-                    MessageBox.Show("Categoria atualizada!");
+                    var opa = new caixaMensagem("Categoria atualizada!", "Sucesso ✔");
+                    opa.ShowDialog();
                     LogService.CriarLog(this.idComercio, this.idUsuario, "Atualizou categora");
                 }
                 // Atualiza produtos associados à categoria atualizada
@@ -403,7 +407,8 @@ namespace ProjetoIntegradorSENAC.Produto
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro:\n" + ex.Message);
+                var opa = new caixaMensagem("Erro: " + ex.Message, "Falha ❌");
+                opa.ShowDialog();
             }
         }
 
@@ -412,12 +417,13 @@ namespace ProjetoIntegradorSENAC.Produto
         {
             if (idCategoriaSelecionada == 0)
             {
-                MessageBox.Show("Selecione uma categoria.");
+                var opa = new caixaMensagem("Selecione uma categoria.", "Falha ❌");
+                opa.ShowDialog();
                 return;
             }
-
-            if (MessageBox.Show("Ao excluir esta categoria, os produtos ficarão como 'Categoria excluída'.\nDeseja continuar?", "Confirmação",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return;
+            var opcao = new caixaDecisao("Ao excluir esta categoria, os produtos ficarão como 'Categoria excluída'.\nDeseja continuar?", "Confirmação");
+            opcao.ShowDialog();
+            if ( opcao.decisao) return;
 
             try
             {
@@ -432,8 +438,8 @@ namespace ProjetoIntegradorSENAC.Produto
                 string delete = $@" DELETE FROM categorias WHERE id = {idCategoriaSelecionada}  AND comercio_id = {idComercio}; ";
 
                 Banco.Excluir(delete);
-
-                MessageBox.Show("Categoria excluída. Produtos atualizados.");
+                var opa = new caixaMensagem("Categoria excluída. Produtos atualizados.", "Sucesso ✔");
+                opa.ShowDialog();
                 LogService.CriarLog(this.idComercio, this.idUsuario, "Excluiu categora");
 
                 LimparCategoria();
@@ -444,7 +450,8 @@ namespace ProjetoIntegradorSENAC.Produto
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro:\n" + ex.Message);
+                var opa = new caixaMensagem("Erro:" + ex.Message, "Falha ❌");
+                opa.ShowDialog();
             }
         }
 
@@ -554,7 +561,8 @@ namespace ProjetoIntegradorSENAC.Produto
         {
             if (idProdutoSelecionado == 0)
             {
-                MessageBox.Show("Selecione um produto na lista.");
+                var opa = new caixaMensagem("Selecione um produto na lista.", "Falha ❌");
+                opa.ShowDialog();
                 return;
             }
 
@@ -586,12 +594,8 @@ namespace ProjetoIntegradorSENAC.Produto
 
             if (!camposValidos)
             {
-                MessageBox.Show(
-                    "Preencha corretamente todos os campos obrigatórios.",
-                    "Erro",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                var opa = new caixaMensagem("Preencha corretamente todos os campos obrigatórios.", "Falha ❌");
+                opa.ShowDialog();
                 return;
             }
 
@@ -607,12 +611,8 @@ namespace ProjetoIntegradorSENAC.Produto
                 textBox1.Text == custoOrigen 
             )
             {
-                MessageBox.Show(
-                    "Nenhuma alteração foi feita.",
-                    "Aviso",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
+                var opa = new caixaMensagem("Nenhuma alteração foi feita.", "Aviso⚠️");
+                opa.ShowDialog();
                 return;
             }
 
@@ -634,7 +634,8 @@ WHERE id = {idProdutoSelecionado};";
             try
             {
                 Banco.Inserir(sql);
-                MessageBox.Show("Produto atualizado!");
+                var opa = new caixaMensagem("Produto atualizado!", "Sucesso ✔");
+                opa.ShowDialog();
                 LogService.CriarLog(this.idComercio, this.idUsuario, "Produto Cadastrado");
                 LimparEdicaoProduto();
                 CarregarProdutos();
@@ -644,7 +645,8 @@ WHERE id = {idProdutoSelecionado};";
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro:\n" + ex.Message);
+                var opa = new caixaMensagem("Erro: " + ex.Message, "Falha ❌");
+                opa.ShowDialog();
             }
         }
 
@@ -652,18 +654,21 @@ WHERE id = {idProdutoSelecionado};";
         {
             if (idProdutoSelecionado == 0)
             {
-                MessageBox.Show("Selecione um produto.");
+                var opa = new caixaMensagem("Selecione um produto.", "Falha ❌");
+                opa.ShowDialog();
                 return;
             }
-
-            if (MessageBox.Show("Deseja desativar este produto?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return;
+            var opcao = new caixaDecisao("Deseja desativar este produto?", "Confirmação");
+            opcao.ShowDialog();
+            if (opcao.decisao) return;
 
             string sql = $@"  UPDATE produtos SET status = 'desativo' WHERE id = {idProdutoSelecionado}; ";
 
             try
             {
                 Banco.Inserir(sql);
-                MessageBox.Show("Produto desativado!");
+                var opa = new caixaMensagem("Produto desativado!", "Sucesso ✔");
+                opa.ShowDialog();
                 LogService.CriarLog(this.idComercio, this.idUsuario, "Desativou um produto");
                 LimparEdicaoProduto();
                 CarregarProdutos();
@@ -672,7 +677,8 @@ WHERE id = {idProdutoSelecionado};";
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro:\n" + ex.Message);
+                var opa = new caixaMensagem("Erro:\n" + ex.Message, "Falha ❌");
+                opa.ShowDialog();
             }
         }
         // Botao de exclusao de produtos
@@ -681,15 +687,13 @@ WHERE id = {idProdutoSelecionado};";
         {
             if (idProdutoSelecionado == 0)
             {
-                MessageBox.Show("Selecione um produto.");
+                var opa = new caixaMensagem("Selecione um produto.", "Falha ❌");
+                opa.ShowDialog();
                 return;
             }
-
-            if (MessageBox.Show(
-                "Excluir este produto definitivamente?",
-                "Confirmação",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Error) == DialogResult.No)
+            var opcao = new caixaDecisao("Excluir este produto definitivamente?", "Confirmação");
+            opcao.ShowDialog();
+            if (opcao.decisao)
                 return;
 
             try
@@ -728,8 +732,8 @@ WHERE id = {idProdutoSelecionado};";
                         throw;
                     }
                 }
-
-                MessageBox.Show("Produto excluído!");
+                var opa = new caixaMensagem("Produto excluído!", "Sucesso ✔");
+                opa.ShowDialog();
                 LogService.CriarLog(this.idComercio, this.idUsuario, "Excluiu Produto");
                 esconderBotao();
                 LimparEdicaoProduto();
@@ -744,7 +748,8 @@ WHERE id = {idProdutoSelecionado};";
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro:\n" + ex.Message);
+                var opa = new caixaMensagem("Erro: " + ex.Message, "Falha ❌");
+                opa.ShowDialog();
             }
         }
 
@@ -792,17 +797,20 @@ WHERE id = {idProdutoSelecionado};";
         {
             if (idProdutoSelecionado == 0)
             {
-                MessageBox.Show("Selecione um produto.");
+                var opa = new caixaMensagem("Selecione um produto.", "Falha ❌");
+                opa.ShowDialog();
                 return;
             }
-
-            if (MessageBox.Show("Deseja ativar este produto novamente?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) return;
+            var opcao = new caixaDecisao("Deseja ativar este produto novamente?", "Confirmação");
+            opcao.ShowDialog();
+            if (opcao.decisao) return;
             string sql = $@" UPDATE produtos SET status = 'ativo' WHERE id = {idProdutoSelecionado};";
 
             try
             {
                 Banco.Inserir(sql);
-                MessageBox.Show("Produto ativado!");
+                var opa = new caixaMensagem("Produto ativado!", "Sucesso ✔");
+                opa.ShowDialog();
                 LogService.CriarLog(this.idComercio, this.idUsuario, "Ativou um produto");
                 LimparEdicaoProduto();
                 CarregarProdutos();
@@ -810,7 +818,8 @@ WHERE id = {idProdutoSelecionado};";
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro:\n" + ex.Message);
+                var opa = new caixaMensagem("Erro: " + ex.Message, "Falha ❌");
+                opa.ShowDialog();
             }
         }
 
@@ -844,11 +853,13 @@ WHERE id = {idProdutoSelecionado};";
 
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
+                    
                     string ext = Path.GetExtension(dialog.FileName).ToLower();
-
+                    MessageBox.Show(ext);
                     if (ext != ".jpg" && ext != ".jpeg" && ext != ".png")
                     {
-                        MessageBox.Show("Formato Invalido");
+                        var opa = new caixaMensagem("Formato Invalido", "Falha ❌");
+                        opa.ShowDialog();
                         return;
                     }
 

@@ -1,12 +1,13 @@
-﻿using System;
+﻿using ProjetoIntegradorSENAC.Classes;
+using ProjetoIntegradorSENAC.Configurações;
+using ProjetoIntegradorSENAC.Logins;
+using ProjetoIntegradorSENAC.Main;
+using ProjetoIntegradorSENAC.personalizado;
+using System;
 using System.Data;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using ProjetoIntegradorSENAC.Classes;
-using ProjetoIntegradorSENAC.Configurações;
-using ProjetoIntegradorSENAC.Logins;
-using ProjetoIntegradorSENAC.Main;
 
 namespace ProjetoIntegradorSENAC.Empresa
 {
@@ -50,7 +51,8 @@ namespace ProjetoIntegradorSENAC.Empresa
 
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao carregar empresas: " + ex.Message);
+                var opa = new caixaMensagem("Erro ao carregar empresas: " + ex.Message, "Falha ❌");
+                opa.ShowDialog();
             }
             dtgEmpresas.ClearSelection();
 

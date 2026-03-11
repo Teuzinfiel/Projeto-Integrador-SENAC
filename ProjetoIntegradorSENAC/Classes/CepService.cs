@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjetoIntegradorSENAC.personalizado;
+using System;
 using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
@@ -16,14 +17,20 @@ public class CepService
             cep = new string(cep.Where(char.IsDigit).ToArray());
 
             if (cep.Length != 8)
-                throw new Exception("CEP inválido.");
+            {
+                var opa = new caixaMensagem("CEP inválido.", "Falha ❌");
+                opa.ShowDialog();
+            }
 
             string url = $"https://viacep.com.br/ws/{cep}/json/";
 
             var response = await _httpClient.GetAsync(url);
 
             if (!response.IsSuccessStatusCode)
-                throw new Exception("Erro ao consultar CEP.");
+            {
+                var opa = new caixaMensagem("Erro ao consultar CEP.", "Falha ❌");
+                opa.ShowDialog();
+            }
 
             var json = await response.Content.ReadAsStringAsync();
 
@@ -34,13 +41,18 @@ public class CepService
                 });
 
             if (resultado?.Erro == true)
-                throw new Exception("CEP não encontrado.");
+            {
+                var opa = new caixaMensagem("CEP não encontrado.", "Falha ❌");
+                opa.ShowDialog();
+            }
 
             return resultado;
         }
         catch (Exception ex)
         {
-            throw new Exception("Erro: " + ex.Message);
+            var opa = new caixaMensagem("Erro: " + ex.Message, "Falha ❌");
+            opa.ShowDialog();
+            return null;
         }
     }
 

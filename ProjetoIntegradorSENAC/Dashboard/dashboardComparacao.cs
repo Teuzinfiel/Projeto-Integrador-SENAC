@@ -130,8 +130,7 @@ namespace ProjetoIntegradorSENAC
         {
             if (!AtualizarPeriodoComparacao())
             {
-                caixaMensagem info = new caixaMensagem("As datas estão incorreta ou na posição" +
-                    "\nerrada!!!", "Falha ❌");
+                caixaMensagem info = new caixaMensagem("As datas estão incorreta ou na posição errada!", "Falha ❌");
                 info.ShowDialog();
                 return;
             }

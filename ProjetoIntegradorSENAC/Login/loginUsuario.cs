@@ -3,6 +3,7 @@ using ProjetoIntegradorSENAC.Caixa;
 using ProjetoIntegradorSENAC.Classes;
 using ProjetoIntegradorSENAC.Empresa;
 using ProjetoIntegradorSENAC.Main;
+using ProjetoIntegradorSENAC.personalizado;
 using ProjetoIntegradorSENAC.Usuario;
 using System;
 using System.Collections.Generic;
@@ -43,7 +44,8 @@ namespace ProjetoIntegradorSENAC.Logins
 
             if (user.Rows.Count == 0)
             {
-                MessageBox.Show("Usuário não encontrado!");
+                var opa = new caixaMensagem("Usuário não encontrado!", "Falha ❌");
+                opa.ShowDialog();
                 return;
             }
 
@@ -53,7 +55,8 @@ namespace ProjetoIntegradorSENAC.Logins
             //  Confere senha
             if (Funcoes.CriptoSenha(txtSenha.Text) != passwordBD)
             {
-                MessageBox.Show("Senha incorreta!");
+                var opa = new caixaMensagem("Senha incorreta!", "Falha ❌");
+                opa.ShowDialog();
                 return;
             }
 
@@ -151,7 +154,8 @@ namespace ProjetoIntegradorSENAC.Logins
 
             if (user.Rows.Count == 0)
             {
-                MessageBox.Show("Usuário não encontrado!");
+                var opa = new caixaMensagem("Usuário não encontrado!", "Falha ❌");
+                opa.ShowDialog();
                 return;
             }
 
@@ -228,7 +232,8 @@ namespace ProjetoIntegradorSENAC.Logins
 
             if (user.Rows.Count == 0)
             {
-                MessageBox.Show("Usuário não encontrado!");
+                var opa = new caixaMensagem("Usuário não encontrado!", "Falha ❌");
+                opa.ShowDialog();
                 return;
             }
 
@@ -299,7 +304,8 @@ namespace ProjetoIntegradorSENAC.Logins
 
             if (user.Rows.Count == 0)
             {
-                MessageBox.Show("Usuário não encontrado!");
+                var opa = new caixaMensagem("Usuário não encontrado!", "Falha ❌");
+                opa.ShowDialog();
                 return;
             }
 

@@ -3,6 +3,7 @@
     using Org.BouncyCastle.Utilities;
     using ProjetoIntegradorSENAC.Classes;
     using ProjetoIntegradorSENAC.LogInf;
+    using ProjetoIntegradorSENAC.personalizado;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -37,7 +38,8 @@
                     btnEnviarEntrada.Enabled = false;
                     btnEnviarSaida.Enabled = false;
 
-                    MessageBox.Show("Produto inativo. Movimentações bloqueadas.");
+                var opa = new caixaMensagem("Produto inativo. Movimentações bloqueadas.", "Falha ❌");
+                opa.ShowDialog();
                 }
                 GarantirEstoqueExiste();
                 CarregarProduto();
@@ -229,7 +231,8 @@
             {
                 if (!ValidarEntrada())
                 {
-                    MessageBox.Show("Preencha corretamente os campos obrigatórios.");
+                var opa = new caixaMensagem("Preencha corretamente os campos obrigatórios.", "Falha ❌");
+                opa.ShowDialog();
                     return;
                 }
 
@@ -287,12 +290,14 @@
                         txtDescEntrada.Clear();
                         cbTipoEntrada.SelectedIndex = -1;
 
-                        MessageBox.Show("Entrada registrada com sucesso!");
+                    var opa = new caixaMensagem("Entrada registrada com sucesso!", "Sucesso ✔");
+                    opa.ShowDialog();
                     }
                     catch (Exception ex)
                     {
                         trans.Rollback();
-                        MessageBox.Show("Erro: " + ex.Message);
+                    var opa = new caixaMensagem("Erro: " + ex.Message, "Falha ❌");
+                    opa.ShowDialog();
                     }
                 }
             }
@@ -304,7 +309,8 @@
             {
                 if (!ValidarSaida())
                 {
-                    MessageBox.Show("Preencha corretamente os campos obrigatórios.");
+                var opa = new caixaMensagem("Preencha corretamente os campos obrigatórios.", "Falha ❌");
+                opa.ShowDialog();
                     return;
                 }
 
@@ -329,7 +335,8 @@
 
                         if (quantidade > saldoAnterior)
                         {
-                            MessageBox.Show("Estoque insuficiente.");
+                        var opa1 = new caixaMensagem("Estoque insuficiente.", "Falha ❌");
+                        opa1.ShowDialog();
                             return;
                         }
 
@@ -368,12 +375,14 @@
                         txtDescSaida.Clear();
                         cbTipoSaida.SelectedIndex = -1;
                         LogService.CriarLog(this._comercioId, this._userId, "Saiu com produto do estoque");
-                        MessageBox.Show("Saída registrada com sucesso!");
+                    var opa = new caixaMensagem("Saída registrada com sucesso!", "Sucesso ✔");
+                    opa.ShowDialog();
                     }
                     catch (Exception ex)
                     {
                         trans.Rollback();
-                        MessageBox.Show("Erro: " + ex.Message);
+                    var opa = new caixaMensagem("Erro: " + ex.Message, "Falha ❌");
+                    opa.ShowDialog();
                     }
                 }
             }

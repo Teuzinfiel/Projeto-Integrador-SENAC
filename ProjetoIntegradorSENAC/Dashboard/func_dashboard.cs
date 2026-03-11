@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+using MySql.Data.MySqlClient;
 using Mysqlx.Crud;
 using Mysqlx.Session;
 using OxyPlot;
@@ -8,6 +9,7 @@ using OxyPlot.Series;
 using OxyPlot.WindowsForms;
 using ProjetoIntegradorSENAC.Classes;
 using ProjetoIntegradorSENAC.Empresa;
+using ProjetoIntegradorSENAC.personalizado;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -140,7 +142,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
             FROM DUAL;", parametros);
             if (tabela.Rows.Count == 0)
             {
-                MessageBox.Show("Nenhum dado encontrado para os períodos selecionados.");
+                var opa = new caixaMensagem("Nenhum dado encontrado para os períodos selecionados.", "Falha ❌");
+                opa.ShowDialog();
                 return;
             }
             label1.Text = tabela.Rows[0]["lucro_vendas"].ToString();
@@ -210,7 +213,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro em carregarInfoProdutos: {ex.Message}");
+                var opa = new caixaMensagem($"Erro em carregar Informações de Produtos: {ex.Message}", "Falha ❌");
+                opa.ShowDialog();
             }
         }
         public static void carregarInfoVendas(Label label1, Label label2, Label label3,Label label4, 
@@ -296,7 +300,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro em carregarInfoVendas: {ex.Message}");
+                var opa = new caixaMensagem($"Erro em carregar Informações de Vendas: {ex.Message}", "Falha ❌");
+                opa.ShowDialog();
             }
         }
         public static void carregarInfoEstoque(Label label1, Label label2, Label label3, Label label4, 
@@ -374,7 +379,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro em carregarInfoVendas: {ex.Message}");
+                var opa = new caixaMensagem($"Erro em carregar Informações de Vendas: {ex.Message}", "Falha ❌");
+                opa.ShowDialog();
             }
         }
         public static void load_grafico_produtos(PlotView grafico1, PlotView grafico2, Dictionary<string, object> parametros, Label lbTituloGrafico1, Label lbTituloGrafico2)
@@ -414,6 +420,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
             {
                 Title = "Vendas",
                 FillColor = OxyColors.RoyalBlue,
+                FontWeight = FontWeights.Bold,
+                FontSize = 14,
                 LabelPlacement = LabelPlacement.Inside,
                 LabelFormatString = "Qtd: {0}"
             };
@@ -485,6 +493,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
             {
                 Title = "receita",
                 FillColor = OxyColors.RoyalBlue,
+                FontWeight = FontWeights.Bold,
+                FontSize = 14,
                 LabelPlacement = LabelPlacement.Inside,
                 LabelFormatString = "{0:N2}%"
             };
@@ -565,6 +575,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
             {
                 Title = "Quantidade",
                 FillColor = OxyColors.RoyalBlue,
+                FontWeight = FontWeights.Bold,
+                FontSize = 14,
                 LabelPlacement = LabelPlacement.Inside,
                 LabelFormatString = "R$: {0}"
             };
@@ -636,6 +648,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
             {
                 Title = "quantidade",
                 FillColor = OxyColors.RoyalBlue,
+                FontWeight = FontWeights.Bold,
+                FontSize = 14,
                 LabelPlacement = LabelPlacement.Inside,
                 LabelFormatString = "Qtd: {0}"
             };
@@ -697,8 +711,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 Title = "Hora do dia",
                 TitleFontSize = 14,
                 TitleFontWeight = FontWeights.Bold,
-                Minimum = 1,
-                Maximum = 24,
+                Minimum = 0,
+                Maximum = 23,
                 MajorStep = 1,
                 MinorStep = 1,
                 TextColor = OxyColors.White,
@@ -725,7 +739,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 StrokeThickness = 2,
                 MarkerType = MarkerType.Circle,
                 MarkerSize = 4,
-                MarkerFill = OxyColors.White
+                MarkerFill = OxyColors.White,
+                MarkerStrokeThickness = 5
             };
             DataTable tabela = func_dashboard.ExecutarSelect(@"
             SELECT
@@ -749,7 +764,7 @@ namespace ProjetoIntegradorSENAC.Dashboard
                 vendasPorHora[hora] = total;
             }
 
-            for (int h = 1; h <= 23; h++)
+            for (int h = 0; h <= 23; h++)
             {
                 int total = vendasPorHora.ContainsKey(h) ? vendasPorHora[h] : 0;
                 linhaVendas.Points.Add(new DataPoint(h, total));
@@ -803,6 +818,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
             {
                 Title = "Vendas",
                 FillColor = OxyColors.RoyalBlue,
+                FontWeight = FontWeights.Bold,
+                FontSize = 14,
                 LabelPlacement = LabelPlacement.Inside,
                 LabelFormatString = "{0}"
             };
@@ -885,7 +902,9 @@ namespace ProjetoIntegradorSENAC.Dashboard
             {
                 Title = "Vendas",
                 FillColor = OxyColors.RoyalBlue,
+                FontSize = 14,
                 LabelPlacement = LabelPlacement.Inside,
+                FontWeight = FontWeights.Bold,
                 LabelFormatString = "{0}"
             };
             DataTable tabela = func_dashboard.ExecutarSelect(@"
@@ -1085,7 +1104,8 @@ namespace ProjetoIntegradorSENAC.Dashboard
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao executar consulta: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                var opa = new caixaMensagem($"Erro ao executar consulta: {ex.Message}", "Falha ❌");
+                opa.ShowDialog();
                 return new DataTable();
             }
         }

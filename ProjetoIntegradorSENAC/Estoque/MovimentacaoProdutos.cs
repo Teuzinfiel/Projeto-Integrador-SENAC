@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using ProjetoIntegradorSENAC.Classes;
 using ProjetoIntegradorSENAC.Empresa;
+using ProjetoIntegradorSENAC.personalizado;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -45,7 +46,7 @@ namespace ProjetoIntegradorSENAC.Estoque
         {
             using (var conn = Banco.AbrirConexao())
             {
-                string sql = @"
+                string sql = $@"
 SELECT 
     me.tipo AS Tipo,
     me.quantidade AS Quantidade,
@@ -57,7 +58,7 @@ SELECT
 FROM movimentacoes_estoque me
 LEFT JOIN funcionarios f ON f.id = me.funcionario_id
 LEFT JOIN usuarios u ON u.id = f.usuarios_id
-WHERE 1=1"; // base sempre verdadeira para concatenar filtros
+WHERE me.comercio_id = {_comercioId}"; 
 
                 // 🔎 FILTRO MOTIVO
                 if (cbTipoFiltro.Text != "TODOS")
@@ -72,7 +73,7 @@ WHERE 1=1"; // base sempre verdadeira para concatenar filtros
                 }
 
                 // 🔎 FILTRO DATA (pega o dia inteiro)
-                sql += " AND me.data BETWEEN @dataInicio AND @dataFim ";
+                sql += " AND me.data >= @dataInicio AND me.data < DATE_ADD(@dataFim, INTERVAL 1 DAY) ";
 
                 // 🔎 ORDER
                 sql += " ORDER BY me.data DESC";
@@ -119,10 +120,8 @@ WHERE 1=1"; // base sempre verdadeira para concatenar filtros
         {
             if (dtpDe.Value.Date > dtpAte.Value.Date)
             {
-                MessageBox.Show("A data inicial não pode ser maior que a data final.",
-                                "Atenção",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Warning);
+                var opa = new caixaMensagem("A data inicial não pode ser maior que a data final.", "Falha ❌");
+                opa.ShowDialog();
                 return;
             }
 
@@ -133,7 +132,8 @@ WHERE 1=1"; // base sempre verdadeira para concatenar filtros
         {
             if (dtgMovimentacoes.DataSource == null)
             {
-                MessageBox.Show("Não há dados para imprimir.");
+                var opa = new caixaMensagem("Não há dados para imprimir.", "Falha ❌");
+                opa.ShowDialog();
                 return;
             }
 

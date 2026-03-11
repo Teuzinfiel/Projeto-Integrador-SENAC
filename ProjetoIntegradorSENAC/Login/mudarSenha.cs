@@ -140,10 +140,5 @@ namespace ProjetoIntegradorSENAC
                 info.Close();
             }
         }
-
-        private void picSenha_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

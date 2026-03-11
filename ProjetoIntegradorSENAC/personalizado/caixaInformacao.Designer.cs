@@ -37,35 +37,35 @@
             // 
             panel1.BackColor = Color.FromArgb(40, 40, 50);
             panel1.Controls.Add(lbMensagem);
+            panel1.Dock = DockStyle.Fill;
             panel1.ForeColor = Color.FromArgb(180, 180, 190);
-            panel1.Location = new Point(12, 9);
-            panel1.Margin = new Padding(3, 2, 3, 2);
+            panel1.Location = new Point(6, 6);
             panel1.Name = "panel1";
-            panel1.Size = new Size(346, 78);
+            panel1.Size = new Size(396, 109);
             panel1.TabIndex = 41;
             // 
             // lbMensagem
             // 
             lbMensagem.AutoSize = true;
             lbMensagem.Font = new Font("Franklin Gothic Medium", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbMensagem.ForeColor = Color.FromArgb(180, 180, 190);
-            lbMensagem.Location = new Point(10, 8);
+            lbMensagem.ForeColor = Color.FromArgb(224, 224, 224);
+            lbMensagem.Location = new Point(11, 11);
             lbMensagem.Name = "lbMensagem";
-            lbMensagem.Size = new Size(333, 60);
+            lbMensagem.Size = new Size(335, 92);
             lbMensagem.TabIndex = 38;
-            lbMensagem.Text = "A senha deve ter no mínimo oito caracteres,\r\ncom pelo menos uma letra maiúscula e minúscula\r\num caractere númerico e um caractere especial.";
+            lbMensagem.Text = "A senha deve ter no mínimo 8 caracteres,\r\ncom pelo menos 1 letra maiúscula,\r\n1 minúscula, 1 caractere númerico e 1 \r\ncaractere especial.";
             // 
             // caixaInformacao
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(35, 35, 45);
-            ClientSize = new Size(357, 91);
+            ClientSize = new Size(408, 121);
             Controls.Add(panel1);
             ForeColor = Color.FromArgb(180, 180, 190);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 2, 3, 2);
             Name = "caixaInformacao";
+            Padding = new Padding(6);
             Text = "caixaInformacao";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

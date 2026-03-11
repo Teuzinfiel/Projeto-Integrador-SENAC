@@ -7,6 +7,7 @@ using ProjetoIntegradorSENAC.Estoque;
 using ProjetoIntegradorSENAC.LogInf;
 using ProjetoIntegradorSENAC.Logins;
 using ProjetoIntegradorSENAC.Main;
+using ProjetoIntegradorSENAC.personalizado;
 using ProjetoIntegradorSENAC.Produto;
 using ProjetoIntegradorSENAC.Usuarios;
 using System.Data;
@@ -123,7 +124,8 @@ namespace ProjetoIntegradorSENAC
             }
             else
             {
-                MessageBox.Show("Apenas o dono da empresa pode acessar a tela de funcionários.", "Acesso Negado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                var opa = new caixaMensagem("Apenas o dono da empresa pode acessar a tela de funcionários.", "Falha ?");
+                opa.ShowDialog();
             }
 
         }
@@ -190,7 +192,8 @@ namespace ProjetoIntegradorSENAC
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao buscar nome do usuário:\n" + ex.Message);
+                var opa = new caixaMensagem("Erro ao buscar nome do usuário: " + ex.Message, "Falha ?");
+                opa.ShowDialog();
                 txtNomeUser.Text = "Bem-vindo";
             }
         }
